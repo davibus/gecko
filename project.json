@@ -4,6 +4,8 @@
   "master_resume": "input/master-resume/dcall-resume-3-15-26.pdf",
   "resume_output_dir": "output/resumes",
   "match_report_dir": "output/match-reports",
+  "job_tracker": "output/job-tracker.xlsx",
+  "job_tracker_script": "scripts/manage_job_tracker.py",
   "target_pages": 2,
   "default_font_size_pt": 11,
   "line_spacing": 1.15,

@@ -12,6 +12,9 @@
 5. Tailor the resume subtly and generate the two-page DOCX resume under `output/resumes/Dave-Call+{Company-Name}+{JobNumber}.docx` using the reusable generator in `scripts/`.
 6. Generate the comprehensive Match Score report under `output/match-reports/Dave-Call+{Company-Name}+{JobNumber}.md`.
 7. Verify page count and layout using Word/PDF rendering inside the job's scratch subfolder (`scratch/{Company-Name}+{JobNumber}/`).
+8. Only after the final resume and match report have both been created and validated, append the job to the persistent tracker:
+   `python scripts/manage_job_tracker.py add --resume "output/resumes/Dave-Call+{Company-Name}+{JobNumber}.docx" --match-report "output/match-reports/Dave-Call+{Company-Name}+{JobNumber}.md" --job-description "input/job-descriptions/{Company-Name}+{JobNumber}.md"`
+9. Run `python scripts/manage_job_tracker.py validate`. A Gecko job is not complete until the tracker update and validation succeed.
 
 ## Quality checklist
 
@@ -27,3 +30,5 @@
 - No page overflow or excessive empty blocks
 - All temporary artifacts contained within `scratch/{Company-Name}+{JobNumber}/`
 - All reusable scripts maintained in `scripts/`
+- Job recorded once in `output/job-tracker.xlsx`, after both final deliverables were successfully created
+- Existing tracker rows and manual `Applied` / `Contacted` entries preserved

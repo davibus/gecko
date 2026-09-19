@@ -9,6 +9,7 @@ Gecko is Dave Call's resume-tailoring workflow for turning a job listing into a 
 3. Use the prompt in `prompts/use-gecko.md`.
 4. Gecko should use `input/master-resume/dcall-resume-3-15-26.pdf` as the source resume unless another source is explicitly supplied.
 5. Save tailored resumes to `output/resumes/` and match reports to `output/match-reports/`.
+6. After both final deliverables are successfully created and validated, add the job to `output/job-tracker.xlsx` with `scripts/manage_job_tracker.py`.
 
 ## Core Gecko behavior
 
@@ -24,6 +25,29 @@ Gecko is Dave Call's resume-tailoring workflow for turning a job listing into a 
 - Keep the user's professional voice and only make claims supported by the source resume or explicit user-provided facts.
 
 - Keep all temporary files, test scripts, and layout preview PNGs in dedicated subfolders: `scratch/{Company-Name}+{JobNumber}/`.
+- Record every completed job in the persistent Excel tracker only after the final resume and match report exist. The tracker assigns sequential Resume # values, prevents duplicate Job Numbers, and preserves manual `Applied` and `Contacted` entries.
+
+## Job tracker
+
+Create or backfill the tracker:
+
+```powershell
+python scripts/manage_job_tracker.py import-history
+```
+
+Add one newly completed Gecko job as the final workflow step:
+
+```powershell
+python scripts/manage_job_tracker.py add --resume "output/resumes/Dave-Call+Company+JobNumber.docx" --match-report "output/match-reports/Dave-Call+Company+JobNumber.md" --job-description "input/job-descriptions/Company+JobNumber.md"
+```
+
+Validate the workbook:
+
+```powershell
+python scripts/manage_job_tracker.py validate
+```
+
+The `add` command is idempotent by Job Number. It reads company, title, pay, source URL, and Match Score from the archived listing and match report; unavailable optional fields remain blank.
 
 ## Folder map
 
@@ -34,6 +58,7 @@ Gecko is Dave Call's resume-tailoring workflow for turning a job listing into a 
 - `input/job-descriptions/` — job listings to tailor against
 - `output/resumes/` — generated resumes
 - `output/match-reports/` — job-fit reports
+- `output/job-tracker.xlsx` — persistent application tracker
 - `scratch/{Company-Name}+{JobNumber}/` — job-specific temporary files, previews, and layout tests
 - `templates/` — notes about the preferred resume layout
 - `prompts/` — reusable operating prompts

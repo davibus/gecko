@@ -23,6 +23,7 @@ When asked to "use Gecko" for a job:
 6. Produce a Match Score report.
 7. Save the resume under `output/resumes/`.
 8. Save the match report under `output/match-reports/`.
+9. After both final files have been created and validated successfully, add the job to `output/job-tracker.xlsx` with `scripts/manage_job_tracker.py`. Never add a tracker row before both final deliverables exist.
 
 If the job comes from Indeed, use the `jk` value as the job number and name the DOCX:
 `Dave-Call+<Company-Name>+<jk>.docx`
@@ -37,3 +38,10 @@ Sanitize `<Company-Name>` using the same Windows-safe rules as the scratch direc
 Keep all temporary files (preview PNGs, PDFs, layout tests) inside `scratch/{Company-Name}+{JobNumber}/`.
 All reusable tools and scripts remain in `scripts/`.
 
+## Job tracker
+
+Every successfully completed Gecko resume must be recorded in `output/job-tracker.xlsx` as the final workflow step. Run:
+
+`python scripts/manage_job_tracker.py add --resume "output/resumes/<resume-file>.docx" --match-report "output/match-reports/<match-report-file>.md" --job-description "input/job-descriptions/<archived-listing-file>.md"`
+
+The tracker script assigns the next Resume # and prevents duplicate Job Number entries. Do not directly rewrite existing tracker rows or clear the user-maintained `Applied` and `Contacted` columns.

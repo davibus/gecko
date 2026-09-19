@@ -58,6 +58,17 @@ Every Gecko job analysis should include:
 
 The score should reflect the evidence in the resume and the job description, not optimism.
 
+## Job tracker
+
+Every successful Gecko resume generation must end by recording the job in `output/job-tracker.xlsx` with `scripts/manage_job_tracker.py`.
+
+- Add the tracker row only after the final DOCX and final match report both exist and have passed their required validation.
+- Pass the final resume, match report, and archived job description to the script's `add` command.
+- Let the script assign the next sequential Resume # and reject duplicate Job Number entries.
+- Preserve all existing rows and the user's manual `Applied` and `Contacted` values.
+- Leave compensation or other unavailable listing fields blank; never infer or invent them.
+- Treat the tracker update as required for completion. If it fails, report the failure and do not claim the Gecko job is fully complete.
+
 ## Filename rules
 
 Resume:
