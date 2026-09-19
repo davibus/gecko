@@ -2,6 +2,10 @@
 
 Gecko is Dave Call's resume-tailoring workflow for turning a job listing into a targeted, natural-sounding, ATS-friendly resume and match analysis.
 
+Job discovery is available as a separate upstream module under `job-scout/`. It scores and stores openings without generating resumes. See `job-scout/README.md` for provider setup, search, review, and selection commands.
+
+To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
+
 ## How to use this project in AntiGravity
 
 1. Open this folder as a project in AntiGravity.
@@ -47,9 +51,11 @@ Validate the workbook:
 python scripts/manage_job_tracker.py validate
 ```
 
-The `add` command is idempotent by Job Number. It reads company, title, pay, source URL, and Match Score from the archived listing and match report; unavailable optional fields remain blank.
+The `add` command is idempotent by Job Number. It reads company, title, pay, source URL, source name, date found, and Match Score from the archived listing and match report; unavailable optional fields remain blank. The extended tracker also records lifecycle status while preserving the user-maintained `Applied` and `Contacted` columns.
 
 ## Folder map
+
+- `job-scout/` — upstream job discovery, scoring, deduplication, and local status storage
 
 - `AGENTS.md` — project instructions AntiGravity should follow
 - `GECKO_SYSTEM.md` — full Gecko operating specification

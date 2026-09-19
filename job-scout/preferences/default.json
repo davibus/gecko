@@ -1,0 +1,30 @@
+{
+  "minimum_score": 80,
+  "target_roles": [
+    "Paid Search Manager",
+    "Paid Search Specialist",
+    "PPC Manager",
+    "SEM Manager",
+    "Digital Marketing Manager",
+    "Performance Marketing Manager",
+    "Marketing Analytics Manager",
+    "Digital Marketing Analyst",
+    "Growth Marketing Manager",
+    "E-Commerce Marketing Manager"
+  ],
+  "preferred_locations": ["remote", "utah", "salt lake city", "lehi", "draper", "provo", "orem", "midvale"],
+  "preferred_employment_types": ["full-time", "full time", "permanent"],
+  "excluded_seniority": ["intern", "internship", "entry level", "entry-level", "junior", "associate"],
+  "candidate": {
+    "years_experience": 14,
+    "location": "Lehi, Utah",
+    "education": ["Bachelor of Science", "Business Management", "Brigham Young University"],
+    "certifications": ["Google Ads", "Google Analytics", "Bing Ads", "Facebook Blueprint", "Amazon Marketing Services"],
+    "management_evidence": ["director-level digital marketing", "director-level e-commerce", "managed online marketing departments", "managed an e-commerce team of 8", "managed digital marketing teams", "cross-functional leadership", "large-budget management", "multi-channel management"],
+    "paid_media": ["Google Ads", "Microsoft Ads", "Bing Ads", "Meta Ads", "Facebook Ads", "paid social", "Instagram", "TikTok", "Amazon Marketing Services", "paid search", "PPC", "SEM", "shopping", "display", "YouTube", "Performance Max"],
+    "analytics": ["marketing analytics", "GA4", "Google Analytics", "Google Tag Manager", "GTM", "Tableau", "Looker Studio", "Power BI", "SQL", "Python", "Databricks", "Funnel.io", "regression analysis", "attribution", "LTV", "A/B testing", "CRO"],
+    "ecommerce_seo": ["e-commerce", "Shopify", "Magento", "Amazon", "WordPress", "SEO strategy", "SEO audits", "technical SEO", "on-page SEO"],
+    "marketing_technology": ["HubSpot", "Salesforce", "Marketo", "Pardot", "Shopify", "Magento", "WordPress", "Klaviyo", "Adobe Analytics", "Google Ads API", "SEMrush", "Moz"],
+    "automation_ai": ["automation", "JavaScript", "custom monitoring scripts", "statistical modeling", "machine learning", "ChatGPT", "AI marketing tools"]
+  }
+}

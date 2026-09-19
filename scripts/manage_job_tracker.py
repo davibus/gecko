@@ -16,6 +16,7 @@ import argparse
 import os
 import re
 import sys
+from urllib.parse import urlsplit
 from dataclasses import dataclass
 from datetime import date, datetime
 from pathlib import Path
@@ -46,7 +47,12 @@ HEADERS = [
     "Date Created",
     "Applied",
     "Contacted",
+    "Source",
+    "Date Found",
+    "Status",
 ]
+
+LEGACY_HEADERS = HEADERS[:11]
 
 COLUMN_WIDTHS = {
     "A": 11,
@@ -60,6 +66,9 @@ COLUMN_WIDTHS = {
     "I": 15,
     "J": 12,
     "K": 12,
+    "L": 18,
+    "M": 15,
+    "N": 18,
 }
 
 
@@ -73,6 +82,10 @@ class JobRecord:
     job_link: str
     resume_path: Path
     date_created: date | None
+    source: str = ""
+    date_found: date | None = None
+    status: str = "resume-created"
+    scout_id: int | None = None
 
 
 def project_path(value: str | Path) -> Path:
@@ -189,6 +202,16 @@ def record_from_files(
         ("URL", "Source URL", "Application URL", "Job Link"),
     ) or markdown_field(report_text, ("Application URL", "URL", "Source URL", "Job Link"))
     score = extract_score(report_text)
+    source = markdown_field(listing_text, ("Source",))
+    scout_id_value = markdown_field(listing_text, ("Scout ID",))
+    scout_id = int(scout_id_value) if scout_id_value.isdigit() else None
+    if not source and "indeed.com/" in job_link.lower():
+        source = "Indeed"
+    found_value = markdown_field(listing_text, ("Date Discovered", "Date Found"))
+    try:
+        date_found = datetime.fromisoformat(found_value).date() if found_value else None
+    except ValueError:
+        date_found = None
 
     missing = [
         name
@@ -210,7 +233,10 @@ def record_from_files(
     else:
         created = date.today()
 
-    return JobRecord(company, title, pay, job_number, score, job_link, resume, created)
+    return JobRecord(
+        company, title, pay, job_number, score, job_link, resume, created,
+        source=source, date_found=date_found, status="resume-created", scout_id=scout_id,
+    )
 
 
 def style_worksheet(ws: Worksheet) -> None:
@@ -219,7 +245,7 @@ def style_worksheet(ws: Worksheet) -> None:
         cell.fill = PatternFill("solid", fgColor="1F4E78")
         cell.alignment = Alignment(vertical="center")
     ws.freeze_panes = "A2"
-    ws.auto_filter.ref = f"A1:K{max(ws.max_row, 1)}"
+    ws.auto_filter.ref = f"A1:N{max(ws.max_row, 1)}"
     ws.row_dimensions[1].height = 22
     for column, width in COLUMN_WIDTHS.items():
         ws.column_dimensions[column].width = width
@@ -238,13 +264,37 @@ def load_tracker(path: Path) -> Workbook:
     if not path.exists():
         return create_workbook()
     workbook = load_workbook(path)
-    if workbook.sheetnames != [SHEET_NAME]:
-        raise ValueError(f"Tracker must contain exactly one worksheet named {SHEET_NAME!r}")
+    if SHEET_NAME not in workbook.sheetnames:
+        raise ValueError(f"Tracker must contain a worksheet named {SHEET_NAME!r}")
     ws = workbook[SHEET_NAME]
-    actual_headers = [ws.cell(1, column).value for column in range(1, len(HEADERS) + 1)]
-    if actual_headers != HEADERS:
+    populated_headers = [ws.cell(1, column).value for column in range(1, ws.max_column + 1)]
+    if populated_headers == LEGACY_HEADERS:
+        for column, value in enumerate(HEADERS[len(LEGACY_HEADERS):], len(LEGACY_HEADERS) + 1):
+            ws.cell(1, column, value)
+    elif populated_headers != HEADERS:
         raise ValueError("Tracker columns do not match Gecko's required schema")
     return workbook
+
+
+def source_from_url(value: str) -> str:
+    host = urlsplit(value).netloc.lower().removeprefix("www.")
+    known = {
+        "indeed.com": "Indeed", "linkedin.com": "LinkedIn", "adzuna.com": "Adzuna",
+        "ziprecruiter.com": "ZipRecruiter", "monster.com": "Monster",
+    }
+    for domain, source in known.items():
+        if host == domain or host.endswith("." + domain):
+            return source
+    return host
+
+
+def backfill_extended_fields(ws: Worksheet) -> None:
+    """Populate evidence-backed fields added after the original tracker schema."""
+    for row in range(2, ws.max_row + 1):
+        if not ws.cell(row, 12).value and ws.cell(row, 7).value:
+            ws.cell(row, 12, source_from_url(str(ws.cell(row, 7).value)))
+        if not ws.cell(row, 14).value and ws.cell(row, 8).value:
+            ws.cell(row, 14, "resume-created")
 
 
 def save_atomic(workbook: Workbook, path: Path) -> None:
@@ -294,6 +344,7 @@ def append_record(ws: Worksheet, tracker: Path, record: JobRecord) -> bool:
             next_resume_number(ws), record.company, record.job_title, record.pay or None,
             record.job_number, record.match_score, record.job_link or None, resume_link,
             record.date_created, None, None,
+            record.source or None, record.date_found, record.status,
         ]
     )
     row = ws.max_row
@@ -304,11 +355,31 @@ def append_record(ws: Worksheet, tracker: Path, record: JobRecord) -> bool:
     ws.cell(row, 8).style = "Hyperlink"
     if record.date_created:
         ws.cell(row, 9).number_format = "mm/dd/yyyy"
+    if record.date_found:
+        ws.cell(row, 13).number_format = "mm/dd/yyyy"
     return True
+
+
+def mark_scout_resume_created(workbook: Workbook, record: JobRecord) -> bool:
+    """Advance an existing Scout row without changing its manual application fields."""
+    if record.scout_id is None or "Job Scout" not in workbook.sheetnames:
+        return False
+    ws = workbook["Job Scout"]
+    headers = {ws.cell(1, column).value: column for column in range(1, ws.max_column + 1)}
+    required = {"Scout ID", "Gecko Status", "Resume Created"}
+    if not required <= headers.keys():
+        return False
+    for row in range(2, ws.max_row + 1):
+        if str(ws.cell(row, headers["Scout ID"]).value) == str(record.scout_id):
+            ws.cell(row, headers["Gecko Status"], "Resume Created")
+            ws.cell(row, headers["Resume Created"], "X")
+            return True
+    return False
 
 
 def init_tracker(tracker: Path) -> int:
     workbook = load_tracker(tracker)
+    backfill_extended_fields(workbook[SHEET_NAME])
     style_worksheet(workbook[SHEET_NAME])
     save_atomic(workbook, tracker)
     print(f"Tracker ready: {tracker}")
@@ -323,10 +394,13 @@ def add_job(args: argparse.Namespace, tracker: Path) -> int:
     record = record_from_files(resume, report, listing, historical=False, date_override=date_override)
     workbook = load_tracker(tracker)
     ws = workbook[SHEET_NAME]
+    backfill_extended_fields(ws)
     added = append_record(ws, tracker, record)
+    scout_updated = mark_scout_resume_created(workbook, record)
     style_worksheet(ws)
-    if added:
+    if added or scout_updated:
         save_atomic(workbook, tracker)
+    if added:
         print(f"Added Resume #{ws.max_row - 1}: {record.company} — {record.job_title}")
     else:
         print(f"No change: Job Number {record.job_number} is already tracked")
@@ -360,6 +434,7 @@ def historical_records() -> list[JobRecord]:
 def import_history(tracker: Path) -> int:
     workbook = load_tracker(tracker)
     ws = workbook[SHEET_NAME]
+    backfill_extended_fields(ws)
     added = 0
     for record in historical_records():
         if append_record(ws, tracker, record):
@@ -384,7 +459,7 @@ def validate_tracker(tracker: Path) -> int:
         errors.append("duplicate Job Number values found")
     if ws.freeze_panes != "A2":
         errors.append("top row is not frozen")
-    if ws.auto_filter.ref != f"A1:K{max(ws.max_row, 1)}":
+    if ws.auto_filter.ref != f"A1:N{max(ws.max_row, 1)}":
         errors.append("filter range does not cover all tracker rows")
     if not all(cell.font.bold for cell in ws[1]):
         errors.append("header row is not bold")
@@ -398,6 +473,10 @@ def validate_tracker(tracker: Path) -> int:
             errors.append(f"row {row} Match Score is invalid")
         if ws.cell(row, 9).value and ws.cell(row, 9).number_format.lower() != "mm/dd/yyyy":
             errors.append(f"row {row} Date Created format is invalid")
+        if ws.cell(row, 13).value and ws.cell(row, 13).number_format.lower() != "mm/dd/yyyy":
+            errors.append(f"row {row} Date Found format is invalid")
+        if ws.cell(row, 14).value not in (None, "resume-created", "applied", "contacted", "interview", "rejected", "offer", "ignored"):
+            errors.append(f"row {row} Status is invalid")
     if errors:
         raise ValueError("Tracker validation failed: " + "; ".join(errors))
     print(f"Tracker valid: {ws.max_row - 1} job rows in {tracker}")

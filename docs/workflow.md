@@ -1,5 +1,9 @@
 # Gecko Workflow
 
+## Optional upstream Job Scout
+
+Job Scout is separate from resume generation. Run `python job-scout/scout.py search`, review strong matches with `python job-scout/scout.py list`, and explicitly select one with `python job-scout/scout.py select <ID>`. Selection archives the description in `input/job-descriptions/`; it never creates a resume or tracker row. Continue with the unchanged workflow below only after choosing a job. Full setup and commands are in `job-scout/README.md`.
+
 ## New job
 
 1. Read and extract the job details from the job URL or copied listing.
