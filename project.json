@@ -1,0 +1,13 @@
+{
+  "name": "gecko",
+  "purpose": "Resume customization and job-fit analysis",
+  "master_resume": "input/master-resume/dcall-resume-3-15-26.pdf",
+  "resume_output_dir": "output/resumes",
+  "match_report_dir": "output/match-reports",
+  "target_pages": 2,
+  "default_font_size_pt": 11,
+  "line_spacing": 1.15,
+  "filename_pattern": "Dave-Call+<Company-Name>+<job-number>.docx",
+  "match_report_pattern": "Dave-Call+<Company-Name>+<job-number>.md",
+  "job_description_pattern": "<Company-Name>+<job-number>.md"
+}
