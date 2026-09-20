@@ -10,6 +10,7 @@ from normalize import normalize
 from scoring import score_job
 from sources.base import JobSource, SearchRequest
 from storage import JobStore
+from url_resolution import classify_url, resolve_and_store
 
 
 @dataclass
@@ -47,14 +48,25 @@ def discover(
             job.provisional = result.provisional
             job.evidence_levels = result.evidence_levels
             duplicate = find_duplicate(job, known)
+            should_resolve = (
+                raw.source.casefold() in {"jooble", "web-careers"}
+                or classify_url(raw.url) == "official_ats"
+            )
             if duplicate:
-                store.merge(duplicate.id, job, retained=job.match_score >= threshold)
+                retained = job.match_score >= threshold
+                store.merge(duplicate.id, job, retained=retained)
+                if retained and should_resolve:
+                    merged = store.get(duplicate.id)
+                    if merged and merged.url_verification_status == "not_attempted":
+                        resolve_and_store(merged, store)
                 summary.duplicates += 1
                 continue
             retained = job.match_score >= threshold
             job_id = store.save(job, retained=retained)
             job.id = job_id
             known.append(job)
+            if retained and should_resolve:
+                job = resolve_and_store(job, store)
             if retained and job.provisional and job.source.lower() == "adzuna":
                 job = enrich_and_rescore(job, store, preferences, resume_text)
                 retained = job.match_score >= threshold

@@ -37,7 +37,8 @@ class JobStore:
                 work_arrangement TEXT, employment_type TEXT, salary TEXT,
                 source TEXT, source_job_id TEXT, url TEXT, canonical_url TEXT,
                 date_posted TEXT, date_discovered TEXT NOT NULL, last_seen TEXT NOT NULL,
-                description TEXT,
+                description TEXT, category TEXT NOT NULL DEFAULT '',
+                tags_json TEXT NOT NULL DEFAULT '[]',
                 match_score INTEGER NOT NULL, strengths_json TEXT NOT NULL,
                 weaknesses_json TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'new',
                 evidence_confidence INTEGER NOT NULL DEFAULT 0,
@@ -67,6 +68,16 @@ class JobStore:
                 enriched_match_score INTEGER NOT NULL DEFAULT 0,
                 enriched_evidence_confidence INTEGER NOT NULL DEFAULT 0
             );
+            CREATE TABLE IF NOT EXISTS url_resolutions (
+                job_id INTEGER PRIMARY KEY REFERENCES jobs(id) ON DELETE CASCADE,
+                verification_status TEXT NOT NULL DEFAULT 'not_attempted',
+                authoritative_url TEXT NOT NULL DEFAULT '',
+                authoritative_url_confidence INTEGER NOT NULL DEFAULT 0,
+                destination_type TEXT NOT NULL DEFAULT 'unknown',
+                redirect_url TEXT NOT NULL DEFAULT '',
+                resolved_at TEXT NOT NULL DEFAULT '',
+                resolution_error TEXT NOT NULL DEFAULT ''
+            );
         """)
         columns = {row["name"] for row in self.connection.execute("PRAGMA table_info(jobs)")}
         if "evidence_confidence" not in columns:
@@ -78,6 +89,10 @@ class JobStore:
         if "last_seen" not in columns:
             self.connection.execute("ALTER TABLE jobs ADD COLUMN last_seen TEXT NOT NULL DEFAULT ''")
             self.connection.execute("UPDATE jobs SET last_seen = date_discovered WHERE last_seen = ''")
+        if "category" not in columns:
+            self.connection.execute("ALTER TABLE jobs ADD COLUMN category TEXT NOT NULL DEFAULT ''")
+        if "tags_json" not in columns:
+            self.connection.execute("ALTER TABLE jobs ADD COLUMN tags_json TEXT NOT NULL DEFAULT '[]'")
         self.connection.commit()
 
     @staticmethod
@@ -88,7 +103,8 @@ class JobStore:
             salary=row["salary"] or "", source=row["source"] or "", source_job_id=row["source_job_id"] or "",
             url=row["url"] or "", canonical_url=row["canonical_url"] or "", date_posted=row["date_posted"] or "",
             date_discovered=row["date_discovered"], last_seen=row["last_seen"] or row["date_discovered"],
-            description=row["description"] or "",
+            description=row["description"] or "", category=row["category"] or "",
+            tags=json.loads(row["tags_json"] or "[]"),
             match_score=row["match_score"], match_strengths=json.loads(row["strengths_json"]),
             evidence_confidence=row["evidence_confidence"], provisional=bool(row["provisional"]),
             evidence_levels=json.loads(row["evidence_json"]),
@@ -119,19 +135,36 @@ class JobStore:
                 "enriched_evidence_confidence",
             ):
                 setattr(job, name, enrichment[name])
+        resolution = self.connection.execute(
+            "SELECT * FROM url_resolutions WHERE job_id = ?", (job_id,)
+        ).fetchone()
+        if resolution:
+            mapping = {
+                "verification_status": "url_verification_status",
+                "authoritative_url": "authoritative_url",
+                "authoritative_url_confidence": "authoritative_url_confidence",
+                "destination_type": "url_destination_type",
+                "redirect_url": "url_redirect_url",
+                "resolved_at": "url_resolved_at",
+                "resolution_error": "url_resolution_error",
+            }
+            for column, attribute in mapping.items():
+                setattr(job, attribute, resolution[column])
         return job
 
     def save(self, job: JobListing, retained: bool = True) -> int:
         cursor = self.connection.execute("""
             INSERT INTO jobs (company,title,location,work_arrangement,employment_type,salary,source,
-                source_job_id,url,canonical_url,date_posted,date_discovered,last_seen,description,match_score,
-                strengths_json,weaknesses_json,status,evidence_confidence,provisional,evidence_json,retained)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                source_job_id,url,canonical_url,date_posted,date_discovered,last_seen,description,
+                category,tags_json,match_score,strengths_json,weaknesses_json,status,evidence_confidence,provisional,
+                evidence_json,retained)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
             ON CONFLICT(source, source_job_id) DO UPDATE SET
                 company=excluded.company,title=excluded.title,location=excluded.location,
                 work_arrangement=excluded.work_arrangement,employment_type=excluded.employment_type,
                 salary=excluded.salary,url=excluded.url,canonical_url=excluded.canonical_url,
                 date_posted=excluded.date_posted,last_seen=excluded.last_seen,description=excluded.description,
+                category=excluded.category,tags_json=excluded.tags_json,
                 match_score=excluded.match_score,strengths_json=excluded.strengths_json,
                 weaknesses_json=excluded.weaknesses_json,
                 evidence_confidence=excluded.evidence_confidence,provisional=excluded.provisional,
@@ -141,7 +174,7 @@ class JobStore:
             job.company, job.title, job.location, job.work_arrangement, job.employment_type, job.salary,
             job.source, job.source_job_id, job.url, job.canonical_url, job.date_posted,
             job.date_discovered, job.last_seen or job.date_discovered, job.description,
-            job.match_score, json.dumps(job.match_strengths),
+            job.category, json.dumps(job.tags), job.match_score, json.dumps(job.match_strengths),
             json.dumps(job.match_weaknesses), job.status, job.evidence_confidence,
             int(job.provisional), json.dumps(job.evidence_levels), int(retained),
         ))
@@ -169,8 +202,8 @@ class JobStore:
         current = self.get(canonical_id)
         self.connection.execute("""
             UPDATE jobs SET last_seen=?, salary=CASE WHEN ? != '' THEN ? ELSE salary END,
-                url=CASE WHEN ? != '' THEN ? ELSE url END,
-                canonical_url=CASE WHEN ? != '' THEN ? ELSE canonical_url END
+                url=CASE WHEN url = '' AND ? != '' THEN ? ELSE url END,
+                canonical_url=CASE WHEN canonical_url = '' AND ? != '' THEN ? ELSE canonical_url END
             WHERE id=?
         """, (
             duplicate.last_seen or duplicate.date_discovered,
@@ -182,18 +215,43 @@ class JobStore:
         if current and duplicate.match_score > current.match_score:
             self.connection.execute("""
                 UPDATE jobs SET title=?, company=?, location=?, work_arrangement=?, employment_type=?,
-                    salary=?, date_posted=?, description=?, match_score=?, strengths_json=?,
+                    salary=?, date_posted=?, description=?, category=?, tags_json=?, match_score=?, strengths_json=?,
                     weaknesses_json=?, evidence_confidence=?, provisional=?, evidence_json=?,
                     retained=MAX(retained, ?) WHERE id=?
             """, (
                 duplicate.title, duplicate.company, duplicate.location, duplicate.work_arrangement,
                 duplicate.employment_type, duplicate.salary, duplicate.date_posted, duplicate.description,
-                duplicate.match_score, json.dumps(duplicate.match_strengths),
+                duplicate.category, json.dumps(duplicate.tags), duplicate.match_score,
+                json.dumps(duplicate.match_strengths),
                 json.dumps(duplicate.match_weaknesses), duplicate.evidence_confidence,
                 int(duplicate.provisional), json.dumps(duplicate.evidence_levels), int(retained), canonical_id,
             ))
         for link in duplicate.source_links:
             self.add_source_link(canonical_id, link["source"], link.get("source_job_id", ""), link["url"])
+        self.connection.commit()
+
+    def save_url_resolution(self, job: JobListing):
+        """Persist URL trust metadata independently from match scoring."""
+        if job.id is None:
+            raise ValueError("Cannot save URL resolution for an unsaved job")
+        self.connection.execute("""
+            INSERT INTO url_resolutions (
+                job_id,verification_status,authoritative_url,authoritative_url_confidence,
+                destination_type,redirect_url,resolved_at,resolution_error
+            ) VALUES (?,?,?,?,?,?,?,?)
+            ON CONFLICT(job_id) DO UPDATE SET
+                verification_status=excluded.verification_status,
+                authoritative_url=excluded.authoritative_url,
+                authoritative_url_confidence=excluded.authoritative_url_confidence,
+                destination_type=excluded.destination_type,
+                redirect_url=excluded.redirect_url,
+                resolved_at=excluded.resolved_at,
+                resolution_error=excluded.resolution_error
+        """, (
+            job.id, job.url_verification_status, job.authoritative_url,
+            job.authoritative_url_confidence, job.url_destination_type,
+            job.url_redirect_url, job.url_resolved_at, job.url_resolution_error,
+        ))
         self.connection.commit()
 
     def update_scoring(self, job: JobListing, retained: bool):

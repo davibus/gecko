@@ -17,6 +17,7 @@ from sources.base import ProviderError
 from sources.http import FetchedDocument, get_document
 from sources.web import SCRIPT_RE, _job_nodes, _text
 from storage import JobStore
+from url_resolution import classify_url
 
 
 MINIMUM_GAIN = 200
@@ -78,8 +79,7 @@ def _host(url: str) -> str:
 
 
 def _official(url: str) -> bool:
-    host = _host(url)
-    return bool(host and "adzuna." not in host)
+    return classify_url(url) not in {"aggregator_intermediary", "dead_unavailable"}
 
 
 def _title_similarity(expected: str, actual: str) -> float:

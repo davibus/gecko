@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 import html
 import base64
+import json
 from pathlib import Path
 
 import docx
@@ -248,6 +249,7 @@ def export_and_validate(docx_path: Path, pdf_path: Path, scratch_dir: Path | Non
     scratch = Path(scratch_dir) if scratch_dir is not None else SCRATCH
     scratch.mkdir(parents=True, exist_ok=True)
     word_pages = None
+    word_error = None
     try:
         word = win32com.client.Dispatch("Word.Application")
         word.Visible = False
@@ -261,6 +263,7 @@ def export_and_validate(docx_path: Path, pdf_path: Path, scratch_dir: Path | Non
         finally:
             word.Quit()
     except Exception as exc:
+        word_error = str(exc)
         print(f"Word automation unavailable ({exc}); using faithful HTML/CSS fallback.")
         render_fallback_pdf(docx_path, pdf_path, scratch)
 
@@ -271,11 +274,30 @@ def export_and_validate(docx_path: Path, pdf_path: Path, scratch_dir: Path | Non
         pix.save(scratch / f"resume-page-{i + 1}.png")
     pdf.close()
 
+    status = {
+        "status": "native-valid" if word_pages == 2 and pdf_pages == 2 else "native-pending",
+        "docx": str(docx_path.resolve()),
+        "pdf": str(pdf_path.resolve()),
+        "word_pages": word_pages,
+        "pdf_pages": pdf_pages,
+        "word_error": word_error,
+    }
+    (scratch / "validation-status.json").write_text(
+        json.dumps(status, indent=2), encoding="utf-8"
+    )
+
     if (word_pages is not None and word_pages != 2) or pdf_pages != 2:
         raise RuntimeError(f"Resume must be exactly 2 pages; Word={word_pages}, PDF={pdf_pages}")
     print(f"Saved: {docx_path}")
-    print(f"Validated: Word={word_pages} pages, PDF={pdf_pages} pages")
+    if word_pages is None:
+        print(
+            f"Fallback-only pagination check: PDF={pdf_pages} pages. "
+            "Native Microsoft Word validation is still required."
+        )
+    else:
+        print(f"Validated: Word={word_pages} pages, PDF={pdf_pages} pages")
     print(f"Preview: {pdf_path}")
+    return status
 
 
 def render_fallback_pdf(docx_path: Path, pdf_path: Path, scratch_dir: Path | None = None):

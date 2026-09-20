@@ -12,6 +12,8 @@ Job Scout is an upstream discovery module. It finds and evaluates openings, but 
 6. Shows jobs scoring 80 or higher by default, with short-source 80+ results labeled provisional.
 7. On explicit selection, archives the full description in Gecko's existing `input/job-descriptions/` format and marks the job `reviewing`.
 
+For retained Jooble results, Job Scout also resolves the discovery link before review. It keeps the original Jooble URL in source history, rejects known aggregators as application destinations, and promotes only high-confidence employer or ATS matches.
+
 Weak matches are stored with `retained = 0` so later searches know they were seen, but `list` hides them unless `--all` is supplied.
 
 ## Configure sources
@@ -23,12 +25,36 @@ Copy-Item .env.example .env.local
 notepad .env.local
 ```
 
-Do not commit keys. The only required entries for normal Adzuna operation are:
+Do not commit keys. Configure the official Adzuna and Jooble APIs with:
 
 ```dotenv
 ADZUNA_APP_ID=
 ADZUNA_APP_KEY=
+JOOBLE_API_KEY=
 ```
+
+Remotive uses its official public jobs API and requires no API key. Do not add a
+`REMOTIVE_API_KEY`; there is no Remotive credential to configure.
+
+### Google Sheets tracker
+
+Gecko can use a native Google Sheet as the live tracker while retaining `output/job-tracker.xlsx` as a migration backup. Create a dedicated service account, enable the official Google Sheets API, share the spreadsheet with the service-account email as Editor, and keep its JSON key outside this repository.
+
+Configure the ignored local environment file:
+
+```dotenv
+TRACKER_BACKEND=google-sheets
+GOOGLE_SHEETS_SPREADSHEET_ID=your-spreadsheet-id
+GOOGLE_SHEETS_CREDENTIALS_FILE=C:\path\outside\the\repository\service-account.json
+```
+
+`TRACKER_BACKEND=xlsx` disables automatic Google synchronization. The explicit command below always attempts a Google sync and is useful for initial migration and verification:
+
+```powershell
+python job-scout/scout.py sync-sheets
+```
+
+Google synchronization uses the Sheets API rather than browser automation. It maintains `Job Tracker` and `Job Scout`, upserts Scout records by Scout ID or canonical URL, preserves historical rows and manual `Applied`/`Contacted` entries, mirrors those manual entries into the XLSX backup, reapplies filters and formatting, and keeps strongest Scout matches first.
 
 Alternatively, set credentials in the current shell or a secret manager:
 
@@ -36,6 +62,9 @@ Alternatively, set credentials in the current shell or a secret manager:
 # Adzuna Jobs API
 $env:ADZUNA_APP_ID = "..."
 $env:ADZUNA_APP_KEY = "..."
+
+# Jooble Jobs API
+$env:JOOBLE_API_KEY = "..."
 
 # Optional career-page discovery; not used by the default search
 $env:BRAVE_SEARCH_API_KEY = "..."
@@ -49,9 +78,11 @@ $env:INDEED_API_ENDPOINT = "https://your-authorized-integration.example/jobs"
 $env:INDEED_API_TOKEN = "..."
 ```
 
-The default search source is Adzuna. Brave is optional and is never queried unless `--source web-careers` or `--source all` is explicitly requested. The Indeed adapter calls only the configured authorized endpoint; it does not scrape Indeed. The optional web provider uses Brave Search to discover career URLs, then reads public schema.org `JobPosting` JSON-LD from those pages instead of depending on visual page selectors. Legacy Google Custom Search support is available only for existing customers; Google has closed it to new customers and announced discontinuation on January 1, 2027.
+The default `search` source remains Adzuna. Jooble uses its official POST API and can be selected with `--provider jooble`. Remotive uses its official keyless public API and can be selected with `--provider remotive`. `daily` queries the core Adzuna, Jooble, and Remotive providers. Brave is optional and is never queried unless `--source web-careers` or `--source all` is explicitly requested. The Indeed adapter calls only the configured authorized endpoint; it does not scrape Indeed. The optional web provider uses Brave Search to discover career URLs, then reads public schema.org `JobPosting` JSON-LD from those pages instead of depending on visual page selectors. Legacy Google Custom Search support is available only for existing customers; Google has closed it to new customers and announced discontinuation on January 1, 2027.
 
-Provider references: [Brave Web Search API](https://api-dashboard.search.brave.com/app/documentation/web-search/get-started), [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview), and [Adzuna API overview](https://developer.adzuna.com/overview).
+Remotive attribution is retained throughout the pipeline: `source` is exactly `remotive`, the Remotive job ID and original job URL are saved, and deduplicated records keep that provenance in their source links. Candidate location, publication date, salary, category, tags, and description are normalized into the common Job Scout contract; category and tags are persisted in SQLite. The public feed is delayed by about 24 hours, so Job Scout uses Remotive's `publication_date` for `Date Posted` and never substitutes the API retrieval date. To respect Remotive's request-frequency guidance, each Scout process downloads the feed only once and filters it locally. Remotive discovery never uses the generic web-search provider.
+
+Provider references: [Remotive public API and attribution terms](https://github.com/remotive-com/remote-jobs-api), [Brave Web Search API](https://api-dashboard.search.brave.com/app/documentation/web-search/get-started), [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview), and [Adzuna API overview](https://developer.adzuna.com/overview).
 
 ## Run a search
 
@@ -66,15 +97,22 @@ python job-scout/scout.py show 12
 
 `search` uses Adzuna only by default and does not require `BRAVE_SEARCH_API_KEY`.
 
-`daily` runs the complete Adzuna workflow: search, deduplicate, score, enrich provisional 80+ results, synchronize the `Job Scout` worksheet in `output/job-tracker.xlsx`, and display the review queue. It never creates a resume. The `search` command also synchronizes the worksheet after a successful run.
+`daily` runs the complete Adzuna, Jooble, and Remotive workflow: search, cross-provider deduplication, scoring, Adzuna enrichment for provisional 80+ results, tracker synchronization, and the review queue. It never creates a resume. The `search` command also synchronizes after a successful run. With `TRACKER_BACKEND=google-sheets`, both commands update Google Sheets after updating the XLSX backup.
 
 Narrow a search or query a single provider:
 
 ```powershell
 python job-scout/scout.py search --query "Paid Search Manager" --query "Marketing Analytics Manager" --location "Utah" --results 20
+python job-scout/scout.py search --provider jooble
+python job-scout/scout.py search --provider remotive --query "Paid Search Manager" --location "Remote" --results 20
+python job-scout/scout.py diagnose-remotive
 ```
 
-The default search runs every target title in `preferences/default.json` for both Utah and Remote against Adzuna. API usage therefore equals target titles × two locations. Use explicit `--query` or repeated `--location` values to reduce or customize calls. Other providers remain explicit opt-ins through `--source`.
+Every `search`/`daily` run includes a `source_counts` object in its JSON summary, including zeroes for skipped or failed selected sources. Provider failures are also written clearly to stderr instead of being presented as successful zero-result searches.
+
+`diagnose-remotive` is read-only and calls only `https://remotive.com/api/remote-jobs`; it does not invoke Indeed, LinkedIn, ZipRecruiter, any other provider, or generic web search. By default it checks digital marketing, paid search, PPC, and marketing analytics, then reports raw API records, unique query matches, jobs passing Gecko's score threshold, jobs surviving comparison with saved non-Remotive sources, and example Remotive URLs. Override the threshold with `--minimum-score` or repeat `--query` for a narrower check.
+
+The default search runs every target title in `preferences/default.json` for both Utah and Remote against Adzuna. API usage therefore equals target titles × two locations. Use explicit `--query` or repeated `--location` values to reduce or customize calls. `daily` runs the same request set against Adzuna, Jooble, and Remotive; Remotive still makes only one feed request and applies those searches locally. Other providers remain explicit opt-ins through `--source` or `--provider`.
 
 Useful review commands:
 
@@ -99,11 +137,30 @@ python job-scout/scout.py review --json
 
 The queue shows confirmed strong matches first, provisional 80+ matches second, and near matches from the requested minimum through 79 last. Within each section, jobs sort by Match Score, Evidence Confidence, and newest posting date. The limit applies across the whole prioritized queue and defaults to 20.
 
+Every review entry shows URL Status independently from Match Score and Evidence Confidence. A high-fit job can therefore remain highly scored while being labeled `Jooble redirect only`, `Stale / authoritative posting not found`, or `Stale / unavailable`.
+
+## Authoritative application URLs
+
+URL resolution follows provider redirects safely, classifies the destination, checks the page against the normalized company/title/location, and searches configured career-page discovery when an intermediary or dead link cannot be used. Verified links are prioritized in this order: employer careers page, official ATS, direct employer listing, enriched source, then the original provider URL. Candidate selection requires a high confidence score and rejects ambiguous ties.
+
+The configurable host patterns are in `preferences/url_resolution.json`. The intermediary list includes Fitly, Jooble, Adzuna, Indeed, LinkedIn, ZipRecruiter, and other known aggregators. ATS patterns include Greenhouse, Lever, Workday, Ashby, SmartRecruiters, iCIMS, Jobvite, BambooHR, ClearCompany/HRMDirect, and other supported systems.
+
+Resolution metadata is stored separately from fit scoring: URL verification status, authoritative URL, confidence, destination type, redirect URL, resolution timestamp, and error detail. Existing databases migrate additively. The `Job Scout` worksheet includes managed `URL Status` and `Authoritative URL` columns while continuing to preserve reordered/custom columns, formulas, and manual lifecycle fields.
+
+Resolve one saved job or a bounded batch of unresolved Jooble jobs:
+
+```powershell
+python job-scout/scout.py resolve-url 329
+python job-scout/scout.py resolve-url --jooble --limit 20
+```
+
+Authoritative search uses the existing Brave Search or legacy Google CSE configuration. Redirect verification and authoritative links already present in cross-provider source history work without a search key.
+
 Jobs marked `applied`, `rejected`, or `ignored` are excluded by default. Use `--include-closed` when an explicit review of those statuses is needed. Reviewing is read-only: it never selects a job, creates a resume, or changes the application tracker. Continue to use `python job-scout/scout.py select <ID>` for an explicit Gecko handoff.
 
 ## Job Scout worksheet
 
-The `Job Scout` worksheet in `output/job-tracker.xlsx` contains discovery and scoring history separately from the existing `Job Tracker` application worksheet. Syncing upserts jobs by Scout ID and canonical URL, updates changing score/evidence fields, preserves older jobs that no longer appear in search results, and never clears manual `Applied` or `Contacted` entries.
+The `Job Scout` worksheet contains discovery and scoring history separately from the existing `Job Tracker` application worksheet. During migration, Google Sheets is the live copy and `output/job-tracker.xlsx` remains the local backup. Syncing upserts jobs by Scout ID and canonical URL, updates changing score/evidence fields, preserves older jobs that no longer appear in search results, and never clears manual `Applied` or `Contacted` entries.
 
 The worksheet is sorted by Match Score, Evidence Confidence, and newest posting date. Confirmed strong matches, near matches, and closed lifecycle states use distinct conditional formatting. Selecting a job changes its Scout lifecycle to `Selected`; the existing completed-resume tracker command later marks the same Scout row `Resume Created` when the archived description contains its Scout ID.
 
@@ -156,6 +213,7 @@ Implement `sources.base.JobSource`, return `RawListing` records, export the prov
 
 ```powershell
 python -m unittest discover -s job-scout/tests -v
+python -m unittest discover -s job-scout/tests -p "test_remotive.py" -v
 python scripts/manage_job_tracker.py --tracker scratch/job-scout-tracker-test.xlsx init
 python scripts/manage_job_tracker.py --tracker scratch/job-scout-tracker-test.xlsx validate
 ```

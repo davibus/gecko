@@ -26,6 +26,8 @@ class RawListing:
     salary: str = ""
     date_posted: str = ""
     remote_type: str = ""
+    category: str = ""
+    tags: list[str] = field(default_factory=list)
     metadata: dict[str, Any] = field(default_factory=dict)
 
 
@@ -44,6 +46,8 @@ class JobListing:
     date_discovered: str
     description: str
     canonical_url: str
+    category: str = ""
+    tags: list[str] = field(default_factory=list)
     last_seen: str = ""
     match_score: int = 0
     evidence_confidence: int = 0
@@ -60,6 +64,13 @@ class JobListing:
     enrichment_error: str = ""
     enriched_match_score: int = 0
     enriched_evidence_confidence: int = 0
+    url_verification_status: str = "not_attempted"
+    authoritative_url: str = ""
+    authoritative_url_confidence: int = 0
+    url_destination_type: str = "unknown"
+    url_redirect_url: str = ""
+    url_resolved_at: str = ""
+    url_resolution_error: str = ""
     match_strengths: list[str] = field(default_factory=list)
     match_weaknesses: list[str] = field(default_factory=list)
     status: str = "new"

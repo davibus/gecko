@@ -5,6 +5,7 @@ import tempfile
 import unittest
 import os
 import json
+from unittest.mock import patch
 from pathlib import Path
 
 
@@ -23,9 +24,10 @@ from service import discover
 from sources.base import JobSource, SearchRequest
 from sources.base import ProviderError
 from sources.http import FetchedDocument
+from sources.jooble import JoobleProvider
 from storage import JobStore
 from handoff import archive_listing
-from scout import build_parser, load_local_environment
+from scout import build_parser, daily, load_local_environment
 
 
 DESCRIPTION = """
@@ -101,10 +103,21 @@ class EnvironmentTests(unittest.TestCase):
         args = build_parser().parse_args(["search"])
         self.assertEqual(args.source, "adzuna")
 
+    def test_provider_alias_accepts_jooble(self):
+        args = build_parser().parse_args(["search", "--provider", "jooble"])
+        self.assertEqual(args.source, "jooble")
+
     def test_enrich_command_accepts_id_or_provisional_flag(self):
         parser = build_parser()
         self.assertEqual(parser.parse_args(["enrich", "62"]).job_id, 62)
         self.assertTrue(parser.parse_args(["enrich", "--provisional"]).provisional)
+
+    def test_resolve_url_command_accepts_id_or_bounded_jooble_batch(self):
+        parser = build_parser()
+        self.assertEqual(parser.parse_args(["resolve-url", "329"]).job_id, 329)
+        batch = parser.parse_args(["resolve-url", "--jooble", "--limit", "5"])
+        self.assertTrue(batch.jooble)
+        self.assertEqual(batch.limit, 5)
 
     def test_review_command_options(self):
         args = build_parser().parse_args([
@@ -120,6 +133,56 @@ class EnvironmentTests(unittest.TestCase):
         self.assertEqual(args.results, 20)
         self.assertEqual(args.minimum_score, 70)
         self.assertEqual(args.limit, 20)
+
+    @patch("scout.review_jobs", return_value=0)
+    @patch("scout.search", return_value=0)
+    def test_daily_searches_all_core_providers(self, mocked_search, _mocked_review):
+        args = build_parser().parse_args(["daily"])
+        daily(args, None, {})
+        search_args = mocked_search.call_args.args[0]
+        self.assertEqual(search_args.source, "core")
+
+    def test_provider_alias_accepts_remotive(self):
+        args = build_parser().parse_args(["search", "--provider", "remotive"])
+        self.assertEqual(args.source, "remotive")
+
+    def test_sync_sheets_command_is_available(self):
+        args = build_parser().parse_args(["sync-sheets"])
+        self.assertEqual(args.command, "sync-sheets")
+
+
+class JoobleProviderTests(unittest.TestCase):
+    @patch("sources.jooble.post_json")
+    def test_maps_official_api_response_to_common_raw_listing(self, mocked_post):
+        mocked_post.return_value = {"jobs": [{
+            "id": 123,
+            "title": "Paid Search Manager",
+            "company": "Example Co",
+            "location": "Salt Lake City, UT",
+            "snippet": "Own Google Ads, Bing Ads, testing, and reporting.",
+            "salary": "$90,000",
+            "type": "Full-time",
+            "link": "https://example.test/jobs/123?utm_source=jooble",
+            "updated": "2026-09-19T12:00:00Z",
+        }]}
+        provider = JoobleProvider(api_key="secret-value")
+        jobs = list(provider.search(SearchRequest("paid search", "Utah", results_per_page=5)))
+        self.assertEqual(len(jobs), 1)
+        self.assertEqual(jobs[0].source, "Jooble")
+        self.assertEqual(jobs[0].source_job_id, "123")
+        self.assertEqual(jobs[0].employment_type, "Full-time")
+        self.assertEqual(jobs[0].salary, "$90,000")
+        args, kwargs = mocked_post.call_args
+        self.assertEqual(kwargs["error_label"], "Jooble API")
+        self.assertNotIn("secret-value", repr(kwargs))
+
+    def test_requires_api_key(self):
+        provider = JoobleProvider(api_key="")
+        with patch.dict(os.environ, {"JOOBLE_API_KEY": ""}, clear=False):
+            provider = JoobleProvider(api_key="")
+            self.assertFalse(provider.configured())
+            with self.assertRaisesRegex(ProviderError, "JOOBLE_API_KEY"):
+                list(provider.search(SearchRequest("paid search")))
 
 
 class ScoringTests(unittest.TestCase):

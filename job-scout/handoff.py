@@ -7,6 +7,7 @@ import re
 from pathlib import Path
 
 from models import JobListing
+from url_resolution import best_job_url, url_status_label
 
 
 INVALID_FILENAME = re.compile(r'[\\/:*?"<>|]')
@@ -30,7 +31,7 @@ def archive_listing(job: JobListing, project_root: Path) -> Path:
     links = "\n".join(f"- {item['source']}: {item['url']}" for item in job.source_links)
     strengths = "\n".join(f"- {value}" for value in job.match_strengths) or "- None recorded"
     weaknesses = "\n".join(f"- {value}" for value in job.match_weaknesses) or "- None recorded"
-    best_url = job.enriched_source_url or job.url
+    best_url = best_job_url(job)
     full_description = job.enriched_description or job.description
     content = f"""# {job.title} — {job.company}
 
@@ -44,6 +45,8 @@ def archive_listing(job: JobListing, project_root: Path) -> Path:
 - **Salary:** {job.salary}
 - **Source:** {job.source}
 - **URL:** {best_url}
+- **URL Status:** {url_status_label(job)}
+- **Authoritative URL:** {job.authoritative_url}
 - **Date Posted:** {job.date_posted}
 - **Date Discovered:** {job.date_discovered}
 - **Gecko Match Score:** {job.match_score}/100

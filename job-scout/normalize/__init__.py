@@ -55,6 +55,8 @@ def normalize(raw: RawListing, discovered: str | None = None) -> JobListing:
         date_discovered=discovered_date,
         description=clean_text(raw.description),
         canonical_url=canonicalize_url(raw.url),
+        category=clean_text(raw.category),
+        tags=[clean_text(tag) for tag in raw.tags if clean_text(tag)],
         last_seen=discovered_date,
         source_links=[{"source": clean_text(raw.source), "source_job_id": clean_text(raw.source_job_id), "url": raw.url.strip()}],
     )

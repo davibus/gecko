@@ -11,16 +11,24 @@ from dataclasses import replace
 from pathlib import Path
 
 from enrichment import enrich_and_rescore
+from deduplicate import find_duplicate
+from google_sheets_sync import sync_workbook_to_google, tracker_backend
 from handoff import archive_listing
+from models import RawListing
+from normalize import normalize
 from preferences import load_preferences
 from resume_evidence import extract_resume_text
 from review import build_review_queue, format_review_queue, queue_to_json
 from scoring import score_job
 from service import discover
-from sources import AdzunaProvider, IndeedProvider, ProviderError, WebCareerProvider
+from sources import (
+    AdzunaProvider, IndeedProvider, JoobleProvider, ProviderError,
+    RemotiveProvider, WebCareerProvider,
+)
 from sources.base import SearchRequest
 from storage import DEFAULT_DB, JobStore
 from tracker_sync import sync_job_scout
+from url_resolution import resolve_and_store, url_status_label
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -52,7 +60,13 @@ def load_local_environment(path: Path = PROJECT_ROOT / ".env.local") -> None:
 
 
 def providers():
-    return {provider.name: provider for provider in (AdzunaProvider(), IndeedProvider(), WebCareerProvider())}
+    return {
+        provider.name: provider
+        for provider in (
+            AdzunaProvider(), JoobleProvider(), RemotiveProvider(),
+            IndeedProvider(), WebCareerProvider(),
+        )
+    }
 
 
 def get_job(store: JobStore, job_id: int):
@@ -62,9 +76,9 @@ def get_job(store: JobStore, job_id: int):
     return job
 
 
-def sync_tracker(store: JobStore, tracker_path: str | Path):
+def sync_tracker(store: JobStore, tracker_path: str | Path, *, force_google: bool = False):
     summary = sync_job_scout(store.all(), tracker_path)
-    print(json.dumps({
+    result = {
         "job_scout_worksheet": {
             "rows": summary.rows,
             "confirmed": summary.confirmed,
@@ -72,13 +86,32 @@ def sync_tracker(store: JobStore, tracker_path: str | Path):
             "near_matches": summary.near_matches,
             "tracker_preserved": summary.tracker_preserved,
         }
-    }, indent=2))
+    }
+    if force_google or tracker_backend() == "google-sheets":
+        google = sync_workbook_to_google(tracker_path)
+        result["google_sheets"] = {
+            "spreadsheet_id": google.spreadsheet_id,
+            "job_tracker_rows": google.application_rows,
+            "job_scout_rows": google.scout_rows,
+        }
+    print(json.dumps(result, indent=2))
     return summary
+
+
+def sync_sheets(args, store, _preferences):
+    """Synchronize both XLSX worksheets to Google Sheets on demand."""
+    sync_tracker(store, args.tracker, force_google=True)
+    return 0
 
 
 def search(args, store, preferences):
     available = providers()
-    selected = list(available) if args.source == "all" else [args.source]
+    if args.source == "all":
+        selected = list(available)
+    elif args.source == "core":
+        selected = ["adzuna", "jooble", "remotive"]
+    else:
+        selected = [args.source]
     queries = args.query or preferences["target_roles"]
     locations = args.location or ["Utah", "Remote"]
     requests = [SearchRequest(query, location, args.page, args.results)
@@ -86,6 +119,7 @@ def search(args, store, preferences):
     resume_text = extract_resume_text(MASTER_RESUME)
     aggregate = {
         "fetched": 0, "strong": 0, "provisional": 0, "weak": 0, "duplicates": 0,
+        "source_counts": {name: 0 for name in selected},
         "skipped_sources": [], "source_errors": {},
     }
     successful_sources = 0
@@ -98,8 +132,10 @@ def search(args, store, preferences):
             summary = discover(provider, requests, store, preferences, resume_text, args.minimum_score)
         except ProviderError as error:
             aggregate["source_errors"][name] = str(error)
+            print(f"Warning: {name} provider failed: {error}", file=sys.stderr)
             continue
         successful_sources += 1
+        aggregate["source_counts"][name] = summary.fetched
         for key in ("fetched", "strong", "provisional", "weak", "duplicates"):
             aggregate[key] += getattr(summary, key)
     print(json.dumps(aggregate, indent=2))
@@ -110,6 +146,64 @@ def search(args, store, preferences):
         print("All configured sources failed. Review source_errors above.", file=sys.stderr)
         return 1
     sync_tracker(store, args.tracker)
+    return 0
+
+
+def diagnose_remotive(args, store, preferences):
+    """Exercise only Remotive and report each stage without changing saved jobs."""
+    provider = RemotiveProvider()
+    queries = args.query or [
+        "digital marketing", "paid search", "PPC", "marketing analytics",
+    ]
+    unique: dict[str, RawListing] = {}
+    try:
+        for query in queries:
+            request = SearchRequest(query=query, location="Remote", results_per_page=args.results)
+            for raw in provider.search(request):
+                key = raw.source_job_id or raw.url
+                unique.setdefault(key, raw)
+    except ProviderError as error:
+        print(f"Error: remotive provider failed: {error}", file=sys.stderr)
+        return 1
+
+    resume_text = extract_resume_text(MASTER_RESUME)
+    threshold = int(preferences["minimum_score"] if args.minimum_score is None else args.minimum_score)
+    candidates = []
+    for raw in unique.values():
+        if not raw.source_job_id or not raw.url or not raw.title or not raw.description:
+            continue
+        job = normalize(raw)
+        result = score_job(job, preferences, resume_text)
+        job.match_score = result.total
+        job.evidence_confidence = result.confidence
+        job.provisional = result.provisional
+        candidates.append(job)
+
+    matched = [job for job in candidates if job.match_score >= threshold]
+    other_source_jobs = [job for job in store.all() if job.source.casefold() != "remotive"]
+    survivors = [job for job in matched if find_duplicate(job, other_source_jobs) is None]
+    examples = sorted(candidates, key=lambda job: (-job.match_score, job.title.casefold()))[:args.examples]
+    report = {
+        "provider": "remotive",
+        "endpoint": provider.endpoint,
+        "queries": queries,
+        "minimum_score": threshold,
+        "raw_retrieved": provider.raw_count,
+        "query_matches": len(unique),
+        "matched_gecko_filters": len(matched),
+        "survived_deduplication": len(survivors),
+        "source_counts": {"remotive": len(unique)},
+        "examples": [
+            {
+                "title": job.title,
+                "company": job.company,
+                "url": job.url,
+                "match_score": job.match_score,
+            }
+            for job in examples
+        ],
+    }
+    print(json.dumps(report, indent=2))
     return 0
 
 
@@ -233,10 +327,43 @@ def enrich_jobs(args, store, preferences):
     return 0
 
 
+def resolve_urls(args, store, _preferences):
+    """Resolve one job or a bounded set of Jooble-sourced jobs."""
+    if bool(args.job_id) == bool(args.jooble):
+        raise ValueError("Specify either a job ID or --jooble")
+    if args.jooble:
+        targets = [
+            job for job in store.all()
+            if any(link.get("source", "").casefold() == "jooble" for link in job.source_links)
+            and (args.force or job.url_verification_status == "not_attempted")
+        ][:args.limit]
+    else:
+        targets = [get_job(store, args.job_id)]
+    report = []
+    for job in targets:
+        original_score = job.match_score
+        resolved = resolve_and_store(job, store)
+        report.append({
+            "id": resolved.id,
+            "company": resolved.company,
+            "title": resolved.title,
+            "url_status": url_status_label(resolved),
+            "authoritative_url": resolved.authoritative_url,
+            "confidence": resolved.authoritative_url_confidence,
+            "redirect_url": resolved.url_redirect_url,
+            "match_score": resolved.match_score,
+            "match_score_unchanged": resolved.match_score == original_score,
+            "error": resolved.url_resolution_error,
+        })
+    print(json.dumps(report, indent=2))
+    sync_tracker(store, args.tracker)
+    return 0
+
+
 def daily(args, store, preferences):
     """Run the complete discovery-to-review workflow without creating resumes."""
     search_args = argparse.Namespace(
-        source="adzuna", query=None, location=None, page=1, results=args.results,
+        source="core", query=None, location=None, page=1, results=args.results,
         minimum_score=None, tracker=args.tracker,
     )
     result = search(search_args, store, preferences)
@@ -257,10 +384,10 @@ def build_parser():
     sub = parser.add_subparsers(dest="command", required=True)
     find = sub.add_parser("search", help="Search configured providers and save scored results")
     find.add_argument(
-        "--source",
-        choices=["all", "adzuna", "indeed", "web-careers"],
+        "--source", "--provider",
+        choices=["all", "core", "adzuna", "jooble", "remotive", "indeed", "web-careers"],
         default=DEFAULT_SOURCE,
-        help=f"Provider to query (default: {DEFAULT_SOURCE}); web-careers is opt-in",
+        help=f"Provider to query (default: {DEFAULT_SOURCE}); core is Adzuna, Jooble, and Remotive",
     )
     find.add_argument("--query", action="append", help="Repeat for multiple role queries; defaults to all target roles")
     find.add_argument("--location", action="append", help="Repeat to search multiple areas; defaults to Utah and Remote")
@@ -268,6 +395,21 @@ def build_parser():
     find.add_argument("--results", type=int, default=20)
     find.add_argument("--minimum-score", type=int)
     find.set_defaults(function=search)
+    diagnostic = sub.add_parser(
+        "diagnose-remotive",
+        help="Run a read-only Remotive-only API, filter, and deduplication diagnostic",
+    )
+    diagnostic.add_argument(
+        "--query", action="append",
+        help="Repeat to override the digital marketing / paid search / PPC / analytics queries",
+    )
+    diagnostic.add_argument(
+        "--results", type=int, default=10_000,
+        help="Maximum matching records considered per query (default: 10000)",
+    )
+    diagnostic.add_argument("--minimum-score", type=int)
+    diagnostic.add_argument("--examples", type=int, default=5)
+    diagnostic.set_defaults(function=diagnose_remotive)
     listing = sub.add_parser("list", help="Show strong saved matches")
     listing.add_argument("--minimum-score", type=int, default=80)
     listing.add_argument("--status", choices=["new", "reviewing", "selected", "resume-created", "applied", "contacted", "interview", "rejected", "offer", "ignored"])
@@ -291,6 +433,14 @@ def build_parser():
     enrich_parser.add_argument("job_id", nargs="?", type=int)
     enrich_parser.add_argument("--provisional", action="store_true", help="Enrich all provisional 80+ matches")
     enrich_parser.set_defaults(function=enrich_jobs)
+    resolve_parser = sub.add_parser(
+        "resolve-url", help="Verify provider links and find authoritative employer/ATS postings",
+    )
+    resolve_parser.add_argument("job_id", nargs="?", type=int)
+    resolve_parser.add_argument("--jooble", action="store_true", help="Resolve unresolved Jooble-sourced jobs")
+    resolve_parser.add_argument("--limit", type=int, default=20)
+    resolve_parser.add_argument("--force", action="store_true", help="Retry jobs with an existing URL status")
+    resolve_parser.set_defaults(function=resolve_urls)
     review_parser = sub.add_parser("review", help="Show the prioritized, read-only Job Scout review queue")
     review_parser.add_argument("--confirmed-only", action="store_true")
     review_parser.add_argument("--minimum-score", type=int, default=70)
@@ -306,6 +456,11 @@ def build_parser():
     daily_parser.add_argument("--minimum-score", type=int, default=70)
     daily_parser.add_argument("--limit", type=int, default=20)
     daily_parser.set_defaults(function=daily)
+    sync_parser = sub.add_parser(
+        "sync-sheets",
+        help="Synchronize both tracker worksheets to Google Sheets and retain the XLSX backup",
+    )
+    sync_parser.set_defaults(function=sync_sheets)
     return parser
 
 
@@ -313,6 +468,7 @@ def main():
     args = build_parser().parse_args()
     try:
         load_local_environment()
+        load_local_environment(PROJECT_ROOT / ".env.google-sheets.local")
         preferences = load_preferences(args.preferences)
         with JobStore(args.db) as store:
             return args.function(args, store, preferences)

@@ -9,3 +9,9 @@ __pycache__/
 .env
 .env.*
 !.env.example
+
+# Google service-account credentials must never be committed.
+/key/
+/.secrets/
+google-sheets-service-account.json
+*service-account-key*.json

@@ -7,6 +7,10 @@ Gecko customizes Dave Call's resume for individual job postings while preserving
 ## Resume rules
 
 - Exactly two pages, with no trailing blank or near-blank page.
+- Pagination must be verified against the actual DOCX in Microsoft Word. Fallback HTML/PDF rendering is not authoritative because its line wrapping and pagination can differ from Word.
+- The preferred validation requires both Microsoft Word's computed page count and its exported PDF to equal exactly 2.
+- When Word automation is unavailable, keep a substantial page-bottom safety margin, report the validation limitation explicitly, and never call fallback-only pagination fully validated.
+- Never trade pagination reliability for page fill. A safely underfilled second page is better than a third page.
 - White background.
 - 11 pt body font.
 - 1.15 line spacing.
@@ -60,7 +64,7 @@ The score should reflect the evidence in the resume and the job description, not
 
 ## Job tracker
 
-Every successful Gecko resume generation must end by recording the job in `output/job-tracker.xlsx` with `scripts/manage_job_tracker.py`.
+Every successful Gecko resume generation must end by recording the job with `scripts/manage_job_tracker.py`. When `TRACKER_BACKEND=google-sheets`, Google Sheets is the primary live tracker and `output/job-tracker.xlsx` remains a required migration backup.
 
 - Add the tracker row only after the final DOCX and final match report both exist and have passed their required validation.
 - Pass the final resume, match report, and archived job description to the script's `add` command.
@@ -68,6 +72,9 @@ Every successful Gecko resume generation must end by recording the job in `outpu
 - Preserve all existing rows and the user's manual `Applied` and `Contacted` values.
 - Leave compensation or other unavailable listing fields blank; never infer or invent them.
 - Treat the tracker update as required for completion. If it fails, report the failure and do not claim the Gecko job is fully complete.
+- During dual-write migration, a tracker update is complete only after both the XLSX backup and Google Sheets synchronization succeed.
+- Preserve user-maintained `Applied` and `Contacted` values from Google Sheets and mirror them into the XLSX backup during synchronization.
+- Job Scout searches, daily runs, selections, and completed-resume updates must synchronize Google Sheets when the Google backend is enabled.
 
 ## Filename rules
 

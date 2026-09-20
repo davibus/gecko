@@ -6,6 +6,7 @@ import json
 from datetime import datetime
 
 from models import JobListing
+from url_resolution import best_job_url as resolved_best_job_url, url_status_label
 
 
 CLOSED_STATUSES = {"applied", "rejected", "ignored"}
@@ -75,7 +76,7 @@ def build_review_queue(
 
 
 def best_job_url(job: JobListing) -> str:
-    return job.enriched_source_url or job.canonical_url or job.url
+    return resolved_best_job_url(job)
 
 
 def _employment_type(job: JobListing) -> str:
@@ -99,6 +100,9 @@ def job_record(job: JobListing) -> dict:
         "top_strengths": job.match_strengths[:3],
         "top_weaknesses": job.match_weaknesses[:3],
         "best_job_url": best_job_url(job),
+        "url_status": url_status_label(job),
+        "authoritative_url": job.authoritative_url,
+        "authoritative_url_confidence": job.authoritative_url_confidence,
         "enrichment_source": job.enriched_source_url,
     }
 
@@ -122,12 +126,15 @@ def _format_job(job: JobListing) -> list[str]:
         f"  Score: {job.match_score}/100 | Evidence Confidence: {job.evidence_confidence}%",
         f"  Location: {job.location or 'Not provided'} | Arrangement: {job.work_arrangement} | Employment: {employment}",
         f"  Salary: {salary} | Source: {job.source} | Posted: {posted}",
+        f"  URL Status: {url_status_label(job)}",
         "  Top strengths:",
     ]
     lines.extend(f"    - {value}" for value in strengths)
     lines.append("  Top weaknesses:")
     lines.extend(f"    - {value}" for value in weaknesses)
     lines.append(f"  Best URL: {best_job_url(job) or 'Not provided'}")
+    if job.authoritative_url:
+        lines.append(f"  Authoritative URL confidence: {job.authoritative_url_confidence}%")
     if job.enriched_source_url:
         lines.append(f"  Enrichment source: {job.enriched_source_url}")
     lines.append(f"  Select explicitly: python job-scout/scout.py select {job.id}")

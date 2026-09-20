@@ -29,6 +29,12 @@ from openpyxl.worksheet.worksheet import Worksheet
 
 
 ROOT = Path(__file__).resolve().parents[1]
+JOB_SCOUT_ROOT = ROOT / "job-scout"
+if str(JOB_SCOUT_ROOT) not in sys.path:
+    sys.path.insert(0, str(JOB_SCOUT_ROOT))
+
+from google_sheets_sync import load_environment_files, sync_workbook_to_google, tracker_backend
+
 DEFAULT_TRACKER = ROOT / "output" / "job-tracker.xlsx"
 RESUME_DIR = ROOT / "output" / "resumes"
 REPORT_DIR = ROOT / "output" / "match-reports"
@@ -243,12 +249,15 @@ def style_worksheet(ws: Worksheet) -> None:
     for cell in ws[1]:
         cell.font = Font(bold=True, color="FFFFFF")
         cell.fill = PatternFill("solid", fgColor="1F4E78")
-        cell.alignment = Alignment(vertical="center")
+        cell.alignment = Alignment(vertical="center", wrap_text=False)
     ws.freeze_panes = "A2"
     ws.auto_filter.ref = f"A1:N{max(ws.max_row, 1)}"
     ws.row_dimensions[1].height = 22
     for column, width in COLUMN_WIDTHS.items():
         ws.column_dimensions[column].width = width
+    for row in range(2, ws.max_row + 1):
+        for column in range(1, len(HEADERS) + 1):
+            ws.cell(row, column).alignment = Alignment(vertical="top", wrap_text=False)
 
 
 def create_workbook() -> Workbook:
@@ -360,6 +369,40 @@ def append_record(ws: Worksheet, tracker: Path, record: JobRecord) -> bool:
     return True
 
 
+def upsert_record(ws: Worksheet, tracker: Path, record: JobRecord) -> tuple[bool, bool]:
+    """Add or refresh one application row while preserving manual fields."""
+    target_row = next(
+        (
+            row for row in range(2, ws.max_row + 1)
+            if str(ws.cell(row, 5).value or "").strip() == record.job_number
+        ),
+        None,
+    )
+    if target_row is None:
+        return append_record(ws, tracker, record), True
+
+    resume_link = relative_resume_link(record.resume_path, tracker)
+    before = [ws.cell(target_row, column).value for column in range(1, len(HEADERS) + 1)]
+    updated = [
+        before[0], record.company, record.job_title, record.pay or None,
+        record.job_number, record.match_score, record.job_link or None, resume_link,
+        record.date_created, before[9], before[10], record.source or None,
+        record.date_found, record.status,
+    ]
+    for column, value in enumerate(updated, 1):
+        ws.cell(target_row, column, value)
+    if record.job_link:
+        ws.cell(target_row, 7).hyperlink = record.job_link
+        ws.cell(target_row, 7).style = "Hyperlink"
+    ws.cell(target_row, 8).hyperlink = resume_link
+    ws.cell(target_row, 8).style = "Hyperlink"
+    if record.date_created:
+        ws.cell(target_row, 9).number_format = "mm/dd/yyyy"
+    if record.date_found:
+        ws.cell(target_row, 13).number_format = "mm/dd/yyyy"
+    return False, before != updated
+
+
 def mark_scout_resume_created(workbook: Workbook, record: JobRecord) -> bool:
     """Advance an existing Scout row without changing its manual application fields."""
     if record.scout_id is None or "Job Scout" not in workbook.sheetnames:
@@ -373,6 +416,8 @@ def mark_scout_resume_created(workbook: Workbook, record: JobRecord) -> bool:
         if str(ws.cell(row, headers["Scout ID"]).value) == str(record.scout_id):
             ws.cell(row, headers["Gecko Status"], "Resume Created")
             ws.cell(row, headers["Resume Created"], "X")
+            if "Resume Link" in headers:
+                ws.cell(row, headers["Resume Link"], record.resume_path.resolve().as_uri())
             return True
     return False
 
@@ -395,13 +440,21 @@ def add_job(args: argparse.Namespace, tracker: Path) -> int:
     workbook = load_tracker(tracker)
     ws = workbook[SHEET_NAME]
     backfill_extended_fields(ws)
-    added = append_record(ws, tracker, record)
+    added, tracker_updated = upsert_record(ws, tracker, record)
     scout_updated = mark_scout_resume_created(workbook, record)
     style_worksheet(ws)
-    if added or scout_updated:
+    if tracker_updated or scout_updated:
         save_atomic(workbook, tracker)
+    if tracker_backend() == "google-sheets":
+        google = sync_workbook_to_google(tracker)
+        print(
+            f"Google Sheets synchronized: {google.application_rows} Job Tracker rows, "
+            f"{google.scout_rows} Job Scout rows"
+        )
     if added:
         print(f"Added Resume #{ws.max_row - 1}: {record.company} — {record.job_title}")
+    elif tracker_updated:
+        print(f"Updated Job Number {record.job_number}: {record.company} — {record.job_title}")
     else:
         print(f"No change: Job Number {record.job_number} is already tracked")
     return 0
@@ -502,6 +555,7 @@ def main() -> int:
     args = build_parser().parse_args()
     tracker = project_path(args.tracker)
     try:
+        load_environment_files(ROOT)
         if args.command == "init":
             return init_tracker(tracker)
         if args.command == "add":

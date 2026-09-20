@@ -5,6 +5,8 @@
   "resume_output_dir": "output/resumes",
   "match_report_dir": "output/match-reports",
   "job_tracker": "output/job-tracker.xlsx",
+  "tracker_backend_env": "TRACKER_BACKEND",
+  "google_sheets_sync": "job-scout/google_sheets_sync.py",
   "job_tracker_script": "scripts/manage_job_tracker.py",
   "target_pages": 2,
   "default_font_size_pt": 11,
