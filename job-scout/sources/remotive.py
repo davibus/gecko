@@ -42,6 +42,37 @@ class RemotiveProvider(JobSource):
         return self._jobs
 
     @staticmethod
+    def _to_raw_listing(item: dict) -> RawListing:
+        tags = item.get("tags") or []
+        if not isinstance(tags, list):
+            tags = [tags]
+        # The public feed is remote-only. candidate_required_location is a
+        # geographic eligibility restriction, not an office location.
+        return RawListing(
+            source="remotive",
+            source_job_id=str(item.get("id") or "").strip(),
+            url=str(item.get("url") or "").strip(),
+            title=str(item.get("title") or "").strip(),
+            company=str(item.get("company_name") or "").strip(),
+            location=str(item.get("candidate_required_location") or "Remote").strip(),
+            description=str(item.get("description") or "").strip(),
+            employment_type=str(item.get("job_type") or "").strip(),
+            salary=str(item.get("salary") or "").strip(),
+            # Never substitute retrieval time: this is Remotive's actual
+            # publication timestamp (the public feed itself is delayed).
+            date_posted=str(item.get("publication_date") or "").strip(),
+            remote_type="remote",
+            category=str(item.get("category") or "").strip(),
+            tags=[str(tag).strip() for tag in tags if str(tag).strip()],
+            metadata=item,
+        )
+
+    def full_feed(self):
+        """Yield every current feed job once, without title-query filtering."""
+        for item in self._load_jobs():
+            yield self._to_raw_listing(item)
+
+    @staticmethod
     def _matches(item: dict, query: str) -> bool:
         terms = query.casefold().split()
         if not terms:
@@ -59,26 +90,4 @@ class RemotiveProvider(JobSource):
         start = max(request.page - 1, 0) * request.results_per_page
         stop = start + request.results_per_page
         for item in matches[start:stop]:
-            tags = item.get("tags") or []
-            if not isinstance(tags, list):
-                tags = [tags]
-            # The public feed is remote-only. candidate_required_location is a
-            # geographic eligibility restriction, not an office location.
-            yield RawListing(
-                source="remotive",
-                source_job_id=str(item.get("id") or "").strip(),
-                url=str(item.get("url") or "").strip(),
-                title=str(item.get("title") or "").strip(),
-                company=str(item.get("company_name") or "").strip(),
-                location=str(item.get("candidate_required_location") or "Remote").strip(),
-                description=str(item.get("description") or "").strip(),
-                employment_type=str(item.get("job_type") or "").strip(),
-                salary=str(item.get("salary") or "").strip(),
-                # Never substitute retrieval time: this is Remotive's actual
-                # publication timestamp (the public feed itself is delayed).
-                date_posted=str(item.get("publication_date") or "").strip(),
-                remote_type="remote",
-                category=str(item.get("category") or "").strip(),
-                tags=[str(tag).strip() for tag in tags if str(tag).strip()],
-                metadata=item,
-            )
+            yield self._to_raw_listing(item)

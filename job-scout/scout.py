@@ -20,7 +20,7 @@ from preferences import load_preferences
 from resume_evidence import extract_resume_text
 from review import build_review_queue, format_review_queue, queue_to_json
 from scoring import score_job
-from service import discover
+from service import discover, discover_remotive_full_feed
 from sources import (
     AdzunaProvider, IndeedProvider, JoobleProvider, ProviderError,
     RemotiveProvider, WebCareerProvider,
@@ -118,7 +118,10 @@ def search(args, store, preferences):
                 for query in queries for location in locations]
     resume_text = extract_resume_text(MASTER_RESUME)
     aggregate = {
-        "fetched": 0, "strong": 0, "provisional": 0, "weak": 0, "duplicates": 0,
+        "raw_retrieved": 0, "fetched": 0, "normalized": 0, "scored": 0,
+        "added": 0, "updated": 0, "strong": 0, "provisional": 0, "weak": 0,
+        "duplicates": 0, "score_80_plus": 0, "score_70_79": 0,
+        "score_below_70": 0,
         "source_counts": {name: 0 for name in selected},
         "skipped_sources": [], "source_errors": {},
     }
@@ -129,14 +132,21 @@ def search(args, store, preferences):
             aggregate["skipped_sources"].append(name)
             continue
         try:
-            summary = discover(provider, requests, store, preferences, resume_text, args.minimum_score)
+            if name == "remotive":
+                summary = discover_remotive_full_feed(provider, store, preferences, resume_text)
+            else:
+                summary = discover(provider, requests, store, preferences, resume_text, args.minimum_score)
         except ProviderError as error:
             aggregate["source_errors"][name] = str(error)
             print(f"Warning: {name} provider failed: {error}", file=sys.stderr)
             continue
         successful_sources += 1
         aggregate["source_counts"][name] = summary.fetched
-        for key in ("fetched", "strong", "provisional", "weak", "duplicates"):
+        for key in (
+            "raw_retrieved", "fetched", "normalized", "scored", "added", "updated",
+            "strong", "provisional", "weak", "duplicates", "score_80_plus",
+            "score_70_79", "score_below_70",
+        ):
             aggregate[key] += getattr(summary, key)
     print(json.dumps(aggregate, indent=2))
     if len(aggregate["skipped_sources"]) == len(selected):

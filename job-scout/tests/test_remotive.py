@@ -18,7 +18,7 @@ from models import RawListing
 from normalize import normalize
 from preferences import load_preferences
 from scout import diagnose_remotive, search
-from service import SearchSummary
+from service import SearchSummary, discover_remotive_full_feed
 from sources.base import ProviderError, SearchRequest
 from sources.remotive import RemotiveProvider
 from storage import JobStore
@@ -71,6 +71,28 @@ class RemotiveProviderTests(unittest.TestCase):
         list(provider.search(SearchRequest("paid search", "Utah")))
         list(provider.search(SearchRequest("analytics", "Remote")))
 
+        mocked_get.assert_called_once()
+
+    @patch("sources.remotive.get_json")
+    def test_full_feed_returns_every_job_without_query_filtering(self, mocked_get):
+        unrelated = {
+            **REMOTIVE_JOB,
+            "id": 999999,
+            "url": "https://remotive.com/remote-jobs/software-dev/backend-engineer-999999",
+            "title": "Backend Engineer",
+            "description": "Build distributed APIs in Go.",
+            "category": "Software Development",
+            "tags": ["Go", "APIs"],
+        }
+        mocked_get.return_value = {"jobs": [REMOTIVE_JOB, unrelated]}
+        provider = RemotiveProvider()
+
+        jobs = list(provider.full_feed())
+
+        self.assertEqual([job.source_job_id for job in jobs], ["123456", "999999"])
+        self.assertEqual(jobs[1].title, "Backend Engineer")
+        self.assertEqual(jobs[1].source, "remotive")
+        self.assertEqual(jobs[1].url, unrelated["url"])
         mocked_get.assert_called_once()
 
     @patch("sources.remotive.get_json", return_value={"jobs": "unexpected"})
@@ -145,6 +167,43 @@ class RemotiveProviderTests(unittest.TestCase):
         self.assertEqual(saved.category, "Marketing")
         self.assertEqual(saved.tags, ["PPC", "Analytics"])
 
+    @patch("sources.remotive.get_json")
+    def test_full_feed_scores_and_retains_below_threshold_jobs(self, mocked_get):
+        unrelated = {
+            **REMOTIVE_JOB,
+            "id": 999999,
+            "url": "https://remotive.com/remote-jobs/software-dev/backend-engineer-999999",
+            "title": "Backend Engineer",
+            "description": "Build distributed APIs in Go.",
+            "category": "Software Development",
+            "tags": ["Go", "APIs"],
+        }
+        mocked_get.return_value = {"jobs": [REMOTIVE_JOB, unrelated]}
+        provider = RemotiveProvider()
+
+        with tempfile.TemporaryDirectory() as directory:
+            with JobStore(Path(directory) / "jobs.sqlite3") as store:
+                summary = discover_remotive_full_feed(
+                    provider, store, load_preferences(), "paid search analytics",
+                )
+                saved = store.all(retained_only=True)
+                rerun = discover_remotive_full_feed(
+                    provider, store, load_preferences(), "paid search analytics",
+                )
+
+        self.assertEqual(summary.raw_retrieved, 2)
+        self.assertEqual(summary.normalized, 2)
+        self.assertEqual(summary.scored, 2)
+        self.assertEqual(summary.added, 2)
+        self.assertEqual(summary.updated, 0)
+        self.assertEqual(len(saved), 2)
+        self.assertTrue(any(job.match_score < 80 for job in saved))
+        self.assertEqual({job.source for job in saved}, {"remotive"})
+        self.assertEqual({job.url for job in saved}, {REMOTIVE_JOB["url"], unrelated["url"]})
+        self.assertEqual(rerun.added, 0)
+        self.assertEqual(rerun.updated, 2)
+        self.assertEqual(rerun.duplicates, 2)
+
 
 class RemotiveDiagnosticTests(unittest.TestCase):
     def test_diagnostic_uses_only_remotive_and_reports_all_stages(self):
@@ -188,7 +247,7 @@ class RemotiveDiagnosticTests(unittest.TestCase):
             def configured(self):
                 return True
 
-            def search(self, _request):
+            def full_feed(self):
                 raise ProviderError("API unavailable")
                 yield  # pragma: no cover
 
@@ -220,12 +279,18 @@ class RemotiveDiagnosticTests(unittest.TestCase):
             with JobStore(Path(directory) / "jobs.sqlite3") as store, \
                  patch("scout.providers", return_value={"remotive": provider}), \
                  patch("scout.extract_resume_text", return_value=""), \
-                 patch("scout.discover", return_value=SearchSummary(fetched=8)), \
+                 patch("scout.discover_remotive_full_feed", return_value=SearchSummary(
+                     raw_retrieved=20, fetched=8, normalized=8, scored=8,
+                 )), \
+                 patch("scout.discover", side_effect=AssertionError("query discovery must not run")), \
                  patch("scout.sync_tracker"), redirect_stdout(output):
                 result = search(args, store, load_preferences())
         report = json.loads(output.getvalue())
         self.assertEqual(result, 0)
         self.assertEqual(report["source_counts"], {"remotive": 8})
+        self.assertEqual(report["raw_retrieved"], 20)
+        self.assertEqual(report["normalized"], 8)
+        self.assertEqual(report["scored"], 8)
 
 
 if __name__ == "__main__":
