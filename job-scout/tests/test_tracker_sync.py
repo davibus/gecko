@@ -113,6 +113,32 @@ class TrackerSyncTests(unittest.TestCase):
         self.assertEqual(self.cell(ws, "Applied").value, "X")
         self.assertEqual(self.cell(ws, "Contacted").value, "manual note")
 
+    def test_daily_append_only_leaves_existing_values_and_manual_fields_untouched(self):
+        sync_job_scout([self.job(1, 82, 80)], self.path)
+        workbook = load_workbook(self.path)
+        ws = workbook[SHEET_NAME]
+        self.cell(ws, "Applied").value = "X"
+        self.cell(ws, "Contacted").value = "call Friday"
+        workbook.save(self.path)
+        before = {
+            header: self.cell(load_workbook(self.path)[SHEET_NAME], header).value
+            for header in HEADERS
+        }
+
+        changed_existing = self.job(1, 99, 99)
+        changed_existing.company = "Must Not Replace Existing"
+        sync_job_scout(
+            [changed_existing, self.job(2, 88, 85)], self.path, append_only=True,
+        )
+
+        ws = load_workbook(self.path)[SHEET_NAME]
+        existing_row = next(row for row in range(2, ws.max_row + 1) if ws.cell(row, 1).value == 1)
+        after = {
+            header: self.cell(ws, header, existing_row).value for header in HEADERS
+        }
+        self.assertEqual(after, before)
+        self.assertEqual({ws.cell(row, 1).value for row in range(2, ws.max_row + 1)}, {1, 2})
+
     def test_legacy_source_column_moves_to_b_without_losing_manual_fields(self):
         workbook = load_workbook(self.path)
         legacy = workbook.create_sheet(SHEET_NAME)

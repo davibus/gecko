@@ -268,8 +268,15 @@ def _save_atomic(workbook, path: Path) -> None:
             temp_path.unlink()
 
 
-def sync_job_scout(jobs: list[JobListing], tracker_path: str | Path) -> SyncSummary:
-    """Upsert every known Scout job while preserving all other workbook content."""
+def sync_job_scout(
+    jobs: list[JobListing], tracker_path: str | Path, *, append_only: bool = False,
+) -> SyncSummary:
+    """Sync Scout jobs while preserving workbook history and manual fields.
+
+    ``append_only`` is used by the daily workflow: jobs that already have a
+    worksheet identity are left byte-for-byte equivalent at the cell-value
+    level, while genuinely new identities are appended.
+    """
     tracker_path = Path(tracker_path)
     if tracker_path.exists():
         workbook = load_workbook(tracker_path)
@@ -306,7 +313,7 @@ def sync_job_scout(jobs: list[JobListing], tracker_path: str | Path) -> SyncSumm
         if existing is None:
             rows.append(updated)
             existing = rows[-1]
-        else:
+        elif not append_only:
             existing.update(updated)
     rows.sort(key=_sort_key)
     if ws.max_row > 1:

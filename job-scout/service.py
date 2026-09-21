@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import re
 
 from deduplicate import find_duplicate
 from enrichment import enrich_and_rescore
 from normalize import normalize
+from role_filter import is_relevant_role
 from scoring import score_job
 from sources.base import JobSource, SearchRequest
 from sources.remotive import RemotiveProvider
@@ -38,6 +40,54 @@ class SearchSummary:
     score_80_plus: int = 0
     score_70_79: int = 0
     score_below_70: int = 0
+    unique_available: int = 0
+    unique_imported: int = 0
+    filtered_before_scoring: int = 0
+    new_job_ids: list[int] = field(default_factory=list)
+    existing_job_ids: list[int] = field(default_factory=list)
+    eligibility_includes_usa: int = 0
+    eligibility_worldwide: int = 0
+    top_jobs: list[dict] = field(default_factory=list)
+
+
+REMOTIVE_RELEVANCE_TERMS = (
+    "digital marketing", "paid search", "ppc", "sem", "performance marketing",
+    "marketing analytics", "e-commerce", "ecommerce", "seo", "growth marketing",
+    "marketing operations", "martech", "marketing automation", "product marketing",
+    "business intelligence", "digital strategy", "account marketing", "client marketing",
+)
+
+
+def _remotive_relevance(raw) -> int:
+    text = " ".join((raw.title, raw.category, " ".join(raw.tags), raw.description)).casefold()
+    return sum(1 for term in REMOTIVE_RELEVANCE_TERMS if term in text)
+
+
+def _eligibility_flags(location: str) -> tuple[bool, bool]:
+    value = " ".join(re.findall(r"[a-z0-9]+", (location or "").casefold()))
+    worldwide = "worldwide" in value
+    includes_usa = worldwide or any(term in value for term in (
+        "united states", "usa", "u s", "north america", "northern america",
+        "americas", "anywhere", "global",
+    ))
+    return includes_usa, worldwide
+
+
+def _same_source_identity_conflicts(candidate, existing) -> bool:
+    """Do not fuzzy-merge two authoritative IDs from the same provider."""
+    source = candidate.source.casefold()
+    source_job_id = candidate.source_job_id.casefold()
+    if not source or not source_job_id:
+        return False
+    existing_ids = {
+        str(link.get("source_job_id") or "").casefold()
+        for link in existing.source_links
+        if str(link.get("source") or "").casefold() == source
+        and str(link.get("source_job_id") or "").strip()
+    }
+    if existing.source.casefold() == source and existing.source_job_id:
+        existing_ids.add(existing.source_job_id.casefold())
+    return bool(existing_ids and source_job_id not in existing_ids)
 
 
 def _discover_listings(
@@ -48,16 +98,24 @@ def _discover_listings(
     threshold: int,
     *,
     require_content: bool,
+    preserve_existing: bool = False,
+    preexisting_ids: set[int] | None = None,
 ) -> SearchSummary:
     """Normalize, score, deduplicate, and save a stream of raw listings."""
     summary = SearchSummary()
     known = store.all()
-    existing_ids = {job.id for job in known}
+    existing_ids = (
+        {job.id for job in known} if preexisting_ids is None else set(preexisting_ids)
+    )
     updated_ids: set[int] = set()
+    existing_seen_ids: set[int] = set()
     for raw in listings:
         if require_content and (not raw.title or not raw.description):
             continue
         summary.fetched += 1
+        if not is_relevant_role(raw.title):
+            summary.filtered_before_scoring += 1
+            continue
         job = normalize(raw)
         summary.normalized += 1
         result = score_job(job, preferences, resume_text)
@@ -74,33 +132,42 @@ def _discover_listings(
             summary.score_70_79 += 1
         else:
             summary.score_below_70 += 1
-        duplicate = find_duplicate(job, known)
+        duplicate = find_duplicate(
+            job, [item for item in known if not _same_source_identity_conflicts(job, item)]
+        )
         should_resolve = (
             raw.source.casefold() in {"jooble", "web-careers"}
             or classify_url(raw.url) == "official_ats"
         )
         if duplicate:
             retained = job.match_score >= threshold
-            store.merge(duplicate.id, job, retained=retained)
-            if retained and should_resolve:
-                merged = store.get(duplicate.id)
-                if merged and merged.url_verification_status == "not_attempted":
-                    resolve_and_store(merged, store)
+            was_existing = duplicate.id in existing_ids
+            if not (preserve_existing and was_existing):
+                store.merge(duplicate.id, job, retained=retained)
+                if retained and should_resolve:
+                    merged = store.get(duplicate.id)
+                    if merged and merged.url_verification_status == "not_attempted":
+                        resolve_and_store(merged, store)
             summary.duplicates += 1
             duplicate_sources = {duplicate.source.casefold(), *(
                 link.get("source", "").casefold() for link in duplicate.source_links
             )}
             if raw.source.casefold() not in duplicate_sources:
                 summary.cross_provider_duplicates += 1
-            if duplicate.id in existing_ids and duplicate.id not in updated_ids:
-                updated_ids.add(duplicate.id)
-                summary.updated += 1
+            if was_existing:
+                if duplicate.id not in existing_seen_ids:
+                    existing_seen_ids.add(duplicate.id)
+                    summary.existing_job_ids.append(duplicate.id)
+                if not preserve_existing and duplicate.id not in updated_ids:
+                    updated_ids.add(duplicate.id)
+                    summary.updated += 1
             continue
         retained = job.match_score >= threshold
         job_id = store.save(job, retained=retained)
         job.id = job_id
         known.append(job)
         summary.added += 1
+        summary.new_job_ids.append(job_id)
         if retained and should_resolve:
             job = resolve_and_store(job, store)
         if retained and job.provisional and job.source.lower() == "adzuna":
@@ -122,12 +189,16 @@ def discover(
     preferences: dict,
     resume_text: str,
     minimum_score: int | None = None,
+    *,
+    preserve_existing: bool = False,
+    preexisting_ids: set[int] | None = None,
 ) -> SearchSummary:
     """Fetch, normalize, score, dedupe, and persist listings from one provider."""
     threshold = int(preferences["minimum_score"] if minimum_score is None else minimum_score)
     listings = (raw for request in requests for raw in provider.search(request))
     return _discover_listings(
         listings, store, preferences, resume_text, threshold, require_content=True,
+        preserve_existing=preserve_existing, preexisting_ids=preexisting_ids,
     )
 
 
@@ -136,11 +207,49 @@ def discover_remotive_full_feed(
     store: JobStore,
     preferences: dict,
     resume_text: str,
+    limit: int = 100,
+    *,
+    preserve_existing: bool = False,
+    preexisting_ids: set[int] | None = None,
 ) -> SearchSummary:
-    """Score and retain the complete cached Remotive feed without query filtering."""
+    """Score the unique RSS pool, then persist its most relevant bounded subset."""
+    if limit < 1:
+        raise ValueError("Remotive limit must be at least 1")
+    # Apply the title-family gate before normalization or Gecko scoring. The
+    # import limit is a limit on relevant candidates, not unrelated feed rows.
+    pool = [raw for raw in provider.full_feed() if is_relevant_role(raw.title)]
+    ranked = []
+    for raw in pool:
+        job = normalize(raw)
+        result = score_job(job, preferences, resume_text)
+        ranked.append((result.total, _remotive_relevance(raw), raw.date_posted, raw, job))
+    ranked.sort(key=lambda item: (item[0], item[1], item[2]), reverse=True)
+    selected = ranked[:limit]
     summary = _discover_listings(
-        provider.full_feed(), store, preferences, resume_text, 0, require_content=False,
+        (item[3] for item in selected), store, preferences, resume_text, 0,
+        require_content=False, preserve_existing=preserve_existing,
+        preexisting_ids=preexisting_ids,
     )
+    summary.filtered_before_scoring = max(provider.rss_count - len(pool), 0)
+    summary.fetched = len(pool)
+    summary.normalized = len(pool)
+    summary.scored = len(pool)
+    summary.unique_available = len(pool)
+    summary.unique_imported = len(selected)
+    summary.top_jobs = [
+        {
+            "title": item[4].title,
+            "company": item[4].company,
+            "match_score": item[0],
+            "location": item[4].location,
+            "url": item[4].url,
+        }
+        for item in selected[:25]
+    ]
+    for item in selected:
+        includes_usa, worldwide = _eligibility_flags(item[4].location)
+        summary.eligibility_includes_usa += int(includes_usa)
+        summary.eligibility_worldwide += int(worldwide)
     summary.raw_retrieved = provider.raw_count
     summary.rss_retrieved = provider.rss_raw_count
     summary.rss_unique = provider.rss_count

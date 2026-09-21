@@ -1,4 +1,4 @@
-"""Remotive official category RSS aggregation with public API fallback."""
+"""Remotive official category RSS aggregation."""
 
 from __future__ import annotations
 
@@ -14,44 +14,23 @@ from .http import get_bytes, get_json
 
 
 class RemotiveProvider(JobSource):
-    """Aggregate official category feeds once each; use the API only if all fail."""
+    """Aggregate official category feeds once each in relevance-first order."""
 
     name = "remotive"
     feed_base = "https://remotive.com/remote-jobs/feed"
     api_endpoint = "https://remotive.com/api/remote-jobs"
     endpoint = feed_base
     category_feeds = (
-        ("Software Development", f"{feed_base}/software-development"),
-        ("Customer Service", f"{feed_base}/customer-service"),
-        ("Design", f"{feed_base}/design"),
+        # Potentially relevant feeds only. Every record still has to pass the
+        # title-family gate before it can enter the candidate/scoring pool.
         ("Marketing", f"{feed_base}/marketing"),
-        ("Sales", f"{feed_base}/sales"),
-        ("Product Management", f"{feed_base}/product"),
-        ("Project Management", f"{feed_base}/project-management"),
-        ("Artificial Intelligence", f"{feed_base}/artificial-intelligence"),
         ("Data and Analytics", f"{feed_base}/data"),
-        ("Devops", f"{feed_base}/devops"),
-        ("Finance", f"{feed_base}/finance"),
-        ("Human Resources", f"{feed_base}/human-resources"),
-        ("Quality Assurance", f"{feed_base}/qa"),
-        ("Writing", f"{feed_base}/writing"),
-        ("Legal", f"{feed_base}/legal"),
-        ("Medical", f"{feed_base}/medical"),
-        ("Teaching", f"{feed_base}/education"),
-        ("Account Management", f"{feed_base}/account-management"),
+        ("Product Management", f"{feed_base}/product"),
         ("Business Development", f"{feed_base}/business-development"),
-        ("Communications", f"{feed_base}/communications"),
-        ("Compliance", f"{feed_base}/compliance"),
-        ("Engineering", f"{feed_base}/engineering"),
-        ("Information Technology", f"{feed_base}/information-technology"),
-        ("Knowledge Management", f"{feed_base}/knowledge-management"),
-        ("Operations", f"{feed_base}/operations"),
-        ("Research", f"{feed_base}/research"),
         ("Strategy", f"{feed_base}/strategy"),
-        ("Supply Chain", f"{feed_base}/supply-chain"),
-        ("Travel and Hospitality", f"{feed_base}/travel-hospitality"),
-        # Remotive does not publish an E-Commerce category; Marketing is the
-        # closest official feed. All Others adds broad adjacent coverage.
+        ("Communications", f"{feed_base}/communications"),
+        ("Account Management", f"{feed_base}/account-management"),
+        ("Operations", f"{feed_base}/operations"),
         ("All Others", f"{feed_base}/all-others"),
     )
 
@@ -145,6 +124,16 @@ class RemotiveProvider(JobSource):
         ))
 
     @staticmethod
+    def _normalized_identity(value: str) -> str:
+        return " ".join(re.findall(r"[a-z0-9]+", (value or "").casefold()))
+
+    @classmethod
+    def _company_title_key(cls, job: RawListing) -> str:
+        company = cls._normalized_identity(job.company)
+        title = cls._normalized_identity(job.title)
+        return f"{company}|{title}" if company and title else ""
+
+    @staticmethod
     def _publication_date(value: str) -> str:
         if not value:
             return ""
@@ -218,16 +207,23 @@ class RemotiveProvider(JobSource):
         ]))
         existing.metadata["feed_categories"] = feed_categories
 
-    def category_pool(self) -> list[RawListing]:
-        """Fetch every configured category once and return a deduplicated pool."""
+    def category_pool(self, unique_limit: int | None = None) -> list[RawListing]:
+        """Load feeds until the unique target is met, then return the deduplicated pool."""
         if self._rss_pool is not None:
             return list(self._rss_pool)
+        if unique_limit is not None and unique_limit < 1:
+            raise ValueError("Remotive unique limit must be at least 1")
         self._feed_results = []
-        raw_jobs: list[RawListing] = []
+        raw_count = 0
+        duplicate_count = 0
+        by_id: dict[str, RawListing] = {}
+        by_url: dict[str, RawListing] = {}
+        by_company_title: dict[str, RawListing] = {}
+        unique: list[RawListing] = []
         for category, url in self.category_feeds:
             try:
                 jobs = self._load_category_feed(category, url)
-                raw_jobs.extend(jobs)
+                raw_count += len(jobs)
                 self._feed_results.append({
                     "category": category, "url": url, "success": True,
                     "jobs": len(jobs), "error": "",
@@ -237,25 +233,36 @@ class RemotiveProvider(JobSource):
                     "category": category, "url": url, "success": False,
                     "jobs": 0, "error": str(error),
                 })
-
-        by_id: dict[str, RawListing] = {}
-        by_url: dict[str, RawListing] = {}
-        unique: list[RawListing] = []
-        for job in raw_jobs:
-            duplicate = by_id.get(job.source_job_id) if job.source_job_id else None
-            canonical_url = self._canonical_url(job.url)
-            if duplicate is None and canonical_url:
-                duplicate = by_url.get(canonical_url)
-            if duplicate is not None:
-                self._merge_category_provenance(duplicate, job)
                 continue
-            unique.append(job)
-            if job.source_job_id:
-                by_id[job.source_job_id] = job
-            if canonical_url:
-                by_url[canonical_url] = job
-        self._rss_raw_count = len(raw_jobs)
-        self._rss_duplicate_count = len(raw_jobs) - len(unique)
+            for job in jobs:
+                canonical_url = self._canonical_url(job.url)
+                company_title = self._company_title_key(job)
+                duplicate = by_id.get(job.source_job_id) if job.source_job_id else None
+                if duplicate is None and canonical_url:
+                    duplicate = by_url.get(canonical_url)
+                if duplicate is None and company_title:
+                    duplicate = by_company_title.get(company_title)
+                if duplicate is not None:
+                    duplicate_count += 1
+                    self._merge_category_provenance(duplicate, job)
+                    if job.source_job_id:
+                        by_id[job.source_job_id] = duplicate
+                    if canonical_url:
+                        by_url[canonical_url] = duplicate
+                    if company_title:
+                        by_company_title[company_title] = duplicate
+                    continue
+                unique.append(job)
+                if job.source_job_id:
+                    by_id[job.source_job_id] = job
+                if canonical_url:
+                    by_url[canonical_url] = job
+                if company_title:
+                    by_company_title[company_title] = job
+            if unique_limit is not None and len(unique) >= unique_limit:
+                break
+        self._rss_raw_count = raw_count
+        self._rss_duplicate_count = duplicate_count
         self._rss_pool = unique
         return list(unique)
 
@@ -295,14 +302,12 @@ class RemotiveProvider(JobSource):
         for item in self._load_api_jobs():
             yield self._api_listing(item)
 
-    def full_feed(self):
-        """Use aggregated category RSS unless every category request failed."""
-        jobs = self.category_pool()
-        if self.successful_feed_count:
-            self.active_source = "category-rss"
-        else:
-            jobs = list(self.api_feed())
-            self.active_source = "api-fallback"
+    def full_feed(self, unique_limit: int | None = None):
+        """Use only aggregated official category RSS for normal discovery."""
+        jobs = self.category_pool(unique_limit)
+        if not self.successful_feed_count:
+            raise ProviderError("All Remotive category RSS feeds failed")
+        self.active_source = "category-rss"
         yield from jobs
 
     @staticmethod

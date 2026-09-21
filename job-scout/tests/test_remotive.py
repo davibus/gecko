@@ -79,6 +79,16 @@ REMOTIVE_SALES_RSS = b'''<?xml version="1.0" encoding="UTF-8"?>
 
 
 class RemotiveProviderTests(unittest.TestCase):
+    def test_default_discovery_skips_clearly_irrelevant_category_feeds(self):
+        categories = {category for category, _url in RemotiveProvider.category_feeds}
+        self.assertIn("Marketing", categories)
+        self.assertIn("Data and Analytics", categories)
+        self.assertIn("Business Development", categories)
+        self.assertTrue(categories.isdisjoint({
+            "Software Development", "Devops", "Quality Assurance",
+            "Customer Service", "Information Technology", "Artificial Intelligence",
+        }))
+
     @patch("sources.remotive.get_json")
     def test_maps_public_api_response_with_attribution_url_and_publication_date(self, mocked_get):
         mocked_get.return_value = {"job-count": 1, "jobs": [REMOTIVE_JOB]}
@@ -165,24 +175,46 @@ class RemotiveProviderTests(unittest.TestCase):
         self.assertEqual(provider.failed_feed_count, 1)
         self.assertIn("Sales unavailable", provider.feed_results[1]["error"])
 
-    @patch("sources.remotive.get_json", return_value={"jobs": [REMOTIVE_JOB]})
+    @patch("sources.remotive.get_json", side_effect=AssertionError("API must not run"))
     @patch("sources.remotive.get_bytes", side_effect=ProviderError("RSS unavailable"))
-    def test_full_feed_falls_back_to_cached_api(self, mocked_bytes, mocked_json):
+    def test_full_feed_fails_without_using_public_api(self, mocked_bytes, _mocked_json):
         provider = RemotiveProvider()
         provider.category_feeds = (
             ("Marketing", "https://remotive.test/marketing"),
             ("Sales", "https://remotive.test/sales"),
         )
-        first = list(provider.full_feed())
-        second = list(provider.full_feed())
-        self.assertEqual([job.source_job_id for job in first], ["123456"])
-        self.assertEqual(second, first)
-        self.assertEqual(provider.active_source, "api-fallback")
+        with self.assertRaisesRegex(ProviderError, "category RSS feeds failed"):
+            list(provider.full_feed())
         self.assertEqual(provider.rss_count, 0)
-        self.assertEqual(provider.api_count, 1)
+        self.assertEqual(provider.api_count, 0)
         self.assertIn("Marketing: RSS unavailable", provider.rss_error)
         self.assertEqual(mocked_bytes.call_count, 2)
-        mocked_json.assert_called_once()
+
+    @patch("sources.remotive.get_bytes")
+    def test_stops_after_unique_limit_and_uses_company_title_fallback(self, mocked_get):
+        provider = RemotiveProvider()
+        provider.category_feeds = (
+            ("Marketing", "https://remotive.test/marketing"),
+            ("Sales", "https://remotive.test/sales"),
+            ("Writing", "https://remotive.test/writing"),
+        )
+        duplicate_without_shared_id = REMOTIVE_SALES_RSS.replace(
+            b"<jobId>123456</jobId>", b"<jobId>different-id</jobId>"
+        ).replace(
+            b"paid-search-manager-123456?utm_source=rss",
+            b"paid-search-manager-copy",
+        )
+        mocked_get.side_effect = [REMOTIVE_RSS, duplicate_without_shared_id, REMOTIVE_RSS]
+
+        jobs = provider.category_pool(unique_limit=3)
+
+        self.assertEqual(len(jobs), 3)
+        self.assertEqual(provider.rss_raw_count, 4)
+        self.assertEqual(provider.rss_duplicate_count, 1)
+        self.assertEqual(provider.feed_results[0]["category"], "Marketing")
+        self.assertEqual(provider.feed_results[1]["category"], "Sales")
+        self.assertEqual(mocked_get.call_count, 2)
+        self.assertIn("Sales", jobs[0].metadata["feed_categories"])
 
     @patch("sources.remotive.get_bytes", return_value=b'''<rss><channel><item>
         <title>Role</title><company>Example</company>
@@ -259,6 +291,39 @@ class RemotiveProviderTests(unittest.TestCase):
         self.assertEqual(remotive_links[0]["url"], REMOTIVE_JOB["url"])
         self.assertEqual(saved.tags, ["Marketing", "Sales"])
 
+    def test_unrelated_remotive_engineering_roles_are_filtered_before_scoring(self):
+        class TwoJobProvider:
+            raw_count = rss_raw_count = rss_count = 2
+            rss_duplicate_count = api_count = failed_feed_count = 0
+            successful_feed_count = 1
+            active_source = "category-rss"
+            feed_results = []
+
+            def full_feed(self, unique_limit=None):
+                description = "Senior engineer building cloud systems and automation."
+                yield RawListing(
+                    "remotive", "one", "https://remotive.com/jobs/one",
+                    "Senior DevOps Engineer", "Lemon.io", "USA", description,
+                    remote_type="remote",
+                )
+                yield RawListing(
+                    "remotive", "two", "https://remotive.com/jobs/two",
+                    "Senior AI Engineer", "Lemon.io", "USA", description,
+                    remote_type="remote",
+                )
+
+        with tempfile.TemporaryDirectory() as directory:
+            with JobStore(Path(directory) / "jobs.sqlite3") as store:
+                summary = discover_remotive_full_feed(
+                    TwoJobProvider(), store, load_preferences(), "", limit=2,
+                )
+                saved = store.all()
+
+        self.assertEqual(summary.added, 0)
+        self.assertEqual(summary.duplicates, 0)
+        self.assertEqual(saved, [])
+        self.assertEqual(summary.scored, 0)
+
     def test_normalized_category_and_tags_survive_storage(self):
         job = normalize(RawListing(
             source="remotive", source_job_id="123456", url=REMOTIVE_JOB["url"],
@@ -274,7 +339,7 @@ class RemotiveProviderTests(unittest.TestCase):
         self.assertEqual(saved.tags, ["PPC", "Analytics"])
 
     @patch("sources.remotive.get_bytes", return_value=REMOTIVE_RSS)
-    def test_full_feed_scores_and_retains_below_threshold_jobs(self, _mocked_get):
+    def test_full_feed_scores_and_retains_only_relevant_marketing_jobs(self, _mocked_get):
         provider = RemotiveProvider()
         provider.category_feeds = (("Marketing", "https://remotive.test/marketing"),)
 
@@ -295,20 +360,35 @@ class RemotiveProviderTests(unittest.TestCase):
         self.assertEqual(summary.successful_feeds, 1)
         self.assertEqual(summary.failed_feeds, 0)
         self.assertEqual(summary.source_backend, "category-rss")
-        self.assertEqual(summary.normalized, 2)
-        self.assertEqual(summary.scored, 2)
-        self.assertEqual(summary.added, 2)
+        self.assertEqual(summary.normalized, 1)
+        self.assertEqual(summary.scored, 1)
+        self.assertEqual(summary.filtered_before_scoring, 1)
+        self.assertEqual(summary.added, 1)
         self.assertEqual(summary.updated, 0)
-        self.assertEqual(len(saved), 2)
-        self.assertTrue(any(job.match_score < 80 for job in saved))
+        self.assertEqual(len(saved), 1)
         self.assertEqual({job.source for job in saved}, {"remotive"})
-        self.assertEqual({job.url for job in saved}, {
-            REMOTIVE_JOB["url"],
-            "https://remotive.com/remote-jobs/software-dev/backend-engineer-999999",
-        })
+        self.assertEqual({job.url for job in saved}, {REMOTIVE_JOB["url"]})
         self.assertEqual(rerun.added, 0)
-        self.assertEqual(rerun.updated, 2)
-        self.assertEqual(rerun.duplicates, 2)
+        self.assertEqual(rerun.updated, 1)
+        self.assertEqual(rerun.duplicates, 1)
+
+    @patch("sources.remotive.get_bytes", return_value=REMOTIVE_RSS)
+    def test_limit_means_unique_ranked_jobs_after_deduplication(self, _mocked_get):
+        provider = RemotiveProvider()
+        provider.category_feeds = (("Marketing", "https://remotive.test/marketing"),)
+
+        with tempfile.TemporaryDirectory() as directory:
+            with JobStore(Path(directory) / "jobs.sqlite3") as store:
+                summary = discover_remotive_full_feed(
+                    provider, store, load_preferences(), "paid search analytics", limit=1,
+                )
+                saved = store.all()
+
+        self.assertEqual(summary.unique_available, 1)
+        self.assertEqual(summary.unique_imported, 1)
+        self.assertEqual(summary.scored, 1)
+        self.assertEqual(len(saved), 1)
+        self.assertEqual(saved[0].title, "Paid Search Manager")
 
 
 class RemotiveDiagnosticTests(unittest.TestCase):
@@ -323,27 +403,33 @@ class RemotiveDiagnosticTests(unittest.TestCase):
             failed_feed_count = 0
             rss_raw_count = 2
             rss_duplicate_count = 0
+            active_source = "category-rss"
+            raw_count = 2
+            rss_count = 2
+            api_count = 0
 
-            def category_pool(self):
-                return [
-                    RawListing("remotive", "1", "https://remotive.com/jobs/1", "One", "A"),
-                    RawListing("remotive", "2", "https://remotive.com/jobs/2", "Two", "B"),
+            def full_feed(self, unique_limit=None):
+                yield from [
+                    RawListing("remotive", "1", "https://remotive.com/jobs/1", "Paid Search Manager", "A"),
+                    RawListing("remotive", "2", "https://remotive.com/jobs/2", "Marketing Analytics Manager", "B"),
                 ]
 
-            def api_feed(self):
-                yield RawListing("remotive", "2", "https://remotive.com/jobs/2", "Two", "B")
-                yield RawListing("remotive", "3", "https://remotive.com/jobs/3", "Three", "C")
-
         output = io.StringIO()
-        with patch("scout.RemotiveProvider", return_value=FakeRemotive()), redirect_stdout(output):
-            result = diagnose_remotive_feeds(argparse.Namespace(), None, None)
+        with patch("scout.RemotiveProvider", return_value=FakeRemotive()), \
+             patch("scout.extract_resume_text", return_value=""), redirect_stdout(output):
+            result = diagnose_remotive_feeds(
+                argparse.Namespace(limit=100), None, load_preferences(),
+            )
         report = json.loads(output.getvalue())
         self.assertEqual(result, 0)
         self.assertEqual(report["raw_rss_records"], 2)
         self.assertEqual(report["unique_rss_jobs"], 2)
         self.assertEqual(report["successful_category_feeds"], 1)
-        self.assertEqual(report["api_jobs_retrieved"], 2)
-        self.assertEqual(report["shared_source_ids"], 1)
+        self.assertEqual(report["feeds_attempted"], 1)
+        self.assertEqual(report["unique_jobs_imported"], 2)
+        self.assertEqual(
+            report["scores_80_plus"] + report["scores_70_79"] + report["scores_below_70"], 2,
+        )
 
     def test_old_rss_diagnostic_alias_uses_category_diagnostic(self):
         with patch("scout.diagnose_remotive_feeds", return_value=0) as delegated:
@@ -392,7 +478,7 @@ class RemotiveDiagnosticTests(unittest.TestCase):
             def configured(self):
                 return True
 
-            def full_feed(self):
+            def full_feed(self, unique_limit=None):
                 raise ProviderError("API unavailable")
                 yield  # pragma: no cover
 

@@ -2,7 +2,9 @@
 
 ## Optional upstream Job Scout
 
-Job Scout is separate from resume generation. Run `python job-scout/scout.py search`, review strong matches with `python job-scout/scout.py list`, and explicitly select one with `python job-scout/scout.py select <ID>`. Selection archives the description in `input/job-descriptions/`; it never creates a resume or tracker row. Continue with the unchanged workflow below only after choosing a job. Full setup and commands are in `job-scout/README.md`.
+Job Scout is separate from resume generation. Each morning, run `python job-scout/scout.py daily`. The Job Scout worksheet remains a cumulative history, but the daily path appends only genuinely new jobs and its review output contains only qualifying jobs first discovered in that run. Existing worksheet rows and manual `Applied` / `Contacted` fields are preserved. The command never creates a resume or starts a handoff.
+
+To proceed with a listing, explicitly run `python job-scout/scout.py select <ID>`. Selection archives the description in `input/job-descriptions/`; it does not create a resume or application-tracker row. Continue with the unchanged workflow below only after choosing a job. Full setup and commands are in `job-scout/README.md`.
 
 ## New job
 

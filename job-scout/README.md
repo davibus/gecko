@@ -34,9 +34,9 @@ JOOBLE_API_KEY=
 ```
 
 Remotive aggregates its official category RSS feeds and requires no API key.
-The public API remains available only when every configured category feed
-fails, and as a diagnostic comparison source. Do not add a
-`REMOTIVE_API_KEY`; neither RSS nor API access requires one.
+Normal discovery does not use the small public API as a fallback or primary
+source. The legacy API diagnostic remains available. Do not add a
+`REMOTIVE_API_KEY`; neither RSS nor the legacy API requires one.
 
 ### Google Sheets tracker
 
@@ -82,9 +82,11 @@ $env:INDEED_API_TOKEN = "..."
 
 The default `search` source remains Adzuna. Jooble uses its official POST API and can be selected with `--provider jooble`. Remotive aggregates official feeds under `https://remotive.com/remote-jobs/feed/{category}` and can be selected with `--provider remotive`. The broken `https://remotive.com/feed` all-jobs URL is not queried. `daily` queries the core Adzuna, Jooble, and Remotive providers. Brave is optional and is never queried unless `--source web-careers` or `--source all` is explicitly requested. The Indeed adapter calls only the configured authorized endpoint; it does not scrape Indeed. The optional web provider uses Brave Search to discover career URLs, then reads public schema.org `JobPosting` JSON-LD from those pages instead of depending on visual page selectors. Legacy Google Custom Search support is available only for existing customers; Google has closed it to new customers and announced discontinuation on January 1, 2027.
 
-Remotive uses a multi-category full-feed workflow. Each Scout process requests all 30 categories listed in Remotive's official RSS documentation once each. This includes Marketing, Sales, Data and Analytics, Product Management, Project Management, Account Management, Business Development, Communications, Operations, Strategy, Writing, Information Technology, Artificial Intelligence, and All Others, plus the remaining official categories for broader transferable-role discovery. Remotive does not publish a separate E-Commerce feed, so Marketing is the closest official equivalent and All Others supplies adjacent coverage. One failed category does not abort the run. The API is requested only if every category feed fails.
+Remotive uses only marketing-adjacent category feeds: Marketing, Data and Analytics, Product Management, Business Development, Strategy, Communications, Account Management, Operations, and All Others. Clearly irrelevant feeds such as Software Development, DevOps, QA, Customer Service, IT, Engineering, and Artificial Intelligence are not requested by the normal RSS workflow. Every record from an adjacent or catch-all feed must also pass the title-family filter. One failed category does not abort the run. Remotive does not publish a separate E-Commerce feed, so Marketing supplies the closest official coverage.
 
-Category records are combined and deduplicated by Remotive job ID first and canonical Remotive URL second. Every feed category in which a job appeared is retained in its tags before the unique pool is normalized and scored. Remotive does not require a target-title query match, and all scored jobs are stored and synchronized, including jobs below 80. Remote listings still receive the normal location/work-arrangement scoring. Adzuna and Jooble retain their query-based behavior.
+Category records are combined and deduplicated by Remotive job ID, canonical Remotive URL, then normalized company plus title. Every encountered feed category associated with a job is retained. Relevant titles are filtered before normalization and Gecko scoring; the remaining candidates are ranked with the existing match-scoring model, and the requested number with the highest scores and background-relevance signals are imported. A relevant role does not need an exact configured target-title match.
+
+Remotive discovery location is always `Remote`; `--location` and Utah discovery filters never apply to it. RSS `location`/candidate eligibility is preserved on the job. Worldwide, USA, North America, Northern America, Americas, and similar eligibility can enter scoring, and US-only eligibility is not required. An explicitly incompatible restriction can lower the location/work-arrangement score or flag the job for review, but does not prevent discovery.
 
 Remotive attribution is retained throughout the pipeline: `source` is exactly `remotive`, the Remotive job ID (or a stable RSS-derived ID) and original job URL are saved, and cross-provider deduplicated records keep that provenance in their source links. Title, company, description, candidate restriction, publication date, salary, employment type, category, and tags are normalized when supplied by the feed. Job Scout never substitutes the retrieval date for Remotive's publication date. Remotive discovery never uses the generic web-search provider.
 
@@ -103,26 +105,30 @@ python job-scout/scout.py show 12
 
 `search` uses Adzuna only by default and does not require `BRAVE_SEARCH_API_KEY`.
 
-`daily` runs the complete Adzuna, Jooble, and Remotive workflow: search, cross-provider deduplication, scoring, Adzuna enrichment for provisional 80+ results, tracker synchronization, and the review queue. It never creates a resume. The `search` command also synchronizes after a successful run. With `TRACKER_BACKEND=google-sheets`, both commands update Google Sheets after updating the XLSX backup.
+`daily` runs the complete Adzuna, Jooble, and Remotive workflow: pre-score role filtering, cross-provider deduplication, scoring, Adzuna enrichment for newly discovered provisional 80+ results, append-only tracker synchronization, and a current-run review queue. It never creates a resume or starts a Gecko handoff.
+
+At the start of each daily run, Job Scout snapshots the IDs already in its database. Duplicate discoveries are reported under `existing_job_ids` and are not merged into, rescored, or rewritten in the daily path. New records are reported under `new_job_ids`. Only those new records are eligible for worksheet insertion and the daily review. The XLSX and Google `Job Scout` worksheets remain cumulative historical lists, existing rows and manual `Applied`/`Contacted` values stay intact, and the daily review contains only new jobs meeting the requested score floor. If none qualify, the command prints `DAILY REVIEW: No new qualifying jobs were discovered in this run.`
+
+The standalone `search` command keeps its general upsert behavior and synchronizes after a successful run. With `TRACKER_BACKEND=google-sheets`, both `search` and `daily` update Google Sheets after the XLSX backup.
 
 Narrow a search or query a single provider:
 
 ```powershell
 python job-scout/scout.py search --query "Paid Search Manager" --query "Marketing Analytics Manager" --location "Utah" --results 20
 python job-scout/scout.py search --provider jooble
-python job-scout/scout.py search --provider remotive
+python job-scout/scout.py search --provider remotive --limit 100
 python job-scout/scout.py diagnose-remotive
-python job-scout/scout.py diagnose-remotive-feeds
+python job-scout/scout.py diagnose-remotive-feeds --limit 100
 python job-scout/scout.py diagnose-remotive-rss
 ```
 
-Every `search`/`daily` run includes a `source_counts` object in its JSON summary, including zeroes for skipped or failed selected sources. Provider failures are also written clearly to stderr instead of being presented as successful zero-result searches.
+Every `search`/`daily` run includes a `source_counts` object in its JSON summary, including zeroes for skipped or failed selected sources. The summary also includes `filtered_before_scoring`, `newly_discovered`, `already_existed`, `new_job_ids`, and `existing_job_ids`, making the current run's state explicit. Provider failures are written clearly to stderr instead of being presented as successful zero-result searches.
 
 `diagnose-remotive` is read-only and calls only `https://remotive.com/api/remote-jobs`; it does not invoke Indeed, LinkedIn, ZipRecruiter, any other provider, or generic web search. By default it checks digital marketing, paid search, PPC, and marketing analytics, then reports raw API records, unique query matches, jobs passing Gecko's score threshold, jobs surviving comparison with saved non-Remotive sources, and example Remotive URLs. Override the threshold with `--minimum-score` or repeat `--query` for a narrower check.
 
-`diagnose-remotive-feeds` is also read-only. It calls every configured official category feed once, reports each category URL, success/failure, and record count, then calls the public API once for a count and source-ID comparison. It also reports total raw RSS records, unique jobs after within-Remotive deduplication, and duplicate records removed. `diagnose-remotive-rss` remains as a backward-compatible alias. Neither command saves jobs or synchronizes tracker worksheets.
+`diagnose-remotive-feeds --limit 100` is read-only. It dry-runs the same marketing-adjacent RSS loading, deduplication, title-family filtering, local scoring, and relevance ranking used by search. It reports feeds attempted/successful/failed, raw RSS records, duplicates removed, relevant unique jobs available, the number that would be imported, and the 80+/70-79/below-70 score bands. It does not call the public API. `diagnose-remotive-rss` remains as a backward-compatible alias. Neither command saves jobs or synchronizes tracker worksheets.
 
-The default search runs every target title in `preferences/default.json` for both Utah and Remote against Adzuna. API usage therefore equals target titles × two locations. Use explicit `--query` or repeated `--location` values to reduce or customize calls. `daily` runs that request set against Adzuna and Jooble, while Remotive requests each configured category once and scores the deduplicated combined pool without query filtering. Other providers remain explicit opt-ins through `--source` or `--provider`.
+The default search runs every target title in `preferences/default.json` for both Utah and Remote against Adzuna. Use explicit `--query` or repeated `--location` values to reduce or customize those calls. `daily` uses that request set for Adzuna and Jooble, while Remotive ignores title/location requests and uses its Remote RSS workflow with a 100-unique-job import limit. Other providers remain explicit opt-ins through `--source` or `--provider`.
 
 Useful review commands:
 
@@ -170,7 +176,7 @@ Jobs marked `applied`, `rejected`, or `ignored` are excluded by default. Use `--
 
 ## Job Scout worksheet
 
-The `Job Scout` worksheet contains discovery and scoring history separately from the existing `Job Tracker` application worksheet. During migration, Google Sheets is the live copy and `output/job-tracker.xlsx` remains the local backup. Syncing upserts jobs by Scout ID and canonical URL, updates changing score/evidence fields, preserves older jobs that no longer appear in search results, and never clears manual `Applied` or `Contacted` entries.
+The `Job Scout` worksheet contains discovery and scoring history separately from the existing `Job Tracker` application worksheet. During migration, Google Sheets is the live copy and `output/job-tracker.xlsx` remains the local backup. The daily sync is append-only: it adds only identities first discovered in that run and leaves all existing row values untouched. Other explicit workflows can still upsert managed fields by Scout ID or canonical URL. Every sync preserves older jobs and manual `Applied` or `Contacted` entries.
 
 The worksheet is sorted by Match Score, Evidence Confidence, and newest posting date. Confirmed strong matches, near matches, and closed lifecycle states use distinct conditional formatting. Selecting a job changes its Scout lifecycle to `Selected`; the existing completed-resume tracker command later marks the same Scout row `Resume Created` when the archived description contains its Scout ID.
 

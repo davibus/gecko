@@ -5,6 +5,8 @@ import tempfile
 import unittest
 import os
 import json
+import io
+from contextlib import redirect_stdout
 from unittest.mock import patch
 from pathlib import Path
 
@@ -18,6 +20,7 @@ from models import RawListing
 from normalize import canonicalize_url, normalize
 from preferences import load_preferences
 from review import build_review_queue, queue_to_json
+from role_filter import is_relevant_role
 from scoring import score_job
 from scoring import WEIGHTS
 from service import discover
@@ -143,8 +146,11 @@ class EnvironmentTests(unittest.TestCase):
         self.assertEqual(search_args.source, "core")
 
     def test_provider_alias_accepts_remotive(self):
-        args = build_parser().parse_args(["search", "--provider", "remotive"])
+        args = build_parser().parse_args([
+            "search", "--provider", "remotive", "--limit", "100",
+        ])
         self.assertEqual(args.source, "remotive")
+        self.assertEqual(args.limit, 100)
 
     def test_remotive_rss_diagnostic_command_is_available(self):
         args = build_parser().parse_args(["diagnose-remotive-rss"])
@@ -157,6 +163,70 @@ class EnvironmentTests(unittest.TestCase):
     def test_sync_sheets_command_is_available(self):
         args = build_parser().parse_args(["sync-sheets"])
         self.assertEqual(args.command, "sync-sheets")
+
+    def test_daily_review_contains_only_ids_discovered_in_current_run(self):
+        with tempfile.TemporaryDirectory() as directory:
+            with JobStore(Path(directory) / "jobs.sqlite3") as store:
+                old_job = normalize(raw(source_id="old", url="https://example.test/old"))
+                old_job.title = "Old Paid Search Manager"
+                old_job.match_score = 95
+                old_job.evidence_confidence = 90
+                old_id = store.save(old_job)
+                new_job = normalize(raw(source_id="new", url="https://example.test/new"))
+                new_job.title = "New Performance Marketing Manager"
+                new_job.match_score = 91
+                new_job.evidence_confidence = 85
+                new_id = store.save(new_job)
+
+                def fake_search(search_args, _store, _preferences):
+                    search_args.run_result = {
+                        "new_job_ids": [new_id], "existing_job_ids": [old_id],
+                    }
+                    return 0
+
+                output = io.StringIO()
+                args = build_parser().parse_args(["daily"])
+                with patch("scout.search", side_effect=fake_search), redirect_stdout(output):
+                    result = daily(args, store, load_preferences())
+
+        self.assertEqual(result, 0)
+        self.assertIn("New Performance Marketing Manager", output.getvalue())
+        self.assertNotIn("Old Paid Search Manager", output.getvalue())
+
+    def test_daily_review_clearly_reports_zero_new_qualifying_jobs(self):
+        def fake_search(search_args, _store, _preferences):
+            search_args.run_result = {"new_job_ids": [], "existing_job_ids": [1]}
+            return 0
+
+        output = io.StringIO()
+        args = build_parser().parse_args(["daily"])
+        with patch("scout.search", side_effect=fake_search), redirect_stdout(output):
+            result = daily(args, object(), {})
+        self.assertEqual(result, 0)
+        self.assertIn("No new qualifying jobs", output.getvalue())
+
+
+class RoleFilterTests(unittest.TestCase):
+    def test_target_and_similar_senior_marketing_roles_are_retained(self):
+        titles = [
+            "Performance Marketing Manager", "Director of Digital Marketing",
+            "Marketing Analytics Manager", "Demand Generation Manager",
+            "Senior Paid Search Strategist", "Head of Growth Marketing",
+        ]
+        self.assertTrue(all(is_relevant_role(title) for title in titles))
+
+    def test_unrelated_role_families_are_excluded(self):
+        titles = [
+            "Senior Software Engineer", "DevOps Engineer", "QA Analyst",
+            "IT Support Specialist", "Generative AI Engineer", ".NET Developer",
+            "React Developer", "Rails Engineer", "Data Scientist",
+            "Customer Service Representative", "Administrative Assistant",
+            "Account Executive", "Technical Writer",
+        ]
+        self.assertTrue(all(not is_relevant_role(title) for title in titles))
+
+    def test_marketing_analytics_data_science_exception_is_retained(self):
+        self.assertTrue(is_relevant_role("Data Scientist, Marketing Analytics"))
 
 
 class JoobleProviderTests(unittest.TestCase):
@@ -279,6 +349,26 @@ class ScoringTests(unittest.TestCase):
         self.assertEqual(result.evidence_levels[name], "unknown because source text is incomplete")
         self.assertEqual(result.dimensions[name], 7)
 
+    def test_remote_eligibility_affects_scoring_without_filtering(self):
+        usa = raw(source="remotive")
+        usa.location = "Worldwide"
+        usa.remote_type = "remote"
+        europe = raw(source="remotive")
+        europe.location = "Europe only"
+        europe.remote_type = "remote"
+
+        usa_result = score_job(normalize(usa), load_preferences(), DESCRIPTION)
+        europe_result = score_job(normalize(europe), load_preferences(), DESCRIPTION)
+
+        self.assertGreater(
+            usa_result.dimensions["location/work arrangement"],
+            europe_result.dimensions["location/work arrangement"],
+        )
+        self.assertIn(
+            "Remote eligibility appears to exclude the candidate's US location.",
+            europe_result.weaknesses,
+        )
+
 
 class DeduplicationTests(unittest.TestCase):
     def test_merges_repost_and_preserves_new_link(self):
@@ -380,6 +470,54 @@ class StorageAndServiceTests(unittest.TestCase):
                 self.assertEqual(jobs[0].status, "new")
                 store.update_status(jobs[0].id, "reviewing")
                 self.assertEqual(store.get(jobs[0].id).status, "reviewing")
+
+    def test_filter_runs_before_scoring_and_keeps_relevant_marketing_role(self):
+        class MixedProvider(JobSource):
+            name = "mixed"
+
+            def configured(self):
+                return True
+
+            def search(self, _request):
+                engineering = raw(source="mixed", source_id="eng")
+                engineering.title = "Senior DevOps Engineer"
+                yield engineering
+                yield raw(source="mixed", source_id="marketing")
+
+        with tempfile.TemporaryDirectory() as directory:
+            with JobStore(Path(directory) / "jobs.sqlite3") as store:
+                summary = discover(
+                    MixedProvider(), [SearchRequest("anything")], store,
+                    load_preferences(), DESCRIPTION,
+                )
+                saved = store.all()
+
+        self.assertEqual(summary.fetched, 2)
+        self.assertEqual(summary.filtered_before_scoring, 1)
+        self.assertEqual(summary.scored, 1)
+        self.assertEqual([job.title for job in saved], ["Paid Search Manager"])
+
+    def test_daily_discovery_identifies_existing_without_mutating_it(self):
+        with tempfile.TemporaryDirectory() as directory:
+            with JobStore(Path(directory) / "jobs.sqlite3") as store:
+                first = discover(
+                    FakeProvider(), [SearchRequest("paid search")], store,
+                    load_preferences(), DESCRIPTION,
+                )
+                job_id = first.new_job_ids[0]
+                before = store.get(job_id).to_dict()
+                preexisting_ids = {job_id}
+                rerun = discover(
+                    FakeProvider(), [SearchRequest("paid search")], store,
+                    load_preferences(), DESCRIPTION, preserve_existing=True,
+                    preexisting_ids=preexisting_ids,
+                )
+                after = store.get(job_id).to_dict()
+
+        self.assertEqual(rerun.new_job_ids, [])
+        self.assertEqual(rerun.existing_job_ids, [job_id])
+        self.assertEqual(rerun.updated, 0)
+        self.assertEqual(after, before)
 
     def test_selection_handoff_archives_only_description(self):
         with tempfile.TemporaryDirectory() as directory:

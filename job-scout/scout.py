@@ -7,6 +7,7 @@ import argparse
 import json
 import os
 import sys
+import tempfile
 from dataclasses import replace
 from pathlib import Path
 
@@ -76,8 +77,17 @@ def get_job(store: JobStore, job_id: int):
     return job
 
 
-def sync_tracker(store: JobStore, tracker_path: str | Path, *, force_google: bool = False):
-    summary = sync_job_scout(store.all(), tracker_path)
+def sync_tracker(
+    store: JobStore,
+    tracker_path: str | Path,
+    *,
+    force_google: bool = False,
+    jobs=None,
+    append_only: bool = False,
+):
+    summary = sync_job_scout(
+        store.all() if jobs is None else jobs, tracker_path, append_only=append_only,
+    )
     result = {
         "job_scout_worksheet": {
             "rows": summary.rows,
@@ -105,6 +115,8 @@ def sync_sheets(args, store, _preferences):
 
 
 def search(args, store, preferences):
+    daily_mode = bool(getattr(args, "daily_mode", False))
+    preexisting_ids = {job.id for job in store.all()}
     available = providers()
     if args.source == "all":
         selected = list(available)
@@ -114,8 +126,12 @@ def search(args, store, preferences):
         selected = [args.source]
     queries = args.query or preferences["target_roles"]
     locations = args.location or ["Utah", "Remote"]
-    requests = [SearchRequest(query, location, args.page, args.results)
-                for query in queries for location in locations]
+    # Remotive is globally remote and uses category RSS, never Utah/title discovery.
+    requests = (
+        [SearchRequest(query, location, args.page, args.results)
+         for query in queries for location in locations]
+        if any(name != "remotive" for name in selected) else []
+    )
     resume_text = extract_resume_text(MASTER_RESUME)
     aggregate = {
         "raw_retrieved": 0, "rss_retrieved": 0, "rss_unique": 0,
@@ -126,6 +142,12 @@ def search(args, store, preferences):
         "duplicates": 0, "cross_provider_duplicates": 0,
         "score_80_plus": 0, "score_70_79": 0,
         "score_below_70": 0,
+        "filtered_before_scoring": 0,
+        "newly_discovered": 0, "already_existed": 0,
+        "new_job_ids": [], "existing_job_ids": [],
+        "unique_remotive_jobs_available": 0, "unique_jobs_imported": 0,
+        "eligibility_includes_usa": 0, "eligibility_worldwide": 0,
+        "top_25_by_gecko_match_score": [],
         "source_counts": {name: 0 for name in selected}, "source_backends": {},
         "source_diagnostics": {},
         "skipped_sources": [], "source_errors": {},
@@ -138,23 +160,39 @@ def search(args, store, preferences):
             continue
         try:
             if name == "remotive":
-                summary = discover_remotive_full_feed(provider, store, preferences, resume_text)
+                summary = discover_remotive_full_feed(
+                    provider, store, preferences, resume_text, getattr(args, "limit", 100),
+                    preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
+                )
             else:
-                summary = discover(provider, requests, store, preferences, resume_text, args.minimum_score)
+                summary = discover(
+                    provider, requests, store, preferences, resume_text, args.minimum_score,
+                    preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
+                )
         except ProviderError as error:
             aggregate["source_errors"][name] = str(error)
             print(f"Warning: {name} provider failed: {error}", file=sys.stderr)
             continue
         successful_sources += 1
-        aggregate["source_counts"][name] = summary.fetched
+        aggregate["source_counts"][name] = (
+            (summary.unique_imported or summary.fetched)
+            if name == "remotive" else summary.fetched
+        )
         if summary.source_backend:
             aggregate["source_backends"][name] = summary.source_backend
         if name == "remotive":
             aggregate["source_diagnostics"][name] = {
                 "api_endpoint": getattr(provider, "api_endpoint", ""),
                 "rss_error": getattr(provider, "rss_error", ""),
+                "discovery_location": "Remote",
+                "feeds_attempted": summary.successful_feeds + summary.failed_feeds,
                 "category_feeds": summary.feed_results,
             }
+            aggregate["unique_remotive_jobs_available"] = summary.unique_available
+            aggregate["unique_jobs_imported"] = summary.unique_imported
+            aggregate["eligibility_includes_usa"] = summary.eligibility_includes_usa
+            aggregate["eligibility_worldwide"] = summary.eligibility_worldwide
+            aggregate["top_25_by_gecko_match_score"] = summary.top_jobs
         for key in (
             "raw_retrieved", "rss_retrieved", "rss_unique",
             "rss_duplicates_removed", "successful_feeds", "failed_feeds",
@@ -163,8 +201,18 @@ def search(args, store, preferences):
             "strong", "provisional", "weak", "duplicates", "cross_provider_duplicates",
             "score_80_plus",
             "score_70_79", "score_below_70",
+            "filtered_before_scoring",
         ):
             aggregate[key] += getattr(summary, key)
+        for job_id in summary.new_job_ids:
+            if job_id not in aggregate["new_job_ids"]:
+                aggregate["new_job_ids"].append(job_id)
+        for job_id in summary.existing_job_ids:
+            if job_id not in aggregate["existing_job_ids"]:
+                aggregate["existing_job_ids"].append(job_id)
+    aggregate["newly_discovered"] = len(aggregate["new_job_ids"])
+    aggregate["already_existed"] = len(aggregate["existing_job_ids"])
+    args.run_result = aggregate
     print(json.dumps(aggregate, indent=2))
     if len(aggregate["skipped_sources"]) == len(selected):
         print("No selected source is configured. See job-scout/README.md.", file=sys.stderr)
@@ -172,7 +220,13 @@ def search(args, store, preferences):
     if not successful_sources:
         print("All configured sources failed. Review source_errors above.", file=sys.stderr)
         return 1
-    sync_tracker(store, args.tracker)
+    if daily_mode:
+        new_jobs = [store.get(job_id) for job_id in aggregate["new_job_ids"]]
+        sync_tracker(
+            store, args.tracker, jobs=[job for job in new_jobs if job], append_only=True,
+        )
+    else:
+        sync_tracker(store, args.tracker)
     return 0
 
 
@@ -234,35 +288,33 @@ def diagnose_remotive(args, store, preferences):
     return 0
 
 
-def diagnose_remotive_feeds(_args, _store, _preferences):
-    """Compare official Remotive category RSS aggregation with the public API."""
+def diagnose_remotive_feeds(args, _store, preferences):
+    """Dry-run the bounded RSS import and report acquisition/scoring diagnostics."""
     provider = RemotiveProvider()
-    rss_jobs = provider.category_pool()
-    api_jobs = []
-    api_error = ""
-    try:
-        api_jobs = list(provider.api_feed())
-    except ProviderError as error:
-        api_error = str(error)
-    rss_ids = {job.source_job_id or job.url for job in rss_jobs}
-    api_ids = {job.source_job_id or job.url for job in api_jobs}
+    resume_text = extract_resume_text(MASTER_RESUME)
+    with tempfile.TemporaryDirectory() as directory:
+        with JobStore(Path(directory) / "remotive-diagnostic.sqlite3") as diagnostic_store:
+            summary = discover_remotive_full_feed(
+                provider, diagnostic_store, preferences, resume_text,
+                getattr(args, "limit", 100),
+            )
     report = {
         "provider": "remotive",
+        "discovery_location": "Remote",
+        "feeds_attempted": summary.successful_feeds + summary.failed_feeds,
         "category_feeds": provider.feed_results,
         "successful_category_feeds": provider.successful_feed_count,
         "failed_category_feeds": provider.failed_feed_count,
-        "api_endpoint": provider.api_endpoint,
         "raw_rss_records": provider.rss_raw_count,
-        "unique_rss_jobs": len(rss_jobs),
+        "unique_rss_jobs": summary.unique_available,
         "rss_duplicates_removed": provider.rss_duplicate_count,
-        "api_jobs_retrieved": len(api_jobs),
-        "shared_source_ids": len(rss_ids & api_ids),
-        "rss_only_source_ids": len(rss_ids - api_ids),
-        "api_only_source_ids": len(api_ids - rss_ids),
-        "api_error": api_error,
+        "unique_jobs_imported": summary.unique_imported,
+        "scores_80_plus": summary.score_80_plus,
+        "scores_70_79": summary.score_70_79,
+        "scores_below_70": summary.score_below_70,
     }
     print(json.dumps(report, indent=2))
-    return 0 if rss_jobs or api_jobs else 1
+    return 0 if summary.unique_available else 1
 
 
 def diagnose_remotive_rss(args, store, preferences):
@@ -427,16 +479,24 @@ def daily(args, store, preferences):
     """Run the complete discovery-to-review workflow without creating resumes."""
     search_args = argparse.Namespace(
         source="core", query=None, location=None, page=1, results=args.results,
-        minimum_score=None, tracker=args.tracker,
+        minimum_score=None, tracker=args.tracker, limit=100, daily_mode=True,
     )
     result = search(search_args, store, preferences)
     if result:
         return result
-    review_args = argparse.Namespace(
-        minimum_score=args.minimum_score, limit=args.limit,
-        confirmed_only=False, include_closed=False, json=False,
+    run_result = getattr(search_args, "run_result", {})
+    new_jobs = [store.get(job_id) for job_id in run_result.get("new_job_ids", [])]
+    queue = build_review_queue(
+        [job for job in new_jobs if job], minimum_score=args.minimum_score,
+        limit=args.limit, confirmed_only=False, include_closed=False,
     )
-    return review_jobs(review_args, store, preferences)
+    qualifying = sum(len(jobs) for jobs in queue.values())
+    if not qualifying:
+        print("DAILY REVIEW: No new qualifying jobs were discovered in this run.")
+    else:
+        print(f"DAILY REVIEW: {qualifying} new qualifying job(s) discovered in this run.")
+        print(format_review_queue(queue))
+    return 0
 
 
 def build_parser():
@@ -453,9 +513,16 @@ def build_parser():
         help=f"Provider to query (default: {DEFAULT_SOURCE}); core is Adzuna, Jooble, and Remotive",
     )
     find.add_argument("--query", action="append", help="Repeat for multiple role queries; defaults to all target roles")
-    find.add_argument("--location", action="append", help="Repeat to search multiple areas; defaults to Utah and Remote")
+    find.add_argument(
+        "--location", action="append",
+        help="Repeat for non-Remotive providers; defaults to Utah and Remote. Remotive is always Remote.",
+    )
     find.add_argument("--page", type=int, default=1)
     find.add_argument("--results", type=int, default=20)
+    find.add_argument(
+        "--limit", type=int, default=100,
+        help="Unique Remotive jobs to import after within-provider deduplication (default: 100)",
+    )
     find.add_argument("--minimum-score", type=int)
     find.set_defaults(function=search)
     diagnostic = sub.add_parser(
@@ -477,11 +544,13 @@ def build_parser():
         "diagnose-remotive-rss",
         help="Backward-compatible alias for the Remotive category-feed diagnostic",
     )
+    rss_diagnostic.add_argument("--limit", type=int, default=100)
     rss_diagnostic.set_defaults(function=diagnose_remotive_rss)
     feeds_diagnostic = sub.add_parser(
         "diagnose-remotive-feeds",
-        help="Compare Remotive's official category RSS feeds with its public API",
+        help="Dry-run Remotive RSS acquisition, deduplication, and local scoring",
     )
+    feeds_diagnostic.add_argument("--limit", type=int, default=100)
     feeds_diagnostic.set_defaults(function=diagnose_remotive_feeds)
     listing = sub.add_parser("list", help="Show strong saved matches")
     listing.add_argument("--minimum-score", type=int, default=80)
