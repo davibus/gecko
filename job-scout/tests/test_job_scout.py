@@ -146,6 +146,14 @@ class EnvironmentTests(unittest.TestCase):
         args = build_parser().parse_args(["search", "--provider", "remotive"])
         self.assertEqual(args.source, "remotive")
 
+    def test_remotive_rss_diagnostic_command_is_available(self):
+        args = build_parser().parse_args(["diagnose-remotive-rss"])
+        self.assertEqual(args.command, "diagnose-remotive-rss")
+
+    def test_remotive_feeds_diagnostic_command_is_available(self):
+        args = build_parser().parse_args(["diagnose-remotive-feeds"])
+        self.assertEqual(args.command, "diagnose-remotive-feeds")
+
     def test_sync_sheets_command_is_available(self):
         args = build_parser().parse_args(["sync-sheets"])
         self.assertEqual(args.command, "sync-sheets")

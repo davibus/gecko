@@ -118,11 +118,16 @@ def search(args, store, preferences):
                 for query in queries for location in locations]
     resume_text = extract_resume_text(MASTER_RESUME)
     aggregate = {
-        "raw_retrieved": 0, "fetched": 0, "normalized": 0, "scored": 0,
+        "raw_retrieved": 0, "rss_retrieved": 0, "rss_unique": 0,
+        "rss_duplicates_removed": 0, "successful_feeds": 0, "failed_feeds": 0,
+        "api_retrieved": 0,
+        "fetched": 0, "normalized": 0, "scored": 0,
         "added": 0, "updated": 0, "strong": 0, "provisional": 0, "weak": 0,
-        "duplicates": 0, "score_80_plus": 0, "score_70_79": 0,
+        "duplicates": 0, "cross_provider_duplicates": 0,
+        "score_80_plus": 0, "score_70_79": 0,
         "score_below_70": 0,
-        "source_counts": {name: 0 for name in selected},
+        "source_counts": {name: 0 for name in selected}, "source_backends": {},
+        "source_diagnostics": {},
         "skipped_sources": [], "source_errors": {},
     }
     successful_sources = 0
@@ -142,9 +147,21 @@ def search(args, store, preferences):
             continue
         successful_sources += 1
         aggregate["source_counts"][name] = summary.fetched
+        if summary.source_backend:
+            aggregate["source_backends"][name] = summary.source_backend
+        if name == "remotive":
+            aggregate["source_diagnostics"][name] = {
+                "api_endpoint": getattr(provider, "api_endpoint", ""),
+                "rss_error": getattr(provider, "rss_error", ""),
+                "category_feeds": summary.feed_results,
+            }
         for key in (
-            "raw_retrieved", "fetched", "normalized", "scored", "added", "updated",
-            "strong", "provisional", "weak", "duplicates", "score_80_plus",
+            "raw_retrieved", "rss_retrieved", "rss_unique",
+            "rss_duplicates_removed", "successful_feeds", "failed_feeds",
+            "api_retrieved", "fetched",
+            "normalized", "scored", "added", "updated",
+            "strong", "provisional", "weak", "duplicates", "cross_provider_duplicates",
+            "score_80_plus",
             "score_70_79", "score_below_70",
         ):
             aggregate[key] += getattr(summary, key)
@@ -195,7 +212,7 @@ def diagnose_remotive(args, store, preferences):
     examples = sorted(candidates, key=lambda job: (-job.match_score, job.title.casefold()))[:args.examples]
     report = {
         "provider": "remotive",
-        "endpoint": provider.endpoint,
+        "endpoint": getattr(provider, "api_endpoint", provider.endpoint),
         "queries": queries,
         "minimum_score": threshold,
         "raw_retrieved": provider.raw_count,
@@ -215,6 +232,42 @@ def diagnose_remotive(args, store, preferences):
     }
     print(json.dumps(report, indent=2))
     return 0
+
+
+def diagnose_remotive_feeds(_args, _store, _preferences):
+    """Compare official Remotive category RSS aggregation with the public API."""
+    provider = RemotiveProvider()
+    rss_jobs = provider.category_pool()
+    api_jobs = []
+    api_error = ""
+    try:
+        api_jobs = list(provider.api_feed())
+    except ProviderError as error:
+        api_error = str(error)
+    rss_ids = {job.source_job_id or job.url for job in rss_jobs}
+    api_ids = {job.source_job_id or job.url for job in api_jobs}
+    report = {
+        "provider": "remotive",
+        "category_feeds": provider.feed_results,
+        "successful_category_feeds": provider.successful_feed_count,
+        "failed_category_feeds": provider.failed_feed_count,
+        "api_endpoint": provider.api_endpoint,
+        "raw_rss_records": provider.rss_raw_count,
+        "unique_rss_jobs": len(rss_jobs),
+        "rss_duplicates_removed": provider.rss_duplicate_count,
+        "api_jobs_retrieved": len(api_jobs),
+        "shared_source_ids": len(rss_ids & api_ids),
+        "rss_only_source_ids": len(rss_ids - api_ids),
+        "api_only_source_ids": len(api_ids - rss_ids),
+        "api_error": api_error,
+    }
+    print(json.dumps(report, indent=2))
+    return 0 if rss_jobs or api_jobs else 1
+
+
+def diagnose_remotive_rss(args, store, preferences):
+    """Backward-compatible alias for the category-feed diagnostic."""
+    return diagnose_remotive_feeds(args, store, preferences)
 
 
 def list_jobs(args, store, preferences):
@@ -420,6 +473,16 @@ def build_parser():
     diagnostic.add_argument("--minimum-score", type=int)
     diagnostic.add_argument("--examples", type=int, default=5)
     diagnostic.set_defaults(function=diagnose_remotive)
+    rss_diagnostic = sub.add_parser(
+        "diagnose-remotive-rss",
+        help="Backward-compatible alias for the Remotive category-feed diagnostic",
+    )
+    rss_diagnostic.set_defaults(function=diagnose_remotive_rss)
+    feeds_diagnostic = sub.add_parser(
+        "diagnose-remotive-feeds",
+        help="Compare Remotive's official category RSS feeds with its public API",
+    )
+    feeds_diagnostic.set_defaults(function=diagnose_remotive_feeds)
     listing = sub.add_parser("list", help="Show strong saved matches")
     listing.add_argument("--minimum-score", type=int, default=80)
     listing.add_argument("--status", choices=["new", "reviewing", "selected", "resume-created", "applied", "contacted", "interview", "rejected", "offer", "ignored"])

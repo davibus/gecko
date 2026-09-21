@@ -200,16 +200,22 @@ class JobStore:
 
     def merge(self, canonical_id: int, duplicate: JobListing, retained: bool = False):
         current = self.get(canonical_id)
+        merged_tags = list(dict.fromkeys([
+            *((current.tags if current else []) or []),
+            *(duplicate.tags or []),
+        ]))
         self.connection.execute("""
             UPDATE jobs SET last_seen=?, salary=CASE WHEN ? != '' THEN ? ELSE salary END,
                 url=CASE WHEN url = '' AND ? != '' THEN ? ELSE url END,
-                canonical_url=CASE WHEN canonical_url = '' AND ? != '' THEN ? ELSE canonical_url END
+                canonical_url=CASE WHEN canonical_url = '' AND ? != '' THEN ? ELSE canonical_url END,
+                tags_json=?
             WHERE id=?
         """, (
             duplicate.last_seen or duplicate.date_discovered,
             duplicate.salary, duplicate.salary,
             duplicate.url, duplicate.url,
             duplicate.canonical_url, duplicate.canonical_url,
+            json.dumps(merged_tags),
             canonical_id,
         ))
         if current and duplicate.match_score > current.match_score:

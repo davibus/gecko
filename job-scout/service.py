@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from deduplicate import find_duplicate
 from enrichment import enrich_and_rescore
@@ -17,6 +17,14 @@ from url_resolution import classify_url, resolve_and_store
 @dataclass
 class SearchSummary:
     raw_retrieved: int = 0
+    rss_retrieved: int = 0
+    rss_unique: int = 0
+    rss_duplicates_removed: int = 0
+    successful_feeds: int = 0
+    failed_feeds: int = 0
+    feed_results: list[dict] = field(default_factory=list)
+    api_retrieved: int = 0
+    source_backend: str = ""
     fetched: int = 0
     normalized: int = 0
     scored: int = 0
@@ -25,6 +33,7 @@ class SearchSummary:
     strong: int = 0
     weak: int = 0
     duplicates: int = 0
+    cross_provider_duplicates: int = 0
     provisional: int = 0
     score_80_plus: int = 0
     score_70_79: int = 0
@@ -78,6 +87,11 @@ def _discover_listings(
                 if merged and merged.url_verification_status == "not_attempted":
                     resolve_and_store(merged, store)
             summary.duplicates += 1
+            duplicate_sources = {duplicate.source.casefold(), *(
+                link.get("source", "").casefold() for link in duplicate.source_links
+            )}
+            if raw.source.casefold() not in duplicate_sources:
+                summary.cross_provider_duplicates += 1
             if duplicate.id in existing_ids and duplicate.id not in updated_ids:
                 updated_ids.add(duplicate.id)
                 summary.updated += 1
@@ -128,4 +142,12 @@ def discover_remotive_full_feed(
         provider.full_feed(), store, preferences, resume_text, 0, require_content=False,
     )
     summary.raw_retrieved = provider.raw_count
+    summary.rss_retrieved = provider.rss_raw_count
+    summary.rss_unique = provider.rss_count
+    summary.rss_duplicates_removed = provider.rss_duplicate_count
+    summary.successful_feeds = provider.successful_feed_count
+    summary.failed_feeds = provider.failed_feed_count
+    summary.feed_results = provider.feed_results
+    summary.api_retrieved = provider.api_count
+    summary.source_backend = provider.active_source
     return summary
