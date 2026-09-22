@@ -16,3 +16,4 @@ __pycache__/
 /.secrets/
 google-sheets-service-account.json
 *service-account-key*.json
+scratch/word-validation-bridge-heartbeat.json
