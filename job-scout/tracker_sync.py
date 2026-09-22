@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from copy import copy
 import os
 from dataclasses import dataclass
 from datetime import date, datetime
@@ -16,6 +17,7 @@ from openpyxl.utils import get_column_letter
 from models import JobListing
 from normalize import canonicalize_url
 from url_resolution import best_job_url, url_status_label
+from excel_preservation import append_preserving_format, copy_row_format
 
 
 SHEET_NAME = "Job Scout"
@@ -149,49 +151,44 @@ def _job_row(job: JobListing, existing: dict | None = None) -> dict:
     }
 
 
-def _existing_rows(ws) -> list[dict]:
+def _header_columns(ws) -> dict[str, int]:
+    headers = [ws.cell(1, column).value for column in range(1, ws.max_column + 1)]
+    while headers and headers[-1] in (None, ""):
+        headers.pop()
+    if len(headers) != len(set(headers)):
+        raise ValueError("Existing Job Scout worksheet contains duplicate column names")
+    columns = {str(header): index for index, header in enumerate(headers, 1) if header not in (None, "")}
+    for header in HEADERS:
+        if header in columns:
+            continue
+        column = ws.max_column + 1
+        if ws.max_column >= 1:
+            source = ws.cell(1, ws.max_column)
+            target = ws.cell(1, column)
+            if source.has_style:
+                target._style = copy(source._style)
+        ws.cell(1, column, header)
+        columns[header] = column
+    return columns
+
+
+def _existing_rows(ws, columns: dict[str, int] | None = None) -> list[dict]:
     if ws.max_row < 2:
         return []
-    headers = [ws.cell(1, column).value for column in range(1, len(HEADERS) + 1)]
-    if headers != HEADERS:
-        raise ValueError("Existing Job Scout worksheet columns do not match the required schema")
+    columns = columns or _header_columns(ws)
     return [
-        {header: ws.cell(row, column).value for column, header in enumerate(HEADERS, 1)}
+        {
+            **{header: ws.cell(row, columns[header]).value for header in HEADERS},
+            "_worksheet_row": row,
+        }
         for row in range(2, ws.max_row + 1)
-        if any(ws.cell(row, column).value not in (None, "") for column in range(1, len(HEADERS) + 1))
+        if any(ws.cell(row, columns[header]).value not in (None, "") for header in HEADERS)
     ]
 
 
 def _migrate_schema(ws) -> None:
-    """Migrate supported Job Scout layouts without losing row values."""
-    if ws.max_row < 1:
-        return
-    current = [ws.cell(1, column).value for column in range(1, ws.max_column + 1)]
-    while current and current[-1] is None:
-        current.pop()
-    if current == HEADERS:
-        return
-    if current == LEGACY_HEADERS:
-        source_headers = LEGACY_HEADERS
-    elif current == SOURCE_B_HEADERS:
-        source_headers = SOURCE_B_HEADERS
-    elif current == RESUME_LINK_HEADERS:
-        source_headers = RESUME_LINK_HEADERS
-    elif current == PREVIOUS_HEADERS:
-        source_headers = PREVIOUS_HEADERS
-    elif current == URL_STATUSLESS_HEADERS:
-        source_headers = URL_STATUSLESS_HEADERS
-    else:
-        return
-    records = [
-        {header: ws.cell(row, column).value for column, header in enumerate(source_headers, 1)}
-        for row in range(2, ws.max_row + 1)
-        if any(ws.cell(row, column).value not in (None, "") for column in range(1, len(source_headers) + 1))
-    ]
-    ws.delete_rows(1, ws.max_row)
-    ws.append(HEADERS)
-    for record in records:
-        ws.append([record.get(header) for header in HEADERS])
+    """Add missing managed columns without moving or recreating existing cells."""
+    _header_columns(ws)
 
 
 def _sort_key(record: dict):
@@ -234,7 +231,6 @@ def _style_sheet(ws) -> None:
             if cell.value:
                 cell.hyperlink = str(cell.value)
                 cell.style = "Hyperlink"
-    ws.conditional_formatting._cf_rules.clear()
     end = max(ws.max_row, 2)
     match_column = get_column_letter(HEADERS.index("Match Status") + 1)
     status_column = get_column_letter(HEADERS.index("Gecko Status") + 1)
@@ -278,6 +274,7 @@ def sync_job_scout(
     level, while genuinely new identities are appended.
     """
     tracker_path = Path(tracker_path)
+    workbook_exists = tracker_path.exists()
     if tracker_path.exists():
         workbook = load_workbook(tracker_path)
     else:
@@ -286,14 +283,19 @@ def sync_job_scout(
     tracker_preserved = APPLICATION_SHEET in workbook.sheetnames
     if not tracker_preserved:
         raise ValueError(f"Workbook must contain the existing {APPLICATION_SHEET!r} worksheet")
-    ws = workbook[SHEET_NAME] if SHEET_NAME in workbook.sheetnames else workbook.create_sheet(SHEET_NAME)
+    sheet_exists = SHEET_NAME in workbook.sheetnames
+    ws = workbook[SHEET_NAME] if sheet_exists else workbook.create_sheet(SHEET_NAME)
     if ws.max_row == 1 and ws.cell(1, 1).value is None:
         for column, header in enumerate(HEADERS, 1):
             ws.cell(1, column, header)
 
+    headers_before = [ws.cell(1, column).value for column in range(1, ws.max_column + 1)]
     _migrate_schema(ws)
 
-    rows = _existing_rows(ws)
+    columns = _header_columns(ws)
+    headers_after = [ws.cell(1, column).value for column in range(1, ws.max_column + 1)]
+    changed = not sheet_exists or headers_before != headers_after
+    rows = _existing_rows(ws, columns)
     by_id = {str(row["Scout ID"]): row for row in rows if row.get("Scout ID") not in (None, "")}
     by_identity = {}
     for row in rows:
@@ -311,17 +313,34 @@ def sync_job_scout(
                     break
         updated = _job_row(job, existing)
         if existing is None:
+            row_number = append_preserving_format(ws, set(HEADERS))
+            changed = True
+            updated["_worksheet_row"] = row_number
+            for header, value in updated.items():
+                if header in columns:
+                    ws.cell(row_number, columns[header], value)
             rows.append(updated)
-            existing = rows[-1]
+            existing = updated
         elif not append_only:
+            row_number = existing["_worksheet_row"]
+            for header, value in updated.items():
+                if header in columns and ws.cell(row_number, columns[header]).value != value:
+                    ws.cell(row_number, columns[header], value)
+                    changed = True
             existing.update(updated)
-    rows.sort(key=_sort_key)
-    if ws.max_row > 1:
-        ws.delete_rows(2, ws.max_row - 1)
-    for record in rows:
-        ws.append([record.get(header) for header in HEADERS])
-    _style_sheet(ws)
-    _save_atomic(workbook, tracker_path)
+        row_number = existing["_worksheet_row"]
+        for header in ("Authoritative URL", "Job URL", "Enrichment URL", "Resume Link"):
+            cell = ws.cell(row_number, columns[header])
+            target = str(cell.value) if cell.value else None
+            current = cell.hyperlink.target if cell.hyperlink else None
+            if current != target:
+                cell.hyperlink = target
+                changed = True
+    if not workbook_exists or not sheet_exists:
+        _style_sheet(ws)
+        changed = True
+    if changed:
+        _save_atomic(workbook, tracker_path)
 
     return SyncSummary(
         rows=len(rows),

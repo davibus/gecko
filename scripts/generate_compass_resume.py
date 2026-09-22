@@ -112,7 +112,7 @@ def build_resume(path: Path):
     set_run(
         p.add_run(
             "Lehi, UT 84043   •   (530) 507-8269   •   mdavidcall@gmail.com   •   "
-            "linkedin.com/in/mdavidcall   •   Spanish: Fluent"
+            "linkedin.com/in/mdavidcall"
         ),
         size=9.5, color=MUTED,
     )

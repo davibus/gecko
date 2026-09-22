@@ -1,0 +1,12 @@
+﻿{
+    "status":  "native-valid",
+    "docx":  "C:\\Users\\DCALL\\Desktop\\gecko\\output\\resumes\\Dave-Call+Silverback-Strategies+55b2b02b-5435-4046-8101-f4c59e56145b.docx",
+    "pdf":  "C:\\Users\\DCALL\\Desktop\\gecko\\scratch\\Silverback-Strategies+55b2b02b-5435-4046-8101-f4c59e56145b\\word-validation.pdf",
+    "word_pages":  2,
+    "pdf_pages":  2,
+    "request_id":  null,
+    "validated_at":  "2026-09-22T12:07:20.5680412-06:00",
+    "validated_as":  "DCALL-T580\\DCALL",
+    "validation_session_id":  1,
+    "tracker_updated":  true
+}

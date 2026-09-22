@@ -29,6 +29,8 @@ When asked to "use Gecko" for a job:
 
 - The final DOCX must be exactly two pages when opened or exported by Microsoft Word. A browser, HTML, PDF, or fallback renderer alone is not sufficient proof of DOCX pagination.
 - Prefer Microsoft Word COM pagination and confirm both Word's computed page count and the exported PDF page count equal 2.
+- Use `scripts/validate_word_native.ps1` for the authoritative check. It automatically routes sandbox requests through the interactive-user bridge installed by `scripts/Install-Gecko-Word-Bridge.cmd`.
+- If the bridge is not installed or running, stop before the tracker update and report the exact installer path. Do not add a tracker row while validation is `native-pending`.
 - If native Word pagination is unavailable, use a conservative layout with substantial bottom-page safety margin, clearly disclose that native validation is unavailable, and do not describe fallback-only pagination as equivalent to Word validation.
 - Never add content merely to fill space when doing so risks a third page. An underfilled second page is preferable to a three-page resume.
 - Do not claim the Gecko workflow is fully validated until the actual DOCX has been confirmed as exactly two pages in Microsoft Word.
@@ -55,3 +57,11 @@ Every successfully completed Gecko resume must be recorded through the tracker c
 The tracker script assigns the next Resume # and prevents duplicate Job Number entries. Do not directly rewrite existing tracker rows or clear the user-maintained `Applied` and `Contacted` columns.
 
 When `TRACKER_BACKEND=google-sheets`, treat the Google Sheet as the primary live tracker and retain `output/job-tracker.xlsx` as the required backup. Never bypass `scripts/manage_job_tracker.py`, because it also marks the matching Scout row `Resume Created` and preserves manual fields across both backends.
+
+## Persistent Excel formatting
+
+`output/job-tracker.xlsx` is a user-managed workbook. If it already exists, always load it with openpyxl and update cells in place. Never recreate the workbook, delete/recreate a worksheet, delete/rebuild its data rows, blanket-restyle existing cells, clear filters, or replace user formatting with template defaults.
+
+Preserve fills, fonts, borders, number formats, alignment, row heights, column widths, frozen panes, AutoFilter and sort state where possible, Excel Tables, conditional formatting, data validation, hyperlinks, formulas, worksheet order, and user-maintained fields. When appending a row, copy the previous data row's formatting, extend applicable validation/filter ranges, and expand any existing Excel Table to include the new row. User-created formatting always takes priority.
+
+When Google Sheets is enabled, apply the same preservation rule to the live `Job Tracker` and `Job Scout` tabs. Routine synchronization must update values in place; it must not clear populated tabs, reapply default formatting across existing ranges, replace conditional-format rules, reset column widths, or discard filter criteria. Keep existing cloud row order so formatting remains attached to the same records.

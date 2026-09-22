@@ -76,7 +76,7 @@ def build_omni_resume(output_path, font_size_pt=10.0, margin_in=0.42, bullet_spa
     p_contact.paragraph_format.space_before = Pt(0)
     p_contact.paragraph_format.space_after = Pt(4.5)
     p_contact.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run_contact = p_contact.add_run("Lehi, UT 84043   •   (530) 507-8269   •   mdavidcall@gmail.com   •   linkedin.com/in/mdavidcall   •   Spanish: Fluent")
+    run_contact = p_contact.add_run("Lehi, UT 84043   •   (530) 507-8269   •   mdavidcall@gmail.com   •   linkedin.com/in/mdavidcall")
     run_contact.font.size = Pt(9.5)
     run_contact.font.color.rgb = RGBColor(70, 70, 70)
 

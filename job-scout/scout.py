@@ -36,6 +36,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MASTER_RESUME = PROJECT_ROOT / "input" / "master-resume" / "dcall-resume-3-15-26.pdf"
 DEFAULT_SOURCE = "adzuna"
 DEFAULT_TRACKER = PROJECT_ROOT / "output" / "job-tracker.xlsx"
+CORE_PROVIDERS = ("adzuna", "jooble", "remotive", "web-careers")
 
 
 def load_local_environment(path: Path = PROJECT_ROOT / ".env.local") -> None:
@@ -121,7 +122,7 @@ def search(args, store, preferences):
     if args.source == "all":
         selected = list(available)
     elif args.source == "core":
-        selected = ["adzuna", "jooble", "remotive"]
+        selected = list(CORE_PROVIDERS)
     else:
         selected = [args.source]
     queries = args.query or preferences["target_roles"]
@@ -155,6 +156,10 @@ def search(args, store, preferences):
     successful_sources = 0
     for name in selected:
         provider = available[name]
+        if name == "web-careers":
+            aggregate["source_diagnostics"][name] = provider.diagnostics()
+            if provider.backend:
+                aggregate["source_backends"][name] = provider.backend
         if not provider.configured():
             aggregate["skipped_sources"].append(name)
             continue
@@ -180,6 +185,10 @@ def search(args, store, preferences):
         )
         if summary.source_backend:
             aggregate["source_backends"][name] = summary.source_backend
+        if name == "web-careers":
+            aggregate["source_diagnostics"][name] = provider.diagnostics(
+                jobs_added=summary.added,
+            )
         if name == "remotive":
             aggregate["source_diagnostics"][name] = {
                 "api_endpoint": getattr(provider, "api_endpoint", ""),
@@ -510,7 +519,8 @@ def build_parser():
         "--source", "--provider",
         choices=["all", "core", "adzuna", "jooble", "remotive", "indeed", "web-careers"],
         default=DEFAULT_SOURCE,
-        help=f"Provider to query (default: {DEFAULT_SOURCE}); core is Adzuna, Jooble, and Remotive",
+        help=(f"Provider to query (default: {DEFAULT_SOURCE}); core is Adzuna, Jooble, "
+              "Remotive, and Web Careers (Brave when configured)"),
     )
     find.add_argument("--query", action="append", help="Repeat for multiple role queries; defaults to all target roles")
     find.add_argument(

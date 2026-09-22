@@ -1,0 +1,12 @@
+﻿{
+    "status":  "native-valid",
+    "docx":  "C:\\Users\\DCALL\\Desktop\\gecko\\output\\resumes\\Dave-Call+QRY+-2181779819755903792.docx",
+    "pdf":  "C:\\Users\\DCALL\\Desktop\\gecko\\scratch\\QRY+-2181779819755903792\\word-validation.pdf",
+    "word_pages":  2,
+    "pdf_pages":  2,
+    "request_id":  null,
+    "validated_at":  "2026-09-22T09:14:00.3432964-06:00",
+    "validated_as":  "DCALL-T580\\DCALL",
+    "validation_session_id":  1,
+    "tracker_updated":  true
+}

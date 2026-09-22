@@ -11,12 +11,11 @@ from typing import Any, Iterable
 from urllib.parse import quote, unquote, urlparse
 
 from openpyxl import load_workbook
-from openpyxl.styles import Alignment, Font, PatternFill
 
 from normalize import canonicalize_url
+from excel_preservation import append_preserving_format
 from tracker_sync import (
     APPLICATION_SHEET,
-    COLUMN_WIDTHS as SCOUT_COLUMN_WIDTHS,
     HEADERS as SCOUT_HEADERS,
     LEGACY_HEADERS as LEGACY_SCOUT_HEADERS,
     PREVIOUS_HEADERS as PREVIOUS_SCOUT_HEADERS,
@@ -26,7 +25,6 @@ from tracker_sync import (
     SHEET_NAME as SCOUT_SHEET,
     STATUS_RANK,
     _sort_key as scout_sort_key,
-    _style_sheet as style_scout_xlsx,
 )
 
 
@@ -35,7 +33,6 @@ APPLICATION_HEADERS = [
     "Job Link", "Resume Link", "Date Created", "Applied", "Contacted", "Source",
     "Date Found", "Status",
 ]
-APPLICATION_COLUMN_WIDTHS = [11, 28, 42, 31, 22, 14, 38, 48, 15, 12, 12, 18, 15, 18]
 MANUAL_COLUMNS = ("Applied", "Contacted")
 SHEETS_SCOPE = "https://www.googleapis.com/auth/spreadsheets"
 VALID_BACKENDS = {"xlsx", "google-sheets"}
@@ -169,18 +166,18 @@ def _records_from_xlsx(ws, headers: list[str]) -> list[dict]:
     actual = [ws.cell(1, column).value for column in range(1, ws.max_column + 1)]
     while actual and actual[-1] in (None, ""):
         actual.pop()
-    source_headers = headers
+    source_headers = actual
     if ws.title == SCOUT_SHEET and actual in (
         LEGACY_SCOUT_HEADERS, SOURCE_B_SCOUT_HEADERS, RESUME_LINK_SCOUT_HEADERS,
         PREVIOUS_SCOUT_HEADERS, URL_STATUSLESS_SCOUT_HEADERS,
     ):
         source_headers = actual
-    elif actual != headers:
+    elif not set(headers).issubset(actual):
         raise ValueError(f"XLSX worksheet {ws.title!r} columns do not match Gecko's required schema")
     return [
         {header: ws.cell(row, column).value for column, header in enumerate(source_headers, 1)}
         for row in range(2, ws.max_row + 1)
-        if any(ws.cell(row, column).value not in (None, "") for column in range(1, len(headers) + 1))
+        if any(ws.cell(row, column).value not in (None, "") for column in range(1, len(source_headers) + 1))
     ]
 
 
@@ -348,10 +345,33 @@ def _values_from_records(headers: list[str], records: list[dict]) -> list[list[A
     ]
 
 
+def _preserve_remote_row_order(records: list[dict], remote_rows: list[dict], title: str) -> list[dict]:
+    """Keep existing Google rows in place so their user formatting stays attached."""
+    by_key: dict[str, dict] = {}
+    for record in records:
+        for key in _xlsx_record_keys(record, title):
+            by_key[key] = record
+    ordered: list[dict] = []
+    seen: set[int] = set()
+    for remote in remote_rows:
+        record = next(
+            (by_key[key] for key in _xlsx_record_keys(remote, title) if key in by_key),
+            None,
+        )
+        if record is not None and id(record) not in seen:
+            ordered.append(record)
+            seen.add(id(record))
+    ordered.extend(record for record in records if id(record) not in seen)
+    return ordered
+
+
 def _metadata(api, spreadsheet_id: str) -> dict:
     return api.get(
         spreadsheetId=spreadsheet_id,
-        fields="sheets(properties(sheetId,title,index,gridProperties),conditionalFormats)",
+        fields=(
+            "sheets(properties(sheetId,title,index,gridProperties),"
+            "basicFilter,conditionalFormats)"
+        ),
     ).execute()
 
 
@@ -387,10 +407,6 @@ def _ensure_required_sheets(api, values_api, spreadsheet_id: str) -> dict[str, d
     return {sheet["properties"]["title"]: sheet for sheet in metadata.get("sheets", [])}
 
 
-def _color(red: int, green: int, blue: int) -> dict[str, float]:
-    return {"red": red / 255, "green": green / 255, "blue": blue / 255}
-
-
 def _column_letter(index: int) -> str:
     """Return an A1 column name for a zero-based index."""
     value = index + 1
@@ -401,113 +417,49 @@ def _column_letter(index: int) -> str:
     return result
 
 
-def _format_requests(sheet: dict, title: str, row_count: int, headers: list[str]) -> list[dict]:
+def _append_row_structure_requests(
+    sheet: dict, previous_row_count: int, row_count: int, column_count: int,
+) -> list[dict]:
+    """Extend a live sheet without replacing user formatting or filter criteria."""
+    if row_count <= previous_row_count:
+        return []
     sheet_id = sheet["properties"]["sheetId"]
-    column_count = len(headers)
-    managed_headers = APPLICATION_HEADERS if title == APPLICATION_SHEET else SCOUT_HEADERS
-    managed_widths = APPLICATION_COLUMN_WIDTHS if title == APPLICATION_SHEET else SCOUT_COLUMN_WIDTHS
-    widths = dict(zip(managed_headers, managed_widths))
     requests: list[dict] = []
-    for index in reversed(range(len(sheet.get("conditionalFormats", [])))):
-        requests.append({"deleteConditionalFormatRule": {"sheetId": sheet_id, "index": index}})
-    requests.extend([
-        {
-            "updateSheetProperties": {
-                "properties": {
-                    "sheetId": sheet_id,
-                    "gridProperties": {"frozenRowCount": 1},
-                    "tabColor": _color(91, 155, 213),
-                },
-                "fields": "gridProperties.frozenRowCount,tabColor",
-            }
-        },
-        {
-            "repeatCell": {
-                "range": {"sheetId": sheet_id, "startRowIndex": 0, "endRowIndex": 1, "startColumnIndex": 0, "endColumnIndex": column_count},
-                "cell": {"userEnteredFormat": {
-                    "backgroundColor": _color(31, 78, 120),
-                    "textFormat": {"bold": True, "foregroundColor": _color(255, 255, 255)},
-                    "horizontalAlignment": "CENTER", "verticalAlignment": "MIDDLE", "wrapStrategy": "CLIP",
-                }},
-                "fields": "userEnteredFormat(backgroundColor,textFormat,horizontalAlignment,verticalAlignment,wrapStrategy)",
-            }
-        },
-        {
-            "updateDimensionProperties": {
-                "range": {"sheetId": sheet_id, "dimension": "ROWS", "startIndex": 0, "endIndex": 1},
-                "properties": {"pixelSize": 30}, "fields": "pixelSize",
-            }
-        },
-        {
-            "setBasicFilter": {
-                "filter": {"range": {"sheetId": sheet_id, "startRowIndex": 0, "endRowIndex": max(row_count, 1), "startColumnIndex": 0, "endColumnIndex": column_count}}
-            }
-        },
-    ])
-    for index, header in enumerate(headers):
-        if header not in widths:
-            continue
-        width = widths[header]
-        requests.append({
-            "updateDimensionProperties": {
-                "range": {"sheetId": sheet_id, "dimension": "COLUMNS", "startIndex": index, "endIndex": index + 1},
-                "properties": {"pixelSize": max(70, int(width * 7))}, "fields": "pixelSize",
-            }
-        })
-    if row_count > 1:
-        requests.append({
-            "repeatCell": {
-                "range": {"sheetId": sheet_id, "startRowIndex": 1, "endRowIndex": row_count, "startColumnIndex": 0, "endColumnIndex": column_count},
-                "cell": {"userEnteredFormat": {"verticalAlignment": "TOP", "wrapStrategy": "CLIP"}},
-                "fields": "userEnteredFormat(verticalAlignment,wrapStrategy)",
-            }
-        })
-        date_headers = ("Date Created", "Date Found") if title == APPLICATION_SHEET else ("Date Posted", "Date Found", "Last Seen")
-        for header in date_headers:
-            column = headers.index(header)
+    if previous_row_count > 1:
+        source = {
+            "sheetId": sheet_id,
+            "startRowIndex": previous_row_count - 1,
+            "endRowIndex": previous_row_count,
+            "startColumnIndex": 0,
+            "endColumnIndex": column_count,
+        }
+        destination = {
+            "sheetId": sheet_id,
+            "startRowIndex": previous_row_count,
+            "endRowIndex": row_count,
+            "startColumnIndex": 0,
+            "endColumnIndex": column_count,
+        }
+        for paste_type in (
+            "PASTE_FORMAT", "PASTE_DATA_VALIDATION", "PASTE_CONDITIONAL_FORMATTING",
+        ):
             requests.append({
-                "repeatCell": {
-                    "range": {"sheetId": sheet_id, "startRowIndex": 1, "endRowIndex": row_count, "startColumnIndex": column, "endColumnIndex": column + 1},
-                    "cell": {"userEnteredFormat": {"numberFormat": {"type": "DATE", "pattern": "mm/dd/yyyy"}}},
-                    "fields": "userEnteredFormat.numberFormat",
+                "copyPaste": {
+                    "source": source,
+                    "destination": destination,
+                    "pasteType": paste_type,
+                    "pasteOrientation": "NORMAL",
                 }
             })
-        if title == SCOUT_SHEET:
-            requests.extend([
-                {
-                    "repeatCell": {
-                        "range": {"sheetId": sheet_id, "startRowIndex": 1, "endRowIndex": row_count, "startColumnIndex": headers.index("Evidence Confidence"), "endColumnIndex": headers.index("Evidence Confidence") + 1},
-                        "cell": {"userEnteredFormat": {"numberFormat": {"type": "PERCENT", "pattern": "0%"}}},
-                        "fields": "userEnteredFormat.numberFormat",
-                    }
-                },
-            ])
 
-    def conditional(formula: str, rgb: tuple[int, int, int], index: int):
-        requests.append({
-            "addConditionalFormatRule": {
-                "rule": {
-                    "ranges": [{"sheetId": sheet_id, "startRowIndex": 1, "endRowIndex": max(row_count, 2), "startColumnIndex": 0, "endColumnIndex": column_count}],
-                    "booleanRule": {
-                        "condition": {"type": "CUSTOM_FORMULA", "values": [{"userEnteredValue": formula}]},
-                        "format": {"backgroundColor": _color(*rgb)},
-                    },
-                },
-                "index": index,
-            }
-        })
-
-    if title == SCOUT_SHEET:
-        status = _column_letter(headers.index("Gecko Status"))
-        applied = _column_letter(headers.index("Applied"))
-        match = _column_letter(headers.index("Match Status"))
-        conditional(f'=OR(${status}2="Applied",${status}2="Rejected",${status}2="Ignored",${applied}2<>"")', (231, 230, 230), 0)
-        conditional(f'=${match}2="Confirmed Strong Match"', (226, 240, 217), 1)
-        conditional(f'=${match}2="Near Match"', (255, 242, 204), 2)
-    else:
-        status = _column_letter(headers.index("Status"))
-        applied = _column_letter(headers.index("Applied"))
-        conditional(f'=OR(${status}2="applied",${status}2="rejected",${status}2="ignored",${applied}2<>"")', (231, 230, 230), 0)
+    basic_filter = sheet.get("basicFilter")
+    if basic_filter:
+        preserved_filter = dict(basic_filter)
+        preserved_range = dict(preserved_filter.get("range", {}))
+        if preserved_range.get("endRowIndex") == previous_row_count:
+            preserved_range["endRowIndex"] = row_count
+            preserved_filter["range"] = preserved_range
+            requests.append({"setBasicFilter": {"filter": preserved_filter}})
     return requests
 
 
@@ -539,57 +491,86 @@ def _resume_link_format_requests(sheet_id: int, scout_rows: list[dict], headers:
                     "values": [{
                         "userEnteredFormat": {
                             "textFormat": {
-                                "foregroundColor": _color(17, 85, 204),
-                                "underline": True,
                                 "link": {"uri": click_target},
                             }
                         }
                     }]
                 }],
-                "fields": "userEnteredFormat.textFormat(foregroundColor,underline,link)",
+                "fields": "userEnteredFormat.textFormat.link",
             }
         })
     return requests
 
 
 def _write_sheet(values_api, spreadsheet_id: str, title: str, end_column: str, values: list[list[Any]]) -> None:
-    target = _sheet_range(title, end_column)
-    values_api.clear(spreadsheetId=spreadsheet_id, range=target, body={}).execute()
+    """Update cell values without clearing formats, filters, or sheet structure."""
     values_api.update(
         spreadsheetId=spreadsheet_id,
-        range=f"'{title}'!A1",
+        range=_sheet_range(title, end_column),
         valueInputOption="USER_ENTERED",
         body={"values": values},
     ).execute()
 
 
-def _style_application_xlsx(ws) -> None:
-    for cell in ws[1]:
-        cell.font = Font(bold=True, color="FFFFFF")
-        cell.fill = PatternFill("solid", fgColor="1F4E78")
-        cell.alignment = Alignment(vertical="center", wrap_text=False)
-    ws.freeze_panes = "A2"
-    ws.auto_filter.ref = f"A1:N{max(ws.max_row, 1)}"
-    for index, width in enumerate(APPLICATION_COLUMN_WIDTHS, 1):
-        ws.column_dimensions[ws.cell(1, index).column_letter].width = width
+def _xlsx_record_keys(record: dict, title: str) -> list[str]:
+    if title == APPLICATION_SHEET:
+        value = str(record.get("Job Number") or "").strip()
+        return [f"job:{value}"] if value else []
+    keys = []
+    scout_id = record.get("Scout ID")
+    if scout_id not in (None, ""):
+        keys.append(f"id:{scout_id}")
+    for header in ("Job URL", "Enrichment URL"):
+        identity = _canonical_identity(record.get(header))
+        if identity:
+            keys.append(f"url:{identity}")
+    return keys
+
+
+def _upsert_xlsx_rows_in_place(ws, managed_headers: list[str], records: list[dict]) -> bool:
+    """Merge values by identity without deleting rows or touching existing styles."""
+    actual_headers = [ws.cell(1, column).value for column in range(1, ws.max_column + 1)]
+    while actual_headers and actual_headers[-1] in (None, ""):
+        actual_headers.pop()
+    columns = {
+        str(header): index for index, header in enumerate(actual_headers, 1)
+        if header not in (None, "")
+    }
+    by_key: dict[str, int] = {}
+    changed = False
     for row in range(2, ws.max_row + 1):
-        for column in range(1, len(APPLICATION_HEADERS) + 1):
-            ws.cell(row, column).alignment = Alignment(vertical="top", wrap_text=False)
-        for column in (9, 13):
-            if ws.cell(row, column).value:
-                ws.cell(row, column).number_format = "mm/dd/yyyy"
-        for column in (7, 8):
-            cell = ws.cell(row, column)
-            if cell.value:
-                cell.hyperlink = str(cell.value)
-                cell.style = "Hyperlink"
+        record = {header: ws.cell(row, column).value for header, column in columns.items()}
+        for key in _xlsx_record_keys(record, ws.title):
+            by_key[key] = row
 
-
-def _replace_xlsx_rows(ws, headers: list[str], records: list[dict]) -> None:
-    if ws.max_row > 1:
-        ws.delete_rows(2, ws.max_row - 1)
+    hyperlink_headers = (
+        {"Job Link", "Resume Link"}
+        if ws.title == APPLICATION_SHEET
+        else {"Authoritative URL", "Job URL", "Enrichment URL", "Resume Link"}
+    )
     for record in records:
-        ws.append([record.get(header) or None for header in headers])
+        row = next((by_key[key] for key in _xlsx_record_keys(record, ws.title) if key in by_key), None)
+        if row is None:
+            row = append_preserving_format(ws, set(managed_headers))
+            changed = True
+        for header, column in columns.items():
+            if header not in record:
+                continue
+            value = record.get(header)
+            normalized = None if value == "" else value
+            cell = ws.cell(row, column)
+            if cell.value != normalized:
+                cell.value = normalized
+                changed = True
+            if header in hyperlink_headers:
+                target = str(normalized) if normalized else None
+                current = cell.hyperlink.target if cell.hyperlink else None
+                if current != target:
+                    cell.hyperlink = target
+                    changed = True
+        for key in _xlsx_record_keys(record, ws.title):
+            by_key[key] = row
+    return changed
 
 
 def _save_xlsx_atomic(workbook, path: Path) -> None:
@@ -654,6 +635,10 @@ def _sync_workbook_to_google(
     merged_application = merge_application_rows(local_application, remote_application)
     merged_scout = merge_scout_rows(local_scout, remote_scout)
     attach_resume_links(merged_application, merged_scout, tracker_path)
+    merged_application = _preserve_remote_row_order(
+        merged_application, remote_application, APPLICATION_SHEET,
+    )
+    merged_scout = _preserve_remote_row_order(merged_scout, remote_scout, SCOUT_SHEET)
     application_values = _values_from_records(application_headers, merged_application)
     scout_values = _values_from_records(scout_headers, merged_scout)
 
@@ -666,21 +651,30 @@ def _sync_workbook_to_google(
         _column_letter(len(scout_headers) - 1), scout_values,
     )
 
-    format_requests = []
-    format_requests.extend(_format_requests(sheets[APPLICATION_SHEET], APPLICATION_SHEET, len(application_values), application_headers))
-    format_requests.extend(_format_requests(sheets[SCOUT_SHEET], SCOUT_SHEET, len(scout_values), scout_headers))
+    format_requests = _append_row_structure_requests(
+        sheets[APPLICATION_SHEET], len(remote_application_values),
+        len(application_values), len(application_headers),
+    )
+    format_requests.extend(_append_row_structure_requests(
+        sheets[SCOUT_SHEET], len(remote_scout_values),
+        len(scout_values), len(scout_headers),
+    ))
     format_requests.extend(
         _resume_link_format_requests(
             sheets[SCOUT_SHEET]["properties"]["sheetId"], merged_scout, scout_headers,
         )
     )
-    api.batchUpdate(spreadsheetId=config.spreadsheet_id, body={"requests": format_requests}).execute()
+    if format_requests:
+        api.batchUpdate(spreadsheetId=config.spreadsheet_id, body={"requests": format_requests}).execute()
 
-    _replace_xlsx_rows(workbook[APPLICATION_SHEET], APPLICATION_HEADERS, merged_application)
-    _replace_xlsx_rows(workbook[SCOUT_SHEET], SCOUT_HEADERS, merged_scout)
-    _style_application_xlsx(workbook[APPLICATION_SHEET])
-    style_scout_xlsx(workbook[SCOUT_SHEET])
-    _save_xlsx_atomic(workbook, tracker_path)
+    application_changed = _upsert_xlsx_rows_in_place(
+        workbook[APPLICATION_SHEET], APPLICATION_HEADERS, merged_application,
+    )
+    scout_changed = _upsert_xlsx_rows_in_place(
+        workbook[SCOUT_SHEET], SCOUT_HEADERS, merged_scout,
+    )
+    if application_changed or scout_changed:
+        _save_xlsx_atomic(workbook, tracker_path)
 
     return GoogleSyncSummary(
         application_rows=len(merged_application),

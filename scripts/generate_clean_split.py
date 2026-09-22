@@ -79,7 +79,7 @@ def build_clean_split_resume(output_path):
     p_contact.paragraph_format.space_before = Pt(0)
     p_contact.paragraph_format.space_after = Pt(4)
     p_contact.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run_contact = p_contact.add_run("Lehi, UT 84043   •   (530) 507-8269   •   mdavidcall@gmail.com   •   linkedin.com/in/mdavidcall   •   Spanish: Fluent")
+    run_contact = p_contact.add_run("Lehi, UT 84043   •   (530) 507-8269   •   mdavidcall@gmail.com   •   linkedin.com/in/mdavidcall")
     run_contact.font.size = Pt(9.5)
     run_contact.font.color.rgb = RGBColor(70, 70, 70)
 

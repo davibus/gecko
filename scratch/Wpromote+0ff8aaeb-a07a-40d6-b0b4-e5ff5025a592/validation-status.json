@@ -1,0 +1,12 @@
+﻿{
+    "status":  "native-valid",
+    "docx":  "C:\\Users\\DCALL\\Desktop\\gecko\\output\\resumes\\Dave-Call+Wpromote+0ff8aaeb-a07a-40d6-b0b4-e5ff5025a592.docx",
+    "pdf":  "C:\\Users\\DCALL\\Desktop\\gecko\\scratch\\Wpromote+0ff8aaeb-a07a-40d6-b0b4-e5ff5025a592\\word-validation.pdf",
+    "word_pages":  2,
+    "pdf_pages":  2,
+    "request_id":  null,
+    "validated_at":  "2026-09-22T09:14:43.0727203-06:00",
+    "validated_as":  "DCALL-T580\\DCALL",
+    "validation_session_id":  1,
+    "tracker_updated":  true
+}

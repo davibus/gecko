@@ -9,6 +9,8 @@ Gecko customizes Dave Call's resume for individual job postings while preserving
 - Exactly two pages, with no trailing blank or near-blank page.
 - Pagination must be verified against the actual DOCX in Microsoft Word. Fallback HTML/PDF rendering is not authoritative because its line wrapping and pagination can differ from Word.
 - The preferred validation requires both Microsoft Word's computed page count and its exported PDF to equal exactly 2.
+- Always run native validation through `scripts/validate_word_native.ps1`. When Gecko is running under the isolated Codex account, this script automatically hands the request to the interactive-user Word validation bridge.
+- The interactive bridge is installed once by running `scripts/Install-Gecko-Word-Bridge.cmd` from the normal Windows desktop session. Do not repeatedly retry Word COM from the sandbox when the bridge is unavailable.
 - When Word automation is unavailable, keep a substantial page-bottom safety margin, report the validation limitation explicitly, and never call fallback-only pagination fully validated.
 - Never trade pagination reliability for page fill. A safely underfilled second page is better than a third page.
 - White background.
@@ -20,6 +22,7 @@ Gecko customizes Dave Call's resume for individual job postings while preserving
 - Avoid excessive white space on page 2.
 - Use as much of the two pages as reasonably possible with relevant content.
 - Keep the header identity and contact information consistent with the current approved resume/template.
+- End the header contact line with `linkedin.com/in/mdavidcall`; never include `Spanish: Fluent` or any other language-proficiency text in the header.
 - Keep language concise, professional, and human.
 
 ## Tailoring rules
@@ -75,6 +78,9 @@ Every successful Gecko resume generation must end by recording the job with `scr
 - During dual-write migration, a tracker update is complete only after both the XLSX backup and Google Sheets synchronization succeed.
 - Preserve user-maintained `Applied` and `Contacted` values from Google Sheets and mirror them into the XLSX backup during synchronization.
 - Job Scout searches, daily runs, selections, and completed-resume updates must synchronize Google Sheets when the Google backend is enabled.
+- Treat `output/job-tracker.xlsx` as a persistent user-managed workbook: load and modify it in place, never delete/recreate worksheets or rebuild existing rows, and never blanket-restyle existing cells.
+- Preserve user formatting and workbook features, including fills, fonts, borders, number formats, alignment, row heights, column widths, frozen panes, filters/sort state where possible, Excel Tables, conditional formatting, data validation, hyperlinks, and formulas. Append new rows by copying the previous data row's formatting and expanding existing table/filter/validation ranges.
+- Treat the live Google worksheets the same way during routine synchronization: update values in place, never clear and rebuild a populated sheet, never blanket-apply Gecko's default formatting, and never replace an existing filter without carrying forward its criteria. Preserve physical row order so row-specific formatting stays attached to the same job.
 
 ## Filename rules
 

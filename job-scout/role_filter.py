@@ -55,6 +55,9 @@ def role_filter_reason(title: str) -> tuple[bool, str]:
     if not value:
         return False, "missing title"
 
+    if "spanish" in value and "fluent" in value:
+        return False, "fluent Spanish required in title"
+
     if "data scientist" in value and "marketing analytics" not in value:
         return False, "non-marketing data science"
 

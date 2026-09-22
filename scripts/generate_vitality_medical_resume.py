@@ -6,6 +6,7 @@ import os
 import html
 import base64
 import json
+import subprocess
 from pathlib import Path
 
 import docx
@@ -164,7 +165,7 @@ def build_resume(path: Path):
     set_run(
         p.add_run(
             "Lehi, UT 84043   •   (530) 507-8269   •   mdavidcall@gmail.com   •   "
-            "linkedin.com/in/mdavidcall   •   Spanish: Fluent"
+            "linkedin.com/in/mdavidcall"
         ),
         size=9.5,
         color=MUTED,
@@ -250,22 +251,77 @@ def export_and_validate(docx_path: Path, pdf_path: Path, scratch_dir: Path | Non
     scratch.mkdir(parents=True, exist_ok=True)
     word_pages = None
     word_error = None
-    try:
-        word = win32com.client.Dispatch("Word.Application")
-        word.Visible = False
-        word.DisplayAlerts = 0
+    native_status = None
+
+    def request_native_validation():
+        validator = ROOT / "scripts" / "validate_word_native.ps1"
+        result_path = scratch / "validation-status.json"
+        return subprocess.run(
+            [
+                "powershell.exe",
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                str(validator),
+                "-DocxPath",
+                str(docx_path.resolve()),
+                "-PdfPath",
+                str(pdf_path.resolve()),
+                "-ResultPath",
+                str(result_path.resolve()),
+            ],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+
+    running_in_sandbox = "codexsandbox" in os.environ.get("USERNAME", "").lower()
+    if running_in_sandbox:
+        print("Requesting native pagination through the interactive Word validation bridge.")
+        completed = request_native_validation()
+        if completed.returncode == 0:
+            if completed.stdout.strip():
+                print(completed.stdout.strip())
+            result_path = scratch / "validation-status.json"
+            native_status = json.loads(result_path.read_text(encoding="utf-8-sig"))
+            word_pages = native_status.get("word_pages")
+        else:
+            bridge_message = (completed.stderr or completed.stdout).strip()
+            word_error = bridge_message or "Interactive Word validation bridge unavailable."
+            if bridge_message:
+                print(bridge_message)
+            render_fallback_pdf(docx_path, pdf_path, scratch)
+    else:
         try:
-            document = word.Documents.Open(str(docx_path.resolve()))
-            document.Repaginate()
-            word_pages = document.ComputeStatistics(2)
-            document.ExportAsFixedFormat(str(pdf_path.resolve()), 17)
-            document.Close(False)
-        finally:
-            word.Quit()
-    except Exception as exc:
-        word_error = str(exc)
-        print(f"Word automation unavailable ({exc}); using faithful HTML/CSS fallback.")
-        render_fallback_pdf(docx_path, pdf_path, scratch)
+            word = win32com.client.Dispatch("Word.Application")
+            word.Visible = False
+            word.DisplayAlerts = 0
+            try:
+                document = word.Documents.Open(str(docx_path.resolve()))
+                document.Repaginate()
+                word_pages = document.ComputeStatistics(2)
+                document.ExportAsFixedFormat(str(pdf_path.resolve()), 17)
+                document.Close(False)
+            finally:
+                word.Quit()
+        except Exception as exc:
+            word_error = str(exc)
+            print("Direct Word automation failed; requesting the interactive Word validation bridge.")
+            completed = request_native_validation()
+            if completed.returncode == 0:
+                if completed.stdout.strip():
+                    print(completed.stdout.strip())
+                result_path = scratch / "validation-status.json"
+                native_status = json.loads(result_path.read_text(encoding="utf-8-sig"))
+                word_pages = native_status.get("word_pages")
+                word_error = None
+            else:
+                bridge_message = (completed.stderr or completed.stdout).strip()
+                word_error = bridge_message or word_error
+                if bridge_message:
+                    print(bridge_message)
+                render_fallback_pdf(docx_path, pdf_path, scratch)
 
     pdf = fitz.open(pdf_path)
     pdf_pages = len(pdf)
@@ -274,7 +330,7 @@ def export_and_validate(docx_path: Path, pdf_path: Path, scratch_dir: Path | Non
         pix.save(scratch / f"resume-page-{i + 1}.png")
     pdf.close()
 
-    status = {
+    status = native_status or {
         "status": "native-valid" if word_pages == 2 and pdf_pages == 2 else "native-pending",
         "docx": str(docx_path.resolve()),
         "pdf": str(pdf_path.resolve()),
@@ -282,6 +338,7 @@ def export_and_validate(docx_path: Path, pdf_path: Path, scratch_dir: Path | Non
         "pdf_pages": pdf_pages,
         "word_error": word_error,
     }
+    status["pdf_pages"] = pdf_pages
     (scratch / "validation-status.json").write_text(
         json.dumps(status, indent=2), encoding="utf-8"
     )

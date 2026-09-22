@@ -36,6 +36,21 @@ UTAH_PLACES = (
     "cottonwood", "layton", "ogden", "cedar pass", "bonnie",
 )
 
+REMOTE_US_ELIGIBILITY = (
+    "worldwide", "anywhere", "global", "usa", "united states", "u.s.",
+    "north america", "northern america", "americas", "est", "cst", "mst", "pst",
+)
+
+
+def _remote_location_eligibility(location: str) -> str:
+    """Return allowed, restricted, or unspecified for a US-based remote candidate."""
+    value = location.casefold().strip()
+    if not value or value == "remote":
+        return "unspecified"
+    if _matches(value, REMOTE_US_ELIGIBILITY):
+        return "allowed"
+    return "restricted"
+
 
 @dataclass
 class ScoreResult:
@@ -333,8 +348,17 @@ def score_job(job: JobListing, preferences: dict, resume_text: str = "") -> Scor
 
     place = f"{job.work_arrangement} {job.location}".lower()
     employment = job.employment_type.lower().replace("_", "-")
+    remote_eligibility = (
+        _remote_location_eligibility(job.location)
+        if job.work_arrangement == "remote" else "unspecified"
+    )
     preferred_place = bool(_matches(place, ("remote",) + UTAH_PLACES))
-    incompatible_place = bool(job.location and not preferred_place and job.work_arrangement != "remote")
+    if remote_eligibility == "restricted":
+        preferred_place = False
+    incompatible_place = bool(
+        (job.work_arrangement == "remote" and remote_eligibility == "restricted")
+        or (job.location and not preferred_place and job.work_arrangement != "remote")
+    )
     contract = bool(_matches(employment, ("contract", "temporary", "part-time", "part time", "freelance")))
     if contract:
         location_level = "true mismatch"
@@ -347,7 +371,11 @@ def score_job(job: JobListing, preferences: dict, resume_text: str = "") -> Scor
         strengths.append(f"Preferred location/work arrangement: {job.location or job.work_arrangement}.")
     elif incompatible_place:
         location_level = "true mismatch"
-        weaknesses.append("Location/work arrangement is outside the configured preference.")
+        weaknesses.append(
+            "Remote eligibility appears to exclude the candidate's US location."
+            if job.work_arrangement == "remote"
+            else "Location/work arrangement is outside the configured preference."
+        )
     else:
         location_level = _level_for_absence(job)
     _add_dimension(dimensions, levels, "location/work arrangement", location_level)

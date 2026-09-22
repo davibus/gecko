@@ -4,6 +4,7 @@ Thumbs.db
 *.tmp
 ~$*.xlsx
 __pycache__/
+.tools/
 
 # Local credentials and environment overrides
 .env

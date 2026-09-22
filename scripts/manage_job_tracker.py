@@ -34,6 +34,7 @@ if str(JOB_SCOUT_ROOT) not in sys.path:
     sys.path.insert(0, str(JOB_SCOUT_ROOT))
 
 from google_sheets_sync import load_environment_files, sync_workbook_to_google, tracker_backend
+from excel_preservation import append_preserving_format
 
 DEFAULT_TRACKER = ROOT / "output" / "job-tracker.xlsx"
 RESUME_DIR = ROOT / "output" / "resumes"
@@ -113,7 +114,7 @@ def clean_markdown(value: str) -> str:
 
 def markdown_field(text: str, labels: Iterable[str]) -> str:
     for label in labels:
-        pattern = rf"(?im)^\s*[-*]?\s*\*\*{re.escape(label)}:\*\*\s*(.+?)\s*$"
+        pattern = rf"(?im)^[ \t]*[-*]?[ \t]*\*\*{re.escape(label)}:\*\*[ \t]*([^\r\n]*)[ \t]*\r?$"
         match = re.search(pattern, text)
         if match:
             return clean_markdown(match.group(1))
@@ -279,7 +280,11 @@ def load_tracker(path: Path) -> Workbook:
     populated_headers = [ws.cell(1, column).value for column in range(1, ws.max_column + 1)]
     if populated_headers == LEGACY_HEADERS:
         for column, value in enumerate(HEADERS[len(LEGACY_HEADERS):], len(LEGACY_HEADERS) + 1):
-            ws.cell(1, column, value)
+            target = ws.cell(1, column, value)
+            source = ws.cell(1, len(LEGACY_HEADERS))
+            if source.has_style:
+                from copy import copy
+                target._style = copy(source._style)
     elif populated_headers != HEADERS:
         raise ValueError("Tracker columns do not match Gecko's required schema")
     return workbook
@@ -297,13 +302,17 @@ def source_from_url(value: str) -> str:
     return host
 
 
-def backfill_extended_fields(ws: Worksheet) -> None:
+def backfill_extended_fields(ws: Worksheet) -> bool:
     """Populate evidence-backed fields added after the original tracker schema."""
+    changed = False
     for row in range(2, ws.max_row + 1):
         if not ws.cell(row, 12).value and ws.cell(row, 7).value:
             ws.cell(row, 12, source_from_url(str(ws.cell(row, 7).value)))
+            changed = True
         if not ws.cell(row, 14).value and ws.cell(row, 8).value:
             ws.cell(row, 14, "resume-created")
+            changed = True
+    return changed
 
 
 def save_atomic(workbook: Workbook, path: Path) -> None:
@@ -348,24 +357,18 @@ def append_record(ws: Worksheet, tracker: Path, record: JobRecord) -> bool:
     if record.job_number in existing_job_numbers(ws):
         return False
     resume_link = relative_resume_link(record.resume_path, tracker)
-    ws.append(
-        [
-            next_resume_number(ws), record.company, record.job_title, record.pay or None,
-            record.job_number, record.match_score, record.job_link or None, resume_link,
-            record.date_created, None, None,
-            record.source or None, record.date_found, record.status,
-        ]
-    )
-    row = ws.max_row
+    values = [
+        next_resume_number(ws), record.company, record.job_title, record.pay or None,
+        record.job_number, record.match_score, record.job_link or None, resume_link,
+        record.date_created, None, None,
+        record.source or None, record.date_found, record.status,
+    ]
+    row = append_preserving_format(ws, set(HEADERS))
+    for column, value in enumerate(values, 1):
+        ws.cell(row, column, value)
     if record.job_link:
         ws.cell(row, 7).hyperlink = record.job_link
-        ws.cell(row, 7).style = "Hyperlink"
     ws.cell(row, 8).hyperlink = resume_link
-    ws.cell(row, 8).style = "Hyperlink"
-    if record.date_created:
-        ws.cell(row, 9).number_format = "mm/dd/yyyy"
-    if record.date_found:
-        ws.cell(row, 13).number_format = "mm/dd/yyyy"
     return True
 
 
@@ -389,18 +392,26 @@ def upsert_record(ws: Worksheet, tracker: Path, record: JobRecord) -> tuple[bool
         record.date_created, before[9], before[10], record.source or None,
         record.date_found, record.status,
     ]
+    changed = before != updated
     for column, value in enumerate(updated, 1):
-        ws.cell(target_row, column, value)
+        if ws.cell(target_row, column).value != value:
+            ws.cell(target_row, column).value = value
     if record.job_link:
-        ws.cell(target_row, 7).hyperlink = record.job_link
-        ws.cell(target_row, 7).style = "Hyperlink"
-    ws.cell(target_row, 8).hyperlink = resume_link
-    ws.cell(target_row, 8).style = "Hyperlink"
-    if record.date_created:
-        ws.cell(target_row, 9).number_format = "mm/dd/yyyy"
-    if record.date_found:
-        ws.cell(target_row, 13).number_format = "mm/dd/yyyy"
-    return False, before != updated
+        link_cell = ws.cell(target_row, 7)
+        current = link_cell.hyperlink.target if link_cell.hyperlink else None
+        if current != record.job_link:
+            link_cell.hyperlink = record.job_link
+            changed = True
+    else:
+        if ws.cell(target_row, 7).hyperlink is not None:
+            ws.cell(target_row, 7).hyperlink = None
+            changed = True
+    resume_cell = ws.cell(target_row, 8)
+    current_resume = resume_cell.hyperlink.target if resume_cell.hyperlink else None
+    if current_resume != resume_link:
+        resume_cell.hyperlink = resume_link
+        changed = True
+    return False, changed
 
 
 def mark_scout_resume_created(workbook: Workbook, record: JobRecord) -> bool:
@@ -414,19 +425,37 @@ def mark_scout_resume_created(workbook: Workbook, record: JobRecord) -> bool:
         return False
     for row in range(2, ws.max_row + 1):
         if str(ws.cell(row, headers["Scout ID"]).value) == str(record.scout_id):
-            ws.cell(row, headers["Gecko Status"], "Resume Created")
-            ws.cell(row, headers["Resume Created"], "X")
+            changed = False
+            status_cell = ws.cell(row, headers["Gecko Status"])
+            if status_cell.value != "Resume Created":
+                status_cell.value = "Resume Created"
+                changed = True
+            created_cell = ws.cell(row, headers["Resume Created"])
+            if created_cell.value != "X":
+                created_cell.value = "X"
+                changed = True
             if "Resume Link" in headers:
-                ws.cell(row, headers["Resume Link"], record.resume_path.resolve().as_uri())
-            return True
+                link = record.resume_path.resolve().as_uri()
+                link_cell = ws.cell(row, headers["Resume Link"])
+                current = link_cell.hyperlink.target if link_cell.hyperlink else None
+                if link_cell.value != link:
+                    link_cell.value = link
+                    changed = True
+                if current != link:
+                    link_cell.hyperlink = link
+                    changed = True
+            return changed
     return False
 
 
 def init_tracker(tracker: Path) -> int:
+    existed = tracker.exists()
     workbook = load_tracker(tracker)
-    backfill_extended_fields(workbook[SHEET_NAME])
-    style_worksheet(workbook[SHEET_NAME])
-    save_atomic(workbook, tracker)
+    changed = backfill_extended_fields(workbook[SHEET_NAME])
+    if not existed:
+        save_atomic(workbook, tracker)
+    elif changed:
+        save_atomic(workbook, tracker)
     print(f"Tracker ready: {tracker}")
     return 0
 
@@ -439,11 +468,10 @@ def add_job(args: argparse.Namespace, tracker: Path) -> int:
     record = record_from_files(resume, report, listing, historical=False, date_override=date_override)
     workbook = load_tracker(tracker)
     ws = workbook[SHEET_NAME]
-    backfill_extended_fields(ws)
+    backfilled = backfill_extended_fields(ws)
     added, tracker_updated = upsert_record(ws, tracker, record)
     scout_updated = mark_scout_resume_created(workbook, record)
-    style_worksheet(ws)
-    if tracker_updated or scout_updated:
+    if tracker_updated or scout_updated or backfilled:
         save_atomic(workbook, tracker)
     if tracker_backend() == "google-sheets":
         google = sync_workbook_to_google(tracker)
@@ -487,13 +515,13 @@ def historical_records() -> list[JobRecord]:
 def import_history(tracker: Path) -> int:
     workbook = load_tracker(tracker)
     ws = workbook[SHEET_NAME]
-    backfill_extended_fields(ws)
+    backfilled = backfill_extended_fields(ws)
     added = 0
     for record in historical_records():
         if append_record(ws, tracker, record):
             added += 1
-    style_worksheet(ws)
-    save_atomic(workbook, tracker)
+    if added or backfilled:
+        save_atomic(workbook, tracker)
     print(f"Historical import complete: {added} added, {ws.max_row - 1} total")
     return 0
 
@@ -504,18 +532,16 @@ def validate_tracker(tracker: Path) -> int:
     workbook = load_tracker(tracker)
     ws = workbook[SHEET_NAME]
     errors = []
-    numbers = [ws.cell(row, 1).value for row in range(2, ws.max_row + 1)]
-    if numbers != list(range(1, len(numbers) + 1)):
-        errors.append("Resume # values are not sequential integers starting at 1")
+    raw_numbers = [ws.cell(row, 1).value for row in range(2, ws.max_row + 1)]
+    try:
+        numbers = [int(value) for value in raw_numbers]
+    except (TypeError, ValueError):
+        numbers = []
+    if sorted(numbers) != list(range(1, len(raw_numbers) + 1)):
+        errors.append("Resume # values do not form a unique sequence starting at 1")
     jobs = [ws.cell(row, 5).value for row in range(2, ws.max_row + 1)]
     if len(jobs) != len(set(jobs)):
         errors.append("duplicate Job Number values found")
-    if ws.freeze_panes != "A2":
-        errors.append("top row is not frozen")
-    if ws.auto_filter.ref != f"A1:N{max(ws.max_row, 1)}":
-        errors.append("filter range does not cover all tracker rows")
-    if not all(cell.font.bold for cell in ws[1]):
-        errors.append("header row is not bold")
     for row in range(2, ws.max_row + 1):
         if not ws.cell(row, 7).hyperlink and ws.cell(row, 7).value:
             errors.append(f"row {row} Job Link is not a hyperlink")
@@ -524,10 +550,6 @@ def validate_tracker(tracker: Path) -> int:
         score = re.fullmatch(r"(\d{1,3})/100", str(ws.cell(row, 6).value or ""))
         if not score or not 0 <= int(score.group(1)) <= 100:
             errors.append(f"row {row} Match Score is invalid")
-        if ws.cell(row, 9).value and ws.cell(row, 9).number_format.lower() != "mm/dd/yyyy":
-            errors.append(f"row {row} Date Created format is invalid")
-        if ws.cell(row, 13).value and ws.cell(row, 13).number_format.lower() != "mm/dd/yyyy":
-            errors.append(f"row {row} Date Found format is invalid")
         if ws.cell(row, 14).value not in (None, "resume-created", "applied", "contacted", "interview", "rejected", "offer", "ignored"):
             errors.append(f"row {row} Status is invalid")
     if errors:

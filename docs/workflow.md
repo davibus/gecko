@@ -17,7 +17,7 @@ To proceed with a listing, explicitly run `python job-scout/scout.py select <ID>
 4. Verify all claims against the master resume (`input/master-resume/dcall-resume-3-15-26.pdf`).
 5. Tailor the resume subtly and generate the two-page DOCX resume under `output/resumes/Dave-Call+{Company-Name}+{JobNumber}.docx` using the reusable generator in `scripts/`.
 6. Generate the comprehensive Match Score report under `output/match-reports/Dave-Call+{Company-Name}+{JobNumber}.md`.
-7. Verify page count and layout using Word/PDF rendering inside the job's scratch subfolder (`scratch/{Company-Name}+{JobNumber}/`).
+7. Verify page count and layout with `scripts/validate_word_native.ps1`; sandbox executions are handed automatically to the interactive Word bridge. Install the bridge once from the normal desktop with `scripts/Install-Gecko-Word-Bridge.cmd`. Keep Word/PDF validation artifacts inside the job's scratch subfolder (`scratch/{Company-Name}+{JobNumber}/`).
 8. Only after the final resume and match report have both been created and validated, append the job to the persistent tracker:
    `python scripts/manage_job_tracker.py add --resume "output/resumes/Dave-Call+{Company-Name}+{JobNumber}.docx" --match-report "output/match-reports/Dave-Call+{Company-Name}+{JobNumber}.md" --job-description "input/job-descriptions/{Company-Name}+{JobNumber}.md"`
 9. Run `python scripts/manage_job_tracker.py validate`. A Gecko job is not complete until the tracker update and validation succeed.

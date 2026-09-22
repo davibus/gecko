@@ -46,9 +46,43 @@ class WebCareerProvider(JobSource):
         self.google_key = os.getenv("GOOGLE_CSE_API_KEY", "")
         self.google_cx = os.getenv("GOOGLE_CSE_ID", "")
         self.brave_key = os.getenv("BRAVE_SEARCH_API_KEY", "")
+        self.search_results_returned = 0
+        self.brave_search_results_returned = 0
+        self.pages_fetched = 0
+        self.valid_job_postings_extracted = 0
+        self.errors: list[dict[str, str]] = []
+
+    @property
+    def backend(self) -> str:
+        if self.brave_key:
+            return "brave"
+        if self.google_key and self.google_cx:
+            return "google-cse"
+        return ""
 
     def configured(self) -> bool:
         return bool(self.brave_key or (self.google_key and self.google_cx))
+
+    def diagnostics(self, *, jobs_added: int = 0) -> dict:
+        """Return run counters without including credentials or credential-bearing URLs."""
+        return {
+            "configured": self.configured(),
+            "backend": self.backend,
+            "brave_used": self.backend == "brave",
+            "search_results_returned": self.search_results_returned,
+            "brave_search_results_returned": self.brave_search_results_returned,
+            "pages_fetched": self.pages_fetched,
+            "valid_job_postings_extracted": self.valid_job_postings_extracted,
+            "jobs_added": jobs_added,
+            "errors": list(self.errors),
+        }
+
+    def _safe_error(self, error: ProviderError) -> str:
+        message = str(error)
+        for secret in (self.brave_key, self.google_key, self.google_cx):
+            if secret:
+                message = message.replace(secret, "[REDACTED]")
+        return message
 
     def _result_urls(self, request: SearchRequest) -> list[str]:
         query = f'{request.query} jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers)'
@@ -72,12 +106,31 @@ class WebCareerProvider(JobSource):
         )
 
     def search(self, request: SearchRequest):
-        for url in self._result_urls(request):
+        try:
+            result_urls = self._result_urls(request)
+        except ProviderError as error:
+            self.errors.append({
+                "stage": f"{self.backend or 'web-search'}-api",
+                "query": request.query,
+                "location": request.location,
+                "error": self._safe_error(error),
+            })
+            return
+        self.search_results_returned += len(result_urls)
+        if self.backend == "brave":
+            self.brave_search_results_returned += len(result_urls)
+        for url in result_urls:
             if not url:
                 continue
             try:
                 page = get_bytes(url).decode("utf-8", errors="replace")
-            except ProviderError:
+                self.pages_fetched += 1
+            except ProviderError as error:
+                self.errors.append({
+                    "stage": "page-fetch",
+                    "url": url,
+                    "error": self._safe_error(error),
+                })
                 continue
             for block in SCRIPT_RE.findall(page):
                 try:
@@ -98,7 +151,7 @@ class WebCareerProvider(JobSource):
                             ]))
                     identifier = item.get("identifier") or {}
                     job_id = _text(identifier) or _text(item.get("url")) or url
-                    yield RawListing(
+                    listing = RawListing(
                         source=self.name,
                         source_job_id=job_id,
                         url=urljoin(url, item.get("url") or url),
@@ -112,3 +165,6 @@ class WebCareerProvider(JobSource):
                         remote_type="remote" if item.get("jobLocationType") == "TELECOMMUTE" else "",
                         metadata=item,
                     )
+                    if listing.title and listing.description:
+                        self.valid_job_postings_extracted += 1
+                    yield listing

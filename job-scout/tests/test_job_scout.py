@@ -23,14 +23,15 @@ from review import build_review_queue, queue_to_json
 from role_filter import is_relevant_role
 from scoring import score_job
 from scoring import WEIGHTS
-from service import discover
+from service import SearchSummary, discover
 from sources.base import JobSource, SearchRequest
 from sources.base import ProviderError
 from sources.http import FetchedDocument
 from sources.jooble import JoobleProvider
+from sources.web import WebCareerProvider
 from storage import JobStore
 from handoff import archive_listing
-from scout import build_parser, daily, load_local_environment
+from scout import CORE_PROVIDERS, build_parser, daily, load_local_environment
 
 
 DESCRIPTION = """
@@ -137,6 +138,12 @@ class EnvironmentTests(unittest.TestCase):
         self.assertEqual(args.minimum_score, 70)
         self.assertEqual(args.limit, 20)
 
+    def test_core_provider_set_includes_web_careers(self):
+        self.assertEqual(
+            CORE_PROVIDERS,
+            ("adzuna", "jooble", "remotive", "web-careers"),
+        )
+
     @patch("scout.review_jobs", return_value=0)
     @patch("scout.search", return_value=0)
     def test_daily_searches_all_core_providers(self, mocked_search, _mocked_review):
@@ -144,6 +151,47 @@ class EnvironmentTests(unittest.TestCase):
         daily(args, None, {})
         search_args = mocked_search.call_args.args[0]
         self.assertEqual(search_args.source, "core")
+
+    def test_daily_invokes_web_careers_provider(self):
+        class StubProvider:
+            def __init__(self, name):
+                self.name = name
+                self.backend = "brave" if name == "web-careers" else ""
+
+            def configured(self):
+                return True
+
+            def diagnostics(self, *, jobs_added=0):
+                return {
+                    "configured": True, "backend": "brave", "brave_used": True,
+                    "brave_search_results_returned": 0, "pages_fetched": 0,
+                    "valid_job_postings_extracted": 0, "jobs_added": jobs_added,
+                    "errors": [],
+                }
+
+        available = {name: StubProvider(name) for name in CORE_PROVIDERS}
+        store = unittest.mock.Mock()
+        store.all.return_value = []
+        store.get.return_value = None
+        args = build_parser().parse_args(["daily"])
+        output = io.StringIO()
+        with (
+            patch("scout.providers", return_value=available),
+            patch("scout.extract_resume_text", return_value="resume"),
+            patch("scout.discover", return_value=SearchSummary()) as mocked_discover,
+            patch("scout.discover_remotive_full_feed", return_value=SearchSummary()),
+            patch("scout.sync_tracker"),
+            patch("scout.build_review_queue", return_value={}),
+            redirect_stdout(output),
+        ):
+            result = daily(args, store, load_preferences())
+
+        invoked = [call.args[0].name for call in mocked_discover.call_args_list]
+        daily_summary, _ = json.JSONDecoder().raw_decode(output.getvalue())
+        self.assertEqual(result, 0)
+        self.assertIn("web-careers", invoked)
+        self.assertTrue(daily_summary["source_diagnostics"]["web-careers"]["configured"])
+        self.assertEqual(daily_summary["source_backends"]["web-careers"], "brave")
 
     def test_provider_alias_accepts_remotive(self):
         args = build_parser().parse_args([
@@ -206,6 +254,62 @@ class EnvironmentTests(unittest.TestCase):
         self.assertIn("No new qualifying jobs", output.getvalue())
 
 
+class WebCareerDiagnosticsTests(unittest.TestCase):
+    def test_brave_backend_reports_acquisition_and_extraction_counts(self):
+        job_page = b'''<script type="application/ld+json">{
+            "@type": "JobPosting",
+            "title": "Paid Search Manager",
+            "description": "Own paid search strategy.",
+            "hiringOrganization": {"name": "Example Co"},
+            "url": "https://example.test/jobs/1"
+        }</script>'''
+        environment = {
+            "BRAVE_SEARCH_API_KEY": "brave-secret",
+            "GOOGLE_CSE_API_KEY": "google-secret",
+            "GOOGLE_CSE_ID": "google-cx",
+        }
+        with (
+            patch.dict(os.environ, environment),
+            patch("sources.web.get_json", return_value={"web": {"results": [
+                {"url": "https://example.test/jobs/1"},
+                {"url": "https://example.test/jobs/2"},
+            ]}}),
+            patch("sources.web.get_bytes", return_value=job_page),
+        ):
+            provider = WebCareerProvider()
+            listings = list(provider.search(SearchRequest("paid search", "Remote")))
+
+        diagnostics = provider.diagnostics(jobs_added=1)
+        self.assertEqual(len(listings), 2)
+        self.assertTrue(diagnostics["configured"])
+        self.assertEqual(diagnostics["backend"], "brave")
+        self.assertTrue(diagnostics["brave_used"])
+        self.assertEqual(diagnostics["brave_search_results_returned"], 2)
+        self.assertEqual(diagnostics["pages_fetched"], 2)
+        self.assertEqual(diagnostics["valid_job_postings_extracted"], 2)
+        self.assertEqual(diagnostics["jobs_added"], 1)
+        self.assertEqual(diagnostics["errors"], [])
+
+    def test_brave_api_error_is_reported_without_exposing_key(self):
+        secret = "do-not-print-this-key"
+        with (
+            patch.dict(os.environ, {"BRAVE_SEARCH_API_KEY": secret}, clear=True),
+            patch(
+                "sources.web.get_json",
+                side_effect=ProviderError(f"Brave request rejected token {secret}"),
+            ),
+        ):
+            provider = WebCareerProvider()
+            listings = list(provider.search(SearchRequest("paid search", "Remote")))
+
+        diagnostics = provider.diagnostics()
+        self.assertEqual(listings, [])
+        self.assertEqual(diagnostics["backend"], "brave")
+        self.assertEqual(len(diagnostics["errors"]), 1)
+        self.assertNotIn(secret, json.dumps(diagnostics))
+        self.assertIn("[REDACTED]", diagnostics["errors"][0]["error"])
+
+
 class RoleFilterTests(unittest.TestCase):
     def test_target_and_similar_senior_marketing_roles_are_retained(self):
         titles = [
@@ -227,6 +331,10 @@ class RoleFilterTests(unittest.TestCase):
 
     def test_marketing_analytics_data_science_exception_is_retained(self):
         self.assertTrue(is_relevant_role("Data Scientist, Marketing Analytics"))
+
+    def test_fluent_spanish_title_is_excluded_even_for_target_role(self):
+        self.assertFalse(is_relevant_role("Paid Search Manager - Fluent Spanish"))
+        self.assertFalse(is_relevant_role("Spanish Fluent Performance Marketing Manager"))
 
 
 class JoobleProviderTests(unittest.TestCase):

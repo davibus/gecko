@@ -1,0 +1,12 @@
+﻿{
+    "status":  "native-valid",
+    "docx":  "C:\\Users\\DCALL\\Desktop\\gecko\\output\\resumes\\Dave-Call+CampusWorks-Inc+fa9aebd0-e27c-4df6-b8ad-a425fc672971.docx",
+    "pdf":  "C:\\Users\\DCALL\\Desktop\\gecko\\scratch\\CampusWorks-Inc+fa9aebd0-e27c-4df6-b8ad-a425fc672971\\word-validation.pdf",
+    "word_pages":  2,
+    "pdf_pages":  2,
+    "request_id":  null,
+    "validated_at":  "2026-09-22T09:13:13.7250777-06:00",
+    "validated_as":  "DCALL-T580\\DCALL",
+    "validation_session_id":  1,
+    "tracker_updated":  true
+}

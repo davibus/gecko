@@ -5,7 +5,7 @@
       "major_browser_version": "153",
       "driver_name": "chromedriver",
       "driver_version": "153.0.8010.52",
-      "driver_ttl": 1789959633
+      "driver_ttl": 1790103017
     }
   ],
   "stats": [
@@ -16,7 +16,7 @@
       "arch": "x86_64",
       "lang": "python",
       "selenium_version": "4.38",
-      "stats_ttl": 1789959632
+      "stats_ttl": 1790103016
     }
   ]
 }

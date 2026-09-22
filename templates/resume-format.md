@@ -7,6 +7,7 @@ Preferred layout characteristics:
 - 11 pt font
 - 1.15 line spacing
 - Good separation between header, sections, and jobs
+- Header contact line ends with `linkedin.com/in/mdavidcall` and does not include Spanish or other language proficiency
 - No visible table borders
 - Job dates omitted from visible text while retaining the date-space layout
 - Page 2 should be well-filled without crowding

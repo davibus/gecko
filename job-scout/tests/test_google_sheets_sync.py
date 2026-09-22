@@ -7,6 +7,9 @@ from pathlib import Path
 from unittest.mock import MagicMock
 
 from openpyxl import Workbook, load_workbook
+from openpyxl.styles import Font, PatternFill
+from openpyxl.worksheet.datavalidation import DataValidation
+from openpyxl.worksheet.table import Table
 
 
 SCOUT_ROOT = Path(__file__).resolve().parents[1]
@@ -71,8 +74,22 @@ class FakeSheetsApi:
 
         metadata = {
             "sheets": [
-                {"properties": {"sheetId": 1, "title": "Job Tracker", "index": 0, "gridProperties": {}}, "conditionalFormats": []},
-                {"properties": {"sheetId": 2, "title": "Job Scout", "index": 1, "gridProperties": {}}, "conditionalFormats": []},
+                {
+                    "properties": {"sheetId": 1, "title": "Job Tracker", "index": 0, "gridProperties": {}},
+                    "basicFilter": {
+                        "range": {"sheetId": 1, "startRowIndex": 0, "endRowIndex": len(self.remote["Job Tracker"]), "startColumnIndex": 0, "endColumnIndex": len(self.remote["Job Tracker"][0])},
+                        "criteria": {"9": {"hiddenValues": [""]}},
+                    },
+                    "conditionalFormats": [{"booleanRule": {}}],
+                },
+                {
+                    "properties": {"sheetId": 2, "title": "Job Scout", "index": 1, "gridProperties": {}},
+                    "basicFilter": {
+                        "range": {"sheetId": 2, "startRowIndex": 0, "endRowIndex": len(self.remote["Job Scout"]), "startColumnIndex": 0, "endColumnIndex": len(self.remote["Job Scout"][0])},
+                        "criteria": {"4": {"condition": {"type": "NUMBER_GREATER", "values": [{"userEnteredValue": "80"}]}}},
+                    },
+                    "conditionalFormats": [{"booleanRule": {}}],
+                },
             ]
         }
         spreadsheets.get.side_effect = lambda **_kwargs: self._request(metadata)
@@ -185,9 +202,12 @@ class GoogleSheetsApiSyncTests(unittest.TestCase):
         self.assertEqual(summary.application_rows, 1)
         self.assertEqual(summary.scout_rows, 1)
         self.assertEqual(set(fake.writes), {"Job Tracker", "Job Scout"})
-        self.assertEqual(fake.clears, ["Job Tracker", "Job Scout"])
+        self.assertEqual(fake.clears, [])
         self.assertTrue(fake.batch_requests)
         self.assertTrue(any("updateCells" in request for request in fake.batch_requests))
+        self.assertFalse(any("repeatCell" in request for request in fake.batch_requests))
+        self.assertFalse(any("deleteConditionalFormatRule" in request for request in fake.batch_requests))
+        self.assertFalse(any("updateDimensionProperties" in request for request in fake.batch_requests))
         resume_links = [
             request["updateCells"]["rows"][0]["values"][0]["userEnteredFormat"]["textFormat"]["link"]["uri"]
             for request in fake.batch_requests if "updateCells" in request
@@ -214,7 +234,7 @@ class GoogleSheetsApiSyncTests(unittest.TestCase):
         sync_workbook_to_google(self.tracker, config=self.config, service=fake.service())
         self.assertIn("Job Tracker", fake.writes)
         self.assertIn("Job Scout", fake.writes)
-        self.assertEqual(fake.clears, ["Job Tracker", "Job Scout"])
+        self.assertEqual(fake.clears, [])
 
     def test_api_sync_keeps_remote_column_order_custom_values_and_manual_fields(self):
         fake = FakeSheetsApi()
@@ -245,6 +265,71 @@ class GoogleSheetsApiSyncTests(unittest.TestCase):
         self.assertEqual(scout["Contacted"], "manual")
         self.assertEqual(scout["URL Status"], "Verified - Official ATS")
         self.assertEqual(scout["Authoritative URL"], "https://jobs.lever.co/example/123")
+
+    def test_google_sync_updates_xlsx_in_place_and_preserves_excel_formatting(self):
+        workbook = load_workbook(self.tracker)
+        application = workbook["Job Tracker"]
+        scout = workbook["Job Scout"]
+        application["C2"].fill = PatternFill("solid", fgColor="FFD966")
+        application["C2"].font = Font(size=16, bold=True, color="5B9BD5")
+        application.row_dimensions[2].height = 34
+        application.column_dimensions["C"].width = 61
+        application.freeze_panes = "D5"
+        application.auto_filter.ref = "A1:N2"
+        application.add_table(Table(displayName="Applications", ref="A1:N2"))
+        app_validation = DataValidation(type="list", formula1='"Yes,No"')
+        app_validation.add("J2")
+        application.add_data_validation(app_validation)
+        application["O1"] = "User Formula"
+        application["O2"] = "=A2*10"
+
+        scout["D2"].fill = PatternFill("solid", fgColor="C6E0B4")
+        scout.row_dimensions[2].height = 29
+        scout.column_dimensions["D"].width = 53
+        scout.freeze_panes = "E6"
+        scout.auto_filter.ref = f"A1:{scout.cell(1, scout.max_column).column_letter}2"
+        scout.add_table(Table(displayName="ScoutRows", ref=f"A1:{scout.cell(1, scout.max_column).column_letter}2"))
+        scout["X1"] = "User Formula"
+        scout["X2"] = "=E2*2"
+        workbook.save(self.tracker)
+
+        fake = FakeSheetsApi(
+            application_rows=[application_record("job-2")],
+            scout_rows=[scout_record(2, url="https://example.test/job/2")],
+        )
+        sync_workbook_to_google(self.tracker, config=self.config, service=fake.service())
+
+        workbook = load_workbook(self.tracker, data_only=False)
+        application = workbook["Job Tracker"]
+        scout = workbook["Job Scout"]
+        self.assertEqual(application["C2"].fill.fgColor.rgb, "00FFD966")
+        self.assertEqual(application["C2"].font.color.rgb, "005B9BD5")
+        self.assertEqual(application["O2"].value, "=A2*10")
+        self.assertEqual(application["O3"].value, "=A3*10")
+        self.assertEqual(application.row_dimensions[2].height, 34)
+        self.assertEqual(application.row_dimensions[3].height, 34)
+        self.assertEqual(application.column_dimensions["C"].width, 61)
+        self.assertEqual(application.freeze_panes, "D5")
+        self.assertEqual(application.auto_filter.ref, "A1:N3")
+        self.assertEqual(application.tables["Applications"].ref, "A1:N3")
+        self.assertIn("J3", str(application.data_validations.dataValidation[0].sqref))
+        self.assertEqual(scout["D2"].fill.fgColor.rgb, "00C6E0B4")
+        self.assertEqual(scout["X2"].value, "=E2*2")
+        self.assertEqual(scout["X3"].value, "=E3*2")
+        self.assertEqual(scout.row_dimensions[3].height, 29)
+        self.assertEqual(scout.column_dimensions["D"].width, 53)
+        self.assertEqual(scout.freeze_panes, "E6")
+        self.assertTrue(scout.tables["ScoutRows"].ref.endswith("3"))
+
+        copy_requests = [request for request in fake.batch_requests if "copyPaste" in request]
+        self.assertTrue(copy_requests)
+        filter_requests = [request["setBasicFilter"]["filter"] for request in fake.batch_requests if "setBasicFilter" in request]
+        self.assertEqual(len(filter_requests), 2)
+        self.assertEqual(filter_requests[0]["criteria"], {"9": {"hiddenValues": [""]}})
+        self.assertEqual(
+            filter_requests[1]["criteria"],
+            {"4": {"condition": {"type": "NUMBER_GREATER", "values": [{"userEnteredValue": "80"}]}}},
+        )
 
 
 if __name__ == "__main__":
