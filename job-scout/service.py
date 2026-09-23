@@ -14,6 +14,7 @@ from sources.base import JobSource, SearchRequest
 from sources.remotive import RemotiveProvider
 from storage import JobStore
 from url_resolution import classify_url, resolve_and_store
+from link_validation import DailyLinkValidator
 
 
 @dataclass
@@ -102,6 +103,7 @@ def _discover_listings(
     require_content: bool,
     preserve_existing: bool = False,
     preexisting_ids: set[int] | None = None,
+    link_validator: DailyLinkValidator | None = None,
 ) -> SearchSummary:
     """Normalize, score, deduplicate, and save a stream of raw listings."""
     summary = SearchSummary()
@@ -123,6 +125,11 @@ def _discover_listings(
             summary.backend_qualifying[backend] = summary.backend_qualifying.get(backend, 0) + 1
         job = normalize(raw)
         summary.normalized += 1
+        if link_validator is not None:
+            link_result = link_validator.check(job)
+            if link_result.status == "dead":
+                link_validator.record_removed(job, link_result)
+                continue
         result = score_job(job, preferences, resume_text)
         summary.scored += 1
         job.match_score = result.total
@@ -199,6 +206,7 @@ def discover(
     *,
     preserve_existing: bool = False,
     preexisting_ids: set[int] | None = None,
+    link_validator: DailyLinkValidator | None = None,
 ) -> SearchSummary:
     """Fetch, normalize, score, dedupe, and persist listings from one provider."""
     threshold = int(preferences["minimum_score"] if minimum_score is None else minimum_score)
@@ -206,6 +214,7 @@ def discover(
     return _discover_listings(
         listings, store, preferences, resume_text, threshold, require_content=True,
         preserve_existing=preserve_existing, preexisting_ids=preexisting_ids,
+        link_validator=link_validator,
     )
 
 
@@ -218,6 +227,7 @@ def discover_remotive_full_feed(
     *,
     preserve_existing: bool = False,
     preexisting_ids: set[int] | None = None,
+    link_validator: DailyLinkValidator | None = None,
 ) -> SearchSummary:
     """Score the unique RSS pool, then persist its most relevant bounded subset."""
     if limit < 1:
@@ -225,6 +235,15 @@ def discover_remotive_full_feed(
     # Apply the title-family gate before normalization or Gecko scoring. The
     # import limit is a limit on relevant candidates, not unrelated feed rows.
     pool = [raw for raw in provider.full_feed() if is_relevant_role(raw.title)]
+    if link_validator is not None:
+        normalized = [(raw, normalize(raw)) for raw in pool]
+        checked = link_validator.check_existing([job for _, job in normalized])
+        results = {id(job): result for job, result in checked}
+        for raw, job in normalized:
+            result = results[id(job)]
+            if result.status == "dead":
+                link_validator.record_removed(job, result)
+        pool = [raw for raw, job in normalized if results[id(job)].status != "dead"]
     ranked = []
     for raw in pool:
         job = normalize(raw)

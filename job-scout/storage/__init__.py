@@ -198,6 +198,18 @@ class JobStore:
         self.connection.execute("UPDATE jobs SET status = ? WHERE id = ?", (status, job_id))
         self.connection.commit()
 
+    def delete_dead_unprotected(self, job_id: int) -> None:
+        """Remove a confirmed-dead Scout record after its sheet row is cleared."""
+        job = self.get(job_id)
+        if not job:
+            return
+        if job.status not in {"new", "reviewing"}:
+            raise ValueError(f"Cannot delete historical job {job_id} with status {job.status}")
+        with self.connection:
+            for table in ("source_links", "enrichments", "url_resolutions"):
+                self.connection.execute(f"DELETE FROM {table} WHERE job_id = ?", (job_id,))
+            self.connection.execute("DELETE FROM jobs WHERE id = ?", (job_id,))
+
     def merge(self, canonical_id: int, duplicate: JobListing, retained: bool = False):
         current = self.get(canonical_id)
         merged_tags = list(dict.fromkeys([

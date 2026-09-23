@@ -11,7 +11,8 @@ To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
 1. Open this folder as a project in AntiGravity.
 2. Put a job description or copied job listing into `input/job-descriptions/`.
 3. Use the prompt in `prompts/use-gecko.md`.
-4. Gecko should use `input/master-resume/dcall-resume-3-15-26.pdf` as the source resume unless another source is explicitly supplied.
+4. Gecko uses `input/master-resume/Dave-Call-resume-9-23-26.docx` as the sole factual source. `Dave_Call_Resume_5ec9726395344311.docx` is for formatting only.
+   For V2, create and review the evidence-backed plan with `python scripts/gecko_v2.py plan "input/job-descriptions/Company+JobNumber.md"`, then run `python scripts/gecko_v2.py generate "scratch/Company+JobNumber/tailoring-plan.json"`. Generation runs Word-native QA and records any remaining weaknesses. See `docs/workflow.md` for the full process.
 5. Save tailored resumes to `output/resumes/` and match reports to `output/match-reports/`.
 6. After both final deliverables are successfully created and validated, add the job to `output/job-tracker.xlsx` with `scripts/manage_job_tracker.py`.
 

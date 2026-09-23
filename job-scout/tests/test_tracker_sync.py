@@ -100,7 +100,7 @@ class TrackerSyncTests(unittest.TestCase):
         ws = load_workbook(self.path)[SHEET_NAME]
         self.assertEqual(ws.max_row, 2)
         self.assertEqual(ws["E2"].value, 93)
-        self.assertEqual(ws["G2"].value, "Confirmed Strong Match")
+        self.assertEqual(ws["H2"].value, "Confirmed Strong Match")
         self.assertEqual(ws["B2"].value, "adzuna")
         self.assertEqual(self.cell(ws, "Enrichment URL").value, "https://careers.example.test/jobs/1")
         self.assertNotIn("Top Strengths", [cell.value for cell in ws[1]])
@@ -110,12 +110,14 @@ class TrackerSyncTests(unittest.TestCase):
         sync_job_scout([self.job(1)], self.path)
         workbook = load_workbook(self.path)
         ws = workbook[SHEET_NAME]
+        self.cell(ws, "Apply?").value = "Yes"
         self.cell(ws, "Applied").value = "X"
         self.cell(ws, "Contacted").value = "manual note"
         workbook.save(self.path)
         changed = self.job(1, 95, 99)
         sync_job_scout([changed], self.path)
         ws = load_workbook(self.path)[SHEET_NAME]
+        self.assertEqual(self.cell(ws, "Apply?").value, "Yes")
         self.assertEqual(self.cell(ws, "Applied").value, "X")
         self.assertEqual(self.cell(ws, "Contacted").value, "manual note")
 
@@ -182,7 +184,7 @@ class TrackerSyncTests(unittest.TestCase):
             self.assertIsNotNone(self.cell(ws, "Job URL", row).hyperlink)
         self.assertEqual(self.cell(ws, "Enrichment URL", 4).hyperlink.target, "https://careers.example.test/jobs/3")
         self.assertEqual(ws.freeze_panes, "A2")
-        self.assertEqual(ws.auto_filter.ref, "A1:W4")
+        self.assertEqual(ws.auto_filter.ref, "A1:X4")
 
     def test_normal_job_scout_update_preserves_user_excel_formatting(self):
         """A routine Scout append must retain user formatting and filter state."""
@@ -197,17 +199,17 @@ class TrackerSyncTests(unittest.TestCase):
         ws.row_dimensions[2].height = 37
         ws.column_dimensions["E"].width = 27
         ws.freeze_panes = "C3"
-        ws.auto_filter.ref = "A1:W2"
+        ws.auto_filter.ref = "A1:X2"
         ws.auto_filter.add_filter_column(4, ["88", "90"])
         ws.auto_filter.add_sort_condition("E2:E2", descending=True)
-        ws["X1"] = "User Formula"
-        ws["X2"] = "=E2*2"
+        ws["Y1"] = "User Formula"
+        ws["Y2"] = "=E2*2"
         validation = DataValidation(type="list", formula1='"Yes,No"')
         validation.add("T2")
         ws.add_data_validation(validation)
-        ws.add_table(Table(displayName="ScoutHistory", ref="A1:W2"))
+        ws.add_table(Table(displayName="ScoutHistory", ref="A1:X2"))
         ws.conditional_formatting.add(
-            "A2:W2", FormulaRule(formula=['$E2>80'], fill=PatternFill("solid", fgColor="ABCDEF")),
+            "A2:X2", FormulaRule(formula=['$E2>80'], fill=PatternFill("solid", fgColor="ABCDEF")),
         )
         workbook.save(self.path)
 
@@ -223,14 +225,14 @@ class TrackerSyncTests(unittest.TestCase):
         self.assertEqual(ws.row_dimensions[3].height, 37)
         self.assertEqual(ws.column_dimensions["E"].width, 27)
         self.assertEqual(ws.freeze_panes, "C3")
-        self.assertEqual(ws.auto_filter.ref, "A1:W3")
+        self.assertEqual(ws.auto_filter.ref, "A1:X3")
         self.assertEqual(len(ws.auto_filter.filterColumn), 1)
         self.assertIsNotNone(ws.auto_filter.sortState)
         self.assertTrue(ws.auto_filter.sortState.sortCondition[0].descending)
-        self.assertEqual(ws.tables["ScoutHistory"].ref, "A1:W3")
+        self.assertEqual(ws.tables["ScoutHistory"].ref, "A1:X3")
         self.assertIn("T3", str(ws.data_validations.dataValidation[0].sqref))
-        self.assertEqual(ws["X2"].value, "=E2*2")
-        self.assertEqual(ws["X3"].value, "=E3*2")
+        self.assertEqual(ws["Y2"].value, "=E2*2")
+        self.assertEqual(ws["Y3"].value, "=E3*2")
         self.assertEqual(len(ws.conditional_formatting), 1)
 
     def test_old_scout_rows_are_not_deleted(self):

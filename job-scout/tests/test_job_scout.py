@@ -242,7 +242,7 @@ class EnvironmentTests(unittest.TestCase):
 
                 output = io.StringIO()
                 args = build_parser().parse_args(["daily"])
-                with patch("scout.search", side_effect=fake_search), redirect_stdout(output):
+                with patch("scout.search", side_effect=fake_search), patch("scout.DailyLinkValidator.check_existing", return_value=[]), redirect_stdout(output):
                     result = daily(args, store, load_preferences())
 
         self.assertEqual(result, 0)

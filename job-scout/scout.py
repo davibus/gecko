@@ -10,13 +10,16 @@ import sys
 import tempfile
 from dataclasses import replace
 from pathlib import Path
+from openpyxl import load_workbook
 
 from enrichment import enrich_and_rescore
 from deduplicate import find_duplicate
 from google_sheets_sync import sync_workbook_to_google, tracker_backend
 from handoff import archive_listing
+from link_validation import DailyLinkValidator
 from models import RawListing
 from normalize import normalize
+from normalize import canonicalize_url
 from preferences import load_preferences
 from resume_evidence import extract_resume_text
 from review import build_review_queue, format_review_queue, queue_to_json
@@ -33,7 +36,7 @@ from url_resolution import resolve_and_store, url_status_label
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-MASTER_RESUME = PROJECT_ROOT / "input" / "master-resume" / "dcall-resume-3-15-26.pdf"
+MASTER_RESUME = PROJECT_ROOT / "input" / "master-resume" / "Dave-Call-resume-9-23-26.docx"
 DEFAULT_SOURCE = "adzuna"
 DEFAULT_TRACKER = PROJECT_ROOT / "output" / "job-tracker.xlsx"
 CORE_PROVIDERS = ("adzuna", "jooble", "remotive", "web-careers")
@@ -85,9 +88,11 @@ def sync_tracker(
     force_google: bool = False,
     jobs=None,
     append_only: bool = False,
+    remove_scout_ids: set[int] | None = None,
 ):
     summary = sync_job_scout(
         store.all() if jobs is None else jobs, tracker_path, append_only=append_only,
+        remove_scout_ids=remove_scout_ids,
     )
     result = {
         "job_scout_worksheet": {
@@ -99,7 +104,7 @@ def sync_tracker(
         }
     }
     if force_google or tracker_backend() == "google-sheets":
-        google = sync_workbook_to_google(tracker_path)
+        google = sync_workbook_to_google(tracker_path, remove_scout_ids=remove_scout_ids)
         result["google_sheets"] = {
             "spreadsheet_id": google.spreadsheet_id,
             "job_tracker_rows": google.application_rows,
@@ -115,8 +120,110 @@ def sync_sheets(args, store, _preferences):
     return 0
 
 
+def protected_job_ids(jobs, tracker_path: str | Path) -> set[int]:
+    """Preserve application history even if a Scout lifecycle flag is stale."""
+    protected = {job.id for job in jobs if job.id is not None and job.status not in {"new", "reviewing"}}
+    path = Path(tracker_path)
+    if not path.is_file():
+        return protected
+    workbook = load_workbook(path, read_only=True, data_only=True)
+    try:
+        if "Job Scout" in workbook:
+            sheet = workbook["Job Scout"]
+            records = list(sheet.values)
+            if records:
+                columns = {str(value): index for index, value in enumerate(records[0]) if value is not None}
+                for row in records[1:]:
+                    scout_id = row[columns["Scout ID"]] if "Scout ID" in columns else None
+                    if scout_id in (None, ""):
+                        continue
+                    manual = any(row[columns[field]] not in (None, "") for field in ("Apply?", "Applied", "Contacted", "Resume Created") if field in columns)
+                    lifecycle = str(row[columns["Gecko Status"]] or "").lower() if "Gecko Status" in columns else ""
+                    if manual or lifecycle not in {"", "new", "reviewing"}:
+                        protected.add(int(scout_id))
+        if "Job Tracker" in workbook:
+            sheet = workbook["Job Tracker"]
+            records = list(sheet.values)
+            if records:
+                columns = {str(value): index for index, value in enumerate(records[0]) if value is not None}
+                for row in records[1:]:
+                    def value(field):
+                        return row[columns[field]] if field in columns else None
+                    link = canonicalize_url(str(value("Job Link") or ""))
+                    company = str(value("Company") or "").casefold().strip()
+                    title = str(value("Job Title") or "").casefold().strip()
+                    number = str(value("Job Number") or "").casefold().strip()
+                    for job in jobs:
+                        if job.id is None:
+                            continue
+                        urls = {canonicalize_url(url) for url in (job.url, job.canonical_url, job.authoritative_url) if url}
+                        if (link and link in urls) or (number and number == job.source_job_id.casefold()) or (company and title and company == job.company.casefold().strip() and title == job.title.casefold().strip()):
+                            protected.add(job.id)
+    finally:
+        workbook.close()
+    return protected
+
+
+def scout_row_ids(tracker_path: str | Path) -> set[int]:
+    path = Path(tracker_path)
+    if not path.is_file():
+        return set()
+    workbook = load_workbook(path, read_only=True, data_only=True)
+    try:
+        if "Job Scout" not in workbook:
+            return set()
+        rows = workbook["Job Scout"].values
+        headers = next(rows, ())
+        if "Scout ID" not in headers:
+            return set()
+        column = headers.index("Scout ID")
+        return {int(row[column]) for row in rows if len(row) > column and row[column] not in (None, "")}
+    finally:
+        workbook.close()
+
+
+def sheet_only_active_jobs(tracker_path: str | Path, known_ids: set[int]):
+    """Include active worksheet rows that have no matching local SQLite record."""
+    path = Path(tracker_path)
+    if not path.is_file():
+        return []
+    workbook = load_workbook(path, read_only=True, data_only=True)
+    try:
+        if "Job Scout" not in workbook:
+            return []
+        rows = workbook["Job Scout"].values
+        headers = next(rows, ())
+        columns = {str(value): index for index, value in enumerate(headers) if value is not None}
+        result = []
+        for row in rows:
+            def value(header):
+                column = columns.get(header)
+                return row[column] if column is not None and column < len(row) else None
+            try:
+                scout_id = int(value("Scout ID"))
+            except (TypeError, ValueError):
+                continue
+            if scout_id in known_ids:
+                continue
+            status = str(value("Gecko Status") or "new").strip().lower().replace(" ", "-")
+            if status in {"ignored", "rejected"}:
+                continue
+            url = str(value("Job URL") or "")
+            item = normalize(RawListing(source="worksheet", source_job_id=str(scout_id), url=url,
+                                        title=str(value("Job Title") or ""),
+                                        company=str(value("Company") or "")))
+            item.id = scout_id
+            item.status = status
+            item.authoritative_url = str(value("Authoritative URL") or "")
+            result.append(item)
+        return result
+    finally:
+        workbook.close()
+
+
 def search(args, store, preferences):
     daily_mode = bool(getattr(args, "daily_mode", False))
+    link_validator = getattr(args, "link_validator", None) if daily_mode else None
     preexisting_ids = {job.id for job in store.all()}
     available = providers()
     if args.source == "all":
@@ -171,11 +278,13 @@ def search(args, store, preferences):
                 summary = discover_remotive_full_feed(
                     provider, store, preferences, resume_text, getattr(args, "limit", 100),
                     preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
+                    link_validator=link_validator,
                 )
             else:
                 summary = discover(
                     provider, requests, store, preferences, resume_text, args.minimum_score,
                     preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
+                    link_validator=link_validator,
                 )
         except ProviderError as error:
             aggregate["source_errors"][name] = str(error)
@@ -493,11 +602,41 @@ def resolve_urls(args, store, _preferences):
 
 def daily(args, store, preferences):
     """Run the complete discovery-to-review workflow without creating resumes."""
+    validator = DailyLinkValidator()
+    if isinstance(store, JobStore):
+        if tracker_backend() == "google-sheets":
+            if not Path(args.tracker).is_file():
+                raise RuntimeError("XLSX backup is required to verify protected Google Sheets history before cleanup")
+            # Read cloud manual fields into the backup before deciding what is safe to remove.
+            sync_workbook_to_google(args.tracker)
+        existing = [job for job in store.all() if job.status not in {"ignored", "rejected"}]
+        existing.extend(sheet_only_active_jobs(args.tracker, {job.id for job in existing if job.id is not None}))
+        protected = protected_job_ids(existing, args.tracker)
+        checked = validator.check_existing(existing)
+        dead = [(job, result) for job, result in checked if result.status == "dead"]
+        removable = [(job, result) for job, result in dead if job.id not in protected]
+        validator.protected_dead += len(dead) - len(removable)
+        if removable:
+            ids = {job.id for job, _ in removable}
+            sync_tracker(store, args.tracker, jobs=[], append_only=True, remove_scout_ids=ids)
+            uncleared = ids & scout_row_ids(args.tracker)
+            if uncleared:
+                raise RuntimeError(f"Confirmed-dead Scout rows were not cleared: {sorted(uncleared)}")
+            for job, result in removable:
+                store.delete_dead_unprotected(job.id)
+                validator.record_removed(job, result)
     search_args = argparse.Namespace(
         source="core", query=None, location=None, page=1, results=args.results,
         minimum_score=None, tracker=args.tracker, limit=100, daily_mode=True,
+        link_validator=validator,
     )
     result = search(search_args, store, preferences)
+    print("Link validation:")
+    for field in ("checked", "valid", "removed_dead", "temporary_failure", "protected_dead"):
+        print(f"  {field}: {validator.report()[field]}")
+    for removed in validator.removed:
+        print(f"  removed: {removed['company']} | {removed['job_title']} | {removed['url']} | "
+              f"{removed['reason_removed']} | HTTP/status {removed['http_status'] or 'n/a'}")
     if result:
         return result
     run_result = getattr(search_args, "run_result", {})

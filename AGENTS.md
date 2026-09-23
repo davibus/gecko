@@ -6,10 +6,12 @@ Always read `GECKO_SYSTEM.md` before performing resume work.
 
 ## Source of truth
 
-The default source resume is:
-`input/master-resume/dcall-resume-3-15-26.pdf`
+The single authoritative source for all resume content is:
+`input/master-resume/Dave-Call-resume-9-23-26.docx`
 
-Do not invent employers, dates, degrees, metrics, certifications, tools, or accomplishments. If a job description requests something not supported by the source resume or explicit project notes, describe it as a gap rather than manufacturing experience.
+Never use `dcall-resume-3-15-26.pdf` for resume content. `Dave_Call_Resume_5ec9726395344311.docx` is a format reference only; no claim from it may appear unless the same information is supported by the current master DOCX. Re-read the master DOCX for every generation, evaluation, score, or customization. Previously generated resumes and project notes are not independent factual sources.
+
+Do not invent employers, dates, degrees, metrics, certifications, tools, or accomplishments. If a job description requests something not supported by the current master DOCX, describe it as a gap rather than manufacturing experience.
 
 ## Default output
 

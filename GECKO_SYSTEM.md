@@ -36,21 +36,9 @@ Gecko customizes Dave Call's resume for individual job postings while preserving
 - Make tailoring subtle enough that the resume does not look machine-generated.
 - Do not create unsupported achievements.
 
-## Relevant tools to include when appropriate
+## Factual source
 
-- Codex
-- ChatGPT
-- Claude
-- Perplexity
-- Cursor
-- AntiGravity
-
-These are especially appropriate for marketing operations, analytics, automation, code-assisted workflows, content development, reporting, and technical troubleshooting.
-
-## Senior responsibility metric
-
-When relevant and natural, include:
-- Managed $30 million per month with a team of 4.
+`input/master-resume/Dave-Call-resume-9-23-26.docx` is the single source of truth for work history, accomplishments, metrics, skills, tools, education, certifications, AI tools, and leadership. Re-read it for each job; never inherit facts from an older generated resume or from this specification. The older PDF is not a content source. `Dave_Call_Resume_5ec9726395344311.docx` may guide formatting only.
 
 ## Match report
 
@@ -122,4 +110,4 @@ All reusable generation, layout optimization, and pagination verification script
 
 ## Source integrity
 
-Use the master resume as the factual baseline. If another resume/template is added to the project and explicitly designated as the formatting reference, use it for visual layout only unless instructed otherwise.
+Use the current master DOCX as the sole factual source. Any resume designated as a formatting reference may guide visual layout only; its content is never evidence unless confirmed in the master DOCX.

@@ -41,11 +41,12 @@ URL_STATUSLESS_HEADERS = [
     header for header in PREVIOUS_HEADERS
     if header not in {"Applied", "Resume Link", "Contacted"}
 ] + ["Applied", "Resume Link", "Contacted"]
-HEADERS = (
+PRE_APPLY_HEADERS = (
     URL_STATUSLESS_HEADERS[:14]
     + ["URL Status", "Authoritative URL"]
     + URL_STATUSLESS_HEADERS[14:]
 )
+HEADERS = PRE_APPLY_HEADERS[:5] + ["Apply?"] + PRE_APPLY_HEADERS[5:]
 STATUS_LABELS = {
     "new": "New", "reviewing": "Reviewing", "selected": "Selected",
     "resume-created": "Resume Created", "applied": "Applied", "contacted": "Contacted",
@@ -57,7 +58,7 @@ STATUS_RANK = {
     "Ignored": 7, "Offer": 8,
 }
 COLUMN_WIDTHS = [
-    10, 12, 28, 44, 13, 19, 24, 28, 18, 18, 20, 14, 14, 14,
+    10, 12, 28, 44, 13, 12, 19, 24, 28, 18, 18, 20, 14, 14, 14,
     32, 48, 42, 42, 18, 16, 12, 48, 12,
 ]
 
@@ -129,6 +130,7 @@ def _job_row(job: JobListing, existing: dict | None = None) -> dict:
         "Company": job.company,
         "Job Title": job.title,
         "Match Score": job.match_score,
+        "Apply?": existing.get("Apply?"),
         "Evidence Confidence": job.evidence_confidence / 100,
         "Match Status": match_status(job),
         "Location": job.location,
@@ -266,6 +268,7 @@ def _save_atomic(workbook, path: Path) -> None:
 
 def sync_job_scout(
     jobs: list[JobListing], tracker_path: str | Path, *, append_only: bool = False,
+    remove_scout_ids: set[int] | None = None,
 ) -> SyncSummary:
     """Sync Scout jobs while preserving workbook history and manual fields.
 
@@ -296,6 +299,24 @@ def sync_job_scout(
     headers_after = [ws.cell(1, column).value for column in range(1, ws.max_column + 1)]
     changed = not sheet_exists or headers_before != headers_after
     rows = _existing_rows(ws, columns)
+    if remove_scout_ids:
+        removable = {str(job_id) for job_id in remove_scout_ids}
+        kept = []
+        for row in rows:
+            if str(row.get("Scout ID")) not in removable:
+                kept.append(row)
+                continue
+            if any(row.get(field) not in (None, "") for field in ("Apply?", "Applied", "Contacted", "Resume Created")) or str(row.get("Gecko Status") or "").lower() not in {"", "new", "reviewing"}:
+                kept.append(row)
+                continue
+            row_number = row["_worksheet_row"]
+            for column in range(1, ws.max_column + 1):
+                cell = ws.cell(row_number, column)
+                if cell.value is not None or cell.hyperlink is not None:
+                    cell.value = None
+                    cell.hyperlink = None
+                    changed = True
+        rows = kept
     by_id = {str(row["Scout ID"]): row for row in rows if row.get("Scout ID") not in (None, "")}
     by_identity = {}
     for row in rows:

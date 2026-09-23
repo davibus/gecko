@@ -242,7 +242,11 @@ def score_job(job: JobListing, preferences: dict, resume_text: str = "") -> Scor
     candidate_values = " ".join(
         str(item) for value in candidate.values() for item in (value if isinstance(value, list) else [value])
     )
-    candidate_text = f"{resume_text} {candidate_values}".lower()
+    # Live scouting uses the freshly read master DOCX. Preferences remain a
+    # fallback for isolated scoring tests, never extra factual evidence.
+    candidate_text = (resume_text or candidate_values).lower()
+    years_in_master = [int(value) for value in re.findall(r"\b(\d{1,2})\+?\s+years?\b", resume_text, re.I)]
+    candidate_years = max(years_in_master, default=0) if resume_text else candidate.get("years_experience", 0)
     text = f"{job.title}\n{job.description}".lower()
     dimensions: dict[str, int] = {}
     levels: dict[str, str] = {}
@@ -322,15 +326,15 @@ def score_job(job: JobListing, preferences: dict, resume_text: str = "") -> Scor
     if junior:
         seniority_level = "true mismatch"
         weaknesses.append("Role is explicitly junior, entry-level, or an internship.")
-    elif requested_years and candidate.get("years_experience", 0) >= requested_years:
+    elif requested_years and candidate_years >= requested_years:
         seniority_level = "direct match"
-        strengths.append(f"14+ years meets the stated {requested_years}-year requirement.")
+        strengths.append(f"{candidate_years}+ years meets the stated {requested_years}-year requirement.")
     elif requested_years:
         seniority_level = "weak match"
-        weaknesses.append(f"Detected experience requirement exceeds the configured {candidate.get('years_experience', 0)} years.")
-    elif senior_title:
+        weaknesses.append(f"Detected experience requirement exceeds the master-supported {candidate_years} years.")
+    elif senior_title and candidate_years:
         seniority_level = "direct match"
-        strengths.append("Senior/managerial scope aligns with 14+ years of experience.")
+        strengths.append(f"Senior/managerial scope aligns with {candidate_years}+ years of experience.")
     else:
         seniority_level = _level_for_absence(job)
     _add_dimension(dimensions, levels, "years/seniority/scope", seniority_level)

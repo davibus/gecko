@@ -18,6 +18,7 @@ from excel_preservation import append_preserving_format
 from tracker_sync import (
     APPLICATION_SHEET,
     HEADERS as SCOUT_HEADERS,
+    PRE_APPLY_HEADERS as PRE_APPLY_SCOUT_HEADERS,
     LEGACY_HEADERS as LEGACY_SCOUT_HEADERS,
     PREVIOUS_HEADERS as PREVIOUS_SCOUT_HEADERS,
     RESUME_LINK_HEADERS as RESUME_LINK_SCOUT_HEADERS,
@@ -34,7 +35,7 @@ APPLICATION_HEADERS = [
     "Job Link", "Resume Link", "Date Created", "Applied", "Contacted", "Source",
     "Date Found", "Status",
 ]
-MANUAL_COLUMNS = ("Applied", "Contacted")
+MANUAL_COLUMNS = ("Apply?", "Applied", "Contacted")
 SHEETS_SCOPE = "https://www.googleapis.com/auth/spreadsheets"
 VALID_BACKENDS = {"xlsx", "google-sheets"}
 
@@ -137,7 +138,7 @@ def _records_from_values(values: list[list[Any]], headers: list[str], title: str
         raise ValueError(f"Google Sheet {title!r} contains duplicate column names")
     if title == SCOUT_SHEET:
         supported = (
-            headers, LEGACY_SCOUT_HEADERS, SOURCE_B_SCOUT_HEADERS,
+            headers, PRE_APPLY_SCOUT_HEADERS, LEGACY_SCOUT_HEADERS, SOURCE_B_SCOUT_HEADERS,
             RESUME_LINK_SCOUT_HEADERS, PREVIOUS_SCOUT_HEADERS, URL_STATUSLESS_SCOUT_HEADERS,
         )
         if not any(set(candidate).issubset(actual) for candidate in supported):
@@ -169,7 +170,7 @@ def _records_from_xlsx(ws, headers: list[str]) -> list[dict]:
         actual.pop()
     source_headers = actual
     if ws.title == SCOUT_SHEET and actual in (
-        LEGACY_SCOUT_HEADERS, SOURCE_B_SCOUT_HEADERS, RESUME_LINK_SCOUT_HEADERS,
+        PRE_APPLY_SCOUT_HEADERS, LEGACY_SCOUT_HEADERS, SOURCE_B_SCOUT_HEADERS, RESUME_LINK_SCOUT_HEADERS,
         PREVIOUS_SCOUT_HEADERS, URL_STATUSLESS_SCOUT_HEADERS,
     ):
         source_headers = actual
@@ -364,6 +365,33 @@ def _preserve_remote_row_order(records: list[dict], remote_rows: list[dict], tit
             seen.add(id(record))
     ordered.extend(record for record in records if id(record) not in seen)
     return ordered
+
+
+def _scout_values_preserving_positions(headers: list[str], records: list[dict],
+                                      remote_values: list[list[Any]], removed_ids: set[int]) -> list[list[Any]]:
+    """Leave cleared/empty Scout rows in place so formatting stays with survivors."""
+    if not remote_values:
+        return _values_from_records(headers, records)
+    by_key = {key: record for record in records for key in _xlsx_record_keys(record, SCOUT_SHEET)}
+    existing_headers = list(remote_values[0])
+    id_column = existing_headers.index("Scout ID") if "Scout ID" in existing_headers else -1
+    output = [headers]
+    seen: set[int] = set()
+    for source in remote_values[1:]:
+        scout_id = str(source[id_column]) if id_column >= 0 and id_column < len(source) else ""
+        if scout_id and scout_id in {str(value) for value in removed_ids}:
+            output.append([""] * len(headers))
+            continue
+        row = dict(zip(existing_headers, source))
+        record = next((by_key[key] for key in _xlsx_record_keys(row, SCOUT_SHEET) if key in by_key), None)
+        if record is None or id(record) in seen:
+            output.append([""] * len(headers))
+            continue
+        output.append([_normalize_cell(record.get(header)) for header in headers])
+        seen.add(id(record))
+    output.extend([_normalize_cell(record.get(header)) for header in headers]
+                  for record in records if id(record) not in seen)
+    return output
 
 
 def _metadata(api, spreadsheet_id: str) -> dict:
@@ -607,6 +635,7 @@ def _sync_workbook_to_google(
     *,
     config: GoogleSheetsConfig | None = None,
     service=None,
+    remove_scout_ids: set[int] | None = None,
 ) -> GoogleSyncSummary:
     """Merge the XLSX backup with Google, preserving manual fields in both copies."""
     tracker_path = Path(tracker_path)
@@ -647,6 +676,16 @@ def _sync_workbook_to_google(
     ).execute().get("values", [])
     remote_application = _records_from_values(remote_application_values, APPLICATION_HEADERS, APPLICATION_SHEET)
     remote_scout = _records_from_values(remote_scout_values, SCOUT_HEADERS, SCOUT_SHEET)
+    removed = remove_scout_ids or set()
+    if removed:
+        for row in remote_scout:
+            if str(row.get("Scout ID")) in {str(value) for value in removed} and (
+                any(row.get(field) not in (None, "") for field in ("Apply?", "Applied", "Contacted", "Resume Created"))
+                or str(row.get("Gecko Status") or "").lower() not in {"", "new", "reviewing"}
+            ):
+                raise ValueError("A proposed dead Scout row has protected Google Sheets history")
+        remote_scout = [row for row in remote_scout if str(row.get("Scout ID")) not in {str(value) for value in removed}]
+        local_scout = [row for row in local_scout if str(row.get("Scout ID")) not in {str(value) for value in removed}]
     application_headers = _output_headers(remote_application_values, APPLICATION_HEADERS)
     scout_headers = _output_headers(remote_scout_values, SCOUT_HEADERS)
 
@@ -658,7 +697,7 @@ def _sync_workbook_to_google(
     )
     merged_scout = _preserve_remote_row_order(merged_scout, remote_scout, SCOUT_SHEET)
     application_values = _values_from_records(application_headers, merged_application)
-    scout_values = _values_from_records(scout_headers, merged_scout)
+    scout_values = _scout_values_preserving_positions(scout_headers, merged_scout, remote_scout_values, removed)
 
     _write_sheet(
         values_api, config.spreadsheet_id, APPLICATION_SHEET,
@@ -708,10 +747,12 @@ def sync_workbook_to_google(
     *,
     config: GoogleSheetsConfig | None = None,
     service=None,
+    remove_scout_ids: set[int] | None = None,
 ) -> GoogleSyncSummary:
     """Run synchronization and translate Google API failures into actionable errors."""
     try:
-        return _sync_workbook_to_google(tracker_path, config=config, service=service)
+        return _sync_workbook_to_google(tracker_path, config=config, service=service,
+                                        remove_scout_ids=remove_scout_ids)
     except Exception as error:
         if error.__class__.__module__.startswith("googleapiclient"):
             status = getattr(getattr(error, "resp", None), "status", None)

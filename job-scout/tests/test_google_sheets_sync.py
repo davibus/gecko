@@ -25,7 +25,7 @@ from google_sheets_sync import (
     merge_scout_rows,
     sync_workbook_to_google,
 )
-from tracker_sync import HEADERS as SCOUT_HEADERS
+from tracker_sync import HEADERS as SCOUT_HEADERS, sync_job_scout
 
 
 def application_record(job_number="job-1", applied="", contacted=""):
@@ -260,6 +260,44 @@ class GoogleSheetsApiSyncTests(unittest.TestCase):
         self.assertTrue(str(backup["Job Scout"].cell(2, scout_headers["Resume Link"]).value).startswith("file:///"))
         self.assertEqual(backup["Job Scout"].cell(2, scout_headers["Contacted"]).value, "manual")
 
+    def test_dead_scout_row_is_cleared_in_place_without_shifting_google_formatting(self):
+        workbook = load_workbook(self.tracker)
+        scout = workbook["Job Scout"]
+        scout.cell(2, SCOUT_HEADERS.index("Gecko Status") + 1).value = "New"
+        scout.cell(2, SCOUT_HEADERS.index("Resume Created") + 1).value = None
+        scout.append([scout_record(2, url="https://example.test/job/2").get(header) for header in SCOUT_HEADERS])
+        scout["D3"].fill = PatternFill("solid", fgColor="C6E0B4")
+        scout.column_dimensions["D"].width = 53
+        scout.freeze_panes = "E6"
+        scout.auto_filter.ref = "A1:Y3"
+        workbook.save(self.tracker)
+        sync_job_scout([], self.tracker, append_only=True, remove_scout_ids={1})
+        fake = FakeSheetsApi(application_rows=[], scout_rows=[
+            scout_record(1, status="New"), scout_record(2, url="https://example.test/job/2"),
+        ])
+        sync_workbook_to_google(self.tracker, config=self.config, service=fake.service(), remove_scout_ids={1})
+        self.assertEqual(fake.remote["Job Scout"][1][0], "")
+        self.assertEqual(fake.remote["Job Scout"][2][0], 2)
+        self.assertEqual(fake.clears, [])
+        self.assertFalse(any("deleteDimension" in request or "deleteConditionalFormatRule" in request
+                             for request in fake.batch_requests))
+        backup = load_workbook(self.tracker)
+        self.assertIsNone(backup["Job Scout"]["A2"].value)
+        self.assertEqual(backup["Job Scout"]["A3"].value, 2)
+        self.assertEqual(backup["Job Scout"]["D3"].fill.fgColor.rgb[-6:], "C6E0B4")
+        self.assertEqual(backup["Job Scout"].column_dimensions["D"].width, 53)
+        self.assertEqual(backup["Job Scout"].freeze_panes, "E6")
+        self.assertEqual(backup["Job Scout"].auto_filter.ref, "A1:Y3")
+
+    def test_remote_applied_or_resume_created_row_cannot_be_cleared(self):
+        for protected in (scout_record(applied="X"), scout_record(status="Resume Created")):
+            with self.subTest(protected=protected["Gecko Status"]):
+                fake = FakeSheetsApi(application_rows=[], scout_rows=[protected])
+                with self.assertRaisesRegex(ValueError, "protected Google Sheets history"):
+                    sync_workbook_to_google(self.tracker, config=self.config,
+                                            service=fake.service(), remove_scout_ids={1})
+                self.assertEqual(fake.remote["Job Scout"][1][0], 1)
+
     def test_api_sync_uses_remote_requests_without_a_google_sheet_file_lock(self):
         fake = FakeSheetsApi()
         sync_workbook_to_google(self.tracker, config=self.config, service=fake.service())
@@ -320,8 +358,8 @@ class GoogleSheetsApiSyncTests(unittest.TestCase):
         scout.freeze_panes = "E6"
         scout.auto_filter.ref = f"A1:{scout.cell(1, scout.max_column).column_letter}2"
         scout.add_table(Table(displayName="ScoutRows", ref=f"A1:{scout.cell(1, scout.max_column).column_letter}2"))
-        scout["X1"] = "User Formula"
-        scout["X2"] = "=E2*2"
+        scout["Y1"] = "User Formula"
+        scout["Y2"] = "=E2*2"
         workbook.save(self.tracker)
 
         fake = FakeSheetsApi(
@@ -345,8 +383,8 @@ class GoogleSheetsApiSyncTests(unittest.TestCase):
         self.assertEqual(application.tables["Applications"].ref, "A1:N3")
         self.assertIn("J3", str(application.data_validations.dataValidation[0].sqref))
         self.assertEqual(scout["D2"].fill.fgColor.rgb, "00C6E0B4")
-        self.assertEqual(scout["X2"].value, "=E2*2")
-        self.assertEqual(scout["X3"].value, "=E3*2")
+        self.assertEqual(scout["Y2"].value, "=E2*2")
+        self.assertEqual(scout["Y3"].value, "=E3*2")
         self.assertEqual(scout.row_dimensions[3].height, 29)
         self.assertEqual(scout.column_dimensions["D"].width, 53)
         self.assertEqual(scout.freeze_panes, "E6")

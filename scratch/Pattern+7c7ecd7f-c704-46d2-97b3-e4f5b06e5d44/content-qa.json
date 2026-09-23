@@ -1,0 +1,10 @@
+{
+  "structural_checks": "pass",
+  "source_hashes": {
+    "input\\master-resume\\Dave-Call-resume-9-23-26.docx": "cccae06bd74debae639367b19e9e41cd9537e351f3ee1aac208e1a7dae45061f"
+  },
+  "native_pages": 2,
+  "source_identity_and_jobs": "pass",
+  "report_metadata": "pass",
+  "resume_sha256": "7ee41073aed1aa9b73f283d6d9f3e3cf25e14e9ef1f059b045fc5a002c386bec"
+}

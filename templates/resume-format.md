@@ -13,3 +13,5 @@ Preferred layout characteristics:
 - Page 2 should be well-filled without crowding
 
 If a dedicated model/template resume is added later, store it in this folder and update `AGENTS.md` with its filename.
+
+`Dave_Call_Resume_5ec9726395344311.docx`, when supplied, is a format reference only. Its content is never evidence unless independently present in `input/master-resume/Dave-Call-resume-9-23-26.docx`.

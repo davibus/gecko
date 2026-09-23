@@ -1,0 +1,1086 @@
+{
+  "version": 2,
+  "job": {
+    "company": "Vitality Medical",
+    "safe_company": "Vitality-Medical",
+    "title": "E-Commerce SEO Manager",
+    "job_number": "b1e13fda0b6ba9cb"
+  },
+  "listing": "C:\\Users\\DCALL\\Desktop\\gecko\\input\\job-descriptions\\Vitality-Medical+b1e13fda0b6ba9cb.md",
+  "listing_sha256": "c0c791d5c5b6b19295042a413343cf33fb282b6c0a582e3f92bd2b4df6f7f1ef",
+  "source_sha256": {
+    "input\\master-resume\\dcall-resume-3-15-26.pdf": "6e66e10862f83c2c2739cc4979873a1ed31ecf9ce1cf66da8295f2cf3cde7ac1",
+    "GECKO_SYSTEM.md": "2d55aefb0af9b317a806bc52e170efbc5cd4970c4f212786950599885a4c3d28"
+  },
+  "requirements": {
+    "required_skills": [
+      {
+        "text": "Direct hands-on ecommerce SEO experience.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "SEO"
+        ]
+      },
+      {
+        "text": "Four or more years of professional SEO experience with meaningful ecommerce responsibility.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "SEO"
+        ]
+      },
+      {
+        "text": "Demonstrated success increasing qualified organic traffic, conversions, or ecommerce revenue.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Experience owning both strategy and daily execution and carrying projects through implementation, verification, and measurement.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "AI"
+        ]
+      },
+      {
+        "text": "Experience with large product catalogs and complex ecommerce site structures.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Strong technical SEO, on-page optimization, content strategy, internal linking, site architecture, and structured-data knowledge.",
+        "status": "supported",
+        "evidence_ids": [
+          "E036"
+        ],
+        "matched_terms": [
+          "SEO",
+          "technical SEO",
+          "content"
+        ]
+      },
+      {
+        "text": "Experience with backlink, external-linking, digital PR, or off-site authority strategy.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Independent execution, detailed maintenance, cross-department collaboration, mentoring, adaptability, and strong judgment.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "CRO",
+          "AI"
+        ]
+      },
+      {
+        "text": "Strong analytical, organizational, project-management, problem-solving, written, and verbal communication skills.",
+        "status": "supported",
+        "evidence_ids": [
+          "E017"
+        ],
+        "matched_terms": [
+          "management"
+        ]
+      },
+      {
+        "text": "Familiarity with AI-powered search and practical generative-AI use in SEO workflows.",
+        "status": "supported",
+        "evidence_ids": [
+          "E027"
+        ],
+        "matched_terms": [
+          "SEO",
+          "AI"
+        ]
+      }
+    ],
+    "preferred_skills": [
+      {
+        "text": "Direct ecommerce SEO experience is required. Working knowledge of Magento is a strong plus.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "SEO",
+          "Magento"
+        ]
+      },
+      {
+        "text": "Magento or Magento 2; direct product, category, and content updates in an ecommerce platform.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "Magento",
+          "content"
+        ]
+      },
+      {
+        "text": "Google Search Console, GA4, Google Tag Manager, Semrush, Ahrefs, Screaming Frog, or similar tools.",
+        "status": "supported",
+        "evidence_ids": [
+          "E010"
+        ],
+        "matched_terms": [
+          "GA4",
+          "Google Tag Manager",
+          "Semrush",
+          "Search Console"
+        ]
+      },
+      {
+        "text": "ChatGPT, Claude, Gemini, or Perplexity; repeatable AI prompts, workflows, custom tools, or automation.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "automation",
+          "AI"
+        ]
+      },
+      {
+        "text": "HTML, CSS, JavaScript, schema markup, SQL, APIs, Python, automation, and data-analysis tools.",
+        "status": "supported",
+        "evidence_ids": [
+          "E004"
+        ],
+        "matched_terms": [
+          "SQL",
+          "Python",
+          "JavaScript",
+          "automation",
+          "schema markup"
+        ]
+      },
+      {
+        "text": "Product feeds, Google Merchant Center, ecommerce analytics, conversion tracking, redesigns, migrations, platform changes, and large-scale content updates.",
+        "status": "supported",
+        "evidence_ids": [
+          "E038"
+        ],
+        "matched_terms": [
+          "content",
+          "analytics"
+        ]
+      },
+      {
+        "text": "Healthcare, medical supplies, durable medical equipment, or other regulated-industry experience.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Bachelor's degree in marketing, business, computer science, communications, or a related field.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      }
+    ],
+    "responsibilities": [
+      {
+        "text": "Own organic-search and AI-search strategy and maintain a prioritized roadmap based on customer value, revenue potential, impact, risk, and effort.",
+        "status": "supported",
+        "evidence_ids": [
+          "E036"
+        ],
+        "matched_terms": [
+          "AI"
+        ]
+      },
+      {
+        "text": "Take initiatives from research and diagnosis through implementation, testing, measurement, and maintenance.",
+        "status": "supported",
+        "evidence_ids": [
+          "E036"
+        ],
+        "matched_terms": [
+          "AI"
+        ]
+      },
+      {
+        "text": "Personally execute improvements when access and skills allow.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Establish goals, benchmarks, and KPIs; report priorities, risks, results, and next steps to leadership.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "leadership"
+        ]
+      },
+      {
+        "text": "Adapt priorities to performance, business objectives, algorithm changes, competitor activity, technical issues, and customer behavior.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Improve product data, categories, manufacturer pages, product relationships, attributes, navigation, and discoverability.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Establish SEO standards and repeatable processes for adding, updating, organizing, and discontinuing products.",
+        "status": "supported",
+        "evidence_ids": [
+          "E021"
+        ],
+        "matched_terms": [
+          "SEO"
+        ]
+      },
+      {
+        "text": "Improve product/category names, descriptions, metadata, images, attributes, and internal links.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "metadata"
+        ]
+      },
+      {
+        "text": "Determine when pages should be created, optimized, consolidated, redirected, canonicalized, or removed.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Work directly with catalog staff, review changes for quality, and create scalable templates and documentation.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Partner with developers to improve crawling, indexing, architecture, page speed, Core Web Vitals, canonicalization, redirects, structured data, XML sitemaps, and robots directives.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Address filters, faceted navigation, pagination, product variants, duplicate content, and complex URLs.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "content"
+        ]
+      },
+      {
+        "text": "Define technical requirements, support implementation, test deployments, monitor releases, and remain accountable for SEO outcomes.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "SEO",
+          "AI"
+        ]
+      },
+      {
+        "text": "Audit and correct broken links, 404s, redirect chains, duplicate content, canonical tags, indexing problems, metadata, headings, images, schema, and internal links.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "content",
+          "metadata",
+          "AI"
+        ]
+      },
+      {
+        "text": "Find orphaned, underlinked, outdated, competing, and underperforming pages.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Diagnose changes in traffic, rankings, indexing, conversions, and revenue.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Conduct keyword, competitor, content-gap, search-intent, and customer-question research.",
+        "status": "supported",
+        "evidence_ids": [
+          "E036"
+        ],
+        "matched_terms": [
+          "content"
+        ]
+      },
+      {
+        "text": "Optimize product, category, manufacturer, brand, and informational pages.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Scale SEO across thousands of catalog pages while preventing cannibalization and unnecessary duplication.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "SEO",
+          "CRO"
+        ]
+      },
+      {
+        "text": "Connect organic work to qualified traffic, conversions, revenue, customer value, and the full buying journey.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Develop content supporting product research and purchase, including category pages, medical conditions, comparisons, buying guides, FAQs, and customer questions.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "content"
+        ]
+      },
+      {
+        "text": "Create or edit content and actionable briefs; establish accuracy, sourcing, citation, and review standards for medical information.",
+        "status": "supported",
+        "evidence_ids": [
+          "E004"
+        ],
+        "matched_terms": [
+          "content"
+        ]
+      },
+      {
+        "text": "Own backlink, external-linking, outreach, digital PR, and off-site authority strategy with manufacturers, suppliers, associations, publishers, and partners.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Monitor new, lost, broken, low-quality, or harmful links; reclaim links and unlinked mentions while following search-engine guidelines.",
+        "status": "supported",
+        "evidence_ids": [
+          "E020"
+        ],
+        "matched_terms": [
+          "AI"
+        ]
+      },
+      {
+        "text": "Improve visibility in Google AI Overviews, AI assistants, answer engines, and emerging discovery platforms through content structure, entity signals, structured data, citations, and authority.",
+        "status": "supported",
+        "evidence_ids": [
+          "E001"
+        ],
+        "matched_terms": [
+          "content",
+          "AI"
+        ]
+      },
+      {
+        "text": "Use AI tools for research, content analysis, briefs, internal linking, reporting, workflows, and automation while enforcing quality and medical-content review standards.",
+        "status": "supported",
+        "evidence_ids": [
+          "E036"
+        ],
+        "matched_terms": [
+          "automation",
+          "content",
+          "reporting",
+          "AI"
+        ]
+      },
+      {
+        "text": "Mentor catalog, content, technical, merchandising, and marketing staff through hands-on work.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "content"
+        ]
+      },
+      {
+        "text": "Create checklists, templates, training materials, and quality-control processes.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "AI"
+        ]
+      },
+      {
+        "text": "Track organic traffic, rankings, conversions, revenue, backlinks, AI visibility, and other KPIs.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "AI"
+        ]
+      },
+      {
+        "text": "Build reporting that connects SEO activity to business outcomes and explain results to technical and nontechnical stakeholders.",
+        "status": "supported",
+        "evidence_ids": [
+          "E027"
+        ],
+        "matched_terms": [
+          "SEO",
+          "reporting",
+          "AI"
+        ]
+      },
+      {
+        "text": "A clear, collaboratively developed SEO strategy and roadmap that turns into measurable completed work.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "SEO"
+        ]
+      },
+      {
+        "text": "Initiatives move from discovery through implementation without stalling after recommendations.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Catalog and technical teams understand current priorities and make better SEO decisions.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "SEO"
+        ]
+      },
+      {
+        "text": "Technical, content, internal-linking, and authority improvements are consistently maintained.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "content",
+          "AI"
+        ]
+      },
+      {
+        "text": "Product, category, manufacturer, and informational pages gain organic visibility.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "AI"
+        ]
+      },
+      {
+        "text": "Vitality Medical gains authority in traditional and AI-powered search.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "AI"
+        ]
+      },
+      {
+        "text": "Organic search produces measurable growth in qualified traffic, conversions, and revenue.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      },
+      {
+        "text": "Leadership receives clear reporting on completed work, results, opportunities, risks, and next steps.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "reporting",
+          "leadership"
+        ]
+      },
+      {
+        "text": "**Work location:** Hybrid remote in Salt Lake City, UT 84121.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": []
+      }
+    ],
+    "tools": [
+      {
+        "text": "Magento",
+        "status": "supported",
+        "evidence_ids": [
+          "E042"
+        ]
+      },
+      {
+        "text": "GA4",
+        "status": "supported",
+        "evidence_ids": [
+          "E010"
+        ]
+      },
+      {
+        "text": "Google Tag Manager",
+        "status": "supported",
+        "evidence_ids": [
+          "E010"
+        ]
+      },
+      {
+        "text": "Semrush",
+        "status": "supported",
+        "evidence_ids": [
+          "E010"
+        ]
+      },
+      {
+        "text": "Search Console",
+        "status": "supported",
+        "evidence_ids": [
+          "E010"
+        ]
+      },
+      {
+        "text": "SQL",
+        "status": "supported",
+        "evidence_ids": [
+          "E004"
+        ]
+      },
+      {
+        "text": "Python",
+        "status": "supported",
+        "evidence_ids": [
+          "E004"
+        ]
+      },
+      {
+        "text": "JavaScript",
+        "status": "supported",
+        "evidence_ids": [
+          "E004"
+        ]
+      }
+    ],
+    "seniority_signals": [
+      {
+        "text": "Own organic-search and AI-search strategy and maintain a prioritized roadmap based on customer value, revenue potential, impact, risk, and effort.",
+        "status": "supported",
+        "evidence_ids": [
+          "E036"
+        ]
+      },
+      {
+        "text": "Establish goals, benchmarks, and KPIs; report priorities, risks, results, and next steps to leadership.",
+        "status": "gap",
+        "evidence_ids": [
+          "E038"
+        ]
+      },
+      {
+        "text": "Own backlink, external-linking, outreach, digital PR, and off-site authority strategy with manufacturers, suppliers, associations, publishers, and partners.",
+        "status": "gap",
+        "evidence_ids": [
+          "E036"
+        ]
+      },
+      {
+        "text": "Mentor catalog, content, technical, merchandising, and marketing staff through hands-on work.",
+        "status": "gap",
+        "evidence_ids": [
+          "E040"
+        ]
+      },
+      {
+        "text": "Experience owning both strategy and daily execution and carrying projects through implementation, verification, and measurement.",
+        "status": "gap",
+        "evidence_ids": [
+          "E036"
+        ]
+      },
+      {
+        "text": "Independent execution, detailed maintenance, cross-department collaboration, mentoring, adaptability, and strong judgment.",
+        "status": "gap",
+        "evidence_ids": [
+          "E033"
+        ]
+      },
+      {
+        "text": "Strong analytical, organizational, project-management, problem-solving, written, and verbal communication skills.",
+        "status": "supported",
+        "evidence_ids": [
+          "E017"
+        ]
+      },
+      {
+        "text": "Google Search Console, GA4, Google Tag Manager, Semrush, Ahrefs, Screaming Frog, or similar tools.",
+        "status": "supported",
+        "evidence_ids": [
+          "E010"
+        ]
+      },
+      {
+        "text": "Leadership receives clear reporting on completed work, results, opportunities, risks, and next steps.",
+        "status": "gap",
+        "evidence_ids": [
+          "E010"
+        ]
+      }
+    ],
+    "industry_terminology": [
+      {
+        "text": "Work directly with catalog staff, review changes for quality, and create scalable templates and documentation.",
+        "status": "gap",
+        "evidence_ids": [
+          "E031"
+        ]
+      },
+      {
+        "text": "Scale SEO across thousands of catalog pages while preventing cannibalization and unnecessary duplication.",
+        "status": "gap",
+        "evidence_ids": [
+          "E042"
+        ]
+      },
+      {
+        "text": "Develop content supporting product research and purchase, including category pages, medical conditions, comparisons, buying guides, FAQs, and customer questions.",
+        "status": "gap",
+        "evidence_ids": [
+          "E036"
+        ]
+      },
+      {
+        "text": "Create or edit content and actionable briefs; establish accuracy, sourcing, citation, and review standards for medical information.",
+        "status": "supported",
+        "evidence_ids": [
+          "E004"
+        ]
+      },
+      {
+        "text": "Use AI tools for research, content analysis, briefs, internal linking, reporting, workflows, and automation while enforcing quality and medical-content review standards.",
+        "status": "supported",
+        "evidence_ids": [
+          "E036"
+        ]
+      },
+      {
+        "text": "Mentor catalog, content, technical, merchandising, and marketing staff through hands-on work.",
+        "status": "gap",
+        "evidence_ids": [
+          "E040"
+        ]
+      },
+      {
+        "text": "Experience with large product catalogs and complex ecommerce site structures.",
+        "status": "gap",
+        "evidence_ids": [
+          "E038"
+        ]
+      },
+      {
+        "text": "Healthcare, medical supplies, durable medical equipment, or other regulated-industry experience.",
+        "status": "gap",
+        "evidence_ids": [
+          "E028"
+        ]
+      },
+      {
+        "text": "Catalog and technical teams understand current priorities and make better SEO decisions.",
+        "status": "gap",
+        "evidence_ids": [
+          "E042"
+        ]
+      },
+      {
+        "text": "Vitality Medical gains authority in traditional and AI-powered search.",
+        "status": "gap",
+        "evidence_ids": [
+          "E040"
+        ]
+      }
+    ],
+    "ats_keywords": [
+      {
+        "text": "SEO",
+        "status": "supported",
+        "evidence_ids": [
+          "E042"
+        ]
+      },
+      {
+        "text": "AI",
+        "status": "supported",
+        "evidence_ids": [
+          "E036"
+        ]
+      },
+      {
+        "text": "leadership",
+        "status": "supported",
+        "evidence_ids": [
+          "E038"
+        ]
+      },
+      {
+        "text": "metadata",
+        "status": "supported",
+        "evidence_ids": [
+          "E039"
+        ]
+      },
+      {
+        "text": "content",
+        "status": "supported",
+        "evidence_ids": [
+          "E018"
+        ]
+      },
+      {
+        "text": "CRO",
+        "status": "supported",
+        "evidence_ids": [
+          "E042"
+        ]
+      },
+      {
+        "text": "automation",
+        "status": "supported",
+        "evidence_ids": [
+          "E036"
+        ]
+      },
+      {
+        "text": "reporting",
+        "status": "supported",
+        "evidence_ids": [
+          "E036"
+        ]
+      },
+      {
+        "text": "technical SEO",
+        "status": "supported",
+        "evidence_ids": [
+          "E036"
+        ]
+      },
+      {
+        "text": "management",
+        "status": "supported",
+        "evidence_ids": [
+          "E017"
+        ]
+      },
+      {
+        "text": "schema markup",
+        "status": "supported",
+        "evidence_ids": [
+          "E004"
+        ]
+      },
+      {
+        "text": "analytics",
+        "status": "supported",
+        "evidence_ids": [
+          "E038"
+        ]
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "id": "E001",
+      "job": 0,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Examples of analysis projects: analyzed max CPC vs smart-bidding, omni-channel brand-holdouts, CPC optimization for Brand, non-brand target CPA, AI-assisted promotion analysis using Namogoo, incremental CPA analysis on scale-up/down, audience analysis in Google Ads to test and apply to other platforms, Data-Driven Attribution analysis (DDA), Lifetime Value of Customer (LTV) analysis, affiliate commission analysis and discount negotiation, Performance Max/Google Shopping mixture analysis, 5- year projections using predictive, statistical models, etc"
+    },
+    {
+      "id": "E002",
+      "job": 0,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Funnel testing for reach, comparison, conversion (micro-included), and then internal LTV testing, Click- to-Call systems assessment, iSpot Analysis for TV/OTT (reach) campaigns"
+    },
+    {
+      "id": "E003",
+      "job": 0,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Built complex Tableau dashboards for Paid Search (Google Ads, Bing Ads, etc). I helped convert their Power BI dashboards to Tableau. We switched for a very specific reason"
+    },
+    {
+      "id": "E004",
+      "job": 0,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Used Python, DataBricks, SQL, Excel (blended data), and Funnel.io to create a customized reporting system that automated and ensured accuracy to all of the marketing channels we have. It collected data automatically from 10+ channels (platforms) on a weekly basis"
+    },
+    {
+      "id": "E005",
+      "job": 0,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "After success with optimization, the question was posed by management, \"If we were to give you an additional $10 million dollars, where would we invest it, and why\"? Using regression models based on previous year and previous periods, we were able to very accurately predict the outcome of the types of tests we used: hold-out, geo-promotional offers, scale-ups, scale-downs, reallocation of funds to different channels, etc."
+    },
+    {
+      "id": "E006",
+      "job": 1,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Managed all marketing platforms: Google Ads, Bing Ads, Amazon, Facebook, Instagram, and TikTok with a 400k/month budget"
+    },
+    {
+      "id": "E007",
+      "job": 1,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Successfully achieved goals which were to get 4 times the volume (800k/month) at a 3.5 ROAS (return on ad spend). Our marketing campaigns before I started were at 200k/month at a 1.5 ROAS"
+    },
+    {
+      "id": "E008",
+      "job": 1,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Setup KPI's in Google Looker Studio for different departments to provide transparency. This helped with inventory planning, engineering processes based on reviews, management decisions, website development, email efficacy, and cross-platform budget management"
+    },
+    {
+      "id": "E009",
+      "job": 1,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Consulted the Webmaster on SEO best practices and on-page optimization"
+    },
+    {
+      "id": "E010",
+      "job": 1,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Setup custom reporting in GA4 using custom Google Tag Manager configurations"
+    },
+    {
+      "id": "E011",
+      "job": 1,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Created a inventory planning methodology with a custom robust spreadsheet used by the multiple departments"
+    },
+    {
+      "id": "E012",
+      "job": 2,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Managed all aspects of e-commerce and marketing at a very large distributor (B2B)"
+    },
+    {
+      "id": "E013",
+      "job": 2,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Technology, marketing, cultural change, team, and thought leader"
+    },
+    {
+      "id": "E014",
+      "job": 2,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Setup the company's informational architecture (ERP systems flow)"
+    },
+    {
+      "id": "E015",
+      "job": 2,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Innovated and implemented new systems to increase productivity and efficiency"
+    },
+    {
+      "id": "E016",
+      "job": 2,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Created systems to allow for transparency and collaboration"
+    },
+    {
+      "id": "E017",
+      "job": 2,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Oversaw project management in an ever-changing environment"
+    },
+    {
+      "id": "E018",
+      "job": 2,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Worked with all heads of department (IT, Operations, Finance, Product Dev, HR, Sales, etc)"
+    },
+    {
+      "id": "E019",
+      "job": 2,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Lifted the company up from a very non-digital, traditional B2B distributor to a functional digital environment"
+    },
+    {
+      "id": "E020",
+      "job": 2,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Expanded their business by adding a new B2C element (multiple e-comm platforms) while not encroaching upon our 650+ retailers (B2B)"
+    },
+    {
+      "id": "E021",
+      "job": 2,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Developed e-comm specific products with our manufacturers and developed better supply chain processes"
+    },
+    {
+      "id": "E022",
+      "job": 2,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Worked extensively with Amazon Vendor and Seller Central (FBA and FBM) leading to other consignment initiatives (CastleGate, Target.com, Costco.com etc.)"
+    },
+    {
+      "id": "E023",
+      "job": 2,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Conducted financial analysis on a daily basis to find niches and develop products"
+    },
+    {
+      "id": "E024",
+      "job": 2,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Managed a virtually unlimited budget based on a project by project cost/benefits analysis"
+    },
+    {
+      "id": "E025",
+      "job": 2,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Developed and maintained the company's multiple databases to ensure consistency among departments, and used them to create proper and accurate financial and marketing reports"
+    },
+    {
+      "id": "E026",
+      "job": 3,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Setup and managed more than 75 Ad Words accounts with a total spend of more than $276,000 per month"
+    },
+    {
+      "id": "E027",
+      "job": 3,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Strategized directly with clients on how to best distribute their marketing funds based on their business needs into different channels including: website development, SEO, email campaigns, Google Ads search, display, mobile, re-marketing, and YouTube campaigns, and all social media platforms"
+    },
+    {
+      "id": "E028",
+      "job": 3,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Studied each client's account using industry leading analytical software to make data-driven recommendations"
+    },
+    {
+      "id": "E029",
+      "job": 3,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Created reports using Funnel.io to consolidate data sources and presented that data with Google Data (Looker) Studio"
+    },
+    {
+      "id": "E030",
+      "job": 3,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Created custom scripts to allow automatic and constant monitoring of all clients marketing efforts"
+    },
+    {
+      "id": "E031",
+      "job": 3,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Developed a custom Ad Words system providing quality on quantity, ensuring the same quality of service for all clients, no matter what the client's spend. This system was adopted by the entire company"
+    },
+    {
+      "id": "E032",
+      "job": 3,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Created conversion and attribution models and created multivariate tests on all levels"
+    },
+    {
+      "id": "E033",
+      "job": 4,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Managed the E-Commerce department comprised of 8 best-in-class employees"
+    },
+    {
+      "id": "E034",
+      "job": 4,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Managed all paid search campaigns, outreach, lead generation, and customer acquisition for a large E-Commerce company in the United States, Canada, and the UK"
+    },
+    {
+      "id": "E035",
+      "job": 4,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Managed large AdWords, Bing Ads, Gemini, and Amazon Marketing Services accounts consisting of more than 150 campaigns with a $400,000 budget resulting in more than $9,000,000 in revenue (35% of total revenue)"
+    },
+    {
+      "id": "E036",
+      "job": 4,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Conducted advanced keyword research, channel analysis, monitored trends, created custom attribution models, acquisition analysis, conversion path and funnel analysis, landing page optimization, A/B multivariate testing, conversion rate optimization (CRO), created advanced bid strategies and testing, setup bid experiments, created an affiliate program strategy, and created ad copy for search and display ads using Adobe design software"
+    },
+    {
+      "id": "E037",
+      "job": 4,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Setup human assisted automation with JavaScript on certain campaigns based on promotions and business goals"
+    },
+    {
+      "id": "E038",
+      "job": 4,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Created business goals, yearly projections, and KPI's with senior management and reported large quantities of data from Magento, Google Analytics, ACCTivate, and QuickBooks"
+    },
+    {
+      "id": "E039",
+      "job": 4,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Conducted competitive analysis to improve and position our campaign performance"
+    },
+    {
+      "id": "E040",
+      "job": 4,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Managed display, mobile, re-marketing, search, video, email, shopping, and social, local, and CRE campaigns"
+    },
+    {
+      "id": "E041",
+      "job": 4,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Performed advanced analysis using Excel, AdWords Editor, Bing Editor, and Amazon Premium Analytics"
+    },
+    {
+      "id": "E042",
+      "job": 4,
+      "source": "input\\master-resume\\dcall-resume-3-15-26.pdf",
+      "quote": "Worked with the web development team and monitored SEO/SEM using a variety of software tools"
+    }
+  ],
+  "resume": {
+    "headline": "Digital Marketer | E-Commerce | Social & Ads Specialist | Analyst",
+    "summary": "Digital marketing and e-commerce leader with experience in paid media, analytics, and cross-functional marketing operations.",
+    "skills": [
+      "SEO",
+      "technical SEO",
+      "GA4",
+      "Google Tag Manager",
+      "SQL",
+      "Python",
+      "JavaScript",
+      "Magento",
+      "automation",
+      "CRO",
+      "content",
+      "schema markup",
+      "metadata",
+      "Semrush",
+      "Search Console",
+      "e-commerce",
+      "reporting",
+      "analytics",
+      "leadership",
+      "management",
+      "AI"
+    ],
+    "selected_evidence_ids": [
+      "E001",
+      "E004",
+      "E005",
+      "E002",
+      "E008",
+      "E010",
+      "E011",
+      "E006",
+      "E020",
+      "E021",
+      "E025",
+      "E023",
+      "E027",
+      "E026",
+      "E028",
+      "E030",
+      "E036",
+      "E035",
+      "E038",
+      "E034"
+    ]
+  },
+  "review_notes": [
+    "Review requirement classifications and evidence links before generation.",
+    "Resume bullets are verbatim master-resume excerpts; edit the source only through an approved source update."
+  ]
+}
