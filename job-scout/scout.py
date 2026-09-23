@@ -151,13 +151,16 @@ def search(args, store, preferences):
         "top_25_by_gecko_match_score": [],
         "source_counts": {name: 0 for name in selected}, "source_backends": {},
         "source_diagnostics": {},
+        "google_cse": {},
         "skipped_sources": [], "source_errors": {},
     }
     successful_sources = 0
     for name in selected:
         provider = available[name]
         if name == "web-careers":
-            aggregate["source_diagnostics"][name] = provider.diagnostics()
+            web_diagnostics = provider.diagnostics()
+            aggregate["source_diagnostics"][name] = web_diagnostics
+            aggregate["google_cse"] = web_diagnostics["google_cse"]
             if provider.backend:
                 aggregate["source_backends"][name] = provider.backend
         if not provider.configured():
@@ -186,9 +189,13 @@ def search(args, store, preferences):
         if summary.source_backend:
             aggregate["source_backends"][name] = summary.source_backend
         if name == "web-careers":
-            aggregate["source_diagnostics"][name] = provider.diagnostics(
+            web_diagnostics = provider.diagnostics(
                 jobs_added=summary.added,
+                backend_qualifying=summary.backend_qualifying,
+                backend_added=summary.backend_added,
             )
+            aggregate["source_diagnostics"][name] = web_diagnostics
+            aggregate["google_cse"] = web_diagnostics["google_cse"]
         if name == "remotive":
             aggregate["source_diagnostics"][name] = {
                 "api_endpoint": getattr(provider, "api_endpoint", ""),

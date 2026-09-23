@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import sys
 from dataclasses import dataclass
 from datetime import date, datetime
 from pathlib import Path
@@ -417,49 +418,40 @@ def _column_letter(index: int) -> str:
     return result
 
 
-def _append_row_structure_requests(
-    sheet: dict, previous_row_count: int, row_count: int, column_count: int,
+def _new_row_format_requests(
+    sheet: dict, title: str, previous_row_count: int, row_count: int,
+    headers: list[str],
 ) -> list[dict]:
-    """Extend a live sheet without replacing user formatting or filter criteria."""
+    """Apply only essential number formats to cells in newly appended rows."""
     if row_count <= previous_row_count:
         return []
     sheet_id = sheet["properties"]["sheetId"]
     requests: list[dict] = []
-    if previous_row_count > 1:
-        source = {
-            "sheetId": sheet_id,
-            "startRowIndex": previous_row_count - 1,
-            "endRowIndex": previous_row_count,
-            "startColumnIndex": 0,
-            "endColumnIndex": column_count,
-        }
-        destination = {
-            "sheetId": sheet_id,
-            "startRowIndex": previous_row_count,
-            "endRowIndex": row_count,
-            "startColumnIndex": 0,
-            "endColumnIndex": column_count,
-        }
-        for paste_type in (
-            "PASTE_FORMAT", "PASTE_DATA_VALIDATION", "PASTE_CONDITIONAL_FORMATTING",
-        ):
-            requests.append({
-                "copyPaste": {
-                    "source": source,
-                    "destination": destination,
-                    "pasteType": paste_type,
-                    "pasteOrientation": "NORMAL",
-                }
-            })
-
-    basic_filter = sheet.get("basicFilter")
-    if basic_filter:
-        preserved_filter = dict(basic_filter)
-        preserved_range = dict(preserved_filter.get("range", {}))
-        if preserved_range.get("endRowIndex") == previous_row_count:
-            preserved_range["endRowIndex"] = row_count
-            preserved_filter["range"] = preserved_range
-            requests.append({"setBasicFilter": {"filter": preserved_filter}})
+    date_headers = (
+        ("Date Created", "Date Found")
+        if title == APPLICATION_SHEET
+        else ("Date Posted", "Date Found", "Last Seen")
+    )
+    formats = [(header, {"type": "DATE", "pattern": "mm/dd/yyyy"}) for header in date_headers]
+    if title == SCOUT_SHEET:
+        formats.append(("Evidence Confidence", {"type": "PERCENT", "pattern": "0%"}))
+    for header, number_format in formats:
+        if header not in headers:
+            continue
+        column = headers.index(header)
+        requests.append({
+            "repeatCell": {
+                "range": {
+                    "sheetId": sheet_id,
+                    "startRowIndex": max(previous_row_count, 1),
+                    "endRowIndex": row_count,
+                    "startColumnIndex": column,
+                    "endColumnIndex": column + 1,
+                },
+                "cell": {"userEnteredFormat": {"numberFormat": number_format}},
+                "fields": "userEnteredFormat.numberFormat",
+            }
+        })
     return requests
 
 
@@ -502,14 +494,40 @@ def _resume_link_format_requests(sheet_id: int, scout_rows: list[dict], headers:
     return requests
 
 
-def _write_sheet(values_api, spreadsheet_id: str, title: str, end_column: str, values: list[list[Any]]) -> None:
-    """Update cell values without clearing formats, filters, or sheet structure."""
-    values_api.update(
-        spreadsheetId=spreadsheet_id,
-        range=_sheet_range(title, end_column),
-        valueInputOption="USER_ENTERED",
-        body={"values": values},
-    ).execute()
+def _write_sheet(
+    values_api, spreadsheet_id: str, title: str,
+    existing_values: list[list[Any]], values: list[list[Any]],
+) -> None:
+    """Write only changed row spans; never clear or rewrite the complete sheet."""
+    escaped = title.replace("'", "''")
+    for row_index, desired_row in enumerate(values, 1):
+        existing_row = existing_values[row_index - 1] if row_index <= len(existing_values) else []
+        width = len(desired_row)
+        current = list(existing_row) + [""] * max(0, width - len(existing_row))
+        changed = [index for index in range(width) if _normalize_cell(current[index]) != desired_row[index]]
+        if not changed:
+            continue
+        start, end = min(changed), max(changed)
+        start_column = _column_letter(start)
+        end_column = _column_letter(end)
+        values_api.update(
+            spreadsheetId=spreadsheet_id,
+            range=f"'{escaped}'!{start_column}{row_index}:{end_column}{row_index}",
+            valueInputOption="USER_ENTERED",
+            body={"values": [desired_row[start:end + 1]]},
+        ).execute()
+
+
+def _run_optional_requests(api, spreadsheet_id: str, requests: list[dict], label: str) -> None:
+    """Formatting enhancements must never make a successful data sync fail."""
+    if not requests:
+        return
+    try:
+        api.batchUpdate(
+            spreadsheetId=spreadsheet_id, body={"requests": requests},
+        ).execute()
+    except Exception as error:
+        print(f"Warning: skipped optional Google Sheets {label}: {error}", file=sys.stderr)
 
 
 def _xlsx_record_keys(record: dict, title: str) -> list[str]:
@@ -614,8 +632,8 @@ def _sync_workbook_to_google(
         # Read the complete user-visible layout so reordered and custom columns
         # can be preserved during the merge.
         range=_sheet_range(APPLICATION_SHEET, "ZZ"),
-        # Return formulas verbatim so user-owned custom columns survive the
-        # clear-and-rewrite sync as formulas rather than frozen values.
+        # Return formulas verbatim so targeted value updates preserve formulas
+        # in user-owned custom columns rather than freezing their results.
         valueRenderOption="FORMULA",
         dateTimeRenderOption="FORMATTED_STRING",
     ).execute().get("values", [])
@@ -644,28 +662,30 @@ def _sync_workbook_to_google(
 
     _write_sheet(
         values_api, config.spreadsheet_id, APPLICATION_SHEET,
-        _column_letter(len(application_headers) - 1), application_values,
+        remote_application_values, application_values,
     )
     _write_sheet(
         values_api, config.spreadsheet_id, SCOUT_SHEET,
-        _column_letter(len(scout_headers) - 1), scout_values,
+        remote_scout_values, scout_values,
     )
 
-    format_requests = _append_row_structure_requests(
-        sheets[APPLICATION_SHEET], len(remote_application_values),
-        len(application_values), len(application_headers),
+    format_requests = _new_row_format_requests(
+        sheets[APPLICATION_SHEET], APPLICATION_SHEET,
+        len(remote_application_values), len(application_values), application_headers,
     )
-    format_requests.extend(_append_row_structure_requests(
-        sheets[SCOUT_SHEET], len(remote_scout_values),
-        len(scout_values), len(scout_headers),
+    format_requests.extend(_new_row_format_requests(
+        sheets[SCOUT_SHEET], SCOUT_SHEET,
+        len(remote_scout_values), len(scout_values), scout_headers,
     ))
-    format_requests.extend(
-        _resume_link_format_requests(
-            sheets[SCOUT_SHEET]["properties"]["sheetId"], merged_scout, scout_headers,
-        )
+    _run_optional_requests(
+        api, config.spreadsheet_id, format_requests, "new-row number formatting",
     )
-    if format_requests:
-        api.batchUpdate(spreadsheetId=config.spreadsheet_id, body={"requests": format_requests}).execute()
+    link_requests = _resume_link_format_requests(
+        sheets[SCOUT_SHEET]["properties"]["sheetId"], merged_scout, scout_headers,
+    )
+    _run_optional_requests(
+        api, config.spreadsheet_id, link_requests, "resume-link formatting",
+    )
 
     application_changed = _upsert_xlsx_rows_in_place(
         workbook[APPLICATION_SHEET], APPLICATION_HEADERS, merged_application,

@@ -9,6 +9,7 @@ import io
 from contextlib import redirect_stdout
 from unittest.mock import patch
 from pathlib import Path
+from urllib.parse import parse_qs, urlsplit
 
 
 SCOUT_ROOT = Path(__file__).resolve().parents[1]
@@ -161,11 +162,17 @@ class EnvironmentTests(unittest.TestCase):
             def configured(self):
                 return True
 
-            def diagnostics(self, *, jobs_added=0):
+            def diagnostics(
+                self, *, jobs_added=0, backend_qualifying=None, backend_added=None,
+            ):
                 return {
                     "configured": True, "backend": "brave", "brave_used": True,
                     "brave_search_results_returned": 0, "pages_fetched": 0,
                     "valid_job_postings_extracted": 0, "jobs_added": jobs_added,
+                    "google_cse": {
+                        "configured": True, "used": True, "results_fetched": 1,
+                        "qualifying": 1, "added": 1, "errors": [],
+                    },
                     "errors": [],
                 }
 
@@ -192,6 +199,7 @@ class EnvironmentTests(unittest.TestCase):
         self.assertIn("web-careers", invoked)
         self.assertTrue(daily_summary["source_diagnostics"]["web-careers"]["configured"])
         self.assertEqual(daily_summary["source_backends"]["web-careers"], "brave")
+        self.assertTrue(daily_summary["google_cse"]["used"])
 
     def test_provider_alias_accepts_remotive(self):
         args = build_parser().parse_args([
@@ -265,6 +273,7 @@ class WebCareerDiagnosticsTests(unittest.TestCase):
         }</script>'''
         environment = {
             "BRAVE_SEARCH_API_KEY": "brave-secret",
+            "GOOGLE_CSE_ENABLED": "true",
             "GOOGLE_CSE_API_KEY": "google-secret",
             "GOOGLE_CSE_ID": "google-cx",
         }
@@ -289,6 +298,136 @@ class WebCareerDiagnosticsTests(unittest.TestCase):
         self.assertEqual(diagnostics["valid_job_postings_extracted"], 2)
         self.assertEqual(diagnostics["jobs_added"], 1)
         self.assertEqual(diagnostics["errors"], [])
+
+    def test_both_configured_backends_run_the_same_existing_query(self):
+        calls = []
+
+        def search_api(url, headers=None):
+            calls.append((url, headers))
+            if "api.search.brave.com" in url:
+                return {"web": {"results": [{"url": "https://example.test/brave"}]}}
+            return {"items": [{"link": "https://example.test/google"}]}
+
+        job_page = b'''<script type="application/ld+json">{
+            "@type": "JobPosting", "title": "Paid Search Manager",
+            "description": "Own paid search strategy.",
+            "hiringOrganization": {"name": "Example Co"}
+        }</script>'''
+        environment = {
+            "BRAVE_SEARCH_API_KEY": "brave-secret",
+            "GOOGLE_CSE_ENABLED": "true",
+            "GOOGLE_CSE_API_KEY": "google-secret",
+            "GOOGLE_CSE_ID": "google-cx",
+        }
+        with (
+            patch.dict(os.environ, environment, clear=True),
+            patch("sources.web.get_json", side_effect=search_api),
+            patch("sources.web.get_bytes", return_value=job_page),
+        ):
+            provider = WebCareerProvider()
+            listings = list(provider.search(SearchRequest("paid search", "Remote")))
+
+        api_queries = [parse_qs(urlsplit(url).query)["q"][0] for url, _ in calls]
+        expected = (
+            "paid search jobs "
+            "(site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote"
+        )
+        self.assertEqual(api_queries, [expected, expected])
+        self.assertEqual(len(listings), 2)
+        self.assertEqual({listing.source for listing in listings}, {"web-careers"})
+        self.assertEqual(
+            {tuple(listing.metadata["_web_search_backends"]) for listing in listings},
+            {("brave",), ("google-cse",)},
+        )
+        diagnostics = provider.diagnostics()
+        self.assertTrue(diagnostics["google_cse_configured"])
+        self.assertTrue(diagnostics["google_cse_used"])
+        self.assertEqual(diagnostics["google_cse"]["results_fetched"], 1)
+
+    def test_google_listing_uses_shared_deduplication_and_backend_counts(self):
+        def search_api(url, headers=None):
+            if "api.search.brave.com" in url:
+                return {"web": {"results": [{"url": "https://example.test/brave"}]}}
+            return {"items": [{"link": "https://example.test/google"}]}
+
+        job_page = b'''<script type="application/ld+json">{
+            "@type": "JobPosting", "title": "Paid Search Manager",
+            "description": "Own paid search strategy and reporting.",
+            "hiringOrganization": {"name": "Example Co"},
+            "identifier": {"value": "shared-job-123"},
+            "jobLocation": {"address": {"addressLocality": "Remote"}}
+        }</script>'''
+        environment = {
+            "BRAVE_SEARCH_API_KEY": "brave-secret",
+            "GOOGLE_CSE_ENABLED": "true",
+            "GOOGLE_CSE_API_KEY": "google-secret",
+            "GOOGLE_CSE_ID": "google-cx",
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            with (
+                patch.dict(os.environ, environment, clear=True),
+                patch("sources.web.get_json", side_effect=search_api),
+                patch("sources.web.get_bytes", return_value=job_page),
+            ):
+                provider = WebCareerProvider()
+                with JobStore(Path(directory) / "jobs.sqlite3") as store:
+                    summary = discover(
+                        provider, [SearchRequest("paid search", "Remote")], store,
+                        load_preferences(), DESCRIPTION, minimum_score=101,
+                    )
+
+        self.assertEqual(summary.fetched, 2)
+        self.assertEqual(summary.added, 1)
+        self.assertEqual(summary.duplicates, 1)
+        self.assertEqual(summary.backend_qualifying, {"brave": 1, "google-cse": 1})
+        self.assertEqual(summary.backend_added, {"brave": 1})
+
+    def test_google_cse_error_is_visible_and_does_not_expose_credentials(self):
+        secret = "do-not-print-google-key"
+        with (
+            patch.dict(os.environ, {
+                "GOOGLE_CSE_ENABLED": "true",
+                "GOOGLE_CSE_API_KEY": secret, "GOOGLE_CSE_ID": "google-cx",
+            }, clear=True),
+            patch(
+                "sources.web.get_json",
+                side_effect=ProviderError(f"Google rejected key {secret}"),
+            ),
+        ):
+            provider = WebCareerProvider()
+            listings = list(provider.search(SearchRequest("paid search", "Remote")))
+
+        diagnostics = provider.diagnostics()
+        self.assertEqual(listings, [])
+        self.assertTrue(diagnostics["google_cse"]["used"])
+        self.assertEqual(len(diagnostics["google_cse"]["errors"]), 1)
+        self.assertNotIn(secret, json.dumps(diagnostics))
+        self.assertIn("[REDACTED]", diagnostics["google_cse"]["errors"][0]["error"])
+
+    def test_google_cse_is_disabled_by_default_even_with_credentials(self):
+        environment = {
+            "BRAVE_SEARCH_API_KEY": "brave-secret",
+            "GOOGLE_CSE_API_KEY": "legacy-google-key",
+            "GOOGLE_CSE_ID": "legacy-google-cx",
+        }
+        with (
+            patch.dict(os.environ, environment, clear=True),
+            patch("sources.web.get_json", return_value={"web": {"results": []}}) as get_json,
+        ):
+            provider = WebCareerProvider()
+            listings = list(provider.search(SearchRequest("paid search", "Remote")))
+
+        diagnostics = provider.diagnostics()
+        self.assertEqual(listings, [])
+        self.assertEqual(get_json.call_count, 1)
+        self.assertIn("api.search.brave.com", get_json.call_args.args[0])
+        self.assertEqual(provider.backends, ["brave"])
+        self.assertTrue(diagnostics["google_cse"]["configured"])
+        self.assertFalse(diagnostics["google_cse"]["enabled"])
+        self.assertFalse(diagnostics["google_cse"]["used"])
+        self.assertTrue(diagnostics["google_cse"]["skipped"])
+        self.assertEqual(diagnostics["google_cse"]["skip_reason"], "disabled")
+        self.assertEqual(diagnostics["google_cse"]["errors"], [])
 
     def test_brave_api_error_is_reported_without_exposing_key(self):
         secret = "do-not-print-this-key"

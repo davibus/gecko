@@ -56,7 +56,7 @@ GOOGLE_SHEETS_CREDENTIALS_FILE=C:\path\outside\the\repository\service-account.js
 python job-scout/scout.py sync-sheets
 ```
 
-Google synchronization uses the Sheets API rather than browser automation. It maintains `Job Tracker` and `Job Scout`, upserts Scout records by Scout ID or canonical URL, preserves historical rows and manual `Applied`/`Contacted` entries, and mirrors those manual entries into the XLSX backup. Routine synchronization updates cell values without clearing either sheet or reapplying template formatting. Existing row order, colors, dimensions, conditional formatting, and filter criteria remain user-controlled. New cloud rows copy the preceding row's format and validation, and a full-range basic filter is extended without discarding its criteria.
+Google synchronization uses the Sheets API rather than browser automation. It maintains `Job Tracker` and `Job Scout`, upserts Scout records by Scout ID or canonical URL, preserves historical rows and manual `Applied`/`Contacted` entries, and mirrors those manual entries into the XLSX backup. Routine synchronization updates only changed row spans without clearing either sheet or reapplying template formatting. Existing row order, colors, dimensions, frozen rows, conditional formatting, and filters remain user-controlled. It does not use cross-row copy/paste or reset a basic filter, so filtered-out rows do not block appends. Essential date and percentage formats are applied only to newly appended rows on a best-effort basis; a formatting failure is reported as a warning and does not fail the data sync.
 
 Alternatively, set credentials in the current shell or a secret manager:
 
@@ -71,7 +71,8 @@ $env:JOOBLE_API_KEY = "..."
 # Career-page discovery; included in the normal daily run
 $env:BRAVE_SEARCH_API_KEY = "..."
 
-# Legacy alternative for existing Google Custom Search customers
+# Optional legacy Google Custom Search discovery; disabled by default
+$env:GOOGLE_CSE_ENABLED = "false"
 $env:GOOGLE_CSE_API_KEY = "..."
 $env:GOOGLE_CSE_ID = "..."
 
@@ -80,7 +81,7 @@ $env:INDEED_API_ENDPOINT = "https://your-authorized-integration.example/jobs"
 $env:INDEED_API_TOKEN = "..."
 ```
 
-The default `search` source remains Adzuna. Jooble uses its official POST API and can be selected with `--provider jooble`. Remotive aggregates official feeds under `https://remotive.com/remote-jobs/feed/{category}` and can be selected with `--provider remotive`. The broken `https://remotive.com/feed` all-jobs URL is not queried. `daily` queries the core Adzuna, Jooble, Remotive, and Web Careers providers, so a configured `BRAVE_SEARCH_API_KEY` makes Brave Search part of every normal daily run. The Indeed adapter calls only the configured authorized endpoint; it does not scrape Indeed. Web Careers uses Brave Search to discover career URLs, then reads public schema.org `JobPosting` JSON-LD from those pages instead of depending on visual page selectors. Legacy Google Custom Search support is available only for existing customers; Google has closed it to new customers and announced discontinuation on January 1, 2027.
+The default `search` source remains Adzuna. Jooble uses its official POST API and can be selected with `--provider jooble`. Remotive aggregates official feeds under `https://remotive.com/remote-jobs/feed/{category}` and can be selected with `--provider remotive`. The broken `https://remotive.com/feed` all-jobs URL is not queried. `daily` queries the core Adzuna, Jooble, Remotive, and Web Careers providers, with Brave as the primary Web Careers backend. Google CSE is an optional legacy backend and is never called unless `GOOGLE_CSE_ENABLED=true` and both Google credentials are configured. When explicitly enabled, results from both APIs use the same career-page query, are combined by URL before pages are fetched, and then enter the same `JobPosting` extraction, normalization, scoring, and deduplication pipeline. The Indeed adapter calls only the configured authorized endpoint; it does not scrape Indeed. Google Custom Search support is available only for existing customers; Google has closed it to new customers and announced discontinuation on January 1, 2027.
 
 Remotive uses only marketing-adjacent category feeds: Marketing, Data and Analytics, Product Management, Business Development, Strategy, Communications, Account Management, Operations, and All Others. Clearly irrelevant feeds such as Software Development, DevOps, QA, Customer Service, IT, Engineering, and Artificial Intelligence are not requested by the normal RSS workflow. Every record from an adjacent or catch-all feed must also pass the title-family filter. One failed category does not abort the run. Remotive does not publish a separate E-Commerce feed, so Marketing supplies the closest official coverage.
 
@@ -105,7 +106,7 @@ python job-scout/scout.py show 12
 
 `search` uses Adzuna only by default and does not require `BRAVE_SEARCH_API_KEY`.
 
-`daily` runs the complete Adzuna, Jooble, Remotive, and Web Careers workflow. When `BRAVE_SEARCH_API_KEY` is configured, Web Careers automatically uses Brave Search, then fetches discovered pages and extracts schema.org `JobPosting` data. The workflow also performs pre-score role filtering, cross-provider deduplication, scoring, Adzuna enrichment for newly discovered provisional 80+ results, append-only tracker synchronization, and a current-run review queue. It never creates a resume or starts a Gecko handoff.
+`daily` runs the complete Adzuna, Jooble, Remotive, and Web Careers workflow. Web Careers automatically calls Brave when `BRAVE_SEARCH_API_KEY` is configured. Google CSE is skipped unless the explicit legacy-access switch `GOOGLE_CSE_ENABLED=true` is set alongside both Google credentials. Web Careers then fetches discovered pages and extracts schema.org `JobPosting` data. The workflow also performs pre-score role filtering, cross-provider deduplication, scoring, Adzuna enrichment for newly discovered provisional 80+ results, append-only tracker synchronization, and a current-run review queue. It never creates a resume or starts a Gecko handoff.
 
 At the start of each daily run, Job Scout snapshots the IDs already in its database. Duplicate discoveries are reported under `existing_job_ids` and are not merged into, rescored, or rewritten in the daily path. New records are reported under `new_job_ids`. Only those new records are eligible for worksheet insertion and the daily review. The XLSX and Google `Job Scout` worksheets remain cumulative historical lists, existing rows and manual `Applied`/`Contacted` values stay intact, and the daily review contains only new jobs meeting the requested score floor. If none qualify, the command prints `DAILY REVIEW: No new qualifying jobs were discovered in this run.`
 
@@ -124,7 +125,7 @@ python job-scout/scout.py diagnose-remotive-feeds --limit 100
 python job-scout/scout.py diagnose-remotive-rss
 ```
 
-Every `search`/`daily` run includes a `source_counts` object in its JSON summary, including zeroes for skipped or failed selected sources. The summary also includes `filtered_before_scoring`, `newly_discovered`, `already_existed`, `new_job_ids`, and `existing_job_ids`, making the current run's state explicit. For Web Careers, `source_diagnostics.web-careers` reports whether the provider is configured, the selected backend (`brave` when `BRAVE_SEARCH_API_KEY` is present), Brave result count, successfully fetched page count, valid `JobPosting` extraction count, jobs added, and credential-safe API/page errors. Provider failures are written clearly to stderr instead of being presented as successful zero-result searches.
+Every `search`/`daily` run includes a `source_counts` object in its JSON summary, including zeroes for skipped or failed selected sources. The summary also includes `filtered_before_scoring`, `newly_discovered`, `already_existed`, `new_job_ids`, and `existing_job_ids`, making the current run's state explicit. For Web Careers, `source_diagnostics.web-careers` reports configured/used backends, the exact generated queries, per-backend result and page counts, valid `JobPosting` extraction counts, jobs added, and credential-safe API/page errors. The top-level `google_cse` object reports `enabled`, `active`, `used`, `skipped`, `skip_reason`, `results_fetched`, `qualifying`, `added`, and `errors`. With the default `GOOGLE_CSE_ENABLED=false`, Google is reported as skipped with reason `disabled` and no API call or repeated 403 errors occur. Failures raised outside backend-isolated Web Careers acquisition remain visible in `source_errors`.
 
 `diagnose-remotive` is read-only and calls only `https://remotive.com/api/remote-jobs`; it does not invoke Indeed, LinkedIn, ZipRecruiter, any other provider, or generic web search. By default it checks digital marketing, paid search, PPC, and marketing analytics, then reports raw API records, unique query matches, jobs passing Gecko's score threshold, jobs surviving comparison with saved non-Remotive sources, and example Remotive URLs. Override the threshold with `--minimum-score` or repeat `--query` for a narrower check.
 

@@ -48,6 +48,8 @@ class SearchSummary:
     eligibility_includes_usa: int = 0
     eligibility_worldwide: int = 0
     top_jobs: list[dict] = field(default_factory=list)
+    backend_qualifying: dict[str, int] = field(default_factory=dict)
+    backend_added: dict[str, int] = field(default_factory=dict)
 
 
 REMOTIVE_RELEVANCE_TERMS = (
@@ -116,6 +118,9 @@ def _discover_listings(
         if not is_relevant_role(raw.title):
             summary.filtered_before_scoring += 1
             continue
+        discovery_backends = raw.metadata.get("_web_search_backends", [])
+        for backend in discovery_backends:
+            summary.backend_qualifying[backend] = summary.backend_qualifying.get(backend, 0) + 1
         job = normalize(raw)
         summary.normalized += 1
         result = score_job(job, preferences, resume_text)
@@ -167,6 +172,8 @@ def _discover_listings(
         job.id = job_id
         known.append(job)
         summary.added += 1
+        for backend in discovery_backends:
+            summary.backend_added[backend] = summary.backend_added.get(backend, 0) + 1
         summary.new_job_ids.append(job_id)
         if retained and should_resolve:
             job = resolve_and_store(job, store)

@@ -3,11 +3,13 @@ from __future__ import annotations
 import sys
 import tempfile
 import unittest
+import re
 from pathlib import Path
 from unittest.mock import MagicMock
 
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font, PatternFill
+from openpyxl.utils import column_index_from_string
 from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.worksheet.table import Table
 
@@ -64,8 +66,10 @@ class FakeSheetsApi:
             "Job Scout": values(SCOUT_HEADERS, scout_rows or []),
         }
         self.writes = {}
+        self.updates = []
         self.clears = []
         self.batch_requests = []
+        self.fail_next_number_format = False
 
     def service(self):
         outer = MagicMock()
@@ -92,6 +96,7 @@ class FakeSheetsApi:
                 },
             ]
         }
+        self.metadata = metadata
         spreadsheets.get.side_effect = lambda **_kwargs: self._request(metadata)
         spreadsheets.batchUpdate.side_effect = self._batch
         values_api.get.side_effect = self._get
@@ -110,18 +115,45 @@ class FakeSheetsApi:
         return range_value.split("!", 1)[0].strip("'").replace("''", "'")
 
     def _get(self, **kwargs):
-        return self._request({"values": self.remote.get(self._title(kwargs["range"]), [])})
+        rows = self.remote.get(self._title(kwargs["range"]), [])
+        return self._request({"values": [list(row) for row in rows]})
 
     def _clear(self, **kwargs):
         self.clears.append(self._title(kwargs["range"]))
         return self._request({})
 
     def _update(self, **kwargs):
-        self.writes[self._title(kwargs["range"])] = kwargs["body"]["values"]
+        title = self._title(kwargs["range"])
+        match = re.search(r"!([A-Z]+)(\d+):([A-Z]+)(\d+)$", kwargs["range"])
+        if not match:
+            raise AssertionError(f"Unexpected update range: {kwargs['range']}")
+        start_column = column_index_from_string(match.group(1))
+        start_row = int(match.group(2))
+        target = self.remote.setdefault(title, [])
+        incoming = kwargs["body"]["values"]
+        while len(target) < start_row - 1 + len(incoming):
+            target.append([])
+        for row_offset, source_row in enumerate(incoming):
+            row = target[start_row - 1 + row_offset]
+            while len(row) < start_column - 1 + len(source_row):
+                row.append("")
+            for column_offset, value in enumerate(source_row):
+                row[start_column - 1 + column_offset] = value
+        self.updates.append(kwargs)
+        self.writes[title] = target
         return self._request({"updatedRows": len(kwargs["body"]["values"])})
 
     def _batch(self, **kwargs):
-        self.batch_requests.extend(kwargs["body"]["requests"])
+        requests = kwargs["body"]["requests"]
+        if any("copyPaste" in request for request in requests):
+            raise RuntimeError(
+                "Invalid requests[0].copyPaste: This operation is not supported "
+                "on a range with a filtered out row."
+            )
+        if self.fail_next_number_format and any("repeatCell" in request for request in requests):
+            self.fail_next_number_format = False
+            raise RuntimeError("simulated optional formatting failure")
+        self.batch_requests.extend(requests)
         return self._request({"replies": []})
 
 
@@ -201,7 +233,6 @@ class GoogleSheetsApiSyncTests(unittest.TestCase):
         )
         self.assertEqual(summary.application_rows, 1)
         self.assertEqual(summary.scout_rows, 1)
-        self.assertEqual(set(fake.writes), {"Job Tracker", "Job Scout"})
         self.assertEqual(fake.clears, [])
         self.assertTrue(fake.batch_requests)
         self.assertTrue(any("updateCells" in request for request in fake.batch_requests))
@@ -214,7 +245,7 @@ class GoogleSheetsApiSyncTests(unittest.TestCase):
         ]
         self.assertTrue(any(link.startswith("http://127.0.0.1:8765/open/") for link in resume_links))
 
-        scout_write = fake.writes["Job Scout"]
+        scout_write = fake.remote["Job Scout"]
         scout_row = dict(zip(scout_write[0], scout_write[1]))
         self.assertEqual(scout_row["Gecko Status"], "Resume Created")
         self.assertEqual(scout_row["Resume Created"], "X")
@@ -253,10 +284,10 @@ class GoogleSheetsApiSyncTests(unittest.TestCase):
 
         sync_workbook_to_google(self.tracker, config=self.config, service=fake.service())
 
-        self.assertEqual(fake.writes["Job Tracker"][0], application_headers)
-        self.assertEqual(fake.writes["Job Scout"][0], scout_headers)
-        application = dict(zip(application_headers, fake.writes["Job Tracker"][1]))
-        scout = dict(zip(scout_headers, fake.writes["Job Scout"][1]))
+        self.assertEqual(fake.remote["Job Tracker"][0], application_headers)
+        self.assertEqual(fake.remote["Job Scout"][0], scout_headers)
+        application = dict(zip(application_headers, fake.remote["Job Tracker"][1]))
+        scout = dict(zip(scout_headers, fake.remote["Job Scout"][1]))
         self.assertEqual(application["My App Notes"], "retain application note")
         self.assertEqual(application["Applied"], "X")
         self.assertEqual(application["Contacted"], "manual")
@@ -266,7 +297,7 @@ class GoogleSheetsApiSyncTests(unittest.TestCase):
         self.assertEqual(scout["URL Status"], "Verified - Official ATS")
         self.assertEqual(scout["Authoritative URL"], "https://jobs.lever.co/example/123")
 
-    def test_google_sync_updates_xlsx_in_place_and_preserves_excel_formatting(self):
+    def test_google_sync_appends_with_filtered_rows_and_preserves_excel_formatting(self):
         workbook = load_workbook(self.tracker)
         application = workbook["Job Tracker"]
         scout = workbook["Job Scout"]
@@ -321,15 +352,38 @@ class GoogleSheetsApiSyncTests(unittest.TestCase):
         self.assertEqual(scout.freeze_panes, "E6")
         self.assertTrue(scout.tables["ScoutRows"].ref.endswith("3"))
 
-        copy_requests = [request for request in fake.batch_requests if "copyPaste" in request]
-        self.assertTrue(copy_requests)
-        filter_requests = [request["setBasicFilter"]["filter"] for request in fake.batch_requests if "setBasicFilter" in request]
-        self.assertEqual(len(filter_requests), 2)
-        self.assertEqual(filter_requests[0]["criteria"], {"9": {"hiddenValues": [""]}})
+        self.assertFalse(any("copyPaste" in request for request in fake.batch_requests))
+        self.assertFalse(any("setBasicFilter" in request for request in fake.batch_requests))
+        for update in fake.updates:
+            match = re.search(r"![A-Z]+(\d+):[A-Z]+(\d+)$", update["range"])
+            self.assertIsNotNone(match)
+            self.assertEqual(match.group(1), match.group(2))
+        repeat_requests = [request["repeatCell"] for request in fake.batch_requests if "repeatCell" in request]
+        self.assertTrue(repeat_requests)
+        self.assertTrue(all(request["range"]["startRowIndex"] == 2 for request in repeat_requests))
+        self.assertEqual(len(fake.remote["Job Tracker"]), 3)
+        self.assertEqual(len(fake.remote["Job Scout"]), 3)
         self.assertEqual(
-            filter_requests[1]["criteria"],
+            fake.metadata["sheets"][1]["basicFilter"]["criteria"],
             {"4": {"condition": {"type": "NUMBER_GREATER", "values": [{"userEnteredValue": "80"}]}}},
         )
+
+    def test_optional_new_row_format_failure_does_not_fail_sync(self):
+        fake = FakeSheetsApi(
+            application_rows=[application_record("job-2")],
+            scout_rows=[scout_record(2, url="https://example.test/job/2")],
+        )
+        fake.fail_next_number_format = True
+
+        summary = sync_workbook_to_google(
+            self.tracker, config=self.config, service=fake.service(),
+        )
+
+        self.assertEqual(summary.application_rows, 2)
+        self.assertEqual(summary.scout_rows, 2)
+        self.assertEqual(len(fake.remote["Job Tracker"]), 3)
+        self.assertEqual(len(fake.remote["Job Scout"]), 3)
+        self.assertTrue(any("updateCells" in request for request in fake.batch_requests))
 
 
 if __name__ == "__main__":
