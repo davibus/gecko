@@ -25,7 +25,7 @@ When asked to "use Gecko" for a job:
 6. Produce a Match Score report.
 7. Save the resume under `output/resumes/`.
 8. Save the match report under `output/match-reports/`.
-9. After both final files have been created and validated successfully, add the job to `output/job-tracker.xlsx` with `scripts/manage_job_tracker.py`. Never add a tracker row before both final deliverables exist.
+9. After both final files have been created and validated successfully, add or update the job in the canonical Google Sheet with `scripts/manage_job_tracker.py`. Never add a tracker row before both final deliverables exist.
 
 ### Mandatory pagination validation
 
@@ -52,18 +52,14 @@ All reusable tools and scripts remain in `scripts/`.
 
 ## Job tracker
 
-Every successfully completed Gecko resume must be recorded through the tracker command as the final workflow step. During the Google Sheets migration, the command updates `output/job-tracker.xlsx` first and then synchronizes both `Job Tracker` and `Job Scout` to the configured Google Sheet. Run:
+Google Sheets is the canonical job tracker. Do not create or update a local Excel job tracker. Every successfully completed Gecko resume must be recorded through the tracker command as the final workflow step. Run:
 
 `python scripts/manage_job_tracker.py add --resume "output/resumes/<resume-file>.docx" --match-report "output/match-reports/<match-report-file>.md" --job-description "input/job-descriptions/<archived-listing-file>.md"`
 
-The tracker script assigns the next Resume # and prevents duplicate Job Number entries. Do not directly rewrite existing tracker rows or clear the user-maintained `Applied` and `Contacted` columns.
+The tracker script finds existing rows by Job Number, updates only Gecko-managed cells, and assigns the next Resume #/Index from the Google Sheet for new jobs. Do not directly rewrite existing tracker rows or clear the user-maintained `Applied` and `Contacted` columns.
 
-When `TRACKER_BACKEND=google-sheets`, treat the Google Sheet as the primary live tracker and retain `output/job-tracker.xlsx` as the required backup. Never bypass `scripts/manage_job_tracker.py`, because it also marks the matching Scout row `Resume Created` and preserves manual fields across both backends.
+Never bypass `scripts/manage_job_tracker.py`, because it also marks the matching Scout row `Resume Created`. If Google Sheets is unavailable, report the error; do not create a local tracker or silently fall back.
 
-## Persistent Excel formatting
+## Persistent Google Sheets formatting
 
-`output/job-tracker.xlsx` is a user-managed workbook. If it already exists, always load it with openpyxl and update cells in place. Never recreate the workbook, delete/recreate a worksheet, delete/rebuild its data rows, blanket-restyle existing cells, clear filters, or replace user formatting with template defaults.
-
-Preserve fills, fonts, borders, number formats, alignment, row heights, column widths, frozen panes, AutoFilter and sort state where possible, Excel Tables, conditional formatting, data validation, hyperlinks, formulas, worksheet order, and user-maintained fields. When appending a row, copy the previous data row's formatting, extend applicable validation/filter ranges, and expand any existing Excel Table to include the new row. User-created formatting always takes priority.
-
-When Google Sheets is enabled, apply the same preservation rule to the live `Job Tracker` and `Job Scout` tabs. Routine synchronization must update values in place; it must not clear populated tabs, reapply default formatting across existing ranges, replace conditional-format rules, reset column widths, or discard filter criteria. Keep existing cloud row order so formatting remains attached to the same records.
+Preserve user colors, filters, checkbox values, frozen rows, column widths, conditional formatting, formulas, hyperlinks, and manual fields on the live `Job Tracker` and `Job Scout` tabs. Routine operations update only Gecko-managed cell values in place. Never recreate tabs, rewrite entire ranges, change physical row order, or reset formatting or filter criteria. Initialize native Applied/Contacted checkboxes only on newly created rows; never overwrite existing manual values.

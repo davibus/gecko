@@ -1,0 +1,19 @@
+{
+  "status": "pass",
+  "word_pages": 2,
+  "pdf_pages": 2,
+  "issues": [],
+  "remaining_weaknesses": [
+    "web-careers: https://jobs.lever.co/thesalesfactory/0a7e4c9a-2896-4d7a-b70d-716303167032",
+    "Related role family: demand generation.",
+    "Analytics evidence: marketing analytics.",
+    "E-commerce/SEO evidence: SEO.",
+    "Martech/automation/AI evidence: HubSpot, Salesforce, marketing automation, automation.",
+    "14+ years meets the stated 5-year requirement.",
+    "Leadership requirement aligns with verified department and team management.",
+    "No complete requirements section is available.",
+    "Remote eligibility appears to exclude the candidate's US location."
+  ],
+  "native_validation": "C:\\Users\\DCALL\\Desktop\\gecko\\scratch\\The-Sales-Factory+717\\validation-status.json",
+  "word_output": "Direct Word COM is unavailable in the sandbox; handing validation to the interactive desktop bridge.\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\Users\\DCALL\\Desktop\\gecko\\scratch\\The-Sales-Factory+717\\validation-status.json"
+}

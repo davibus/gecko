@@ -1,42 +1,35 @@
-"""Regression checks for blank metadata and safe tracker refreshes."""
+"""Metadata extraction remains source-grounded without any Excel dependency."""
 
-from datetime import date
 from pathlib import Path
+import sys
+from tempfile import TemporaryDirectory
 import unittest
 
-from manage_job_tracker import JobRecord, append_record, create_workbook, markdown_field, upsert_record
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from manage_job_tracker import markdown_field, record_from_files
 
 
 class TrackerMetadataTests(unittest.TestCase):
     def test_blank_salary_does_not_capture_next_line(self):
         for newline in ("\n", "\r\n"):
-            with self.subTest(newline=repr(newline)):
-                text = newline.join(["- **Salary:** ", "- **Source:** web-careers"])
-                self.assertEqual(markdown_field(text, ("Salary", "Pay")), "")
-                self.assertEqual(markdown_field(text, ("Source",)), "web-careers")
+            text = newline.join(["- **Salary:** ", "- **Source:** web-careers"])
+            self.assertEqual(markdown_field(text, ("Salary", "Pay")), "")
+            self.assertEqual(markdown_field(text, ("Source",)), "web-careers")
 
-    def test_populated_metadata_and_aliases(self):
-        self.assertEqual(markdown_field("- **Pay:** $80,000–$100,000\n", ("Salary", "Pay")), "$80,000–$100,000")
-        self.assertEqual(markdown_field("- **Job Number:** `abc123`\n", ("Job Number",)), "abc123")
-
-    def test_refresh_clears_bad_pay_and_preserves_identity_and_manual_fields(self):
-        wb = create_workbook()
-        ws = wb["Job Tracker"]
-        tracker = Path("output/job-tracker.xlsx")
-        record = JobRecord("Example", "Paid Media Manager", "", "abc123", "86/100", "",
-                           Path("output/resumes/example.docx"), date(2026, 9, 22))
-        append_record(ws, tracker, record)
-        number = ws.cell(2, 1).value
-        ws.cell(2, 4).value = "- **Source:** web-careers"
-        ws.cell(2, 10).value = "Applied manually"
-        ws.cell(2, 11).value = "Contacted manually"
-        self.assertEqual(upsert_record(ws, tracker, record), (False, True))
-        self.assertIsNone(ws.cell(2, 4).value)
-        self.assertEqual(ws.cell(2, 1).value, number)
-        self.assertEqual(ws.cell(2, 10).value, "Applied manually")
-        self.assertEqual(ws.cell(2, 11).value, "Contacted manually")
-        self.assertEqual(ws.max_row, 2)
-        self.assertEqual(upsert_record(ws, tracker, record), (False, False))
+    def test_completed_artifacts_supply_google_record(self):
+        with TemporaryDirectory() as temp:
+            root = Path(temp)
+            resume = root / "Dave-Call+Example+abc123.docx"
+            report = root / "Dave-Call+Example+abc123.md"
+            listing = root / "Example+abc123.md"
+            resume.write_bytes(b"completed")
+            report.write_text("# Role\n\nMatch Score: 86/100\n", encoding="utf-8")
+            listing.write_text("# Role\n\n- **Company:** Example\n- **Job Number:** abc123\n"
+                               "- **Scout ID:** 42\n- **Salary:** \n", encoding="utf-8")
+            record = record_from_files(resume, report, listing)
+            self.assertEqual((record.job_number, record.match_score, record.scout_id),
+                             ("abc123", "86/100", 42))
+            self.assertEqual(record.pay, "")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,834 @@
+{
+  "version": 2,
+  "job": {
+    "company": "HealthCare",
+    "safe_company": "HealthCare",
+    "title": "Growth Marketing Manager",
+    "job_number": "f3febd60-0083-4bee-9856-c6d779a72177"
+  },
+  "listing": "C:\\Users\\DCALL\\Desktop\\gecko\\input\\job-descriptions\\HealthCare+f3febd60-0083-4bee-9856-c6d779a72177.md",
+  "listing_sha256": "2211d06300d8c60c21e26efd3c72c24a8c61ffd2ca5886e37b31ba27188eec94",
+  "source_sha256": {
+    "input\\master-resume\\Dave-Call-resume-9-23-26.docx": "cccae06bd74debae639367b19e9e41cd9537e351f3ee1aac208e1a7dae45061f"
+  },
+  "requirements": {
+    "required_skills": [],
+    "preferred_skills": [
+      {
+        "text": "Experience marketing insurance, financial services, or other regulated/consideration-driven products",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Familiarity with lead generation, lead aggregators, and eCommerce/DTC acquisition models",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Experience with affiliate, partnership, or business development motions in a consumer business",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Hands-on exposure to conversion tracking, offline conversion imports, or call tracking platforms such as Invoca",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Experience with the U65 / non-ACA insurance market",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Prior work in a start-up, scale-up, or private equity-backed business",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      }
+    ],
+    "responsibilities": [
+      {
+        "text": "Own the performance of paid search and paid social as channels — setting targets, allocating budget, and holding the agency partner accountable for volume, cost-per-acquisition, and return on ad spend",
+        "status": "supported",
+        "evidence_ids": [
+          "E021"
+        ],
+        "matched_terms": [
+          "paid search",
+          "budget"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Manage acquisition budgets across channels, continuously reallocating spend toward the highest-performing sources",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Direct campaign, keyword, audience, creative, and landing page strategy with the agency partner, and own the decisions that follow from what the tests show",
+        "status": "review",
+        "evidence_ids": [
+          "E019"
+        ],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Partner with Finance and Analytics to forecast spend, model unit economics, and hit blended CAC targets",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "analytics"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Own the accuracy of the conversion and revenue signal returned to advertising platforms across paid, organic, email, and phone",
+        "status": "supported",
+        "evidence_ids": [
+          "E014"
+        ],
+        "matched_terms": [
+          "email"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Coordinate with Data and Engineering to specify, prioritize, and validate tracking work — including offline conversion uploads, click-ID capture, and how conversion value is defined",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Own call attribution through Invoca end to end, connecting calls to dispositions, enrollments, and economic outcomes, and returning those events to the originating platform",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "attribution"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Reconcile platform-reported performance against the internal source of record, and resolve the differences rather than reporting around them",
+        "status": "supported",
+        "evidence_ids": [
+          "E020"
+        ],
+        "matched_terms": [
+          "reporting"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Translate marketing requirements into scoped engineering tickets and carry them through to verified delivery",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Develop and execute the SEO strategy to grow organic traffic and reduce dependence on paid channels",
+        "status": "supported",
+        "evidence_ids": [
+          "E014"
+        ],
+        "matched_terms": [
+          "SEO"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Source, negotiate, and manage affiliate, referral, and content partnerships — owning them from first conversation through to profitable volume",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": [
+          "content"
+        ]
+      },
+      {
+        "text": "Evaluate and onboard new acquisition partners, lead aggregators, and eCommerce sources",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Develop organic social and content-led channels as potential growth surfaces, working with the Content Marketing Manager on execution",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": [
+          "content"
+        ]
+      },
+      {
+        "text": "Run a structured program of channel tests, defining the traction threshold and the measurement approach for each one before it launches",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Make a clear scale, iterate, or stop recommendation on every test, and document what was learned either way",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Define acquisition KPIs and build reporting that ties channel spend to enrolled members and lifetime value",
+        "status": "supported",
+        "evidence_ids": [
+          "E022"
+        ],
+        "matched_terms": [
+          "reporting"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Set the strategic direction for conversion rate optimization in partnership with the Director of Insurance Marketing, and work with the Content Marketing Manager to ensure a seamless hand-off from traffic to conversion",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": [
+          "conversion rate optimization",
+          "content"
+        ]
+      },
+      {
+        "text": "Identify and act on new channel opportunities to diversify and de-risk the acquisition mix",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Partner with Lifecycle Marketing to align acquisition targeting with retention and lifetime-value goals",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": [
+          "lifecycle"
+        ]
+      },
+      {
+        "text": "Work cross-functionally with Product, Operations, and Analytics to align acquisition strategy with company priorities",
+        "status": "supported",
+        "evidence_ids": [
+          "E008"
+        ],
+        "matched_terms": [
+          "analytics"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Contribute the consumer perspective to Pivot Health’s positioning, messaging, and brand direction",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Contribute to the Growth & Marketing roadmap and quarterly operating plan",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "5+ years of growth marketing experience spanning multiple acquisition channels, with genuine depth in at least two of them",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "A track record of taking a channel from unproven to producing — you have found traction somewhere that did not have it before, and can explain how you knew it was real",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Demonstrated success owning acquisition budgets and hitting CPA, ROAS, or CAC targets in a high-volume, direct-to-consumer environment",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Deeply analytical — comfortable with data, attribution, funnel metrics, and building the business case for spend",
+        "status": "supported",
+        "evidence_ids": [
+          "E001"
+        ],
+        "matched_terms": [
+          "attribution"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Comfortable directing agencies and contractors — you have held an outside partner to a number and know the difference between activity and results",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Experience building partnerships or affiliate relationships, including sourcing and negotiating them, not only managing them once signed",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Working fluency with Google Ads, Microsoft Ads, Meta, and web analytics tools (e.g., GA4) — enough to set strategy and interrogate results, without needing to be the person in the account every day",
+        "status": "supported",
+        "evidence_ids": [
+          "E005"
+        ],
+        "matched_terms": [
+          "Google Ads",
+          "Microsoft Ads",
+          "GA4",
+          "analytics"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Able to work directly with data and engineering teams on measurement problems — scoping requirements, prioritizing them, and validating that what shipped actually works",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Self-starter comfortable operating without a fully built infrastructure and building programs from the ground up",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Excellent communicator and collaborator across internal and external stakeholders",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Medical coverage with PPO and HSA plan options",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Company funded HSA contributions from $2,000 to $4,000 annually",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Dental and vision coverage",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "401(k) with company match and eligibility from day one",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Paid time off and company holidays",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Paid parental and pregnancy disability leave",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Company paid life and AD&D insurance",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Employee Assistance Program (EAP)",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Employee discounts on travel, entertainment, fitness, dining, and more",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      }
+    ],
+    "tools": [
+      {
+        "text": "Google Ads",
+        "status": "supported",
+        "evidence_ids": [
+          "E005"
+        ]
+      },
+      {
+        "text": "Microsoft Ads",
+        "status": "supported",
+        "evidence_ids": [
+          "E005"
+        ]
+      },
+      {
+        "text": "GA4",
+        "status": "supported",
+        "evidence_ids": [
+          "E005"
+        ]
+      }
+    ],
+    "seniority_signals": [
+      {
+        "text": "Own the performance of paid search and paid social as channels — setting targets, allocating budget, and holding the agency partner accountable for volume, cost-per-acquisition, and return on ad spend",
+        "status": "supported",
+        "evidence_ids": [
+          "E021"
+        ]
+      },
+      {
+        "text": "Manage acquisition budgets across channels, continuously reallocating spend toward the highest-performing sources",
+        "status": "gap",
+        "evidence_ids": [
+          "E024"
+        ]
+      },
+      {
+        "text": "Direct campaign, keyword, audience, creative, and landing page strategy with the agency partner, and own the decisions that follow from what the tests show",
+        "status": "review",
+        "evidence_ids": [
+          "E019"
+        ]
+      },
+      {
+        "text": "Own the accuracy of the conversion and revenue signal returned to advertising platforms across paid, organic, email, and phone",
+        "status": "supported",
+        "evidence_ids": [
+          "E014"
+        ]
+      },
+      {
+        "text": "Own call attribution through Invoca end to end, connecting calls to dispositions, enrollments, and economic outcomes, and returning those events to the originating platform",
+        "status": "gap",
+        "evidence_ids": [
+          "E020"
+        ]
+      },
+      {
+        "text": "Source, negotiate, and manage affiliate, referral, and content partnerships — owning them from first conversation through to profitable volume",
+        "status": "gap",
+        "evidence_ids": [
+          "E023"
+        ]
+      },
+      {
+        "text": "Evaluate and onboard new acquisition partners, lead aggregators, and eCommerce sources",
+        "status": "gap",
+        "evidence_ids": [
+          "E017"
+        ]
+      },
+      {
+        "text": "Develop organic social and content-led channels as potential growth surfaces, working with the Content Marketing Manager on execution",
+        "status": "gap",
+        "evidence_ids": [
+          "E017"
+        ]
+      },
+      {
+        "text": "Set the strategic direction for conversion rate optimization in partnership with the Director of Insurance Marketing, and work with the Content Marketing Manager to ensure a seamless hand-off from traffic to conversion",
+        "status": "gap",
+        "evidence_ids": [
+          "E023"
+        ]
+      },
+      {
+        "text": "Demonstrated success owning acquisition budgets and hitting CPA, ROAS, or CAC targets in a high-volume, direct-to-consumer environment",
+        "status": "gap",
+        "evidence_ids": [
+          "E023"
+        ]
+      },
+      {
+        "text": "Experience building partnerships or affiliate relationships, including sourcing and negotiating them, not only managing them once signed",
+        "status": "gap",
+        "evidence_ids": [
+          "E010"
+        ]
+      },
+      {
+        "text": "Familiarity with lead generation, lead aggregators, and eCommerce/DTC acquisition models",
+        "status": "gap",
+        "evidence_ids": [
+          "E013"
+        ]
+      }
+    ],
+    "industry_terminology": [
+      {
+        "text": "Own the performance of paid search and paid social as channels — setting targets, allocating budget, and holding the agency partner accountable for volume, cost-per-acquisition, and return on ad spend",
+        "status": "supported",
+        "evidence_ids": [
+          "E021"
+        ]
+      },
+      {
+        "text": "Direct campaign, keyword, audience, creative, and landing page strategy with the agency partner, and own the decisions that follow from what the tests show",
+        "status": "review",
+        "evidence_ids": [
+          "E019"
+        ]
+      },
+      {
+        "text": "Medical coverage with PPO and HSA plan options",
+        "status": "gap",
+        "evidence_ids": [
+          "E024"
+        ]
+      }
+    ],
+    "ats_keywords": [
+      {
+        "text": "paid search",
+        "status": "supported",
+        "evidence_ids": [
+          "E021"
+        ]
+      },
+      {
+        "text": "budget",
+        "status": "supported",
+        "evidence_ids": [
+          "E021"
+        ]
+      },
+      {
+        "text": "analytics",
+        "status": "supported",
+        "evidence_ids": [
+          "E024"
+        ]
+      },
+      {
+        "text": "email",
+        "status": "supported",
+        "evidence_ids": [
+          "E014"
+        ]
+      },
+      {
+        "text": "attribution",
+        "status": "supported",
+        "evidence_ids": [
+          "E020"
+        ]
+      },
+      {
+        "text": "reporting",
+        "status": "supported",
+        "evidence_ids": [
+          "E020"
+        ]
+      },
+      {
+        "text": "SEO",
+        "status": "supported",
+        "evidence_ids": [
+          "E014"
+        ]
+      },
+      {
+        "text": "content",
+        "status": "gap",
+        "evidence_ids": []
+      },
+      {
+        "text": "conversion rate optimization",
+        "status": "gap",
+        "evidence_ids": []
+      },
+      {
+        "text": "lifecycle",
+        "status": "gap",
+        "evidence_ids": []
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "id": "E001",
+      "job": 0,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Analyzed max CPC versus smart bidding, brand and non-brand target CPA, Performance Max and Shopping mix, audience performance, data-driven attribution, and incremental CPA."
+    },
+    {
+      "id": "E002",
+      "job": 0,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Evaluated customer journeys from reach and micro-conversions through purchase, click-to-call, and lifetime value to identify scalable search and budget opportunities."
+    },
+    {
+      "id": "E003",
+      "job": 0,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Built Tableau dashboards and automated weekly reporting across 10+ channels using Python, Databricks, SQL, Excel, and Funnel.io, improving accuracy and decision speed."
+    },
+    {
+      "id": "E004",
+      "job": 0,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Used regression models, holdouts, geo tests, scale-up/down analysis, and budget reallocation scenarios to forecast outcomes and present credible investment recommendations."
+    },
+    {
+      "id": "E005",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget."
+    },
+    {
+      "id": "E006",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review."
+    },
+    {
+      "id": "E007",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions."
+    },
+    {
+      "id": "E008",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Coordinated search and broader channel strategy with website, SEO, operations, and creative priorities to maintain efficient delivery and support profitable growth."
+    },
+    {
+      "id": "E009",
+      "job": 2,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Directed digital marketing and e-commerce for a large B2B distributor, coordinating execution and reporting across marketing, sales, operations, finance, IT, and product teams."
+    },
+    {
+      "id": "E010",
+      "job": 2,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Modernized the company’s digital environment and launched multiple B2C channels while protecting relationships with more than 650 B2B retail partners."
+    },
+    {
+      "id": "E011",
+      "job": 2,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Maintained marketing databases, financial reporting, and cross-channel systems that improved budget visibility, data consistency, collaboration, and decision-making."
+    },
+    {
+      "id": "E012",
+      "job": 2,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Applied project-by-project cost-benefit analysis to prioritize growth initiatives, marketplace opportunities, product investments, and operational improvements."
+    },
+    {
+      "id": "E013",
+      "job": 3,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed 75+ Google Ads accounts and more than $276K in monthly spend across search, display, mobile, remarketing, YouTube, lead generation, and multi-channel client programs."
+    },
+    {
+      "id": "E014",
+      "job": 3,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Consulted directly with clients on business goals, pain points, budget allocation, campaign structure, SEO, website, email, social, and paid media opportunities."
+    },
+    {
+      "id": "E015",
+      "job": 3,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Conducted keyword and competitive research, developed targeting and messaging recommendations, and created conversion, attribution, A/B, and multivariate testing frameworks."
+    },
+    {
+      "id": "E016",
+      "job": 3,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Built Funnel.io and Looker Studio reporting, created automated monitoring scripts, and developed a repeatable account-management system adopted across the agency."
+    },
+    {
+      "id": "E017",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Led an eight-person e-commerce team responsible for paid search, customer acquisition, campaign delivery, website performance, and growth across the U.S., Canada, and U.K."
+    },
+    {
+      "id": "E018",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed 150+ campaigns across Google Ads, Microsoft Ads, Amazon, search, shopping, display, video, remarketing, mobile, social, local, and email with approximately $400K in monthly spend."
+    },
+    {
+      "id": "E019",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing."
+    },
+    {
+      "id": "E020",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Created annual projections and KPI reporting with senior leadership and used platform, analytics, Magento, accounting, and competitive data to guide budget and campaign decisions."
+    },
+    {
+      "id": "E021",
+      "job": 0,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed up to $30 million per month in paid media with a four-person team, supporting high-volume account operations and disciplined budget oversight."
+    },
+    {
+      "id": "E022",
+      "job": 3,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed 75+ Google Ads accounts with more than $276K in combined monthly spend while advising clients on channel allocation, campaign structure, and growth priorities."
+    },
+    {
+      "id": "E023",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Scaled monthly marketing volume from approximately $200K to $800K while improving ROAS from 1.5 to 3.5 through budget, bidding, audience, and conversion optimization."
+    },
+    {
+      "id": "E024",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed 150+ campaigns and approximately $400K in monthly spend, generating more than $9 million in revenue and 35% of company sales."
+    }
+  ],
+  "resume": {
+    "name": "DAVE CALL",
+    "headline": "Growth Marketing | Acquisition Strategy, Attribution & Conversion",
+    "contact": "Lehi, UT  |  (530) 507-8269  |  mdavidcall@gmail.com  |  linkedin.com/in/mdavidcall",
+    "summary": "Performance marketing leader with 14+ years across agency, e-commerce, and B2B environments. Managed large paid media budgets and multi-channel acquisition programs, using audience strategy, conversion testing, attribution, and forecasting to guide investment. Built automated reporting and dashboards to improve decisions, and coordinated marketing with sales, product, operations, and finance teams. Brings hands-on Google Ads, Microsoft Ads, Meta, SEO, and landing-page experience.",
+    "education": "Bachelor of Science, Business Management - Brigham Young University",
+    "certifications": "Certifications: Google Ads, Google Analytics, Microsoft Ads, Meta Blueprint, Amazon Marketing Services",
+    "jobs": [
+      {
+        "title": "Marketing Strategist / Analyst",
+        "company": "1-800 Contacts",
+        "location": "Draper, UT"
+      },
+      {
+        "title": "Director of Digital Marketing",
+        "company": "GRIP6",
+        "location": "Midvale, UT"
+      },
+      {
+        "title": "Director of E-Commerce / Marketing",
+        "company": "Intercon Inc.",
+        "location": "Salt Lake City, UT"
+      },
+      {
+        "title": "SEM Manager / Project Manager",
+        "company": "The Infinite Agency",
+        "location": "Dallas, TX"
+      },
+      {
+        "title": "E-Commerce Manager",
+        "company": "LifeSpan Fitness",
+        "location": "Salt Lake City, UT"
+      }
+    ],
+    "skills": [
+      "Google Ads",
+      "Microsoft Ads",
+      "Meta",
+      "GA4",
+      "Google Tag Manager",
+      "attribution",
+      "conversion tracking",
+      "CRO",
+      "forecasting",
+      "SEO",
+      "landing pages",
+      "affiliate marketing",
+      "Looker Studio",
+      "Tableau",
+      "Python",
+      "SQL",
+      "B2B",
+      "e-commerce"
+    ],
+    "selected_evidence_ids": [
+      "E021",
+      "E002",
+      "E003",
+      "E004",
+      "E005",
+      "E006",
+      "E007",
+      "E008",
+      "E009",
+      "E010",
+      "E011",
+      "E012",
+      "E013",
+      "E014",
+      "E015",
+      "E016",
+      "E017",
+      "E019",
+      "E020",
+      "E024"
+    ],
+    "relevant_metric_ids": [
+      "E021",
+      "E006",
+      "E010",
+      "E013",
+      "E024"
+    ]
+  },
+  "review_notes": [
+    "Review requirement classifications and evidence links before generation.",
+    "All factual content comes from the current master DOCX; other resumes are format references only.",
+    "Editorial summary is supported by master summary and E002–E005, E007–E009, E012, E014, E019–E021, E023. No insurance, Invoca, offline-import, or partnership-negotiation experience is claimed."
+  ]
+}

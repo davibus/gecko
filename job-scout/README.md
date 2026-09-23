@@ -40,23 +40,24 @@ source. The legacy API diagnostic remains available. Do not add a
 
 ### Google Sheets tracker
 
-Gecko can use a native Google Sheet as the live tracker while retaining `output/job-tracker.xlsx` as a migration backup. Create a dedicated service account, enable the official Google Sheets API, share the spreadsheet with the service-account email as Editor, and keep its JSON key outside this repository.
+Google Sheets is the canonical job tracker. Do not create or update a local Excel job tracker. Create a dedicated service account, enable the official Google Sheets API, share the spreadsheet with the service-account email as Editor, and keep its JSON key outside this repository.
 
 Configure the ignored local environment file:
 
 ```dotenv
-TRACKER_BACKEND=google-sheets
 GOOGLE_SHEETS_SPREADSHEET_ID=your-spreadsheet-id
 GOOGLE_SHEETS_CREDENTIALS_FILE=C:\path\outside\the\repository\service-account.json
+GOOGLE_SHEETS_TRACKER_TAB=Job Tracker
+GOOGLE_SHEETS_SCOUT_TAB=Job Scout
 ```
 
-`TRACKER_BACKEND=xlsx` disables automatic Google synchronization. The explicit command below always attempts a Google sync and is useful for initial migration and verification:
+The explicit command below synchronizes Job Scout datastore values to the live Sheet:
 
 ```powershell
 python job-scout/scout.py sync-sheets
 ```
 
-Google synchronization uses the Sheets API rather than browser automation. It maintains `Job Tracker` and `Job Scout`, upserts Scout records by Scout ID or canonical URL, preserves historical rows and manual `Applied`/`Contacted` entries, and mirrors those manual entries into the XLSX backup. Routine synchronization updates only changed row spans without clearing either sheet or reapplying template formatting. Existing row order, colors, dimensions, frozen rows, conditional formatting, and filters remain user-controlled. It does not use cross-row copy/paste or reset a basic filter, so filtered-out rows do not block appends. Essential date and percentage formats are applied only to newly appended rows on a best-effort basis; a formatting failure is reported as a warning and does not fail the data sync.
+Gecko's shared Sheets module maintains `Job Tracker` and `Job Scout` directly. It upserts applications by Job Number and Scout records by Scout ID or canonical URL, while preserving historical rows and manual `Apply?`, `Applied`, and `Contacted` entries. Routine operations write only changed Gecko-managed cells; existing row order, colors, dimensions, frozen rows, conditional formatting, and filters remain user-controlled.
 
 Alternatively, set credentials in the current shell or a secret manager:
 
@@ -110,11 +111,11 @@ python job-scout/scout.py show 12
 
 At the start of each daily run, Job Scout checks existing active jobs, then validates each new listing URL before scoring or insertion. It follows redirects and favors known employer/ATS links; Greenhouse and Lever job-specific APIs provide additional authoritative absence checks. A final 404/410 or an explicit loaded-page closure notice confirms expiry. HTTP 403, 429, 5xx, bot protection, DNS/connection errors, and timeouts are temporary and leave the job in place for the next run. Confirmed-dead unselected jobs are cleared from their Scout row in place and removed from SQLite only after sheet synchronization succeeds. Selected, resume-created, and applied/contacted jobs and all `Job Tracker` application records remain intact. The command prints checked, valid, removed-dead, temporary-failure, and protected-dead counts plus details for every removed job.
 
-Duplicate discoveries are reported under `existing_job_ids` and are not merged into, rescored, or rewritten in the daily path. New records are reported under `new_job_ids`. Only those new records are eligible for worksheet insertion and the daily review. Aside from confirmed-dead unprotected rows, existing XLSX/Google `Job Scout` values and manual `Applied`/`Contacted` entries stay intact. If no new jobs qualify, the command prints `DAILY REVIEW: No new qualifying jobs were discovered in this run.`
+Duplicate discoveries are reported under `existing_job_ids` and are not merged into, rescored, or rewritten in the daily path. New records are reported under `new_job_ids`. Only those new records are eligible for worksheet insertion and the daily review. Aside from confirmed-dead unprotected rows, existing Google `Job Scout` values and manual `Apply?`, `Applied`, and `Contacted` entries stay intact. If no new jobs qualify, the command prints `DAILY REVIEW: No new qualifying jobs were discovered in this run.`
 
 The pre-score title filter also excludes roles whose titles explicitly require fluent Spanish, even when the rest of the title matches a target marketing role.
 
-The standalone `search` command keeps its general upsert behavior and synchronizes after a successful run. With `TRACKER_BACKEND=google-sheets`, both `search` and `daily` update Google Sheets after the XLSX backup.
+The standalone `search` command keeps its general upsert behavior. Both `search` and `daily` write directly to Google Sheets and fail clearly if it is unavailable.
 
 Narrow a search or query a single provider:
 
@@ -181,9 +182,9 @@ Jobs marked `applied`, `rejected`, or `ignored` are excluded by default. Use `--
 
 ## Job Scout worksheet
 
-The `Job Scout` worksheet contains active discovery and scoring records separately from the existing `Job Tracker` application worksheet. During migration, Google Sheets is the live copy and `output/job-tracker.xlsx` remains the local backup. The daily sync appends only identities first discovered in that run and clears only confirmed-dead, unprotected Scout rows. Other explicit workflows can still upsert managed fields by Scout ID or canonical URL. `Apply?` is a user-maintained selection column immediately after E in each current worksheet layout; a nonblank entry is protected from dead-link cleanup and preserved by synchronization, along with manual `Applied` and `Contacted` entries.
+The `Job Scout` worksheet contains active discovery and scoring records separately from the `Job Tracker` application worksheet in the same Google spreadsheet. The daily run appends only identities first discovered in that run and clears only confirmed-dead, unprotected Scout rows. Other explicit workflows can still upsert managed fields by Scout ID or canonical URL. `Apply? = Yes` is a user-maintained selection and is protected from dead-link cleanup, along with marked `Applied` and `Contacted` entries; unchecked checkboxes do not count as marks.
 
-The XLSX backup is updated in place. Job Scout does not delete/recreate worksheets, delete/rebuild existing data rows, sort the physical Excel rows, or reapply default formatting to an existing sheet. Confirmed-dead unprotected rows have values cleared in place, leaving row positions and formatting intact. Existing styles, dimensions, panes, filters, tables, conditional formatting, data validation, hyperlinks on surviving rows, formulas, and user-defined columns are retained. A new row inherits the previous data row's formatting; existing table, filter, and validation ranges are extended to include it.
+Job Scout does not delete/recreate worksheets, delete/rebuild existing data rows, sort physical rows, or reapply default formatting. Confirmed-dead unprotected rows have only managed values cleared in place, leaving row positions and formatting intact. Existing colors, dimensions, panes, filters, conditional formatting, data validation, hyperlinks on surviving rows, formulas, and user-defined columns are retained.
 
 Review output is ranked by Match Score, Evidence Confidence, and newest posting date without physically reordering persistent worksheet rows. User-created conditional formatting remains authoritative. Selecting a job changes its Scout lifecycle to `Selected`; the existing completed-resume tracker command later marks the same Scout row `Resume Created` when the archived description contains its Scout ID.
 
@@ -237,6 +238,6 @@ Implement `sources.base.JobSource`, return `RawListing` records, export the prov
 ```powershell
 python -m unittest discover -s job-scout/tests -v
 python -m unittest discover -s job-scout/tests -p "test_remotive.py" -v
-python scripts/manage_job_tracker.py --tracker scratch/job-scout-tracker-test.xlsx init
-python scripts/manage_job_tracker.py --tracker scratch/job-scout-tracker-test.xlsx validate
+python scripts/manage_job_tracker.py init
+python scripts/verify_google_tracker.py --job-number <known-job-number>
 ```

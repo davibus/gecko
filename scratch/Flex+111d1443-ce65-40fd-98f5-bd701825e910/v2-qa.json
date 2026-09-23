@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "word_pages": 2,
+  "pdf_pages": 2,
+  "issues": [],
+  "remaining_weaknesses": [
+    "Generous compensation package determined based on experience, geography, and impact. Annual earnings derived from a combination of base, stock, and bonus from achieving targets.",
+    "Mission-critical problems",
+    "Speed over comfort"
+  ],
+  "native_validation": "C:\\Users\\DCALL\\Desktop\\gecko\\scratch\\Flex+111d1443-ce65-40fd-98f5-bd701825e910\\validation-status.json",
+  "word_output": "Direct Word COM is unavailable in the sandbox; handing validation to the interactive desktop bridge.\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\Users\\DCALL\\Desktop\\gecko\\scratch\\Flex+111d1443-ce65-40fd-98f5-bd701825e910\\validation-status.json"
+}

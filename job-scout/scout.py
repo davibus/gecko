@@ -10,11 +10,10 @@ import sys
 import tempfile
 from dataclasses import replace
 from pathlib import Path
-from openpyxl import load_workbook
 
 from enrichment import enrich_and_rescore
 from deduplicate import find_duplicate
-from google_sheets_sync import sync_workbook_to_google, tracker_backend
+from google_tracker import GoogleTracker, marked
 from handoff import archive_listing
 from link_validation import DailyLinkValidator
 from models import RawListing
@@ -31,14 +30,12 @@ from sources import (
 )
 from sources.base import SearchRequest
 from storage import DEFAULT_DB, JobStore
-from tracker_sync import sync_job_scout
 from url_resolution import resolve_and_store, url_status_label
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MASTER_RESUME = PROJECT_ROOT / "input" / "master-resume" / "Dave-Call-resume-9-23-26.docx"
 DEFAULT_SOURCE = "adzuna"
-DEFAULT_TRACKER = PROJECT_ROOT / "output" / "job-tracker.xlsx"
 CORE_PROVIDERS = ("adzuna", "jooble", "remotive", "web-careers")
 
 
@@ -83,122 +80,70 @@ def get_job(store: JobStore, job_id: int):
 
 def sync_tracker(
     store: JobStore,
-    tracker_path: str | Path,
+    tracker_path=None,
     *,
     force_google: bool = False,
     jobs=None,
     append_only: bool = False,
     remove_scout_ids: set[int] | None = None,
 ):
-    summary = sync_job_scout(
-        store.all() if jobs is None else jobs, tracker_path, append_only=append_only,
-        remove_scout_ids=remove_scout_ids,
-    )
+    tracker = GoogleTracker()
+    removed = tracker.remove_dead_scout(remove_scout_ids) if remove_scout_ids else set()
+    if remove_scout_ids and removed != remove_scout_ids:
+        raise RuntimeError(f"Google Sheets did not clear every unprotected Scout row: {sorted(remove_scout_ids - removed)}")
+    summary = tracker.upsert_scout(store.all() if jobs is None else jobs, append_only=append_only)
     result = {
         "job_scout_worksheet": {
-            "rows": summary.rows,
-            "confirmed": summary.confirmed,
-            "provisional": summary.provisional,
-            "near_matches": summary.near_matches,
-            "tracker_preserved": summary.tracker_preserved,
+            "rows": summary["rows"], "added": summary["added"], "updated": summary["updated"],
         }
     }
-    if force_google or tracker_backend() == "google-sheets":
-        google = sync_workbook_to_google(tracker_path, remove_scout_ids=remove_scout_ids)
-        result["google_sheets"] = {
-            "spreadsheet_id": google.spreadsheet_id,
-            "job_tracker_rows": google.application_rows,
-            "job_scout_rows": google.scout_rows,
-        }
+    result["google_sheets"] = {"spreadsheet_id": tracker.config.spreadsheet_id}
     print(json.dumps(result, indent=2))
     return summary
 
 
 def sync_sheets(args, store, _preferences):
-    """Synchronize both XLSX worksheets to Google Sheets on demand."""
-    sync_tracker(store, args.tracker, force_google=True)
+    """Synchronize Job Scout datastore values to the canonical Google Sheet."""
+    sync_tracker(store, force_google=True)
     return 0
 
 
-def protected_job_ids(jobs, tracker_path: str | Path) -> set[int]:
+def protected_job_ids(jobs, tracker_path=None) -> set[int]:
     """Preserve application history even if a Scout lifecycle flag is stale."""
     protected = {job.id for job in jobs if job.id is not None and job.status not in {"new", "reviewing"}}
-    path = Path(tracker_path)
-    if not path.is_file():
-        return protected
-    workbook = load_workbook(path, read_only=True, data_only=True)
-    try:
-        if "Job Scout" in workbook:
-            sheet = workbook["Job Scout"]
-            records = list(sheet.values)
-            if records:
-                columns = {str(value): index for index, value in enumerate(records[0]) if value is not None}
-                for row in records[1:]:
-                    scout_id = row[columns["Scout ID"]] if "Scout ID" in columns else None
-                    if scout_id in (None, ""):
-                        continue
-                    manual = any(row[columns[field]] not in (None, "") for field in ("Apply?", "Applied", "Contacted", "Resume Created") if field in columns)
-                    lifecycle = str(row[columns["Gecko Status"]] or "").lower() if "Gecko Status" in columns else ""
-                    if manual or lifecycle not in {"", "new", "reviewing"}:
-                        protected.add(int(scout_id))
-        if "Job Tracker" in workbook:
-            sheet = workbook["Job Tracker"]
-            records = list(sheet.values)
-            if records:
-                columns = {str(value): index for index, value in enumerate(records[0]) if value is not None}
-                for row in records[1:]:
-                    def value(field):
-                        return row[columns[field]] if field in columns else None
-                    link = canonicalize_url(str(value("Job Link") or ""))
-                    company = str(value("Company") or "").casefold().strip()
-                    title = str(value("Job Title") or "").casefold().strip()
-                    number = str(value("Job Number") or "").casefold().strip()
-                    for job in jobs:
-                        if job.id is None:
-                            continue
-                        urls = {canonicalize_url(url) for url in (job.url, job.canonical_url, job.authoritative_url) if url}
-                        if (link and link in urls) or (number and number == job.source_job_id.casefold()) or (company and title and company == job.company.casefold().strip() and title == job.title.casefold().strip()):
-                            protected.add(job.id)
-    finally:
-        workbook.close()
+    tracker = GoogleTracker()
+    for _, row in tracker.scout().rows:
+        try:
+            scout_id = int(row.get("Scout ID"))
+        except (TypeError, ValueError):
+            continue
+        if any(marked(row.get(field)) for field in ("Apply?", "Applied", "Contacted", "Resume Created")) or str(row.get("Gecko Status") or "").lower() not in {"", "new", "reviewing"}:
+            protected.add(scout_id)
+    for _, row in tracker.application().rows:
+        link = canonicalize_url(str(row.get("Job Link") or ""))
+        company = str(row.get("Company") or "").casefold().strip()
+        title = str(row.get("Job Title") or "").casefold().strip()
+        number = str(row.get("Job Number") or "").casefold().strip()
+        for job in jobs:
+            if job.id is None:
+                continue
+            urls = {canonicalize_url(url) for url in (job.url, job.canonical_url, job.authoritative_url) if url}
+            if (link and link in urls) or (number and number == job.source_job_id.casefold()) or (company and title and company == job.company.casefold().strip() and title == job.title.casefold().strip()):
+                protected.add(job.id)
     return protected
 
 
-def scout_row_ids(tracker_path: str | Path) -> set[int]:
-    path = Path(tracker_path)
-    if not path.is_file():
-        return set()
-    workbook = load_workbook(path, read_only=True, data_only=True)
-    try:
-        if "Job Scout" not in workbook:
-            return set()
-        rows = workbook["Job Scout"].values
-        headers = next(rows, ())
-        if "Scout ID" not in headers:
-            return set()
-        column = headers.index("Scout ID")
-        return {int(row[column]) for row in rows if len(row) > column and row[column] not in (None, "")}
-    finally:
-        workbook.close()
+def scout_row_ids(tracker_path=None) -> set[int]:
+    return {int(row["Scout ID"]) for _, row in GoogleTracker().scout().rows
+            if str(row.get("Scout ID") or "").isdigit()}
 
 
-def sheet_only_active_jobs(tracker_path: str | Path, known_ids: set[int]):
+def sheet_only_active_jobs(tracker_path, known_ids: set[int]):
     """Include active worksheet rows that have no matching local SQLite record."""
-    path = Path(tracker_path)
-    if not path.is_file():
-        return []
-    workbook = load_workbook(path, read_only=True, data_only=True)
-    try:
-        if "Job Scout" not in workbook:
-            return []
-        rows = workbook["Job Scout"].values
-        headers = next(rows, ())
-        columns = {str(value): index for index, value in enumerate(headers) if value is not None}
-        result = []
-        for row in rows:
+    result = []
+    for _, row in GoogleTracker().scout().rows:
             def value(header):
-                column = columns.get(header)
-                return row[column] if column is not None and column < len(row) else None
+                return row.get(header)
             try:
                 scout_id = int(value("Scout ID"))
             except (TypeError, ValueError):
@@ -216,9 +161,7 @@ def sheet_only_active_jobs(tracker_path: str | Path, known_ids: set[int]):
             item.status = status
             item.authoritative_url = str(value("Authoritative URL") or "")
             result.append(item)
-        return result
-    finally:
-        workbook.close()
+    return result
 
 
 def search(args, store, preferences):
@@ -348,10 +291,10 @@ def search(args, store, preferences):
     if daily_mode:
         new_jobs = [store.get(job_id) for job_id in aggregate["new_job_ids"]]
         sync_tracker(
-            store, args.tracker, jobs=[job for job in new_jobs if job], append_only=True,
+            store, jobs=[job for job in new_jobs if job], append_only=True,
         )
     else:
-        sync_tracker(store, args.tracker)
+        sync_tracker(store)
     return 0
 
 
@@ -472,7 +415,7 @@ def select(args, store, _preferences):
     job = get_job(store, args.job_id)
     path = archive_listing(job, PROJECT_ROOT)
     store.update_status(args.job_id, "selected")
-    sync_tracker(store, args.tracker)
+    sync_tracker(store)
     print(f"Selected Job Scout #{args.job_id}. Archived listing: {path.relative_to(PROJECT_ROOT)}")
     print(f"Next: use Gecko for the job description at {path.relative_to(PROJECT_ROOT)}")
     print("No resume was generated and no application-tracker row was added.")
@@ -481,7 +424,7 @@ def select(args, store, _preferences):
 
 def set_status(args, store, _preferences):
     store.update_status(args.job_id, args.status)
-    sync_tracker(store, args.tracker)
+    sync_tracker(store)
     print(f"Job {args.job_id} status set to {args.status}")
     return 0
 
@@ -510,7 +453,7 @@ def rescore(args, store, preferences):
         })
     changes.sort(key=lambda item: (-item["new_score"], item["id"]))
     print(json.dumps(changes, indent=2))
-    sync_tracker(store, args.tracker)
+    sync_tracker(store)
     return 0
 
 
@@ -563,7 +506,7 @@ def enrich_jobs(args, store, preferences):
             "final_status": final_status,
         })
     print(json.dumps(report, indent=2))
-    sync_tracker(store, args.tracker)
+    sync_tracker(store)
     return 0
 
 
@@ -596,7 +539,7 @@ def resolve_urls(args, store, _preferences):
             "error": resolved.url_resolution_error,
         })
     print(json.dumps(report, indent=2))
-    sync_tracker(store, args.tracker)
+    sync_tracker(store)
     return 0
 
 
@@ -604,22 +547,17 @@ def daily(args, store, preferences):
     """Run the complete discovery-to-review workflow without creating resumes."""
     validator = DailyLinkValidator()
     if isinstance(store, JobStore):
-        if tracker_backend() == "google-sheets":
-            if not Path(args.tracker).is_file():
-                raise RuntimeError("XLSX backup is required to verify protected Google Sheets history before cleanup")
-            # Read cloud manual fields into the backup before deciding what is safe to remove.
-            sync_workbook_to_google(args.tracker)
         existing = [job for job in store.all() if job.status not in {"ignored", "rejected"}]
-        existing.extend(sheet_only_active_jobs(args.tracker, {job.id for job in existing if job.id is not None}))
-        protected = protected_job_ids(existing, args.tracker)
+        existing.extend(sheet_only_active_jobs(None, {job.id for job in existing if job.id is not None}))
+        protected = protected_job_ids(existing)
         checked = validator.check_existing(existing)
         dead = [(job, result) for job, result in checked if result.status == "dead"]
         removable = [(job, result) for job, result in dead if job.id not in protected]
         validator.protected_dead += len(dead) - len(removable)
         if removable:
             ids = {job.id for job, _ in removable}
-            sync_tracker(store, args.tracker, jobs=[], append_only=True, remove_scout_ids=ids)
-            uncleared = ids & scout_row_ids(args.tracker)
+            sync_tracker(store, jobs=[], append_only=True, remove_scout_ids=ids)
+            uncleared = ids & scout_row_ids()
             if uncleared:
                 raise RuntimeError(f"Confirmed-dead Scout rows were not cleared: {sorted(uncleared)}")
             for job, result in removable:
@@ -627,7 +565,7 @@ def daily(args, store, preferences):
                 validator.record_removed(job, result)
     search_args = argparse.Namespace(
         source="core", query=None, location=None, page=1, results=args.results,
-        minimum_score=None, tracker=args.tracker, limit=100, daily_mode=True,
+        minimum_score=None, limit=100, daily_mode=True,
         link_validator=validator,
     )
     result = search(search_args, store, preferences)
@@ -657,7 +595,6 @@ def daily(args, store, preferences):
 def build_parser():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--db", default=str(DEFAULT_DB), help="SQLite database path")
-    parser.add_argument("--tracker", default=str(DEFAULT_TRACKER), help="Tracker workbook path")
     parser.add_argument("--preferences", help="Alternate preferences JSON")
     sub = parser.add_subparsers(dest="command", required=True)
     find = sub.add_parser("search", help="Search configured providers and save scored results")
@@ -756,7 +693,7 @@ def build_parser():
     daily_parser.set_defaults(function=daily)
     sync_parser = sub.add_parser(
         "sync-sheets",
-        help="Synchronize both tracker worksheets to Google Sheets and retain the XLSX backup",
+        help="Synchronize Job Scout datastore values to the canonical Google Sheet",
     )
     sync_parser.set_defaults(function=sync_sheets)
     return parser

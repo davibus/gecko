@@ -55,20 +55,17 @@ The score should reflect the evidence in the resume and the job description, not
 
 ## Job tracker
 
-Every successful Gecko resume generation must end by recording the job with `scripts/manage_job_tracker.py`. When `TRACKER_BACKEND=google-sheets`, Google Sheets is the primary live tracker and `output/job-tracker.xlsx` remains a required migration backup.
+Google Sheets is the canonical job tracker. Do not create or update a local Excel job tracker. Every successful Gecko resume generation must end by recording the job with `scripts/manage_job_tracker.py`.
 
 - Add the tracker row only after the final DOCX and final match report both exist and have passed their required validation.
 - Pass the final resume, match report, and archived job description to the script's `add` command.
-- Let the script assign the next sequential Resume # and reject duplicate Job Number entries.
+- Let the script derive the next Resume #/Index from the live Sheet and upsert by unique Job Number.
 - Preserve all existing rows and the user's manual `Applied` and `Contacted` values.
 - Leave compensation or other unavailable listing fields blank; never infer or invent them.
 - Treat the tracker update as required for completion. If it fails, report the failure and do not claim the Gecko job is fully complete.
-- During dual-write migration, a tracker update is complete only after both the XLSX backup and Google Sheets synchronization succeed.
-- Preserve user-maintained `Applied` and `Contacted` values from Google Sheets and mirror them into the XLSX backup during synchronization.
-- Job Scout searches, daily runs, selections, and completed-resume updates must synchronize Google Sheets when the Google backend is enabled.
-- Treat `output/job-tracker.xlsx` as a persistent user-managed workbook: load and modify it in place, never delete/recreate worksheets or rebuild existing rows, and never blanket-restyle existing cells.
-- Preserve user formatting and workbook features, including fills, fonts, borders, number formats, alignment, row heights, column widths, frozen panes, filters/sort state where possible, Excel Tables, conditional formatting, data validation, hyperlinks, and formulas. Append new rows by copying the previous data row's formatting and expanding existing table/filter/validation ranges.
-- Treat the live Google worksheets the same way during routine synchronization: update values in place, never clear and rebuild a populated sheet, never blanket-apply Gecko's default formatting, and never replace an existing filter without carrying forward its criteria. Preserve physical row order so row-specific formatting stays attached to the same job.
+- If Google Sheets is unavailable, report the error without falling back to a local tracker; keep the generated resume and match report.
+- Job Scout searches, daily runs, selections, and completed-resume updates use the same Google Sheets integration.
+- Preserve user formatting and manual fields. Update only specific managed cell values; never recreate tabs, reorder rows, clear populated ranges, reset filters or conditional formatting, or overwrite Applied/Contacted.
 
 ## Filename rules
 

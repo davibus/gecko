@@ -1,0 +1,245 @@
+{
+  "sheets": [
+    {
+      "data": [
+        {
+          "startRow": 3,
+          "rowData": [
+            {
+              "values": [
+                {
+                  "userEnteredValue": {
+                    "numberValue": 708
+                  },
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "stringValue": "web-careers"
+                  },
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "stringValue": "Jobscan"
+                  },
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "stringValue": "Senior Growth Marketing Manager, Content & Lifecycle"
+                  },
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "stringValue": "New"
+                  },
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "stringValue": "yes"
+                  },
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "numberValue": 94
+                  },
+                  "userEnteredFormat": {
+                    "numberFormat": {
+                      "type": "PERCENT",
+                      "pattern": "0%"
+                    },
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "numberValue": 0.98
+                  },
+                  "userEnteredFormat": {
+                    "numberFormat": {
+                      "type": "PERCENT",
+                      "pattern": "0%"
+                    },
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "stringValue": "Confirmed Strong Match"
+                  },
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "stringValue": "Remote - USA"
+                  },
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "stringValue": "remote"
+                  },
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "stringValue": "regular full-time"
+                  },
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "numberValue": 46230
+                  },
+                  "userEnteredFormat": {
+                    "numberFormat": {
+                      "type": "DATE",
+                      "pattern": "mm/dd/yyyy"
+                    },
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "numberValue": 46286
+                  },
+                  "userEnteredFormat": {
+                    "numberFormat": {
+                      "type": "DATE",
+                      "pattern": "mm/dd/yyyy"
+                    },
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "numberValue": 46286
+                  },
+                  "userEnteredFormat": {
+                    "numberFormat": {
+                      "type": "DATE",
+                      "pattern": "mm/dd/yyyy"
+                    },
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "stringValue": "https://jobs.lever.co/jobscan-2/103299c7-8c4d-4ccd-b281-da31b5b0beb6"
+                  },
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP",
+                    "textFormat": {
+                      "link": {
+                        "uri": "https://jobs.lever.co/jobscan-2/103299c7-8c4d-4ccd-b281-da31b5b0beb6"
+                      }
+                    }
+                  }
+                },
+                {
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "stringValue": "Verified - Official ATS"
+                  },
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP"
+                  }
+                },
+                {
+                  "userEnteredValue": {
+                    "stringValue": "https://jobs.lever.co/jobscan-2/103299c7-8c4d-4ccd-b281-da31b5b0beb6"
+                  },
+                  "userEnteredFormat": {
+                    "verticalAlignment": "TOP",
+                    "wrapStrategy": "CLIP",
+                    "textFormat": {
+                      "link": {
+                        "uri": "https://jobs.lever.co/jobscan-2/103299c7-8c4d-4ccd-b281-da31b5b0beb6"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -18,11 +18,13 @@ To proceed with a listing, explicitly run `python job-scout/scout.py select <ID>
 5. Tailor the resume subtly and generate the two-page DOCX resume under `output/resumes/Dave-Call+{Company-Name}+{JobNumber}.docx` using the reusable generator in `scripts/`.
 6. Generate the comprehensive Match Score report under `output/match-reports/Dave-Call+{Company-Name}+{JobNumber}.md`.
 7. Verify page count and layout with `scripts/validate_word_native.ps1`; sandbox executions are handed automatically to the interactive Word bridge. Install the bridge once from the normal desktop with `scripts/Install-Gecko-Word-Bridge.cmd`. Keep Word/PDF validation artifacts inside the job's scratch subfolder (`scratch/{Company-Name}+{JobNumber}/`).
-8. Only after the final resume and match report have both been created and validated, append the job to the persistent tracker:
+8. Only after the final resume and match report have both been created and validated, upsert the job in the canonical Google Sheet:
    `python scripts/manage_job_tracker.py add --resume "output/resumes/Dave-Call+{Company-Name}+{JobNumber}.docx" --match-report "output/match-reports/Dave-Call+{Company-Name}+{JobNumber}.md" --job-description "input/job-descriptions/{Company-Name}+{JobNumber}.md"`
 9. Run `python scripts/manage_job_tracker.py validate`. A Gecko job is not complete until the tracker update and validation succeed.
 
 ## V2 tailoring and QA
+
+To process every `Job Scout` row marked `Apply? = Yes`, run `python scripts/generate_apply_queue.py`. The runner reads the live Google Sheet, skips any row whose `Resume Created` header contains `X` regardless of the `Apply?` value, and continues after individual failures. It uses the same V2 plan, Word-native QA, match report, and final `manage_job_tracker.py` update as a single-job run. A successful tracker update marks `Resume Created = X`, writes the resume link, and updates the application tracker score; failures leave the queue marker blank for retry. `Apply?` remains unchanged. Use `--dry-run` to preview decisions without writing.
 
 The resume workflow now starts with a source-backed tailoring plan. Job Scout's discovery and selection workflow remains separate; its evidence reader now uses the same current master DOCX. For an archived listing, run:
 
@@ -58,5 +60,5 @@ Review the generated Match Score report's evidence-backed strengths, gaps, ATS a
 - No page overflow or excessive empty blocks
 - All temporary artifacts contained within `scratch/{Company-Name}+{JobNumber}/`
 - All reusable scripts maintained in `scripts/`
-- Job recorded once in `output/job-tracker.xlsx`, after both final deliverables were successfully created
+- Job recorded once in the canonical Google Sheet, after both final deliverables were successfully created
 - Existing tracker rows and manual `Applied` / `Contacted` entries preserved
