@@ -257,7 +257,14 @@ def _default_search_urls(job: JobListing, maximum: int) -> list[str]:
     if not provider.configured():
         return []
     query = f'"{job.company}" "{job.title}"'
-    return provider._result_urls(SearchRequest(query, job.location, results_per_page=maximum))[:maximum]
+    request = SearchRequest(query, job.location, results_per_page=maximum)
+    result_urls: list[str] = []
+    for backend in provider.backends:
+        try:
+            result_urls.extend(provider._result_urls(backend, request, query))
+        except ProviderError:
+            continue
+    return result_urls[:maximum]
 
 
 def resolve_authoritative_url(

@@ -1,0 +1,194 @@
+{
+  "scout_id": 276,
+  "source_hashes": {
+    "input\\master-resume\\Dave-Call-resume-9-23-26.docx": "cccae06bd74debae639367b19e9e41cd9537e351f3ee1aac208e1a7dae45061f"
+  },
+  "config": {
+    "company": "Apolis",
+    "key": "-3440932223426321660",
+    "headline": "SEARCH MARKETING | SEO COLLABORATION & ANALYTICS",
+    "summary": "Search and digital marketing professional with 14+ years in paid search, ecommerce, agency consulting, and performance analysis. Conducted keyword and competitive research, advised clients on SEO and website opportunities, and coordinated channel strategy with web and creative teams. Configured GA4 and Google Tag Manager measurement and built dashboards to guide growth decisions.",
+    "skills": [
+      [
+        "Search & Website Strategy: ",
+        "Keyword and competitive research, SEO collaboration, landing pages, website recommendations, and audience strategy."
+      ],
+      [
+        "Analytics & Tracking: ",
+        "GA4, Google Tag Manager, Looker Studio, Tableau, Funnel.io, conversion tracking, attribution, and KPI reporting."
+      ],
+      [
+        "Testing & Optimization: ",
+        "A/B and multivariate testing, conversion paths, ad copy, bidding experiments, ROAS, CPA, and customer journey analysis."
+      ],
+      [
+        "Campaign Channels: ",
+        "Google Ads, Microsoft Ads, Search, Shopping, Display, YouTube, remarketing, social, email channel experience, and ecommerce."
+      ],
+      [
+        "Reporting & Collaboration: ",
+        "Python, SQL, Databricks, Excel, automated reporting, client presentations, and cross-functional coordination."
+      ]
+    ],
+    "order": [
+      [
+        1,
+        2,
+        3,
+        0
+      ],
+      [
+        2,
+        3,
+        1,
+        0
+      ],
+      [
+        0,
+        2,
+        3,
+        1
+      ],
+      [
+        2,
+        1,
+        3,
+        0
+      ],
+      [
+        2,
+        3,
+        0,
+        1
+      ]
+    ]
+  },
+  "selected_evidence": [
+    {
+      "id": "E002",
+      "job": 0,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Evaluated customer journeys from reach and micro-conversions through purchase, click-to-call, and lifetime value to identify scalable search and budget opportunities."
+    },
+    {
+      "id": "E003",
+      "job": 0,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Built Tableau dashboards and automated weekly reporting across 10+ channels using Python, Databricks, SQL, Excel, and Funnel.io, improving accuracy and decision speed."
+    },
+    {
+      "id": "E004",
+      "job": 0,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Used regression models, holdouts, geo tests, scale-up/down analysis, and budget reallocation scenarios to forecast outcomes and present credible investment recommendations."
+    },
+    {
+      "id": "E001",
+      "job": 0,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Analyzed max CPC versus smart bidding, brand and non-brand target CPA, Performance Max and Shopping mix, audience performance, data-driven attribution, and incremental CPA."
+    },
+    {
+      "id": "E007",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions."
+    },
+    {
+      "id": "E008",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Coordinated search and broader channel strategy with website, SEO, operations, and creative priorities to maintain efficient delivery and support profitable growth."
+    },
+    {
+      "id": "E006",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review."
+    },
+    {
+      "id": "E005",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget."
+    },
+    {
+      "id": "E009",
+      "job": 2,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Directed digital marketing and e-commerce for a large B2B distributor, coordinating execution and reporting across marketing, sales, operations, finance, IT, and product teams."
+    },
+    {
+      "id": "E011",
+      "job": 2,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Maintained marketing databases, financial reporting, and cross-channel systems that improved budget visibility, data consistency, collaboration, and decision-making."
+    },
+    {
+      "id": "E012",
+      "job": 2,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Applied project-by-project cost-benefit analysis to prioritize growth initiatives, marketplace opportunities, product investments, and operational improvements."
+    },
+    {
+      "id": "E010",
+      "job": 2,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Modernized the company\u2019s digital environment and launched multiple B2C channels while protecting relationships with more than 650 B2B retail partners."
+    },
+    {
+      "id": "E015",
+      "job": 3,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Conducted keyword and competitive research, developed targeting and messaging recommendations, and created conversion, attribution, A/B, and multivariate testing frameworks."
+    },
+    {
+      "id": "E014",
+      "job": 3,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Consulted directly with clients on business goals, pain points, budget allocation, campaign structure, SEO, website, email, social, and paid media opportunities."
+    },
+    {
+      "id": "E016",
+      "job": 3,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Built Funnel.io and Looker Studio reporting, created automated monitoring scripts, and developed a repeatable account-management system adopted across the agency."
+    },
+    {
+      "id": "E013",
+      "job": 3,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed 75+ Google Ads accounts and more than $276K in monthly spend across search, display, mobile, remarketing, YouTube, lead generation, and multi-channel client programs."
+    },
+    {
+      "id": "E019",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing."
+    },
+    {
+      "id": "E020",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Created annual projections and KPI reporting with senior leadership and used platform, analytics, Magento, accounting, and competitive data to guide budget and campaign decisions."
+    },
+    {
+      "id": "E017",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Led an eight-person e-commerce team responsible for paid search, customer acquisition, campaign delivery, website performance, and growth across the U.S., Canada, and U.K."
+    },
+    {
+      "id": "E018",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed 150+ campaigns across Google Ads, Microsoft Ads, Amazon, search, shopping, display, video, remarketing, mobile, social, local, and email with approximately $400K in monthly spend."
+    },
+    {
+      "id": "E024",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed 150+ campaigns and approximately $400K in monthly spend, generating more than $9 million in revenue and 35% of company sales."
+    }
+  ]
+}

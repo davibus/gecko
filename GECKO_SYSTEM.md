@@ -70,7 +70,7 @@ Google Sheets is the canonical job tracker. Do not create or update a local Exce
 ## Filename rules
 
 Resume:
-`Dave-Call+<Company-Name>+<job-number>.docx`
+`Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx`
 
 Match report:
 `Dave-Call+<Company-Name>+<job-number>.md`
@@ -82,6 +82,7 @@ Indeed:
 Use the job listing's `jk` value as `<job-number>`.
 
 Sanitize `<Company-Name>` for Windows filenames by replacing spaces with hyphens and removing invalid characters (`\ / : * ? " < > |`).
+Sanitize `<Job-Title>` the same way. Keep `<job-number>` last so tracker matching remains stable.
 
 ## Scratch directory rules
 

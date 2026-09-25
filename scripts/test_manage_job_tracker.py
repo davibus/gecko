@@ -6,10 +6,14 @@ from tempfile import TemporaryDirectory
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from manage_job_tracker import markdown_field, record_from_files
+from manage_job_tracker import filename_job_number, markdown_field, record_from_files
 
 
 class TrackerMetadataTests(unittest.TestCase):
+    def test_job_number_stays_last_in_title_bearing_resume_name(self):
+        self.assertEqual(filename_job_number(Path("Dave-Call+Example+Growth-Marketing-Manager+abc123.docx")),
+                         "abc123")
+
     def test_blank_salary_does_not_capture_next_line(self):
         for newline in ("\n", "\r\n"):
             text = newline.join(["- **Salary:** ", "- **Source:** web-careers"])

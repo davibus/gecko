@@ -105,6 +105,23 @@ def listing_metadata(listing: str, path: Path) -> dict[str, str]:
     return {"company": company, "safe_company": safe_company, "title": title, "job_number": job_number}
 
 
+def resume_filename(company: str, title: str, job_number: str) -> str:
+    """Build a Word-safe name while retaining the job number as the final field."""
+    def safe_part(value: str) -> str:
+        value = re.sub(r'[\\/:*?"<>|+]+', "-", normalized(value))
+        value = re.sub(r"\s+", "-", value)
+        return re.sub(r"-{2,}", "-", value).strip(" .-")
+
+    company_part, title_part, number_part = map(safe_part, (company, title, job_number))
+    if not all((company_part, title_part, number_part)):
+        raise ValueError("Resume filename needs a company, job title, and job number")
+    # Keep the complete path comfortable for Word on Windows; only long titles are shortened.
+    available = 180 - len(f"Dave-Call+{company_part}++{number_part}.docx")
+    if available < 20:
+        raise ValueError("Company and job number leave too little room for the job title")
+    return f"Dave-Call+{company_part}+{title_part[:available].rstrip(' .-')}+{number_part}.docx"
+
+
 def requirements(listing: str, source: str, evidence: list[dict]) -> dict[str, list[dict]]:
     result = {name: [] for name in ("required_skills", "preferred_skills", "responsibilities", "tools", "seniority_signals", "industry_terminology", "ats_keywords")}
     heading = ""
@@ -465,7 +482,8 @@ def main() -> int:
     plan = json.loads(args.plan.read_text(encoding="utf-8"))
     verify_plan(plan)
     name = f"{plan['job']['safe_company']}+{plan['job']['job_number']}"
-    output = ROOT / "output/resumes" / f"Dave-Call+{name}.docx"
+    output = ROOT / "output/resumes" / resume_filename(
+        plan["job"]["company"], plan["job"]["title"], plan["job"]["job_number"])
     scratch = ROOT / "scratch" / name
     if args.command == "generate":
         make_resume(plan, output)
@@ -473,6 +491,10 @@ def main() -> int:
         match = str(write_match_report(plan, report)) if report["status"] == "pass" else None
         print(json.dumps({"docx": str(output), "match_report": match, **report}, indent=2))
         return 0 if report["status"] == "pass" else 1
+    if not output.exists():
+        old_output = ROOT / "output/resumes" / f"Dave-Call+{name}.docx"
+        if old_output.exists():
+            output = old_output
     if not output.exists():
         raise FileNotFoundError(output)
     report = native_qa(plan, output, scratch)

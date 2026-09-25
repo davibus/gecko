@@ -38,7 +38,7 @@ When asked to "use Gecko" for a job:
 - Do not claim the Gecko workflow is fully validated until the actual DOCX has been confirmed as exactly two pages in Microsoft Word.
 
 If the job comes from Indeed, use the `jk` value as the job number and name the DOCX:
-`Dave-Call+<Company-Name>+<jk>.docx`
+`Dave-Call+<Company-Name>+<Job-Title>+<jk>.docx`
 and the match report:
 `Dave-Call+<Company-Name>+<jk>.md`
 

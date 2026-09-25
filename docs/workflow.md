@@ -15,11 +15,11 @@ To proceed with a listing, explicitly run `python job-scout/scout.py select <ID>
    - All job-specific temporary files must live inside this subfolder (preview PNGs, test PDFs, layout verification images, intermediate files).
    - Do not place new job-specific temporary files directly in the root `scratch/` folder.
 4. Verify all claims against the current master DOCX (`input/master-resume/Dave-Call-resume-9-23-26.docx`). The older PDF and `Dave_Call_Resume_5ec9726395344311.docx` are not content sources; the latter is for formatting only.
-5. Tailor the resume subtly and generate the two-page DOCX resume under `output/resumes/Dave-Call+{Company-Name}+{JobNumber}.docx` using the reusable generator in `scripts/`.
+5. Tailor the resume subtly and generate the two-page DOCX resume under `output/resumes/Dave-Call+{Company-Name}+{Job-Title}+{JobNumber}.docx` using the reusable generator in `scripts/`.
 6. Generate the comprehensive Match Score report under `output/match-reports/Dave-Call+{Company-Name}+{JobNumber}.md`.
 7. Verify page count and layout with `scripts/validate_word_native.ps1`; sandbox executions are handed automatically to the interactive Word bridge. Install the bridge once from the normal desktop with `scripts/Install-Gecko-Word-Bridge.cmd`. Keep Word/PDF validation artifacts inside the job's scratch subfolder (`scratch/{Company-Name}+{JobNumber}/`).
 8. Only after the final resume and match report have both been created and validated, upsert the job in the canonical Google Sheet:
-   `python scripts/manage_job_tracker.py add --resume "output/resumes/Dave-Call+{Company-Name}+{JobNumber}.docx" --match-report "output/match-reports/Dave-Call+{Company-Name}+{JobNumber}.md" --job-description "input/job-descriptions/{Company-Name}+{JobNumber}.md"`
+   `python scripts/manage_job_tracker.py add --resume "output/resumes/Dave-Call+{Company-Name}+{Job-Title}+{JobNumber}.docx" --match-report "output/match-reports/Dave-Call+{Company-Name}+{JobNumber}.md" --job-description "input/job-descriptions/{Company-Name}+{JobNumber}.md"`
 9. Run `python scripts/manage_job_tracker.py validate`. A Gecko job is not complete until the tracker update and validation succeed.
 
 ## V2 tailoring and QA
@@ -42,7 +42,7 @@ Generate and run the automatic QA gate:
 python scripts/gecko_v2.py generate "scratch/Company+JobNumber/tailoring-plan.json"
 ```
 
-The generator writes `output/resumes/Dave-Call+Company+JobNumber.docx`. It calls `scripts/validate_word_native.ps1` and writes `scratch/Company+JobNumber/v2-qa.json`, `validation-status.json`, and a Word-exported PDF. QA fails when native Word and PDF counts do not both equal two, when text reaches page edges, when source-backed bullets or Gecko layout have changed, or when likely keyword repetition is excessive. It lists remaining unsupported or uncertain requirements. On a QA pass, the CLI also writes the Match Score report to `output/match-reports/`. Automated text matching is deliberately conservative and does not replace reviewing the plan, score, and rendered pages for natural language and semantic accuracy. If the Word bridge is unavailable, install it with `scripts/Install-Gecko-Word-Bridge.cmd`; QA remains failed and the tracker must not be updated. After layout edits, rerun `python scripts/gecko_v2.py qa "scratch/Company+JobNumber/tailoring-plan.json"`.
+The generator writes `output/resumes/Dave-Call+Company+Job-Title+JobNumber.docx`. It calls `scripts/validate_word_native.ps1` and writes `scratch/Company+JobNumber/v2-qa.json`, `validation-status.json`, and a Word-exported PDF. QA fails when native Word and PDF counts do not both equal two, when text reaches page edges, when source-backed bullets or Gecko layout have changed, or when likely keyword repetition is excessive. It lists remaining unsupported or uncertain requirements. On a QA pass, the CLI also writes the Match Score report to `output/match-reports/`. Automated text matching is deliberately conservative and does not replace reviewing the plan, score, and rendered pages for natural language and semantic accuracy. If the Word bridge is unavailable, install it with `scripts/Install-Gecko-Word-Bridge.cmd`; QA remains failed and the tracker must not be updated. After layout edits, rerun `python scripts/gecko_v2.py qa "scratch/Company+JobNumber/tailoring-plan.json"`.
 
 Review the generated Match Score report's evidence-backed strengths, gaps, ATS alignment, recommended emphasis, and interview considerations. Only after both final files exist and V2 QA passes, run the tracker command in step 8. The V2 CLI never updates the tracker itself. Tests: `python -m unittest discover -s scripts -p test_gecko_v2.py -v`.
 
@@ -53,7 +53,7 @@ Review the generated Match Score report's evidence-backed strengths, gaps, ATS a
 - Natural wording
 - Strong job-specific emphasis
 - Appropriate ATS terms
-- Correct filename: `Dave-Call+{Company-Name}+{JobNumber}.docx`
+- Correct filename: `Dave-Call+{Company-Name}+{Job-Title}+{JobNumber}.docx`
 - Match Score included in `output/match-reports/Dave-Call+{Company-Name}+{JobNumber}.md`
 - Archived listing saved as `input/job-descriptions/{Company-Name}+{JobNumber}.md`
 - No visible job-date text (preserve date spacing)

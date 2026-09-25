@@ -28,6 +28,13 @@ class GeckoV2Tests(unittest.TestCase):
         self.assertTrue(any(r["status"] == "gap" for r in plan["requirements"]["responsibilities"]))
         v2.verify_plan(plan)
 
+    def test_resume_filename_includes_safe_title_and_keeps_number_last(self):
+        self.assertEqual(
+            v2.resume_filename("Acme / West", "Director, SEO / Growth: US?", "abc123"),
+            "Dave-Call+Acme-West+Director,-SEO-Growth-US+abc123.docx",
+        )
+        self.assertTrue(v2.resume_filename("Acme", "Very Long Title " * 20, "abc123").endswith("+abc123.docx"))
+
     def test_changed_evidence_and_unsupported_skill_are_rejected(self):
         tampered = json.loads(json.dumps(self.plan))
         tampered["evidence"][0]["quote"] += " Invented result."

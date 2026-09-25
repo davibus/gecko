@@ -19,6 +19,11 @@ def safe_name(value: str) -> str:
 
 def job_number(job: JobListing) -> str:
     if job.source_job_id:
+        if job.source_job_id.startswith(("https://", "http://")):
+            from urllib.parse import urlsplit
+            path_id = urlsplit(job.source_job_id).path.rstrip("/").rsplit("/", 1)[-1]
+            if path_id:
+                return safe_name(path_id)
         return safe_name(job.source_job_id)
     return hashlib.sha256((job.canonical_url or job.title + job.company).encode()).hexdigest()[:16]
 

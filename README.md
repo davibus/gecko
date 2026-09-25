@@ -22,7 +22,7 @@ To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
 - Keep the finished resume exactly two pages.
 - Preserve the established white-background professional layout, 11 pt font, 1.15 line spacing, and clean spacing.
 - Remove visible job-date text while preserving the right-side date space/cell for manual entry later.
-- Use company-inclusive filenames: `Dave-Call+<Company-Name>+<job-number>.docx` for resumes, `Dave-Call+<Company-Name>+<job-number>.md` for match reports, and `<Company-Name>+<job-number>.md` for archived job descriptions. For Indeed, use the `jk` value as the job number.
+- Name resumes `Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx`, match reports `Dave-Call+<Company-Name>+<job-number>.md`, and archived job descriptions `<Company-Name>+<job-number>.md`. For Indeed, use the `jk` value as the job number.
 - Include a Match Score by default, with strengths, weaknesses/gaps, ATS alignment, and recommendations.
 - Use relevant AI/productivity tools naturally when helpful: Codex, ChatGPT, Claude, Perplexity, Cursor, AntiGravity.
 - When relevant, include the senior-scale metric: managed $30 million per month with a team of 4.
@@ -43,7 +43,7 @@ python scripts/manage_job_tracker.py init
 Add one newly completed Gecko job as the final workflow step:
 
 ```powershell
-python scripts/manage_job_tracker.py add --resume "output/resumes/Dave-Call+Company+JobNumber.docx" --match-report "output/match-reports/Dave-Call+Company+JobNumber.md" --job-description "input/job-descriptions/Company+JobNumber.md"
+python scripts/manage_job_tracker.py add --resume "output/resumes/Dave-Call+Company+Job-Title+JobNumber.docx" --match-report "output/match-reports/Dave-Call+Company+JobNumber.md" --job-description "input/job-descriptions/Company+JobNumber.md"
 ```
 
 Validate the live Sheet:

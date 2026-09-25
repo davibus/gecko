@@ -136,7 +136,8 @@ def generate(item: QueueRow, db: Path) -> Artifacts:
     qa = gecko_v2.native_qa(plan, candidate, scratch)
     if qa["status"] != "pass":
         raise RuntimeError("V2 QA failed: " + "; ".join(qa["issues"]))
-    final = ROOT / "output/resumes" / f"Dave-Call+{name}.docx"
+    final = ROOT / "output/resumes" / gecko_v2.resume_filename(
+        plan["job"]["company"], plan["job"]["title"], plan["job"]["job_number"])
     final.parent.mkdir(parents=True, exist_ok=True)
     os.replace(candidate, final)
     report = gecko_v2.write_match_report(plan, qa)

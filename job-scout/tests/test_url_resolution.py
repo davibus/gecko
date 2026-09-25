@@ -5,7 +5,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 
 SCOUT_ROOT = Path(__file__).resolve().parents[1]
@@ -20,6 +20,7 @@ from storage import JobStore
 from service import discover
 from preferences import load_preferences
 from url_resolution import (
+    _default_search_urls,
     apply_resolution,
     best_job_url,
     classify_url,
@@ -65,6 +66,39 @@ def job_page(url, *, title="Growth Marketing Manager", company="Unicity USA Inc"
 
 
 class URLResolutionTests(unittest.TestCase):
+    def test_default_search_uses_each_backend_and_limits_results(self):
+        provider = Mock()
+        provider.configured.return_value = True
+        provider.backends = ["brave", "google-cse"]
+        provider._result_urls.side_effect = [
+            ["https://example.com/1", "https://example.com/2"],
+            ["https://example.com/3", "https://example.com/4"],
+        ]
+        with patch("url_resolution.WebCareerProvider", return_value=provider):
+            urls = _default_search_urls(listing(), 3)
+
+        self.assertEqual(urls, ["https://example.com/1", "https://example.com/2", "https://example.com/3"])
+        first, second = provider._result_urls.call_args_list
+        self.assertEqual(first.args[0], "brave")
+        self.assertEqual(second.args[0], "google-cse")
+        self.assertIs(first.args[1], second.args[1])
+        self.assertEqual(first.args[1].results_per_page, 3)
+        self.assertEqual(first.args[2], first.args[1].query)
+        self.assertEqual(second.args[2], first.args[1].query)
+
+    def test_default_search_continues_after_backend_error(self):
+        provider = Mock()
+        provider.configured.return_value = True
+        provider.backends = ["brave", "google-cse"]
+        provider._result_urls.side_effect = [
+            ProviderError("brave unavailable"), ["https://example.com/working"],
+        ]
+        with patch("url_resolution.WebCareerProvider", return_value=provider):
+            urls = _default_search_urls(listing(), 2)
+
+        self.assertEqual(urls, ["https://example.com/working"])
+        self.assertEqual(provider._result_urls.call_count, 2)
+
     def resolve_redirect(self, final_url):
         return resolve_authoritative_url(
             listing(),
