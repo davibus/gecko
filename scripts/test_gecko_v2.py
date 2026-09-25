@@ -112,6 +112,36 @@ class GeckoV2Tests(unittest.TestCase):
         self.assertEqual(result["tools"][0]["status"], "gap")
         self.assertEqual(result["required_skills"][0]["status"], "gap")
 
+    def test_flattened_aggregator_prose_still_yields_scorable_requirements(self):
+        listing = (
+            "## Job description\n"
+            "Company background and product information. "
+            "Professional Experience/Background to be successful in this role: "
+            "Ability to manage paid search campaigns and marketing analytics "
+            "Develop reporting and forecasting for cross-functional teams "
+            "Minimum 5 years of digital marketing experience "
+            "Expected Outcomes in 3, 6, or 12 months: "
+            "Work with stakeholders to improve customer acquisition and retention "
+            "Represent marketing performance to executive leadership"
+        )
+        result = v2.requirements(listing, v2.source_text(), self.plan["evidence"])
+        core = result["required_skills"] + result["responsibilities"]
+        self.assertGreaterEqual(len(core), 4)
+        plan = {"requirements": result}
+        self.assertIsInstance(v2.match_score(plan), int)
+
+    def test_missing_requirements_is_a_scoring_error_not_zero(self):
+        plan = {"requirements": {"required_skills": [], "responsibilities": []}}
+        with self.assertRaisesRegex(ValueError, "no scorable job requirements"):
+            v2.match_score(plan)
+
+    def test_legitimate_zero_score_is_preserved(self):
+        plan = {"requirements": {
+            "required_skills": [{"text": "Unsupported requirement", "status": "gap"}],
+            "responsibilities": [],
+        }}
+        self.assertEqual(v2.match_score(plan), 0)
+
 
 if __name__ == "__main__":
     unittest.main()

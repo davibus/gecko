@@ -8,7 +8,7 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from google_tracker import Config, GoogleTracker, job_key
+from google_tracker import Config, GoogleTracker, job_key, normalize_match_score
 from models import RawListing
 from normalize import normalize
 
@@ -115,13 +115,17 @@ class GoogleTrackerTests(unittest.TestCase):
         self.assertFalse(again)
         self.assertEqual(len(self.fake.data["Job Tracker"]), 2)
         stored = dict(zip(APP, self.fake.data["Job Tracker"][1]))
-        self.assertEqual(stored["Match Score"], "82/100")
+        self.assertEqual(stored["Match Score"], 82)
         self.assertEqual(stored["Applied"], "TRUE")
         self.assertEqual(stored["Contacted"], "called")
         self.assertEqual(stored["Date Created"], "09/01/2026")
         self.assertEqual(stored["Pay"], "Manual pay")
         self.assertFalse(any(letter in ("J", "K") for title, _, letter in self.fake.writes if title == "Job Tracker"))
-        self.assertEqual(self.fake.structural, [])
+        formats = [request["repeatCell"] for request in self.fake.structural
+                   if "repeatCell" in request]
+        self.assertTrue(formats)
+        self.assertTrue(all(item["cell"]["userEnteredFormat"]["numberFormat"] ==
+                            {"type": "NUMBER", "pattern": "0"} for item in formats))
 
     def test_new_job_gets_next_index_and_native_checkboxes(self):
         row, created = self.tracker.upsert_application({"Job Number": "new-job", "Company": "New",
@@ -131,6 +135,25 @@ class GoogleTrackerTests(unittest.TestCase):
         rules = [request["setDataValidation"]["rule"]["condition"]["type"]
                  for request in self.fake.structural if "setDataValidation" in request]
         self.assertEqual(rules, ["BOOLEAN", "BOOLEAN"])
+
+    def test_match_score_70_is_written_as_numeric_70_with_number_format(self):
+        self.tracker.upsert_application({"Job Number": "job-123", "Match Score": "70/100"})
+        stored = dict(zip(APP, self.fake.data["Job Tracker"][1]))
+        self.assertEqual(stored["Match Score"], 70)
+        self.assertIsInstance(stored["Match Score"], int)
+        score_format = next(request["repeatCell"] for request in self.fake.structural
+                            if "repeatCell" in request)
+        self.assertEqual(score_format["cell"]["userEnteredFormat"]["numberFormat"],
+                         {"type": "NUMBER", "pattern": "0"})
+
+    def test_match_score_normalization_accepts_supported_representations(self):
+        for value in (70, "70", "70%", "70/100", 0.70, "0.70"):
+            with self.subTest(value=value):
+                self.assertEqual(normalize_match_score(value), 70)
+        for value in (-1, 101, "unknown", 0.705):
+            with self.subTest(value=value):
+                with self.assertRaises(ValueError):
+                    normalize_match_score(value)
 
     def test_existing_application_status_is_not_downgraded(self):
         status_column = APP.index("Status")

@@ -273,6 +273,7 @@ def resolve_authoritative_url(
     fetch: Callable[[str], FetchedDocument] = get_document,
     search_urls: Callable[[JobListing, int], list[str]] = _default_search_urls,
     config: ResolutionConfig | None = None,
+    include_discovery: bool = True,
 ) -> URLResolutionResult:
     """Resolve one job without changing fit scoring or persisted job fields."""
     config = config or load_resolution_config()
@@ -281,13 +282,14 @@ def resolve_authoritative_url(
     errors: list[str] = []
     direct_candidates: list[URLCandidate] = []
     linked_urls: list[str] = []
-    try:
-        document = fetch(discovery_url)
-        redirect_url = canonicalize_url(document.final_url)
-        direct_candidates = _page_candidates(document, job, config)
-        linked_urls = _candidate_links(document, config)
-    except (ProviderError, OSError, ValueError) as error:
-        errors.append(str(error))
+    if include_discovery:
+        try:
+            document = fetch(discovery_url)
+            redirect_url = canonicalize_url(document.final_url)
+            direct_candidates = _page_candidates(document, job, config)
+            linked_urls = _candidate_links(document, config)
+        except (ProviderError, OSError, ValueError) as error:
+            errors.append(str(error))
 
     for candidate in direct_candidates:
         candidate.confidence = _candidate_confidence(candidate, job)
@@ -337,9 +339,12 @@ def resolve_authoritative_url(
     if viable:
         status = "authoritative_url_not_found"
         error = "Several authoritative candidates were too ambiguous to select safely."
-    elif not redirect_url:
+    elif not redirect_url and include_discovery:
         status = "dead_unavailable"
         error = "Discovery URL was unavailable and no authoritative match was verified."
+    elif not redirect_url:
+        status = "authoritative_url_not_found"
+        error = "No authoritative employer or ATS posting was verified by search."
     elif redirect_type == "aggregator_intermediary":
         status = "authoritative_url_not_found"
         error = "Redirect remained on an aggregator and no authoritative match was verified."

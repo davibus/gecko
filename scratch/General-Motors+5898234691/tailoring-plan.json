@@ -1,0 +1,1160 @@
+{
+  "version": 2,
+  "job": {
+    "company": "General Motors",
+    "safe_company": "General-Motors",
+    "title": "Senior Lead, Global Performance Marketing Excellence",
+    "job_number": "5898234691"
+  },
+  "listing": "C:\\Users\\DCALL\\Desktop\\gecko\\input\\job-descriptions\\General-Motors+5898234691.md",
+  "listing_sha256": "806c38024d1a49b6e1d9b1d816c1b7c37286cd0df22ed405a62af35e28fbcd2a",
+  "source_sha256": {
+    "input\\master-resume\\Dave-Call-resume-9-23-26.docx": "0fd069254f5417dd3706c547f5aaea4bd7ecbd7eaf5796e0b75a2347ef8296ac"
+  },
+  "requirements": {
+    "required_skills": [
+      {
+        "text": "Required Qualifications",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Bachelor’s degree required.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Approximately 8–10 years of",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "experience in performance marketing, digital marketing, marketing strategy, channel planning, activation, or related disciplines.",
+        "status": "review",
+        "evidence_ids": [
+          "E008"
+        ],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "experience within an advertising or media agency, management consulting firm, or similar advisory environment.",
+        "status": "supported",
+        "evidence_ids": [
+          "E021"
+        ],
+        "matched_terms": [
+          "management"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Strong knowledge of paid media, search, social, programmatic, CRM, audience strategy, website and conversion optimization, experimentation, attribution, and performance measurement.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "attribution"
+        ],
+        "unsupported_terms": [
+          "CRM"
+        ]
+      },
+      {
+        "text": "Demonstrated success creating standards, frameworks, processes, playbooks, or operating models that improve organizational performance.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "lead complex cross-functional work and influence stakeholders in a highly matrixed organization.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Strong business acumen, with the",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "ability to connect marketing choices to customer behavior, demand, sales, inventory, pricing, incentives, competitive activity, and market dynamics.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Ability to distill complex data and information into clear strategic implications, decisions, and executive-ready recommendations.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Strong facilitation, communication, relationship-building, and change-management skills, with the objectivity to challenge constructively and",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "management"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "build trust across teams.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Experience supporting multiple brands, business units, regions, or markets from a centralized center of expertise or enterprise strategy function.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Comfort with back-of-the-envelope business analysis across the digital commerce and omnichannel funnel.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Experience in automotive, retail, consumer products, technology, financial services, or another complex omnichannel industry.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Ability to bring structure to ambiguity, turning broad objectives into repeatable processes and clear standards.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Experience working globally and adapting enterprise frameworks to local-market needs.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Familiarity with marketing technology, customer data, analytics, dashboards, measurement frameworks, and data visualization.",
+        "status": "supported",
+        "evidence_ids": [
+          "E025"
+        ],
+        "matched_terms": [
+          "analytics"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Advanced degree in Marketing, Business, Strategy, or a related field.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Compensation: The compensation information is a good faith estimate only.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "It is based on what a successful applicant might be paid in accordance with applicable state laws.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "The actual base salary a successful candidate will be offered within this range will vary based on factors relevant to the position, as well as geography of the selected candidate.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "The salary range for this role is ($140,100 - $186,700).",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "The actual base salary a successful candidate will be offered within this range will vary based on factors relevant to the position.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Benefits: GM offers a variety of health and wellbeing benefit programs.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Benefit options include medical, dental, vision, Health Savings Account, Flexible Spending Accounts, retirement savings plan, sickness and accident benefits, life insurance, paid vacation & holidays, tuition assistance programs, employee assistance program, GM vehicle discounts and more.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "#LI-MO1 GM does not",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "provide immigration-related sponsorship for this role.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Do not apply for this role if you will need GM immigration sponsorship now or in the future.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "This includes direct company sponsorship, entry of GM as the immigration employer of record on a government form, and any work authorization requiring a written submission or other immigration",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "support from the company (e.g., H1-B, OPT, STEM OPT, CPT, TN, J-1, etc).",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "This role is based remotely, but if the selected candidate lives within a specific mile radius of a GM hub, they will be expected to",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "report to the location three times a week {or other frequency dictated by your manager}.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Relocation benefits are available for candidates who qualify under company policy.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "About GM Our vision is a world with Zero Crashes, Zero Emissions and Zero Congestion and we embrace the responsibility to",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "lead the change that will make our world better, safer and more equitable for all.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Why Join Us We believe we all must make a choice every day – individually and collectively – to",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "drive meaningful change through our words, our deeds and our culture.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Every day, we want every employee to feel they belong to one General Motors team.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Benefits Overview From day one, we're looking out for your well-being–at work and at home–so you can focus on realizing your ambitions.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Learn how GM supports a rewarding career that rewards you personally by visiting Total Rewards resources.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Non-Discrimination and Equal Employment Opportunities (U.S.) General Motors is committed to being a workplace that is not only free of unlawful discrimination, but one that genuinely fosters inclusion and belonging.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "We strongly believe that providing an inclusive workplace creates an environment in which our employees can thrive and",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "develop better products for our customers.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "All employment decisions are made on a non-discriminatory basis without regard to sex, race, color, national origin, citizenship status, religion, age, disability, pregnancy or maternity status, sexual orientation, gender identity, status as a veteran or protected veteran, or any other similarly protected status in accordance with federal, state and local laws.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "We encourage interested candidates to review the key responsibilities and qualifications for each role and apply for any positions that match their skills and capabilities.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Applicants in the recruitment process may be required, where applicable, to successfully complete a role-related assessment(s) and/or a pre-employment screening prior to beginning employment.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "To learn more, visit How we Hire.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Accommodations General Motors offers opportunities to all job seekers including individuals with disabilities.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "If you need a reasonable accommodation to assist with your job search or application for employment, email us or call us at 1-800-865-7580.",
+        "status": "supported",
+        "evidence_ids": [
+          "E023"
+        ],
+        "matched_terms": [
+          "email"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "In your email, please include a description of the specific accommodation you are requesting as well as the job title and requisition number of the position for which you are applying.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "email"
+        ],
+        "unsupported_terms": []
+      },
+      {
+        "text": "We are leading the change to make our world better, safer and more equitable for all through our actions and how we behave.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Learn more about: Our Company Our Culture How we hire Our diverse team of employees bring their collective passion for engineering, technology and design to deliver on our vision of a world with Zero Crashes, Zero Emissions and Zero Congestion.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "We are looking for adventure-seekers and imaginative thought leaders to help us transform mobility.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Explore our global locations We are determined to",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "lead change for the world through technology, ingenuity and harnessing the creativity of our diverse team.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "lead the change that will make our world better, safer and more equitable for all by becoming a member of GM’s Talent Community (beamery.com).",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "As a part of our Talent Community, you will receive updates about GM, open roles, career insights and more.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Please note that filling out the form below will not add you to our Talent Community automatically;",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "you will need to use the link above.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "If you are seeking to apply to a specific role, we encourage you to click “Apply Now” on the job posting of interest.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      }
+    ],
+    "preferred_skills": [
+      {
+        "text": "Preferred Qualifications",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Bonus Potential: An incentive pay program offers payouts based on company performance, job level, and individual performance.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      }
+    ],
+    "responsibilities": [
+      {
+        "text": "build and scale a consistent enterprise-wide approach to global performance marketing across General Motors.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "partner to Cadillac, GMC, Buick, Chevrolet, and key global markets.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "lead generation & progression, measurement, and optimization.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "strong strategic problem solving mindset.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "provide an impartial point of view focused on business outcomes and long-term capability.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Performance Marketing Standards and Governance",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Partner with the Director, Global Performance Marketing to",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "implement GM’s enterprise performance marketing vision, principles, standards, and operating model.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Set clear expectations across strategy, planning, activation, optimization, experimentation, measurement, and executive communication.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Create scalable frameworks, playbooks, templates, definitions, and decision tools that improve consistency across brands, channels, agencies, and markets.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Identify gaps in processes, capabilities, tools, and ways of working, and recommend practical enterprise solutions.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Integrated Performance Marketing Strategy Help brands and cross-functional partners translate business objectives into integrated, full-funnel performance marketing strategies.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Connect channel plans and performance indicators to customer behavior, brand health, commercial outcomes, and marketplace conditions.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Evaluate the full set of business and marketing levers—including media, CRM, search, audiences, creative, site",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": [
+          "CRM"
+        ]
+      },
+      {
+        "text": "experience, offers, incentives, inventory, and channel mix—rather than defaulting to spend optimization alone.",
+        "status": "review",
+        "evidence_ids": [
+          "E027"
+        ],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Provide an objective enterprise perspective on strategic choices, priorities, activation plans, and optimization opportunities, weighing business impact, customer value, incrementality, efficiency, scalability, feasibility, and strategic fit.",
+        "status": "review",
+        "evidence_ids": [
+          "E002"
+        ],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Identify cross-brand patterns, risks, opportunities, and transferable best practices.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Channel Activation and Optimization Excellence",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Partner with Media, CRM, Digital, Site, Creative, Analytics, Sales, and agency teams to connect strategy with in-market execution.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "analytics"
+        ],
+        "unsupported_terms": [
+          "CRM"
+        ]
+      },
+      {
+        "text": "Promote disciplined optimization that balances near-term performance with long-term brand health.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Help teams distinguish execution issues, measurement limitations, marketplace conditions, and true strategic performance gaps.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Process, Operating Rhythm, and Standardization Design and improve repeatable processes across annual planning, campaign development, activation, optimization, performance reviews, and post-campaign learning.",
+        "status": "review",
+        "evidence_ids": [
+          "E007"
+        ],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Build consistent operating rhythms for cross-brand reviews, opportunity identification, escalation, decision-making, and action tracking.",
+        "status": "review",
+        "evidence_ids": [
+          "E016"
+        ],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Monitor adoption of enterprise standards,",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "identify barriers, and help teams improve implementation.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Objective Strategic Counsel and Cross-Functional Influence Serve as a trusted, impartial advisor, grounding recommendations in customer needs, business context, performance evidence, and enterprise strategy.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Challenge assumptions constructively and surface tradeoffs, risks, and unintended consequences.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Build alignment across Marketing, Media, CRM, Digital, Site, Creative, Sales, Finance, Research, Analytics, Data Science, Technology, agencies, and global markets.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [
+          "analytics"
+        ],
+        "unsupported_terms": [
+          "CRM"
+        ]
+      },
+      {
+        "text": "Develop concise, executive-ready narratives that explain what is happening, why it matters, and what actions should follow.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Capability Building and Global Scale Coach brand teams, functional partners, and agencies on performance marketing strategy, activation, optimization, and decision-making.",
+        "status": "review",
+        "evidence_ids": [
+          "E016"
+        ],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Partner with Performance Marketing Leads across brands and markets to increase adoption, share learning, and scale effective approaches.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      },
+      {
+        "text": "Establish a common performance marketing language across GM while enabling appropriate local-market adaptation.",
+        "status": "gap",
+        "evidence_ids": [],
+        "matched_terms": [],
+        "unsupported_terms": []
+      }
+    ],
+    "tools": [],
+    "seniority_signals": [
+      {
+        "text": "lead generation & progression, measurement, and optimization.",
+        "status": "gap",
+        "evidence_ids": [
+          "E018"
+        ]
+      },
+      {
+        "text": "Partner with the Director, Global Performance Marketing to",
+        "status": "gap",
+        "evidence_ids": [
+          "E028"
+        ]
+      },
+      {
+        "text": "Set clear expectations across strategy, planning, activation, optimization, experimentation, measurement, and executive communication.",
+        "status": "gap",
+        "evidence_ids": [
+          "E024"
+        ]
+      },
+      {
+        "text": "Develop concise, executive-ready narratives that explain what is happening, why it matters, and what actions should follow.",
+        "status": "gap",
+        "evidence_ids": [
+          "E029"
+        ]
+      },
+      {
+        "text": "Partner with Performance Marketing Leads across brands and markets to increase adoption, share learning, and scale effective approaches.",
+        "status": "gap",
+        "evidence_ids": [
+          "E028"
+        ]
+      },
+      {
+        "text": "experience within an advertising or media agency, management consulting firm, or similar advisory environment.",
+        "status": "supported",
+        "evidence_ids": [
+          "E021"
+        ]
+      },
+      {
+        "text": "lead complex cross-functional work and influence stakeholders in a highly matrixed organization.",
+        "status": "gap",
+        "evidence_ids": [
+          "E018"
+        ]
+      },
+      {
+        "text": "Ability to distill complex data and information into clear strategic implications, decisions, and executive-ready recommendations.",
+        "status": "gap",
+        "evidence_ids": [
+          "E025"
+        ]
+      },
+      {
+        "text": "Strong facilitation, communication, relationship-building, and change-management skills, with the objectivity to challenge constructively and",
+        "status": "gap",
+        "evidence_ids": [
+          "E021"
+        ]
+      },
+      {
+        "text": "report to the location three times a week {or other frequency dictated by your manager}.",
+        "status": "gap",
+        "evidence_ids": [
+          "E008"
+        ]
+      },
+      {
+        "text": "lead the change that will make our world better, safer and more equitable for all.",
+        "status": "gap",
+        "evidence_ids": [
+          "E018"
+        ]
+      },
+      {
+        "text": "We are leading the change to make our world better, safer and more equitable for all through our actions and how we behave.",
+        "status": "gap",
+        "evidence_ids": [
+          "E009"
+        ]
+      },
+      {
+        "text": "We are looking for adventure-seekers and imaginative thought leaders to help us transform mobility.",
+        "status": "gap",
+        "evidence_ids": [
+          "E029"
+        ]
+      },
+      {
+        "text": "lead change for the world through technology, ingenuity and harnessing the creativity of our diverse team.",
+        "status": "gap",
+        "evidence_ids": [
+          "E018"
+        ]
+      },
+      {
+        "text": "lead the change that will make our world better, safer and more equitable for all by becoming a member of GM’s Talent Community (beamery.com).",
+        "status": "gap",
+        "evidence_ids": [
+          "E018"
+        ]
+      }
+    ],
+    "industry_terminology": [
+      {
+        "text": "Partner with Media, CRM, Digital, Site, Creative, Analytics, Sales, and agency teams to connect strategy with in-market execution.",
+        "status": "gap",
+        "evidence_ids": [
+          "E014"
+        ]
+      },
+      {
+        "text": "experience within an advertising or media agency, management consulting firm, or similar advisory environment.",
+        "status": "supported",
+        "evidence_ids": [
+          "E021"
+        ]
+      },
+      {
+        "text": "Experience in automotive, retail, consumer products, technology, financial services, or another complex omnichannel industry.",
+        "status": "gap",
+        "evidence_ids": [
+          "E016"
+        ]
+      },
+      {
+        "text": "Benefit options include medical, dental, vision, Health Savings Account, Flexible Spending Accounts, retirement savings plan, sickness and accident benefits, life insurance, paid vacation & holidays, tuition assistance programs, employee assistance program, GM vehicle discounts and more.",
+        "status": "gap",
+        "evidence_ids": [
+          "E026"
+        ]
+      }
+    ],
+    "ats_keywords": [
+      {
+        "text": "CRM",
+        "status": "gap",
+        "evidence_ids": []
+      },
+      {
+        "text": "analytics",
+        "status": "supported",
+        "evidence_ids": [
+          "E014"
+        ]
+      },
+      {
+        "text": "management",
+        "status": "supported",
+        "evidence_ids": [
+          "E021"
+        ]
+      },
+      {
+        "text": "attribution",
+        "status": "supported",
+        "evidence_ids": [
+          "E024"
+        ]
+      },
+      {
+        "text": "email",
+        "status": "supported",
+        "evidence_ids": [
+          "E023"
+        ]
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "id": "E001",
+      "job": 0,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Analyzed max CPC versus smart bidding, brand and non-brand target CPA, Performance Max and Shopping mix, audience performance, data-driven attribution, and incremental CPA."
+    },
+    {
+      "id": "E002",
+      "job": 0,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Evaluated customer journeys from reach and micro-conversions through purchase, click-to-call, and lifetime value to identify scalable search and budget opportunities."
+    },
+    {
+      "id": "E003",
+      "job": 0,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Built Tableau dashboards and automated weekly reporting across 10+ channels using Python, Databricks, SQL, Excel, and Funnel.io, improving accuracy and decision speed."
+    },
+    {
+      "id": "E004",
+      "job": 0,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Used regression models, holdouts, geo tests, scale-up/down analysis, and budget reallocation scenarios to forecast outcomes and present credible investment recommendations."
+    },
+    {
+      "id": "E005",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget."
+    },
+    {
+      "id": "E006",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review."
+    },
+    {
+      "id": "E007",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions."
+    },
+    {
+      "id": "E008",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Coordinated search and broader channel strategy with website, SEO, operations, and creative Digital Marketing Manager"
+    },
+    {
+      "id": "E009",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "12 accounts, 32 campaigns, 110k Ad Groups, 1.6 million keywords, with a $3.6 million/month spend all in one brand"
+    },
+    {
+      "id": "E010",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Automated keyword creation with different permutations for thousands of Ad Groups using VBA in Excel"
+    },
+    {
+      "id": "E011",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Automated SERP analysis with Python and used Machine Learning Models for budgets, bids, ad copy,keywords, etc with Google API"
+    },
+    {
+      "id": "E012",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Converted and interpreted JSON results to data-mine SERP"
+    },
+    {
+      "id": "E013",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Competitor research using Python web-scraping priorities to maintain efficient delivery and support profitable growth."
+    },
+    {
+      "id": "E014",
+      "job": 2,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Directed digital marketing and e-commerce for a large B2B distributor, coordinating execution and reporting across marketing, sales, operations, finance, IT, and product teams."
+    },
+    {
+      "id": "E015",
+      "job": 2,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Modernized the company’s digital environment and launched multiple B2C channels while protecting relationships with more than 650 B2B retail partners."
+    },
+    {
+      "id": "E016",
+      "job": 2,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Maintained marketing databases, financial reporting, and cross-channel systems that improved budget visibility, data consistency, collaboration, and decision-making."
+    },
+    {
+      "id": "E017",
+      "job": 2,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Applied project-by-project cost-benefit analysis to prioritize growth initiatives, marketplace opportunities, product investments, and operational improvements."
+    },
+    {
+      "id": "E018",
+      "job": 3,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed 75+ Google Ads accounts and more than $276K in monthly spend across search, display, mobile, remarketing, YouTube, lead generation, and multi-channel client programs."
+    },
+    {
+      "id": "E019",
+      "job": 3,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Consulted directly with clients on business goals, pain points, budget allocation, campaign structure, SEO, website, email, social, and paid media opportunities."
+    },
+    {
+      "id": "E020",
+      "job": 3,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Conducted keyword and competitive research, developed targeting and messaging recommendations, and created conversion, attribution, A/B, and multivariate testing frameworks."
+    },
+    {
+      "id": "E021",
+      "job": 3,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Built Funnel.io and Looker Studio reporting, created automated monitoring scripts, and developed a repeatable account-management system adopted across the agency."
+    },
+    {
+      "id": "E022",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Led an eight-person e-commerce team responsible for paid search, customer acquisition, campaign delivery, website performance, and growth across the U.S., Canada, and U.K."
+    },
+    {
+      "id": "E023",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed 150+ campaigns across Google Ads, Microsoft Ads, Amazon, search, shopping, display, video, remarketing, mobile, social, local, and email with approximately $400K in monthly spend."
+    },
+    {
+      "id": "E024",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing."
+    },
+    {
+      "id": "E025",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Created annual projections and KPI reporting with senior leadership and used platform, analytics, Magento, accounting, and competitive data to guide budget and campaign decisions."
+    },
+    {
+      "id": "E026",
+      "job": 0,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed up to $30 million per month in paid media with a four-person team, supporting high-volume account operations and disciplined budget oversight."
+    },
+    {
+      "id": "E027",
+      "job": 3,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed 75+ Google Ads accounts with more than $276K in combined monthly spend while advising clients on channel allocation, campaign structure, and growth priorities."
+    },
+    {
+      "id": "E028",
+      "job": 1,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Scaled monthly marketing volume from approximately $200K to $800K while improving ROAS from 1.5 to 3.5 through budget, bidding, audience, and conversion optimization."
+    },
+    {
+      "id": "E029",
+      "job": 4,
+      "source": "input\\master-resume\\Dave-Call-resume-9-23-26.docx",
+      "quote": "Managed 150+ campaigns and approximately $400K in monthly spend, generating more than $9 million in revenue and 35% of company sales."
+    }
+  ],
+  "resume": {
+    "name": "DAVE CALL",
+    "headline": "Paid Search Manager | Agency Strategy, Google Ads & Client Growth",
+    "contact": "Lehi, UT  |  (530) 507-8269  |  mdavidcall@gmail.com  |  linkedin.com/in/mdavidcall",
+    "summary": "Performance-focused paid search leader with 14+ years of experience managing complex Google Ads and Microsoft Ads programs across agency, e-commerce, and multi-channel environments. Experienced owning campaign activation, daily optimization, budget pacing, conversion tracking, attribution, keyword and audience strategy, competitive research, and client-facing performance recommendations. Known for combining rigorous analysis with practical communication, reliable quality control, and a consultative approach that turns business goals into measurable search, shopping, display, video, and remarketing results.",
+    "education": "Bachelor of Science, Business Management - Brigham Young University",
+    "certifications": "Certifications: Google Ads, Google Analytics, Microsoft Ads, Meta Blueprint, Amazon Marketing Services",
+    "jobs": [
+      {
+        "title": "Marketing Strategist / Analyst",
+        "company": "1-800 Contacts",
+        "location": "Draper, UT"
+      },
+      {
+        "title": "Director of Digital Marketing",
+        "company": "GRIP6",
+        "location": "Midvale, UT"
+      },
+      {
+        "title": "Director of E-Commerce / Marketing",
+        "company": "Intercon Inc.",
+        "location": "Salt Lake City, UT"
+      },
+      {
+        "title": "SEM Manager / Project Manager",
+        "company": "The Infinite Agency",
+        "location": "Dallas, TX"
+      },
+      {
+        "title": "E-Commerce Manager",
+        "company": "LifeSpan Fitness",
+        "location": "Salt Lake City, UT"
+      }
+    ],
+    "skills": [
+      "email",
+      "attribution",
+      "reporting",
+      "analytics",
+      "management"
+    ],
+    "selected_evidence_ids": [
+      "E026",
+      "E001",
+      "E002",
+      "E003",
+      "E007",
+      "E008",
+      "E028",
+      "E006",
+      "E014",
+      "E015",
+      "E016",
+      "E017",
+      "E018",
+      "E027",
+      "E019",
+      "E020",
+      "E023",
+      "E025",
+      "E029",
+      "E022"
+    ],
+    "relevant_metric_ids": [
+      "E026",
+      "E006",
+      "E015",
+      "E018",
+      "E029"
+    ]
+  },
+  "review_notes": [
+    "Review requirement classifications and evidence links before generation.",
+    "All factual content comes from the current master DOCX; other resumes are format references only."
+  ]
+}

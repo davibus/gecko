@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import dataclass
-import html
+from datetime import datetime, timezone
 import json
 import os
 from pathlib import Path
@@ -18,12 +18,13 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "job-scout"))
 from storage import DEFAULT_DB, JobStore  # noqa: E402
 from google_tracker import GoogleTracker  # noqa: E402
-from enrichment import _greenhouse_candidates, _page_candidates, _title_similarity  # noqa: E402
+from description_retrieval import (  # noqa: E402
+    DescriptionRetrievalResult,
+    RetrievalAttempt,
+    description_is_sufficient,
+    retrieve_full_description,
+)
 from handoff import job_number as scout_job_number  # noqa: E402
-from normalize import clean_text  # noqa: E402
-from sources.base import SearchRequest  # noqa: E402
-from sources.http import get_document  # noqa: E402
-from sources.web import SCRIPT_RE, WebCareerProvider, _job_nodes, _text  # noqa: E402
 import gecko_v2  # noqa: E402
 import manage_job_tracker  # noqa: E402
 
@@ -48,6 +49,31 @@ class Artifacts:
     report: Path
     listing: Path
     existing: bool = False
+    retrieval_attempts: tuple[RetrievalAttempt, ...] = ()
+
+
+@dataclass(frozen=True)
+class QueueFailure:
+    item: QueueRow
+    reason: str
+    original_url: str = ""
+    authoritative_url: str = ""
+    attempts: tuple[RetrievalAttempt, ...] = ()
+
+
+class DescriptionUnavailableError(ValueError):
+    def __init__(self, result: DescriptionRetrievalResult, original_url: str):
+        super().__init__(result.error or "Full job description unavailable")
+        self.result = result
+        self.original_url = original_url
+
+
+class QueueProcessingError(RuntimeError):
+    def __init__(self, reason: str, item: QueueRow, attempts: tuple[RetrievalAttempt, ...]):
+        super().__init__(reason)
+        self.original_url = item.job_url
+        self.authoritative_url = item.authoritative_url
+        self.attempts = attempts
 
 
 def _flag(value: object) -> str:
@@ -114,63 +140,49 @@ def _saved_listing(item: QueueRow) -> Path | None:
         if re.search(rf"(?m)^- \*\*Scout ID:\*\*\s*{item.scout_id}\s*$", content):
             meta = gecko_v2.listing_metadata(content, path)
             if (meta["company"].strip().casefold() == item.company.strip().casefold()
-                    and len(content.split("## ")[-1].strip()) >= 600):
+                    and description_is_sufficient(content.split("## ")[-1].strip())):
                 return path
     return None
 
 
-def _search_full_description(job) -> str:
-    """Try Job Scout's configured career search for the exact employer and role."""
-    provider = WebCareerProvider()
-    if not provider.configured():
-        return ""
-    company_tokens = [word for word in re.findall(r"[a-z0-9]+", job.company.casefold())
-                      if word not in {"the", "inc", "llc", "ltd", "group", "company", "corporation"}]
-    company_words = [word for word in company_tokens if len(word) > 2] or company_tokens
-    if not company_words:
-        return ""
-    company_anchor = company_words[0]
-    request = SearchRequest(f"{job.company} {job.title}", results_per_page=8)
-    for backend in provider.backends:
-        try:
-            urls = provider._result_urls(backend, request, f"{job.company} {job.title} careers")
-        except Exception:
-            continue
-        for url in urls:
-            try:
-                document = get_document(url)
-                page = document.body.decode("utf-8", errors="replace")
-            except Exception:
-                continue
-            for block in SCRIPT_RE.findall(page):
-                try:
-                    nodes = list(_job_nodes(json.loads(html.unescape(block).strip())))
-                except (ValueError, TypeError):
-                    continue
-                for node in nodes:
-                    employer = _text(node.get("hiringOrganization"))
-                    employer_words = set(re.findall(r"[a-z0-9]+", employer.casefold()))
-                    if company_anchor not in employer_words:
-                        continue
-                    if _title_similarity(job.title, _text(node.get("title"))) < .65:
-                        continue
-                    description = clean_text(node.get("description"))
-                    if len(description) >= 600:
-                        return description
-            semantic, _ = _page_candidates(page, document.final_url, job)
-            for candidate in semantic:
-                excerpt_words = set(re.findall(r"[a-z0-9]+", candidate.description[:1000].casefold()))
-                if (not candidate.structured and candidate.title_similarity >= .65
-                        and company_anchor in excerpt_words
-                        and len(candidate.description) >= 600):
-                    return candidate.description
-    return ""
+def _original_source_url(job, item: QueueRow) -> str:
+    aggregators = [
+        link.get("url", "") for link in job.source_links
+        if link.get("source", "").casefold() in {"jooble", "adzuna"}
+    ]
+    return job.original_url or next(iter(aggregators), "") or job.url or item.job_url
 
 
-def _archive_listing(job, item: QueueRow) -> Path:
+def _persist_queue_retrieval(job, result: DescriptionRetrievalResult, store: JobStore) -> None:
+    if result.authoritative_url and result.authoritative_url != job.authoritative_url:
+        job.authoritative_url = result.authoritative_url
+        job.url_verification_status = "verified"
+        store.save_url_resolution(job)
+    if result.status != "succeeded" or not result.source_url:
+        return
+    current = max((job.description or "", job.enriched_description or ""), key=len)
+    if len(result.description) <= len(current):
+        return
+    if job.enrichment_status == "not_attempted":
+        job.original_description = job.description
+        job.original_match_score = job.match_score
+        job.original_evidence_confidence = job.evidence_confidence
+        job.original_url = job.url
+    job.enriched_description = result.description
+    job.enriched_source_url = result.source_url
+    job.enriched_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    job.enrichment_status = "succeeded"
+    job.enrichment_error = ""
+    store.save_enrichment(job)
+
+
+def _archive_listing(job, item: QueueRow, store: JobStore) -> tuple[Path, tuple[RetrievalAttempt, ...]]:
     saved = _saved_listing(item)
     if saved:
-        return saved
+        attempt = RetrievalAttempt(
+            "saved archived description", str(saved), "accepted", "complete archived listing"
+        )
+        return saved, (attempt,)
     company = re.sub(r'[\\/:*?"<>|]', "", job.company).replace(" ", "-").rstrip(" .")
     number = _job_number(job)
     path = ROOT / "input/job-descriptions" / f"{company}+{number}.md"
@@ -182,69 +194,70 @@ def _archive_listing(job, item: QueueRow) -> Path:
         if (meta["company"].strip().casefold() != job.company.strip().casefold() or
                 meta["job_number"] != number):
             raise ValueError(f"Archived listing is incomplete or belongs to another job: {path.name}")
-        if "## " in existing and len(existing.split("## ")[-1].strip()) >= 600:
-            return path
-    description = (job.enriched_description or job.description).strip()
-    if len(description) < 600:
-        candidates = []
-        errors = []
-        urls = (item.authoritative_url, item.enrichment_url, job.enriched_source_url,
-                job.authoritative_url, item.job_url, job.url, job.canonical_url,
-                *(link.get("url", "") for link in job.source_links))
-        for url in dict.fromkeys(filter(None, urls)):
-            if urlsplit(url).scheme not in {"http", "https"}:
-                continue
-            try:
-                document = get_document(url)
-                if document.content_type.lower() in {"application/json", "application/ld+json"}:
-                    found = _greenhouse_candidates(json.loads(document.body), job)
-                elif document.content_type.lower() in {"text/html", "application/xhtml+xml", ""}:
-                    found, _ = _page_candidates(document.body.decode("utf-8", errors="replace"),
-                                                document.final_url, job)
-                else:
-                    continue
-                candidates.extend(candidate for candidate in found
-                                  if candidate.title_similarity >= .25 and len(candidate.description) >= 600)
-            except Exception as error:
-                errors.append(str(error))
-        if candidates:
-            description = max(candidates, key=lambda candidate: (
-                candidate.official, candidate.structured, len(candidate.description))).description
-        else:
-            description = _search_full_description(job) or description
-        if len(description) < 600:
-            raise ValueError("Full job description unavailable; stored excerpt is short. " +
-                             (errors[-1] if errors else "No matching full text found in career search."))
-    if not description:
-        raise ValueError("No job description is available for evidence-backed tailoring")
+        if "## " in existing and description_is_sufficient(existing.split("## ")[-1].strip()):
+            attempt = RetrievalAttempt(
+                "saved archived description", str(path), "accepted", "complete archived listing"
+            )
+            return path, (attempt,)
+    original_url = _original_source_url(job, item)
+    result = retrieve_full_description(
+        job,
+        authoritative_urls=(item.authoritative_url,),
+        redirect_urls=(job.url_redirect_url,),
+        ats_urls=(item.enrichment_url, job.enriched_source_url),
+        aggregator_urls=(original_url, item.job_url),
+    )
+    if result.status != "succeeded" or not description_is_sufficient(result.description):
+        raise DescriptionUnavailableError(result, original_url)
+    _persist_queue_retrieval(job, result, store)
+    description = result.description
     text = (f"# {job.title}\n\n"
             f"- **Company:** {job.company}\n"
             f"- **Job Number:** {number}\n"
             f"- **Scout ID:** {job.id}\n"
-            f"- **URL:** {job.authoritative_url or job.url}\n"
+            f"- **URL:** {result.authoritative_url or job.authoritative_url or job.url}\n"
+            f"- **Original Source URL:** {original_url}\n"
+            f"- **Authoritative URL:** {result.authoritative_url or job.authoritative_url}\n"
+            f"- **Description Source URL:** {result.source_url}\n"
             f"- **Source:** {job.source}\n"
             f"- **Salary:** {job.salary}\n"
             f"- **Date Discovered:** {job.date_discovered}\n\n"
             f"## Job description\n\n{description}\n")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8")
-    return path
+    return path, tuple(result.attempts)
 
 
 def generate(item: QueueRow, db: Path) -> Artifacts:
     """Reuse Gecko V2 planning, rendering, Word QA, and match reporting."""
     with JobStore(db) as store:
         job = store.get(item.scout_id)
-    if job is not None and (job.company.casefold().strip() != item.company.casefold().strip()
-                            or job.title.casefold().strip() != item.title.casefold().strip()):
-        raise ValueError("Worksheet identity does not match the stored job")
-    listing = _archive_listing(job, item) if job is not None else _saved_listing(item)
+        if job is not None and (job.company.casefold().strip() != item.company.casefold().strip()
+                                or job.title.casefold().strip() != item.title.casefold().strip()):
+            raise ValueError("Worksheet identity does not match the stored job")
+        if job is not None:
+            listing, attempts = _archive_listing(job, item, store)
+        else:
+            listing, attempts = _saved_listing(item), ()
     if listing is None:
         raise ValueError(f"Scout ID {item.scout_id} has no stored record or complete saved description")
+    try:
+        return _finish_generation(item, listing, attempts)
+    except Exception as error:
+        if isinstance(error, (DescriptionUnavailableError, QueueProcessingError)):
+            raise
+        raise QueueProcessingError(str(error), item, attempts) from error
+
+
+def _finish_generation(
+    item: QueueRow, listing: Path, attempts: tuple[RetrievalAttempt, ...]
+) -> Artifacts:
     plan = gecko_v2.create_plan(listing.resolve())
     if (plan["job"]["company"].strip().casefold() != item.company.strip().casefold()
             or plan["job"]["title"].strip().casefold() != item.title.strip().casefold()):
         raise ValueError("Saved listing identity does not match the live Scout row")
+    # Fail before producing a DOCX if the listing cannot support a real score.
+    gecko_v2.match_score(plan)
     name = f"{plan['job']['safe_company']}+{plan['job']['job_number']}"
     scratch = ROOT / "scratch" / name
     scratch.mkdir(parents=True, exist_ok=True)
@@ -272,7 +285,7 @@ def generate(item: QueueRow, db: Path) -> Artifacts:
         os.replace(candidate, final)
         existing = False
     report = gecko_v2.write_match_report(plan, qa)
-    return Artifacts(final, report, listing, existing)
+    return Artifacts(final, report, listing, existing, attempts)
 
 
 def record_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTracker) -> None:
@@ -284,14 +297,27 @@ def record_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTracker)
     _retry_sheet(lambda: manage_job_tracker.mark_batch_resume(item.scout_id, item.row, tracker))
 
 
+def validated_match_score(report_text: str) -> str:
+    score = manage_job_tracker.extract_score(report_text)
+    if not score:
+        raise ValueError("Match report has a missing or malformed Match Score")
+    return score
+
+
+def _log(logger, message: str) -> None:
+    if logger is not None:
+        logger(message)
+
+
 def run_queue(tracker: GoogleTracker, db: Path, *, dry_run: bool = False,
-              generator=generate, recorder=record_success) -> int:
+              generator=generate, recorder=record_success, logger=None) -> int:
     pending, skipped = read_queue(tracker)
     created = recovered = 0
     successes: list[tuple[QueueRow, Artifacts, str]] = []
     changed = 0
-    failed: list[tuple[QueueRow, str]] = []
+    failed: list[QueueFailure] = []
     print(f"Eligible rows: {len(pending)}; skipped with a nonblank marker: {len(skipped)}", flush=True)
+    _log(logger, f"Eligible rows: {len(pending)}; already marked: {len(skipped)}")
     print("Row | Scout ID | Company | Job title", flush=True)
     for item in pending:
         print(f"{item.row} | {item.scout_id} | {item.company} | {item.title}", flush=True)
@@ -299,7 +325,9 @@ def run_queue(tracker: GoogleTracker, db: Path, *, dry_run: bool = False,
         print("Processing eligible jobs now.", flush=True)
     for item in pending:
         try:
-            if not _still_pending(tracker, item):
+            # A dry run is a single read-only snapshot. Re-reading every row adds
+            # API traffic and is unnecessary because no lifecycle write follows.
+            if not dry_run and not _still_pending(tracker, item):
                 print(f"SKIP: row {item.row} (Scout ID {item.scout_id}): queue flags changed")
                 changed += 1
                 continue
@@ -307,9 +335,7 @@ def run_queue(tracker: GoogleTracker, db: Path, *, dry_run: bool = False,
                 print(f"WOULD CREATE: row {item.row} (Scout ID {item.scout_id})")
                 continue
             artifacts = generator(item, db)
-            score = manage_job_tracker.extract_score(artifacts.report.read_text(encoding="utf-8-sig"))
-            if not score:
-                raise ValueError("Match report has no valid Match Score")
+            score = validated_match_score(artifacts.report.read_text(encoding="utf-8-sig"))
             recorder(item, artifacts, tracker)
             recovered += int(artifacts.existing)
             created += int(not artifacts.existing)
@@ -317,15 +343,45 @@ def run_queue(tracker: GoogleTracker, db: Path, *, dry_run: bool = False,
             print(f"{'VERIFIED EXISTING' if artifacts.existing else 'CREATED'}: row {item.row} "
                   f"(Scout ID {item.scout_id}), {item.company} / {item.title}: "
                   f"{artifacts.resume} | {score}", flush=True)
+            _log(logger, f"SUCCESS row={item.row} scout_id={item.scout_id} score={score} "
+                 f"resume={artifacts.resume}")
+            for attempt in artifacts.retrieval_attempts:
+                _log(logger, "  " + attempt.summary())
         except Exception as error:
-            failed.append((item, str(error)))
+            if isinstance(error, DescriptionUnavailableError):
+                failure = QueueFailure(
+                    item=item,
+                    reason=error.result.error or str(error),
+                    original_url=error.original_url,
+                    authoritative_url=error.result.authoritative_url or item.authoritative_url,
+                    attempts=tuple(error.result.attempts),
+                )
+            elif isinstance(error, QueueProcessingError):
+                failure = QueueFailure(
+                    item=item,
+                    reason=str(error),
+                    original_url=error.original_url,
+                    authoritative_url=error.authoritative_url,
+                    attempts=error.attempts,
+                )
+            else:
+                failure = QueueFailure(
+                    item=item,
+                    reason=str(error),
+                    original_url=item.job_url,
+                    authoritative_url=item.authoritative_url,
+                )
+            failed.append(failure)
             print(f"FAILED: row {item.row} (Scout ID {item.scout_id}), "
                   f"{item.company} / {item.title}: {error}", file=sys.stderr, flush=True)
+            _log(logger, f"FAIL row={item.row} scout_id={item.scout_id} reason={failure.reason}")
+            for attempt in failure.attempts:
+                _log(logger, "  " + attempt.summary())
         if not dry_run:
             _write_report(pending, skipped, successes, failed, changed)
-    remaining = [] if dry_run else read_queue(tracker)[0]
-    failed_ids = {item.scout_id for item, _ in failed}
-    unexpected = [item for item in remaining if item.scout_id not in failed_ids]
+    remaining = pending if dry_run else read_queue(tracker)[0]
+    failed_ids = {failure.item.scout_id for failure in failed}
+    unexpected = [] if dry_run else [item for item in remaining if item.scout_id not in failed_ids]
     print("\nGecko Resume Queue Complete")
     print(f"Eligible jobs found: {len(pending)}")
     print(f"Skipped: {len(skipped) + changed}")
@@ -351,10 +407,32 @@ def _write_report(pending, skipped, successes, failed, changed) -> None:
         lines.append(f"- Row {item.row}; Scout ID {item.scout_id}; {item.company}; {item.title}; "
                      f"{result.resume}; Match Score {score}")
     lines.extend(["", "## Failures", ""])
-    for item, reason in failed:
-        lines.append(f"- Row {item.row}; Scout ID {item.scout_id}; {item.company}; {item.title}; "
-                     f"{reason.replace(chr(10), ' ')}")
+    for failure in failed:
+        item = failure.item
+        lines.extend([
+            f"### Row {item.row}: Scout ID {item.scout_id} — {item.company} — {item.title}",
+            "",
+            f"- Original source URL: {failure.original_url or '(not stored)'}",
+            f"- Authoritative URL: {failure.authoritative_url or '(not found)'}",
+            "- Retrieval attempts:",
+        ])
+        if failure.attempts:
+            lines.extend(f"  - {attempt.summary()}" for attempt in failure.attempts)
+        else:
+            lines.append("  - No URL retrieval attempt was reached before this failure.")
+        lines.extend([
+            f"- Final reason: {failure.reason.replace(chr(10), ' ')}",
+            "",
+        ])
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def _append_run_log(message: str) -> None:
+    path = ROOT / "output/apply-queue-run.log"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    stamp = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(f"{stamp} {message}\n")
 
 
 def main() -> int:
@@ -364,7 +442,13 @@ def main() -> int:
     parser.add_argument("--db", type=Path, default=DEFAULT_DB)
     parser.add_argument("--dry-run", action="store_true", help="Show queue decisions without generating or writing")
     args = parser.parse_args()
-    return run_queue(GoogleTracker(), args.db.resolve(), dry_run=args.dry_run)
+    _append_run_log(f"RUN START dry_run={args.dry_run} db={args.db.resolve()}")
+    result = run_queue(
+        GoogleTracker(), args.db.resolve(), dry_run=args.dry_run,
+        logger=_append_run_log,
+    )
+    _append_run_log(f"RUN END exit_code={result}")
+    return result
 
 
 if __name__ == "__main__":

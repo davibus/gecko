@@ -163,7 +163,9 @@ class JobStore:
                 company=excluded.company,title=excluded.title,location=excluded.location,
                 work_arrangement=excluded.work_arrangement,employment_type=excluded.employment_type,
                 salary=excluded.salary,url=excluded.url,canonical_url=excluded.canonical_url,
-                date_posted=excluded.date_posted,last_seen=excluded.last_seen,description=excluded.description,
+                date_posted=excluded.date_posted,last_seen=excluded.last_seen,
+                description=CASE WHEN length(excluded.description) > length(description)
+                    THEN excluded.description ELSE description END,
                 category=excluded.category,tags_json=excluded.tags_json,
                 match_score=excluded.match_score,strengths_json=excluded.strengths_json,
                 weaknesses_json=excluded.weaknesses_json,
@@ -220,6 +222,7 @@ class JobStore:
             UPDATE jobs SET last_seen=?, salary=CASE WHEN ? != '' THEN ? ELSE salary END,
                 url=CASE WHEN url = '' AND ? != '' THEN ? ELSE url END,
                 canonical_url=CASE WHEN canonical_url = '' AND ? != '' THEN ? ELSE canonical_url END,
+                description=CASE WHEN length(?) > length(description) THEN ? ELSE description END,
                 tags_json=?
             WHERE id=?
         """, (
@@ -227,18 +230,21 @@ class JobStore:
             duplicate.salary, duplicate.salary,
             duplicate.url, duplicate.url,
             duplicate.canonical_url, duplicate.canonical_url,
+            duplicate.description, duplicate.description,
             json.dumps(merged_tags),
             canonical_id,
         ))
         if current and duplicate.match_score > current.match_score:
             self.connection.execute("""
                 UPDATE jobs SET title=?, company=?, location=?, work_arrangement=?, employment_type=?,
-                    salary=?, date_posted=?, description=?, category=?, tags_json=?, match_score=?, strengths_json=?,
+                    salary=?, date_posted=?, description=CASE WHEN length(?) > length(description)
+                        THEN ? ELSE description END, category=?, tags_json=?, match_score=?, strengths_json=?,
                     weaknesses_json=?, evidence_confidence=?, provisional=?, evidence_json=?,
                     retained=MAX(retained, ?) WHERE id=?
             """, (
                 duplicate.title, duplicate.company, duplicate.location, duplicate.work_arrangement,
-                duplicate.employment_type, duplicate.salary, duplicate.date_posted, duplicate.description,
+                duplicate.employment_type, duplicate.salary, duplicate.date_posted,
+                duplicate.description, duplicate.description,
                 duplicate.category, json.dumps(duplicate.tags), duplicate.match_score,
                 json.dumps(duplicate.match_strengths),
                 json.dumps(duplicate.match_weaknesses), duplicate.evidence_confidence,
@@ -297,8 +303,12 @@ class JobStore:
                 enrichment_status,enrichment_error,enriched_match_score,enriched_evidence_confidence
             ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
             ON CONFLICT(job_id) DO UPDATE SET
-                enriched_description=excluded.enriched_description,
-                enriched_source_url=excluded.enriched_source_url,
+                enriched_source_url=CASE
+                    WHEN length(excluded.enriched_description) > length(enriched_description)
+                    THEN excluded.enriched_source_url ELSE enriched_source_url END,
+                enriched_description=CASE
+                    WHEN length(excluded.enriched_description) > length(enriched_description)
+                    THEN excluded.enriched_description ELSE enriched_description END,
                 enriched_at=excluded.enriched_at,
                 enrichment_status=excluded.enrichment_status,
                 enrichment_error=excluded.enrichment_error,

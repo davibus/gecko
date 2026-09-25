@@ -51,7 +51,7 @@ Every Gecko job analysis should include:
 - Recommended resume emphasis
 - Interview/application considerations
 
-The score should reflect the evidence in the resume and the job description, not optimism.
+The score should reflect the evidence in the resume and the job description, not optimism. A report may use a legitimate low score, including zero when every extracted requirement is a real gap. Missing requirements, an empty scoring denominator, or a missing/malformed `Match Score` field are workflow errors and must never be converted to `0/100`.
 
 ## Job tracker
 

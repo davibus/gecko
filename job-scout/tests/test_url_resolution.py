@@ -66,6 +66,26 @@ def job_page(url, *, title="Growth Marketing Manager", company="Unicity USA Inc"
 
 
 class URLResolutionTests(unittest.TestCase):
+    def test_blocked_aggregators_fall_back_to_verified_employer_search(self):
+        cases = (
+            listing("Jooble", JOOBLE_URL),
+            listing("Adzuna", "https://www.adzuna.com/details/123"),
+        )
+        for job in cases:
+            with self.subTest(source=job.source):
+                employer = "https://careers.unicity.com/jobs/growth-marketing-manager"
+
+                def fetch(url):
+                    if "jooble.org" in url or "adzuna.com" in url:
+                        raise ProviderError("HTTP Error 403: Forbidden")
+                    return job_page(employer)
+
+                result = resolve_authoritative_url(
+                    job, fetch=fetch, search_urls=lambda _job, _maximum: [employer],
+                )
+                self.assertEqual(result.status, "verified")
+                self.assertEqual(result.authoritative_url, employer)
+
     def test_default_search_uses_each_backend_and_limits_results(self):
         provider = Mock()
         provider.configured.return_value = True

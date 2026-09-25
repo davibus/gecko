@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "word_pages": 2,
+  "pdf_pages": 2,
+  "issues": [],
+  "remaining_weaknesses": [
+    "work with retail and client partners to",
+    "provide convenient solutions for consumers.",
+    "experience, knowledge, and location.",
+    "minimum and midpoint of the range."
+  ],
+  "native_validation": "C:\\Users\\DCALL\\Desktop\\gecko\\scratch\\CRST-The-Transportation-Solution+8402261618515869553\\validation-status.json",
+  "word_output": "Direct Word COM is unavailable in the sandbox; handing validation to the interactive desktop bridge.\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\Users\\DCALL\\Desktop\\gecko\\scratch\\CRST-The-Transportation-Solution+8402261618515869553\\validation-status.json"
+}

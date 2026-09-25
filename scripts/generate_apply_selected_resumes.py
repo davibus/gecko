@@ -310,15 +310,27 @@ def build_resume(scout_id: int):
     for index,(lead,body) in enumerate(cfg["skills"],6):
         set_labeled(p[index],lead,body,lead_color=NAVY)
     used=[]
+    empty_bullet_paragraphs=[]
     for job_index,start in enumerate([12,16,21,25,29]):
-        pool=[e for e in evidence[:20] if e["job"]==job_index]
-        assert len(pool)==4
-        for offset,source_index in enumerate(cfg["order"][job_index]):
+        pool=[e for e in evidence if e["job"]==job_index]
+        # The current master includes additional legacy text between the GRIP6
+        # bullets and the next table-backed role. Keep only clean, attributable
+        # bullets rather than forcing that text under the GRIP6 job header.
+        pool=[e for e in pool if "Digital Marketing Manager" not in e["quote"]]
+        if len(pool) < 3:
+            raise ValueError(f"Master resume has too few clean bullets for job {job_index}")
+        clean_limit = 3 if job_index == 1 else 4
+        selected=[i for i in cfg["order"][job_index] if i < min(clean_limit, len(pool))]
+        for offset,source_index in enumerate(selected):
             e=pool[source_index]
             set_labeled(p[start+offset],LABELS[job_index][source_index],e["quote"])
             used.append(e)
+        for offset in range(len(selected),4):
+            empty_bullet_paragraphs.append(p[start+offset])
+    for paragraph in empty_bullet_paragraphs:
+        paragraph._element.getparent().remove(paragraph._element)
     # Selected-results evidence explicitly supports this metric at LifeSpan.
-    result=evidence[23]
+    result=next(e for e in evidence if "$9 million in revenue" in e["quote"])
     set_labeled(p[33],"Revenue Impact: ",result["quote"])
     used.append(result)
     for table,job in zip(doc.tables,jobs,strict=True):

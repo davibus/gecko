@@ -4,6 +4,16 @@
 
 Job Scout is separate from resume generation. Each morning, run `python job-scout/scout.py daily`. The daily path validates existing active links and newly discovered links before scoring. Confirmed-dead unprotected jobs are cleared from the active Scout worksheet and removed from SQLite; temporary HTTP/network failures are retained for a later check. The review output contains only qualifying jobs first discovered in that run. Selected/application history and manual `Applied` / `Contacted` fields are preserved. The command never creates a resume or starts a handoff.
 
+### Explicit local-workbook link audit
+
+Google Sheets remains Gecko's canonical tracker. When a local workbook is explicitly supplied for an offline audit, place it at `output/job-tracker.xlsx` and run:
+
+```powershell
+python scripts/check_job_links.py
+```
+
+Test a small copy first with `python scripts/check_job_links.py --limit 5 --output scratch/job-link-check/job-tracker-test.xlsx`. The checker validates the `Job Scout` layout, reads job URLs from column U, appends confirmed removals to Notes in column I, and writes company-website status only to column J. It treats blocks, rate limits, bot challenges, timeouts, and temporary network errors as unknown and leaves the related cell unchanged.
+
 To proceed with a listing, explicitly run `python job-scout/scout.py select <ID>`. Selection archives the description in `input/job-descriptions/`; it does not create a resume or application-tracker row. Continue with the unchanged workflow below only after choosing a job. Full setup and commands are in `job-scout/README.md`.
 
 ## New job
@@ -24,7 +34,9 @@ To proceed with a listing, explicitly run `python job-scout/scout.py select <ID>
 
 ## V2 tailoring and QA
 
-To process every `Job Scout` row with `Apply? = Yes` and no `X` in column G, run `python scripts/generate_apply_queue.py`. Matching ignores case and surrounding spaces. The runner reads the live Google Sheet, processes jobs one at a time, and continues after individual failures. It reuses an existing archived description and final DOCX when available, retrieves fuller source text when the stored description is short, and uses the V2 plan, Word-native QA, and match report. After QA passes and both final files exist, it changes only that Scout row's `Resume Created` cell to `X` through `manage_job_tracker.py`. Failures leave the queue marker unchanged for retry. `Apply?` remains unchanged. Use `--dry-run` to preview decisions without writing.
+To process every `Job Scout` row with `Apply? = Yes` and a blank `Resume Created` cell, run `python scripts/generate_apply_queue.py`. Matching ignores case and surrounding spaces. The runner reads the live Google Sheet, processes jobs one at a time, and continues after individual failures. It reuses a complete stored/enriched or archived description first. When that text is too short, it safely tries the stored authoritative employer/ATS URL, resolved destination URL, known structured ATS source, configured company-and-exact-title authoritative search, and only then the original aggregator URL. A blocked source is recorded and skipped; Gecko does not evade HTTP 403, CAPTCHAs, login walls, robots restrictions, or anti-bot controls.
+
+The 600-character completeness gate remains mandatory. If every legitimate source is unavailable or only returns a snippet, Gecko creates no resume and leaves `Resume Created` unchanged. `output/apply-queue-results.md` lists the original and authoritative URLs, every retrieval method and outcome, and the final failure reason; `output/apply-queue-run.log` retains detailed chronological diagnostics. After Word-native QA passes, both final files exist, and the match report contains a valid score, the runner changes only that Scout row's `Resume Created` and Gecko-managed status cells through `manage_job_tracker.py`. Missing or malformed scores are failures rather than `0/100`; a real computed low score is retained. `Apply?`, `Applied`, `Contacted`, formatting, formulas, and row order remain unchanged. Use `--dry-run` for a single read-only queue snapshot.
 
 The resume workflow now starts with a source-backed tailoring plan. Job Scout's discovery and selection workflow remains separate; its evidence reader now uses the same current master DOCX. For an archived listing, run:
 

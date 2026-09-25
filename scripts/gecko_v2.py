@@ -124,24 +124,64 @@ def resume_filename(company: str, title: str, job_number: str) -> str:
     return f"Dave-Call+{company_part}+{title_part[:available].rstrip(' .-')}+{number_part}.docx"
 
 
-def requirements(listing: str, source: str, evidence: list[dict]) -> dict[str, list[dict]]:
-    result = {name: [] for name in ("required_skills", "preferred_skills", "responsibilities", "tools", "seniority_signals", "industry_terminology", "ats_keywords")}
+REQUIREMENT_STARTERS = (
+    "ability to", "accredited", "analyze", "bachelor", "build", "collect", "collaborate",
+    "comfortable", "communicate", "conduct", "coordinate", "create", "define", "develop",
+    "drive", "ensure", "evangelize", "execute", "experience", "identify", "implement",
+    "lead", "leverage", "maintain", "manage", "minimum", "monitor", "optimize", "oversee",
+    "own", "partner", "present", "prior experience", "product knowledge", "proven", "provide",
+    "represent", "report", "strong", "support", "understand", "when required", "work with",
+)
+
+
+def _requirement_candidates(listing: str) -> list[tuple[str, str]]:
+    """Extract bullets and aggregator-flattened requirement clauses with section context."""
+    text = listing.replace("\\n", "\n")
+    # Aggregators frequently flatten section headings and every bullet into one paragraph.
+    inline_headings = (
+        "Professional Experience/Background to be successful in this role",
+        "Competencies (Attributes needed to be successful in this role)",
+        "Expected Outcomes in 3, 6, or 12 months",
+        "Responsibilities", "Qualifications", "Required Qualifications",
+        "Preferred Qualifications", "Requirements", "What You'll Do", "What You Will Do",
+    )
+    for label in inline_headings:
+        text = re.sub(rf"\s*{re.escape(label)}\s*:\s*", f"\n## {label}\n", text, flags=re.I)
+    starter_pattern = "|".join(re.escape(value) for value in sorted(REQUIREMENT_STARTERS, key=len, reverse=True))
     heading = ""
-    for line in listing.splitlines():
-        stripped = line.strip()
+    candidates: list[tuple[str, str]] = []
+    for raw in text.splitlines():
+        stripped = raw.strip()
         if stripped.startswith("#"):
             heading = key(stripped.lstrip("# "))
             continue
         if not stripped or stripped.startswith("- **") or stripped.startswith("http"):
             continue
-        candidate = re.sub(r"^[-*]\s+", "", stripped)
-        if len(candidate) < 18 or len(candidate) > 500:
-            continue
+        is_bullet = stripped.startswith(("-", "*", "•", "ï‚·"))
+        clean = re.sub(r"^(?:[-*•]|ï‚·)\s+", "", stripped).strip()
+        pieces = [clean] if is_bullet else re.split(
+            rf"(?<=[.!?;])\s+|\s+(?=(?:{starter_pattern})\b)", clean, flags=re.I
+        )
+        for piece in pieces:
+            candidate = normalized(piece).strip(" -•")
+            if len(candidate) < 18 or len(candidate) > 500:
+                continue
+            contextual = bool(re.search(
+                r"responsibil|qualification|requirement|experience|background|competenc|outcome|what you",
+                heading, re.I,
+            ))
+            starts_like_requirement = bool(re.match(rf"(?:{starter_pattern})\b", candidate, re.I))
+            if is_bullet or contextual or starts_like_requirement:
+                candidates.append((heading, candidate))
+    return candidates
+
+
+def requirements(listing: str, source: str, evidence: list[dict]) -> dict[str, list[dict]]:
+    result = {name: [] for name in ("required_skills", "preferred_skills", "responsibilities", "tools", "seniority_signals", "industry_terminology", "ats_keywords")}
+    for heading, candidate in _requirement_candidates(listing):
         preferred = bool(re.search(r"preferred|nice to have|bonus|strong plus", heading + " " + candidate, re.I))
         required = bool(re.search(r"required|qualification|must have", heading + " " + candidate, re.I))
         category = "preferred_skills" if preferred else "required_skills" if required else "responsibilities"
-        if not stripped.startswith(('-', '*')) and not (required or preferred):
-            continue
         overlaps = [(len(words(candidate) & words(item["quote"])), item["id"]) for item in evidence]
         best = max(overlaps, default=(0, ""))
         term_hits = [term for term in TERMS if contains_term(candidate, term)]
@@ -434,13 +474,25 @@ def native_qa(plan: dict, docx_path: Path, scratch: Path) -> dict:
     return report
 
 
+def match_score(plan: dict) -> int:
+    """Return a validated score; an empty/malformed requirement set is an error, not zero."""
+    reqs = plan["requirements"]
+    core = reqs["required_skills"] + reqs["responsibilities"]
+    if not core:
+        raise ValueError("Match scoring failed: no scorable job requirements were extracted")
+    points = {"supported": 1.0, "review": .35, "gap": 0.0}
+    invalid = [str(item.get("status", "")) for item in core if item.get("status") not in points]
+    if invalid:
+        raise ValueError("Match scoring failed: invalid requirement status: " + ", ".join(invalid))
+    return min(85, round(100 * sum(points[r["status"]] for r in core) / len(core)))
+
+
 def write_match_report(plan: dict, qa: dict) -> Path:
     if qa["status"] != "pass":
         raise ValueError("A match report is final only after V2 QA passes.")
     reqs = plan["requirements"]
     core = reqs["required_skills"] + reqs["responsibilities"]
-    points = {"supported": 1.0, "review": .35, "gap": 0.0}
-    score = min(85, round(100 * sum(points[r["status"]] for r in core) / max(1, len(core))))
+    score = match_score(plan)
     supported = [r["text"] for r in core if r["status"] == "supported"]
     gaps = qa["remaining_weaknesses"]
     keywords = [r["text"] for r in reqs["ats_keywords"] if r["status"] == "supported"]

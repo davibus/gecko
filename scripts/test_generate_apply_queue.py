@@ -55,6 +55,8 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(rows[45]["Apply?"], "yes")
 
     def test_final_step_updates_managed_cells_and_preserves_apply(self):
+        self.fake.data["Job Scout"][1][7] = "TRUE"
+        self.fake.data["Job Scout"][1][8] = "Recruiter contacted"
         with TemporaryDirectory() as temp:
             temp = Path(temp)
             resume = temp / "Dave-Call+Existing+queue-42.docx"
@@ -72,6 +74,8 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(scout["Resume Created"], "X")
         self.assertEqual(scout["Apply?"], "Yes")
         self.assertEqual(scout["Gecko Status"], "Resume Created")
+        self.assertEqual(scout["Applied"], "TRUE")
+        self.assertEqual(scout["Contacted"], "Recruiter contacted")
 
     def test_missing_artifact_or_changed_apply_never_marks_g(self):
         item = queue.QueueRow(2, 42, "Existing", "Role")
@@ -88,6 +92,44 @@ class QueueTests(unittest.TestCase):
                 queue.record_success(item, queue.Artifacts(resume, report, Path("listing.md")),
                                      self.tracker)
         self.assertEqual(self.fake.writes, [])
+
+    def test_missing_or_malformed_score_is_not_converted_to_zero(self):
+        for value in ("# report without score\n", "Match Score: unknown\n"):
+            with self.subTest(value=value):
+                with self.assertRaisesRegex(ValueError, "missing or malformed"):
+                    queue.validated_match_score(value)
+        self.assertEqual(queue.validated_match_score("Match Score: 0/100\n"), "0/100")
+        self.assertEqual(queue.validated_match_score("Match Score: 5/100\n"), "5/100")
+
+    def test_description_failure_leaves_row_unprocessed_and_report_has_attempts(self):
+        pending, _ = queue.read_queue(self.tracker)
+        item = pending[0]
+        attempt = queue.RetrievalAttempt(
+            "original aggregator URL", item.job_url, "failed", "HTTP Error 403: Forbidden"
+        )
+        result = queue.DescriptionRetrievalResult(
+            "failed", attempts=[attempt], authoritative_url="https://careers.example.test/job",
+            error="No source produced a complete description.",
+        )
+        recorded = []
+        with TemporaryDirectory() as temp, patch.object(queue, "ROOT", Path(temp)):
+            def generate(candidate, _db):
+                if candidate.scout_id == item.scout_id:
+                    raise queue.DescriptionUnavailableError(result, candidate.job_url)
+                raise RuntimeError("second simulated failure")
+
+            code = queue.run_queue(
+                self.tracker, Path("unused.sqlite3"), generator=generate,
+                recorder=lambda *args: recorded.append(args),
+            )
+            report = (Path(temp) / "output/apply-queue-results.md").read_text(encoding="utf-8")
+        self.assertEqual(code, 1)
+        self.assertEqual(recorded, [])
+        self.assertIn("Original source URL", report)
+        self.assertIn("Authoritative URL", report)
+        self.assertIn("HTTP Error 403", report)
+        scout = next(data for _, data in self.tracker.scout().rows if str(data.get("Scout ID")) == "42")
+        self.assertEqual(scout["Resume Created"], "")
 
 
 if __name__ == "__main__":

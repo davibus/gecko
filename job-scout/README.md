@@ -12,7 +12,7 @@ Job Scout is an upstream discovery module. It finds and evaluates openings, but 
 6. Shows jobs scoring 80 or higher by default, with short-source 80+ results labeled provisional.
 7. On explicit selection, archives the full description in Gecko's existing `input/job-descriptions/` format and marks the job `reviewing`.
 
-For retained Jooble results, Job Scout also resolves the discovery link before review. It keeps the original Jooble URL in source history, rejects known aggregators as application destinations, and promotes only high-confidence employer or ATS matches.
+For retained Jooble and Adzuna results, Job Scout resolves the discovery link and attempts to capture the full description before review. It keeps the original provider URL in source history, stores redirect and authoritative employer/ATS URLs separately, rejects known aggregators as preferred application destinations, and promotes only high-confidence employer or ATS matches. A later shorter provider excerpt never replaces a fuller saved description.
 
 Weak matches are stored with `retained = 0` so later searches know they were seen, but `list` hides them unless `--all` is supplied.
 
@@ -107,13 +107,13 @@ python job-scout/scout.py show 12
 
 `search` uses Adzuna only by default and does not require `BRAVE_SEARCH_API_KEY`.
 
-`daily` runs the complete Adzuna, Jooble, Remotive, and Web Careers workflow. Web Careers automatically calls Brave when `BRAVE_SEARCH_API_KEY` is configured. Google CSE is skipped unless the explicit legacy-access switch `GOOGLE_CSE_ENABLED=true` is set alongside both Google credentials. Web Careers then fetches discovered pages and extracts schema.org `JobPosting` data. The workflow also performs pre-score role filtering, link availability checks, cross-provider deduplication, scoring, Adzuna enrichment for newly discovered provisional 80+ results, tracker synchronization, and a current-run review queue. It never creates a resume or starts a Gecko handoff.
+`daily` runs the complete Adzuna, Jooble, Remotive, and Web Careers workflow. Web Careers automatically calls Brave when `BRAVE_SEARCH_API_KEY` is configured. Google CSE is skipped unless the explicit legacy-access switch `GOOGLE_CSE_ENABLED=true` is set alongside both Google credentials. Web Careers then fetches discovered pages and extracts schema.org `JobPosting` data. The workflow also performs pre-score role filtering, link availability checks, cross-provider deduplication, scoring, full-description capture for retained Jooble/Adzuna results, tracker synchronization, and a current-run review queue. It never creates a resume or starts a Gecko handoff.
 
 At the start of each daily run, Job Scout checks existing active jobs, then validates each new listing URL before scoring or insertion. It follows redirects and favors known employer/ATS links; Greenhouse and Lever job-specific APIs provide additional authoritative absence checks. A final 404/410 or an explicit loaded-page closure notice confirms expiry. HTTP 403, 429, 5xx, bot protection, DNS/connection errors, and timeouts are temporary and leave the job in place for the next run. Confirmed-dead unselected jobs are cleared from their Scout row in place and removed from SQLite only after sheet synchronization succeeds. Selected, resume-created, and applied/contacted jobs and all `Job Tracker` application records remain intact. The command prints checked, valid, removed-dead, temporary-failure, and protected-dead counts plus details for every removed job.
 
 Duplicate discoveries are reported under `existing_job_ids` and are not merged into, rescored, or rewritten in the daily path. New records are reported under `new_job_ids`. Only those new records are eligible for worksheet insertion and the daily review. The daily run colors the `Scout ID` cells light green for rows whose `Date Found` is that day, including rows added earlier the same day; earlier highlights remain in place. Aside from confirmed-dead unprotected rows and this requested ID color, existing Google `Job Scout` values and manual `Apply?`, `Applied`, and `Contacted` entries stay intact. If no new jobs qualify, the command prints `DAILY REVIEW: No new qualifying jobs were discovered in this run.`
 
-The pre-score title filter also excludes roles whose titles explicitly require fluent Spanish, even when the rest of the title matches a target marketing role.
+The pre-score title filter also excludes roles whose titles explicitly require fluent Spanish, even when the rest of the title matches a target marketing role. It explicitly rejects generic production, contracts, project/program, media-production, and field-office manager titles unless the title contains a genuine target marketing family such as digital marketing, paid search, growth, analytics, e-commerce, content, email, social, or marketing-account leadership.
 
 The standalone `search` command keeps its general upsert behavior. Both `search` and `daily` write directly to Google Sheets and fail clearly if it is unavailable.
 
@@ -188,9 +188,9 @@ Job Scout does not delete/recreate worksheets, delete/rebuild existing data rows
 
 Review output is ranked by Match Score, Evidence Confidence, and newest posting date without physically reordering persistent worksheet rows. User-created conditional formatting remains authoritative. Selecting a job changes its Scout lifecycle to `Selected`; the existing completed-resume tracker command later marks the same Scout row `Resume Created` when the archived description contains its Scout ID.
 
-## Enrich provisional matches
+## Full-description capture and enrichment
 
-When an Adzuna result scores 80 or higher from an abbreviated description, Job Scout attempts to enrich it before counting it as confirmed. Enrichment follows the existing provider URL and prefers an official company career page with schema.org `JobPosting` JSON-LD. It can also use semantic `main`, `article`, or `itemprop="description"` content when structured data is unavailable. It does not use browser automation or visual-page selectors.
+For retained Jooble and Adzuna discoveries, Job Scout attempts to save the fullest reliable description while the listing is fresh. It first preserves any sufficient stored/enriched text, then checks a verified authoritative employer/ATS URL, resolved destination, supported structured ATS source, configured company-plus-exact-title authoritative search, and finally the original provider URL. It accepts schema.org `JobPosting`, supported ATS JSON, or semantic `main`, `article`, and `itemprop="description"` content. HTTP 403 and other access controls move the workflow to the next legitimate source; they are never bypassed. Descriptions below 600 cleaned characters remain insufficient.
 
 Enrich one eligible job or retry all provisional 80+ jobs:
 
@@ -199,7 +199,11 @@ python job-scout/scout.py enrich 62
 python job-scout/scout.py enrich --provisional
 ```
 
-The original Adzuna description, URL, Match Score, and Evidence Confidence are preserved. Job Scout separately stores the enriched description, source URL, timestamp, status/error, enriched score, and enriched confidence. Failed enrichment leaves the listing provisional and retained for review.
+The original provider description, discovery URL, Match Score, and Evidence Confidence are preserved. Job Scout separately stores the enriched description, source URL, authoritative URL, redirect destination, timestamp, status/error, enriched score, and enriched confidence. Updates retain the longer description. Failed enrichment leaves the listing provisional and retained for review, with attempted-source diagnostics stored in the enrichment error.
+
+## Apply queue retrieval
+
+`python scripts/generate_apply_queue.py` processes live `Job Scout` rows whose `Apply?` value is `yes` and whose `Resume Created` cell is blank (case and surrounding whitespace ignored). It uses the same ordered full-description retrieval chain above. If the chain still cannot satisfy the completeness gate, it does not create a resume or update lifecycle fields and continues to the next row. `output/apply-queue-results.md` reports each attempted method, URL, result, and final reason; `output/apply-queue-run.log` retains detailed run history. A missing or malformed Match Score is also a failure and is never silently represented as zero. `--dry-run` reads and prints a single live-sheet snapshot without writing Sheet data.
 
 An enriched listing is a confirmed strong match only when its final Match Score is at least 80 and its Evidence Confidence is at least 65%. Otherwise an 80+ listing remains labeled `80+ provisional — full description recommended`.
 

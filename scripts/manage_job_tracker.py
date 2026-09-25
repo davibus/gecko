@@ -172,6 +172,8 @@ def main() -> int:
     add.add_argument("--job-description")
     add.add_argument("--date-created")
     sub.add_parser("validate", help="Read and validate Google tracker uniqueness")
+    sub.add_parser("normalize-match-scores",
+                   help="Normalize populated Job Scout Match Scores to numeric 0-100 values")
     args = parser.parse_args()
     try:
         load_environment(ROOT)
@@ -182,6 +184,15 @@ def main() -> int:
             tracker.application()
             tracker.scout()
             print(f"Google tracker ready: {tracker.url()}")
+            return 0
+        if args.command == "normalize-match-scores":
+            tab = tracker.scout()
+            result = tracker.normalize_match_scores(tab)
+            verified = tracker.verify_match_scores(tracker.scout())
+            print("Normalized Google Match Scores: "
+                  f"{result['corrected']} corrected of {result['populated']} populated cells; "
+                  f"{result['value_changes']} value changes; {result['format_changes']} format changes; "
+                  f"{result['percent_displays']} prior percent displays; {verified} verified; {tracker.url()}")
             return 0
         return validate(tracker)
     except (ValueError, RuntimeError, OSError) as error:

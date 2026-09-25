@@ -22,6 +22,9 @@ DIRECT_MARKETING_PHRASES = (
     "acquisition marketing", "digital acquisition", "media buying",
     "marketing operations", "marketing automation", "lifecycle marketing",
     "retention marketing", "seo manager", "seo strategist",
+    "ecommerce manager", "e commerce manager", "content marketing",
+    "email marketing", "social media marketing", "customer marketing",
+    "client marketing", "marketing account", "account marketing",
 )
 
 SENIORITY_TERMS = (
@@ -48,6 +51,18 @@ UNRELATED_PATTERNS = (
     r"\b(?:copywriter|content writer|technical writer|staff writer|editor)\b",
 )
 
+# These titles produced false positives when a provider matched only a broad
+# keyword such as "manager" or "production". Explicit marketing phrases still
+# take precedence (for example, "Digital Marketing Project Manager").
+GENERIC_MANAGER_PATTERNS = (
+    r"\b(?:(?:assistant|asst\.?) )?production manager\b",
+    r"\bmedia production specialist\b",
+    r"\b(?:senior |sr )?contracts? manager\b",
+    r"\b(?:senior |sr )?project manager\b",
+    r"\b(?:senior |sr )?program manager\b",
+    r"\bfield office manager\b",
+)
+
 
 def role_filter_reason(title: str) -> tuple[bool, str]:
     """Return whether a title belongs in the scoring pipeline and why."""
@@ -67,6 +82,10 @@ def role_filter_reason(title: str) -> tuple[bool, str]:
 
     if any(phrase in value for phrase in DIRECT_MARKETING_PHRASES):
         return True, "target digital/performance marketing family"
+
+    for pattern in GENERIC_MANAGER_PATTERNS:
+        if re.search(pattern, value):
+            return False, "generic non-marketing manager/production role"
 
     has_marketing = any(term in value for term in MARKETING_TERMS)
     has_seniority = any(re.search(rf"\b{re.escape(term)}\b", value) for term in SENIORITY_TERMS)

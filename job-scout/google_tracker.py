@@ -7,8 +7,10 @@ filters, validation, and sheet structure are never replaced during an upsert.
 from __future__ import annotations
 
 from dataclasses import dataclass
+import math
 import os
 from pathlib import Path
+import re
 from typing import Any
 from urllib.parse import quote, unquote, urlsplit
 
@@ -27,6 +29,7 @@ SCOUT_FIELDS = ("Scout ID", "Source", "Company", "Job Title", "Gecko Status", "M
                 "Employment Type", "Salary", "Date Posted", "Date Found", "Last Seen",
                 "Job URL", "Enrichment URL", "URL Status", "Authoritative URL")
 PROTECTED_SCOUT_FIELDS = ("Apply?", "Resume Created", "Applied", "Contacted")
+MATCH_SCORE_NUMBER_FORMAT = {"type": "NUMBER", "pattern": "0"}
 
 
 def load_environment(project_root: Path = ROOT) -> None:
@@ -95,6 +98,40 @@ def _col(index: int) -> str:
 
 def _normal(value: Any) -> str:
     return ("" if value is None else str(value)).strip().casefold()
+
+
+def normalize_match_score(value: Any) -> int:
+    """Return a whole-number 0-100 score from supported score representations."""
+    if isinstance(value, bool) or value in (None, ""):
+        raise ValueError("Match Score must be a numeric value from 0 to 100")
+    percentage_style = False
+    if isinstance(value, int):
+        number = float(value)
+    elif isinstance(value, float):
+        number = value
+        percentage_style = 0 < value <= 1
+    else:
+        text = str(value).strip()
+        ratio = re.fullmatch(r"([+-]?(?:\d+(?:\.\d*)?|\.\d+))\s*/\s*100", text)
+        percent = re.fullmatch(r"([+-]?(?:\d+(?:\.\d*)?|\.\d+))\s*%", text)
+        plain = re.fullmatch(r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)", text)
+        if ratio:
+            number = float(ratio.group(1))
+        elif percent:
+            number = float(percent.group(1))
+        elif plain:
+            number = float(text)
+            percentage_style = "." in text and 0 < number <= 1
+        else:
+            raise ValueError(f"Invalid Match Score: {value!r}")
+    if percentage_style:
+        number *= 100
+    if not math.isfinite(number) or not 0 <= number <= 100:
+        raise ValueError(f"Match Score is outside 0-100: {value!r}")
+    rounded = round(number)
+    if not math.isclose(number, rounded, abs_tol=1e-9):
+        raise ValueError(f"Match Score must resolve to a whole number: {value!r}")
+    return int(rounded)
 
 
 def marked(value: Any) -> bool:
@@ -170,16 +207,28 @@ class GoogleTracker:
 
     def _write(self, tab: Tab, row: int, values: dict[str, Any]) -> None:
         entries = []
+        format_requests = []
         current = next((record for number, record in tab.rows if number == row), {})
         for field, value in values.items():
             if field not in tab.headers:
                 continue
             value = "" if value is None else value
+            if field == "Match Score" and value != "":
+                value = normalize_match_score(value)
+                column = tab.headers[field] - 1
+                format_requests.append({"repeatCell": {
+                    "range": {"sheetId": tab.sheet_id, "startRowIndex": row - 1,
+                              "endRowIndex": row, "startColumnIndex": column,
+                              "endColumnIndex": column + 1},
+                    "cell": {"userEnteredFormat": {
+                        "numberFormat": MATCH_SCORE_NUMBER_FORMAT}},
+                    "fields": "userEnteredFormat.numberFormat",
+                }})
             if current.get(field, "") == value:
                 continue
             entries.append({"range": _a1(tab.title, f"{_col(tab.headers[field])}{row}"),
                             "values": [[value]]})
-        if not entries:
+        if not entries and not format_requests:
             return
         try:
             if row > tab.grid_rows:
@@ -187,10 +236,113 @@ class GoogleTracker:
                     body={"requests": [{"appendDimension": {"sheetId": tab.sheet_id,
                         "dimension": "ROWS", "length": row - tab.grid_rows}}]}).execute()
                 tab.grid_rows = row
-            self.api.values().batchUpdate(spreadsheetId=self.config.spreadsheet_id,
-                body={"valueInputOption": "RAW", "data": entries}).execute()
+            if entries:
+                self.api.values().batchUpdate(spreadsheetId=self.config.spreadsheet_id,
+                    body={"valueInputOption": "RAW", "data": entries}).execute()
+            if format_requests:
+                self.api.batchUpdate(spreadsheetId=self.config.spreadsheet_id,
+                                     body={"requests": format_requests}).execute()
         except Exception as error:
             raise RuntimeError(f"Cannot update Google Sheets {tab.title!r} row {row}: {error}") from error
+
+    def _match_score_cells(self, tab: Tab) -> list[tuple[int, dict[str, Any]]]:
+        if "Match Score" not in tab.headers:
+            raise RuntimeError(f"Google worksheet {tab.title!r} has no Match Score column")
+        last_row = max((row for row, _ in tab.rows), default=1)
+        column = _col(tab.headers["Match Score"])
+        try:
+            response = self.api.get(
+                spreadsheetId=self.config.spreadsheet_id,
+                ranges=[_a1(tab.title, f"{column}2:{column}{last_row}")],
+                includeGridData=True,
+                fields=("sheets(data(startRow,rowData(values(userEnteredValue,effectiveValue,"
+                        "formattedValue,userEnteredFormat.numberFormat))))"),
+            ).execute()
+        except Exception as error:
+            raise RuntimeError(f"Cannot inspect Google Sheets {tab.title!r} Match Score cells: {error}") from error
+        cells = []
+        for block in response.get("sheets", [{}])[0].get("data", []):
+            start = block.get("startRow", 0)
+            for offset, row_data in enumerate(block.get("rowData", [])):
+                cell = (row_data.get("values") or [{}])[0]
+                if cell.get("formattedValue", "") != "":
+                    cells.append((start + offset + 1, cell))
+        return cells
+
+    @staticmethod
+    def _score_cell_value(cell: dict[str, Any]) -> Any:
+        for source in (cell.get("userEnteredValue", {}), cell.get("effectiveValue", {})):
+            for key in ("numberValue", "stringValue"):
+                if key in source:
+                    return source[key]
+        raise ValueError("Match Score cell has no usable numeric value")
+
+    def normalize_match_scores(self, tab: Tab) -> dict[str, int]:
+        """Normalize populated Match Score cells without touching blanks or other formatting."""
+        cells = self._match_score_cells(tab)
+        changes = []
+        value_changes = format_changes = percent_displays = 0
+        for row, cell in cells:
+            score = normalize_match_score(self._score_cell_value(cell))
+            entered = cell.get("userEnteredValue", {})
+            value_ok = (set(entered) == {"numberValue"} and
+                        float(entered["numberValue"]) == float(score))
+            number_format = cell.get("userEnteredFormat", {}).get("numberFormat", {})
+            format_ok = (number_format.get("type") == "NUMBER" and
+                         number_format.get("pattern") == "0")
+            if str(cell.get("formattedValue", "")).strip().endswith("%"):
+                percent_displays += 1
+            if not value_ok:
+                value_changes += 1
+            if not format_ok:
+                format_changes += 1
+            if not value_ok or not format_ok:
+                changes.append((row, score))
+
+        requests = []
+        run = []
+        for item in changes:
+            if run and item[0] != run[-1][0] + 1:
+                requests.append(self._score_update_request(tab, run))
+                run = []
+            run.append(item)
+        if run:
+            requests.append(self._score_update_request(tab, run))
+        if requests:
+            try:
+                self.api.batchUpdate(spreadsheetId=self.config.spreadsheet_id,
+                                     body={"requests": requests}).execute()
+            except Exception as error:
+                raise RuntimeError(f"Cannot normalize Google Sheets {tab.title!r} Match Scores: {error}") from error
+        return {"populated": len(cells), "corrected": len(changes),
+                "value_changes": value_changes, "format_changes": format_changes,
+                "percent_displays": percent_displays}
+
+    @staticmethod
+    def _score_update_request(tab: Tab, run: list[tuple[int, int]]) -> dict[str, Any]:
+        column = tab.headers["Match Score"] - 1
+        return {"updateCells": {
+            "range": {"sheetId": tab.sheet_id, "startRowIndex": run[0][0] - 1,
+                      "endRowIndex": run[-1][0], "startColumnIndex": column,
+                      "endColumnIndex": column + 1},
+            "rows": [{"values": [{"userEnteredValue": {"numberValue": score},
+                                    "userEnteredFormat": {
+                                        "numberFormat": MATCH_SCORE_NUMBER_FORMAT}}]}
+                     for _, score in run],
+            "fields": "userEnteredValue,userEnteredFormat.numberFormat",
+        }}
+
+    def verify_match_scores(self, tab: Tab) -> int:
+        cells = self._match_score_cells(tab)
+        for row, cell in cells:
+            entered = cell.get("userEnteredValue", {})
+            number_format = cell.get("userEnteredFormat", {}).get("numberFormat", {})
+            score = normalize_match_score(self._score_cell_value(cell))
+            if (set(entered) != {"numberValue"} or entered["numberValue"] != score or
+                    number_format != MATCH_SCORE_NUMBER_FORMAT or
+                    cell.get("formattedValue") != str(score)):
+                raise RuntimeError(f"Match Score verification failed at {tab.title}!{_col(tab.headers['Match Score'])}{row}")
+        return len(cells)
 
     def _next_row(self, tab: Tab) -> int:
         return max((row for row, _ in tab.rows), default=1) + 1

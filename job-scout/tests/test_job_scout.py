@@ -242,7 +242,11 @@ class EnvironmentTests(unittest.TestCase):
 
                 output = io.StringIO()
                 args = build_parser().parse_args(["daily"])
-                with patch("scout.search", side_effect=fake_search), patch("scout.DailyLinkValidator.check_existing", return_value=[]), redirect_stdout(output):
+                with (patch("scout.search", side_effect=fake_search),
+                      patch("scout.sheet_only_active_jobs", return_value=[]),
+                      patch("scout.protected_job_ids", return_value=set()),
+                      patch("scout.DailyLinkValidator.check_existing", return_value=[]),
+                      redirect_stdout(output)):
                     result = daily(args, store, load_preferences())
 
         self.assertEqual(result, 0)
@@ -455,6 +459,8 @@ class RoleFilterTests(unittest.TestCase):
             "Performance Marketing Manager", "Director of Digital Marketing",
             "Marketing Analytics Manager", "Demand Generation Manager",
             "Senior Paid Search Strategist", "Head of Growth Marketing",
+            "Marketing Manager", "Ecommerce Manager", "Email Marketing Manager",
+            "Digital Marketing Project Manager", "Marketing Account Director",
         ]
         self.assertTrue(all(is_relevant_role(title) for title in titles))
 
@@ -465,6 +471,8 @@ class RoleFilterTests(unittest.TestCase):
             "React Developer", "Rails Engineer", "Data Scientist",
             "Customer Service Representative", "Administrative Assistant",
             "Account Executive", "Technical Writer",
+            "Assistant Production Manager", "Asst. Production Manager", "Senior Contracts Manager",
+            "Project Manager", "Media Production Specialist", "Field Office Manager",
         ]
         self.assertTrue(all(not is_relevant_role(title) for title in titles))
 

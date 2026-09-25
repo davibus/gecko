@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
+from datetime import datetime, timezone
 import re
 
 from deduplicate import find_duplicate
-from enrichment import enrich_and_rescore
+from description_retrieval import description_is_sufficient, retrieve_full_description
 from normalize import normalize
 from role_filter import is_relevant_role
 from scoring import score_job
@@ -59,6 +60,51 @@ REMOTIVE_RELEVANCE_TERMS = (
     "marketing operations", "martech", "marketing automation", "product marketing",
     "business intelligence", "digital strategy", "account marketing", "client marketing",
 )
+
+
+def _capture_full_description(job, store, preferences, resume_text):
+    """Persist a fuller authoritative description without discarding provenance."""
+    outcome = retrieve_full_description(job, prefer_fuller=True)
+    if job.id is not None and job.authoritative_url:
+        store.save_url_resolution(job)
+    if job.enrichment_status == "not_attempted":
+        job.original_description = job.description
+        job.original_match_score = job.match_score
+        job.original_evidence_confidence = job.evidence_confidence
+        job.original_url = job.url
+    job.enriched_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    current = max(
+        (job.description or "", job.enriched_description or ""),
+        key=lambda value: len(value),
+    )
+    if (outcome.status == "succeeded"
+            and len(outcome.description) > len(current)
+            and description_is_sufficient(outcome.description)):
+        job.enrichment_status = "succeeded"
+        job.enrichment_error = ""
+        job.enriched_description = outcome.description
+        job.enriched_source_url = outcome.source_url
+        rescored = score_job(replace(job, description=outcome.description), preferences, resume_text)
+        job.enriched_match_score = rescored.total
+        job.enriched_evidence_confidence = rescored.confidence
+        job.match_score = rescored.total
+        job.evidence_confidence = rescored.confidence
+        job.evidence_levels = rescored.evidence_levels
+        job.match_strengths = rescored.strengths
+        job.match_weaknesses = rescored.weaknesses
+        job.provisional = rescored.total >= preferences["minimum_score"] and rescored.confidence < 65
+        store.update_scoring(job, retained=job.match_score >= preferences["minimum_score"])
+    elif description_is_sufficient(current):
+        job.enrichment_status = "succeeded"
+        job.enrichment_error = "Existing stored description remained the fullest reliable source."
+    else:
+        job.enrichment_status = "failed"
+        job.enrichment_error = outcome.error + " " + " | ".join(
+            attempt.summary() for attempt in outcome.attempts
+        )
+        job.provisional = True
+    store.save_enrichment(job)
+    return job
 
 
 def _remotive_relevance(raw) -> int:
@@ -148,7 +194,7 @@ def _discover_listings(
             job, [item for item in known if not _same_source_identity_conflicts(job, item)]
         )
         should_resolve = (
-            raw.source.casefold() in {"jooble", "web-careers"}
+            raw.source.casefold() in {"jooble", "adzuna", "web-careers"}
             or classify_url(raw.url) == "official_ats"
         )
         if duplicate:
@@ -159,7 +205,12 @@ def _discover_listings(
                 if retained and should_resolve:
                     merged = store.get(duplicate.id)
                     if merged and merged.url_verification_status == "not_attempted":
-                        resolve_and_store(merged, store)
+                        merged = resolve_and_store(merged, store)
+                    if merged and (raw.source.casefold() in {"adzuna", "jooble"}
+                                   or not description_is_sufficient(
+                                       max((merged.description or "", merged.enriched_description or ""), key=len)
+                                   )):
+                        _capture_full_description(merged, store, preferences, resume_text)
             summary.duplicates += 1
             duplicate_sources = {duplicate.source.casefold(), *(
                 link.get("source", "").casefold() for link in duplicate.source_links
@@ -184,8 +235,9 @@ def _discover_listings(
         summary.new_job_ids.append(job_id)
         if retained and should_resolve:
             job = resolve_and_store(job, store)
-        if retained and job.provisional and job.source.lower() == "adzuna":
-            job = enrich_and_rescore(job, store, preferences, resume_text)
+        if retained and (job.source.lower() in {"adzuna", "jooble"}
+                         or not description_is_sufficient(job.description)):
+            job = _capture_full_description(job, store, preferences, resume_text)
             retained = job.match_score >= threshold
         if retained and job.provisional:
             summary.provisional += 1
