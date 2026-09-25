@@ -19,6 +19,8 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 
+from silent_subprocess import windows_creationflags
+
 ROOT = Path(__file__).resolve().parents[1]
 MASTER = ROOT / "input/master-resume/Dave-Call-resume-9-23-26.docx"
 SECTIONS = ("Professional Summary", "Core Competencies & Technical Skills", "Professional Experience", "Education & Certifications")
@@ -405,9 +407,11 @@ def native_qa(plan: dict, docx_path: Path, scratch: Path) -> dict:
     scratch.mkdir(parents=True, exist_ok=True)
     pdf = scratch / "word-export.pdf"
     status = scratch / "validation-status.json"
-    cmd = ["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(ROOT / "scripts/validate_word_native.ps1"),
+    cmd = ["powershell.exe", "-NoProfile", "-NonInteractive", "-WindowStyle", "Hidden",
+           "-ExecutionPolicy", "Bypass", "-File", str(ROOT / "scripts/validate_word_native.ps1"),
            "-DocxPath", str(docx_path), "-PdfPath", str(pdf), "-ResultPath", str(status)]
-    result = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
+    result = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True,
+                            creationflags=windows_creationflags())
     issues = inspect_docx(plan, docx_path)
     native = json.loads(status.read_text(encoding="utf-8-sig")) if status.exists() else {}
     if result.returncode or native.get("status") != "native-valid" or native.get("word_pages") != 2 or native.get("pdf_pages") != 2:

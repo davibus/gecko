@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "word_pages": 2,
+  "pdf_pages": 2,
+  "issues": [],
+  "remaining_weaknesses": [],
+  "native_validation": "C:\\Users\\DCALL\\Desktop\\gecko\\scratch\\Socket.dev+3962202025831574032\\validation-status.json",
+  "word_output": "Direct Word COM is unavailable in the sandbox; handing validation to the interactive desktop bridge.\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\Users\\DCALL\\Desktop\\gecko\\scratch\\Socket.dev+3962202025831574032\\validation-status.json"
+}

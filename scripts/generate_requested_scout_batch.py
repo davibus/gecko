@@ -13,6 +13,8 @@ import re
 import subprocess
 import sys
 
+from silent_subprocess import windows_creationflags
+
 import fitz
 from docx import Document
 
@@ -112,10 +114,12 @@ def prepare(scout_id: int) -> dict:
     report = ROOT / "output/match-reports" / f"Dave-Call+{company}+{key}.md"
     pdf = scratch / "word-export.pdf"
     status_path = scratch / "validation-status.json"
-    result = subprocess.run(["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+    result = subprocess.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-WindowStyle", "Hidden",
+                             "-ExecutionPolicy", "Bypass", "-File",
                              str(ROOT / "scripts/validate_word_native.ps1"), "-DocxPath", str(resume),
                              "-PdfPath", str(pdf), "-ResultPath", str(status_path)],
-                            cwd=ROOT, capture_output=True, text=True)
+                            cwd=ROOT, capture_output=True, text=True,
+                            creationflags=windows_creationflags())
     native = json.loads(status_path.read_text(encoding="utf-8-sig")) if status_path.exists() else {}
     if result.returncode or native.get("status") != "native-valid" or native.get("word_pages") != 2 or native.get("pdf_pages") != 2:
         raise RuntimeError(f"Native Word validation failed for {scout_id}: {result.stdout} {result.stderr} {native}")

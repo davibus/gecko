@@ -14,6 +14,8 @@ import re
 import subprocess
 import sys
 
+from silent_subprocess import windows_creationflags
+
 import generate_requested_scout_batch as gecko
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -165,7 +167,8 @@ def tracker_add(result: dict) -> tuple[int, str]:
             "--job-description", result["listing"]]
     env = os.environ.copy()
     env["PYTHONIOENCODING"] = "utf-8"
-    proc = subprocess.run(args, cwd=ROOT, env=env, capture_output=True, text=True, errors="replace")
+    proc = subprocess.run(args, cwd=ROOT, env=env, capture_output=True, text=True, errors="replace",
+                          creationflags=windows_creationflags())
     message = (proc.stdout + " " + proc.stderr).strip().replace("\n", " ")
     print(("TRACKED" if proc.returncode == 0 else "TRACKER_FAILED"), result["scout_id"], message, flush=True)
     return proc.returncode, message

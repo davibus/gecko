@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 APPLICATION_TAB = "Job Tracker"
 SCOUT_TAB = "Job Scout"
 SCOPE = "https://www.googleapis.com/auth/spreadsheets"
+NEW_SCOUT_ID_COLOR = {"red": 217 / 255, "green": 234 / 255, "blue": 211 / 255}
 APPLICATION_FIELDS = ("Company", "Job Title", "Pay", "Job Number", "Match Score", "Job Link",
                       "Resume Link", "Date Created", "Source", "Date Found", "Status")
 SCOUT_FIELDS = ("Scout ID", "Source", "Company", "Job Title", "Gecko Status", "Match Score",
@@ -302,6 +303,29 @@ class GoogleTracker:
                     values.pop(stable, None)
             self._write(tab, row, {key: value for key, value in values.items() if key in SCOUT_FIELDS})
         return {"rows": len(tab.rows), "added": added, "updated": updated}
+
+    def highlight_scout_found_on(self, day: str) -> int:
+        """Color only the Scout ID cells for jobs first found on this date."""
+        tab = self.scout()
+        if "Date Found" not in tab.headers:
+            raise RuntimeError("Job Scout is missing the Date Found column")
+        rows = [row for row, data in tab.rows
+                if data.get("Scout ID") not in (None, "") and str(data.get("Date Found") or "")[:10] == day]
+        if not rows:
+            return 0
+        column = tab.headers["Scout ID"] - 1
+        requests = [{"repeatCell": {
+            "range": {"sheetId": tab.sheet_id, "startRowIndex": row - 1, "endRowIndex": row,
+                      "startColumnIndex": column, "endColumnIndex": column + 1},
+            "cell": {"userEnteredFormat": {"backgroundColor": NEW_SCOUT_ID_COLOR}},
+            "fields": "userEnteredFormat.backgroundColor",
+        }} for row in rows]
+        try:
+            self.api.batchUpdate(spreadsheetId=self.config.spreadsheet_id,
+                                 body={"requests": requests}).execute()
+        except Exception as error:
+            raise RuntimeError(f"Cannot highlight Google Sheets Scout IDs found on {day}: {error}") from error
+        return len(rows)
 
     def mark_scout_resume(self, scout_id: int, resume_url: str) -> None:
         tab = self.scout()

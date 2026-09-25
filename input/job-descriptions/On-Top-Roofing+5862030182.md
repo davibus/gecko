@@ -1,0 +1,13 @@
+# Lead Management Coordinator
+
+- **Company:** On Top Roofing
+- **Job Number:** 5862030182
+- **Scout ID:** 33
+- **URL:** https://www.adzuna.com/details/5862030182?utm_medium=api&utm_source=b4f3e3f8
+- **Source:** adzuna
+- **Salary:** $54,080 - $58,240
+- **Date Discovered:** 2026-09-19
+
+## Job description
+
+Description Job Summary The Lead Management Coordinator owns the day-to-day life cycle of every lead that comes in. From first contact through qualification, categorization, routing, and follow-up. This person is the first human touchpoint for many prospects: answering inbound and outbound calls, asking the right questions, and making a judgment call about what each lead needs and where it should go. This person will report to the Director of Marketing and support our marketing full life cycle and campaigns. Essential Responsibilities and Duties Calls and Lead Intake Serve as the primary point of contact for all inbound and outbound leads via phone, web form, email, and chat Answer and route incoming calls professionally and promptly Meet response-time standards for new inbound and outbound leads Nurture-stage leads so nothing goes cold Lead Categorization, Qualifications, and CRM Hygiene Accurately categorize, tag, and segment every lead in the CRM according to source, type, stage, and priority Qualify leads against defined criteria through direct conversation and research Make sound judgment calls on lead quality and priority, escalating high-value or time-sensitive opportunities immediately Maintain clean lead records Track lead source attribution so marketing can evaluate channel performance Manage lead handoff to sales, operations, and/or service and repair Run consistent follow-up cadences on nurture-stage leads so nothing goes cold Produce regular reporting on lead volume and quality Document lead management workflows and qualification criteria Support marketing campaigns with lead-side execution All other duties as assigned Qualifications Qualifications/Skills Strong organizational and problem-solving abilities Ability to think independently and act decisively under pressure Excellent communication and time management skills Communicate professionally by phone, email, and text Visual acuity for close work, distance, depth perception, and peripheral vision Frequent sitting and typing Education and/or experience High School Diploma required Associate or bachelor’s degree in business, Construction Management, or related field is a plus At least 1 year of experience in scheduling, logistics, or construction supply Proficiency in Microsoft Excel, Word, and Outlook Familiarity with ERP/CRM systems (Acculynx preferred)

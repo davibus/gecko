@@ -9,6 +9,7 @@ import os
 import sys
 import tempfile
 from dataclasses import replace
+from datetime import date
 from pathlib import Path
 
 from enrichment import enrich_and_rescore
@@ -86,17 +87,22 @@ def sync_tracker(
     jobs=None,
     append_only: bool = False,
     remove_scout_ids: set[int] | None = None,
+    highlight_found_on: str | None = None,
 ):
     tracker = GoogleTracker()
     removed = tracker.remove_dead_scout(remove_scout_ids) if remove_scout_ids else set()
     if remove_scout_ids and removed != remove_scout_ids:
         raise RuntimeError(f"Google Sheets did not clear every unprotected Scout row: {sorted(remove_scout_ids - removed)}")
     summary = tracker.upsert_scout(store.all() if jobs is None else jobs, append_only=append_only)
+    if highlight_found_on:
+        summary["highlighted_scout_ids"] = tracker.highlight_scout_found_on(highlight_found_on)
     result = {
         "job_scout_worksheet": {
             "rows": summary["rows"], "added": summary["added"], "updated": summary["updated"],
         }
     }
+    if highlight_found_on:
+        result["job_scout_worksheet"]["highlighted_scout_ids"] = summary["highlighted_scout_ids"]
     result["google_sheets"] = {"spreadsheet_id": tracker.config.spreadsheet_id}
     print(json.dumps(result, indent=2))
     return summary
@@ -292,6 +298,7 @@ def search(args, store, preferences):
         new_jobs = [store.get(job_id) for job_id in aggregate["new_job_ids"]]
         sync_tracker(
             store, jobs=[job for job in new_jobs if job], append_only=True,
+            highlight_found_on=date.today().isoformat(),
         )
     else:
         sync_tracker(store)

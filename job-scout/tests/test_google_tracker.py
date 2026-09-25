@@ -175,6 +175,26 @@ class GoogleTrackerTests(unittest.TestCase):
         self.assertEqual(row["Gecko Status"], "Selected")
         self.assertEqual(row["Apply?"], "Yes")
 
+    def test_highlight_scout_found_on_colors_only_matching_id_cells(self):
+        self.fake.data["Job Scout"][1][SCOUT.index("Date Found")] = "2026-09-25"
+        older = list(self.fake.data["Job Scout"][1])
+        older[0] = 43
+        older[SCOUT.index("Date Found")] = "2026-09-24"
+        self.fake.data["Job Scout"].append(older)
+        today = list(older)
+        today[0] = 44
+        today[SCOUT.index("Date Found")] = "2026-09-25"
+        self.fake.data["Job Scout"].append(today)
+
+        self.assertEqual(self.tracker.highlight_scout_found_on("2026-09-25"), 2)
+        highlights = [request["repeatCell"] for request in self.fake.structural]
+        self.assertEqual([item["range"]["startRowIndex"] for item in highlights], [1, 3])
+        self.assertTrue(all(item["range"]["startColumnIndex"] == 0 and
+                            item["range"]["endColumnIndex"] == 1 and
+                            item["fields"] == "userEnteredFormat.backgroundColor"
+                            for item in highlights))
+        self.assertEqual(self.fake.writes, [])
+
     def test_dead_scout_clear_touches_only_managed_values(self):
         self.fake.data["Job Scout"][1][5] = ""
         self.fake.data["Job Scout"].append([43, "test", "Protected", "Role", "New", "Yes"])

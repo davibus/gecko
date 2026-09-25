@@ -66,6 +66,7 @@ class GeckoV2Tests(unittest.TestCase):
                 run.return_value.stderr = "Word bridge unavailable"
                 run.return_value.stdout = ""
                 report = v2.native_qa(self.plan, docx, Path(tmp))
+            self.assertEqual(run.call_args.kwargs["creationflags"], v2.windows_creationflags())
             self.assertEqual(report["status"], "fail")
             self.assertTrue(any("Native Word pagination" in issue for issue in report["issues"]))
 

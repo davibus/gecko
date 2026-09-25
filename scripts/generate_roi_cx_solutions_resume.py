@@ -12,11 +12,14 @@ import fitz
 import win32com.client
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT, WD_TABLE_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement, parse_xml
 from docx.oxml.ns import nsdecls, qn
 from docx.shared import Inches, Pt, RGBColor
+
+from silent_subprocess import windows_creationflags
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -340,7 +343,8 @@ def render_fallback_pdf(docx_path: Path, pdf_path: Path, scratch_dir: Path | Non
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     options.add_argument("--window-size=1400,1200")
-    driver = webdriver.Chrome(options=options)
+    service = Service(popen_kw={"creation_flags": windows_creationflags()})
+    driver = webdriver.Chrome(options=options, service=service)
     try:
         driver.get(preview_html.resolve().as_uri())
         result = driver.execute_cdp_cmd(

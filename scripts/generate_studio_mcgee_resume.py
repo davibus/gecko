@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 import subprocess
 
+from silent_subprocess import windows_creationflags
+
 import fitz
 from docx import Document
 
@@ -62,10 +64,12 @@ def main() -> None:
     pdf = SCRATCH / "word-export.pdf"
     status_path = SCRATCH / "validation-status.json"
     proc = subprocess.run(
-        ["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+        ["powershell.exe", "-NoProfile", "-NonInteractive", "-WindowStyle", "Hidden",
+         "-ExecutionPolicy", "Bypass", "-File",
          str(ROOT / "scripts/validate_word_native.ps1"), "-DocxPath", str(RESUME),
          "-PdfPath", str(pdf), "-ResultPath", str(status_path)],
         cwd=ROOT, capture_output=True, text=True, errors="replace",
+        creationflags=windows_creationflags(),
     )
     status = json.loads(status_path.read_text(encoding="utf-8-sig")) if status_path.exists() else {}
     if proc.returncode or status.get("status") != "native-valid" or status.get("word_pages") != 2 or status.get("pdf_pages") != 2:

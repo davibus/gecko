@@ -127,6 +127,26 @@ def add_job(args: argparse.Namespace, tracker: GoogleTracker | None = None) -> i
     return 0
 
 
+def mark_batch_resume(scout_id: int, row_number: int, tracker: GoogleTracker) -> None:
+    """Mark the selected Scout row using header positions, preserving later statuses."""
+    tab = tracker.scout()
+    if not {"Resume Created", "Gecko Status", "Apply?", "Scout ID"} <= tab.headers.keys():
+        raise RuntimeError("Required Scout headers are missing; no cell was changed")
+    matches = [(row, data) for row, data in tab.rows if str(data.get("Scout ID")) == str(scout_id)]
+    if len(matches) != 1 or matches[0][0] != row_number:
+        raise RuntimeError("Scout row identity changed; no cell was changed")
+    row, data = matches[0]
+    if str(data.get("Apply?") or "").strip().casefold() != "yes":
+        raise RuntimeError("Apply? is no longer Yes; no cell was changed")
+    if str(data.get("Resume Created") or "").strip():
+        raise RuntimeError("Resume Created is no longer blank; no cell was changed")
+    values = {"Resume Created": "X"}
+    if str(data.get("Gecko Status") or "").strip().casefold() not in {
+            "applied", "contacted", "interview", "offer"}:
+        values["Gecko Status"] = "Resume Created"
+    tracker._write(tab, row, values)
+
+
 def validate(tracker: GoogleTracker | None = None) -> int:
     tracker = tracker or GoogleTracker()
     tab = tracker.application()

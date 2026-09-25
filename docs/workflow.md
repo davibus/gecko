@@ -24,7 +24,7 @@ To proceed with a listing, explicitly run `python job-scout/scout.py select <ID>
 
 ## V2 tailoring and QA
 
-To process every `Job Scout` row marked `Apply? = Yes`, run `python scripts/generate_apply_queue.py`. The runner reads the live Google Sheet, skips any row whose `Resume Created` header contains `X` regardless of the `Apply?` value, and continues after individual failures. It uses the same V2 plan, Word-native QA, match report, and final `manage_job_tracker.py` update as a single-job run. A successful tracker update marks `Resume Created = X`, writes the resume link, and updates the application tracker score; failures leave the queue marker blank for retry. `Apply?` remains unchanged. Use `--dry-run` to preview decisions without writing.
+To process every `Job Scout` row with `Apply? = Yes` and no `X` in column G, run `python scripts/generate_apply_queue.py`. Matching ignores case and surrounding spaces. The runner reads the live Google Sheet, processes jobs one at a time, and continues after individual failures. It reuses an existing archived description and final DOCX when available, retrieves fuller source text when the stored description is short, and uses the V2 plan, Word-native QA, and match report. After QA passes and both final files exist, it changes only that Scout row's `Resume Created` cell to `X` through `manage_job_tracker.py`. Failures leave the queue marker unchanged for retry. `Apply?` remains unchanged. Use `--dry-run` to preview decisions without writing.
 
 The resume workflow now starts with a source-backed tailoring plan. Job Scout's discovery and selection workflow remains separate; its evidence reader now uses the same current master DOCX. For an archived listing, run:
 
