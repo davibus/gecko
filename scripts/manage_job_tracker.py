@@ -25,7 +25,6 @@ class JobRecord:
     job_title: str
     pay: str
     job_number: str
-    match_score: str
     job_link: str
     resume_path: Path
     date_created: date | None
@@ -53,14 +52,6 @@ def markdown_field(text: str, labels: Iterable[str]) -> str:
     return ""
 
 
-def extract_score(text: str) -> str:
-    match = re.search(r"(?i)(?:overall\s+)?match\s+score[^\d]{0,30}(\d{1,3})\s*/\s*100", text)
-    if not match:
-        return ""
-    score = int(match.group(1))
-    return f"{score}/100" if 0 <= score <= 100 else ""
-
-
 def extract_title(text: str) -> str:
     title = markdown_field(text, ("Job Title", "Title"))
     if title:
@@ -85,9 +76,8 @@ def record_from_files(resume: Path, report: Path, listing: Path | None,
                   or filename_job_number(resume))
     company = markdown_field(listing_text, ("Company",)) or markdown_field(report_text, ("Company",))
     title = extract_title(listing_text) or extract_title(report_text)
-    score = extract_score(report_text)
     missing = [name for name, value in (("company", company), ("job title", title),
-                                        ("job number", job_number), ("match score", score)) if not value]
+                                        ("job number", job_number)) if not value]
     if missing:
         raise ValueError("Cannot record completed resume; missing " + ", ".join(missing))
     found = markdown_field(listing_text, ("Date Discovered", "Date Found"))
@@ -98,31 +88,55 @@ def record_from_files(resume: Path, report: Path, listing: Path | None,
     scout_value = markdown_field(listing_text, ("Scout ID",))
     return JobRecord(
         company, title, markdown_field(listing_text, ("Salary", "Pay", "Compensation")),
-        job_number, score,
+        job_number,
         markdown_field(listing_text, ("URL", "Source URL", "Application URL", "Job Link")),
         resume, date_override or date.today(), markdown_field(listing_text, ("Source",)),
         date_found, int(scout_value) if scout_value.isdigit() else None,
     )
 
 
-def add_job(args: argparse.Namespace, tracker: GoogleTracker | None = None) -> int:
-    tracker = tracker or GoogleTracker()
-    record = record_from_files(project_path(args.resume), project_path(args.match_report),
-                               project_path(args.job_description) if args.job_description else None,
-                               date_override=(datetime.strptime(args.date_created, "%m/%d/%Y").date()
-                                              if args.date_created else None))
+def record_completed_resume(
+    resume: Path,
+    report: Path,
+    listing: Path | None,
+    tracker: GoogleTracker,
+    *,
+    date_override: date | None = None,
+) -> tuple[int, bool, JobRecord]:
+    """Upsert one validated Gecko result and mark its matching Scout row."""
+    record = record_from_files(resume, report, listing, date_override=date_override)
     application = {
         "Company": record.company, "Job Title": record.job_title, "Pay": record.pay,
-        "Job Number": record.job_number, "Match Score": record.match_score,
+        "Job Number": record.job_number,
         "Job Link": record.job_link, "Resume Link": record.resume_path.resolve().as_uri(),
         "Date Created": record.date_created.strftime("%m/%d/%Y") if record.date_created else "",
         "Source": record.source,
         "Date Found": record.date_found.strftime("%m/%d/%Y") if record.date_found else "",
         "Status": "resume-created",
     }
-    row, created = tracker.upsert_application(application)
     if record.scout_id is not None:
         tracker.mark_scout_resume(record.scout_id, application["Resume Link"])
+    try:
+        row, created = tracker.upsert_application(application)
+    except RuntimeError as error:
+        if "was not found exactly once" not in str(error) or record.scout_id is None:
+            raise
+        scout = tracker.scout()
+        row = next(number for number, data in scout.rows
+                   if str(data.get("Scout ID")) == str(record.scout_id))
+        created = False
+    return row, created, record
+
+
+def add_job(args: argparse.Namespace, tracker: GoogleTracker | None = None) -> int:
+    tracker = tracker or GoogleTracker()
+    row, created, record = record_completed_resume(
+        project_path(args.resume), project_path(args.match_report),
+        project_path(args.job_description) if args.job_description else None,
+        tracker,
+        date_override=(datetime.strptime(args.date_created, "%m/%d/%Y").date()
+                       if args.date_created else None),
+    )
     print(f"{'Added' if created else 'Updated'} Google Job Tracker row {row}: {record.company} — {record.job_title}")
     return 0
 
@@ -172,8 +186,6 @@ def main() -> int:
     add.add_argument("--job-description")
     add.add_argument("--date-created")
     sub.add_parser("validate", help="Read and validate Google tracker uniqueness")
-    sub.add_parser("normalize-match-scores",
-                   help="Normalize populated Job Scout Match Scores to numeric 0-100 values")
     args = parser.parse_args()
     try:
         load_environment(ROOT)
@@ -184,15 +196,6 @@ def main() -> int:
             tracker.application()
             tracker.scout()
             print(f"Google tracker ready: {tracker.url()}")
-            return 0
-        if args.command == "normalize-match-scores":
-            tab = tracker.scout()
-            result = tracker.normalize_match_scores(tab)
-            verified = tracker.verify_match_scores(tracker.scout())
-            print("Normalized Google Match Scores: "
-                  f"{result['corrected']} corrected of {result['populated']} populated cells; "
-                  f"{result['value_changes']} value changes; {result['format_changes']} format changes; "
-                  f"{result['percent_displays']} prior percent displays; {verified} verified; {tracker.url()}")
             return 0
         return validate(tracker)
     except (ValueError, RuntimeError, OSError) as error:

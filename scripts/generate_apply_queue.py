@@ -25,10 +25,11 @@ from description_retrieval import (  # noqa: E402
     retrieve_full_description,
 )
 from handoff import job_number as scout_job_number  # noqa: E402
+from source_policy import is_jooble_candidate  # noqa: E402
 import gecko_v2  # noqa: E402
 import manage_job_tracker  # noqa: E402
 
-REQUIRED = ("Scout ID", "Company", "Job Title", "Apply?", "Resume Created", "Job URL", "Match Score")
+REQUIRED = ("Scout ID", "Company", "Job Title", "Apply?", "Resume Created", "Job URL")
 
 
 @dataclass(frozen=True)
@@ -38,9 +39,7 @@ class QueueRow:
     company: str
     title: str
     job_url: str = ""
-    match_score: str = ""
-    authoritative_url: str = ""
-    enrichment_url: str = ""
+    source: str = ""
 
 
 @dataclass(frozen=True)
@@ -61,6 +60,30 @@ class QueueFailure:
     attempts: tuple[RetrievalAttempt, ...] = ()
 
 
+@dataclass(frozen=True)
+class QueueSnapshot:
+    pending: list[QueueRow]
+    already_created: list[QueueRow]
+    not_approved: list[QueueRow]
+    jooble_excluded: list[QueueRow]
+
+
+@dataclass(frozen=True)
+class QueueRunResult:
+    snapshot: QueueSnapshot
+    successes: list[tuple[QueueRow, Artifacts]]
+    failures: list[QueueFailure]
+    created: int = 0
+    recovered: int = 0
+    changed: int = 0
+    unexpected: tuple[QueueRow, ...] = ()
+    dry_run: bool = False
+
+    @property
+    def exit_code(self) -> int:
+        return 1 if self.failures or self.unexpected else 0
+
+
 class DescriptionUnavailableError(ValueError):
     def __init__(self, result: DescriptionRetrievalResult, original_url: str):
         super().__init__(result.error or "Full job description unavailable")
@@ -72,7 +95,7 @@ class QueueProcessingError(RuntimeError):
     def __init__(self, reason: str, item: QueueRow, attempts: tuple[RetrievalAttempt, ...]):
         super().__init__(reason)
         self.original_url = item.job_url
-        self.authoritative_url = item.authoritative_url
+        self.authoritative_url = ""
         self.attempts = attempts
 
 
@@ -91,31 +114,38 @@ def _retry_sheet(action):
             time.sleep(15 * (attempt + 1))
 
 
-def read_queue(tracker: GoogleTracker) -> tuple[list[QueueRow], list[QueueRow]]:
-    """Return pending and already-created Yes rows without trusting file existence."""
+def read_queue(
+    tracker: GoogleTracker, eligible_scout_ids: set[int] | None = None
+) -> QueueSnapshot:
+    """Classify live rows, optionally restricted to the current daily discovery set."""
     tab = _retry_sheet(tracker.scout)
     missing = set(REQUIRED) - tab.headers.keys()
     if missing:
         raise ValueError("Job Scout is missing required columns: " + ", ".join(sorted(missing)))
-    pending, skipped = [], []
+    pending, already_created, not_approved, jooble_excluded = [], [], [], []
     for row, data in tab.rows:
-        if _flag(data.get("Apply?")) != "yes":
-            continue
         raw_id = data.get("Scout ID")
         try:
             scout_id = int(raw_id)
         except (TypeError, ValueError):
             scout_id = 0
+        if eligible_scout_ids is not None and scout_id not in eligible_scout_ids:
+            continue
         item = QueueRow(row, scout_id, str(data.get("Company") or ""),
                         str(data.get("Job Title") or ""), str(data.get("Job URL") or ""),
-                        str(data.get("Match Score") or ""),
-                        str(data.get("Authoritative URL") or ""),
-                        str(data.get("Enrichment URL") or ""))
-        if _flag(data.get("Resume Created")) == "":
+                        str(data.get("Source") or ""))
+        if is_jooble_candidate(
+            source=item.source,
+            urls=(item.job_url,),
+        ):
+            jooble_excluded.append(item)
+        elif _flag(data.get("Apply?")) != "yes":
+            not_approved.append(item)
+        elif _flag(data.get("Resume Created")) == "":
             pending.append(item)
         else:
-            skipped.append(item)
-    return pending, skipped
+            already_created.append(item)
+    return QueueSnapshot(pending, already_created, not_approved, jooble_excluded)
 
 
 def _still_pending(tracker: GoogleTracker, item: QueueRow) -> bool:
@@ -165,8 +195,6 @@ def _persist_queue_retrieval(job, result: DescriptionRetrievalResult, store: Job
         return
     if job.enrichment_status == "not_attempted":
         job.original_description = job.description
-        job.original_match_score = job.match_score
-        job.original_evidence_confidence = job.evidence_confidence
         job.original_url = job.url
     job.enriched_description = result.description
     job.enriched_source_url = result.source_url
@@ -202,9 +230,9 @@ def _archive_listing(job, item: QueueRow, store: JobStore) -> tuple[Path, tuple[
     original_url = _original_source_url(job, item)
     result = retrieve_full_description(
         job,
-        authoritative_urls=(item.authoritative_url,),
+        authoritative_urls=(job.authoritative_url,),
         redirect_urls=(job.url_redirect_url,),
-        ats_urls=(item.enrichment_url, job.enriched_source_url),
+        ats_urls=(job.enriched_source_url,),
         aggregator_urls=(original_url, item.job_url),
     )
     if result.status != "succeeded" or not description_is_sufficient(result.description):
@@ -256,8 +284,6 @@ def _finish_generation(
     if (plan["job"]["company"].strip().casefold() != item.company.strip().casefold()
             or plan["job"]["title"].strip().casefold() != item.title.strip().casefold()):
         raise ValueError("Saved listing identity does not match the live Scout row")
-    # Fail before producing a DOCX if the listing cannot support a real score.
-    gecko_v2.match_score(plan)
     name = f"{plan['job']['safe_company']}+{plan['job']['job_number']}"
     scratch = ROOT / "scratch" / name
     scratch.mkdir(parents=True, exist_ok=True)
@@ -289,19 +315,14 @@ def _finish_generation(
 
 
 def record_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTracker) -> None:
-    """Mark the selected Scout row after both final files pass validation."""
+    """Record the validated resume through the canonical tracker integration."""
     if not artifacts.resume.is_file() or not artifacts.report.is_file():
         raise ValueError("Final DOCX and match report are missing")
     if not _still_pending(tracker, item):
         raise RuntimeError("Apply? or Resume Created changed before tracker update")
-    _retry_sheet(lambda: manage_job_tracker.mark_batch_resume(item.scout_id, item.row, tracker))
-
-
-def validated_match_score(report_text: str) -> str:
-    score = manage_job_tracker.extract_score(report_text)
-    if not score:
-        raise ValueError("Match report has a missing or malformed Match Score")
-    return score
+    _retry_sheet(lambda: manage_job_tracker.record_completed_resume(
+        artifacts.resume, artifacts.report, artifacts.listing, tracker
+    ))
 
 
 def _log(logger, message: str) -> None:
@@ -309,14 +330,27 @@ def _log(logger, message: str) -> None:
         logger(message)
 
 
-def run_queue(tracker: GoogleTracker, db: Path, *, dry_run: bool = False,
-              generator=generate, recorder=record_success, logger=None) -> int:
-    pending, skipped = read_queue(tracker)
+def run_queue(
+    tracker: GoogleTracker,
+    db: Path,
+    *,
+    dry_run: bool = False,
+    eligible_scout_ids: set[int] | None = None,
+    generator=generate,
+    recorder=record_success,
+    logger=None,
+    print_summary: bool = True,
+) -> QueueRunResult:
+    snapshot = read_queue(tracker, eligible_scout_ids)
+    pending = snapshot.pending
+    skipped = snapshot.already_created
     created = recovered = 0
-    successes: list[tuple[QueueRow, Artifacts, str]] = []
+    successes: list[tuple[QueueRow, Artifacts]] = []
     changed = 0
     failed: list[QueueFailure] = []
     print(f"Eligible rows: {len(pending)}; skipped with a nonblank marker: {len(skipped)}", flush=True)
+    if snapshot.jooble_excluded:
+        print(f"Jooble rows rejected before Gecko: {len(snapshot.jooble_excluded)}", flush=True)
     _log(logger, f"Eligible rows: {len(pending)}; already marked: {len(skipped)}")
     print("Row | Scout ID | Company | Job title", flush=True)
     for item in pending:
@@ -335,15 +369,14 @@ def run_queue(tracker: GoogleTracker, db: Path, *, dry_run: bool = False,
                 print(f"WOULD CREATE: row {item.row} (Scout ID {item.scout_id})")
                 continue
             artifacts = generator(item, db)
-            score = validated_match_score(artifacts.report.read_text(encoding="utf-8-sig"))
             recorder(item, artifacts, tracker)
             recovered += int(artifacts.existing)
             created += int(not artifacts.existing)
-            successes.append((item, artifacts, score))
+            successes.append((item, artifacts))
             print(f"{'VERIFIED EXISTING' if artifacts.existing else 'CREATED'}: row {item.row} "
                   f"(Scout ID {item.scout_id}), {item.company} / {item.title}: "
-                  f"{artifacts.resume} | {score}", flush=True)
-            _log(logger, f"SUCCESS row={item.row} scout_id={item.scout_id} score={score} "
+                  f"{artifacts.resume}", flush=True)
+            _log(logger, f"SUCCESS row={item.row} scout_id={item.scout_id} "
                  f"resume={artifacts.resume}")
             for attempt in artifacts.retrieval_attempts:
                 _log(logger, "  " + attempt.summary())
@@ -353,7 +386,7 @@ def run_queue(tracker: GoogleTracker, db: Path, *, dry_run: bool = False,
                     item=item,
                     reason=error.result.error or str(error),
                     original_url=error.original_url,
-                    authoritative_url=error.result.authoritative_url or item.authoritative_url,
+                    authoritative_url=error.result.authoritative_url,
                     attempts=tuple(error.result.attempts),
                 )
             elif isinstance(error, QueueProcessingError):
@@ -369,7 +402,7 @@ def run_queue(tracker: GoogleTracker, db: Path, *, dry_run: bool = False,
                     item=item,
                     reason=str(error),
                     original_url=item.job_url,
-                    authoritative_url=item.authoritative_url,
+                    authoritative_url="",
                 )
             failed.append(failure)
             print(f"FAILED: row {item.row} (Scout ID {item.scout_id}), "
@@ -379,20 +412,27 @@ def run_queue(tracker: GoogleTracker, db: Path, *, dry_run: bool = False,
                 _log(logger, "  " + attempt.summary())
         if not dry_run:
             _write_report(pending, skipped, successes, failed, changed)
-    remaining = pending if dry_run else read_queue(tracker)[0]
+    remaining = pending if dry_run else read_queue(tracker, eligible_scout_ids).pending
     failed_ids = {failure.item.scout_id for failure in failed}
     unexpected = [] if dry_run else [item for item in remaining if item.scout_id not in failed_ids]
-    print("\nGecko Resume Queue Complete")
-    print(f"Eligible jobs found: {len(pending)}")
-    print(f"Skipped: {len(skipped) + changed}")
-    print(f"New resumes created: {created}")
-    print(f"Existing valid resumes discovered and marked: {recovered}")
-    print(f"Failed: {len(failed)}")
-    print("Rows marked X: " + (", ".join(str(item.row) for item, _, _ in successes) or "none"))
-    print(f"Remaining eligible rows: {len(remaining)}; unexpected: {len(unexpected)}")
-    if dry_run:
-        print(f"Would create: {len(pending)}")
-    return 1 if failed or unexpected else 0
+    result = QueueRunResult(
+        snapshot=snapshot, successes=successes, failures=failed, created=created,
+        recovered=recovered, changed=changed, unexpected=tuple(unexpected),
+        dry_run=dry_run,
+    )
+    if print_summary:
+        print("\nGecko Resume Queue Complete")
+        print(f"Eligible jobs found: {len(pending)}")
+        print(f"Skipped: {len(skipped) + changed}")
+        print(f"Jooble rows excluded: {len(snapshot.jooble_excluded)}")
+        print(f"New resumes created: {created}")
+        print(f"Existing valid resumes discovered and marked: {recovered}")
+        print(f"Failed: {len(failed)}")
+        print("Rows marked X: " + (", ".join(str(item.row) for item, _ in successes) or "none"))
+        print(f"Remaining eligible rows: {len(remaining)}; unexpected: {len(unexpected)}")
+        if dry_run:
+            print(f"Would create: {len(pending)}")
+    return result
 
 
 def _write_report(pending, skipped, successes, failed, changed) -> None:
@@ -400,12 +440,12 @@ def _write_report(pending, skipped, successes, failed, changed) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     lines = ["# Gecko apply queue results", "", f"Eligible jobs found: {len(pending)}",
              f"Skipped: {len(skipped) + changed}",
-             f"New resumes created: {sum(not result.existing for _, result, _ in successes)}",
-             f"Existing valid resumes discovered and marked: {sum(result.existing for _, result, _ in successes)}",
+             f"New resumes created: {sum(not result.existing for _, result in successes)}",
+             f"Existing valid resumes discovered and marked: {sum(result.existing for _, result in successes)}",
              f"Failed: {len(failed)}", "", "## Successful jobs", ""]
-    for item, result, score in successes:
+    for item, result in successes:
         lines.append(f"- Row {item.row}; Scout ID {item.scout_id}; {item.company}; {item.title}; "
-                     f"{result.resume}; Match Score {score}")
+                     f"{result.resume}")
     lines.extend(["", "## Failures", ""])
     for failure in failed:
         item = failure.item
@@ -447,8 +487,8 @@ def main() -> int:
         GoogleTracker(), args.db.resolve(), dry_run=args.dry_run,
         logger=_append_run_log,
     )
-    _append_run_log(f"RUN END exit_code={result}")
-    return result
+    _append_run_log(f"RUN END exit_code={result.exit_code}")
+    return result.exit_code
 
 
 if __name__ == "__main__":

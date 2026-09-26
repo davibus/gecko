@@ -1,5 +1,4 @@
 {
-  "minimum_score": 80,
   "target_roles": [
     "Paid Search Manager",
     "Paid Search Specialist",
@@ -18,19 +17,27 @@
     "Director of Digital Marketing",
     "Director of Performance Marketing"
   ],
-  "preferred_locations": ["remote", "utah", "salt lake city", "lehi", "draper", "provo", "orem", "midvale"],
-  "preferred_employment_types": ["full-time", "full time", "permanent"],
-  "excluded_seniority": ["intern", "internship", "entry level", "entry-level", "junior", "associate"],
-  "candidate": {
-    "years_experience": 14,
-    "location": "Lehi, Utah",
-    "education": ["Bachelor of Science", "Business Management", "Brigham Young University"],
-    "certifications": ["Google Ads", "Google Analytics", "Microsoft Ads", "Meta Blueprint", "Amazon Marketing Services"],
-    "management_evidence": ["director-level digital marketing", "director-level e-commerce", "managed an e-commerce team of 8", "four-person paid media team", "cross-functional leadership", "large-budget management", "multi-channel management"],
-    "paid_media": ["Google Ads", "Microsoft Ads", "Meta", "Instagram", "TikTok", "Amazon Marketing Services", "paid search", "shopping", "display", "YouTube", "Performance Max"],
-    "analytics": ["marketing analytics", "GA4", "Google Analytics", "Google Tag Manager", "GTM", "Tableau", "Looker Studio", "SQL", "Python", "Databricks", "Funnel.io", "regression analysis", "attribution", "LTV", "A/B testing", "CRO"],
-    "ecommerce_seo": ["e-commerce", "Shopify", "Magento", "Amazon", "SEO", "keyword research", "landing pages"],
-    "marketing_technology": ["Shopify", "Magento", "Google Ads Editor", "Funnel.io", "Looker Studio", "Tableau", "Databricks"],
-    "automation_ai": ["automated reporting", "automated monitoring scripts", "regression modeling", "forecasting"]
-  }
+  "preferred_locations": [
+    "remote",
+    "utah",
+    "salt lake city",
+    "lehi",
+    "draper",
+    "provo",
+    "orem",
+    "midvale"
+  ],
+  "preferred_employment_types": [
+    "full-time",
+    "full time",
+    "permanent"
+  ],
+  "excluded_seniority": [
+    "intern",
+    "internship",
+    "entry level",
+    "entry-level",
+    "junior",
+    "associate"
+  ]
 }

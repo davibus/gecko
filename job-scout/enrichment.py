@@ -1,18 +1,17 @@
-"""Structured/public-text enrichment for provisional Adzuna matches."""
+"""Structured/public-text enrichment for incomplete job descriptions."""
 
 from __future__ import annotations
 
 import html
 import json
 import re
-from dataclasses import dataclass, replace
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from html.parser import HTMLParser
 from urllib.parse import urljoin, urlsplit
 
 from models import JobListing
 from normalize import canonicalize_url, clean_text
-from scoring import score_job
 from sources.base import ProviderError
 from sources.http import FetchedDocument, get_document
 from sources.web import SCRIPT_RE, _job_nodes, _text
@@ -158,9 +157,6 @@ def _greenhouse_candidates(payload: dict, job: JobListing) -> list[EnrichmentCan
 
 def enrich_listing(job: JobListing, fetch=get_document) -> EnrichmentResult:
     """Retrieve a fuller description through redirects and structured public markup."""
-    if job.source.lower() != "adzuna" or job.match_score < 80 or not job.provisional:
-        return EnrichmentResult("failed", error="Job is not an eligible provisional Adzuna 80+ match.")
-
     queue = list(dict.fromkeys(filter(None, [job.url, job.canonical_url] + [
         link.get("url", "") for link in job.source_links
     ] + [value.rstrip(".,);]") for value in re.findall(r"https?://[^\s<>\"']+", job.description)])))
@@ -207,18 +203,14 @@ def enrich_listing(job: JobListing, fetch=get_document) -> EnrichmentResult:
     return EnrichmentResult("succeeded", best.description, canonicalize_url(best.source_url))
 
 
-def enrich_and_rescore(
+def enrich_and_store(
     job: JobListing,
     store: JobStore,
-    preferences: dict,
-    resume_text: str,
     fetch=get_document,
 ) -> JobListing:
-    """Preserve original evidence, enrich, rescore, and persist the final classification."""
+    """Preserve the provider description and persist a fuller source when available."""
     if job.enrichment_status == "not_attempted":
         job.original_description = job.description
-        job.original_match_score = job.match_score
-        job.original_evidence_confidence = job.evidence_confidence
         job.original_url = job.url
 
     outcome = enrich_listing(job, fetch=fetch)
@@ -228,24 +220,8 @@ def enrich_and_rescore(
     if outcome.status == "succeeded":
         job.enriched_description = outcome.description
         job.enriched_source_url = outcome.source_url
-        enriched_job = replace(job, description=outcome.description)
-        result = score_job(enriched_job, preferences, resume_text)
-        job.enriched_match_score = result.total
-        job.enriched_evidence_confidence = result.confidence
-        job.match_score = result.total
-        job.evidence_confidence = result.confidence
-        job.evidence_levels = result.evidence_levels
-        job.match_strengths = result.strengths
-        job.match_weaknesses = result.weaknesses
-        job.provisional = result.total >= preferences["minimum_score"] and result.confidence < 65
-        if job.provisional and not any("80+ provisional" in item for item in job.match_weaknesses):
-            job.match_weaknesses.append("80+ provisional — full description recommended.")
-        store.update_scoring(job, retained=job.match_score >= preferences["minimum_score"])
     else:
-        job.provisional = True
         job.enriched_description = ""
         job.enriched_source_url = ""
-        job.enriched_match_score = 0
-        job.enriched_evidence_confidence = 0
     store.save_enrichment(job)
     return job

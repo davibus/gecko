@@ -16,7 +16,7 @@ Instructions:
 - Keep it exactly two pages.
 - Preserve Gecko formatting conventions.
 - Remove visible job dates but preserve the right-side date space.
-- Create the Match Score report.
+- Create the qualitative Match Analysis report without a numerical compatibility rating.
 - Save the finished DOCX in `output/resumes/` using Gecko filename rules: `Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx`.
 - Save the match report in `output/match-reports/` as `Dave-Call+<Company-Name>+<job-number>.md`.
 - Save the archived listing in `input/job-descriptions/` as `<Company-Name>+<job-number>.md`.

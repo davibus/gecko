@@ -1,9 +1,4 @@
-"""Conservatively validate local Job Scout links without changing workbook structure.
-
-The canonical Gecko tracker is Google Sheets. This utility exists for an explicitly
-supplied local workbook and writes only Job Scout column I (Notes) and column J
-(Website status). It uses openpyxl as requested and saves through an atomic replace.
-"""
+"""Conservatively validate local Job Scout links using header-based lookup."""
 
 from __future__ import annotations
 
@@ -43,9 +38,6 @@ from url_resolution import classify_url  # noqa: E402
 DEFAULT_WORKBOOK = ROOT / "output" / "job-tracker.xlsx"
 DEFAULT_DATABASE = JOB_SCOUT_DIR / "data" / "jobs.sqlite3"
 SHEET_NAME = "Job Scout"
-NOTES_COLUMN = 9
-WEBSITE_STATUS_COLUMN = 10
-JOB_URL_COLUMN = 21
 REMOVED_NOTE = "Doesn't exist"
 
 USER_AGENT = (
@@ -556,30 +548,12 @@ def _headers(worksheet) -> tuple[dict[str, int], list[str]]:
     return mapping, [str(value or "") for value in values]
 
 
-def validate_layout(worksheet) -> tuple[dict[str, int], list[int]]:
-    headers, raw_headers = _headers(worksheet)
-    if normalize_header(worksheet.cell(1, NOTES_COLUMN).value) != "notes":
-        raise ValueError(
-            f"Expected column I to be 'Notes'; found {worksheet.cell(1, NOTES_COLUMN).value!r}"
-        )
-    if normalize_header(worksheet.cell(1, WEBSITE_STATUS_COLUMN).value) not in {
-        "website", "website status"
-    }:
-        raise ValueError(
-            f"Expected column J to be 'Website'; found {worksheet.cell(1, WEBSITE_STATUS_COLUMN).value!r}"
-        )
-    job_header = normalize_header(worksheet.cell(1, JOB_URL_COLUMN).value)
-    if job_header not in {"job url", "job link", "url", "posting url", "application url"}:
-        raise ValueError(
-            f"Expected column U to contain job links; found {worksheet.cell(1, JOB_URL_COLUMN).value!r}"
-        )
-    if "company" not in headers:
-        raise ValueError("Job Scout is missing a Company column")
-    website_columns = [
-        column for column, header in enumerate(raw_headers, start=1)
-        if column != WEBSITE_STATUS_COLUMN and normalize_header(header) in WEBSITE_SOURCE_HEADERS
-    ]
-    return headers, website_columns
+def validate_layout(worksheet) -> dict[str, int]:
+    headers, _ = _headers(worksheet)
+    aliases = ("job url", "job link", "url", "posting url", "application url")
+    if "notes" not in headers or "company" not in headers or not any(name in headers for name in aliases):
+        raise ValueError("Job Scout requires Company, Notes, and Job URL headers")
+    return headers
 
 
 def _row_is_populated(worksheet, row: int) -> bool:
@@ -597,21 +571,6 @@ def _append_removed_note(cell: Cell) -> bool:
         return False
     cell.value = f"{current}\n{REMOVED_NOTE}" if current else REMOVED_NOTE
     return True
-
-
-def _set_website_status(cell: Cell, value: str) -> bool:
-    if cell.data_type == "f" or cell.value == value:
-        return False
-    cell.value = value
-    return True
-
-
-def _explicit_website(worksheet, row: int, website_columns: list[int]) -> str:
-    for column in website_columns:
-        value = cell_url(worksheet.cell(row, column))
-        if value:
-            return value
-    return ""
 
 
 def _company_hyperlink(worksheet, row: int, company_column: int) -> str:
@@ -632,8 +591,12 @@ def process_workbook(
     progress: Callable[[str], None] = print,
 ) -> Summary:
     worksheet = _worksheet(workbook)
-    headers, website_columns = validate_layout(worksheet)
+    headers = validate_layout(worksheet)
     company_column = headers["company"]
+    notes_column = headers["notes"]
+    job_url_column = next(headers[name] for name in
+                          ("job url", "job link", "url", "posting url", "application url")
+                          if name in headers)
     title_column = headers.get("job title") or headers.get("title")
     scout_id_column = headers.get("scout id")
     summary = Summary()
@@ -650,7 +613,7 @@ def process_workbook(
         company = str(worksheet.cell(row, company_column).value or "").strip()
         title = str(worksheet.cell(row, title_column).value or "").strip() if title_column else ""
         scout_id = worksheet.cell(row, scout_id_column).value if scout_id_column else None
-        job_url = cell_url(worksheet.cell(row, JOB_URL_COLUMN))
+        job_url = cell_url(worksheet.cell(row, job_url_column))
         progress(f"Checking row {row}: {company or '(company missing)'}")
 
         job_result = CheckResult("unknown", job_url, reason="Job URL is empty")
@@ -662,55 +625,19 @@ def process_workbook(
                 progress("  Job: EXISTS")
             elif job_result.status == "removed":
                 summary.jobs_removed += 1
-                notes = worksheet.cell(row, NOTES_COLUMN)
+                notes = worksheet.cell(row, notes_column)
                 if _append_removed_note(notes):
                     summary.notes_changed += 1
                 elif notes.data_type == "f":
-                    summary.warnings.append(f"I{row} is a formula; confirmed removal was not written")
+                    summary.warnings.append(f"Notes row {row} is a formula; confirmed removal was not written")
                 progress("  Job: DOESN'T EXIST")
             else:
                 summary.job_status_unknown += 1
                 progress(f"  Job: UNKNOWN ({job_result.reason})")
         else:
             summary.job_urls_missing += 1
-            progress("  Job: SKIPPED (no URL in column U)")
+            progress("  Job: SKIPPED (no job URL)")
 
-        website_url = _explicit_website(worksheet, row, website_columns)
-        if not website_url:
-            website_url = _company_hyperlink(worksheet, row, company_column)
-        if not website_url and job_result.content:
-            website_url = website_from_job_content(
-                job_result.content, job_result.final_url or job_url
-            )
-        if not website_url:
-            website_url = company_site_from_url(job_result.final_url or job_url)
-        if not website_url and project_lookup is not None:
-            website_url = project_lookup.find(scout_id, company, title)
-
-        if website_url:
-            website_result = website_checker(website_url)
-            if website_result.status == "exists":
-                summary.websites_existing += 1
-                website_cell = worksheet.cell(row, WEBSITE_STATUS_COLUMN)
-                if _set_website_status(website_cell, "Yes"):
-                    summary.website_cells_changed += 1
-                elif website_cell.data_type == "f":
-                    summary.warnings.append(f"J{row} is a formula; website status was not written")
-                progress("  Website: YES")
-            elif website_result.status == "removed":
-                summary.no_website += 1
-                website_cell = worksheet.cell(row, WEBSITE_STATUS_COLUMN)
-                if _set_website_status(website_cell, "No Website"):
-                    summary.website_cells_changed += 1
-                elif website_cell.data_type == "f":
-                    summary.warnings.append(f"J{row} is a formula; website status was not written")
-                progress("  Website: NO WEBSITE")
-            else:
-                summary.website_status_unknown += 1
-                progress(f"  Website: UNKNOWN ({website_result.reason})")
-        else:
-            summary.website_sources_missing += 1
-            progress("  Website: UNKNOWN (no company website URL found)")
         progress("")
     return summary
 

@@ -7,29 +7,30 @@ filters, validation, and sheet structure are never replaced during an upsert.
 from __future__ import annotations
 
 from dataclasses import dataclass
-import math
 import os
 from pathlib import Path
-import re
 from typing import Any
 from urllib.parse import quote, unquote, urlsplit
 
 from normalize import canonicalize_url
-from url_resolution import best_job_url, url_status_label
+from source_policy import is_jooble_candidate
+from url_resolution import best_job_url
 
 ROOT = Path(__file__).resolve().parents[1]
 APPLICATION_TAB = "Job Tracker"
 SCOUT_TAB = "Job Scout"
 SCOPE = "https://www.googleapis.com/auth/spreadsheets"
 NEW_SCOUT_ID_COLOR = {"red": 217 / 255, "green": 234 / 255, "blue": 211 / 255}
-APPLICATION_FIELDS = ("Company", "Job Title", "Pay", "Job Number", "Match Score", "Job Link",
+APPLICATION_FIELDS = ("Company", "Job Title", "Pay", "Job Number", "Job Link",
                       "Resume Link", "Date Created", "Source", "Date Found", "Status")
-SCOUT_FIELDS = ("Scout ID", "Source", "Company", "Job Title", "Gecko Status", "Match Score",
-                "Evidence Confidence", "Match Status", "Location", "Work Arrangement",
-                "Employment Type", "Salary", "Date Posted", "Date Found", "Last Seen",
-                "Job URL", "Enrichment URL", "URL Status", "Authoritative URL")
+SCOUT_FIELDS = ("Scout ID", "Source", "Company", "Job Title", "Gecko Status",
+                "Location", "Work Arrangement", "Employment Type", "Salary", "Date Posted",
+                "Date Found", "Last Seen", "Job URL", "Resume Link")
 PROTECTED_SCOUT_FIELDS = ("Apply?", "Resume Created", "Applied", "Contacted")
-MATCH_SCORE_NUMBER_FORMAT = {"type": "NUMBER", "pattern": "0"}
+REMOVED_SCOUT_HEADERS = (
+    "Website", "Match Score", "Evidence Confidence", "Match Status",
+    "Enrichment URL", "URL Status", "Authoritative URL",
+)
 
 
 def load_environment(project_root: Path = ROOT) -> None:
@@ -100,40 +101,6 @@ def _normal(value: Any) -> str:
     return ("" if value is None else str(value)).strip().casefold()
 
 
-def normalize_match_score(value: Any) -> int:
-    """Return a whole-number 0-100 score from supported score representations."""
-    if isinstance(value, bool) or value in (None, ""):
-        raise ValueError("Match Score must be a numeric value from 0 to 100")
-    percentage_style = False
-    if isinstance(value, int):
-        number = float(value)
-    elif isinstance(value, float):
-        number = value
-        percentage_style = 0 < value <= 1
-    else:
-        text = str(value).strip()
-        ratio = re.fullmatch(r"([+-]?(?:\d+(?:\.\d*)?|\.\d+))\s*/\s*100", text)
-        percent = re.fullmatch(r"([+-]?(?:\d+(?:\.\d*)?|\.\d+))\s*%", text)
-        plain = re.fullmatch(r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)", text)
-        if ratio:
-            number = float(ratio.group(1))
-        elif percent:
-            number = float(percent.group(1))
-        elif plain:
-            number = float(text)
-            percentage_style = "." in text and 0 < number <= 1
-        else:
-            raise ValueError(f"Invalid Match Score: {value!r}")
-    if percentage_style:
-        number *= 100
-    if not math.isfinite(number) or not 0 <= number <= 100:
-        raise ValueError(f"Match Score is outside 0-100: {value!r}")
-    rounded = round(number)
-    if not math.isclose(number, rounded, abs_tol=1e-9):
-        raise ValueError(f"Match Score must resolve to a whole number: {value!r}")
-    return int(rounded)
-
-
 def marked(value: Any) -> bool:
     """An unchecked native checkbox is not a completed/manual mark."""
     return value not in (None, "", False) and _normal(value) not in {"false", "no"}
@@ -193,7 +160,7 @@ class GoogleTracker:
 
     def application(self) -> Tab:
         tab = self.tab(self.config.application_tab)
-        required = {"Company", "Job Number", "Match Score", "Job Link", "Resume Link",
+        required = {"Company", "Job Number", "Job Link", "Resume Link",
                     "Date Created", "Applied", "Contacted"}
         if not required <= tab.headers.keys() or not ({"Resume #", "Index"} & tab.headers.keys()):
             raise RuntimeError("Job Tracker is missing required application columns")
@@ -205,30 +172,47 @@ class GoogleTracker:
             raise RuntimeError("Job Scout is missing required columns")
         return tab
 
+    def migrate_scout_schema(self) -> dict[str, Any]:
+        """Delete retired columns in place; a second run is a verified no-op."""
+        tab = self.tab(self.config.scout_tab)
+        targets = sorted(
+            ((column, header) for header, column in tab.headers.items()
+             if header in REMOVED_SCOUT_HEADERS),
+            reverse=True,
+        )
+        if targets:
+            requests = [{"deleteDimension": {"range": {
+                "sheetId": tab.sheet_id, "dimension": "COLUMNS",
+                "startIndex": column - 1, "endIndex": column,
+            }}} for column, _ in targets]
+            try:
+                self.api.batchUpdate(
+                    spreadsheetId=self.config.spreadsheet_id,
+                    body={"requests": requests},
+                ).execute()
+            except Exception as error:
+                raise RuntimeError(f"Cannot migrate Google Sheets {tab.title!r}: {error}") from error
+        migrated = self.tab(self.config.scout_tab)
+        remaining = sorted(set(migrated.headers) & set(REMOVED_SCOUT_HEADERS))
+        if remaining:
+            raise RuntimeError("Retired Job Scout headers remain: " + ", ".join(remaining))
+        return {
+            "deleted": [header for _, header in sorted(targets)],
+            "headers": [name for name, _ in sorted(migrated.headers.items(), key=lambda item: item[1])],
+        }
+
     def _write(self, tab: Tab, row: int, values: dict[str, Any]) -> None:
         entries = []
-        format_requests = []
         current = next((record for number, record in tab.rows if number == row), {})
         for field, value in values.items():
             if field not in tab.headers:
                 continue
             value = "" if value is None else value
-            if field == "Match Score" and value != "":
-                value = normalize_match_score(value)
-                column = tab.headers[field] - 1
-                format_requests.append({"repeatCell": {
-                    "range": {"sheetId": tab.sheet_id, "startRowIndex": row - 1,
-                              "endRowIndex": row, "startColumnIndex": column,
-                              "endColumnIndex": column + 1},
-                    "cell": {"userEnteredFormat": {
-                        "numberFormat": MATCH_SCORE_NUMBER_FORMAT}},
-                    "fields": "userEnteredFormat.numberFormat",
-                }})
             if current.get(field, "") == value:
                 continue
             entries.append({"range": _a1(tab.title, f"{_col(tab.headers[field])}{row}"),
                             "values": [[value]]})
-        if not entries and not format_requests:
+        if not entries:
             return
         try:
             if row > tab.grid_rows:
@@ -239,110 +223,8 @@ class GoogleTracker:
             if entries:
                 self.api.values().batchUpdate(spreadsheetId=self.config.spreadsheet_id,
                     body={"valueInputOption": "RAW", "data": entries}).execute()
-            if format_requests:
-                self.api.batchUpdate(spreadsheetId=self.config.spreadsheet_id,
-                                     body={"requests": format_requests}).execute()
         except Exception as error:
             raise RuntimeError(f"Cannot update Google Sheets {tab.title!r} row {row}: {error}") from error
-
-    def _match_score_cells(self, tab: Tab) -> list[tuple[int, dict[str, Any]]]:
-        if "Match Score" not in tab.headers:
-            raise RuntimeError(f"Google worksheet {tab.title!r} has no Match Score column")
-        last_row = max((row for row, _ in tab.rows), default=1)
-        column = _col(tab.headers["Match Score"])
-        try:
-            response = self.api.get(
-                spreadsheetId=self.config.spreadsheet_id,
-                ranges=[_a1(tab.title, f"{column}2:{column}{last_row}")],
-                includeGridData=True,
-                fields=("sheets(data(startRow,rowData(values(userEnteredValue,effectiveValue,"
-                        "formattedValue,userEnteredFormat.numberFormat))))"),
-            ).execute()
-        except Exception as error:
-            raise RuntimeError(f"Cannot inspect Google Sheets {tab.title!r} Match Score cells: {error}") from error
-        cells = []
-        for block in response.get("sheets", [{}])[0].get("data", []):
-            start = block.get("startRow", 0)
-            for offset, row_data in enumerate(block.get("rowData", [])):
-                cell = (row_data.get("values") or [{}])[0]
-                if cell.get("formattedValue", "") != "":
-                    cells.append((start + offset + 1, cell))
-        return cells
-
-    @staticmethod
-    def _score_cell_value(cell: dict[str, Any]) -> Any:
-        for source in (cell.get("userEnteredValue", {}), cell.get("effectiveValue", {})):
-            for key in ("numberValue", "stringValue"):
-                if key in source:
-                    return source[key]
-        raise ValueError("Match Score cell has no usable numeric value")
-
-    def normalize_match_scores(self, tab: Tab) -> dict[str, int]:
-        """Normalize populated Match Score cells without touching blanks or other formatting."""
-        cells = self._match_score_cells(tab)
-        changes = []
-        value_changes = format_changes = percent_displays = 0
-        for row, cell in cells:
-            score = normalize_match_score(self._score_cell_value(cell))
-            entered = cell.get("userEnteredValue", {})
-            value_ok = (set(entered) == {"numberValue"} and
-                        float(entered["numberValue"]) == float(score))
-            number_format = cell.get("userEnteredFormat", {}).get("numberFormat", {})
-            format_ok = (number_format.get("type") == "NUMBER" and
-                         number_format.get("pattern") == "0")
-            if str(cell.get("formattedValue", "")).strip().endswith("%"):
-                percent_displays += 1
-            if not value_ok:
-                value_changes += 1
-            if not format_ok:
-                format_changes += 1
-            if not value_ok or not format_ok:
-                changes.append((row, score))
-
-        requests = []
-        run = []
-        for item in changes:
-            if run and item[0] != run[-1][0] + 1:
-                requests.append(self._score_update_request(tab, run))
-                run = []
-            run.append(item)
-        if run:
-            requests.append(self._score_update_request(tab, run))
-        if requests:
-            try:
-                self.api.batchUpdate(spreadsheetId=self.config.spreadsheet_id,
-                                     body={"requests": requests}).execute()
-            except Exception as error:
-                raise RuntimeError(f"Cannot normalize Google Sheets {tab.title!r} Match Scores: {error}") from error
-        return {"populated": len(cells), "corrected": len(changes),
-                "value_changes": value_changes, "format_changes": format_changes,
-                "percent_displays": percent_displays}
-
-    @staticmethod
-    def _score_update_request(tab: Tab, run: list[tuple[int, int]]) -> dict[str, Any]:
-        column = tab.headers["Match Score"] - 1
-        return {"updateCells": {
-            "range": {"sheetId": tab.sheet_id, "startRowIndex": run[0][0] - 1,
-                      "endRowIndex": run[-1][0], "startColumnIndex": column,
-                      "endColumnIndex": column + 1},
-            "rows": [{"values": [{"userEnteredValue": {"numberValue": score},
-                                    "userEnteredFormat": {
-                                        "numberFormat": MATCH_SCORE_NUMBER_FORMAT}}]}
-                     for _, score in run],
-            "fields": "userEnteredValue,userEnteredFormat.numberFormat",
-        }}
-
-    def verify_match_scores(self, tab: Tab) -> int:
-        cells = self._match_score_cells(tab)
-        for row, cell in cells:
-            entered = cell.get("userEnteredValue", {})
-            number_format = cell.get("userEnteredFormat", {}).get("numberFormat", {})
-            score = normalize_match_score(self._score_cell_value(cell))
-            if (set(entered) != {"numberValue"} or entered["numberValue"] != score or
-                    number_format != MATCH_SCORE_NUMBER_FORMAT or
-                    cell.get("formattedValue") != str(score)):
-                raise RuntimeError(f"Match Score verification failed at {tab.title}!{_col(tab.headers['Match Score'])}{row}")
-        return len(cells)
 
     def _next_row(self, tab: Tab) -> int:
         return max((row for row, _ in tab.rows), default=1) + 1
@@ -412,9 +294,15 @@ class GoogleTracker:
                  if data.get("Scout ID") not in (None, "")}
         by_url = {canonicalize_url(str(data.get("Job URL") or "")): row for row, data in tab.rows
                   if data.get("Job URL")}
-        added = updated = 0
+        added = updated = excluded = 0
         for job in jobs:
             url = best_job_url(job)
+            if is_jooble_candidate(
+                source=job.source,
+                urls=(job.url, job.canonical_url, job.authoritative_url, url),
+            ):
+                excluded += 1
+                continue
             row = by_id.get(str(job.id)) or by_url.get(canonicalize_url(url))
             if row and append_only:
                 continue
@@ -438,23 +326,17 @@ class GoogleTracker:
             values = {
                 "Scout ID": job.id, "Source": job.source, "Company": job.company,
                 "Job Title": job.title, "Gecko Status": status,
-                "Match Score": job.match_score, "Evidence Confidence": job.evidence_confidence / 100,
-                "Match Status": ("Confirmed Strong Match" if job.match_score >= 80 and
-                                 job.evidence_confidence >= 65 and not job.provisional else
-                                 "Provisional 80+" if job.match_score >= 80 else
-                                 "Near Match" if job.match_score >= 70 else "Below Threshold"),
                 "Location": job.location, "Work Arrangement": job.work_arrangement,
                 "Employment Type": job.employment_type, "Salary": job.salary,
                 "Date Posted": job.date_posted, "Date Found": job.date_discovered,
                 "Last Seen": job.last_seen or job.date_discovered, "Job URL": url,
-                "Enrichment URL": job.enriched_source_url,
-                "URL Status": url_status_label(job), "Authoritative URL": job.authoritative_url,
             }
             if existing:
                 for stable in ("Scout ID", "Source", "Company", "Job Title", "Date Posted", "Date Found"):
                     values.pop(stable, None)
             self._write(tab, row, {key: value for key, value in values.items() if key in SCOUT_FIELDS})
-        return {"rows": len(tab.rows), "added": added, "updated": updated}
+        return {"rows": len(tab.rows), "added": added, "updated": updated,
+                "jooble_excluded": excluded}
 
     def highlight_scout_found_on(self, day: str) -> int:
         """Color only the Scout ID cells for jobs first found on this date."""

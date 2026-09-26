@@ -1,4 +1,4 @@
-"""SQLite persistence for listings, source links, statuses, and seen history."""
+"""SQLite persistence for Job Scout listings and lifecycle history."""
 
 from __future__ import annotations
 
@@ -10,6 +10,22 @@ from models import JobListing, VALID_STATUSES
 
 
 DEFAULT_DB = Path(__file__).resolve().parents[1] / "data" / "jobs.sqlite3"
+
+JOB_COLUMNS = (
+    "id", "company", "title", "location", "work_arrangement", "employment_type",
+    "salary", "source", "source_job_id", "url", "canonical_url", "date_posted",
+    "date_discovered", "last_seen", "description", "category", "tags_json", "status",
+)
+ENRICHMENT_COLUMNS = (
+    "job_id", "original_description", "original_url", "enriched_description",
+    "enriched_source_url", "enriched_at", "enrichment_status", "enrichment_error",
+)
+REMOVED_STORAGE_COLUMNS = {
+    "match_score", "evidence_confidence", "provisional", "evidence_json",
+    "strengths_json", "weaknesses_json", "retained", "original_match_score",
+    "original_evidence_confidence", "enriched_match_score",
+    "enriched_evidence_confidence",
+}
 
 
 class JobStore:
@@ -29,7 +45,7 @@ class JobStore:
     def __exit__(self, *_):
         self.close()
 
-    def _migrate(self):
+    def _create_schema(self) -> None:
         self.connection.executescript("""
             CREATE TABLE IF NOT EXISTS jobs (
                 id INTEGER PRIMARY KEY,
@@ -38,13 +54,7 @@ class JobStore:
                 source TEXT, source_job_id TEXT, url TEXT, canonical_url TEXT,
                 date_posted TEXT, date_discovered TEXT NOT NULL, last_seen TEXT NOT NULL,
                 description TEXT, category TEXT NOT NULL DEFAULT '',
-                tags_json TEXT NOT NULL DEFAULT '[]',
-                match_score INTEGER NOT NULL, strengths_json TEXT NOT NULL,
-                weaknesses_json TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'new',
-                evidence_confidence INTEGER NOT NULL DEFAULT 0,
-                provisional INTEGER NOT NULL DEFAULT 0,
-                evidence_json TEXT NOT NULL DEFAULT '{}',
-                retained INTEGER NOT NULL DEFAULT 1,
+                tags_json TEXT NOT NULL DEFAULT '[]', status TEXT NOT NULL DEFAULT 'new',
                 UNIQUE(source, source_job_id)
             );
             CREATE TABLE IF NOT EXISTS source_links (
@@ -52,21 +62,16 @@ class JobStore:
                 source TEXT NOT NULL, source_job_id TEXT, url TEXT NOT NULL,
                 UNIQUE(job_id, source, source_job_id, url)
             );
-            CREATE INDEX IF NOT EXISTS jobs_score_idx ON jobs(match_score DESC);
             CREATE INDEX IF NOT EXISTS jobs_status_idx ON jobs(status);
             CREATE TABLE IF NOT EXISTS enrichments (
                 job_id INTEGER PRIMARY KEY REFERENCES jobs(id) ON DELETE CASCADE,
                 original_description TEXT NOT NULL,
-                original_match_score INTEGER NOT NULL,
-                original_evidence_confidence INTEGER NOT NULL,
                 original_url TEXT NOT NULL,
                 enriched_description TEXT NOT NULL DEFAULT '',
                 enriched_source_url TEXT NOT NULL DEFAULT '',
                 enriched_at TEXT NOT NULL DEFAULT '',
                 enrichment_status TEXT NOT NULL DEFAULT 'not_attempted',
-                enrichment_error TEXT NOT NULL DEFAULT '',
-                enriched_match_score INTEGER NOT NULL DEFAULT 0,
-                enriched_evidence_confidence INTEGER NOT NULL DEFAULT 0
+                enrichment_error TEXT NOT NULL DEFAULT ''
             );
             CREATE TABLE IF NOT EXISTS url_resolutions (
                 job_id INTEGER PRIMARY KEY REFERENCES jobs(id) ON DELETE CASCADE,
@@ -79,13 +84,54 @@ class JobStore:
                 resolution_error TEXT NOT NULL DEFAULT ''
             );
         """)
-        columns = {row["name"] for row in self.connection.execute("PRAGMA table_info(jobs)")}
-        if "evidence_confidence" not in columns:
-            self.connection.execute("ALTER TABLE jobs ADD COLUMN evidence_confidence INTEGER NOT NULL DEFAULT 0")
-        if "provisional" not in columns:
-            self.connection.execute("ALTER TABLE jobs ADD COLUMN provisional INTEGER NOT NULL DEFAULT 0")
-        if "evidence_json" not in columns:
-            self.connection.execute("ALTER TABLE jobs ADD COLUMN evidence_json TEXT NOT NULL DEFAULT '{}'")
+
+    def _columns(self, table: str) -> set[str]:
+        return {row["name"] for row in self.connection.execute(f"PRAGMA table_info({table})")}
+
+    def _rebuild_without_evaluation_fields(self, table: str, columns: tuple[str, ...]) -> None:
+        existing = self._columns(table)
+        if not (existing & REMOVED_STORAGE_COLUMNS):
+            return
+        temporary = f"{table}_without_evaluation_fields"
+        self.connection.execute(f"DROP TABLE IF EXISTS {temporary}")
+        if table == "jobs":
+            self.connection.execute("""
+                CREATE TABLE jobs_without_evaluation_fields (
+                    id INTEGER PRIMARY KEY,
+                    company TEXT NOT NULL, title TEXT NOT NULL, location TEXT,
+                    work_arrangement TEXT, employment_type TEXT, salary TEXT,
+                    source TEXT, source_job_id TEXT, url TEXT, canonical_url TEXT,
+                    date_posted TEXT, date_discovered TEXT NOT NULL, last_seen TEXT NOT NULL,
+                    description TEXT, category TEXT NOT NULL DEFAULT '',
+                    tags_json TEXT NOT NULL DEFAULT '[]', status TEXT NOT NULL DEFAULT 'new',
+                    UNIQUE(source, source_job_id)
+                )
+            """)
+        else:
+            self.connection.execute("""
+                CREATE TABLE enrichments_without_evaluation_fields (
+                    job_id INTEGER PRIMARY KEY REFERENCES jobs(id) ON DELETE CASCADE,
+                    original_description TEXT NOT NULL,
+                    original_url TEXT NOT NULL,
+                    enriched_description TEXT NOT NULL DEFAULT '',
+                    enriched_source_url TEXT NOT NULL DEFAULT '',
+                    enriched_at TEXT NOT NULL DEFAULT '',
+                    enrichment_status TEXT NOT NULL DEFAULT 'not_attempted',
+                    enrichment_error TEXT NOT NULL DEFAULT ''
+                )
+            """)
+        shared = [name for name in columns if name in existing]
+        names = ",".join(shared)
+        self.connection.execute(
+            f"INSERT INTO {temporary} ({names}) SELECT {names} FROM {table}"
+        )
+        self.connection.execute(f"DROP TABLE {table}")
+        self.connection.execute(f"ALTER TABLE {temporary} RENAME TO {table}")
+
+    def _migrate(self):
+        self.connection.execute("PRAGMA foreign_keys=OFF")
+        self._create_schema()
+        columns = self._columns("jobs")
         if "last_seen" not in columns:
             self.connection.execute("ALTER TABLE jobs ADD COLUMN last_seen TEXT NOT NULL DEFAULT ''")
             self.connection.execute("UPDATE jobs SET last_seen = date_discovered WHERE last_seen = ''")
@@ -93,27 +139,31 @@ class JobStore:
             self.connection.execute("ALTER TABLE jobs ADD COLUMN category TEXT NOT NULL DEFAULT ''")
         if "tags_json" not in columns:
             self.connection.execute("ALTER TABLE jobs ADD COLUMN tags_json TEXT NOT NULL DEFAULT '[]'")
+        self.connection.execute("DROP INDEX IF EXISTS jobs_score_idx")
+        self._rebuild_without_evaluation_fields("jobs", JOB_COLUMNS)
+        self._rebuild_without_evaluation_fields("enrichments", ENRICHMENT_COLUMNS)
+        self._create_schema()
         self.connection.commit()
+        self.connection.execute("PRAGMA foreign_keys=ON")
 
     @staticmethod
     def _from_row(row, links=()) -> JobListing:
         return JobListing(
-            id=row["id"], company=row["company"], title=row["title"], location=row["location"] or "",
-            work_arrangement=row["work_arrangement"] or "unknown", employment_type=row["employment_type"] or "",
-            salary=row["salary"] or "", source=row["source"] or "", source_job_id=row["source_job_id"] or "",
-            url=row["url"] or "", canonical_url=row["canonical_url"] or "", date_posted=row["date_posted"] or "",
-            date_discovered=row["date_discovered"], last_seen=row["last_seen"] or row["date_discovered"],
+            id=row["id"], company=row["company"], title=row["title"],
+            location=row["location"] or "", work_arrangement=row["work_arrangement"] or "unknown",
+            employment_type=row["employment_type"] or "", salary=row["salary"] or "",
+            source=row["source"] or "", source_job_id=row["source_job_id"] or "",
+            url=row["url"] or "", canonical_url=row["canonical_url"] or "",
+            date_posted=row["date_posted"] or "", date_discovered=row["date_discovered"],
+            last_seen=row["last_seen"] or row["date_discovered"],
             description=row["description"] or "", category=row["category"] or "",
-            tags=json.loads(row["tags_json"] or "[]"),
-            match_score=row["match_score"], match_strengths=json.loads(row["strengths_json"]),
-            evidence_confidence=row["evidence_confidence"], provisional=bool(row["provisional"]),
-            evidence_levels=json.loads(row["evidence_json"]),
-            match_weaknesses=json.loads(row["weaknesses_json"]), status=row["status"], source_links=list(links),
+            tags=json.loads(row["tags_json"] or "[]"), status=row["status"],
+            source_links=list(links),
         )
 
     def all(self, *, retained_only: bool = False) -> list[JobListing]:
-        where = " WHERE retained = 1" if retained_only else ""
-        rows = self.connection.execute("SELECT * FROM jobs" + where).fetchall()
+        # retained_only is accepted for old callers; discovery no longer gates records.
+        rows = self.connection.execute("SELECT id FROM jobs").fetchall()
         return [self.get(row["id"]) for row in rows]
 
     def get(self, job_id: int) -> JobListing | None:
@@ -128,12 +178,7 @@ class JobStore:
             "SELECT * FROM enrichments WHERE job_id = ?", (job_id,)
         ).fetchone()
         if enrichment:
-            for name in (
-                "original_description", "original_match_score", "original_evidence_confidence",
-                "original_url", "enriched_description", "enriched_source_url", "enriched_at",
-                "enrichment_status", "enrichment_error", "enriched_match_score",
-                "enriched_evidence_confidence",
-            ):
+            for name in ENRICHMENT_COLUMNS[1:]:
                 setattr(job, name, enrichment[name])
         resolution = self.connection.execute(
             "SELECT * FROM url_resolutions WHERE job_id = ?", (job_id,)
@@ -143,10 +188,8 @@ class JobStore:
                 "verification_status": "url_verification_status",
                 "authoritative_url": "authoritative_url",
                 "authoritative_url_confidence": "authoritative_url_confidence",
-                "destination_type": "url_destination_type",
-                "redirect_url": "url_redirect_url",
-                "resolved_at": "url_resolved_at",
-                "resolution_error": "url_resolution_error",
+                "destination_type": "url_destination_type", "redirect_url": "url_redirect_url",
+                "resolved_at": "url_resolved_at", "resolution_error": "url_resolution_error",
             }
             for column, attribute in mapping.items():
                 setattr(job, attribute, resolution[column])
@@ -156,9 +199,8 @@ class JobStore:
         cursor = self.connection.execute("""
             INSERT INTO jobs (company,title,location,work_arrangement,employment_type,salary,source,
                 source_job_id,url,canonical_url,date_posted,date_discovered,last_seen,description,
-                category,tags_json,match_score,strengths_json,weaknesses_json,status,evidence_confidence,provisional,
-                evidence_json,retained)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                category,tags_json,status)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
             ON CONFLICT(source, source_job_id) DO UPDATE SET
                 company=excluded.company,title=excluded.title,location=excluded.location,
                 work_arrangement=excluded.work_arrangement,employment_type=excluded.employment_type,
@@ -166,19 +208,13 @@ class JobStore:
                 date_posted=excluded.date_posted,last_seen=excluded.last_seen,
                 description=CASE WHEN length(excluded.description) > length(description)
                     THEN excluded.description ELSE description END,
-                category=excluded.category,tags_json=excluded.tags_json,
-                match_score=excluded.match_score,strengths_json=excluded.strengths_json,
-                weaknesses_json=excluded.weaknesses_json,
-                evidence_confidence=excluded.evidence_confidence,provisional=excluded.provisional,
-                evidence_json=excluded.evidence_json,retained=excluded.retained
+                category=excluded.category,tags_json=excluded.tags_json
             RETURNING id
         """, (
-            job.company, job.title, job.location, job.work_arrangement, job.employment_type, job.salary,
-            job.source, job.source_job_id, job.url, job.canonical_url, job.date_posted,
-            job.date_discovered, job.last_seen or job.date_discovered, job.description,
-            job.category, json.dumps(job.tags), job.match_score, json.dumps(job.match_strengths),
-            json.dumps(job.match_weaknesses), job.status, job.evidence_confidence,
-            int(job.provisional), json.dumps(job.evidence_levels), int(retained),
+            job.company, job.title, job.location, job.work_arrangement, job.employment_type,
+            job.salary, job.source, job.source_job_id, job.url, job.canonical_url,
+            job.date_posted, job.date_discovered, job.last_seen or job.date_discovered,
+            job.description, job.category, json.dumps(job.tags), job.status,
         ))
         job_id = int(cursor.fetchone()[0])
         for link in job.source_links:
@@ -201,7 +237,6 @@ class JobStore:
         self.connection.commit()
 
     def delete_dead_unprotected(self, job_id: int) -> None:
-        """Remove a confirmed-dead Scout record after its sheet row is cleared."""
         job = self.get(job_id)
         if not job:
             return
@@ -212,50 +247,29 @@ class JobStore:
                 self.connection.execute(f"DELETE FROM {table} WHERE job_id = ?", (job_id,))
             self.connection.execute("DELETE FROM jobs WHERE id = ?", (job_id,))
 
-    def merge(self, canonical_id: int, duplicate: JobListing, retained: bool = False):
+    def merge(self, canonical_id: int, duplicate: JobListing, retained: bool = True):
         current = self.get(canonical_id)
         merged_tags = list(dict.fromkeys([
-            *((current.tags if current else []) or []),
-            *(duplicate.tags or []),
+            *((current.tags if current else []) or []), *(duplicate.tags or []),
         ]))
         self.connection.execute("""
             UPDATE jobs SET last_seen=?, salary=CASE WHEN ? != '' THEN ? ELSE salary END,
                 url=CASE WHEN url = '' AND ? != '' THEN ? ELSE url END,
                 canonical_url=CASE WHEN canonical_url = '' AND ? != '' THEN ? ELSE canonical_url END,
                 description=CASE WHEN length(?) > length(description) THEN ? ELSE description END,
-                tags_json=?
+                category=CASE WHEN ? != '' THEN ? ELSE category END, tags_json=?
             WHERE id=?
         """, (
-            duplicate.last_seen or duplicate.date_discovered,
-            duplicate.salary, duplicate.salary,
-            duplicate.url, duplicate.url,
-            duplicate.canonical_url, duplicate.canonical_url,
-            duplicate.description, duplicate.description,
-            json.dumps(merged_tags),
-            canonical_id,
+            duplicate.last_seen or duplicate.date_discovered, duplicate.salary, duplicate.salary,
+            duplicate.url, duplicate.url, duplicate.canonical_url, duplicate.canonical_url,
+            duplicate.description, duplicate.description, duplicate.category, duplicate.category,
+            json.dumps(merged_tags), canonical_id,
         ))
-        if current and duplicate.match_score > current.match_score:
-            self.connection.execute("""
-                UPDATE jobs SET title=?, company=?, location=?, work_arrangement=?, employment_type=?,
-                    salary=?, date_posted=?, description=CASE WHEN length(?) > length(description)
-                        THEN ? ELSE description END, category=?, tags_json=?, match_score=?, strengths_json=?,
-                    weaknesses_json=?, evidence_confidence=?, provisional=?, evidence_json=?,
-                    retained=MAX(retained, ?) WHERE id=?
-            """, (
-                duplicate.title, duplicate.company, duplicate.location, duplicate.work_arrangement,
-                duplicate.employment_type, duplicate.salary, duplicate.date_posted,
-                duplicate.description, duplicate.description,
-                duplicate.category, json.dumps(duplicate.tags), duplicate.match_score,
-                json.dumps(duplicate.match_strengths),
-                json.dumps(duplicate.match_weaknesses), duplicate.evidence_confidence,
-                int(duplicate.provisional), json.dumps(duplicate.evidence_levels), int(retained), canonical_id,
-            ))
         for link in duplicate.source_links:
             self.add_source_link(canonical_id, link["source"], link.get("source_job_id", ""), link["url"])
         self.connection.commit()
 
     def save_url_resolution(self, job: JobListing):
-        """Persist URL trust metadata independently from match scoring."""
         if job.id is None:
             raise ValueError("Cannot save URL resolution for an unsaved job")
         self.connection.execute("""
@@ -267,10 +281,8 @@ class JobStore:
                 verification_status=excluded.verification_status,
                 authoritative_url=excluded.authoritative_url,
                 authoritative_url_confidence=excluded.authoritative_url_confidence,
-                destination_type=excluded.destination_type,
-                redirect_url=excluded.redirect_url,
-                resolved_at=excluded.resolved_at,
-                resolution_error=excluded.resolution_error
+                destination_type=excluded.destination_type,redirect_url=excluded.redirect_url,
+                resolved_at=excluded.resolved_at,resolution_error=excluded.resolution_error
         """, (
             job.id, job.url_verification_status, job.authoritative_url,
             job.authoritative_url_confidence, job.url_destination_type,
@@ -278,30 +290,14 @@ class JobStore:
         ))
         self.connection.commit()
 
-    def update_scoring(self, job: JobListing, retained: bool):
-        """Persist a recalculated score without changing lifecycle or source data."""
-        if job.id is None:
-            raise ValueError("Cannot update scoring for an unsaved job")
-        self.connection.execute("""
-            UPDATE jobs SET match_score=?, evidence_confidence=?, provisional=?, evidence_json=?,
-                strengths_json=?, weaknesses_json=?, retained=? WHERE id=?
-        """, (
-            job.match_score, job.evidence_confidence, int(job.provisional),
-            json.dumps(job.evidence_levels), json.dumps(job.match_strengths),
-            json.dumps(job.match_weaknesses), int(retained), job.id,
-        ))
-        self.connection.commit()
-
     def save_enrichment(self, job: JobListing):
-        """Persist original and enriched evidence independently from the provider listing."""
         if job.id is None:
             raise ValueError("Cannot save enrichment for an unsaved job")
         self.connection.execute("""
             INSERT INTO enrichments (
-                job_id,original_description,original_match_score,original_evidence_confidence,
-                original_url,enriched_description,enriched_source_url,enriched_at,
-                enrichment_status,enrichment_error,enriched_match_score,enriched_evidence_confidence
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+                job_id,original_description,original_url,enriched_description,
+                enriched_source_url,enriched_at,enrichment_status,enrichment_error
+            ) VALUES (?,?,?,?,?,?,?,?)
             ON CONFLICT(job_id) DO UPDATE SET
                 enriched_source_url=CASE
                     WHEN length(excluded.enriched_description) > length(enriched_description)
@@ -311,13 +307,10 @@ class JobStore:
                     THEN excluded.enriched_description ELSE enriched_description END,
                 enriched_at=excluded.enriched_at,
                 enrichment_status=excluded.enrichment_status,
-                enrichment_error=excluded.enrichment_error,
-                enriched_match_score=excluded.enriched_match_score,
-                enriched_evidence_confidence=excluded.enriched_evidence_confidence
+                enrichment_error=excluded.enrichment_error
         """, (
-            job.id, job.original_description, job.original_match_score,
-            job.original_evidence_confidence, job.original_url, job.enriched_description,
+            job.id, job.original_description, job.original_url, job.enriched_description,
             job.enriched_source_url, job.enriched_at, job.enrichment_status,
-            job.enrichment_error, job.enriched_match_score, job.enriched_evidence_confidence,
+            job.enrichment_error,
         ))
         self.connection.commit()

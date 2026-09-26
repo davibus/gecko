@@ -474,25 +474,11 @@ def native_qa(plan: dict, docx_path: Path, scratch: Path) -> dict:
     return report
 
 
-def match_score(plan: dict) -> int:
-    """Return a validated score; an empty/malformed requirement set is an error, not zero."""
-    reqs = plan["requirements"]
-    core = reqs["required_skills"] + reqs["responsibilities"]
-    if not core:
-        raise ValueError("Match scoring failed: no scorable job requirements were extracted")
-    points = {"supported": 1.0, "review": .35, "gap": 0.0}
-    invalid = [str(item.get("status", "")) for item in core if item.get("status") not in points]
-    if invalid:
-        raise ValueError("Match scoring failed: invalid requirement status: " + ", ".join(invalid))
-    return min(85, round(100 * sum(points[r["status"]] for r in core) / len(core)))
-
-
 def write_match_report(plan: dict, qa: dict) -> Path:
     if qa["status"] != "pass":
         raise ValueError("A match report is final only after V2 QA passes.")
     reqs = plan["requirements"]
     core = reqs["required_skills"] + reqs["responsibilities"]
-    score = match_score(plan)
     supported = [r["text"] for r in core if r["status"] == "supported"]
     gaps = qa["remaining_weaknesses"]
     keywords = [r["text"] for r in reqs["ats_keywords"] if r["status"] == "supported"]
@@ -500,8 +486,7 @@ def write_match_report(plan: dict, qa: dict) -> Path:
     def bullets(items: list[str], limit=8) -> str:
         return "\n".join(f"- {item}" for item in items[:limit]) or "- None confirmed from the approved sources."
     body = (f"# {job['title']} — {job['company']}\n\n"
-            f"Match Score: {score}/100\n\n"
-            "Conservative automated estimate. Review the evidence links and gaps in the tailoring plan before application.\n\n"
+            "Review the evidence links and gaps in the tailoring plan before application.\n\n"
             f"## Strongest alignment areas\n\n{bullets(supported)}\n\n"
             f"## Weaknesses or missing requirements\n\n{bullets(gaps, 15)}\n\n"
             f"## ATS keyword alignment\n\n{bullets(keywords)}\n\n"

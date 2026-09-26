@@ -296,7 +296,7 @@ class URLResolutionTests(unittest.TestCase):
         self.assertTrue(any(link["source"] == "Jooble" for link in saved.source_links))
 
     @patch("service.resolve_and_store", side_effect=lambda job, _store: job)
-    def test_discovery_pipeline_invokes_resolution_for_retained_jooble_job(self, mocked_resolve):
+    def test_discovery_pipeline_rejects_jooble_before_resolution(self, mocked_resolve):
         class JoobleSource(JobSource):
             name = "jooble"
 
@@ -315,11 +315,13 @@ class URLResolutionTests(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as directory:
             with JobStore(Path(directory) / "jobs.sqlite3") as store:
-                discover(
+                summary = discover(
                     JoobleSource(), [SearchRequest("growth marketing")], store,
                     load_preferences(), "Google Ads GA4 SQL Python leadership", minimum_score=0,
                 )
-        mocked_resolve.assert_called_once()
+                self.assertEqual(store.all(), [])
+        self.assertEqual(summary.jooble_excluded, 1)
+        mocked_resolve.assert_not_called()
 
 
 if __name__ == "__main__":

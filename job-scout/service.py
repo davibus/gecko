@@ -1,21 +1,21 @@
-"""Discovery orchestration, deliberately independent of resume generation."""
+"""Discovery orchestration without compatibility scoring or score-based gates."""
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, replace
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 import re
 
 from deduplicate import find_duplicate
 from description_retrieval import description_is_sufficient, retrieve_full_description
+from link_validation import DailyLinkValidator
 from normalize import normalize
 from role_filter import is_relevant_role
-from scoring import score_job
+from source_policy import is_jooble_candidate
 from sources.base import JobSource, SearchRequest
 from sources.remotive import RemotiveProvider
 from storage import JobStore
 from url_resolution import classify_url, resolve_and_store
-from link_validation import DailyLinkValidator
 
 
 @dataclass
@@ -31,85 +31,49 @@ class SearchSummary:
     source_backend: str = ""
     fetched: int = 0
     normalized: int = 0
-    scored: int = 0
     added: int = 0
     updated: int = 0
-    strong: int = 0
-    weak: int = 0
     duplicates: int = 0
     cross_provider_duplicates: int = 0
-    provisional: int = 0
-    score_80_plus: int = 0
-    score_70_79: int = 0
-    score_below_70: int = 0
     unique_available: int = 0
     unique_imported: int = 0
-    filtered_before_scoring: int = 0
+    filtered_by_role: int = 0
+    jooble_excluded: int = 0
     new_job_ids: list[int] = field(default_factory=list)
     existing_job_ids: list[int] = field(default_factory=list)
     eligibility_includes_usa: int = 0
     eligibility_worldwide: int = 0
-    top_jobs: list[dict] = field(default_factory=list)
+    example_jobs: list[dict] = field(default_factory=list)
     backend_qualifying: dict[str, int] = field(default_factory=dict)
     backend_added: dict[str, int] = field(default_factory=dict)
 
 
-REMOTIVE_RELEVANCE_TERMS = (
-    "digital marketing", "paid search", "ppc", "sem", "performance marketing",
-    "marketing analytics", "e-commerce", "ecommerce", "seo", "growth marketing",
-    "marketing operations", "martech", "marketing automation", "product marketing",
-    "business intelligence", "digital strategy", "account marketing", "client marketing",
-)
-
-
-def _capture_full_description(job, store, preferences, resume_text):
-    """Persist a fuller authoritative description without discarding provenance."""
+def _capture_full_description(job, store):
+    """Persist the fullest legitimate description without evaluating candidate fit."""
     outcome = retrieve_full_description(job, prefer_fuller=True)
     if job.id is not None and job.authoritative_url:
         store.save_url_resolution(job)
     if job.enrichment_status == "not_attempted":
         job.original_description = job.description
-        job.original_match_score = job.match_score
-        job.original_evidence_confidence = job.evidence_confidence
         job.original_url = job.url
     job.enriched_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
-    current = max(
-        (job.description or "", job.enriched_description or ""),
-        key=lambda value: len(value),
-    )
-    if (outcome.status == "succeeded"
-            and len(outcome.description) > len(current)
+    current = max((job.description or "", job.enriched_description or ""), key=len)
+    if (outcome.status == "succeeded" and len(outcome.description) > len(current)
             and description_is_sufficient(outcome.description)):
         job.enrichment_status = "succeeded"
         job.enrichment_error = ""
         job.enriched_description = outcome.description
         job.enriched_source_url = outcome.source_url
-        rescored = score_job(replace(job, description=outcome.description), preferences, resume_text)
-        job.enriched_match_score = rescored.total
-        job.enriched_evidence_confidence = rescored.confidence
-        job.match_score = rescored.total
-        job.evidence_confidence = rescored.confidence
-        job.evidence_levels = rescored.evidence_levels
-        job.match_strengths = rescored.strengths
-        job.match_weaknesses = rescored.weaknesses
-        job.provisional = rescored.total >= preferences["minimum_score"] and rescored.confidence < 65
-        store.update_scoring(job, retained=job.match_score >= preferences["minimum_score"])
     elif description_is_sufficient(current):
         job.enrichment_status = "succeeded"
         job.enrichment_error = "Existing stored description remained the fullest reliable source."
     else:
         job.enrichment_status = "failed"
-        job.enrichment_error = outcome.error + " " + " | ".join(
+        job.enrichment_error = (outcome.error + " " + " | ".join(
             attempt.summary() for attempt in outcome.attempts
-        )
-        job.provisional = True
+        )).strip()
     store.save_enrichment(job)
     return job
-
-
-def _remotive_relevance(raw) -> int:
-    text = " ".join((raw.title, raw.category, " ".join(raw.tags), raw.description)).casefold()
-    return sum(1 for term in REMOTIVE_RELEVANCE_TERMS if term in text)
 
 
 def _eligibility_flags(location: str) -> tuple[bool, bool]:
@@ -123,7 +87,6 @@ def _eligibility_flags(location: str) -> tuple[bool, bool]:
 
 
 def _same_source_identity_conflicts(candidate, existing) -> bool:
-    """Do not fuzzy-merge two authoritative IDs from the same provider."""
     source = candidate.source.casefold()
     source_job_id = candidate.source_job_id.casefold()
     if not source or not source_job_id:
@@ -142,29 +105,27 @@ def _same_source_identity_conflicts(candidate, existing) -> bool:
 def _discover_listings(
     listings,
     store: JobStore,
-    preferences: dict,
-    resume_text: str,
-    threshold: int,
     *,
     require_content: bool,
     preserve_existing: bool = False,
     preexisting_ids: set[int] | None = None,
     link_validator: DailyLinkValidator | None = None,
 ) -> SearchSummary:
-    """Normalize, score, deduplicate, and save a stream of raw listings."""
+    """Normalize, role-filter, deduplicate, and save listings without fit evaluation."""
     summary = SearchSummary()
     known = store.all()
-    existing_ids = (
-        {job.id for job in known} if preexisting_ids is None else set(preexisting_ids)
-    )
+    existing_ids = {job.id for job in known} if preexisting_ids is None else set(preexisting_ids)
     updated_ids: set[int] = set()
     existing_seen_ids: set[int] = set()
     for raw in listings:
+        summary.fetched += 1
+        if is_jooble_candidate(source=raw.source, urls=(raw.url,), metadata=raw.metadata):
+            summary.jooble_excluded += 1
+            continue
         if require_content and (not raw.title or not raw.description):
             continue
-        summary.fetched += 1
         if not is_relevant_role(raw.title):
-            summary.filtered_before_scoring += 1
+            summary.filtered_by_role += 1
             continue
         discovery_backends = raw.metadata.get("_web_search_backends", [])
         for backend in discovery_backends:
@@ -176,41 +137,23 @@ def _discover_listings(
             if link_result.status == "dead":
                 link_validator.record_removed(job, link_result)
                 continue
-        result = score_job(job, preferences, resume_text)
-        summary.scored += 1
-        job.match_score = result.total
-        job.match_strengths = result.strengths
-        job.match_weaknesses = result.weaknesses
-        job.evidence_confidence = result.confidence
-        job.provisional = result.provisional
-        job.evidence_levels = result.evidence_levels
-        if job.match_score >= 80:
-            summary.score_80_plus += 1
-        elif job.match_score >= 70:
-            summary.score_70_79 += 1
-        else:
-            summary.score_below_70 += 1
         duplicate = find_duplicate(
             job, [item for item in known if not _same_source_identity_conflicts(job, item)]
         )
         should_resolve = (
-            raw.source.casefold() in {"jooble", "adzuna", "web-careers"}
+            raw.source.casefold() in {"adzuna", "web-careers"}
             or classify_url(raw.url) == "official_ats"
         )
         if duplicate:
-            retained = job.match_score >= threshold
             was_existing = duplicate.id in existing_ids
             if not (preserve_existing and was_existing):
-                store.merge(duplicate.id, job, retained=retained)
-                if retained and should_resolve:
-                    merged = store.get(duplicate.id)
-                    if merged and merged.url_verification_status == "not_attempted":
-                        merged = resolve_and_store(merged, store)
-                    if merged and (raw.source.casefold() in {"adzuna", "jooble"}
-                                   or not description_is_sufficient(
-                                       max((merged.description or "", merged.enriched_description or ""), key=len)
-                                   )):
-                        _capture_full_description(merged, store, preferences, resume_text)
+                store.merge(duplicate.id, job)
+                merged = store.get(duplicate.id)
+                if merged and should_resolve and merged.url_verification_status == "not_attempted":
+                    merged = resolve_and_store(merged, store)
+                if merged and (raw.source.casefold() == "adzuna" or not description_is_sufficient(
+                        max((merged.description or "", merged.enriched_description or ""), key=len))):
+                    _capture_full_description(merged, store)
             summary.duplicates += 1
             duplicate_sources = {duplicate.source.casefold(), *(
                 link.get("source", "").casefold() for link in duplicate.source_links
@@ -225,26 +168,17 @@ def _discover_listings(
                     updated_ids.add(duplicate.id)
                     summary.updated += 1
             continue
-        retained = job.match_score >= threshold
-        job_id = store.save(job, retained=retained)
+        job_id = store.save(job)
         job.id = job_id
         known.append(job)
         summary.added += 1
+        summary.new_job_ids.append(job_id)
         for backend in discovery_backends:
             summary.backend_added[backend] = summary.backend_added.get(backend, 0) + 1
-        summary.new_job_ids.append(job_id)
-        if retained and should_resolve:
+        if should_resolve:
             job = resolve_and_store(job, store)
-        if retained and (job.source.lower() in {"adzuna", "jooble"}
-                         or not description_is_sufficient(job.description)):
-            job = _capture_full_description(job, store, preferences, resume_text)
-            retained = job.match_score >= threshold
-        if retained and job.provisional:
-            summary.provisional += 1
-        elif retained:
-            summary.strong += 1
-        else:
-            summary.weak += 1
+        if job.source.lower() == "adzuna" or not description_is_sufficient(job.description):
+            _capture_full_description(job, store)
     return summary
 
 
@@ -252,40 +186,31 @@ def discover(
     provider: JobSource,
     requests: list[SearchRequest],
     store: JobStore,
-    preferences: dict,
-    resume_text: str,
-    minimum_score: int | None = None,
     *,
     preserve_existing: bool = False,
     preexisting_ids: set[int] | None = None,
     link_validator: DailyLinkValidator | None = None,
 ) -> SearchSummary:
-    """Fetch, normalize, score, dedupe, and persist listings from one provider."""
-    threshold = int(preferences["minimum_score"] if minimum_score is None else minimum_score)
+    """Fetch, normalize, role-filter, deduplicate, and persist listings."""
     listings = (raw for request in requests for raw in provider.search(request))
     return _discover_listings(
-        listings, store, preferences, resume_text, threshold, require_content=True,
-        preserve_existing=preserve_existing, preexisting_ids=preexisting_ids,
-        link_validator=link_validator,
+        listings, store, require_content=True, preserve_existing=preserve_existing,
+        preexisting_ids=preexisting_ids, link_validator=link_validator,
     )
 
 
 def discover_remotive_full_feed(
     provider: RemotiveProvider,
     store: JobStore,
-    preferences: dict,
-    resume_text: str,
     limit: int = 100,
     *,
     preserve_existing: bool = False,
     preexisting_ids: set[int] | None = None,
     link_validator: DailyLinkValidator | None = None,
 ) -> SearchSummary:
-    """Score the unique RSS pool, then persist its most relevant bounded subset."""
+    """Persist a bounded, role-filtered Remotive feed in newest-first order."""
     if limit < 1:
         raise ValueError("Remotive limit must be at least 1")
-    # Apply the title-family gate before normalization or Gecko scoring. The
-    # import limit is a limit on relevant candidates, not unrelated feed rows.
     pool = [raw for raw in provider.full_feed() if is_relevant_role(raw.title)]
     if link_validator is not None:
         normalized = [(raw, normalize(raw)) for raw in pool]
@@ -296,36 +221,23 @@ def discover_remotive_full_feed(
             if result.status == "dead":
                 link_validator.record_removed(job, result)
         pool = [raw for raw, job in normalized if results[id(job)].status != "dead"]
-    ranked = []
-    for raw in pool:
-        job = normalize(raw)
-        result = score_job(job, preferences, resume_text)
-        ranked.append((result.total, _remotive_relevance(raw), raw.date_posted, raw, job))
-    ranked.sort(key=lambda item: (item[0], item[1], item[2]), reverse=True)
-    selected = ranked[:limit]
+    pool.sort(key=lambda raw: (raw.date_posted or "", raw.title.casefold()), reverse=True)
+    selected = pool[:limit]
     summary = _discover_listings(
-        (item[3] for item in selected), store, preferences, resume_text, 0,
-        require_content=False, preserve_existing=preserve_existing,
+        selected, store, require_content=False, preserve_existing=preserve_existing,
         preexisting_ids=preexisting_ids,
     )
-    summary.filtered_before_scoring = max(provider.rss_count - len(pool), 0)
+    summary.filtered_by_role = max(provider.rss_count - len(pool), 0)
     summary.fetched = len(pool)
     summary.normalized = len(pool)
-    summary.scored = len(pool)
     summary.unique_available = len(pool)
     summary.unique_imported = len(selected)
-    summary.top_jobs = [
-        {
-            "title": item[4].title,
-            "company": item[4].company,
-            "match_score": item[0],
-            "location": item[4].location,
-            "url": item[4].url,
-        }
-        for item in selected[:25]
+    summary.example_jobs = [
+        {"title": raw.title, "company": raw.company, "location": raw.location, "url": raw.url}
+        for raw in selected[:25]
     ]
-    for item in selected:
-        includes_usa, worldwide = _eligibility_flags(item[4].location)
+    for raw in selected:
+        includes_usa, worldwide = _eligibility_flags(raw.location)
         summary.eligibility_includes_usa += int(includes_usa)
         summary.eligibility_worldwide += int(worldwide)
     summary.raw_retrieved = provider.raw_count

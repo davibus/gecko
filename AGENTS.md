@@ -22,7 +22,7 @@ When asked to "use Gecko" for a job:
 3. Create a dedicated scratch subfolder: `scratch/{Company-Name}+{JobNumber}/`.
 4. Tailor the resume naturally.
 5. Produce an exactly two-page DOCX using reusable generators in `scripts/`.
-6. Produce a Match Score report.
+6. Produce a qualitative Match Analysis report with evidence-backed strengths and gaps.
 7. Save the resume under `output/resumes/`.
 8. Save the match report under `output/match-reports/`.
 9. After both final files have been created and validated successfully, add or update the job in the canonical Google Sheet with `scripts/manage_job_tracker.py`. Never add a tracker row before both final deliverables exist.

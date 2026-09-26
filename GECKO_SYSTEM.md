@@ -40,18 +40,17 @@ Gecko customizes Dave Call's resume for individual job postings while preserving
 
 `input/master-resume/Dave-Call-resume-9-23-26.docx` is the single source of truth for work history, accomplishments, metrics, skills, tools, education, certifications, AI tools, and leadership. Re-read it for each job; never inherit facts from an older generated resume or from this specification. The older PDF is not a content source. `Dave_Call_Resume_5ec9726395344311.docx` may guide formatting only.
 
-## Match report
+## Match analysis report
 
 Every Gecko job analysis should include:
 
-- Match Score: X/100
 - Strongest alignment areas
 - Weaknesses or missing requirements
 - ATS keyword alignment
 - Recommended resume emphasis
 - Interview/application considerations
 
-The score should reflect the evidence in the resume and the job description, not optimism. A report may use a legitimate low score, including zero when every extracted requirement is a real gap. Missing requirements, an empty scoring denominator, or a missing/malformed `Match Score` field are workflow errors and must never be converted to `0/100`.
+Evaluate the job description directly against the current master resume. Keep unsupported requirements as explicit gaps. Do not calculate or include a numerical compatibility rating.
 
 ## Job tracker
 

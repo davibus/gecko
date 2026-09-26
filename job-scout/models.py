@@ -49,21 +49,13 @@ class JobListing:
     category: str = ""
     tags: list[str] = field(default_factory=list)
     last_seen: str = ""
-    match_score: int = 0
-    evidence_confidence: int = 0
-    provisional: bool = False
-    evidence_levels: dict[str, str] = field(default_factory=dict)
     original_description: str = ""
-    original_match_score: int = 0
-    original_evidence_confidence: int = 0
     original_url: str = ""
     enriched_description: str = ""
     enriched_source_url: str = ""
     enriched_at: str = ""
     enrichment_status: str = "not_attempted"
     enrichment_error: str = ""
-    enriched_match_score: int = 0
-    enriched_evidence_confidence: int = 0
     url_verification_status: str = "not_attempted"
     authoritative_url: str = ""
     authoritative_url_confidence: int = 0
@@ -71,8 +63,6 @@ class JobListing:
     url_redirect_url: str = ""
     url_resolved_at: str = ""
     url_resolution_error: str = ""
-    match_strengths: list[str] = field(default_factory=list)
-    match_weaknesses: list[str] = field(default_factory=list)
     status: str = "new"
     source_links: list[dict[str, str]] = field(default_factory=list)
     id: int | None = None

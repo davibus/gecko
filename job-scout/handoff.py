@@ -34,8 +34,6 @@ def archive_listing(job: JobListing, project_root: Path) -> Path:
     destination = project_root / "input" / "job-descriptions" / f"{company}+{number}.md"
     destination.parent.mkdir(parents=True, exist_ok=True)
     links = "\n".join(f"- {item['source']}: {item['url']}" for item in job.source_links)
-    strengths = "\n".join(f"- {value}" for value in job.match_strengths) or "- None recorded"
-    weaknesses = "\n".join(f"- {value}" for value in job.match_weaknesses) or "- None recorded"
     best_url = best_job_url(job)
     full_description = job.enriched_description or job.description
     content = f"""# {job.title} — {job.company}
@@ -54,19 +52,10 @@ def archive_listing(job: JobListing, project_root: Path) -> Path:
 - **Authoritative URL:** {job.authoritative_url}
 - **Date Posted:** {job.date_posted}
 - **Date Discovered:** {job.date_discovered}
-- **Gecko Match Score:** {job.match_score}/100
 
 ## Source links
 
 {links}
-
-## Scout strengths
-
-{strengths}
-
-## Scout weaknesses
-
-{weaknesses}
 
 ## Full job description
 

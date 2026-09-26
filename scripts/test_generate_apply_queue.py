@@ -28,9 +28,9 @@ class QueueTests(unittest.TestCase):
         self.tracker = GoogleTracker(Config("test", Path("unused.json"), "Job Tracker", "Job Scout"), self.fake)
 
     def test_yes_queue_skips_x_and_continues_after_failure(self):
-        pending, skipped = queue.read_queue(self.tracker)
-        self.assertEqual([item.scout_id for item in pending], [42, 45])
-        self.assertEqual([item.scout_id for item in skipped], [43])
+        snapshot = queue.read_queue(self.tracker)
+        self.assertEqual([item.scout_id for item in snapshot.pending], [42, 45])
+        self.assertEqual([item.scout_id for item in snapshot.already_created], [43])
         processed = []
 
         with TemporaryDirectory() as temp, patch.object(queue, "_write_report"):
@@ -46,8 +46,9 @@ class QueueTests(unittest.TestCase):
             def record(item, _artifacts, tracker):
                 queue.manage_job_tracker.mark_batch_resume(item.scout_id, item.row, tracker)
 
-            self.assertEqual(queue.run_queue(self.tracker, Path("unused.sqlite3"),
-                                             generator=generate, recorder=record), 1)
+            result = queue.run_queue(self.tracker, Path("unused.sqlite3"),
+                                     generator=generate, recorder=record)
+            self.assertEqual(result.exit_code, 1)
         self.assertEqual(processed, [42, 45])
         rows = {int(data[0]): dict(zip(SCOUT, data)) for data in self.fake.data["Job Scout"][1:]}
         self.assertEqual(rows[42]["Resume Created"], "")
@@ -69,13 +70,18 @@ class QueueTests(unittest.TestCase):
             item = queue.QueueRow(2, 42, "Existing", "Role")
             queue.record_success(item, queue.Artifacts(resume, report, listing), self.tracker)
         self.assertEqual([(tab, col) for tab, _, col in self.fake.writes if tab == "Job Scout"],
-                         [("Job Scout", "G"), ("Job Scout", "E")])
+                         [("Job Scout", "G"), ("Job Scout", "V"), ("Job Scout", "E")])
         scout = next(data for _, data in self.tracker.scout().rows if str(data.get("Scout ID")) == "42")
         self.assertEqual(scout["Resume Created"], "X")
         self.assertEqual(scout["Apply?"], "Yes")
         self.assertEqual(scout["Gecko Status"], "Resume Created")
+        self.assertTrue(str(scout["Resume Link"]).startswith("file:"))
         self.assertEqual(scout["Applied"], "TRUE")
         self.assertEqual(scout["Contacted"], "Recruiter contacted")
+        application = next(data for _, data in self.tracker.application().rows
+                           if str(data.get("Job Number")) == "queue-42")
+        self.assertEqual(application["Company"], "Existing")
+        self.assertEqual(application["Match Score"], 82)
 
     def test_missing_artifact_or_changed_apply_never_marks_g(self):
         item = queue.QueueRow(2, 42, "Existing", "Role")
@@ -102,8 +108,7 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(queue.validated_match_score("Match Score: 5/100\n"), "5/100")
 
     def test_description_failure_leaves_row_unprocessed_and_report_has_attempts(self):
-        pending, _ = queue.read_queue(self.tracker)
-        item = pending[0]
+        item = queue.read_queue(self.tracker).pending[0]
         attempt = queue.RetrievalAttempt(
             "original aggregator URL", item.job_url, "failed", "HTTP Error 403: Forbidden"
         )
@@ -118,18 +123,50 @@ class QueueTests(unittest.TestCase):
                     raise queue.DescriptionUnavailableError(result, candidate.job_url)
                 raise RuntimeError("second simulated failure")
 
-            code = queue.run_queue(
+            run = queue.run_queue(
                 self.tracker, Path("unused.sqlite3"), generator=generate,
                 recorder=lambda *args: recorded.append(args),
             )
             report = (Path(temp) / "output/apply-queue-results.md").read_text(encoding="utf-8")
-        self.assertEqual(code, 1)
+        self.assertEqual(run.exit_code, 1)
         self.assertEqual(recorded, [])
         self.assertIn("Original source URL", report)
         self.assertIn("Authoritative URL", report)
         self.assertIn("HTTP Error 403", report)
         scout = next(data for _, data in self.tracker.scout().rows if str(data.get("Scout ID")) == "42")
         self.assertEqual(scout["Resume Created"], "")
+
+    def test_daily_scope_processes_only_new_ids_and_respects_apply_and_existing_marker(self):
+        processed = []
+        with TemporaryDirectory() as temp, patch.object(queue, "_write_report"):
+            temp = Path(temp)
+            report = temp / "report.md"
+            report.write_text("Match Score: 75/100\n", encoding="utf-8")
+
+            def generate(item, _db):
+                processed.append(item.scout_id)
+                return queue.Artifacts(temp / "resume.docx", report, temp / "listing.md")
+
+            run = queue.run_queue(
+                self.tracker, Path("unused.sqlite3"), eligible_scout_ids={43, 44, 45},
+                generator=generate,
+                recorder=lambda item, *_: queue.manage_job_tracker.mark_batch_resume(
+                    item.scout_id, item.row, self.tracker
+                ),
+            )
+        self.assertEqual(processed, [45])
+        self.assertEqual([item.scout_id for item in run.snapshot.already_created], [43])
+        self.assertEqual([item.scout_id for item in run.snapshot.not_approved], [44])
+
+    def test_jooble_row_is_rejected_before_gecko(self):
+        row = [46, "Jooble", "Blocked", "Paid Search Manager", "New", "Yes", "", "", ""]
+        while len(row) < len(SCOUT):
+            row.append("")
+        row[SCOUT.index("Job URL")] = "https://www.jooble.org/jobs/123"
+        self.fake.data["Job Scout"].append(row)
+        snapshot = queue.read_queue(self.tracker, {46})
+        self.assertEqual(snapshot.pending, [])
+        self.assertEqual([item.scout_id for item in snapshot.jooble_excluded], [46])
 
 
 if __name__ == "__main__":

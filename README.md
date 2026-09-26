@@ -1,8 +1,14 @@
 # Gecko — Resume Customization Project
 
-Gecko is Dave Call's resume-tailoring workflow for turning a job listing into a targeted, natural-sounding, ATS-friendly resume and match analysis.
+Gecko is Dave Call's resume-tailoring workflow for turning a job listing into a targeted, natural-sounding, ATS-friendly resume and qualitative match analysis.
 
-Job discovery is available as a separate upstream module under `job-scout/`. It scores and stores openings without generating resumes. See `job-scout/README.md` for provider setup, search, review, and selection commands.
+The normal Daily Job Scout command now runs the complete discovery-to-resume workflow. It searches Adzuna, Remotive, and configured Web Careers backends, rejects Jooble, deduplicates and scores results, synchronizes the existing Google Sheet, and sends only newly discovered rows with `Apply? = Yes` and blank `Resume Created` cells through the canonical Gecko V2 generator.
+
+```powershell
+python job-scout/scout.py daily
+```
+
+Use `python job-scout/scout.py daily --dry-run` to perform network discovery against a temporary SQLite copy without changing the live tracker, creating descriptions, or generating resumes. See `job-scout/README.md` for source setup, duplicate behavior, failure recovery, and diagnostics.
 
 To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
 
@@ -23,7 +29,7 @@ To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
 - Preserve the established white-background professional layout, 11 pt font, 1.15 line spacing, and clean spacing.
 - Remove visible job-date text while preserving the right-side date space/cell for manual entry later.
 - Name resumes `Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx`, match reports `Dave-Call+<Company-Name>+<job-number>.md`, and archived job descriptions `<Company-Name>+<job-number>.md`. For Indeed, use the `jk` value as the job number.
-- Include a Match Score by default, with strengths, weaknesses/gaps, ATS alignment, and recommendations.
+- Include evidence-backed strengths, weaknesses/gaps, ATS alignment, and recommendations without a numerical compatibility rating.
 - Use relevant AI/productivity tools naturally when helpful: Codex, ChatGPT, Claude, Perplexity, Cursor, AntiGravity.
 - When relevant, include the senior-scale metric: managed $30 million per month with a team of 4.
 - Avoid stuffing exact job-description phrases or repeatedly naming the target company.
@@ -52,7 +58,7 @@ Validate the live Sheet:
 python scripts/manage_job_tracker.py validate
 ```
 
-The `add` command is idempotent by Job Number. It reads company, title, pay, source URL, source name, date found, and Match Score from the archived listing and match report; unavailable optional fields remain blank. The extended tracker also records lifecycle status while preserving the user-maintained `Applied` and `Contacted` columns.
+The `add` command is idempotent by Job Number when the application tab exists. It reads company, title, pay, source URL, source name, and date found from the archived listing and report; unavailable optional fields remain blank. It also updates the matching Job Scout lifecycle and resume link while preserving user-maintained application/contact fields.
 
 ## Folder map
 

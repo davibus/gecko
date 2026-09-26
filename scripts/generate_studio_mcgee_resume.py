@@ -88,8 +88,6 @@ def main() -> None:
         raise RuntimeError("Current master evidence is missing during report evaluation")
     body = f"""# {TITLE} - Studio McGee
 
-**Match Score: 76/100**
-
 **Company:** Studio McGee  
 **Job Title:** {TITLE}  
 **Job Key (Indeed jk):** `{KEY}`  

@@ -8,18 +8,17 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from google_tracker import Config, GoogleTracker, job_key, normalize_match_score
+from google_tracker import Config, GoogleTracker, job_key
 from models import RawListing
 from normalize import normalize
 
-APP = ["Resume #", "Company", "Job Title", "Pay", "Job Number", "Match Score",
+APP = ["Resume #", "Company", "Job Title", "Pay", "Job Number",
        "Job Link", "Resume Link", "Date Created", "Applied", "Contacted", "Source",
        "Date Found", "Status"]
 SCOUT = ["Scout ID", "Source", "Company", "Job Title", "Gecko Status", "Apply?",
-         "Resume Created", "Applied", "Contacted", "Match Score", "Evidence Confidence",
-         "Match Status", "Location", "Work Arrangement", "Employment Type", "Salary",
-         "Date Posted", "Date Found", "Last Seen", "Job URL", "Enrichment URL",
-         "Resume Link", "URL Status", "Authoritative URL"]
+         "Resume Created", "Applied", "Notes", "Location", "Work Arrangement",
+         "Employment Type", "Salary", "Date Posted", "Date Found", "Last Seen",
+         "Job URL", "Resume Link"]
 
 
 class Call:
@@ -33,11 +32,11 @@ class Call:
 class FakeSheets:
     def __init__(self):
         self.data = {
-            "Job Tracker": [APP, [7, "Existing", "Role", "", "job-123", "70/100",
+            "Job Tracker": [APP, [7, "Existing", "Role", "", "job-123",
                                   "https://example.test/job", "", "09/01/2026", "TRUE", "called", "", "", ""]],
             "Job Scout": [SCOUT, [42, "test", "Existing", "Role", "New", "Yes", "", "", "",
-                                  75, .8, "Near Match", "Remote", "remote", "full-time", "", "", "", "",
-                                  "https://example.test/job", "", "", "Not checked", ""]],
+                                  "Remote", "remote", "full-time", "", "", "", "",
+                                  "https://example.test/job", ""]],
         }
         self.writes = []
         self.structural = []
@@ -59,7 +58,18 @@ class FakeSheets:
         return Call(respond)
 
     def batchUpdate(self, **kwargs):
-        return Call(lambda: self.structural.extend(kwargs["body"]["requests"]) or {})
+        def respond():
+            requests = kwargs["body"]["requests"]
+            self.structural.extend(requests)
+            for request in requests:
+                if "deleteDimension" not in request:
+                    continue
+                dimension = request["deleteDimension"]["range"]
+                title = list(self.data)[dimension["sheetId"]]
+                for row in self.data[title]:
+                    del row[dimension["startIndex"]:dimension["endIndex"]]
+            return {}
+        return Call(respond)
 
 
 class FakeValues:
@@ -105,61 +115,34 @@ class GoogleTrackerTests(unittest.TestCase):
         self.fake.data["Job Tracker"][1][3] = "Manual pay"
         self.assertEqual(self.tracker.find_application(" job-123 ")[0], 2)
         row, created = self.tracker.upsert_application({
-            "Job Number": "job-123", "Company": "Existing", "Match Score": "82/100",
+            "Job Number": "job-123", "Company": "Existing",
             "Resume Link": "file:///new-resume.docx", "Status": "resume-created",
             "Applied": "FALSE", "Contacted": "overwrite attempt", "Pay": "",
             "Date Created": "09/23/2026",
         })
         self.assertEqual((row, created), (2, False))
-        _, again = self.tracker.upsert_application({"Job Number": "job-123", "Match Score": "82/100"})
+        _, again = self.tracker.upsert_application({"Job Number": "job-123"})
         self.assertFalse(again)
         self.assertEqual(len(self.fake.data["Job Tracker"]), 2)
         stored = dict(zip(APP, self.fake.data["Job Tracker"][1]))
-        self.assertEqual(stored["Match Score"], 82)
         self.assertEqual(stored["Applied"], "TRUE")
         self.assertEqual(stored["Contacted"], "called")
         self.assertEqual(stored["Date Created"], "09/01/2026")
         self.assertEqual(stored["Pay"], "Manual pay")
         self.assertFalse(any(letter in ("J", "K") for title, _, letter in self.fake.writes if title == "Job Tracker"))
-        formats = [request["repeatCell"] for request in self.fake.structural
-                   if "repeatCell" in request]
-        self.assertTrue(formats)
-        self.assertTrue(all(item["cell"]["userEnteredFormat"]["numberFormat"] ==
-                            {"type": "NUMBER", "pattern": "0"} for item in formats))
 
     def test_new_job_gets_next_index_and_native_checkboxes(self):
-        row, created = self.tracker.upsert_application({"Job Number": "new-job", "Company": "New",
-                                                        "Match Score": "88/100"})
+        row, created = self.tracker.upsert_application({"Job Number": "new-job", "Company": "New"})
         self.assertEqual((row, created), (3, True))
         self.assertEqual(self.fake.data["Job Tracker"][2][0], 8)
         rules = [request["setDataValidation"]["rule"]["condition"]["type"]
                  for request in self.fake.structural if "setDataValidation" in request]
         self.assertEqual(rules, ["BOOLEAN", "BOOLEAN"])
 
-    def test_match_score_70_is_written_as_numeric_70_with_number_format(self):
-        self.tracker.upsert_application({"Job Number": "job-123", "Match Score": "70/100"})
-        stored = dict(zip(APP, self.fake.data["Job Tracker"][1]))
-        self.assertEqual(stored["Match Score"], 70)
-        self.assertIsInstance(stored["Match Score"], int)
-        score_format = next(request["repeatCell"] for request in self.fake.structural
-                            if "repeatCell" in request)
-        self.assertEqual(score_format["cell"]["userEnteredFormat"]["numberFormat"],
-                         {"type": "NUMBER", "pattern": "0"})
-
-    def test_match_score_normalization_accepts_supported_representations(self):
-        for value in (70, "70", "70%", "70/100", 0.70, "0.70"):
-            with self.subTest(value=value):
-                self.assertEqual(normalize_match_score(value), 70)
-        for value in (-1, 101, "unknown", 0.705):
-            with self.subTest(value=value):
-                with self.assertRaises(ValueError):
-                    normalize_match_score(value)
-
     def test_existing_application_status_is_not_downgraded(self):
         status_column = APP.index("Status")
         self.fake.data["Job Tracker"][1][status_column] = "Applied"
-        self.tracker.upsert_application({"Job Number": "job-123", "Status": "resume-created",
-                                         "Match Score": "84/100"})
+        self.tracker.upsert_application({"Job Number": "job-123", "Status": "resume-created"})
         self.assertEqual(self.fake.data["Job Tracker"][1][status_column], "Applied")
 
     def test_scout_mark_preserves_apply_and_manual_fields(self):
@@ -198,6 +181,34 @@ class GoogleTrackerTests(unittest.TestCase):
         self.assertEqual(row["Gecko Status"], "Selected")
         self.assertEqual(row["Apply?"], "Yes")
 
+    def test_schema_migration_deletes_retired_columns_and_second_run_is_noop(self):
+        legacy = [
+            "Scout ID", "Source", "Company", "Job Title", "Gecko Status", "Apply?",
+            "Resume Created", "Applied", "Notes", "Website", "Match Score",
+            "Evidence Confidence", "Match Status", "Location", "Work Arrangement",
+            "Employment Type", "Salary", "Date Posted", "Date Found", "Last Seen",
+            "Job URL", "Enrichment URL", "Resume Link", "URL Status", "Authoritative URL",
+        ]
+        row = list(range(1, len(legacy) + 1))
+        self.fake.data["Job Scout"] = [legacy, row]
+        result = self.tracker.migrate_scout_schema()
+        self.assertEqual(result["headers"], SCOUT)
+        self.assertEqual(self.fake.data["Job Scout"][1], [row[legacy.index(name)] for name in SCOUT])
+        request_count = len(self.fake.structural)
+        again = self.tracker.migrate_scout_schema()
+        self.assertEqual(again["deleted"], [])
+        self.assertEqual(len(self.fake.structural), request_count)
+
+    def test_scout_upsert_defensively_rejects_new_jooble_candidate(self):
+        job = normalize(RawListing(source="web-careers", source_job_id="blocked",
+                                   url="https://jooble.org/jobs/blocked", title="Role",
+                                   company="Blocked", description="Manage campaigns"))
+        job.id = 99
+        result = self.tracker.upsert_scout([job], append_only=True)
+        self.assertEqual(result["jooble_excluded"], 1)
+        self.assertEqual(len(self.fake.data["Job Scout"]), 2)
+        self.assertEqual(self.fake.writes, [])
+
     def test_highlight_scout_found_on_colors_only_matching_id_cells(self):
         self.fake.data["Job Scout"][1][SCOUT.index("Date Found")] = "2026-09-25"
         older = list(self.fake.data["Job Scout"][1])
@@ -225,7 +236,7 @@ class GoogleTrackerTests(unittest.TestCase):
         self.assertEqual(removed, {42})
         self.assertEqual(self.fake.data["Job Scout"][1][0], "")
         self.assertEqual(self.fake.data["Job Scout"][2][0], 43)
-        self.assertEqual(self.fake.data["Job Tracker"][1][9:11], ["TRUE", "called"])
+        self.assertEqual(self.fake.data["Job Tracker"][1][8:10], ["TRUE", "called"])
         self.assertEqual(self.fake.structural, [])
 
 

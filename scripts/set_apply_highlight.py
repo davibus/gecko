@@ -9,14 +9,25 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "job-scout"))
 from google_tracker import GoogleTracker  # noqa: E402
 
-FORMULA = '=AND(LOWER(TRIM($F2))="yes",UPPER(TRIM($G2))<>"X")'
+
+def column_name(index: int) -> str:
+    value = ""
+    while index:
+        index, remainder = divmod(index - 1, 26)
+        value = chr(65 + remainder) + value
+    return value
 
 
 def main() -> int:
     tracker = GoogleTracker()
     tab = tracker.scout()
-    if tab.headers["Apply?"] != 6 or tab.headers["Resume Created"] != 7:
-        raise RuntimeError("Expected Apply? in F and Resume Created in G; no rule was added")
+    required = {"Apply?", "Resume Created"}
+    if not required <= tab.headers.keys():
+        raise RuntimeError("Job Scout is missing Apply? or Resume Created")
+    apply_column = tab.headers["Apply?"]
+    resume_column = tab.headers["Resume Created"]
+    formula = (f'=AND(LOWER(TRIM(${column_name(apply_column)}2))="yes",'
+               f'UPPER(TRIM(${column_name(resume_column)}2))<>"X")')
     metadata = tracker.api.get(
         spreadsheetId=tracker.config.spreadsheet_id,
         fields="sheets(properties(sheetId,title,gridProperties(rowCount)),conditionalFormats)",
@@ -25,14 +36,14 @@ def main() -> int:
                  if item["properties"]["sheetId"] == tab.sheet_id)
     rule = {
         "ranges": [{"sheetId": tab.sheet_id, "startRowIndex": 1,
-                    "startColumnIndex": 5, "endColumnIndex": 6}],
+                    "startColumnIndex": apply_column - 1, "endColumnIndex": apply_column}],
         "booleanRule": {
-            "condition": {"type": "CUSTOM_FORMULA", "values": [{"userEnteredValue": FORMULA}]},
+            "condition": {"type": "CUSTOM_FORMULA", "values": [{"userEnteredValue": formula}]},
             "format": {"backgroundColor": {"red": 1, "green": 0.92156863, "blue": 0.6}},
         },
     }
     existing = next((index for index, candidate in enumerate(sheet.get("conditionalFormats", []))
-                     if any(value.get("userEnteredValue") == FORMULA
+                     if any(value.get("userEnteredValue") == formula
                             for value in candidate.get("booleanRule", {}).get("condition", {}).get("values", []))),
                     None)
     if existing is not None:

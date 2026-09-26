@@ -8,11 +8,10 @@ import json
 import os
 import sys
 import tempfile
-from dataclasses import replace
 from datetime import date
 from pathlib import Path
 
-from enrichment import enrich_and_rescore
+from enrichment import enrich_and_store
 from deduplicate import find_duplicate
 from google_tracker import GoogleTracker, marked
 from handoff import archive_listing
@@ -21,13 +20,12 @@ from models import RawListing
 from normalize import normalize
 from normalize import canonicalize_url
 from preferences import load_preferences
-from resume_evidence import extract_resume_text
 from review import build_review_queue, format_review_queue, queue_to_json
-from scoring import score_job
+from role_filter import is_relevant_role
 from service import discover, discover_remotive_full_feed
 from sources import (
-    AdzunaProvider, IndeedProvider, JoobleProvider, ProviderError,
-    RemotiveProvider, WebCareerProvider,
+    AdzunaProvider, IndeedProvider, ProviderError, RemotiveProvider,
+    WebCareerProvider,
 )
 from sources.base import SearchRequest
 from storage import DEFAULT_DB, JobStore
@@ -37,7 +35,7 @@ from url_resolution import resolve_and_store, url_status_label
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MASTER_RESUME = PROJECT_ROOT / "input" / "master-resume" / "Dave-Call-resume-9-23-26.docx"
 DEFAULT_SOURCE = "adzuna"
-CORE_PROVIDERS = ("adzuna", "jooble", "remotive", "web-careers")
+CORE_PROVIDERS = ("adzuna", "remotive", "web-careers")
 
 
 def load_local_environment(path: Path = PROJECT_ROOT / ".env.local") -> None:
@@ -66,8 +64,8 @@ def providers():
     return {
         provider.name: provider
         for provider in (
-            AdzunaProvider(), JoobleProvider(), RemotiveProvider(),
-            IndeedProvider(), WebCareerProvider(),
+            AdzunaProvider(), RemotiveProvider(), IndeedProvider(),
+            WebCareerProvider(),
         )
     }
 
@@ -189,22 +187,19 @@ def search(args, store, preferences):
          for query in queries for location in locations]
         if any(name != "remotive" for name in selected) else []
     )
-    resume_text = extract_resume_text(MASTER_RESUME)
     aggregate = {
         "raw_retrieved": 0, "rss_retrieved": 0, "rss_unique": 0,
         "rss_duplicates_removed": 0, "successful_feeds": 0, "failed_feeds": 0,
         "api_retrieved": 0,
-        "fetched": 0, "normalized": 0, "scored": 0,
-        "added": 0, "updated": 0, "strong": 0, "provisional": 0, "weak": 0,
+        "fetched": 0, "normalized": 0,
+        "added": 0, "updated": 0,
         "duplicates": 0, "cross_provider_duplicates": 0,
-        "score_80_plus": 0, "score_70_79": 0,
-        "score_below_70": 0,
-        "filtered_before_scoring": 0,
+        "filtered_by_role": 0, "jooble_excluded": 0,
         "newly_discovered": 0, "already_existed": 0,
         "new_job_ids": [], "existing_job_ids": [],
         "unique_remotive_jobs_available": 0, "unique_jobs_imported": 0,
         "eligibility_includes_usa": 0, "eligibility_worldwide": 0,
-        "top_25_by_gecko_match_score": [],
+        "example_jobs": [],
         "source_counts": {name: 0 for name in selected}, "source_backends": {},
         "source_diagnostics": {},
         "google_cse": {},
@@ -225,13 +220,13 @@ def search(args, store, preferences):
         try:
             if name == "remotive":
                 summary = discover_remotive_full_feed(
-                    provider, store, preferences, resume_text, getattr(args, "limit", 100),
+                    provider, store, limit=getattr(args, "limit", 100),
                     preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
                     link_validator=link_validator,
                 )
             else:
                 summary = discover(
-                    provider, requests, store, preferences, resume_text, args.minimum_score,
+                    provider, requests, store,
                     preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
                     link_validator=link_validator,
                 )
@@ -266,16 +261,13 @@ def search(args, store, preferences):
             aggregate["unique_jobs_imported"] = summary.unique_imported
             aggregate["eligibility_includes_usa"] = summary.eligibility_includes_usa
             aggregate["eligibility_worldwide"] = summary.eligibility_worldwide
-            aggregate["top_25_by_gecko_match_score"] = summary.top_jobs
+            aggregate["example_jobs"] = summary.example_jobs
         for key in (
             "raw_retrieved", "rss_retrieved", "rss_unique",
             "rss_duplicates_removed", "successful_feeds", "failed_feeds",
             "api_retrieved", "fetched",
-            "normalized", "scored", "added", "updated",
-            "strong", "provisional", "weak", "duplicates", "cross_provider_duplicates",
-            "score_80_plus",
-            "score_70_79", "score_below_70",
-            "filtered_before_scoring",
+            "normalized", "added", "updated", "duplicates", "cross_provider_duplicates",
+            "filtered_by_role", "jooble_excluded",
         ):
             aggregate[key] += getattr(summary, key)
         for job_id in summary.new_job_ids:
@@ -286,6 +278,7 @@ def search(args, store, preferences):
                 aggregate["existing_job_ids"].append(job_id)
     aggregate["newly_discovered"] = len(aggregate["new_job_ids"])
     aggregate["already_existed"] = len(aggregate["existing_job_ids"])
+    aggregate["sources_searched"] = successful_sources + len(aggregate["source_errors"])
     args.run_result = aggregate
     print(json.dumps(aggregate, indent=2))
     if len(aggregate["skipped_sources"]) == len(selected):
@@ -295,11 +288,12 @@ def search(args, store, preferences):
         print("All configured sources failed. Review source_errors above.", file=sys.stderr)
         return 1
     if daily_mode:
-        new_jobs = [store.get(job_id) for job_id in aggregate["new_job_ids"]]
-        sync_tracker(
-            store, jobs=[job for job in new_jobs if job], append_only=True,
-            highlight_found_on=date.today().isoformat(),
-        )
+        if not getattr(args, "dry_run", False):
+            new_jobs = [store.get(job_id) for job_id in aggregate["new_job_ids"]]
+            args.tracker_summary = sync_tracker(
+                store, jobs=[job for job in new_jobs if job], append_only=True,
+                highlight_found_on=date.today().isoformat(),
+            )
     else:
         sync_tracker(store)
     return 0
@@ -322,31 +316,23 @@ def diagnose_remotive(args, store, preferences):
         print(f"Error: remotive provider failed: {error}", file=sys.stderr)
         return 1
 
-    resume_text = extract_resume_text(MASTER_RESUME)
-    threshold = int(preferences["minimum_score"] if args.minimum_score is None else args.minimum_score)
     candidates = []
     for raw in unique.values():
         if not raw.source_job_id or not raw.url or not raw.title or not raw.description:
             continue
-        job = normalize(raw)
-        result = score_job(job, preferences, resume_text)
-        job.match_score = result.total
-        job.evidence_confidence = result.confidence
-        job.provisional = result.provisional
-        candidates.append(job)
+        if is_relevant_role(raw.title):
+            candidates.append(normalize(raw))
 
-    matched = [job for job in candidates if job.match_score >= threshold]
     other_source_jobs = [job for job in store.all() if job.source.casefold() != "remotive"]
-    survivors = [job for job in matched if find_duplicate(job, other_source_jobs) is None]
-    examples = sorted(candidates, key=lambda job: (-job.match_score, job.title.casefold()))[:args.examples]
+    survivors = [job for job in candidates if find_duplicate(job, other_source_jobs) is None]
+    examples = sorted(candidates, key=lambda job: (job.date_posted, job.title.casefold()), reverse=True)[:args.examples]
     report = {
         "provider": "remotive",
         "endpoint": getattr(provider, "api_endpoint", provider.endpoint),
         "queries": queries,
-        "minimum_score": threshold,
         "raw_retrieved": provider.raw_count,
         "query_matches": len(unique),
-        "matched_gecko_filters": len(matched),
+        "matched_role_filter": len(candidates),
         "survived_deduplication": len(survivors),
         "source_counts": {"remotive": len(unique)},
         "examples": [
@@ -354,7 +340,6 @@ def diagnose_remotive(args, store, preferences):
                 "title": job.title,
                 "company": job.company,
                 "url": job.url,
-                "match_score": job.match_score,
             }
             for job in examples
         ],
@@ -364,14 +349,12 @@ def diagnose_remotive(args, store, preferences):
 
 
 def diagnose_remotive_feeds(args, _store, preferences):
-    """Dry-run the bounded RSS import and report acquisition/scoring diagnostics."""
+    """Dry-run the bounded RSS import and report acquisition diagnostics."""
     provider = RemotiveProvider()
-    resume_text = extract_resume_text(MASTER_RESUME)
     with tempfile.TemporaryDirectory() as directory:
         with JobStore(Path(directory) / "remotive-diagnostic.sqlite3") as diagnostic_store:
             summary = discover_remotive_full_feed(
-                provider, diagnostic_store, preferences, resume_text,
-                getattr(args, "limit", 100),
+                provider, diagnostic_store, limit=getattr(args, "limit", 100),
             )
     report = {
         "provider": "remotive",
@@ -384,9 +367,6 @@ def diagnose_remotive_feeds(args, _store, preferences):
         "unique_rss_jobs": summary.unique_available,
         "rss_duplicates_removed": provider.rss_duplicate_count,
         "unique_jobs_imported": summary.unique_imported,
-        "scores_80_plus": summary.score_80_plus,
-        "scores_70_79": summary.score_70_79,
-        "scores_below_70": summary.score_below_70,
     }
     print(json.dumps(report, indent=2))
     return 0 if summary.unique_available else 1
@@ -398,18 +378,16 @@ def diagnose_remotive_rss(args, store, preferences):
 
 
 def list_jobs(args, store, preferences):
-    jobs = [job for job in store.all(retained_only=not args.all)
-            if job.match_score >= args.minimum_score and (not args.status or job.status == args.status)]
-    jobs.sort(key=lambda job: (-job.match_score, job.date_posted or "9999", job.company.lower()))
+    jobs = [job for job in store.all() if not args.status or job.status == args.status]
+    jobs.sort(key=lambda job: (job.date_posted or "", job.company.lower()), reverse=True)
     if args.json:
         print(json.dumps([job.to_dict() for job in jobs], indent=2))
     elif not jobs:
         print("No matching saved jobs.")
     else:
-        print(f"{'ID':>4}  {'Score':>5}  {'Confidence':>10}  {'Evidence':<12}  {'Status':<14}  Company - Title")
+        print(f"{'ID':>4}  {'Status':<14}  Company - Title")
         for job in jobs:
-            evidence = "provisional" if job.provisional else "confirmed"
-            print(f"{job.id:>4}  {job.match_score:>3}/100  {job.evidence_confidence:>9}%  {evidence:<12}  {job.status:<14}  {job.company} - {job.title}")
+            print(f"{job.id:>4}  {job.status:<14}  {job.company} - {job.title}")
     return 0
 
 
@@ -436,41 +414,11 @@ def set_status(args, store, _preferences):
     return 0
 
 
-def rescore(args, store, preferences):
-    """Recalculate saved listings without refetching or changing lifecycle status."""
-    resume_text = extract_resume_text(MASTER_RESUME)
-    threshold = int(preferences["minimum_score"] if args.minimum_score is None else args.minimum_score)
-    changes = []
-    for job in store.all():
-        old_score = job.match_score
-        scoring_job = replace(job, description=job.enriched_description) if job.enriched_description else job
-        result = score_job(scoring_job, preferences, resume_text)
-        job.match_score = result.total
-        job.evidence_confidence = result.confidence
-        job.provisional = result.provisional
-        job.evidence_levels = result.evidence_levels
-        job.match_strengths = result.strengths
-        job.match_weaknesses = result.weaknesses
-        store.update_scoring(job, retained=job.match_score >= threshold)
-        changes.append({
-            "id": job.id, "old_score": old_score, "new_score": job.match_score,
-            "score_change": job.match_score - old_score,
-            "evidence_confidence": job.evidence_confidence,
-            "provisional": job.provisional,
-        })
-    changes.sort(key=lambda item: (-item["new_score"], item["id"]))
-    print(json.dumps(changes, indent=2))
-    sync_tracker(store)
-    return 0
-
-
 def review_jobs(args, store, _preferences):
     """Display a read-only, prioritized application review queue."""
     queue = build_review_queue(
         store.all(),
-        minimum_score=args.minimum_score,
         limit=args.limit,
-        confirmed_only=args.confirmed_only,
         include_closed=args.include_closed,
     )
     print(queue_to_json(queue) if args.json else format_review_queue(queue))
@@ -478,39 +426,19 @@ def review_jobs(args, store, _preferences):
 
 
 def enrich_jobs(args, store, preferences):
-    """Enrich one or all provisional 80+ Adzuna records and report before/after evidence."""
-    if bool(args.job_id) == bool(args.provisional):
-        raise ValueError("Specify either a job ID or --provisional")
-    if args.provisional:
-        targets = [job for job in store.all()
-                   if job.source.lower() == "adzuna" and job.match_score >= 80 and job.provisional]
-    else:
-        job = get_job(store, args.job_id)
-        if job.source.lower() != "adzuna" or job.match_score < 80 or not job.provisional:
-            raise ValueError("Enrichment is limited to provisional Adzuna jobs scoring 80 or higher")
-        targets = [job]
-    resume_text = extract_resume_text(MASTER_RESUME)
+    """Enrich one job or every Adzuna job without evaluating compatibility."""
+    if bool(args.job_id) == bool(args.all):
+        raise ValueError("Specify either a job ID or --all")
+    targets = ([job for job in store.all() if job.source.lower() == "adzuna"]
+               if args.all else [get_job(store, args.job_id)])
     report = []
     for job in targets:
-        job = enrich_and_rescore(job, store, preferences, resume_text)
-        if job.match_score >= 80 and job.evidence_confidence >= 65:
-            final_status = "confirmed strong match"
-        elif job.match_score >= 80:
-            final_status = "80+ provisional — full description recommended"
-        else:
-            final_status = "below threshold after enrichment"
+        job = enrich_and_store(job, store)
         report.append({
-            "id": job.id,
-            "title": job.title,
-            "company": job.company,
-            "original_score": job.original_match_score,
-            "enriched_score": job.enriched_match_score or None,
-            "original_confidence": job.original_evidence_confidence,
-            "enriched_confidence": job.enriched_evidence_confidence or None,
+            "id": job.id, "title": job.title, "company": job.company,
             "enrichment_status": job.enrichment_status,
             "enrichment_source": job.enriched_source_url,
             "enrichment_error": job.enrichment_error,
-            "final_status": final_status,
         })
     print(json.dumps(report, indent=2))
     sync_tracker(store)
@@ -531,7 +459,6 @@ def resolve_urls(args, store, _preferences):
         targets = [get_job(store, args.job_id)]
     report = []
     for job in targets:
-        original_score = job.match_score
         resolved = resolve_and_store(job, store)
         report.append({
             "id": resolved.id,
@@ -541,8 +468,6 @@ def resolve_urls(args, store, _preferences):
             "authoritative_url": resolved.authoritative_url,
             "confidence": resolved.authoritative_url_confidence,
             "redirect_url": resolved.url_redirect_url,
-            "match_score": resolved.match_score,
-            "match_score_unchanged": resolved.match_score == original_score,
             "error": resolved.url_resolution_error,
         })
     print(json.dumps(report, indent=2))
@@ -550,18 +475,87 @@ def resolve_urls(args, store, _preferences):
     return 0
 
 
+def _daily_resume_runner(new_job_ids, store, *, dry_run=False):
+    """Run the canonical Gecko queue for only IDs discovered in this daily run."""
+    new_job_ids = tuple(new_job_ids)
+    scripts = PROJECT_ROOT / "scripts"
+    if str(scripts) not in sys.path:
+        sys.path.insert(0, str(scripts))
+    import generate_apply_queue
+
+    generate_apply_queue._append_run_log(
+        f"DAILY RESUME START dry_run={dry_run} new_job_ids={','.join(map(str, new_job_ids)) or 'none'}"
+    )
+    result = generate_apply_queue.run_queue(
+        GoogleTracker(), store.path.resolve(), dry_run=dry_run,
+        eligible_scout_ids=set(new_job_ids), print_summary=False,
+        logger=generate_apply_queue._append_run_log,
+    )
+    generate_apply_queue._append_run_log(f"DAILY RESUME END exit_code={result.exit_code}")
+    return result
+
+
+def _print_daily_summary(run_result, queue_result, tracker_summary, *, dry_run=False):
+    print("\nDaily Job Scout complete" + (" (dry run)" if dry_run else ""))
+    print(f"Sources searched: {run_result.get('sources_searched', 0)}")
+    print(f"Jobs discovered: {run_result.get('fetched', 0)}")
+    print(f"Jooble jobs excluded: {run_result.get('jooble_excluded', 0)}")
+    print(f"Duplicates skipped: {run_result.get('duplicates', 0)}")
+    print(f"New jobs added: {tracker_summary.get('added', 0)}")
+    print(f"Jobs marked Apply = Yes: {len(queue_result.snapshot.pending) + len(queue_result.snapshot.already_created)}")
+    print(f"Resumes already existing: {len(queue_result.snapshot.already_created) + queue_result.recovered}")
+    print(f"New Gecko resumes created: {queue_result.created}")
+    print(f"Resume failures: {len(queue_result.failures)}")
+    print("\nCreated resumes:")
+    if queue_result.successes:
+        for index, (item, artifacts) in enumerate(queue_result.successes, 1):
+            print(f"{index}. {item.company} | {item.title} | {artifacts.resume}")
+    else:
+        print("None")
+    print("\nFailures:")
+    if queue_result.failures:
+        for index, failure in enumerate(queue_result.failures, 1):
+            print(f"{index}. {failure.item.company} | {failure.item.title} | {failure.reason}")
+    else:
+        print("None")
+
+
+def _empty_queue_result():
+    from types import SimpleNamespace
+    return SimpleNamespace(
+        snapshot=SimpleNamespace(pending=[], already_created=[]), recovered=0,
+        created=0, failures=[], successes=[], exit_code=0,
+    )
+
+
 def daily(args, store, preferences):
-    """Run the complete discovery-to-review workflow without creating resumes."""
+    """Discover, sync, and generate Gecko resumes for new approved jobs."""
+    if args.dry_run and not getattr(args, "_temporary_store", False):
+        with tempfile.TemporaryDirectory() as directory:
+            with JobStore(Path(directory) / "daily-dry-run.sqlite3") as temporary_store:
+                store.connection.backup(temporary_store.connection)
+                temporary_store.connection.commit()
+                dry_args = argparse.Namespace(**vars(args))
+                dry_args._temporary_store = True
+                return daily(dry_args, temporary_store, preferences)
     validator = DailyLinkValidator()
     if isinstance(store, JobStore):
         existing = [job for job in store.all() if job.status not in {"ignored", "rejected"}]
-        existing.extend(sheet_only_active_jobs(None, {job.id for job in existing if job.id is not None}))
-        protected = protected_job_ids(existing)
+        if args.dry_run:
+            protected = {
+                job.id for job in existing
+                if job.id is not None and job.status not in {"new", "reviewing"}
+            }
+        else:
+            existing.extend(sheet_only_active_jobs(
+                None, {job.id for job in existing if job.id is not None}
+            ))
+            protected = protected_job_ids(existing)
         checked = validator.check_existing(existing)
         dead = [(job, result) for job, result in checked if result.status == "dead"]
         removable = [(job, result) for job, result in dead if job.id not in protected]
         validator.protected_dead += len(dead) - len(removable)
-        if removable:
+        if removable and not args.dry_run:
             ids = {job.id for job, _ in removable}
             sync_tracker(store, jobs=[], append_only=True, remove_scout_ids=ids)
             uncleared = ids & scout_row_ids()
@@ -572,8 +566,8 @@ def daily(args, store, preferences):
                 validator.record_removed(job, result)
     search_args = argparse.Namespace(
         source="core", query=None, location=None, page=1, results=args.results,
-        minimum_score=None, limit=100, daily_mode=True,
-        link_validator=validator,
+        limit=100, daily_mode=True,
+        link_validator=validator, dry_run=args.dry_run,
     )
     result = search(search_args, store, preferences)
     print("Link validation:")
@@ -582,13 +576,14 @@ def daily(args, store, preferences):
     for removed in validator.removed:
         print(f"  removed: {removed['company']} | {removed['job_title']} | {removed['url']} | "
               f"{removed['reason_removed']} | HTTP/status {removed['http_status'] or 'n/a'}")
-    if result:
-        return result
     run_result = getattr(search_args, "run_result", {})
+    if result:
+        _print_daily_summary(run_result, _empty_queue_result(), {"added": 0},
+                             dry_run=args.dry_run)
+        return result
     new_jobs = [store.get(job_id) for job_id in run_result.get("new_job_ids", [])]
     queue = build_review_queue(
-        [job for job in new_jobs if job], minimum_score=args.minimum_score,
-        limit=args.limit, confirmed_only=False, include_closed=False,
+        [job for job in new_jobs if job], limit=args.limit, include_closed=False,
     )
     qualifying = sum(len(jobs) for jobs in queue.values())
     if not qualifying:
@@ -596,7 +591,15 @@ def daily(args, store, preferences):
     else:
         print(f"DAILY REVIEW: {qualifying} new qualifying job(s) discovered in this run.")
         print(format_review_queue(queue))
-    return 0
+    if args.dry_run:
+        _print_daily_summary(run_result, _empty_queue_result(), {"added": 0}, dry_run=True)
+        return 0
+    queue_result = _daily_resume_runner(run_result.get("new_job_ids", []), store)
+    _print_daily_summary(
+        run_result, queue_result,
+        getattr(search_args, "tracker_summary", {"added": 0}),
+    )
+    return queue_result.exit_code
 
 
 def build_parser():
@@ -604,12 +607,12 @@ def build_parser():
     parser.add_argument("--db", default=str(DEFAULT_DB), help="SQLite database path")
     parser.add_argument("--preferences", help="Alternate preferences JSON")
     sub = parser.add_subparsers(dest="command", required=True)
-    find = sub.add_parser("search", help="Search configured providers and save scored results")
+    find = sub.add_parser("search", help="Search configured providers and save role-relevant results")
     find.add_argument(
         "--source", "--provider",
-        choices=["all", "core", "adzuna", "jooble", "remotive", "indeed", "web-careers"],
+        choices=["all", "core", "adzuna", "remotive", "indeed", "web-careers"],
         default=DEFAULT_SOURCE,
-        help=(f"Provider to query (default: {DEFAULT_SOURCE}); core is Adzuna, Jooble, "
+        help=(f"Provider to query (default: {DEFAULT_SOURCE}); core is Adzuna, "
               "Remotive, and Web Careers (Brave when configured)"),
     )
     find.add_argument("--query", action="append", help="Repeat for multiple role queries; defaults to all target roles")
@@ -623,7 +626,6 @@ def build_parser():
         "--limit", type=int, default=100,
         help="Unique Remotive jobs to import after within-provider deduplication (default: 100)",
     )
-    find.add_argument("--minimum-score", type=int)
     find.set_defaults(function=search)
     diagnostic = sub.add_parser(
         "diagnose-remotive",
@@ -637,7 +639,6 @@ def build_parser():
         "--results", type=int, default=10_000,
         help="Maximum matching records considered per query (default: 10000)",
     )
-    diagnostic.add_argument("--minimum-score", type=int)
     diagnostic.add_argument("--examples", type=int, default=5)
     diagnostic.set_defaults(function=diagnose_remotive)
     rss_diagnostic = sub.add_parser(
@@ -648,14 +649,12 @@ def build_parser():
     rss_diagnostic.set_defaults(function=diagnose_remotive_rss)
     feeds_diagnostic = sub.add_parser(
         "diagnose-remotive-feeds",
-        help="Dry-run Remotive RSS acquisition, deduplication, and local scoring",
+        help="Dry-run Remotive RSS acquisition and deduplication",
     )
     feeds_diagnostic.add_argument("--limit", type=int, default=100)
     feeds_diagnostic.set_defaults(function=diagnose_remotive_feeds)
-    listing = sub.add_parser("list", help="Show strong saved matches")
-    listing.add_argument("--minimum-score", type=int, default=80)
+    listing = sub.add_parser("list", help="Show saved jobs")
     listing.add_argument("--status", choices=["new", "reviewing", "selected", "resume-created", "applied", "contacted", "interview", "rejected", "offer", "ignored"])
-    listing.add_argument("--all", action="store_true", help="Include weak results remembered as seen")
     listing.add_argument("--json", action="store_true")
     listing.set_defaults(function=list_jobs)
     detail = sub.add_parser("show", help="Show a complete saved record")
@@ -668,12 +667,9 @@ def build_parser():
     status.add_argument("job_id", type=int)
     status.add_argument("status", choices=["new", "reviewing", "selected", "resume-created", "applied", "contacted", "interview", "rejected", "offer", "ignored"])
     status.set_defaults(function=set_status)
-    rescore_parser = sub.add_parser("rescore", help="Recalculate all saved jobs with the current scoring model")
-    rescore_parser.add_argument("--minimum-score", type=int)
-    rescore_parser.set_defaults(function=rescore)
-    enrich_parser = sub.add_parser("enrich", help="Enrich provisional 80+ Adzuna matches")
+    enrich_parser = sub.add_parser("enrich", help="Retrieve fuller descriptions")
     enrich_parser.add_argument("job_id", nargs="?", type=int)
-    enrich_parser.add_argument("--provisional", action="store_true", help="Enrich all provisional 80+ matches")
+    enrich_parser.add_argument("--all", action="store_true", help="Enrich all Adzuna jobs")
     enrich_parser.set_defaults(function=enrich_jobs)
     resolve_parser = sub.add_parser(
         "resolve-url", help="Verify provider links and find authoritative employer/ATS postings",
@@ -684,8 +680,6 @@ def build_parser():
     resolve_parser.add_argument("--force", action="store_true", help="Retry jobs with an existing URL status")
     resolve_parser.set_defaults(function=resolve_urls)
     review_parser = sub.add_parser("review", help="Show the prioritized, read-only Job Scout review queue")
-    review_parser.add_argument("--confirmed-only", action="store_true")
-    review_parser.add_argument("--minimum-score", type=int, default=70)
     review_parser.add_argument("--limit", type=int, default=20)
     review_parser.add_argument("--json", action="store_true")
     review_parser.add_argument(
@@ -693,10 +687,15 @@ def build_parser():
         help="Include applied, rejected, and ignored jobs",
     )
     review_parser.set_defaults(function=review_jobs)
-    daily_parser = sub.add_parser("daily", help="Search, deduplicate, score, enrich, sync, and review")
+    daily_parser = sub.add_parser(
+        "daily", help="Search, sync, and create Gecko resumes for new approved jobs"
+    )
     daily_parser.add_argument("--results", type=int, default=20)
-    daily_parser.add_argument("--minimum-score", type=int, default=70)
     daily_parser.add_argument("--limit", type=int, default=20)
+    daily_parser.add_argument(
+        "--dry-run", action="store_true",
+        help="Run discovery against a temporary database without tracker or resume writes",
+    )
     daily_parser.set_defaults(function=daily)
     sync_parser = sub.add_parser(
         "sync-sheets",

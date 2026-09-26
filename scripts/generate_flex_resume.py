@@ -85,9 +85,7 @@ def main():
     report = ROOT / "output/match-reports" / f"Dave-Call+{NAME}.md"
     report.write_text(f"""# Head of Growth Marketing - Flex
 
-Match Score: 64/100
-
-Reviewed against the current master DOCX and the full official listing. This is a stretch leadership application. The earlier Scout score is not used as evidence.
+Reviewed against the current master DOCX and the full official listing. This is a stretch leadership application.
 
 ## Strongest alignment areas
 
