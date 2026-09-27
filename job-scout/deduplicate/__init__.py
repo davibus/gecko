@@ -16,6 +16,10 @@ def _similarity(left: str, right: str) -> float:
     return SequenceMatcher(None, " ".join(sorted(_words(left))), " ".join(sorted(_words(right)))).ratio()
 
 
+def _identity(value: str) -> str:
+    return " ".join(re.findall(r"[a-z0-9]+", (value or "").casefold()))
+
+
 def description_similarity(left: str, right: str) -> float:
     a, b = _words(left), _words(right)
     return len(a & b) / len(a | b) if a and b else 0.0
@@ -24,6 +28,13 @@ def description_similarity(left: str, right: str) -> float:
 def duplicate_confidence(left: JobListing, right: JobListing) -> float:
     if left.canonical_url and left.canonical_url == right.canonical_url:
         return 1.0
+    exact_identity = (
+        _identity(left.company), _identity(left.title), _identity(left.location)
+    )
+    if all(exact_identity) and exact_identity == (
+        _identity(right.company), _identity(right.title), _identity(right.location)
+    ):
+        return .98 if left.date_posted and left.date_posted == right.date_posted else .88
     company = _similarity(left.company, right.company)
     title = _similarity(left.title, right.title)
     location = _similarity(left.location, right.location) if left.location and right.location else 0.65

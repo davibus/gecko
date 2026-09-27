@@ -199,6 +199,39 @@ def discover(
     )
 
 
+def discover_feed(
+    provider,
+    store: JobStore,
+    *,
+    preserve_existing: bool = False,
+    preexisting_ids: set[int] | None = None,
+    link_validator: DailyLinkValidator | None = None,
+) -> SearchSummary:
+    """Process one cached/public feed or ATS board collection exactly once."""
+    return _discover_listings(
+        provider.full_feed(), store, require_content=False,
+        preserve_existing=preserve_existing, preexisting_ids=preexisting_ids,
+        link_validator=link_validator,
+    )
+
+
+def discover_listings(
+    listings,
+    store: JobStore,
+    *,
+    require_content: bool = False,
+    preserve_existing: bool = False,
+    preexisting_ids: set[int] | None = None,
+    link_validator: DailyLinkValidator | None = None,
+) -> SearchSummary:
+    """Normalize and persist already-acquired listings on the datastore thread."""
+    return _discover_listings(
+        listings, store, require_content=require_content,
+        preserve_existing=preserve_existing, preexisting_ids=preexisting_ids,
+        link_validator=link_validator,
+    )
+
+
 def discover_remotive_full_feed(
     provider: RemotiveProvider,
     store: JobStore,

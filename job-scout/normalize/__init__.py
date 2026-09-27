@@ -11,7 +11,11 @@ from models import JobListing, RawListing
 
 TAG_RE = re.compile(r"<[^>]+>")
 SPACE_RE = re.compile(r"\s+")
-TRACKING_PARAMS = {"from", "ref", "referrer", "source", "utm_campaign", "utm_content", "utm_medium", "utm_source"}
+TRACKING_PARAMS = {
+    "from", "ref", "referrer", "referral", "source", "trk", "trackingid",
+    "gh_src", "lever-source", "gclid", "fbclid", "mc_cid", "mc_eid",
+    "utm_campaign", "utm_content", "utm_medium", "utm_source", "utm_term",
+}
 
 
 def clean_text(value: object) -> str:
@@ -24,8 +28,10 @@ def canonicalize_url(url: str) -> str:
     if not url:
         return ""
     parts = urlsplit(url.strip())
-    query = [(key, value) for key, value in parse_qsl(parts.query, keep_blank_values=True)
-             if key.lower() not in TRACKING_PARAMS and not key.lower().startswith("utm_")]
+    query = sorted(
+        (key, value) for key, value in parse_qsl(parts.query, keep_blank_values=True)
+        if key.lower() not in TRACKING_PARAMS and not key.lower().startswith("utm_")
+    )
     return urlunsplit((parts.scheme.lower(), parts.netloc.lower(), parts.path.rstrip("/"), urlencode(query), ""))
 
 

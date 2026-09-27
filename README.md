@@ -2,13 +2,15 @@
 
 Gecko is Dave Call's resume-tailoring workflow for turning a job listing into a targeted, natural-sounding, ATS-friendly resume and qualitative match analysis.
 
-The normal Daily Job Scout command runs the complete discovery-to-resume workflow. It searches Adzuna, Remotive, and configured Web Careers backends, rejects Jooble, filters to relevant role families, deduplicates results, synchronizes the existing Google Sheet, sends only newly discovered rows with `Apply? = Yes` and blank `Resume Created` cells through the canonical Gecko V2 generator, and then checks Gmail read-only for substantive employer responses to applied jobs.
+The normal Daily Job Scout command runs the complete discovery-to-resume workflow. It searches enabled official APIs, public feeds, configured ATS boards, and compliant Brave discovery sources; rejects Jooble; filters to relevant role families; deduplicates results; synchronizes the existing Google Sheet; sends only newly discovered rows with `Apply? = Yes` and blank `Resume Created` cells through the canonical Gecko V2 generator; and then checks Gmail read-only for substantive employer responses to applied jobs.
 
 ```powershell
 python job-scout/scout.py daily
 ```
 
 Use `python job-scout/scout.py daily --dry-run` to perform network discovery against a temporary SQLite copy without changing the live tracker, creating descriptions, or generating resumes. See `job-scout/README.md` for source setup, duplicate behavior, failure recovery, and diagnostics.
+
+For manual Indeed intake, paste an Indeed job URL into Column R (`Job URL`) of a new `Job Scout` row, then run the same daily command. Gecko extracts the `jk`, checks the full dataset for duplicates, retrieves structured posting data, and populates that row. Duplicates and blocked retrievals are recorded in `Notes` without assigning a Scout ID or stopping the run. See `job-scout/README.md` for the exact behavior and retry procedure.
 
 To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
 

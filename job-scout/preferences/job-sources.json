@@ -1,0 +1,23 @@
+{
+  "max_workers": 6,
+  "providers": {
+    "adzuna": {"enabled": true},
+    "remotive": {"enabled": true},
+    "web-careers": {"enabled": true},
+    "jobicy": {"enabled": true},
+    "remoteok": {"enabled": true},
+    "usajobs": {"enabled": true},
+    "greenhouse": {"enabled": true, "companies": []},
+    "lever": {"enabled": true, "companies": []},
+    "ashby": {"enabled": true, "companies": []},
+    "workable": {"enabled": true, "companies": []},
+    "weworkremotely": {"enabled": true},
+    "workingnomads": {"enabled": true},
+    "themuse": {"enabled": true},
+    "indeed": {"enabled": true, "mode": "search-discovery"},
+    "linkedin": {"enabled": true, "mode": "search-discovery"},
+    "glassdoor": {"enabled": true, "mode": "search-discovery"},
+    "ziprecruiter": {"enabled": true, "mode": "search-discovery"},
+    "jooble": {"enabled": false}
+  }
+}

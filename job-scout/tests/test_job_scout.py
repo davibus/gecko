@@ -31,6 +31,7 @@ from sources.jooble import JoobleProvider
 from sources.web import WebCareerProvider
 from storage import JobStore
 from handoff import archive_listing
+from manual_indeed import ManualIndeedSummary
 from scout import CORE_PROVIDERS, build_parser, daily, load_local_environment, search
 
 
@@ -86,6 +87,14 @@ class EnvironmentTests(unittest.TestCase):
         patcher = patch("scout._daily_gmail_response_runner", return_value=(gmail, ""))
         patcher.start()
         self.addCleanup(patcher.stop)
+        manual_patcher = patch(
+            "scout.process_manual_indeed_rows", return_value=ManualIndeedSummary()
+        )
+        self.manual_intake = manual_patcher.start()
+        self.addCleanup(manual_patcher.stop)
+        ids_patcher = patch("scout.scout_row_ids", return_value=set())
+        ids_patcher.start()
+        self.addCleanup(ids_patcher.stop)
 
     @staticmethod
     def queue_result():
@@ -192,11 +201,13 @@ class EnvironmentTests(unittest.TestCase):
         self.assertEqual(result, 0)
         sync.assert_not_called()
 
-    def test_core_provider_set_includes_web_careers(self):
-        self.assertEqual(
-            CORE_PROVIDERS,
-            ("adzuna", "remotive", "web-careers"),
-        )
+    def test_core_provider_set_keeps_existing_and_adds_supported_sources(self):
+        self.assertTrue({"adzuna", "remotive", "web-careers"} <= set(CORE_PROVIDERS))
+        self.assertTrue({"jobicy", "remoteok", "usajobs", "greenhouse", "lever",
+                         "ashby", "workable", "weworkremotely", "workingnomads",
+                         "themuse", "indeed", "linkedin", "glassdoor",
+                         "ziprecruiter"} <= set(CORE_PROVIDERS))
+        self.assertNotIn("jooble", CORE_PROVIDERS)
 
     @patch("scout._daily_resume_runner", return_value=queue_result.__func__())
     @patch("scout.search", return_value=0)
@@ -205,6 +216,36 @@ class EnvironmentTests(unittest.TestCase):
         daily(args, None, {})
         search_args = mocked_search.call_args.args[0]
         self.assertEqual(search_args.source, "core")
+
+    def test_daily_processes_manual_indeed_after_search_and_before_resume_queue(self):
+        events = []
+        job = normalize(raw(source="Indeed", source_id="manual-jk",
+                            url="https://www.indeed.com/viewjob?jk=manual-jk"))
+        job.id = 77
+        store = unittest.mock.Mock()
+        store.get.return_value = job
+
+        def fake_search(search_args, _store, _preferences):
+            events.append("search")
+            search_args.run_result = {"new_job_ids": [], "existing_job_ids": []}
+            search_args.tracker_summary = {"added": 0}
+            return 0
+
+        def fake_manual(*_args, **_kwargs):
+            events.append("manual")
+            return ManualIndeedSummary(processed=1, new_job_ids=[77])
+
+        self.manual_intake.side_effect = fake_manual
+        args = build_parser().parse_args(["daily"])
+        with (patch("scout.search", side_effect=fake_search),
+              patch("scout.GoogleTracker"),
+              patch("scout._daily_resume_runner", return_value=self.queue_result()) as runner,
+              redirect_stdout(io.StringIO())):
+            result = daily(args, store, {})
+
+        self.assertEqual(result, 0)
+        self.assertEqual(events, ["search", "manual"])
+        self.assertEqual(runner.call_args.args[0], [77])
 
     def test_daily_invokes_web_careers_provider(self):
         class StubProvider:

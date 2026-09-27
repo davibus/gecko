@@ -316,6 +316,16 @@ class GoogleTracker:
     def _next_row(self, tab: Tab) -> int:
         return max((row for row, _ in tab.rows), default=1) + 1
 
+    def update_manual_scout_row(self, tab: Tab, row: int, values: dict[str, Any]) -> None:
+        """Update one existing intake row without changing structure or user-owned fields."""
+        if row < 2 or not any(number == row for number, _ in tab.rows):
+            raise RuntimeError(f"Cannot update missing Job Scout row {row}")
+        allowed = set(SCOUT_FIELDS) | {"Notes"}
+        unexpected = set(values) - allowed
+        if unexpected:
+            raise ValueError("Unsupported manual Job Scout fields: " + ", ".join(sorted(unexpected)))
+        self._write(tab, row, values)
+
     def _checkboxes(self, tab: Tab, row: int) -> None:
         requests = []
         for field in ("Applied", "Contacted"):

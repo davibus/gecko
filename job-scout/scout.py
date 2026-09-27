@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import json
 import os
 import sys
@@ -16,18 +17,22 @@ from deduplicate import find_duplicate
 from google_tracker import GoogleTracker, marked
 from handoff import archive_listing
 from link_validation import DailyLinkValidator
+from manual_indeed import ManualIndeedSummary, process_manual_indeed_rows
 from models import RawListing
 from normalize import normalize
 from normalize import canonicalize_url
 from preferences import load_preferences
 from review import build_review_queue, format_review_queue, queue_to_json
 from role_filter import is_relevant_role
-from service import discover, discover_remotive_full_feed
+from service import discover, discover_feed, discover_listings, discover_remotive_full_feed
 from sources import (
-    AdzunaProvider, IndeedProvider, ProviderError, RemotiveProvider,
-    WebCareerProvider,
+    AdzunaProvider, AshbyProvider, GreenhouseProvider, IndeedProvider,
+    JobicyProvider, LeverProvider, ProviderError, RemoteOkProvider, RemotiveProvider,
+    SearchDiscoveryProvider, TheMuseProvider, UnavailableProvider, UsaJobsProvider,
+    WeWorkRemotelyProvider, WebCareerProvider, WorkableProvider,
 )
 from sources.base import SearchRequest
+from sources.config import load_source_config
 from storage import DEFAULT_DB, JobStore
 from url_resolution import resolve_and_store, url_status_label
 
@@ -35,7 +40,12 @@ from url_resolution import resolve_and_store, url_status_label
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MASTER_RESUME = PROJECT_ROOT / "input" / "master-resume" / "Dave-Call-Resume.txt"
 DEFAULT_SOURCE = "adzuna"
-CORE_PROVIDERS = ("adzuna", "remotive", "web-careers")
+CORE_PROVIDERS = (
+    "adzuna", "remotive", "web-careers", "jobicy", "remoteok", "usajobs",
+    "greenhouse", "lever", "ashby", "workable", "weworkremotely",
+    "workingnomads", "themuse", "indeed", "linkedin", "glassdoor",
+    "ziprecruiter",
+)
 
 
 def load_local_environment(path: Path = PROJECT_ROOT / ".env.local") -> None:
@@ -60,14 +70,38 @@ def load_local_environment(path: Path = PROJECT_ROOT / ".env.local") -> None:
         os.environ.setdefault(name, value)
 
 
-def providers():
-    return {
-        provider.name: provider
-        for provider in (
-            AdzunaProvider(), RemotiveProvider(), IndeedProvider(),
-            WebCareerProvider(),
-        )
+def providers(config_path=None):
+    config = load_source_config(config_path)
+    settings = config["providers"]
+    indeed_api = IndeedProvider()
+    result = {
+        "adzuna": AdzunaProvider(),
+        "remotive": RemotiveProvider(),
+        "web-careers": WebCareerProvider(),
+        "jobicy": JobicyProvider(),
+        "remoteok": RemoteOkProvider(),
+        "usajobs": UsaJobsProvider(),
+        "greenhouse": GreenhouseProvider(settings["greenhouse"].get("companies")),
+        "lever": LeverProvider(settings["lever"].get("companies")),
+        "ashby": AshbyProvider(settings["ashby"].get("companies")),
+        "workable": WorkableProvider(settings["workable"].get("companies")),
+        "weworkremotely": WeWorkRemotelyProvider(),
+        "workingnomads": UnavailableProvider(
+            "workingnomads",
+            "No supported public API or feed is currently documented; scraping is disabled",
+        ),
+        "themuse": TheMuseProvider(),
+        "indeed": (indeed_api if indeed_api.configured() else SearchDiscoveryProvider(
+            "indeed", "site:indeed.com/viewjob",
+        )),
+        "linkedin": SearchDiscoveryProvider("linkedin", "site:linkedin.com/jobs/view"),
+        "glassdoor": SearchDiscoveryProvider("glassdoor", "site:glassdoor.com/job-listing"),
+        "ziprecruiter": SearchDiscoveryProvider("ziprecruiter", "site:ziprecruiter.com/jobs"),
     }
+    for name, provider in list(result.items()):
+        if not settings.get(name, {}).get("enabled", True):
+            result[name] = UnavailableProvider(name, "Disabled in job-sources.json", status="disabled")
+    return result
 
 
 def get_job(store: JobStore, job_id: int):
@@ -177,7 +211,8 @@ def search(args, store, preferences):
     daily_mode = bool(getattr(args, "daily_mode", False))
     link_validator = getattr(args, "link_validator", None) if daily_mode else None
     preexisting_ids = {job.id for job in store.all()}
-    available = providers()
+    source_config = load_source_config(getattr(args, "sources_config", None))
+    available = providers(getattr(args, "sources_config", None))
     if args.source == "all":
         selected = list(available)
     elif args.source == "core":
@@ -208,84 +243,149 @@ def search(args, store, preferences):
         "source_counts": {name: 0 for name in selected}, "source_backends": {},
         "source_diagnostics": {},
         "google_cse": {},
-        "skipped_sources": [], "source_errors": {},
+        "skipped_sources": [], "source_errors": {}, "source_health": {},
     }
     successful_sources = 0
-    for name in selected:
-        provider = available[name]
-        if name == "web-careers":
-            web_diagnostics = provider.diagnostics()
-            aggregate["source_diagnostics"][name] = web_diagnostics
-            aggregate["google_cse"] = web_diagnostics["google_cse"]
-            if provider.backend:
-                aggregate["source_backends"][name] = provider.backend
-        if not provider.configured():
-            aggregate["skipped_sources"].append(name)
-            continue
-        try:
-            if name == "remotive":
-                summary = discover_remotive_full_feed(
-                    provider, store, limit=getattr(args, "limit", 100),
-                    preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
-                    link_validator=link_validator,
-                )
-            else:
-                summary = discover(
-                    provider, requests, store,
-                    preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
-                    link_validator=link_validator,
-                )
-        except ProviderError as error:
-            aggregate["source_errors"][name] = str(error)
-            print(f"Warning: {name} provider failed: {error}", file=sys.stderr)
-            continue
-        successful_sources += 1
-        aggregate["source_counts"][name] = (
-            (summary.unique_imported or summary.fetched)
-            if name == "remotive" else summary.fetched
-        )
-        if summary.source_backend:
-            aggregate["source_backends"][name] = summary.source_backend
-        if name == "web-careers":
-            web_diagnostics = provider.diagnostics(
-                jobs_added=summary.added,
-                backend_qualifying=summary.backend_qualifying,
-                backend_added=summary.backend_added,
+    configured = {
+        name: available[name] for name in selected
+        if name != "remotive" and available[name].configured()
+        and (callable(getattr(type(available[name]), "full_feed", None))
+             or callable(getattr(type(available[name]), "search", None)))
+    }
+
+    def acquire(name_provider):
+        name, provider = name_provider
+        if callable(getattr(type(provider), "full_feed", None)):
+            return list(provider.full_feed()), False
+        provider_queries = getattr(provider, "broad_queries", queries)
+        provider_requests = [
+            SearchRequest(query, location, args.page, args.results)
+            for query in provider_queries for location in locations
+        ]
+        return [raw for request in provider_requests for raw in provider.search(request)], True
+
+    workers = min(max(int(source_config.get("max_workers", 6)), 1), 8, max(len(configured), 1))
+    with ThreadPoolExecutor(max_workers=workers, thread_name_prefix="job-source") as executor:
+        futures = {name: executor.submit(acquire, (name, provider))
+                   for name, provider in configured.items()}
+        for name in selected:
+            provider = available[name]
+            if name == "web-careers":
+                web_diagnostics = provider.diagnostics()
+                aggregate["source_diagnostics"][name] = web_diagnostics
+                aggregate["google_cse"] = web_diagnostics["google_cse"]
+                if provider.backend:
+                    aggregate["source_backends"][name] = provider.backend
+            if not provider.configured():
+                aggregate["skipped_sources"].append(name)
+                status = getattr(provider, "status", "")
+                if not status:
+                    status = ("disabled" if name in {"greenhouse", "lever", "ashby", "workable"}
+                              else "missing credentials")
+                aggregate["source_health"][name] = {
+                    "status": status,
+                    "found": 0,
+                    "detail": getattr(provider, "reason", "") or
+                              ("No employers configured" if status == "disabled" else "Not configured"),
+                }
+                continue
+            try:
+                if name == "remotive":
+                    summary = discover_remotive_full_feed(
+                        provider, store, limit=getattr(args, "limit", 100),
+                        preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
+                        link_validator=link_validator,
+                    )
+                elif name in futures:
+                    listings, require_content = futures[name].result()
+                    summary = discover_listings(
+                        listings, store, require_content=require_content,
+                        preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
+                        link_validator=link_validator,
+                    )
+                else:
+                    summary = discover(
+                        provider, requests, store,
+                        preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
+                        link_validator=link_validator,
+                    )
+            except (ProviderError, OSError, ValueError) as error:
+                aggregate["source_errors"][name] = str(error)
+                error_status = "rate limited" if "429" in str(error) else "api error"
+                aggregate["source_health"][name] = {
+                    "status": error_status, "found": 0, "detail": str(error),
+                }
+                print(f"Warning: {name} provider failed: {error}", file=sys.stderr)
+                continue
+            successful_sources += 1
+            aggregate["source_counts"][name] = (
+                (summary.unique_imported or summary.fetched)
+                if name == "remotive" else summary.fetched
             )
-            aggregate["source_diagnostics"][name] = web_diagnostics
-            aggregate["google_cse"] = web_diagnostics["google_cse"]
-        if name == "remotive":
-            aggregate["source_diagnostics"][name] = {
-                "api_endpoint": getattr(provider, "api_endpoint", ""),
-                "rss_error": getattr(provider, "rss_error", ""),
-                "discovery_location": "Remote",
-                "feeds_attempted": summary.successful_feeds + summary.failed_feeds,
-                "category_feeds": summary.feed_results,
+            discovery_mode = getattr(provider, "discovery_mode", "")
+            if not isinstance(discovery_mode, str):
+                discovery_mode = ""
+            aggregate["source_health"][name] = {
+                "status": (discovery_mode or
+                           ("success" if aggregate["source_counts"][name] else "no results")),
+                "found": aggregate["source_counts"][name],
+                "detail": "",
             }
-            aggregate["unique_remotive_jobs_available"] = summary.unique_available
-            aggregate["unique_jobs_imported"] = summary.unique_imported
-            aggregate["eligibility_includes_usa"] = summary.eligibility_includes_usa
-            aggregate["eligibility_worldwide"] = summary.eligibility_worldwide
-            aggregate["example_jobs"] = summary.example_jobs
-        for key in (
-            "raw_retrieved", "rss_retrieved", "rss_unique",
-            "rss_duplicates_removed", "successful_feeds", "failed_feeds",
-            "api_retrieved", "fetched",
-            "normalized", "added", "updated", "duplicates", "cross_provider_duplicates",
-            "filtered_by_role", "jooble_excluded",
-        ):
-            aggregate[key] += getattr(summary, key)
-        for job_id in summary.new_job_ids:
-            if job_id not in aggregate["new_job_ids"]:
-                aggregate["new_job_ids"].append(job_id)
-        for job_id in summary.existing_job_ids:
-            if job_id not in aggregate["existing_job_ids"]:
-                aggregate["existing_job_ids"].append(job_id)
+            if summary.source_backend:
+                aggregate["source_backends"][name] = summary.source_backend
+            if name == "web-careers":
+                web_diagnostics = provider.diagnostics(
+                    jobs_added=summary.added,
+                    backend_qualifying=summary.backend_qualifying,
+                    backend_added=summary.backend_added,
+                )
+                aggregate["source_diagnostics"][name] = web_diagnostics
+                aggregate["google_cse"] = web_diagnostics["google_cse"]
+            if name == "remotive":
+                aggregate["source_diagnostics"][name] = {
+                    "api_endpoint": getattr(provider, "api_endpoint", ""),
+                    "rss_error": getattr(provider, "rss_error", ""),
+                    "discovery_location": "Remote",
+                    "feeds_attempted": summary.successful_feeds + summary.failed_feeds,
+                    "category_feeds": summary.feed_results,
+                }
+                aggregate["unique_remotive_jobs_available"] = summary.unique_available
+                aggregate["unique_jobs_imported"] = summary.unique_imported
+                aggregate["eligibility_includes_usa"] = summary.eligibility_includes_usa
+                aggregate["eligibility_worldwide"] = summary.eligibility_worldwide
+                aggregate["example_jobs"] = summary.example_jobs
+            for key in (
+                "raw_retrieved", "rss_retrieved", "rss_unique",
+                "rss_duplicates_removed", "successful_feeds", "failed_feeds",
+                "api_retrieved", "fetched",
+                "normalized", "added", "updated", "duplicates", "cross_provider_duplicates",
+                "filtered_by_role", "jooble_excluded",
+            ):
+                aggregate[key] += getattr(summary, key)
+            for job_id in summary.new_job_ids:
+                if job_id not in aggregate["new_job_ids"]:
+                    aggregate["new_job_ids"].append(job_id)
+            for job_id in summary.existing_job_ids:
+                if job_id not in aggregate["existing_job_ids"]:
+                    aggregate["existing_job_ids"].append(job_id)
     aggregate["newly_discovered"] = len(aggregate["new_job_ids"])
     aggregate["already_existed"] = len(aggregate["existing_job_ids"])
     aggregate["sources_searched"] = successful_sources + len(aggregate["source_errors"])
     args.run_result = aggregate
     print(json.dumps(aggregate, indent=2))
+    print("\nJob Scout source summary", file=sys.stderr)
+    for name in selected:
+        health = aggregate["source_health"].get(name, {"status": "unknown", "found": 0})
+        detail = f" - {health.get('detail')}" if health.get("detail") else ""
+        print(f"{name}: {health.get('status')} ({health.get('found', 0)} found){detail}",
+              file=sys.stderr)
+    if "web-careers" in selected:
+        backend = aggregate["source_backends"].get("web-careers") or "disabled"
+        print(f"brave: {backend} backend for web-careers", file=sys.stderr)
+    print(f"Duplicates removed: {aggregate['duplicates']}", file=sys.stderr)
+    print(f"Previously seen: {aggregate['already_existed']}", file=sys.stderr)
+    print(f"Rejected by Gecko filters: {aggregate['filtered_by_role']}", file=sys.stderr)
+    print(f"New qualified jobs written: {aggregate['newly_discovered']}", file=sys.stderr)
     if len(aggregate["skipped_sources"]) == len(selected):
         print("No selected source is configured. See job-scout/README.md.", file=sys.stderr)
         return 2
@@ -351,6 +451,50 @@ def diagnose_remotive(args, store, preferences):
     }
     print(json.dumps(report, indent=2))
     return 0
+
+
+def verify_sources(args, _store, _preferences):
+    """Read-only live health check for every configured provider."""
+    available = providers(getattr(args, "sources_config", None))
+
+    def check(item):
+        name, provider = item
+        if not provider.configured():
+            status = getattr(provider, "status", "") or (
+                "disabled" if name in {"greenhouse", "lever", "ashby", "workable"}
+                else "missing credentials"
+            )
+            return name, {"status": status, "count": 0,
+                          "detail": getattr(provider, "reason", "")}
+        try:
+            if name == "remotive":
+                jobs = list(provider.full_feed(unique_limit=args.results))
+            elif hasattr(provider, "full_feed"):
+                jobs = list(provider.full_feed())[:args.results]
+            else:
+                jobs = list(provider.search(SearchRequest(
+                    "digital marketing", "Remote", 1, args.results,
+                )))[:args.results]
+            return name, {
+                "status": getattr(provider, "discovery_mode", "") or
+                          ("success" if jobs else "no results"),
+                "count": len(jobs), "detail": "",
+            }
+        except (ProviderError, OSError, ValueError) as error:
+            return name, {"status": "rate limited" if "429" in str(error) else "api error",
+                          "count": 0, "detail": str(error)}
+
+    workers = min(6, len(available))
+    with ThreadPoolExecutor(max_workers=workers, thread_name_prefix="verify-source") as executor:
+        report = dict(executor.map(check, available.items()))
+    print(json.dumps(report, indent=2))
+    failures = 0
+    print("\nJob Scout provider verification (read-only)")
+    for name, result in report.items():
+        detail = f" - {result['detail']}" if result["detail"] else ""
+        print(f"{name}: {result['status']} ({result['count']} sampled){detail}")
+        failures += int(result["status"] in {"api error", "rate limited"})
+    return 1 if failures else 0
 
 
 def diagnose_remotive_feeds(args, _store, preferences):
@@ -525,13 +669,17 @@ def _daily_gmail_response_runner():
 
 
 def _print_daily_summary(run_result, queue_result, tracker_summary, *, dry_run=False,
-                         gmail_result=None, gmail_error=""):
+                         gmail_result=None, gmail_error="", manual_indeed=None):
+    manual_indeed = manual_indeed or ManualIndeedSummary()
     print("\nDaily Job Scout complete" + (" (dry run)" if dry_run else ""))
     print(f"Sources searched: {run_result.get('sources_searched', 0)}")
     print(f"Jobs discovered: {run_result.get('fetched', 0)}")
     print(f"Jooble jobs excluded: {run_result.get('jooble_excluded', 0)}")
     print(f"Duplicates skipped: {run_result.get('duplicates', 0)}")
     print(f"New jobs added: {tracker_summary.get('added', 0)}")
+    print(f"Manual Indeed rows processed: {manual_indeed.processed}")
+    print(f"Manual Indeed duplicates flagged: {manual_indeed.duplicates}")
+    print(f"Manual Indeed retrieval failures: {manual_indeed.failures}")
     print(f"Jobs marked Apply = Yes: {len(queue_result.snapshot.pending) + len(queue_result.snapshot.already_created)}")
     print(f"Resumes already existing: {len(queue_result.snapshot.already_created) + queue_result.recovered}")
     print(f"New Gecko resumes created: {queue_result.created}")
@@ -592,6 +740,9 @@ def daily(args, store, preferences):
                 None, {job.id for job in existing if job.id is not None}
             ))
             protected = protected_job_ids(existing)
+            existing_sheet_ids = scout_row_ids()
+            if existing_sheet_ids:
+                store.observe_scout_id(max(existing_sheet_ids))
         checked = validator.check_existing(existing)
         dead = [(job, result) for job, result in checked if result.status == "dead"]
         removable = [(job, result) for job, result in dead if job.id not in protected]
@@ -611,6 +762,19 @@ def daily(args, store, preferences):
         link_validator=validator, dry_run=args.dry_run,
     )
     result = search(search_args, store, preferences)
+    manual_indeed = ManualIndeedSummary()
+    if not args.dry_run:
+        manual_indeed = process_manual_indeed_rows(GoogleTracker(), store)
+        print("Manual Indeed intake:")
+        print(json.dumps(manual_indeed.to_dict(), indent=2))
+        run_result = getattr(search_args, "run_result", {})
+        for job_id in manual_indeed.new_job_ids:
+            if job_id not in run_result.setdefault("new_job_ids", []):
+                run_result["new_job_ids"].append(job_id)
+        run_result["newly_discovered"] = len(run_result.get("new_job_ids", []))
+        tracker_summary = getattr(search_args, "tracker_summary", {"added": 0})
+        tracker_summary["added"] = tracker_summary.get("added", 0) + manual_indeed.processed
+        search_args.tracker_summary = tracker_summary
     print("Link validation:")
     for field in ("checked", "valid", "removed_dead", "temporary_failure", "protected_dead"):
         print(f"  {field}: {validator.report()[field]}")
@@ -618,9 +782,9 @@ def daily(args, store, preferences):
         print(f"  removed: {removed['company']} | {removed['job_title']} | {removed['url']} | "
               f"{removed['reason_removed']} | HTTP/status {removed['http_status'] or 'n/a'}")
     run_result = getattr(search_args, "run_result", {})
-    if result:
+    if result and not manual_indeed.new_job_ids:
         _print_daily_summary(run_result, _empty_queue_result(), {"added": 0},
-                             dry_run=args.dry_run)
+                             dry_run=args.dry_run, manual_indeed=manual_indeed)
         return result
     new_jobs = [store.get(job_id) for job_id in run_result.get("new_job_ids", [])]
     queue = build_review_queue(
@@ -633,30 +797,32 @@ def daily(args, store, preferences):
         print(f"DAILY REVIEW: {qualifying} new qualifying job(s) discovered in this run.")
         print(format_review_queue(queue))
     if args.dry_run:
-        _print_daily_summary(run_result, _empty_queue_result(), {"added": 0}, dry_run=True)
+        _print_daily_summary(run_result, _empty_queue_result(), {"added": 0}, dry_run=True,
+                             manual_indeed=manual_indeed)
         return 0
     queue_result = _daily_resume_runner(run_result.get("new_job_ids", []), store)
     gmail_result, gmail_error = _daily_gmail_response_runner()
     _print_daily_summary(
         run_result, queue_result,
         getattr(search_args, "tracker_summary", {"added": 0}),
-        gmail_result=gmail_result, gmail_error=gmail_error,
+        gmail_result=gmail_result, gmail_error=gmail_error, manual_indeed=manual_indeed,
     )
-    return queue_result.exit_code
+    return queue_result.exit_code or result
 
 
 def build_parser():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--db", default=str(DEFAULT_DB), help="SQLite database path")
     parser.add_argument("--preferences", help="Alternate preferences JSON")
+    parser.add_argument("--sources-config", help="Alternate job source configuration JSON")
     sub = parser.add_subparsers(dest="command", required=True)
     find = sub.add_parser("search", help="Search configured providers and save role-relevant results")
     find.add_argument(
         "--source", "--provider",
-        choices=["all", "core", "adzuna", "remotive", "indeed", "web-careers"],
+        choices=["all", "core", *CORE_PROVIDERS],
         default=DEFAULT_SOURCE,
-        help=(f"Provider to query (default: {DEFAULT_SOURCE}); core is Adzuna, "
-              "Remotive, and Web Careers (Brave when configured)"),
+        help=(f"Provider to query (default: {DEFAULT_SOURCE}); core is every enabled "
+              "supported source (Web Careers uses Brave when configured)"),
     )
     find.add_argument("--query", action="append", help="Repeat for multiple role queries; defaults to all target roles")
     find.add_argument(
@@ -696,6 +862,11 @@ def build_parser():
     )
     feeds_diagnostic.add_argument("--limit", type=int, default=100)
     feeds_diagnostic.set_defaults(function=diagnose_remotive_feeds)
+    verify_parser = sub.add_parser(
+        "verify-sources", help="Read-only live verification of every Job Scout provider",
+    )
+    verify_parser.add_argument("--results", type=int, default=5)
+    verify_parser.set_defaults(function=verify_sources)
     listing = sub.add_parser("list", help="Show saved jobs")
     listing.add_argument("--status", choices=["new", "reviewing", "selected", "resume-created", "applied", "contacted", "interview", "rejected", "offer", "ignored"])
     listing.add_argument("--json", action="store_true")

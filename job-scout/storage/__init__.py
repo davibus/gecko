@@ -27,6 +27,14 @@ REMOVED_STORAGE_COLUMNS = {
     "enriched_evidence_confidence",
 }
 
+SOURCE_PRIORITY = {
+    "greenhouse": 0, "lever": 0, "ashby": 0, "workable": 0, "web-careers": 0,
+    "usajobs": 1, "jobicy": 1, "remotive": 1, "remoteok": 1,
+    "weworkremotely": 1, "themuse": 1,
+    "adzuna": 2,
+    "indeed": 3, "linkedin": 3, "glassdoor": 3, "ziprecruiter": 3,
+}
+
 
 class JobStore:
     def __init__(self, path: str | Path = DEFAULT_DB):
@@ -82,6 +90,10 @@ class JobStore:
                 redirect_url TEXT NOT NULL DEFAULT '',
                 resolved_at TEXT NOT NULL DEFAULT '',
                 resolution_error TEXT NOT NULL DEFAULT ''
+            );
+            CREATE TABLE IF NOT EXISTS scout_state (
+                key TEXT PRIMARY KEY,
+                value INTEGER NOT NULL
             );
         """)
 
@@ -143,6 +155,11 @@ class JobStore:
         self._rebuild_without_evaluation_fields("jobs", JOB_COLUMNS)
         self._rebuild_without_evaluation_fields("enrichments", ENRICHMENT_COLUMNS)
         self._create_schema()
+        highest = self.connection.execute("SELECT COALESCE(MAX(id), 0) FROM jobs").fetchone()[0]
+        self.connection.execute("""
+            INSERT INTO scout_state (key, value) VALUES ('id_high_water', ?)
+            ON CONFLICT(key) DO UPDATE SET value=MAX(value, excluded.value)
+        """, (int(highest),))
         self.connection.commit()
         self.connection.execute("PRAGMA foreign_keys=ON")
 
@@ -195,7 +212,56 @@ class JobStore:
                 setattr(job, attribute, resolution[column])
         return job
 
-    def save(self, job: JobListing, retained: bool = True) -> int:
+    def highest_scout_id(self) -> int:
+        row = self.connection.execute(
+            "SELECT value FROM scout_state WHERE key = 'id_high_water'"
+        ).fetchone()
+        return int(row[0]) if row else 0
+
+    def observe_scout_id(self, scout_id: int) -> None:
+        """Advance the persistent ID high-water mark without creating a record."""
+        if scout_id < 0:
+            raise ValueError("Scout ID high-water mark cannot be negative")
+        self.connection.execute("""
+            INSERT INTO scout_state (key, value) VALUES ('id_high_water', ?)
+            ON CONFLICT(key) DO UPDATE SET value=MAX(value, excluded.value)
+        """, (scout_id,))
+        self.connection.commit()
+
+    def save(self, job: JobListing, retained: bool = True, *, job_id: int | None = None) -> int:
+        existing = self.connection.execute(
+            "SELECT id FROM jobs WHERE source = ? AND source_job_id = ?",
+            (job.source, job.source_job_id),
+        ).fetchone()
+        if job_id is None and existing is None:
+            job_id = self.highest_scout_id() + 1
+        if job_id is not None:
+            if job_id < 1:
+                raise ValueError("Scout ID must be a positive integer")
+            if self.get(job_id):
+                raise ValueError(f"Scout ID {job_id} already exists")
+            cursor = self.connection.execute("""
+                INSERT INTO jobs (id,company,title,location,work_arrangement,employment_type,salary,
+                    source,source_job_id,url,canonical_url,date_posted,date_discovered,last_seen,
+                    description,category,tags_json,status)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                RETURNING id
+            """, (
+                job_id, job.company, job.title, job.location, job.work_arrangement,
+                job.employment_type, job.salary, job.source, job.source_job_id, job.url,
+                job.canonical_url, job.date_posted, job.date_discovered,
+                job.last_seen or job.date_discovered, job.description, job.category,
+                json.dumps(job.tags), job.status,
+            ))
+            saved_id = int(cursor.fetchone()[0])
+            for link in job.source_links:
+                self.add_source_link(saved_id, link["source"], link.get("source_job_id", ""), link["url"])
+            self.connection.execute(
+                "UPDATE scout_state SET value=MAX(value, ?) WHERE key='id_high_water'",
+                (saved_id,),
+            )
+            self.connection.commit()
+            return saved_id
         cursor = self.connection.execute("""
             INSERT INTO jobs (company,title,location,work_arrangement,employment_type,salary,source,
                 source_job_id,url,canonical_url,date_posted,date_discovered,last_seen,description,
@@ -265,6 +331,20 @@ class JobStore:
             duplicate.description, duplicate.description, duplicate.category, duplicate.category,
             json.dumps(merged_tags), canonical_id,
         ))
+        current_priority = SOURCE_PRIORITY.get((current.source if current else "").casefold(), 2)
+        incoming_priority = SOURCE_PRIORITY.get(duplicate.source.casefold(), 2)
+        if current and incoming_priority < current_priority:
+            self.connection.execute("""
+                UPDATE jobs SET source=?, source_job_id=?, url=?, canonical_url=?,
+                    company=?, title=?, location=?, work_arrangement=?, employment_type=?,
+                    date_posted=CASE WHEN ? != '' THEN ? ELSE date_posted END
+                WHERE id=?
+            """, (
+                duplicate.source, duplicate.source_job_id, duplicate.url,
+                duplicate.canonical_url, duplicate.company, duplicate.title,
+                duplicate.location, duplicate.work_arrangement, duplicate.employment_type,
+                duplicate.date_posted, duplicate.date_posted, canonical_id,
+            ))
         for link in duplicate.source_links:
             self.add_source_link(canonical_id, link["source"], link.get("source_job_id", ""), link["url"])
         self.connection.commit()

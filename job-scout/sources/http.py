@@ -70,6 +70,14 @@ def get_json(url: str, headers: dict[str, str] | None = None) -> dict:
         raise ProviderError(f"Source returned invalid JSON: {url}") from error
 
 
+def get_json_value(url: str, headers: dict[str, str] | None = None):
+    """Return a JSON object or array for public feeds whose root is not an object."""
+    try:
+        return json.loads(get_bytes(url, headers).decode("utf-8", errors="replace"))
+    except json.JSONDecodeError as error:
+        raise ProviderError(f"Source returned invalid JSON: {url}") from error
+
+
 def post_json(
     url: str,
     payload: dict,
