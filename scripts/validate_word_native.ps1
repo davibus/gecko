@@ -73,6 +73,25 @@ function Test-BridgeHeartbeat {
     }
 }
 
+function Test-DirectInteractiveWordSession {
+    # The bridge worker is deliberately started with an interactive-user token,
+    # even though its PowerShell host itself is non-interactive.
+    if ($InteractiveWorker) {
+        return $true
+    }
+
+    $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+    $sessionId = [System.Diagnostics.Process]::GetCurrentProcess().SessionId
+    if (-not [Environment]::UserInteractive -or $sessionId -eq 0) {
+        return $false
+    }
+
+    # Gecko's agent sandbox can inherit IDE/console environment variables and
+    # report UserInteractive=True, but its isolated token cannot safely start
+    # Word COM. The account name is the reliable discriminator for that host.
+    return $identity -notmatch '(?i)codexsandbox'
+}
+
 function Get-PdfPageCount {
     param([Parameter(Mandatory = $true)][string]$PdfFile)
 
@@ -134,7 +153,7 @@ function Invoke-InteractiveHandoff {
         }
     }
     if (-not (Test-BridgeHeartbeat)) {
-        throw "Microsoft Word requires the interactive desktop session. Run this one-time installer from Windows Explorer: $bridgeInstaller"
+        throw "Microsoft Word automation is unavailable in this sandbox/non-interactive session, and the interactive-user bridge is not available. Install or start it from the normal Windows desktop with: $bridgeInstaller"
     }
 
     $requestDirectory = Split-Path -Parent $ResultFile
@@ -190,27 +209,29 @@ if ([string]::IsNullOrWhiteSpace($ResultPath)) {
 }
 
 $status = $null
-try {
-    $wordPages = Invoke-WordPagination -DocumentPath $docx -PdfFile $pdf
-    $pdfPages = Get-PdfPageCount -PdfFile $pdf
-    $status = [ordered]@{
-        status = if ($wordPages -eq 2 -and $pdfPages -eq 2) { 'native-valid' } else { 'native-invalid' }
-        docx = $docx
-        pdf = $pdf
-        word_pages = $wordPages
-        pdf_pages = $pdfPages
-        request_id = if ([string]::IsNullOrWhiteSpace($RequestId)) { $null } else { $RequestId }
-        validated_at = (Get-Date).ToString('o')
-        validated_as = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-        validation_session_id = [System.Diagnostics.Process]::GetCurrentProcess().SessionId
+$directInteractiveSession = Test-DirectInteractiveWordSession
+if ($directInteractiveSession) {
+    Write-Output 'Word validation mode: Direct interactive session'
+    try {
+        $wordPages = Invoke-WordPagination -DocumentPath $docx -PdfFile $pdf
+        $pdfPages = Get-PdfPageCount -PdfFile $pdf
+        $status = [ordered]@{
+            status = if ($wordPages -eq 2 -and $pdfPages -eq 2) { 'native-valid' } else { 'native-invalid' }
+            docx = $docx
+            pdf = $pdf
+            word_pages = $wordPages
+            pdf_pages = $pdfPages
+            request_id = if ([string]::IsNullOrWhiteSpace($RequestId)) { $null } else { $RequestId }
+            validated_at = (Get-Date).ToString('o')
+            validated_as = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+            validation_session_id = [System.Diagnostics.Process]::GetCurrentProcess().SessionId
+        }
+        Write-JsonAtomic -Value $status -Path $result
+    } catch {
+        throw "Direct interactive Microsoft Word automation failed. The bridge was not invoked because this process has an interactive-user session. Confirm that desktop Microsoft Word is installed and can start under this Windows account. Error: $($_.Exception.Message)"
     }
-    Write-JsonAtomic -Value $status -Path $result
-} catch {
-    $logonSessionFailure = $_.Exception.Message -match 'specified logon session does not exist|80070520'
-    if ($InteractiveWorker -or -not $logonSessionFailure) {
-        throw
-    }
-    Write-Output 'Direct Word COM is unavailable in the sandbox; handing validation to the interactive desktop bridge.'
+} else {
+    Write-Output 'Word validation mode: Interactive-user bridge'
     $status = Invoke-InteractiveHandoff -DocumentPath $docx -PdfFile $pdf -ResultFile $result
     $wordPages = [int]$status.word_pages
     $pdfPages = [int]$status.pdf_pages

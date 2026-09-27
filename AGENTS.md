@@ -31,7 +31,8 @@ When asked to "use Gecko" for a job:
 
 - The final DOCX must be exactly two pages when opened or exported by Microsoft Word. A browser, HTML, PDF, or fallback renderer alone is not sufficient proof of DOCX pagination.
 - Prefer Microsoft Word COM pagination and confirm both Word's computed page count and the exported PDF page count equal 2.
-- Use `scripts/validate_word_native.ps1` for the authoritative check. It automatically routes sandbox requests through the interactive-user bridge installed by `scripts/Install-Gecko-Word-Bridge.cmd`.
+- Use `scripts/validate_word_native.ps1` for the authoritative check in every environment. Humans should call it directly from their IDE terminal, Windows Terminal, or PowerShell; it runs Word COM in that same interactive process without opening another terminal window. Sandboxed agents call the exact same script. The script detects the execution context and uses the interactive-user bridge installed by `scripts/Install-Gecko-Word-Bridge.cmd` only when direct Word automation is unsafe or unavailable in the sandbox/non-interactive session.
+- Standard invocation: `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate_word_native.ps1 -DocxPath "output\resumes\<resume-file>.docx" -PdfPath "scratch\<Company-Name>+<JobNumber>\word-validation.pdf" -ResultPath "scratch\<Company-Name>+<JobNumber>\validation-status.json"`
 - If the bridge is not installed or running, stop before the tracker update and report the exact installer path. Do not add a tracker row while validation is `native-pending`.
 - If native Word pagination is unavailable, use a conservative layout with substantial bottom-page safety margin, clearly disclose that native validation is unavailable, and do not describe fallback-only pagination as equivalent to Word validation.
 - Never add content merely to fill space when doing so risks a third page. An underfilled second page is preferable to a three-page resume.
