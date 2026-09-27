@@ -7,6 +7,7 @@ from docx.oxml import OxmlElement, parse_xml
 from docx.oxml.ns import nsdecls, qn
 import win32com.client
 import fitz
+from word_validation_client import validate_word_native
 
 def set_cell_margins(cell, top=0, bottom=0, left=0, right=0):
     tcPr = cell._tc.get_or_add_tcPr()
@@ -304,16 +305,8 @@ def render_and_verify():
     
     build_omni_resume(docx_p, font_size_pt=10.0, margin_in=0.42, bullet_space_p2=0.8, job_space_p2=2.0)
     
-    word = win32com.client.Dispatch("Word.Application")
-    word.Visible = False
-    try:
-        doc = word.Documents.Open(os.path.abspath(docx_p))
-        doc.Repaginate()
-        pages = doc.ComputeStatistics(2)
-        doc.SaveAs(os.path.abspath(pdf_p), FileFormat=17)
-        doc.Close(False)
-    finally:
-        word.Quit()
+    status = validate_word_native(docx_p, pdf_p)
+    pages = status["word_pages"]
         
     pdf = fitz.open(pdf_p)
     print(f"Word pages: {pages}, PDF pages: {len(pdf)}")

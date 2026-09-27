@@ -8,14 +8,18 @@ import hashlib
 import html
 import json
 import os
+import random
 import re
 import sys
+import time
 from dataclasses import asdict, dataclass
 from datetime import date, datetime, timedelta, timezone
 from email.utils import parseaddr
 from pathlib import Path
 from typing import Any, Iterable
 from urllib.parse import parse_qs, unquote, urlsplit
+
+from googleapiclient.errors import HttpError
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +29,9 @@ DEFAULT_TOKEN_FILE = ROOT / ".secrets" / "gmail-oauth-token.json"
 DEFAULT_STATE_FILE = ROOT / "job-scout" / "data" / "gmail-response-state.json"
 DEFAULT_LOG_FILE = ROOT / "output" / "gmail-response-tracking.log"
 STATE_VERSION = 1
+GMAIL_LOOKBACK_DAYS = 7
+GMAIL_MAX_RETRIES = 6
+RETRYABLE_GMAIL_REASONS = {"ratelimitexceeded", "userratelimitexceeded"}
 
 GENERIC_SENDER_DOMAINS = {
     "indeed.com", "linkedin.com", "ziprecruiter.com", "glassdoor.com",
@@ -101,7 +108,8 @@ class GmailConfig:
     client_file: Path
     token_file: Path
     state_file: Path
-    max_results_per_job: int = 25
+    max_results: int = 500
+    request_delay_seconds: float = 0.2
 
     @classmethod
     def from_environment(cls) -> "GmailConfig":
@@ -113,7 +121,8 @@ class GmailConfig:
             path_value("GECKO_GMAIL_CLIENT_SECRET_FILE", DEFAULT_CLIENT_FILE),
             path_value("GECKO_GMAIL_TOKEN_FILE", DEFAULT_TOKEN_FILE),
             path_value("GECKO_GMAIL_STATE_FILE", DEFAULT_STATE_FILE),
-            max(1, int(os.getenv("GECKO_GMAIL_MAX_RESULTS_PER_JOB", "25"))),
+            max(1, int(os.getenv("GECKO_GMAIL_MAX_RESULTS", "500"))),
+            max(0.0, float(os.getenv("GECKO_GMAIL_REQUEST_DELAY_SECONDS", "0.2"))),
         )
 
 
@@ -288,17 +297,62 @@ def message_from_api(raw: dict[str, Any]) -> EmailMessage:
     )
 
 
+def _gmail_error_reasons(error: HttpError) -> set[str]:
+    try:
+        payload = json.loads(error.content.decode("utf-8", errors="replace"))
+    except (AttributeError, json.JSONDecodeError, UnicodeDecodeError):
+        return set()
+    details = payload.get("error", {}).get("errors", ())
+    return {
+        str(detail.get("reason") or "").casefold()
+        for detail in details if isinstance(detail, dict)
+    }
+
+
+def _retryable_gmail_error(error: HttpError) -> bool:
+    status = int(getattr(error.resp, "status", 0) or 0)
+    if status == 429:
+        return True
+    return status == 403 and bool(_gmail_error_reasons(error) & RETRYABLE_GMAIL_REASONS)
+
+
+def _execute_with_retry(request, *, sleep=time.sleep, random_value=random.random,
+                        max_retries: int = GMAIL_MAX_RETRIES):
+    retries = 0
+    while True:
+        try:
+            return request.execute()
+        except HttpError as error:
+            if not _retryable_gmail_error(error) or retries >= max_retries:
+                raise
+            base_delay = min(2 ** retries, 32)
+            jitter = random_value() * min(1.0, base_delay * 0.25)
+            sleep(base_delay + jitter)
+            retries += 1
+
+
 class GmailReader:
-    def __init__(self, service):
+    def __init__(self, service, *, request_delay_seconds: float = 0.2,
+                 sleep=time.sleep, random_value=random.random):
         self.messages = service.users().messages()
+        self.request_delay_seconds = max(0.0, request_delay_seconds)
+        self.sleep = sleep
+        self.random_value = random_value
+        self._message_fetch_started = False
+
+    def _execute(self, request):
+        return _execute_with_retry(
+            request, sleep=self.sleep, random_value=self.random_value,
+        )
 
     def search_ids(self, query: str, limit: int) -> list[str]:
         ids = []
         token = None
         while len(ids) < limit:
             response = self.messages.list(
-                userId="me", q=query, maxResults=min(100, limit - len(ids)), pageToken=token,
-            ).execute()
+                userId="me", q=query, maxResults=min(500, limit - len(ids)), pageToken=token,
+            )
+            response = self._execute(response)
             ids.extend(item["id"] for item in response.get("messages", ()))
             token = response.get("nextPageToken")
             if not token:
@@ -306,7 +360,11 @@ class GmailReader:
         return ids[:limit]
 
     def get_message(self, message_id: str) -> EmailMessage:
-        raw = self.messages.get(userId="me", id=message_id, format="full").execute()
+        if self._message_fetch_started and self.request_delay_seconds:
+            self.sleep(self.request_delay_seconds)
+        self._message_fetch_started = True
+        request = self.messages.get(userId="me", id=message_id, format="full")
+        raw = self._execute(request)
         return message_from_api(raw)
 
 
@@ -372,13 +430,11 @@ def candidates_from_rows(rows: Iterable[dict[str, Any]]) -> list[JobCandidate]:
     return [job for job in result if job.company and job.title]
 
 
-def gmail_query(job: JobCandidate, today: date) -> str:
-    start = (job.relevant_date or (today - timedelta(days=120))) - timedelta(days=1)
-    terms = [job.company, job.title, job.job_number]
-    quoted = " ".join(f'"{term.replace(chr(34), "")}"' for term in terms if term)
+def gmail_query(today: date) -> str:
+    start = today - timedelta(days=GMAIL_LOOKBACK_DAYS)
     return (
         f"after:{start:%Y/%m/%d} -in:sent -category:promotions "
-        f"-category:social {{{quoted}}}"
+        "-category:social"
     )
 
 
@@ -556,15 +612,13 @@ def run_response_check(tracker, gmail: GmailReader, config: GmailConfig, *, toda
     prior_signature = state.get("candidate_signature")
     processed = state["processed"]
 
-    candidate_ids: dict[str, set[int]] = {}
-    by_row = {job.row: job for job in jobs}
-    for job in jobs:
-        for message_id in gmail.search_ids(gmail_query(job, today), config.max_results_per_job):
-            candidate_ids.setdefault(message_id, set()).add(job.row)
+    message_ids = dict.fromkeys(
+        gmail.search_ids(gmail_query(today), config.max_results)
+    )
 
     row_matches: dict[int, ResponseMatch] = {}
     pending_state: dict[str, dict[str, Any]] = {}
-    for message_id, rows in candidate_ids.items():
+    for message_id in message_ids:
         prior_message = processed.get(message_id, {})
         if prior_message.get("status") == "matched" or (
             prior_message and prior_signature == signature
@@ -573,7 +627,7 @@ def run_response_check(tracker, gmail: GmailReader, config: GmailConfig, *, toda
             continue
         message = gmail.get_message(message_id)
         summary.emails_checked += 1
-        match = match_message(message, [by_row[row] for row in rows])
+        match = match_message(message, jobs)
         if match:
             summary.emails_matched += 1
             current = row_matches.get(match.job.row)
@@ -617,7 +671,10 @@ def run_live_check(*, interactive: bool = False) -> RunSummary:
     from google_tracker import GoogleTracker
 
     config = GmailConfig.from_environment()
-    gmail = GmailReader(build_gmail_service(config, interactive=interactive))
+    gmail = GmailReader(
+        build_gmail_service(config, interactive=interactive),
+        request_delay_seconds=config.request_delay_seconds,
+    )
     return run_response_check(GoogleTracker(), gmail, config)
 
 

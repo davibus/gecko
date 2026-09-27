@@ -473,9 +473,14 @@ def make_resume(plan: dict, path: Path) -> None:
             node.set(qn("w:val"), "none")
             borders.append(node)
         table._tbl.tblPr.append(borders)
-        for item in selected:
+        for item_index, item in enumerate(selected):
             p = para(polish_quote(item["quote"]), style="List Bullet", after=1)
             p.paragraph_format.left_indent = Inches(.18)
+            # Keep a role's bullets together with its table-backed heading when
+            # Word can fit the complete block on one page. This avoids a lone
+            # continuation bullet at the top of the following page.
+            if item_index < len(selected) - 1:
+                p.paragraph_format.keep_with_next = True
     section(SECTIONS[3])
     para(plan["resume"]["education"], after=1)
     para(plan["resume"]["certifications"])

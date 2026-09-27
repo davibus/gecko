@@ -61,7 +61,7 @@ Copy `.env.example` to `.env.local` and configure the provider and Google Sheets
 
 The normal source set is `adzuna`, `remotive`, and `web-careers`. Jooble is rejected defensively during discovery, Sheet sync, and resume queue processing. Remotive is read as a remote feed, filtered to the supported role family, ordered newest first, and bounded by `--limit`.
 
-Gmail response tracking requires a Desktop app OAuth client and only the `gmail.readonly` scope. Save the downloaded client JSON as `.secrets/gmail-oauth-client.json`, install `job-scout/requirements.txt`, and run `python job-scout/gmail_response_tracker.py authorize` once from an interactive terminal. The ignored refresh token and processing state are reused by later daily runs. See the root `README.md` for the complete Google Cloud setup.
+Gmail response tracking requires a Desktop app OAuth client and only the `gmail.readonly` scope. Save the downloaded client JSON as `.secrets/gmail-oauth-client.json`, install `job-scout/requirements.txt`, and run `python job-scout/gmail_response_tracker.py authorize` once from an interactive terminal. The ignored refresh token and processing state are reused by later daily runs. Each run issues one seven-day Gmail search, locally matches its results against all applied jobs, and delays `0.2` seconds between message downloads by default. Configure that pacing with `GECKO_GMAIL_REQUEST_DELAY_SECONDS`. See the root `README.md` for the complete Google Cloud setup.
 
 ## Commands
 

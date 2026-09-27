@@ -20,6 +20,7 @@ from docx.oxml.ns import nsdecls, qn
 from docx.shared import Inches, Pt, RGBColor
 
 from silent_subprocess import windows_creationflags
+from word_validation_client import validate_word_native
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -238,22 +239,12 @@ def build_resume(path: Path):
 def export_and_validate(docx_path: Path, pdf_path: Path, scratch_dir: Path | None = None):
     scratch = Path(scratch_dir) if scratch_dir is not None else SCRATCH
     scratch.mkdir(parents=True, exist_ok=True)
-    word_pages = None
-    try:
-        word = win32com.client.Dispatch("Word.Application")
-        word.Visible = False
-        word.DisplayAlerts = 0
-        try:
-            document = word.Documents.Open(str(docx_path.resolve()))
-            document.Repaginate()
-            word_pages = document.ComputeStatistics(2)
-            document.ExportAsFixedFormat(str(pdf_path.resolve()), 17)
-            document.Close(False)
-        finally:
-            word.Quit()
-    except Exception as exc:
-        print(f"Word automation unavailable ({exc}); using faithful HTML/CSS fallback.")
-        render_fallback_pdf(docx_path, pdf_path, scratch)
+    status = validate_word_native(
+        docx_path,
+        pdf_path,
+        scratch / "validation-status.json",
+    )
+    word_pages = status["word_pages"]
 
     pdf = fitz.open(pdf_path)
     pdf_pages = len(pdf)

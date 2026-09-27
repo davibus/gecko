@@ -23,7 +23,9 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $scratchRoot = Join-Path $projectRoot 'scratch'
 $bridgeHeartbeat = Join-Path $scratchRoot 'word-validation-bridge-heartbeat.json'
-$bridgeInstaller = Join-Path $PSScriptRoot 'Install-Gecko-Word-Bridge.cmd'
+$bridgeHealthScript = Join-Path $PSScriptRoot 'Test-Gecko-Word-Bridge.ps1'
+$bridgeRestartCommand = Join-Path $PSScriptRoot 'Restart-Gecko-Word-Bridge.cmd'
+. (Join-Path $PSScriptRoot 'word_bridge_common.ps1')
 
 function Resolve-ProjectPath {
     param(
@@ -58,18 +60,26 @@ function Write-JsonAtomic {
 }
 
 function Test-BridgeHeartbeat {
-    if (-not (Test-Path -LiteralPath $bridgeHeartbeat)) {
-        return $false
-    }
+    # Five minutes tolerates desktop scheduling delays and normal Word startup.
+    # Process liveness is intentionally not required here because a sandboxed
+    # token may be unable to inspect the interactive user's process metadata.
+    return Test-GeckoBridgeHeartbeatHealthy `
+        -Path $bridgeHeartbeat `
+        -MaximumAgeSeconds $script:GeckoWordBridgeHealthySeconds
+}
+
+function Get-BridgeHealthDiagnostics {
     try {
-        $heartbeat = Get-Content -LiteralPath $bridgeHeartbeat -Raw | ConvertFrom-Json
-        $updated = [DateTimeOffset]::Parse([string]$heartbeat.updated_at)
-        # Allow a slow Word startup or a brief desktop scheduling pause without
-        # requiring the user to reinstall the already-registered bridge task.
-        $fresh = ([DateTimeOffset]::UtcNow - $updated.ToUniversalTime()).TotalSeconds -le 60
-        return $fresh -and $heartbeat.status -eq 'running' -and $heartbeat.user -notmatch 'codexsandbox'
+        $output = & powershell.exe `
+            -NoProfile `
+            -NonInteractive `
+            -ExecutionPolicy Bypass `
+            -File $bridgeHealthScript `
+            -Json `
+            -SkipWordComProbe 2>&1
+        return (($output | Out-String).Trim() -replace '\s+', ' ')
     } catch {
-        return $false
+        return "Health check could not run: $($_.Exception.Message)"
     }
 }
 
@@ -145,21 +155,23 @@ function Invoke-InteractiveHandoff {
     )
 
     if (-not (Test-BridgeHeartbeat)) {
-        try {
-            Start-ScheduledTask -TaskName 'Gecko Word Validation Bridge' -ErrorAction Stop
-            Start-Sleep -Seconds 2
-        } catch {
-            # The sandbox normally cannot control the interactive user's task.
-        }
-    }
-    if (-not (Test-BridgeHeartbeat)) {
-        throw "Microsoft Word automation is unavailable in this sandbox/non-interactive session, and the interactive-user bridge is not available. Install or start it from the normal Windows desktop with: $bridgeInstaller"
+        $diagnostics = Get-BridgeHealthDiagnostics
+        throw "The permanent interactive-user Word bridge is unhealthy; sandboxed Gecko will not retry Word COM or control the Scheduled Task. Bridge diagnostics: $diagnostics. User-side recovery command: $bridgeRestartCommand"
     }
 
     $requestDirectory = Split-Path -Parent $ResultFile
     $requestPath = Join-Path $requestDirectory 'interactive-word-validation-request.json'
     $responsePath = Join-Path $requestDirectory 'interactive-word-validation-response.json'
+    $processingPath = Join-Path $requestDirectory 'interactive-word-validation-processing.json'
     $handoffId = [Guid]::NewGuid().ToString('N')
+
+    $queueDeadline = (Get-Date).AddSeconds(15)
+    while ((Test-Path -LiteralPath $requestPath) -or (Test-Path -LiteralPath $processingPath)) {
+        if ((Get-Date) -ge $queueDeadline) {
+            throw "A validation request is already active in $requestDirectory. Bridge diagnostics: $(Get-BridgeHealthDiagnostics)"
+        }
+        Start-Sleep -Milliseconds 500
+    }
     Remove-Item -LiteralPath $responsePath -Force -ErrorAction SilentlyContinue
     Write-JsonAtomic -Value ([ordered]@{
         request_id = $handoffId
@@ -171,28 +183,54 @@ function Invoke-InteractiveHandoff {
         requested_by = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
     }) -Path $requestPath
 
-    $deadline = (Get-Date).AddSeconds(150)
-    do {
-        Start-Sleep -Milliseconds 500
-        if (Test-Path -LiteralPath $responsePath) {
-            $response = Get-Content -LiteralPath $responsePath -Raw | ConvertFrom-Json
-            if ([string]$response.request_id -eq $handoffId -and $response.status -eq 'error') {
-                throw "Interactive Word validation failed: $($response.error)"
-            }
-        }
-        if (Test-Path -LiteralPath $ResultFile) {
-            try {
-                $record = Get-Content -LiteralPath $ResultFile -Raw | ConvertFrom-Json
-                if ([string]$record.request_id -eq $handoffId -and $record.status -in @('native-valid', 'native-invalid')) {
-                    return $record
+    $deadline = (Get-Date).AddSeconds(300)
+    try {
+        do {
+            Start-Sleep -Milliseconds 500
+            if (Test-Path -LiteralPath $responsePath) {
+                try {
+                    $response = Get-Content -LiteralPath $responsePath -Raw | ConvertFrom-Json
+                    if ([string]$response.request_id -eq $handoffId -and $response.status -eq 'error') {
+                        throw "Interactive Word validation failed: $($response.error)"
+                    }
+                } catch {
+                    if ($_.Exception.Message -like 'Interactive Word validation failed:*') {
+                        throw
+                    }
+                    # The worker may be replacing the response atomically.
                 }
-            } catch {
-                # The worker may be replacing the record atomically; retry.
             }
-        }
-    } while ((Get-Date) -lt $deadline)
+            if (Test-Path -LiteralPath $ResultFile) {
+                try {
+                    $record = Get-Content -LiteralPath $ResultFile -Raw | ConvertFrom-Json
+                    if ([string]$record.request_id -eq $handoffId -and $record.status -in @('native-valid', 'native-invalid')) {
+                        return $record
+                    }
+                } catch {
+                    # The worker may be replacing the record atomically; retry.
+                }
+            }
+        } while ((Get-Date) -lt $deadline)
 
-    throw "Timed out waiting for interactive Word validation request $handoffId."
+        throw "Timed out waiting for interactive Word validation request $handoffId. Bridge diagnostics: $(Get-BridgeHealthDiagnostics)"
+    } finally {
+        if (Test-Path -LiteralPath $responsePath) {
+            try {
+                $response = Get-Content -LiteralPath $responsePath -Raw | ConvertFrom-Json
+                if ([string]$response.request_id -eq $handoffId) {
+                    Remove-Item -LiteralPath $responsePath -Force -ErrorAction SilentlyContinue
+                }
+            } catch { }
+        }
+        if (Test-Path -LiteralPath $requestPath) {
+            try {
+                $pending = Get-Content -LiteralPath $requestPath -Raw | ConvertFrom-Json
+                if ([string]$pending.request_id -eq $handoffId) {
+                    Remove-Item -LiteralPath $requestPath -Force -ErrorAction SilentlyContinue
+                }
+            } catch { }
+        }
+    }
 }
 
 $docx = Resolve-ProjectPath -PathValue $DocxPath -MustExist

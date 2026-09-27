@@ -62,7 +62,7 @@ The `add` command is idempotent by Job Number when the application tab exists. I
 
 ## Gmail response tracking
 
-Daily Job Scout can update the `Response` column on the canonical `Job Scout` tab from employer and recruiter replies. It uses Google's installed-app OAuth flow and requests only `https://www.googleapis.com/auth/gmail.readonly`; it cannot send, delete, archive, label, or otherwise modify mail. Generic job alerts, recommendations, newsletters, and application confirmations without a substantive next step are excluded. Matching message IDs and row-stage metadata are stored in the ignored `job-scout/data/gmail-response-state.json` file so repeated runs do not duplicate updates.
+Daily Job Scout can update the `Response` column on the canonical `Job Scout` tab from employer and recruiter replies. It uses Google's installed-app OAuth flow and requests only `https://www.googleapis.com/auth/gmail.readonly`; it cannot send, delete, archive, label, or otherwise modify mail. Each run performs one Gmail search for the preceding seven days, downloads each unprocessed result at most once, and matches messages locally against all applied jobs. Generic job alerts, recommendations, newsletters, and application confirmations without a substantive next step are excluded. Matching message IDs and row-stage metadata are stored in the ignored `job-scout/data/gmail-response-state.json` file so repeated runs do not duplicate updates.
 
 One-time setup:
 
@@ -76,6 +76,8 @@ One-time setup:
 8. Confirm the read-only check: `python job-scout/gmail_response_tracker.py check`.
 
 The authorization command opens Google's consent page and saves the refresh token to `.secrets/gmail-oauth-token.json`, which is also ignored. The normal `python job-scout/scout.py daily` command then runs Gmail tracking automatically. A Gmail authentication or API error is logged to `output/gmail-response-tracking.log` and reported in the daily summary without failing discovery or resume creation.
+
+Gmail message downloads are paced by `GECKO_GMAIL_REQUEST_DELAY_SECONDS`, which defaults to `0.2` seconds. Rate-limit responses receive bounded exponential-backoff retries; authentication and permission failures are not retried.
 
 Gecko's production tracker is Google Sheets. `output/job-tracker.xlsx` is supported only as an explicitly supplied offline link-audit artifact and is not read or modified by Gmail response tracking.
 

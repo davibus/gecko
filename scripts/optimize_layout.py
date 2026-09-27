@@ -7,6 +7,7 @@ from docx.oxml import OxmlElement, parse_xml
 from docx.oxml.ns import nsdecls, qn
 import win32com.client
 import fitz
+from word_validation_client import validate_word_native
 
 def set_cell_margins(cell, top=0, bottom=0, left=0, right=0):
     tcPr = cell._tc.get_or_add_tcPr()
@@ -300,9 +301,6 @@ def find_optimal_fit():
     docx_p = r"c:\Users\DCALL\Desktop\gecko\output\resumes\Dave-Call+cc58e632010a4e20.docx"
     pdf_p = r"c:\Users\DCALL\Desktop\gecko\scratch\preview.pdf"
     
-    word = win32com.client.Dispatch("Word.Application")
-    word.Visible = False
-    
     test_configs = [
         # (margin, font_size, line_spacing, bullet_space, sec_space, job_space)
         (0.48, 10.4, 1.15, 1.3, 3.8, 2.8),
@@ -313,32 +311,26 @@ def find_optimal_fit():
     ]
     
     best_config = None
-    try:
-        for idx, cfg in enumerate(test_configs):
-            doc = build_resume_doc(margin_in=cfg[0], font_size_pt=cfg[1], line_spacing=cfg[2],
-                                   space_after_bullet=cfg[3], space_before_section=cfg[4], space_before_job=cfg[5])
-            doc.save(docx_p)
-            
-            wdoc = word.Documents.Open(os.path.abspath(docx_p))
-            wdoc.Repaginate()
-            pages = wdoc.ComputeStatistics(2)
-            wdoc.SaveAs(os.path.abspath(pdf_p), FileFormat=17)
-            wdoc.Close(False)
-            
-            pdf = fitz.open(pdf_p)
-            pdf_pages = len(pdf)
-            print(f"Config {idx} ({cfg}): Word={pages}, PDF={pdf_pages}")
-            
-            if pages == 2 and pdf_pages == 2:
-                best_config = cfg
-                print(f"--> Found 2-page match! Config {idx}")
-                for p_i, page in enumerate(pdf):
-                    pix = page.get_pixmap(dpi=150)
-                    img_path = f"c:\\Users\\DCALL\\Desktop\\gecko\\scratch\\opt_page_{p_i+1}.png"
-                    pix.save(img_path)
-                break
-    finally:
-        word.Quit()
+    for idx, cfg in enumerate(test_configs):
+        doc = build_resume_doc(margin_in=cfg[0], font_size_pt=cfg[1], line_spacing=cfg[2],
+                               space_after_bullet=cfg[3], space_before_section=cfg[4], space_before_job=cfg[5])
+        doc.save(docx_p)
+        status = validate_word_native(docx_p, pdf_p)
+        pages = status["word_pages"]
+        pdf_pages = status["pdf_pages"]
+        pdf = fitz.open(pdf_p)
+        print(f"Config {idx} ({cfg}): Word={pages}, PDF={pdf_pages}")
+
+        if pages == 2 and pdf_pages == 2:
+            best_config = cfg
+            print(f"--> Found 2-page match! Config {idx}")
+            for p_i, page in enumerate(pdf):
+                pix = page.get_pixmap(dpi=150)
+                img_path = f"c:\\Users\\DCALL\\Desktop\\gecko\\scratch\\opt_page_{p_i+1}.png"
+                pix.save(img_path)
+            pdf.close()
+            break
+        pdf.close()
         
     if best_config:
         print("Successfully generated exactly 2 pages with optimal settings.")
