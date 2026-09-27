@@ -2,4 +2,5 @@
 *.sqlite3-*
 gmail-response-state.json
 gmail-response-state.json.*
+ats-employer-discovery.json
 !.gitignore

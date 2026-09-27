@@ -1,23 +1,1147 @@
 {
   "max_workers": 6,
   "providers": {
-    "adzuna": {"enabled": true},
-    "remotive": {"enabled": true},
-    "web-careers": {"enabled": true},
-    "jobicy": {"enabled": true},
-    "remoteok": {"enabled": true},
-    "usajobs": {"enabled": true},
-    "greenhouse": {"enabled": true, "companies": []},
-    "lever": {"enabled": true, "companies": []},
-    "ashby": {"enabled": true, "companies": []},
-    "workable": {"enabled": true, "companies": []},
-    "weworkremotely": {"enabled": true},
-    "workingnomads": {"enabled": true},
-    "themuse": {"enabled": true},
-    "indeed": {"enabled": true, "mode": "search-discovery"},
-    "linkedin": {"enabled": true, "mode": "search-discovery"},
-    "glassdoor": {"enabled": true, "mode": "search-discovery"},
-    "ziprecruiter": {"enabled": true, "mode": "search-discovery"},
-    "jooble": {"enabled": false}
+    "adzuna": {
+      "enabled": true
+    },
+    "remotive": {
+      "enabled": true
+    },
+    "web-careers": {
+      "enabled": true
+    },
+    "jobicy": {
+      "enabled": true
+    },
+    "remoteok": {
+      "enabled": true
+    },
+    "usajobs": {
+      "enabled": true
+    },
+    "greenhouse": {
+      "enabled": true,
+      "companies": [
+        {
+          "name": "6sense",
+          "token": "6sense"
+        },
+        {
+          "name": "Addepar",
+          "token": "addepar1"
+        },
+        {
+          "name": "AG1",
+          "token": "ag1"
+        },
+        {
+          "name": "Airtable",
+          "token": "airtable"
+        },
+        {
+          "name": "AlphaSense",
+          "token": "alphasense"
+        },
+        {
+          "name": "Appspace",
+          "token": "appspace"
+        },
+        {
+          "name": "Array",
+          "token": "array"
+        },
+        {
+          "name": "Ashley Digital",
+          "token": "residenthome"
+        },
+        {
+          "name": "B12",
+          "token": "b12"
+        },
+        {
+          "name": "BarkleyOKRP",
+          "token": "barkleyokrp"
+        },
+        {
+          "name": "Bitwarden",
+          "token": "bitwarden"
+        },
+        {
+          "name": "Bobbie",
+          "token": "bobbie"
+        },
+        {
+          "name": "BOLD",
+          "token": "livecareer"
+        },
+        {
+          "name": "Branch",
+          "token": "branch"
+        },
+        {
+          "name": "Calendly",
+          "token": "calendly"
+        },
+        {
+          "name": "Checkr",
+          "token": "checkr"
+        },
+        {
+          "name": "Chime Financial, Inc",
+          "token": "chime"
+        },
+        {
+          "name": "ClearGov",
+          "token": "cleargov"
+        },
+        {
+          "name": "Cobalt",
+          "token": "cobaltio"
+        },
+        {
+          "name": "Code3",
+          "token": "code3"
+        },
+        {
+          "name": "Constant Contact",
+          "token": "constantcontact"
+        },
+        {
+          "name": "Cordance",
+          "token": "cordance"
+        },
+        {
+          "name": "Cresta",
+          "token": "cresta"
+        },
+        {
+          "name": "Cribl",
+          "token": "cribl"
+        },
+        {
+          "name": "Crossmedia",
+          "token": "crossmediainc"
+        },
+        {
+          "name": "DataGrail",
+          "token": "datagrail"
+        },
+        {
+          "name": "Defense Unicorns",
+          "token": "defenseunicorns"
+        },
+        {
+          "name": "DEPT",
+          "token": "dept"
+        },
+        {
+          "name": "DriveWealth",
+          "token": "drivewealth"
+        },
+        {
+          "name": "Dropbox",
+          "token": "dropbox"
+        },
+        {
+          "name": "EarnIn",
+          "token": "earnin"
+        },
+        {
+          "name": "Edelman Financial Engines, LLC",
+          "token": "edelmanfinancialenginesllc"
+        },
+        {
+          "name": "EnergyHub",
+          "token": "energyhub"
+        },
+        {
+          "name": "Engine",
+          "token": "engine"
+        },
+        {
+          "name": "Ethos Life",
+          "token": "ethoslife"
+        },
+        {
+          "name": "Eve",
+          "token": "eve"
+        },
+        {
+          "name": "Evolve",
+          "token": "evolvevacationrental"
+        },
+        {
+          "name": "ezCater, Inc",
+          "token": "ezcaterinc"
+        },
+        {
+          "name": "Faire",
+          "token": "faire"
+        },
+        {
+          "name": "Fleetio",
+          "token": "fleetio"
+        },
+        {
+          "name": "Follett Software, LLC",
+          "token": "follettsoftware"
+        },
+        {
+          "name": "Gametime United",
+          "token": "gametimeunited"
+        },
+        {
+          "name": "GitLab",
+          "token": "gitlab"
+        },
+        {
+          "name": "Glean",
+          "token": "gleanwork"
+        },
+        {
+          "name": "Gong.io",
+          "token": "gongio"
+        },
+        {
+          "name": "Grafana Labs",
+          "token": "grafanalabs"
+        },
+        {
+          "name": "Hasbro",
+          "token": "hasbro"
+        },
+        {
+          "name": "Headspace",
+          "token": "hs"
+        },
+        {
+          "name": "Hightouch",
+          "token": "hightouch"
+        },
+        {
+          "name": "Human Interest",
+          "token": "humaninterest"
+        },
+        {
+          "name": "iCapital",
+          "token": "icapitalnetwork"
+        },
+        {
+          "name": "Intercom",
+          "token": "intercom"
+        },
+        {
+          "name": "Iterable",
+          "token": "iterable"
+        },
+        {
+          "name": "Jack Morton Worldwide",
+          "token": "jackmortonworldwide"
+        },
+        {
+          "name": "Justworks",
+          "token": "justworks"
+        },
+        {
+          "name": "Keeper Security",
+          "token": "keepersecurity"
+        },
+        {
+          "name": "Lantern",
+          "token": "employerdirecthealthcare"
+        },
+        {
+          "name": "Later",
+          "token": "later"
+        },
+        {
+          "name": "Launch Potato",
+          "token": "launch2"
+        },
+        {
+          "name": "Lucid Software",
+          "token": "lucidsoftware"
+        },
+        {
+          "name": "Lumimeds",
+          "token": "lumimeds"
+        },
+        {
+          "name": "Machinify",
+          "token": "machinifyinc"
+        },
+        {
+          "name": "MasterClass",
+          "token": "masterclass"
+        },
+        {
+          "name": "Maven Clinic",
+          "token": "mavenclinic"
+        },
+        {
+          "name": "MediaAlpha",
+          "token": "mediaalpha"
+        },
+        {
+          "name": "Medsien",
+          "token": "medsien"
+        },
+        {
+          "name": "Mercury",
+          "token": "mercury"
+        },
+        {
+          "name": "MERGE",
+          "token": "mergeworld"
+        },
+        {
+          "name": "MetTel",
+          "token": "mettel"
+        },
+        {
+          "name": "MinIO",
+          "token": "minio"
+        },
+        {
+          "name": "Minitab",
+          "token": "minitab"
+        },
+        {
+          "name": "Mitratech",
+          "token": "mitratech"
+        },
+        {
+          "name": "Modern Health",
+          "token": "modernhealth"
+        },
+        {
+          "name": "Motive",
+          "token": "gomotive"
+        },
+        {
+          "name": "Mozilla",
+          "token": "mozilla"
+        },
+        {
+          "name": "MyFitnessPal",
+          "token": "myfitnesspal"
+        },
+        {
+          "name": "Newsela",
+          "token": "newsela"
+        },
+        {
+          "name": "Nutrafol",
+          "token": "nutrafol"
+        },
+        {
+          "name": "Omada Health",
+          "token": "omadahealth"
+        },
+        {
+          "name": "OpenTable",
+          "token": "opentable"
+        },
+        {
+          "name": "Oura",
+          "token": "oura"
+        },
+        {
+          "name": "Outschool",
+          "token": "outschool"
+        },
+        {
+          "name": "Parsley Health",
+          "token": "parsleyhealth"
+        },
+        {
+          "name": "Ping Identity",
+          "token": "pingidentity"
+        },
+        {
+          "name": "Pinterest",
+          "token": "pinterest"
+        },
+        {
+          "name": "PlayStation Global",
+          "token": "sonyinteractiveentertainmentglobal"
+        },
+        {
+          "name": "Podean",
+          "token": "podean"
+        },
+        {
+          "name": "Podium",
+          "token": "podium81"
+        },
+        {
+          "name": "Power Digital",
+          "token": "powerdigitalmarketing"
+        },
+        {
+          "name": "Precision Medicine Group",
+          "token": "precisionmedicinegroup"
+        },
+        {
+          "name": "Recorded Future",
+          "token": "recordedfuture"
+        },
+        {
+          "name": "Redwood Software",
+          "token": "redwoodsoftware"
+        },
+        {
+          "name": "Remote",
+          "token": "remotecom"
+        },
+        {
+          "name": "Rocket Money",
+          "token": "truebill"
+        },
+        {
+          "name": "Samsara",
+          "token": "samsara"
+        },
+        {
+          "name": "ScaleOps",
+          "token": "scaleops"
+        },
+        {
+          "name": "Signifyd",
+          "token": "signifyd95"
+        },
+        {
+          "name": "Smartsheet",
+          "token": "smartsheet"
+        },
+        {
+          "name": "Sony Music",
+          "token": "sonymusicentertainment"
+        },
+        {
+          "name": "Spinnaker Support",
+          "token": "spinnakersupport"
+        },
+        {
+          "name": "SupplyHouse.com",
+          "token": "supplyhouse"
+        },
+        {
+          "name": "Talkdesk",
+          "token": "talkdesk2"
+        },
+        {
+          "name": "Tebra",
+          "token": "tebra"
+        },
+        {
+          "name": "The New York Times",
+          "token": "thenewyorktimes"
+        },
+        {
+          "name": "Tines",
+          "token": "tines"
+        },
+        {
+          "name": "TPR Education, LLC",
+          "token": "tpreducationllc"
+        },
+        {
+          "name": "TubeScience",
+          "token": "tubescience52"
+        },
+        {
+          "name": "Tubi",
+          "token": "tubitv"
+        },
+        {
+          "name": "Twilio",
+          "token": "twilio"
+        },
+        {
+          "name": "Twin Health",
+          "token": "twinhealth"
+        },
+        {
+          "name": "Ultima Genomics",
+          "token": "ultimagenomics"
+        },
+        {
+          "name": "Underscore Marketing",
+          "token": "underscoremarketing"
+        },
+        {
+          "name": "Universal Audio",
+          "token": "universalaudio"
+        },
+        {
+          "name": "Vectra",
+          "token": "vectranetworks"
+        },
+        {
+          "name": "Veeam Software",
+          "token": "veeamsoftware"
+        },
+        {
+          "name": "Vercel",
+          "token": "vercel"
+        },
+        {
+          "name": "Webflow",
+          "token": "webflow"
+        },
+        {
+          "name": "Weight Watchers",
+          "token": "ww"
+        },
+        {
+          "name": "WellSaid Labs",
+          "token": "wellsaidlabs"
+        },
+        {
+          "name": "Who Gives A Crap",
+          "token": "whogivesacrap"
+        },
+        {
+          "name": "Wild Alaskan Company",
+          "token": "wildalaskancompany"
+        },
+        {
+          "name": "Wiz",
+          "token": "wizinc"
+        },
+        {
+          "name": "xAI",
+          "token": "xai"
+        },
+        {
+          "name": "Zenoti",
+          "token": "zenoti"
+        },
+        {
+          "name": "Zeta Global",
+          "token": "zetaglobal"
+        }
+      ]
+    },
+    "lever": {
+      "enabled": true,
+      "companies": [
+        {
+          "name": "#paid",
+          "site": "hashtagpaid"
+        },
+        {
+          "name": "[solidcore]",
+          "site": "solidcore"
+        },
+        {
+          "name": "Airalo",
+          "site": "airalo"
+        },
+        {
+          "name": "Aircall",
+          "site": "aircall"
+        },
+        {
+          "name": "Ampd Energy",
+          "site": "ampd-energy"
+        },
+        {
+          "name": "Analytic Partners",
+          "site": "analyticpartners"
+        },
+        {
+          "name": "Anchorage Digital",
+          "site": "anchorage"
+        },
+        {
+          "name": "Articulate",
+          "site": "articulate"
+        },
+        {
+          "name": "BAMKO",
+          "site": "bamko"
+        },
+        {
+          "name": "Bounteous",
+          "site": "bounteous"
+        },
+        {
+          "name": "Brooks Running",
+          "site": "brooksrunning"
+        },
+        {
+          "name": "Canvas Worldwide",
+          "site": "canvasww"
+        },
+        {
+          "name": "CaptivateIQ",
+          "site": "captivateiq"
+        },
+        {
+          "name": "Caseware",
+          "site": "caseware"
+        },
+        {
+          "name": "Cin7",
+          "site": "cin7"
+        },
+        {
+          "name": "Colibri Group",
+          "site": "colibrigroup"
+        },
+        {
+          "name": "Culligan Quench",
+          "site": "quenchwater"
+        },
+        {
+          "name": "Decile Group",
+          "site": "decilegroup"
+        },
+        {
+          "name": "Dijital Team",
+          "site": "dijital-team-pty-ltd"
+        },
+        {
+          "name": "doola",
+          "site": "doola"
+        },
+        {
+          "name": "Drivetrain",
+          "site": "drivetrain"
+        },
+        {
+          "name": "Ekimetrics",
+          "site": "ekimetrics"
+        },
+        {
+          "name": "elk Marketing",
+          "site": "elk-marketing"
+        },
+        {
+          "name": "Employ",
+          "site": "employ"
+        },
+        {
+          "name": "EnableComp",
+          "site": "enablecomp"
+        },
+        {
+          "name": "EQ Bank | Equitable Bank",
+          "site": "eqbank"
+        },
+        {
+          "name": "Everlywell",
+          "site": "everlywell"
+        },
+        {
+          "name": "Express Chipping Inc",
+          "site": "chipping-concrete"
+        },
+        {
+          "name": "Filevine",
+          "site": "filevine"
+        },
+        {
+          "name": "Findem",
+          "site": "findem"
+        },
+        {
+          "name": "Flex",
+          "site": "Flex"
+        },
+        {
+          "name": "Foodsmart",
+          "site": "foodsmart"
+        },
+        {
+          "name": "Galvanick",
+          "site": "galvanick"
+        },
+        {
+          "name": "GR0",
+          "site": "gr0"
+        },
+        {
+          "name": "Greenlight Financial Technology",
+          "site": "greenlight"
+        },
+        {
+          "name": "Gurobi Optimization",
+          "site": "GurobiOptimization"
+        },
+        {
+          "name": "HealthCare",
+          "site": "healthcare"
+        },
+        {
+          "name": "HighLevel",
+          "site": "gohighlevel"
+        },
+        {
+          "name": "Hive",
+          "site": "hive"
+        },
+        {
+          "name": "Incorta",
+          "site": "incorta"
+        },
+        {
+          "name": "Inkitt",
+          "site": "inkitt"
+        },
+        {
+          "name": "Instrumentl",
+          "site": "Instrumentl"
+        },
+        {
+          "name": "Istari Digital",
+          "site": "istaridigital.ai"
+        },
+        {
+          "name": "Jam City",
+          "site": "jamcity"
+        },
+        {
+          "name": "Jobscan",
+          "site": "jobscan-2"
+        },
+        {
+          "name": "Kobie Marketing",
+          "site": "kobie"
+        },
+        {
+          "name": "Legend",
+          "site": "Legend"
+        },
+        {
+          "name": "Magnet Forensics",
+          "site": "magnetforensics"
+        },
+        {
+          "name": "Meds",
+          "site": "meds"
+        },
+        {
+          "name": "Meeting Tomorrow",
+          "site": "meetingtomorrow"
+        },
+        {
+          "name": "Mendix",
+          "site": "mendix"
+        },
+        {
+          "name": "Nimble Talent",
+          "site": "nimbletalent"
+        },
+        {
+          "name": "Outreach",
+          "site": "outreach"
+        },
+        {
+          "name": "Oxylabs",
+          "site": "oxylabs"
+        },
+        {
+          "name": "PadSplit",
+          "site": "padsplit"
+        },
+        {
+          "name": "Pattern",
+          "site": "pattern"
+        },
+        {
+          "name": "Pendulum",
+          "site": "pendulum"
+        },
+        {
+          "name": "Pine Services Group",
+          "site": "pine-services"
+        },
+        {
+          "name": "Princeton10",
+          "site": "princeton10"
+        },
+        {
+          "name": "Prosper",
+          "site": "prosper"
+        },
+        {
+          "name": "Ridwell",
+          "site": "Ridwell"
+        },
+        {
+          "name": "Right Side Up",
+          "site": "rightsideup"
+        },
+        {
+          "name": "Rover.com",
+          "site": "rover"
+        },
+        {
+          "name": "Saviynt",
+          "site": "saviynt"
+        },
+        {
+          "name": "Seer Interactive",
+          "site": "seerinteractive"
+        },
+        {
+          "name": "Shield AI",
+          "site": "shieldai"
+        },
+        {
+          "name": "Silverback Strategies",
+          "site": "silverbackstrategies"
+        },
+        {
+          "name": "Snappr",
+          "site": "snappr"
+        },
+        {
+          "name": "Sonar",
+          "site": "sonarsource"
+        },
+        {
+          "name": "Sonatype",
+          "site": "sonatype"
+        },
+        {
+          "name": "StarCompliance",
+          "site": "starcompliance"
+        },
+        {
+          "name": "SugarAI",
+          "site": "sugarcrm"
+        },
+        {
+          "name": "Suger.io",
+          "site": "suger"
+        },
+        {
+          "name": "Sysdig",
+          "site": "sysdig"
+        },
+        {
+          "name": "Teikametrics",
+          "site": "teikametrics"
+        },
+        {
+          "name": "Terra",
+          "site": "terrahq"
+        },
+        {
+          "name": "Trackforce",
+          "site": "tracktik"
+        },
+        {
+          "name": "United Tech",
+          "site": "vacancies"
+        },
+        {
+          "name": "Veeva Systems",
+          "site": "veeva"
+        },
+        {
+          "name": "Versapay",
+          "site": "versapay"
+        },
+        {
+          "name": "vivenu GmbH",
+          "site": "vivenu"
+        },
+        {
+          "name": "Wave HQ",
+          "site": "waveapps"
+        },
+        {
+          "name": "Welo Global",
+          "site": "weloglobal"
+        },
+        {
+          "name": "Wing Assistant",
+          "site": "getwingapp"
+        },
+        {
+          "name": "Wpromote",
+          "site": "wpromote"
+        }
+      ]
+    },
+    "ashby": {
+      "enabled": true,
+      "companies": [
+        {
+          "name": "Abridge",
+          "board": "abridge"
+        },
+        {
+          "name": "Acorns",
+          "board": "Acorns"
+        },
+        {
+          "name": "Ashby",
+          "board": "ashby"
+        },
+        {
+          "name": "Atlas",
+          "board": "atlasfin"
+        },
+        {
+          "name": "Atomic",
+          "board": "atomic"
+        },
+        {
+          "name": "Audiohook",
+          "board": "audiohook"
+        },
+        {
+          "name": "Benevity",
+          "board": "benevity"
+        },
+        {
+          "name": "BiOptimizers",
+          "board": "bioptimizers"
+        },
+        {
+          "name": "Checkbox Technology",
+          "board": "Checkbox Technology"
+        },
+        {
+          "name": "Directive",
+          "board": "directive"
+        },
+        {
+          "name": "DuckDuckGo",
+          "board": "duck-duck-go"
+        },
+        {
+          "name": "Equip",
+          "board": "equip"
+        },
+        {
+          "name": "Flashpoint",
+          "board": "flashpoint.io"
+        },
+        {
+          "name": "FurtherAI",
+          "board": "furtherai"
+        },
+        {
+          "name": "G2",
+          "board": "g2"
+        },
+        {
+          "name": "Goodlord",
+          "board": "goodlord"
+        },
+        {
+          "name": "Handshake",
+          "board": "handshake"
+        },
+        {
+          "name": "Happl",
+          "board": "happl"
+        },
+        {
+          "name": "Harvey",
+          "board": "harvey"
+        },
+        {
+          "name": "Hatch",
+          "board": "hatch"
+        },
+        {
+          "name": "Hawk",
+          "board": "hawk"
+        },
+        {
+          "name": "Illumio",
+          "board": "illumio"
+        },
+        {
+          "name": "Knox Systems",
+          "board": "knox-systems"
+        },
+        {
+          "name": "Morning Consult",
+          "board": "morningconsult"
+        },
+        {
+          "name": "OpenEd",
+          "board": "opened"
+        },
+        {
+          "name": "OpenRouter",
+          "board": "openrouter"
+        },
+        {
+          "name": "Procurify",
+          "board": "procurify"
+        },
+        {
+          "name": "Raft",
+          "board": "raft"
+        },
+        {
+          "name": "Range",
+          "board": "range"
+        },
+        {
+          "name": "Reducto",
+          "board": "reducto"
+        },
+        {
+          "name": "Silktide",
+          "board": "silktide"
+        },
+        {
+          "name": "Skydio",
+          "board": "skydio"
+        },
+        {
+          "name": "Solink",
+          "board": "solink"
+        },
+        {
+          "name": "STNDRD",
+          "board": "stndrd"
+        },
+        {
+          "name": "Superhuman",
+          "board": "superhuman platform inc"
+        },
+        {
+          "name": "SurveyMonkey",
+          "board": "surveymonkey"
+        },
+        {
+          "name": "Swap",
+          "board": "swap"
+        },
+        {
+          "name": "Tern",
+          "board": "tern"
+        },
+        {
+          "name": "Tin Can",
+          "board": "tin-can"
+        },
+        {
+          "name": "Titan AI",
+          "board": "titan-ai"
+        },
+        {
+          "name": "TRM Labs",
+          "board": "trm-labs"
+        },
+        {
+          "name": "True Classic",
+          "board": "true-classic-tees"
+        },
+        {
+          "name": "WHOOP",
+          "board": "whoop"
+        },
+        {
+          "name": "XDS",
+          "board": "xds"
+        }
+      ]
+    },
+    "workable": {
+      "enabled": true,
+      "companies": [
+        {
+          "name": "ActivTrak",
+          "account": "activtrak"
+        },
+        {
+          "name": "AlgaeCal",
+          "account": "algaecal"
+        },
+        {
+          "name": "Apex Wheels",
+          "account": "apexwheels"
+        },
+        {
+          "name": "Azumo",
+          "account": "azumo"
+        },
+        {
+          "name": "Channel Factory",
+          "account": "channel-factory"
+        },
+        {
+          "name": "Clearstory",
+          "account": "clearstory"
+        },
+        {
+          "name": "Future Publishing",
+          "account": "futureplc"
+        },
+        {
+          "name": "Jump 450 Media",
+          "account": "jump450"
+        },
+        {
+          "name": "Keywords Studios",
+          "account": "keywords-intl1"
+        },
+        {
+          "name": "Pareto Publishing",
+          "account": "pareto-publishing"
+        },
+        {
+          "name": "PracticeTek",
+          "account": "practicetek"
+        },
+        {
+          "name": "Right Hook Digital",
+          "account": "righthookdigital"
+        },
+        {
+          "name": "RocketAMS",
+          "account": "rocketams"
+        },
+        {
+          "name": "Sans",
+          "account": "sans-2"
+        },
+        {
+          "name": "Vouched",
+          "account": "vouched"
+        }
+      ]
+    },
+    "weworkremotely": {
+      "enabled": true
+    },
+    "workingnomads": {
+      "enabled": true
+    },
+    "themuse": {
+      "enabled": true
+    },
+    "indeed": {
+      "enabled": true,
+      "mode": "search-discovery"
+    },
+    "linkedin": {
+      "enabled": true,
+      "mode": "search-discovery"
+    },
+    "glassdoor": {
+      "enabled": true,
+      "mode": "search-discovery"
+    },
+    "ziprecruiter": {
+      "enabled": true,
+      "mode": "search-discovery"
+    },
+    "jooble": {
+      "enabled": false
+    }
   }
 }

@@ -119,6 +119,39 @@ Edit only the `companies` arrays in `preferences/job-sources.json`; provider cod
 
 Use the identifier from the employer's public hosted career URL. Lever accepts `region: "eu"` for EU-hosted sites; omit it for the global endpoint. A failing employer board is logged without preventing other employers or providers from completing.
 
+### Maintaining the ATS employer universe
+
+The saved ATS employer universe is a curated watch list of direct-employer boards worth checking on every Job Scout run. Direct Greenhouse, Lever, Ashby, and Workable feeds provide stable employer-owned listings without relying on an aggregator copy. The list emphasizes U.S.-remote and Utah-accessible employers, agencies, SaaS, ad-tech/mar-tech, e-commerce, consumer brands, and other organizations that repeatedly hire senior digital, performance, analytics, operations, acquisition, lifecycle, or demand-generation marketers.
+
+Employer discovery is a separate maintenance operation. It never runs as part of `python job-scout/scout.py daily`, avoiding daily Brave usage, excess ATS traffic, slow runs, and unstable configuration changes. Run it explicitly:
+
+```powershell
+# Discover and validate without changing job-sources.json
+python job-scout/discover_ats_employers.py --dry-run
+
+# Revalidate, rank, and merge validated employers
+python job-scout/discover_ats_employers.py --apply
+
+# Periodic revalidation plus discovery of newly indexed boards
+python job-scout/discover_ats_employers.py --refresh --dry-run
+
+# Bounded or platform-specific maintenance
+python job-scout/discover_ats_employers.py --dry-run --platform ashby --limit 20
+```
+
+The utility extracts identifiers only from recognized public hosted URLs, validates the corresponding public provider endpoint, scores employer relevance separately from Job Scout's role filtering, deduplicates by platform/identifier/name, and writes detailed diagnostics to the ignored generated file `data/ats-employer-discovery.json`. A completed dry-run is carried into a later apply and every board is revalidated. Search errors, malformed responses, redirects, duplicate candidates, open/relevant/U.S./remote job counts, examples, and repeated failure counts remain in the diagnostic report. Existing manually configured entries are preserved even when validation fails; a single temporary failure never deletes an employer.
+
+Curated URLs in `preferences/ats-employer-seeds.json` supplement public search when an index or API quota is incomplete. They are not trusted blindly: the identifier is extracted from the stored hosted URL and the board must pass the same live endpoint validation before selection.
+
+To add an employer manually, first open its actual hosted board and copy the first path segment after the provider domain. Do not derive it from the company name:
+
+- Greenhouse: `https://job-boards.greenhouse.io/<token>` becomes `{"name": "Acme", "token": "<token>"}`.
+- Lever: `https://jobs.lever.co/<site>` becomes `{"name": "Acme", "site": "<site>"}`.
+- Ashby: `https://jobs.ashbyhq.com/<board>` becomes `{"name": "Acme", "board": "<board>"}`.
+- Workable: `https://apply.workable.com/<account>` becomes `{"name": "Acme", "account": "<account>"}`.
+
+Add the hosted URL to the seed file and run a dry-run followed by apply, or carefully add the object to the matching `companies` array and run `--refresh --dry-run`. Never add a board that requires login, presents a CAPTCHA, redirects to an unrelated employer, or cannot be confirmed through the public provider response.
+
 ### Deduplication and source preference
 
 Gecko removes tracking parameters and sorts remaining identity parameters before URL comparison. It checks canonical application URLs, provider IDs/source links, exact punctuation-insensitive company/title/location identity, posting dates, and conservative title/company/description similarity. Source links remain attached to the persistent job record so a later provider does not create another Sheet row.
