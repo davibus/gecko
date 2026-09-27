@@ -1,5 +1,4 @@
-# Gecko Match Score Report
-
+# Gecko Match Analysis
 **Job Title:** Strategic Growth Manager  
 **Company:** Compass  
 **Location:** Salt Lake City, Utah (onsite and market-facing)  
@@ -9,7 +8,7 @@
 **Application URL:** https://www.compass.com/careers/?gh_board=urbancompass&gh_jid=7990578  
 **Generated Resume:** `output/resumes/Dave-Call+Compass+5825304044.docx`
 
-## Match Score: 72/100
+## : 72/100
 
 Dave offers strong transferable evidence for strategic growth, senior stakeholder communication, technology-enabled consulting, local market presence, leadership, financial analysis, and measurable revenue growth. He exceeds the education and experience thresholds and has led B2B transformation, consulted directly with clients, supported hundreds of retail relationships, and presented data-backed recommendations to decision-makers. The score is constrained because Compass defines this as a quota-carrying enterprise-sales role centered on recruiting top real-estate agents and structuring brokerage deals; direct quota attainment, real-estate recruiting, and comparable deal ownership are not established in the source resume.
 

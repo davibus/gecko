@@ -1,7 +1,5 @@
 # Marketing Manager - Prime Landscaping & Snow Removal
 
-**Match Score: 49/100**
-
 **Scout ID:** 226  
 **Job Number:** `-6560175589633276711`  
 **Company:** Prime Landscaping & Snow Removal  

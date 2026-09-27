@@ -1,7 +1,5 @@
 # Senior Paid Media Manager - Lowe Law Group
 
-**Match Score: 74/100**
-
 **Scout ID:** 582  
 **Job Number:** `3960696786462526351`  
 **Company:** Lowe Law Group  

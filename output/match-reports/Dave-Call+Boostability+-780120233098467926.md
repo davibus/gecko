@@ -1,7 +1,5 @@
 # Senior Growth Marketing Manager - Boostability
 
-**Match Score: 57/100**
-
 **Scout ID:** 259  
 **Job Number:** `-780120233098467926`  
 **Company:** Boostability  

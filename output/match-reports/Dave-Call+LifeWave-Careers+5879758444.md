@@ -1,7 +1,5 @@
 # Global Social Channels Manager - LifeWave Careers
 
-**Match Score: 53/100**
-
 **Scout ID:** 13  
 **Job Number:** `5879758444`  
 **Company:** LifeWave Careers  

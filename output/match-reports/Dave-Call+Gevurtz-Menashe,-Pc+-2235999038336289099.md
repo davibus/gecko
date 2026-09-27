@@ -1,7 +1,5 @@
 # Marketing & Business Development Manager - Gevurtz Menashe, Pc
 
-**Match Score: 21/100**
-
 **Scout ID:** 183  
 **Job Number:** `-2235999038336289099`  
 **Company:** Gevurtz Menashe, Pc  

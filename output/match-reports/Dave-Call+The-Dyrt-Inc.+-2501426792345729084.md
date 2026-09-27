@@ -1,7 +1,5 @@
 # Growth Specialist - Paid Ads (Part-Time, Remote) - The Dyrt Inc.
 
-**Match Score: 52/100**
-
 **Scout ID:** 144  
 **Job Number:** `-2501426792345729084`  
 **Company:** The Dyrt Inc.  

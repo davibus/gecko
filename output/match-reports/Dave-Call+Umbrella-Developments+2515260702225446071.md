@@ -1,7 +1,5 @@
 # Marketing Manager - Umbrella Developments
 
-**Match Score: 49/100**
-
 **Scout ID:** 230  
 **Job Number:** `2515260702225446071`  
 **Company:** Umbrella Developments  

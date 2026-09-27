@@ -370,7 +370,7 @@ def apply_resolution(job: JobListing, result: URLResolutionResult) -> JobListing
 
 
 def resolve_and_store(job: JobListing, store, **kwargs) -> JobListing:
-    """Resolve and persist URL metadata without touching match-score fields."""
+    """Resolve and persist URL metadata without changing unrelated job data."""
     apply_resolution(job, resolve_authoritative_url(job, **kwargs))
     store.save_url_resolution(job)
     return job

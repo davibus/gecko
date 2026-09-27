@@ -1,7 +1,5 @@
 # Manager Growth Marketing (Public Sector) - Akamai Technologies, Inc.
 
-**Match Score: 45/100**
-
 **Scout ID:** 31  
 **Job Number:** `5870464703`  
 **Company:** Akamai Technologies, Inc.  

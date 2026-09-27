@@ -14,7 +14,6 @@
 - **Authoritative URL:** https://jobs.lever.co/incorta/f813a666-81a8-45be-ba2f-9f447edce30e
 - **Date Posted:** 2026-03-21
 - **Date Discovered:** 2026-09-21
-- **Gecko Match Score:** 94/100
 
 ## Source links
 

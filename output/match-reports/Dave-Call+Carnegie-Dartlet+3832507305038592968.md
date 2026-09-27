@@ -1,7 +1,5 @@
 # Senior Paid Search Strategist (Remote) - Carnegie Dartlet
 
-**Match Score: 78/100**
-
 **Scout ID:** 643  
 **Job Number:** `3832507305038592968`  
 **Company:** Carnegie Dartlet  

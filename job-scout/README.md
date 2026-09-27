@@ -80,7 +80,7 @@ python job-scout/scout.py sync-sheets
 
 ## Resume handoff
 
-Gecko evaluates the job description directly against the current master DOCX while building the tailoring plan. It produces:
+Gecko evaluates the job description directly against the current master archive (`input/master-resume/Dave-Call-Resume.txt`) while building the tailoring plan. It produces:
 
 - an exactly two-page DOCX after native Microsoft Word validation;
 - a qualitative Match Analysis report with strengths, gaps, ATS terms, resume emphasis, and interview considerations.

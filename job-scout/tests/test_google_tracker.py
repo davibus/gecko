@@ -8,7 +8,7 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from google_tracker import Config, GoogleTracker, job_key
+from google_tracker import Config, GoogleTracker, NEW_SCOUT_ID_COLOR, job_key
 from models import RawListing
 from normalize import normalize
 
@@ -40,6 +40,7 @@ class FakeSheets:
         }
         self.writes = []
         self.structural = []
+        self.formats = {}
         self.fail = False
 
     def spreadsheets(self):
@@ -48,10 +49,16 @@ class FakeSheets:
     def values(self):
         return FakeValues(self)
 
-    def get(self, **_kwargs):
+    def get(self, **kwargs):
         def respond():
             if self.fail:
                 raise OSError("simulated Google outage")
+            if kwargs.get("includeGridData"):
+                rows = []
+                for row_number in range(2, len(self.data["Job Scout"]) + 1):
+                    cell = self.formats.get(row_number, {})
+                    rows.append({"values": [cell]} if cell else {})
+                return {"sheets": [{"data": [{"startRow": 1, "rowData": rows}]}]}
             return {"sheets": [{"properties": {"title": title, "sheetId": index,
                                                "gridProperties": {"rowCount": 1000}}}
                                for index, title in enumerate(self.data)]}
@@ -219,13 +226,39 @@ class GoogleTrackerTests(unittest.TestCase):
         today[0] = 44
         today[SCOUT.index("Date Found")] = "2026-09-25"
         self.fake.data["Job Scout"].append(today)
+        completed = list(today)
+        completed[0] = 45
+        completed[SCOUT.index("Gecko Status")] = "Resume Created"
+        self.fake.data["Job Scout"].append(completed)
+        self.fake.formats[3] = {
+            "userEnteredFormat": {"backgroundColor": NEW_SCOUT_ID_COLOR},
+            "effectiveFormat": {"backgroundColor": NEW_SCOUT_ID_COLOR},
+        }
+        self.fake.formats[4] = {
+            "effectiveFormat": {"backgroundColor": {
+                "red": 231 / 255, "green": 230 / 255, "blue": 230 / 255,
+            }},
+        }
+        self.fake.formats[5] = {
+            "userEnteredFormat": {"backgroundColor": NEW_SCOUT_ID_COLOR},
+            "effectiveFormat": {"backgroundColor": NEW_SCOUT_ID_COLOR},
+        }
 
-        self.assertEqual(self.tracker.highlight_scout_found_on("2026-09-25"), 2)
-        highlights = [request["repeatCell"] for request in self.fake.structural]
-        self.assertEqual([item["range"]["startRowIndex"] for item in highlights], [1, 3])
+        self.assertEqual(self.tracker.highlight_scout_found_on("2026-09-25"), 3)
+        highlights = [request["updateCells"] for request in self.fake.structural]
+        self.assertEqual([item["range"]["startRowIndex"] for item in highlights], [1, 2, 4])
+        self.assertEqual(highlights[0]["rows"][0]["values"][0]["userEnteredFormat"]
+                         ["backgroundColorStyle"]["rgbColor"],
+                         NEW_SCOUT_ID_COLOR)
+        self.assertEqual(highlights[1]["rows"][0]["values"][0]["userEnteredFormat"]
+                         ["backgroundColorStyle"],
+                         {"themeColor": "BACKGROUND"})
+        self.assertEqual(highlights[2]["rows"][0]["values"][0]["userEnteredFormat"]
+                         ["backgroundColorStyle"]["rgbColor"],
+                         NEW_SCOUT_ID_COLOR)
         self.assertTrue(all(item["range"]["startColumnIndex"] == 0 and
                             item["range"]["endColumnIndex"] == 1 and
-                            item["fields"] == "userEnteredFormat.backgroundColor"
+                            item["fields"] == "userEnteredFormat.backgroundColorStyle"
                             for item in highlights))
         self.assertEqual(self.fake.writes, [])
 

@@ -1,5 +1,4 @@
-# Gecko Match Score Report
-
+# Gecko Match Analysis
 **Job Title:** Senior Performance Marketing Specialist — Personal Injury (MVA) — Meta & YouTube  
 **Company:** NETFLY  
 **Location:** Remote  
@@ -7,7 +6,7 @@
 **Application URL:** https://www.indeed.com/viewjob?jk=aefcefac5c3401d3  
 **Generated Resume:** `output/resumes/Dave-Call+NETFLY+aefcefac5c3401d3.docx`
 
-## Match Score: 89/100
+## : 89/100
 
 Dave strongly matches the role's core operating model: he has 14+ years of hands-on acquisition experience, has managed multi-million-dollar annual media portfolios, and combines channel execution with strategy, attribution, conversion tracking, creative testing, landing-page optimization, automation, and business-outcome reporting. Direct experience across Meta/Facebook/Instagram, YouTube, and TikTok is supported. The largest gap is industry specialization: the source does not establish personal-injury, legal, mass-tort, insurance, or comparable regulated lead-generation experience. The source also demonstrates YouTube campaign responsibility but does not quantify YouTube-specific spend or results at an “expert” level.
 

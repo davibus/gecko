@@ -1,5 +1,4 @@
-# Gecko Match Score Report
-
+# Gecko Match Analysis
 **Job Title:** Digital Marketing Specialist (Remote)  
 **Company:** NRTC; supporting Pivot, an NRTC company  
 **Location:** Remote  
@@ -7,7 +6,7 @@
 **Application URL:** https://www.indeed.com/viewjob?jk=b629ab7dd39d6b83&from=shareddesktop_copy  
 **Generated Resume:** `output/resumes/Dave-Call+NRTC+b629ab7dd39d6b83.docx`
 
-## Match Score: 90/100
+## : 90/100
 
 Dave is a strong functional match for the work: the source supports 14+ years of hands-on paid-search, paid-social, content, analytics, conversion tracking, SEO, and multi-client campaign experience. He exceeds the two-year minimum and has direct evidence of managing large portfolios, developing client recommendations, and producing measurable revenue results. The score is held at 90 because Nextdoor Ads, MNTN Ads, rural-utility/broadband marketing, nonprofit marketing, and a formal generative search optimization program are not documented. His seniority may also create an overqualification concern for a specialist-level opening.
 

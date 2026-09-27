@@ -1,7 +1,5 @@
 # Staff Technical Program Manager - Mx Technologies
 
-**Match Score: 7/100**
-
 **Scout ID:** 162  
 **Job Number:** `-8498566116571180675`  
 **Company:** Mx Technologies  

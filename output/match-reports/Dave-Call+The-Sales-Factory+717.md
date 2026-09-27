@@ -1,7 +1,5 @@
 # Demand Generation Manager ? The Sales Factory
 
-Match Score: 67/100
-
 ## Strongest alignment areas
 
 - 14+ years in digital marketing and paid media, including campaign planning, optimization, and budget ownership.

@@ -1,7 +1,7 @@
 # Gecko Scout batch - 2026-09-24 (second batch)
 
 All 32 resumes were confirmed as two pages in Microsoft Word and recorded in the Google Job Tracker.
-Most source listings are short Scout excerpts; their match scores are provisional.
+Most source listings are short Scout excerpts and should be verified against the current employer listing.
 
 | Scout ID | Role | Score | Resume | Match report |
 |---:|---|---:|---|---|

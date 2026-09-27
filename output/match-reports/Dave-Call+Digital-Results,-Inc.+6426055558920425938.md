@@ -1,7 +1,5 @@
 # Digital Marketing Manager - Digital Results, Inc.
 
-**Match Score: 62/100**
-
 **Scout ID:** 83  
 **Job Number:** `6426055558920425938`  
 **Company:** Digital Results, Inc.  

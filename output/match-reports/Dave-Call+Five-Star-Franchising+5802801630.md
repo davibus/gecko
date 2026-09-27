@@ -1,7 +1,5 @@
 # Director of Performance Marketing - Five Star Franchising
 
-**Match Score: 70/100**
-
 **Scout ID:** 39  
 **Job Number:** `5802801630`  
 **Company:** Five Star Franchising  

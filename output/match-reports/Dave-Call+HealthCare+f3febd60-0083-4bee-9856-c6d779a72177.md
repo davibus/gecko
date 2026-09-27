@@ -1,7 +1,5 @@
 # Growth Marketing Manager — HealthCare
 
-Match Score: 68/100
-
 ## Strongest alignment areas
 
 - 14+ years in performance marketing with substantial paid acquisition budget ownership. The master documents up to $30 million per month managed with a four-person team.

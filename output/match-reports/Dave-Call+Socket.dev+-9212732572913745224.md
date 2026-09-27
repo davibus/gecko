@@ -1,7 +1,5 @@
 # Manager, Search Engine Marketing (SEM) Quill - Socket.dev
 
-**Match Score: 74/100**
-
 **Scout ID:** 178  
 **Job Number:** `-9212732572913745224`  
 **Company:** Socket.dev  

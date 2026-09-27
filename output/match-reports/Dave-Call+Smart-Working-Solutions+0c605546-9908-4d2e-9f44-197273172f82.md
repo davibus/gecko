@@ -1,7 +1,5 @@
 # SEO Manager (Remote, Full - Time) [HR210] — Smart Working Solutions
 
-**Match Score: 48/100**
-
 **Scout ID:** 698  
 **Job Number:** `0c605546-9908-4d2e-9f44-197273172f82`  
 **Company:** Smart Working Solutions  

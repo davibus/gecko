@@ -1,7 +1,5 @@
 # Product Marketing Manager - Mojo, LLC.
 
-**Match Score: 31/100**
-
 **Scout ID:** 796  
 **Job Number:** `7303072316228616743`  
 **Company:** Mojo, LLC.  

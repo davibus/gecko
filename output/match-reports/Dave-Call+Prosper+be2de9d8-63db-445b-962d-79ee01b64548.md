@@ -1,7 +1,5 @@
 # VP of Marketing — Prosper
 
-**Match Score: 39/100**
-
 **Scout ID:** 724  
 **Job Number:** `be2de9d8-63db-445b-962d-79ee01b64548`  
 **Company:** Prosper  

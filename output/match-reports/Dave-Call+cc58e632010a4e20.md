@@ -1,5 +1,4 @@
-# Gecko Match Score Report
-
+# Gecko Match Analysis
 **Job Title:** Performance Marketing Manager  
 **Company:** Mountains West Ranches  
 **Location:** Heber City, UT (Hybrid Remote)  
@@ -9,7 +8,7 @@
 
 ---
 
-## 🎯 Overall Match Score: **94 / 100**
+## 🎯 Overall : **94 / 100**
 
 > [!NOTE]
 > **Summary Assessment:** Dave Call represents an exceptional, near-ideal fit for the Performance Marketing Manager role at Mountains West Ranches. The company's mandate—to rebuild paid search from the ground up, drive qualified lead conversions (completed land tours), optimize CRM nurture flows (HubSpot/ActiveCampaign), reactivate cold leads, and execute bilingual social and offline outreach—aligns directly with Dave's 15+ years of full-funnel SEM, lifecycle automation, and analytics leadership in Utah.

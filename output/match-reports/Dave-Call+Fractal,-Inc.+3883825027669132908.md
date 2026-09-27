@@ -1,7 +1,5 @@
 # Fractal, Inc. - Scout ID 638
 
-**Match Score: 30/100**
-
 **Scout ID:** 638  
 **Job Number:** `3883825027669132908`  
 **Company:** Fractal, Inc.  

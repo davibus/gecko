@@ -1,7 +1,5 @@
 # Director, Travel & Hospitality (Adtech & Martech) — Acxiom
 
-**Match Score: 43/100**
-
 **Scout ID:** 51  
 **Job Number:** `5839615490`  
 **Company:** Acxiom  

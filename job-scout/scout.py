@@ -33,7 +33,7 @@ from url_resolution import resolve_and_store, url_status_label
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-MASTER_RESUME = PROJECT_ROOT / "input" / "master-resume" / "Dave-Call-resume-9-23-26.docx"
+MASTER_RESUME = PROJECT_ROOT / "input" / "master-resume" / "Dave-Call-Resume.txt"
 DEFAULT_SOURCE = "adzuna"
 CORE_PROVIDERS = ("adzuna", "remotive", "web-careers")
 
@@ -123,7 +123,13 @@ def protected_job_ids(jobs, tracker_path=None) -> set[int]:
             continue
         if any(marked(row.get(field)) for field in ("Apply?", "Applied", "Contacted", "Resume Created")) or str(row.get("Gecko Status") or "").lower() not in {"", "new", "reviewing"}:
             protected.add(scout_id)
-    for _, row in tracker.application().rows:
+    try:
+        application_rows = tracker.application().rows
+    except RuntimeError as error:
+        if "not found" not in str(error).casefold():
+            raise
+        application_rows = []
+    for _, row in application_rows:
         link = canonicalize_url(str(row.get("Job Link") or ""))
         company = str(row.get("Company") or "").casefold().strip()
         title = str(row.get("Job Title") or "").casefold().strip()
@@ -163,7 +169,6 @@ def sheet_only_active_jobs(tracker_path, known_ids: set[int]):
                                         company=str(value("Company") or "")))
             item.id = scout_id
             item.status = status
-            item.authoritative_url = str(value("Authoritative URL") or "")
             result.append(item)
     return result
 

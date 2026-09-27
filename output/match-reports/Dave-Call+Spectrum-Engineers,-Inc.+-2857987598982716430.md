@@ -1,7 +1,5 @@
 # Marketing Manager - Spectrum Engineers, Inc.
 
-**Match Score: 49/100**
-
 **Scout ID:** 265  
 **Job Number:** `-2857987598982716430`  
 **Company:** Spectrum Engineers, Inc.  

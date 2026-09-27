@@ -117,10 +117,10 @@ class EnvironmentTests(unittest.TestCase):
         with self.assertRaises(SystemExit):
             build_parser().parse_args(["search", "--provider", "jooble"])
 
-    def test_enrich_command_accepts_id_or_provisional_flag(self):
+    def test_enrich_command_accepts_id_or_all_flag(self):
         parser = build_parser()
         self.assertEqual(parser.parse_args(["enrich", "62"]).job_id, 62)
-        self.assertTrue(parser.parse_args(["enrich", "--provisional"]).provisional)
+        self.assertTrue(parser.parse_args(["enrich", "--all"]).all)
 
     def test_resolve_url_command_accepts_id_or_bounded_jooble_batch(self):
         parser = build_parser()
@@ -131,17 +131,15 @@ class EnvironmentTests(unittest.TestCase):
 
     def test_review_command_options(self):
         args = build_parser().parse_args([
-            "review", "--confirmed-only", "--minimum-score", "75", "--limit", "5", "--json",
+            "review", "--include-closed", "--limit", "5", "--json",
         ])
-        self.assertTrue(args.confirmed_only)
-        self.assertEqual(args.minimum_score, 75)
+        self.assertTrue(args.include_closed)
         self.assertEqual(args.limit, 5)
         self.assertTrue(args.json)
 
     def test_daily_command_defaults(self):
         args = build_parser().parse_args(["daily"])
         self.assertEqual(args.results, 20)
-        self.assertEqual(args.minimum_score, 70)
         self.assertEqual(args.limit, 20)
         self.assertFalse(args.dry_run)
 
@@ -151,8 +149,6 @@ class EnvironmentTests(unittest.TestCase):
             with JobStore(database) as store:
                 def fake_search(search_args, target_store, _preferences):
                     job = normalize(raw(source_id="dry-run", url="https://example.test/dry-run"))
-                    job.match_score = 90
-                    job.evidence_confidence = 80
                     job_id = target_store.save(job)
                     search_args.run_result = {"new_job_ids": [job_id], "fetched": 1}
                     return 0
@@ -175,13 +171,12 @@ class EnvironmentTests(unittest.TestCase):
         provider.configured.return_value = True
         args = SimpleNamespace(
             source="adzuna", query=None, location=None, page=1, results=1,
-            minimum_score=None, limit=1, daily_mode=True, link_validator=None,
+            limit=1, daily_mode=True, link_validator=None,
             dry_run=True,
         )
         store = unittest.mock.Mock()
         store.all.return_value = []
         with (patch("scout.providers", return_value={"adzuna": provider}),
-              patch("scout.extract_resume_text", return_value="resume"),
               patch("scout.discover", return_value=SearchSummary()),
               patch("scout.sync_tracker") as sync):
             result = search(args, store, load_preferences())
@@ -233,7 +228,6 @@ class EnvironmentTests(unittest.TestCase):
         output = io.StringIO()
         with (
             patch("scout.providers", return_value=available),
-            patch("scout.extract_resume_text", return_value="resume"),
             patch("scout.discover", return_value=SearchSummary()) as mocked_discover,
             patch("scout.discover_remotive_full_feed", return_value=SearchSummary()),
             patch("scout.sync_tracker"),
@@ -275,13 +269,9 @@ class EnvironmentTests(unittest.TestCase):
             with JobStore(Path(directory) / "jobs.sqlite3") as store:
                 old_job = normalize(raw(source_id="old", url="https://example.test/old"))
                 old_job.title = "Old Paid Search Manager"
-                old_job.match_score = 95
-                old_job.evidence_confidence = 90
                 old_id = store.save(old_job)
                 new_job = normalize(raw(source_id="new", url="https://example.test/new"))
                 new_job.title = "New Performance Marketing Manager"
-                new_job.match_score = 91
-                new_job.evidence_confidence = 85
                 new_id = store.save(new_job)
 
                 def fake_search(search_args, _store, _preferences):
@@ -430,7 +420,6 @@ class WebCareerDiagnosticsTests(unittest.TestCase):
                 with JobStore(Path(directory) / "jobs.sqlite3") as store:
                     summary = discover(
                         provider, [SearchRequest("paid search", "Remote")], store,
-                        load_preferences(), DESCRIPTION, minimum_score=101,
                     )
 
         self.assertEqual(summary.fetched, 2)

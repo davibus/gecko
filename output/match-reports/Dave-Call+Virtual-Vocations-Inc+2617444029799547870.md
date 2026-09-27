@@ -1,7 +1,5 @@
 # Marketing Analytics Manager - Virtual Vocations Inc
 
-**Match Score: 61/100**
-
 **Scout ID:** 277  
 **Job Number:** `2617444029799547870`  
 **Company:** Virtual Vocations Inc  

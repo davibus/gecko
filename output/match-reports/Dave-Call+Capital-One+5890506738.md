@@ -1,7 +1,5 @@
 # Senior Manager, Client Development Ad Sales - Capital One Ad Solutions (Remote) - Capital One
 
-**Match Score: 25/100**
-
 **Scout ID:** 27  
 **Job Number:** `5890506738`  
 **Company:** Capital One  

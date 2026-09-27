@@ -1,7 +1,5 @@
 # Account Executive - Connoisseur Media
 
-**Match Score: 21/100**
-
 **Scout ID:** 159  
 **Job Number:** `-2522545930793243991`  
 **Company:** Connoisseur Media  

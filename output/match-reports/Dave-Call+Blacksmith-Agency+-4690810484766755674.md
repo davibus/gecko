@@ -1,7 +1,5 @@
 # Senior Paid Search & Growth Lead, Remote - Blacksmith Agency
 
-**Match Score: 74/100**
-
 **Scout ID:** 573  
 **Job Number:** `-4690810484766755674`  
 **Company:** Blacksmith Agency  

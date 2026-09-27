@@ -1,6 +1,6 @@
 # Gecko Match Report — Seer Interactive Senior Paid Search Account Manager
 
-## Match Score: 92/100
+## : 92/100
 
 Dave is an excellent functional match for Seer's Senior Paid Search Account Manager role. The master resume supports senior paid search ownership, paid social, ecommerce and lead generation, client consultation, performance reporting, SEO collaboration, testing, large-scale analytics, automation, and AI-assisted workflows. The score reflects a few narrower gaps: programmatic media is not documented, formal public thought-leadership activity is not documented, and mentoring account associates is implied by leadership experience rather than directly stated in the source.
 

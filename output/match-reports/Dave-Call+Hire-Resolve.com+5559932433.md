@@ -1,7 +1,5 @@
 # Mid-Senior Sales & Marketing Professionals - Hire Resolve.com
 
-**Match Score: 21/100**
-
 **Scout ID:** 567  
 **Job Number:** `5559932433`  
 **Company:** Hire Resolve.com  

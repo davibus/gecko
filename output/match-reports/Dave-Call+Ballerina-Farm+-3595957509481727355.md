@@ -1,7 +1,5 @@
 # Manager, Integrated & Brand Marketing - Ballerina Farm
 
-**Match Score: 31/100**
-
 **Scout ID:** 376  
 **Job Number:** `-3595957509481727355`  
 **Company:** Ballerina Farm  

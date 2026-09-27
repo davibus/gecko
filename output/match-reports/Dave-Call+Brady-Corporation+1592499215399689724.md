@@ -1,7 +1,5 @@
 # Performance Marketing Manager - Brady Corporation
 
-**Match Score: 65/100**
-
 **Scout ID:** 74  
 **Job Number:** `1592499215399689724`  
 **Company:** Brady Corporation  

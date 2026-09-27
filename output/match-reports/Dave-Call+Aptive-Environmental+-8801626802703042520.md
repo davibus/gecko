@@ -1,7 +1,5 @@
 # Sr. Manager, Marketing Analytics - Aptive Environmental
 
-**Match Score: 61/100**
-
 **Scout ID:** 769  
 **Job Number:** `-8801626802703042520`  
 **Company:** Aptive Environmental  

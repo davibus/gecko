@@ -1,7 +1,5 @@
 # Industry Marketing Manager - Grant Thornton
 
-**Match Score: 49/100**
-
 **Scout ID:** 63  
 **Job Number:** `5866599300`  
 **Company:** Grant Thornton  

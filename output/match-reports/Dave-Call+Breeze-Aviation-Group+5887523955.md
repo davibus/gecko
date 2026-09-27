@@ -1,7 +1,5 @@
 # Manager Lifecycle Marketing - Breeze Aviation Group
 
-**Match Score: 36/100**
-
 **Scout ID:** 563  
 **Job Number:** `5887523955`  
 **Company:** Breeze Aviation Group  

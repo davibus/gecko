@@ -1,7 +1,5 @@
 # CHG Healthcare - Scout ID 258
 
-**Match Score: 61/100**
-
 **Scout ID:** 258  
 **Job Number:** `-3438657328390018096`  
 **Company:** CHG Healthcare  

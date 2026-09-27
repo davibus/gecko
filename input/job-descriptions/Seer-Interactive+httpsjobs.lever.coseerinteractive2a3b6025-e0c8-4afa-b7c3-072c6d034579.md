@@ -14,7 +14,6 @@
 - **Authoritative URL:** https://jobs.lever.co/seerinteractive/2a3b6025-e0c8-4afa-b7c3-072c6d034579
 - **Date Posted:** 2026-08-26
 - **Date Discovered:** 2026-09-21
-- **Gecko Match Score:** 83/100
 
 ## Source links
 

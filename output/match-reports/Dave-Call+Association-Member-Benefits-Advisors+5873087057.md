@@ -1,7 +1,5 @@
 # Association Member Benefits Advisors — Senior Paid Search Strategist Match Report
 
-**Match Score: 96/100**
-
 ## Strongest alignment areas
 
 - **Deep paid-search experience:** Dave has more than 14 years in digital marketing and extensive hands-on ownership of Google Ads and Microsoft/Bing Ads. He built and managed more than 75 Google Ads accounts totaling over $276,000 per month and later managed more than 150 campaigns across Google, Bing, Gemini, and Amazon.

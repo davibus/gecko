@@ -1,7 +1,5 @@
 # Web Operations Manager - Vasion, Inc.
 
-**Match Score: 36/100**
-
 **Scout ID:** 15  
 **Job Number:** `5879221542`  
 **Company:** Vasion, Inc.  

@@ -1,7 +1,5 @@
 # Ecommerce Manager - Nani Swimwear
 
-**Match Score: 61/100**
-
 **Scout ID:** 369  
 **Job Number:** `-1491412284325289361`  
 **Company:** Nani Swimwear  

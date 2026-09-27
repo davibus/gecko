@@ -23,7 +23,7 @@ sys.path.insert(0, str(ROOT / "job-scout"))
 from handoff import archive_listing, job_number, safe_name  # noqa: E402
 from storage import JobStore  # noqa: E402
 from generate_apply_selected_resumes import CONFIG, build_resume  # noqa: E402
-from gecko_v2 import source_text, source_hashes, resume_filename  # noqa: E402
+from gecko_v2 import MASTER, source_text, source_hashes, resume_filename  # noqa: E402
 
 FAMILIES = {
     "paid": (37, "PAID SEARCH | STRATEGY, OPTIMIZATION & ANALYTICS",
@@ -46,7 +46,7 @@ FAMILIES = {
         "Ecommerce and digital marketing leader with 14+ years managing acquisition, paid media, and marketplace-related business decisions. Led an eight-person ecommerce team, expanded a B2B distributor into multiple B2C channels, and worked with more than 650 retail partners. Used attribution, conversion analysis, forecasting, and cross-functional reporting to guide budgets and profitable growth."),
 }
 
-# Gaps were reviewed against the current master DOCX and available Scout listings.
+# Gaps were reviewed against the current master archive and available Scout listings.
 JOBS = {
     398: ("growth", ["Direct ownership of a full B2B demand-generation funnel, MQL/SQL pipeline, and lifecycle programs is not documented.", "CRM, ABM, marketing automation, and applied AI campaign workflows are unsupported."], "The Scout listing is truncated; verify the full Pattern requirements before applying."),
     707: ("content", ["The master does not document ownership of editorial content strategy, blogs, thought leadership, or AI-search content.", "Creative briefs, video production, and content-team delivery are not established."], "The supplied Wpromote description mixes content marketing with performance-creative duties; clarify the actual scope."),
@@ -107,7 +107,7 @@ def prepare(scout_id: int) -> dict:
     cfg = copy.deepcopy(CONFIG[template_id])
     cfg.update(company=company, key=key, title=job.title, headline=headline, summary=summary)
     CONFIG[scout_id] = cfg
-    build_resume(scout_id)  # Re-reads the current master DOCX for this job.
+    build_resume(scout_id)  # Re-reads the current master archive for this job.
     scratch = ROOT / "scratch" / f"{company}+{key}"
     resume = ROOT / "output/resumes" / resume_filename(company, job.title, key)
     report = ROOT / "output/match-reports" / f"Dave-Call+{company}+{key}.md"
@@ -133,7 +133,7 @@ def prepare(scout_id: int) -> dict:
     # Re-read the master at evaluation/report time, independent of the generator call.
     master = source_text()
     if "Built Tableau dashboards" not in master or "75+ Google Ads accounts" not in master:
-        raise RuntimeError("Current master DOCX did not contain expected source evidence")
+        raise RuntimeError("Current master archive did not contain expected source evidence")
     brief = len(job.description) < 1000
     strengths = "\n".join(f"- {x}" for x in STRENGTHS[family])
     weakness = "\n".join(f"- {x}" for x in gaps)
@@ -148,12 +148,12 @@ def prepare(scout_id: int) -> dict:
             f"## Strongest alignment areas\n\n{strengths}\n\n"
             f"## Weaknesses or missing requirements\n\n{weakness}\n\n"
             f"## ATS keyword alignment\n\nSupported master-resume terms: {ats}.\n\n"
-            f"Do not add tools, tenure, industry experience, or outcomes that are absent from the current master DOCX.\n\n"
+            f"Do not add tools, tenure, industry experience, or outcomes that are absent from the current master archive.\n\n"
             f"## Recommended resume emphasis\n\nLead with the source-backed experience and skills highlighted above; "
             f"keep unsupported role requirements as gaps.\n\n"
             f"## Interview/application considerations\n\n{source_notice}{note}\n\n"
             f"**Validation:** Microsoft Word computed 2 pages; Word-exported PDF has 2 pages. "
-            f"Master SHA-256: `{source_hashes()[str((ROOT / 'input/master-resume/Dave-Call-resume-9-23-26.docx').relative_to(ROOT))]}`.\n")
+            f"Master SHA-256: `{source_hashes()[str(MASTER.relative_to(ROOT))]}`.\n")
     report.parent.mkdir(parents=True, exist_ok=True)
     report.write_text(body, encoding="utf-8")
     return {"scout_id": scout_id, "company": job.company, "job_number": key,

@@ -1,7 +1,5 @@
 # Instagram Content & Growth Manager - The Recipe Critic
 
-**Match Score: 56/100**
-
 **Scout ID:** 333  
 **Job Number:** `3298357428710647389`  
 **Company:** The Recipe Critic  

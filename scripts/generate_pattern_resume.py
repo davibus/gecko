@@ -1,4 +1,4 @@
-"""Build Scout 692's resume from content verified against the current master DOCX."""
+"""Build Scout 692's resume from content verified against the current master archive."""
 
 import json
 from pathlib import Path

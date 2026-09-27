@@ -1,7 +1,5 @@
 # SEO Strategist - Corporate Tools
 
-**Match Score: 32/100**
-
 **Scout ID:** 642  
 **Job Number:** `4741352144654860124`  
 **Company:** Corporate Tools  

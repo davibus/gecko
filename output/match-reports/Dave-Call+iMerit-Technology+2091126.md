@@ -1,7 +1,5 @@
 # AI Response Evaluator — iMerit Technology
 
-**Match Score: 9/100**
-
 **Scout ID:** 476  
 **Job Number:** `2091126`  
 **Company:** iMerit Technology  

@@ -1,7 +1,5 @@
 # Brand Marketing Director - CHG Medical Staffing
 
-**Match Score: 31/100**
-
 **Scout ID:** 460  
 **Job Number:** `-6042635184382896972`  
 **Company:** CHG Medical Staffing  

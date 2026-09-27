@@ -163,7 +163,17 @@ def mark_batch_resume(scout_id: int, row_number: int, tracker: GoogleTracker) ->
 
 def validate(tracker: GoogleTracker | None = None) -> int:
     tracker = tracker or GoogleTracker()
-    tab = tracker.application()
+    scout = tracker.scout()
+    scout_ids = [str(data.get("Scout ID")) for _, data in scout.rows if str(data.get("Scout ID") or "").strip()]
+    if len(scout_ids) != len(set(scout_ids)):
+        raise RuntimeError("Google Job Scout contains duplicate Scout ID values")
+    try:
+        tab = tracker.application()
+    except RuntimeError as error:
+        if "not found" not in str(error).casefold():
+            raise
+        print(f"Google Job Scout valid: {len(scout.rows)} rows; no Job Tracker tab; {tracker.url()}")
+        return 0
     numbers = [job_key(data) for _, data in tab.rows if job_key(data)]
     if len(numbers) != len(set(numbers)):
         raise RuntimeError("Google Job Tracker contains duplicate Job Number values")
@@ -193,8 +203,12 @@ def main() -> int:
         if args.command == "add":
             return add_job(args, tracker)
         if args.command == "init":
-            tracker.application()
             tracker.scout()
+            try:
+                tracker.application()
+            except RuntimeError as error:
+                if "not found" not in str(error).casefold():
+                    raise
             print(f"Google tracker ready: {tracker.url()}")
             return 0
         return validate(tracker)

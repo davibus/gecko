@@ -1,7 +1,5 @@
 # Head of Marketing (Remote) — Decile Group
 
-**Match Score: 56/100**
-
 **Scout ID:** 721  
 **Job Number:** `b8d5a786-5a7e-4a89-8108-5ec50bde48e8`  
 **Company:** Decile Group  

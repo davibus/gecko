@@ -1,7 +1,5 @@
 # Global Product Marketing Manager - Surgery (Salt Lake City) - GE HealthCare
 
-**Match Score: 31/100**
-
 **Scout ID:** 61  
 **Job Number:** `5872957827`  
 **Company:** GE HealthCare  

@@ -1,7 +1,5 @@
 # Paid Search Specialist - Virtual Vocations Inc
 
-**Match Score: 78/100**
-
 **Scout ID:** 734  
 **Job Number:** `-8025469372252678432`  
 **Company:** Virtual Vocations Inc  

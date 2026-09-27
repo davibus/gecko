@@ -1,5 +1,4 @@
-# Gecko Match Score Report
-
+# Gecko Match Analysis
 **Job Title:** Head of Digital Marketing  
 **Company:** ROI CX Solutions  
 **Location:** American Fork, UT 84003 (In person)  
@@ -7,7 +6,7 @@
 **Application URL:** https://www.indeed.com/viewjob?jk=8e3a51cb94d9deee&from=shareddesktop_copy  
 **Generated Resume:** `output/resumes/Dave-Call+ROI-CX-Solutions+8e3a51cb94d9deee.docx`
 
-## Match Score: 88/100
+## : 88/100
 
 Dave is a strong match for this hands-on marketing leadership role. His source resume supports more than 14 years across digital marketing and technology, B2B and B2C leadership, lead generation, paid media, SEO, email, website conversion, analytics, automation, budget ownership, and cross-functional execution. He has managed substantial channel portfolios and teams, modernized marketing and ecommerce for a large B2B distributor, and delivered specific revenue and ROAS outcomes. The score remains below the 90s because the source does not establish BPO/contact-center marketing experience, direct ownership of a CRM-defined MQL/SQL pipeline, or tested measurement of AEO/GEO/AI Overview visibility.
 

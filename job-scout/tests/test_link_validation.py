@@ -80,7 +80,7 @@ class LinkValidationTests(unittest.TestCase):
         with patch("link_validation._request", return_value=LinkResult("dead", lever, http_status=404)):
             self.assertIn("Official ATS API", validate_url(lever).reason)
 
-    def test_new_dead_listing_is_rejected_before_scoring_and_storage(self):
+    def test_new_dead_listing_is_rejected_before_storage(self):
         class Provider:
             def search(self, _request):
                 return [RawListing(source="test", source_job_id="new-dead", url=URL,
@@ -88,11 +88,12 @@ class LinkValidationTests(unittest.TestCase):
                                    description="Manage Google Ads campaigns.")]
 
         with TemporaryDirectory() as temp, JobStore(Path(temp) / "jobs.sqlite3") as store:
-            with patch("link_validation.validate_job", return_value=LinkResult("dead", URL, http_status=404)), \
-                 patch("service.score_job", side_effect=AssertionError("scored before validation")):
-                result = discover(Provider(), [SearchRequest("paid search", "Remote")], store,
-                                  {"minimum_score": 80}, "master resume", link_validator=DailyLinkValidator())
-            self.assertEqual(result.scored, 0)
+            with patch("link_validation.validate_job", return_value=LinkResult("dead", URL, http_status=404)):
+                result = discover(
+                    Provider(), [SearchRequest("paid search", "Remote")], store,
+                    link_validator=DailyLinkValidator(),
+                )
+            self.assertEqual(result.added, 0)
             self.assertEqual(store.all(), [])
 
 

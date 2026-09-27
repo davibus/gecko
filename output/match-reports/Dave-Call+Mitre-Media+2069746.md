@@ -1,7 +1,5 @@
 # Tech Lead Full-Stack Rails Engineer - Mitre Media
 
-**Match Score: 7/100**
-
 **Scout ID:** 474  
 **Job Number:** `2069746`  
 **Company:** Mitre Media  

@@ -1,7 +1,5 @@
 # Director of Digital Marketing - Berri Organics
 
-**Match Score: 49/100**
-
 **Scout ID:** 669  
 **Job Number:** `-2643655471012040520`  
 **Company:** Berri Organics  

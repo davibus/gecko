@@ -1,7 +1,5 @@
 # Senior Manager Web Marketing - AdvancedMD
 
-**Match Score: 49/100**
-
 **Scout ID:** 28  
 **Job Number:** `5887373582`  
 **Company:** AdvancedMD  

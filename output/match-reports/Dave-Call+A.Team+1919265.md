@@ -1,7 +1,5 @@
 # Senior Independent Software Developer - A.Team
 
-**Match Score: 7/100**
-
 **Scout ID:** 472  
 **Job Number:** `1919265`  
 **Company:** A.Team  

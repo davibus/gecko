@@ -1,7 +1,5 @@
 # Marketing Ops Manager — Instrumentl
 
-**Match Score: 54/100**
-
 **Scout ID:** 696  
 **Job Number:** `a2c6c454-00a1-4ab0-9c02-cddfffec17b5`  
 **Company:** Instrumentl  

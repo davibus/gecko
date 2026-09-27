@@ -1,7 +1,5 @@
 # Product Marketing Manager — Lumin Digital
 
-**Match Score: 41/100**
-
 **Scout ID:** 703  
 **Job Number:** `d96affe1-9ce7-4c3b-b40e-223e6c82a537`  
 **Company:** Lumin Digital  

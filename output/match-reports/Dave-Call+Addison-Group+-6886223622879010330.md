@@ -1,7 +1,5 @@
 # Director of Performance Marketing - Addison Group
 
-**Match Score: 49/100**
-
 **Scout ID:** 845  
 **Job Number:** `-6886223622879010330`  
 **Company:** Addison Group  

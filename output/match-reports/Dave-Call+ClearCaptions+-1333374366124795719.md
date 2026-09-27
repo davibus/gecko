@@ -1,7 +1,5 @@
 # Senior Insights & Analytics Manager - Remote - ClearCaptions
 
-**Match Score: 61/100**
-
 **Scout ID:** 279  
 **Job Number:** `-1333374366124795719`  
 **Company:** ClearCaptions  

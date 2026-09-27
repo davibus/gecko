@@ -1,5 +1,4 @@
-# Gecko Match Score Report
-
+# Gecko Match Analysis
 **Job Title:** Senior Performance Marketing Manager, Global Paid Social & Mobile UA  
 **Company:** Coinbase  
 **Location:** Bonnie, Utah County (source metadata); Coinbase describes the role as remote-first with quarterly in-person surges  
@@ -9,7 +8,7 @@
 **Application URL:** https://www.coinbase.com/careers/positions/8192485?gh_jid=8192485  
 **Generated Resume:** `output/resumes/Dave-Call+Coinbase+5890507483.docx`
 
-## Match Score: 88/100
+## : 88/100
 
 Dave strongly matches the role's performance-marketing scale, paid-social execution, experimentation, analytics, automation, and leadership needs. His documented experience includes 14+ years in marketing and technology, responsibility for $30 million per month with a team of four, hands-on Facebook, Instagram, and TikTok management, multi-market customer acquisition, large ecommerce budgets, Tableau and Looker reporting, attribution analysis, holdouts, incremental CPA work, forecasting, and custom automation. The score is below the Job Scout estimate because the source resume does not establish app-specific mobile user acquisition, SKAN, mobile measurement partners, marketing-mix modeling, or fintech/crypto experience.
 

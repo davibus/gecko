@@ -1,7 +1,5 @@
 # Director of Business Development/Sales For Fast Growing National SEO / Digital Marketing Firm - Digital Marketing
 
-**Match Score: 24/100**
-
 **Scout ID:** 569  
 **Job Number:** `5330345164`  
 **Company:** Digital Marketing  

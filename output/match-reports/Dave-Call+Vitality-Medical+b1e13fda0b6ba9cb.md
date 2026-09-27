@@ -1,5 +1,4 @@
-# Gecko Match Score Report
-
+# Gecko Match Analysis
 **Job Title:** E-Commerce SEO Manager  
 **Company:** Vitality Medical  
 **Location:** Salt Lake City, UT 84121 (Hybrid)  
@@ -7,7 +6,7 @@
 **Application URL:** https://www.indeed.com/viewjob?jk=b1e13fda0b6ba9cb&from=shareddesktop_copy  
 **Generated Resume:** `output/resumes/Dave-Call+Vitality-Medical+b1e13fda0b6ba9cb.docx`
 
-## Match Score: 89/100
+## : 89/100
 
 Dave is a strong match for this execution-first ecommerce SEO role. His resume supports more than 14 years across digital marketing and technology, direct ecommerce leadership, Magento and other commerce platforms, SEO/SEM execution, technical web skills, analytics, large-scale reporting, automation, and cross-functional ownership. The score is held below the 90s because the source resume does not document a dedicated healthcare SEO position, quantified organic-search growth, named Ahrefs/Screaming Frog experience, or direct measurement of AI Overview/answer-engine visibility.
 

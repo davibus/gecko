@@ -35,7 +35,7 @@ class QueueTests(unittest.TestCase):
 
         with TemporaryDirectory() as temp, patch.object(queue, "_write_report"):
             report = Path(temp) / "report.md"
-            report.write_text("Match Score: 75/100\n", encoding="utf-8")
+            report.write_text("# Qualitative match analysis\n", encoding="utf-8")
 
             def generate(item, _db):
                 processed.append(item.scout_id)
@@ -64,24 +64,24 @@ class QueueTests(unittest.TestCase):
             report = temp / "Dave-Call+Existing+queue-42.md"
             listing = temp / "Existing+queue-42.md"
             resume.write_bytes(b"test artifact")
-            report.write_text("# Role\n\nMatch Score: 82/100\n", encoding="utf-8")
+            report.write_text("# Role\n\n## Strongest alignment areas\n", encoding="utf-8")
             listing.write_text("# Role\n\n- **Company:** Existing\n- **Job Number:** queue-42\n"
                                "- **Scout ID:** 42\n- **URL:** https://example.test/job\n", encoding="utf-8")
             item = queue.QueueRow(2, 42, "Existing", "Role")
             queue.record_success(item, queue.Artifacts(resume, report, listing), self.tracker)
         self.assertEqual([(tab, col) for tab, _, col in self.fake.writes if tab == "Job Scout"],
-                         [("Job Scout", "G"), ("Job Scout", "V"), ("Job Scout", "E")])
+                         [("Job Scout", "G"), ("Job Scout", "R"), ("Job Scout", "E")])
         scout = next(data for _, data in self.tracker.scout().rows if str(data.get("Scout ID")) == "42")
         self.assertEqual(scout["Resume Created"], "X")
         self.assertEqual(scout["Apply?"], "Yes")
         self.assertEqual(scout["Gecko Status"], "Resume Created")
         self.assertTrue(str(scout["Resume Link"]).startswith("file:"))
         self.assertEqual(scout["Applied"], "TRUE")
-        self.assertEqual(scout["Contacted"], "Recruiter contacted")
+        self.assertEqual(scout["Notes"], "Recruiter contacted")
         application = next(data for _, data in self.tracker.application().rows
                            if str(data.get("Job Number")) == "queue-42")
         self.assertEqual(application["Company"], "Existing")
-        self.assertEqual(application["Match Score"], 82)
+        self.assertNotIn("Match Score", application)
 
     def test_missing_artifact_or_changed_apply_never_marks_g(self):
         item = queue.QueueRow(2, 42, "Existing", "Role")
@@ -98,14 +98,6 @@ class QueueTests(unittest.TestCase):
                 queue.record_success(item, queue.Artifacts(resume, report, Path("listing.md")),
                                      self.tracker)
         self.assertEqual(self.fake.writes, [])
-
-    def test_missing_or_malformed_score_is_not_converted_to_zero(self):
-        for value in ("# report without score\n", "Match Score: unknown\n"):
-            with self.subTest(value=value):
-                with self.assertRaisesRegex(ValueError, "missing or malformed"):
-                    queue.validated_match_score(value)
-        self.assertEqual(queue.validated_match_score("Match Score: 0/100\n"), "0/100")
-        self.assertEqual(queue.validated_match_score("Match Score: 5/100\n"), "5/100")
 
     def test_description_failure_leaves_row_unprocessed_and_report_has_attempts(self):
         item = queue.read_queue(self.tracker).pending[0]
@@ -141,7 +133,7 @@ class QueueTests(unittest.TestCase):
         with TemporaryDirectory() as temp, patch.object(queue, "_write_report"):
             temp = Path(temp)
             report = temp / "report.md"
-            report.write_text("Match Score: 75/100\n", encoding="utf-8")
+            report.write_text("# Qualitative match analysis\n", encoding="utf-8")
 
             def generate(item, _db):
                 processed.append(item.scout_id)

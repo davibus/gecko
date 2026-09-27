@@ -1,7 +1,5 @@
 # Digital Marketing Manager - Curio Wellness
 
-**Match Score: 46/100**
-
 **Scout ID:** 409  
 **Job Number:** `3951846618048008748`  
 **Company:** Curio Wellness  

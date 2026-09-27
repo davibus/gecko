@@ -1,7 +1,5 @@
 # Performance Marketing Manager - MAG - MyAmazon Guy.
 
-**Match Score: 58/100**
-
 **Scout ID:** 245  
 **Job Number:** `-4940057173806512465`  
 **Company:** MAG - MyAmazon Guy.  

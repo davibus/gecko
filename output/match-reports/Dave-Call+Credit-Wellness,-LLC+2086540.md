@@ -1,7 +1,5 @@
 # Inside Sales Contractor - Credit Wellness, LLC
 
-**Match Score: 7/100**
-
 **Scout ID:** 477  
 **Job Number:** `2086540`  
 **Company:** Credit Wellness, LLC  

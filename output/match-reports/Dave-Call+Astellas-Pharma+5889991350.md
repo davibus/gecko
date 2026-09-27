@@ -1,7 +1,5 @@
 # Oncology Sales Director (West), Genitourinary - Astellas Pharma
 
-**Match Score: 7/100**
-
 **Scout ID:** 44  
 **Job Number:** `5889991350`  
 **Company:** Astellas Pharma  

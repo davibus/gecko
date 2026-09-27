@@ -1,7 +1,5 @@
 # Senior Account Strategist, Paid Media (Remote US) — Directive Consulting
 
-Match Score: 0/100
-
 Conservative automated estimate. Review the evidence links and gaps in the tailoring plan before application.
 
 ## Strongest alignment areas

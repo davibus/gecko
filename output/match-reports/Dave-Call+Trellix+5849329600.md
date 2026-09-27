@@ -1,7 +1,5 @@
 # North America Field and Channel Marketing Manager — Trellix
 
-**Match Score: 44/100**
-
 **Scout ID:** 23  
 **Job Number:** `5849329600`  
 **Company:** Trellix  

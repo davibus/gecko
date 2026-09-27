@@ -1,7 +1,5 @@
 # Strategic Account Executive - Audiohook
 
-**Match Score: 20/100**
-
 **Scout ID:** 54  
 **Job Number:** `5795447474`  
 **Company:** Audiohook  

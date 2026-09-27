@@ -1,7 +1,5 @@
 # Digital Marketing Data Analyst | Manager (Remote) - Jobsultant Solutions
 
-**Match Score: 61/100**
-
 **Scout ID:** 323  
 **Job Number:** `6441122977142471917`  
 **Company:** Jobsultant Solutions  

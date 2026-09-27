@@ -1,7 +1,5 @@
 # Director of E-Commerce - Ballerina Farm
 
-**Match Score: 61/100**
-
 **Scout ID:** 364  
 **Job Number:** `-8325808551434877515`  
 **Company:** Ballerina Farm  

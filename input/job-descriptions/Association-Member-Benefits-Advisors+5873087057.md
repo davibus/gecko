@@ -14,7 +14,6 @@
 - **Authoritative URL:**
 - **Date Posted:** 2026-09-06 (Scout record)
 - **Date Discovered:** 2026-09-19
-- **Gecko Match Score:** 96/100
 
 ## Company overview
 

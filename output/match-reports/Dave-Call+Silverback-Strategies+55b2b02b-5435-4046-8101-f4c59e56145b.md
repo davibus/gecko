@@ -1,6 +1,6 @@
 # Gecko Match Report — Silverback Strategies Paid Media Manager
 
-## Match Score: 86/100
+## : 86/100
 
 - **Scout ID:** 705
 - **Company:** Silverback Strategies

@@ -2684,3 +2684,156 @@ Rows marked X: 747, 748, 755, 756, 806, 807, 828, 842, 844, 943, 994, 995, 996
 2026-09-25T19:03:36+00:00   original aggregator URL (https://jooble.org/away/-8702648913417143231?p=1&pos=15&rgn=45&cid=19881&ckey=Search+Marketing+Manager&jobAge=53&brelb=10&scr=146.69511&bscr=146.69511&aq=-5726093621854849389&elckey=-6504562782422381052) - failed: Request failed for https://jooble.org/away/-8702648913417143231?p=1&pos=15&rgn=45&cid=19881&ckey=Search+Marketing+Manager&jobAge=53&brelb=10&scr=146.69511&bscr=146.69511&aq=-5726093621854849389&elckey=-6504562782422381052: HTTP Error 403: Forbidden
 2026-09-25T19:03:36+00:00   original aggregator URL (https://jooble.org/away/-8702648913417143231?p=1&pos=8&rgn=45&cid=19881&ckey=Paid+Media+Manager&jobAge=53&brelb=10&scr=146.68036&bscr=146.68036&aq=-3112665101568697974&elckey=-7462379831310299280) - failed: Request failed for https://jooble.org/away/-8702648913417143231?p=1&pos=8&rgn=45&cid=19881&ckey=Paid+Media+Manager&jobAge=53&brelb=10&scr=146.68036&bscr=146.68036&aq=-3112665101568697974&elckey=-7462379831310299280: HTTP Error 403: Forbidden
 2026-09-25T19:03:37+00:00 RUN END exit_code=1
+2026-09-26T16:48:00+00:00 DAILY RESUME START dry_run=False new_job_ids=1167,1168,1169,1170,1171,1172,1173,1174,1175,1176,1177,1178,1179,1180,1181,1182
+2026-09-26T16:48:03+00:00 Eligible rows: 9; already marked: 0
+2026-09-26T16:48:16+00:00 FAIL row=1030 scout_id=1167 reason=V2 QA failed: Possible keyword stuffing: marketing appears 18 times.; Native Word pagination did not confirm exactly two pages. Resume must be exactly two pages; Word=3, exported PDF=3.
+At C:\Users\DCALL\Desktop\gecko\scripts\validate_word_native.ps1:220 char:5
++     throw "Resume must be exactly two pages; Word=$wordPages, exporte ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Resume must be ...exported PDF=3.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Resume must be exactly two pages; Word=3, exported PDF=3.
+2026-09-26T16:48:16+00:00   stored enriched description (https://cardinalhealth.wd1.myworkdayjobs.com/EXT/job/OH-Dublin-Cardinal-Place/Senior-Specialist--Product-and-Services-Marketing_20187984) - accepted: 7029 characters; minimum 600
+2026-09-26T16:48:16+00:00   stored description (https://www.adzuna.com/land/ad/5898233479?se=Bi94lsi58RGCw6kuTDrJlg&utm_medium=api&utm_source=b4f3e3f8&v=F0F34F154343FC84BA780703817C9BA27EB06AAD) - insufficient: 500 characters; minimum 600
+2026-09-26T16:48:31+00:00 SUCCESS row=1033 scout_id=1170 resume=C:\Users\DCALL\Desktop\gecko\output\resumes\Dave-Call+Alsco+Digital-Marketing-Data-Analyst+5898018778.docx
+2026-09-26T16:48:31+00:00   stored enriched description (https://freehire.me/jobs/digital-marketing-data-analyst-alsco-uniforms-jtgrnqno) - accepted: 6433 characters; minimum 600
+2026-09-26T16:48:31+00:00   stored description (https://www.adzuna.com/details/5898018778?utm_medium=api&utm_source=b4f3e3f8) - insufficient: 500 characters; minimum 600
+2026-09-26T16:48:34+00:00 FAIL row=1034 scout_id=1171 reason=No source produced a complete description of at least 600 characters.
+2026-09-26T16:48:34+00:00   stored enriched description - insufficient: 0 characters; minimum 600
+2026-09-26T16:48:34+00:00   stored description (https://www.adzuna.com/land/ad/5899617746?se=YnkNv8i58RG3jpCv9xpWmA&utm_medium=api&utm_source=b4f3e3f8&v=C06DEC39CC126158AE99BD8385587A7A42245886) - insufficient: 500 characters; minimum 600
+2026-09-26T16:48:34+00:00   authoritative search or re-resolution - authoritative_url_not_found: Several authoritative candidates were too ambiguous to select safely.
+2026-09-26T16:48:34+00:00   original aggregator URL (https://www.adzuna.com/land/ad/5899617746?se=YnkNv8i58RG3jpCv9xpWmA&v=C06DEC39CC126158AE99BD8385587A7A42245886) - failed: Request failed for https://www.adzuna.com/land/ad/5899617746?se=YnkNv8i58RG3jpCv9xpWmA&v=C06DEC39CC126158AE99BD8385587A7A42245886: HTTP Error 403: Forbidden
+2026-09-26T16:48:48+00:00 SUCCESS row=1037 scout_id=1174 resume=C:\Users\DCALL\Desktop\gecko\output\resumes\Dave-Call+Jobgether+Senior-Digital-Marketing-Specialist+88b69de9-6a7f-4eec-80fd-660540de336d.docx
+2026-09-26T16:48:48+00:00   stored enriched description - insufficient: 0 characters; minimum 600
+2026-09-26T16:48:48+00:00   stored description (https://jobs.lever.co/jobgether/88b69de9-6a7f-4eec-80fd-660540de336d) - accepted: 4632 characters; minimum 600
+2026-09-26T16:49:01+00:00 SUCCESS row=1038 scout_id=1175 resume=C:\Users\DCALL\Desktop\gecko\output\resumes\Dave-Call+Jobgether+Senior-Performance-Marketing-Specialist,-Paid-Media+4160bcbb-479a-4b3b-9037-09c7067f270b.docx
+2026-09-26T16:49:01+00:00   stored enriched description - insufficient: 0 characters; minimum 600
+2026-09-26T16:49:01+00:00   stored description (https://jobs.lever.co/jobgether/4160bcbb-479a-4b3b-9037-09c7067f270b) - accepted: 5833 characters; minimum 600
+2026-09-26T16:49:14+00:00 SUCCESS row=1039 scout_id=1176 resume=C:\Users\DCALL\Desktop\gecko\output\resumes\Dave-Call+Jobgether+Digital-Marketing-Manager+b1d0c708-d894-461d-a878-203c8c6f95fa.docx
+2026-09-26T16:49:14+00:00   stored enriched description - insufficient: 0 characters; minimum 600
+2026-09-26T16:49:14+00:00   stored description (https://jobs.lever.co/jobgether/b1d0c708-d894-461d-a878-203c8c6f95fa) - accepted: 5480 characters; minimum 600
+2026-09-26T16:49:25+00:00 FAIL row=1040 scout_id=1177 reason=V2 QA failed: Native Word pagination did not confirm exactly two pages. Resume must be exactly two pages; Word=3, exported PDF=3.
+At C:\Users\DCALL\Desktop\gecko\scripts\validate_word_native.ps1:220 char:5
++     throw "Resume must be exactly two pages; Word=$wordPages, exporte ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Resume must be ...exported PDF=3.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Resume must be exactly two pages; Word=3, exported PDF=3.
+2026-09-26T16:49:25+00:00   stored enriched description - insufficient: 0 characters; minimum 600
+2026-09-26T16:49:25+00:00   stored description (https://jobs.lever.co/princeton10/7a0bf60d-fbb3-471b-8714-23a24adcdea5) - accepted: 4786 characters; minimum 600
+2026-09-26T16:49:37+00:00 FAIL row=1041 scout_id=1178 reason=V2 QA failed: Possible keyword stuffing: marketing appears 18 times.
+2026-09-26T16:49:37+00:00   stored enriched description - insufficient: 0 characters; minimum 600
+2026-09-26T16:49:37+00:00   stored description (https://jobs.lever.co/jobgether/ef75adbc-a7d8-4133-b644-6a44bd45c748) - accepted: 4625 characters; minimum 600
+2026-09-26T16:49:50+00:00 FAIL row=1043 scout_id=1180 reason=V2 QA failed: Possible keyword stuffing: marketing appears 18 times.
+2026-09-26T16:49:50+00:00   stored enriched description - insufficient: 0 characters; minimum 600
+2026-09-26T16:49:50+00:00   stored description (https://jobs.lever.co/jobgether/c713243d-78c0-4441-8901-38583b1f6dd3) - accepted: 6561 characters; minimum 600
+2026-09-26T16:49:50+00:00 DAILY RESUME END exit_code=1
+2026-09-26T17:36:11+00:00 Eligible rows: 5; already marked: 0
+2026-09-26T17:36:17+00:00 FAIL row=1030 scout_id=1167 reason=V2 QA failed: Possible keyword stuffing: marketing appears 18 times.; Native Word pagination did not confirm exactly two pages. ate_word_native.ps1:137 char:9
++         throw "Microsoft Word requires the interactive desktop sessio ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Microsoft Word ...Word-Bridge.cmd:String) [], RuntimeException
+    + FullyQualifiedErrorId : Microsoft Word requires the interactive desktop session. Run this one-time installer fro 
+   m Windows Explorer: C:\Users\DCALL\Desktop\gecko\scripts\Install-Gecko-Word-Bridge.cmd
+2026-09-26T17:36:17+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Cardinal-Health+5898233479.md) - accepted: complete archived listing
+2026-09-26T17:36:20+00:00 FAIL row=1034 scout_id=1171 reason=No source produced a complete description of at least 600 characters.
+2026-09-26T17:36:20+00:00   stored enriched description - insufficient: 0 characters; minimum 600
+2026-09-26T17:36:20+00:00   stored description (https://www.adzuna.com/land/ad/5899617746?se=YnkNv8i58RG3jpCv9xpWmA&utm_medium=api&utm_source=b4f3e3f8&v=C06DEC39CC126158AE99BD8385587A7A42245886) - insufficient: 500 characters; minimum 600
+2026-09-26T17:36:20+00:00   authoritative search or re-resolution - authoritative_url_not_found: Several authoritative candidates were too ambiguous to select safely.
+2026-09-26T17:36:20+00:00   original aggregator URL (https://www.adzuna.com/land/ad/5899617746?se=YnkNv8i58RG3jpCv9xpWmA&v=C06DEC39CC126158AE99BD8385587A7A42245886) - failed: Request failed for https://www.adzuna.com/land/ad/5899617746?se=YnkNv8i58RG3jpCv9xpWmA&v=C06DEC39CC126158AE99BD8385587A7A42245886: HTTP Error 403: Forbidden
+2026-09-26T17:36:25+00:00 FAIL row=1040 scout_id=1177 reason=V2 QA failed: Native Word pagination did not confirm exactly two pages. ate_word_native.ps1:137 char:9
++         throw "Microsoft Word requires the interactive desktop sessio ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Microsoft Word ...Word-Bridge.cmd:String) [], RuntimeException
+    + FullyQualifiedErrorId : Microsoft Word requires the interactive desktop session. Run this one-time installer fro 
+   m Windows Explorer: C:\Users\DCALL\Desktop\gecko\scripts\Install-Gecko-Word-Bridge.cmd
+2026-09-26T17:36:25+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Princeton10+7a0bf60d-fbb3-471b-8714-23a24adcdea5.md) - accepted: complete archived listing
+2026-09-26T17:36:31+00:00 FAIL row=1041 scout_id=1178 reason=V2 QA failed: Possible keyword stuffing: marketing appears 18 times.; Native Word pagination did not confirm exactly two pages. ate_word_native.ps1:137 char:9
++         throw "Microsoft Word requires the interactive desktop sessio ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Microsoft Word ...Word-Bridge.cmd:String) [], RuntimeException
+    + FullyQualifiedErrorId : Microsoft Word requires the interactive desktop session. Run this one-time installer fro 
+   m Windows Explorer: C:\Users\DCALL\Desktop\gecko\scripts\Install-Gecko-Word-Bridge.cmd
+2026-09-26T17:36:31+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Jobgether+ef75adbc-a7d8-4133-b644-6a44bd45c748.md) - accepted: complete archived listing
+2026-09-26T17:36:37+00:00 FAIL row=1043 scout_id=1180 reason=V2 QA failed: Possible keyword stuffing: marketing appears 18 times.; Native Word pagination did not confirm exactly two pages. ate_word_native.ps1:137 char:9
++         throw "Microsoft Word requires the interactive desktop sessio ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Microsoft Word ...Word-Bridge.cmd:String) [], RuntimeException
+    + FullyQualifiedErrorId : Microsoft Word requires the interactive desktop session. Run this one-time installer fro 
+   m Windows Explorer: C:\Users\DCALL\Desktop\gecko\scripts\Install-Gecko-Word-Bridge.cmd
+2026-09-26T17:36:37+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Jobgether+c713243d-78c0-4441-8901-38583b1f6dd3.md) - accepted: complete archived listing
+2026-09-26T17:39:39+00:00 Eligible rows: 5; already marked: 0
+2026-09-26T17:39:44+00:00 FAIL row=1030 scout_id=1167 reason=V2 QA failed: Native Word pagination did not confirm exactly two pages. ate_word_native.ps1:137 char:9
++         throw "Microsoft Word requires the interactive desktop sessio ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Microsoft Word ...Word-Bridge.cmd:String) [], RuntimeException
+    + FullyQualifiedErrorId : Microsoft Word requires the interactive desktop session. Run this one-time installer fro 
+   m Windows Explorer: C:\Users\DCALL\Desktop\gecko\scripts\Install-Gecko-Word-Bridge.cmd
+2026-09-26T17:39:44+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Cardinal-Health+5898233479.md) - accepted: complete archived listing
+2026-09-26T17:39:46+00:00 FAIL row=1034 scout_id=1171 reason=No source produced a complete description of at least 600 characters.
+2026-09-26T17:39:46+00:00   stored enriched description - insufficient: 0 characters; minimum 600
+2026-09-26T17:39:46+00:00   stored description (https://www.adzuna.com/land/ad/5899617746?se=YnkNv8i58RG3jpCv9xpWmA&utm_medium=api&utm_source=b4f3e3f8&v=C06DEC39CC126158AE99BD8385587A7A42245886) - insufficient: 500 characters; minimum 600
+2026-09-26T17:39:46+00:00   authoritative search or re-resolution - authoritative_url_not_found: Several authoritative candidates were too ambiguous to select safely.
+2026-09-26T17:39:46+00:00   original aggregator URL (https://www.adzuna.com/land/ad/5899617746?se=YnkNv8i58RG3jpCv9xpWmA&v=C06DEC39CC126158AE99BD8385587A7A42245886) - failed: Request failed for https://www.adzuna.com/land/ad/5899617746?se=YnkNv8i58RG3jpCv9xpWmA&v=C06DEC39CC126158AE99BD8385587A7A42245886: HTTP Error 403: Forbidden
+2026-09-26T17:39:51+00:00 FAIL row=1040 scout_id=1177 reason=V2 QA failed: Native Word pagination did not confirm exactly two pages. ate_word_native.ps1:137 char:9
++         throw "Microsoft Word requires the interactive desktop sessio ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Microsoft Word ...Word-Bridge.cmd:String) [], RuntimeException
+    + FullyQualifiedErrorId : Microsoft Word requires the interactive desktop session. Run this one-time installer fro 
+   m Windows Explorer: C:\Users\DCALL\Desktop\gecko\scripts\Install-Gecko-Word-Bridge.cmd
+2026-09-26T17:39:51+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Princeton10+7a0bf60d-fbb3-471b-8714-23a24adcdea5.md) - accepted: complete archived listing
+2026-09-26T17:39:57+00:00 FAIL row=1041 scout_id=1178 reason=V2 QA failed: Native Word pagination did not confirm exactly two pages. ate_word_native.ps1:137 char:9
++         throw "Microsoft Word requires the interactive desktop sessio ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Microsoft Word ...Word-Bridge.cmd:String) [], RuntimeException
+    + FullyQualifiedErrorId : Microsoft Word requires the interactive desktop session. Run this one-time installer fro 
+   m Windows Explorer: C:\Users\DCALL\Desktop\gecko\scripts\Install-Gecko-Word-Bridge.cmd
+2026-09-26T17:39:57+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Jobgether+ef75adbc-a7d8-4133-b644-6a44bd45c748.md) - accepted: complete archived listing
+2026-09-26T17:40:04+00:00 FAIL row=1043 scout_id=1180 reason=V2 QA failed: Native Word pagination did not confirm exactly two pages. ate_word_native.ps1:137 char:9
++         throw "Microsoft Word requires the interactive desktop sessio ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Microsoft Word ...Word-Bridge.cmd:String) [], RuntimeException
+    + FullyQualifiedErrorId : Microsoft Word requires the interactive desktop session. Run this one-time installer fro 
+   m Windows Explorer: C:\Users\DCALL\Desktop\gecko\scripts\Install-Gecko-Word-Bridge.cmd
+2026-09-26T17:40:04+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Jobgether+c713243d-78c0-4441-8901-38583b1f6dd3.md) - accepted: complete archived listing
+2026-09-26T17:41:08+00:00 Eligible rows: 1; already marked: 0
+2026-09-26T17:41:13+00:00 FAIL row=1034 scout_id=1171 reason=V2 QA failed: Native Word pagination did not confirm exactly two pages. ate_word_native.ps1:137 char:9
++         throw "Microsoft Word requires the interactive desktop sessio ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Microsoft Word ...Word-Bridge.cmd:String) [], RuntimeException
+    + FullyQualifiedErrorId : Microsoft Word requires the interactive desktop session. Run this one-time installer fro 
+   m Windows Explorer: C:\Users\DCALL\Desktop\gecko\scripts\Install-Gecko-Word-Bridge.cmd
+2026-09-26T17:41:13+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Zoom+5899617746.md) - accepted: complete archived listing
+2026-09-26T17:44:39+00:00 Eligible rows: 5; already marked: 0
+2026-09-26T17:44:56+00:00 SUCCESS row=1030 scout_id=1167 resume=C:\Users\DCALL\Desktop\gecko\output\resumes\Dave-Call+Cardinal-Health+Senior-Specialist,-Product-and-Services-Marketing+5898233479.docx
+2026-09-26T17:44:56+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Cardinal-Health+5898233479.md) - accepted: complete archived listing
+2026-09-26T17:45:11+00:00 SUCCESS row=1034 scout_id=1171 resume=C:\Users\DCALL\Desktop\gecko\output\resumes\Dave-Call+Zoom+Product-Growth-Marketing-Manager+5899617746.docx
+2026-09-26T17:45:11+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Zoom+5899617746.md) - accepted: complete archived listing
+2026-09-26T17:45:16+00:00 FAIL row=1040 scout_id=1177 reason=V2 QA failed: Native Word pagination did not confirm exactly two pages. ate_word_native.ps1:137 char:9
++         throw "Microsoft Word requires the interactive desktop sessio ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Microsoft Word ...Word-Bridge.cmd:String) [], RuntimeException
+    + FullyQualifiedErrorId : Microsoft Word requires the interactive desktop session. Run this one-time installer fro 
+   m Windows Explorer: C:\Users\DCALL\Desktop\gecko\scripts\Install-Gecko-Word-Bridge.cmd
+2026-09-26T17:45:16+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Princeton10+7a0bf60d-fbb3-471b-8714-23a24adcdea5.md) - accepted: complete archived listing
+2026-09-26T17:45:40+00:00 SUCCESS row=1041 scout_id=1178 resume=C:\Users\DCALL\Desktop\gecko\output\resumes\Dave-Call+Jobgether+Paid-Media-Specialist+ef75adbc-a7d8-4133-b644-6a44bd45c748.docx
+2026-09-26T17:45:40+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Jobgether+ef75adbc-a7d8-4133-b644-6a44bd45c748.md) - accepted: complete archived listing
+2026-09-26T17:46:05+00:00 SUCCESS row=1043 scout_id=1180 resume=C:\Users\DCALL\Desktop\gecko\output\resumes\Dave-Call+Jobgether+Digital-Marketing-Manager+c713243d-78c0-4441-8901-38583b1f6dd3.docx
+2026-09-26T17:46:05+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Jobgether+c713243d-78c0-4441-8901-38583b1f6dd3.md) - accepted: complete archived listing
+2026-09-26T17:46:33+00:00 Eligible rows: 1; already marked: 0
+2026-09-26T17:46:55+00:00 SUCCESS row=1040 scout_id=1177 resume=C:\Users\DCALL\Desktop\gecko\output\resumes\Dave-Call+Princeton10+Associate-Director,-Paid-Media+7a0bf60d-fbb3-471b-8714-23a24adcdea5.docx
+2026-09-26T17:46:55+00:00   saved archived description (C:\Users\DCALL\Desktop\gecko\input\job-descriptions\Princeton10+7a0bf60d-fbb3-471b-8714-23a24adcdea5.md) - accepted: complete archived listing
+2026-09-27T09:29:20+00:00 DAILY RESUME START dry_run=False new_job_ids=1183,1184,1185,1186
+2026-09-27T09:29:24+00:00 Eligible rows: 3; already marked: 0
+2026-09-27T09:29:37+00:00 FAIL row=1046 scout_id=1183 reason=No source produced a complete description of at least 600 characters.
+2026-09-27T09:29:37+00:00   stored enriched description - insufficient: 0 characters; minimum 600
+2026-09-27T09:29:37+00:00   stored description (https://www.adzuna.com/details/5900406679?utm_medium=api&utm_source=b4f3e3f8) - insufficient: 500 characters; minimum 600
+2026-09-27T09:29:37+00:00   resolved redirect destination (https://www.adzuna.com/details/5900406679) - failed: Request failed for https://www.adzuna.com/details/5900406679: HTTP Error 403: Forbidden
+2026-09-27T09:29:37+00:00   authoritative search or re-resolution - authoritative_url_not_found: No authoritative employer or ATS posting was verified by search. Last error: Request failed for https://www.linkedin.com/in/kyle-robinson-47938110/: HTTP Error 999: <none>
+2026-09-27T09:29:40+00:00 FAIL row=1047 scout_id=1184 reason=No source produced a complete description of at least 600 characters.
+2026-09-27T09:29:40+00:00   stored enriched description - insufficient: 0 characters; minimum 600
+2026-09-27T09:29:40+00:00   stored description (https://www.adzuna.com/details/5900457074?utm_medium=api&utm_source=b4f3e3f8) - insufficient: 500 characters; minimum 600
+2026-09-27T09:29:40+00:00   resolved redirect destination (https://www.adzuna.com/details/5900457074) - failed: Request failed for https://www.adzuna.com/details/5900457074: HTTP Error 403: Forbidden
+2026-09-27T09:29:40+00:00   authoritative search or re-resolution - authoritative_url_not_found: No authoritative employer or ATS posting was verified by search.
+2026-09-27T09:29:57+00:00 SUCCESS row=1048 scout_id=1185 resume=C:\Users\DCALL\Desktop\gecko\output\resumes\Dave-Call+CSC-Generation+Performance-Marketing-Manager+251097f9-4623-44ed-8224-d04b53a66b99.docx
+2026-09-27T09:29:57+00:00   stored enriched description - insufficient: 0 characters; minimum 600
+2026-09-27T09:29:57+00:00   stored description (https://jobs.lever.co/cscgeneration-2/251097f9-4623-44ed-8224-d04b53a66b99/) - accepted: 6430 characters; minimum 600
+2026-09-27T09:29:57+00:00 DAILY RESUME END exit_code=1

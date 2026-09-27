@@ -1,7 +1,5 @@
 # Remote Paid Search Strategist — Lead Growth & Revenue - Signature Media
 
-**Match Score: 74/100**
-
 **Scout ID:** 686  
 **Job Number:** `226179953176438087`  
 **Company:** Signature Media  

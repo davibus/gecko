@@ -1,7 +1,5 @@
 # Business Development/Marketing Manager (AEC Industry) - Volkert
 
-**Match Score: 21/100**
-
 **Scout ID:** 58  
 **Job Number:** `5887181642`  
 **Company:** Volkert  

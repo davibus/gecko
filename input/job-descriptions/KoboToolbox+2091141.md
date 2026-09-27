@@ -14,7 +14,6 @@
 - **Authoritative URL:** https://apply.workable.com/j/588D5CF127/apply
 - **Date Posted:** 2026-09-18
 - **Date Discovered:** 2026-09-20
-- **Gecko Match Score:** 42/100
 
 ## Source links
 

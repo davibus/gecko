@@ -106,6 +106,22 @@ def marked(value: Any) -> bool:
     return value not in (None, "", False) and _normal(value) not in {"false", "no"}
 
 
+def _background_rgb(cell: dict[str, Any], format_name: str) -> dict[str, float] | None:
+    cell_format = cell.get(format_name, {})
+    style = cell_format.get("backgroundColorStyle", {})
+    if style.get("themeColor") == "BACKGROUND":
+        return None
+    return style.get("rgbColor") or cell_format.get("backgroundColor")
+
+
+def _is_gray(rgb: dict[str, float] | None) -> bool:
+    if not rgb:
+        return False
+    channels = [float(rgb.get(name, 0)) for name in ("red", "green", "blue")]
+    average = sum(channels) / len(channels)
+    return max(channels) - min(channels) <= 0.03 and 0.65 <= average < 0.98
+
+
 def job_key(record: dict[str, Any]) -> str:
     """Recover older numeric IDs from resume filenames when Sheets rounded them."""
     raw = record.get("Job Number")
@@ -339,27 +355,70 @@ class GoogleTracker:
                 "jooble_excluded": excluded}
 
     def highlight_scout_found_on(self, day: str) -> int:
-        """Color only the Scout ID cells for jobs first found on this date."""
+        """Keep light green on Scout IDs first found today while preserving gray."""
         tab = self.scout()
         if "Date Found" not in tab.headers:
             raise RuntimeError("Job Scout is missing the Date Found column")
-        rows = [row for row, data in tab.rows
-                if data.get("Scout ID") not in (None, "") and str(data.get("Date Found") or "")[:10] == day]
-        if not rows:
-            return 0
         column = tab.headers["Scout ID"] - 1
-        requests = [{"repeatCell": {
-            "range": {"sheetId": tab.sheet_id, "startRowIndex": row - 1, "endRowIndex": row,
-                      "startColumnIndex": column, "endColumnIndex": column + 1},
-            "cell": {"userEnteredFormat": {"backgroundColor": NEW_SCOUT_ID_COLOR}},
-            "fields": "userEnteredFormat.backgroundColor",
-        }} for row in rows]
+        populated = [(row, data) for row, data in tab.rows
+                     if data.get("Scout ID") not in (None, "")]
+        target_rows = {
+            row for row, data in populated
+            if str(data.get("Date Found") or "")[:10] == day
+        }
+
+        last_row = max((row for row, _ in populated), default=1)
+        formats: dict[int, dict[str, Any]] = {}
+        if last_row > 1:
+            cell_range = f"{_col(column + 1)}2:{_col(column + 1)}{last_row}"
+            try:
+                grid = self.api.get(
+                    spreadsheetId=self.config.spreadsheet_id,
+                    ranges=[_a1(tab.title, cell_range)],
+                    includeGridData=True,
+                    fields=("sheets(data(startRow,rowData(values("
+                            "userEnteredFormat(backgroundColor,backgroundColorStyle),"
+                            "effectiveFormat(backgroundColor,backgroundColorStyle)))))"),
+                ).execute()
+                data = grid.get("sheets", [{}])[0].get("data", [{}])[0]
+                start_row = int(data.get("startRow", 1)) + 1
+                for offset, row_data in enumerate(data.get("rowData", [])):
+                    values = row_data.get("values", [])
+                    formats[start_row + offset] = values[0] if values else {}
+            except Exception as error:
+                raise RuntimeError(f"Cannot inspect Google Sheets Scout ID formatting: {error}") from error
+
+        requests = []
+        for row, _ in populated:
+            cell = formats.get(row, {})
+            effective_rgb = _background_rgb(cell, "effectiveFormat")
+            if _is_gray(effective_rgb):
+                continue
+            user_rgb = _background_rgb(cell, "userEnteredFormat")
+            if row in target_rows:
+                cell_format = {"userEnteredFormat": {
+                    "backgroundColorStyle": {"rgbColor": NEW_SCOUT_ID_COLOR},
+                }}
+            elif user_rgb:
+                cell_format = {"userEnteredFormat": {
+                    "backgroundColorStyle": {"themeColor": "BACKGROUND"},
+                }}
+            else:
+                continue
+            requests.append({"updateCells": {
+                "range": {"sheetId": tab.sheet_id, "startRowIndex": row - 1, "endRowIndex": row,
+                          "startColumnIndex": column, "endColumnIndex": column + 1},
+                "rows": [{"values": [cell_format]}],
+                "fields": "userEnteredFormat.backgroundColorStyle",
+            }})
+        if not requests:
+            return len(target_rows)
         try:
             self.api.batchUpdate(spreadsheetId=self.config.spreadsheet_id,
                                  body={"requests": requests}).execute()
         except Exception as error:
             raise RuntimeError(f"Cannot highlight Google Sheets Scout IDs found on {day}: {error}") from error
-        return len(rows)
+        return len(target_rows)
 
     def mark_scout_resume(self, scout_id: int, resume_url: str) -> None:
         tab = self.scout()

@@ -1,7 +1,5 @@
 # Director of Public Relations - Westminster University
 
-**Match Score: 31/100**
-
 **Scout ID:** 11  
 **Job Number:** `5886129094`  
 **Company:** Westminster University  

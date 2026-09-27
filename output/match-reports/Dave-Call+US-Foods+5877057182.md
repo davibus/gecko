@@ -1,7 +1,5 @@
 # Category Manager - US Foods
 
-**Match Score: 7/100**
-
 **Scout ID:** 30  
 **Job Number:** `5877057182`  
 **Company:** US Foods  

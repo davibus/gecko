@@ -1,7 +1,5 @@
 # Senior Paid Media Manager - PRIME CORPORATE SERVICES LLC
 
-**Match Score: 74/100**
-
 **Scout ID:** 583  
 **Job Number:** `5395862864393204117`  
 **Company:** PRIME CORPORATE SERVICES LLC  

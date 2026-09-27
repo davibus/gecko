@@ -1,7 +1,5 @@
 # Marketing Advisory Senior Associate (PLS, TMT, FS) - PwC
 
-**Match Score: 67/100**
-
 **Scout ID:** 907  
 **Job Number:** `5895103833`  
 **Company:** PwC  

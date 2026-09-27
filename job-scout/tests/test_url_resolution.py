@@ -44,8 +44,6 @@ def listing(source="Jooble", url=JOOBLE_URL):
         date_posted="2026-09-01",
     )
     job = normalize(raw, discovered="2026-09-02")
-    job.match_score = 91
-    job.evidence_confidence = 82
     return job
 
 
@@ -240,9 +238,8 @@ class URLResolutionTests(unittest.TestCase):
         self.assertEqual(best_job_url(job), official)
         self.assertEqual(url_status_label(job), "Verified - Official ATS")
 
-    def test_stale_state_is_stored_without_changing_fit_score_or_source_history(self):
+    def test_stale_state_is_stored_without_changing_source_history(self):
         job = listing()
-        original_score = job.match_score
         result = resolve_authoritative_url(
             job,
             fetch=lambda _url: FetchedDocument(b"mirror", "https://fitly.work/jobs/123", "text/html"),
@@ -255,7 +252,6 @@ class URLResolutionTests(unittest.TestCase):
                 store.save_url_resolution(job)
                 saved = store.get(job.id)
         self.assertEqual(saved.url_verification_status, "authoritative_url_not_found")
-        self.assertEqual(saved.match_score, original_score)
         self.assertEqual(saved.source_links[0]["url"], JOOBLE_URL)
 
     def test_expired_matching_page_is_not_verified(self):
@@ -317,7 +313,6 @@ class URLResolutionTests(unittest.TestCase):
             with JobStore(Path(directory) / "jobs.sqlite3") as store:
                 summary = discover(
                     JoobleSource(), [SearchRequest("growth marketing")], store,
-                    load_preferences(), "Google Ads GA4 SQL Python leadership", minimum_score=0,
                 )
                 self.assertEqual(store.all(), [])
         self.assertEqual(summary.jooble_excluded, 1)

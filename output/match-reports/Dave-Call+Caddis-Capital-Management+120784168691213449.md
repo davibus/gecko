@@ -1,7 +1,5 @@
 # Caddis Capital Management - Scout ID 167
 
-**Match Score: 64/100**
-
 **Scout ID:** 167  
 **Job Number:** `120784168691213449`  
 **Company:** Caddis Capital Management  

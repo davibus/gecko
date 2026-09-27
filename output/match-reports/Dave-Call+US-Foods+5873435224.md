@@ -1,7 +1,5 @@
 # Marketing Manager - US Foods
 
-**Match Score: 49/100**
-
 **Scout ID:** 16  
 **Job Number:** `5873435224`  
 **Company:** US Foods  

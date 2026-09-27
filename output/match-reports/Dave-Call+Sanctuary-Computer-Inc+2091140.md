@@ -1,7 +1,5 @@
 # Senior Shopify Developer - Sanctuary Computer Inc
 
-**Match Score: 7/100**
-
 **Scout ID:** 467  
 **Job Number:** `2091140`  
 **Company:** Sanctuary Computer Inc  

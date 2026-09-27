@@ -14,7 +14,6 @@
 - **Authoritative URL:** https://jobs.lever.co/wpromote/0ff8aaeb-a07a-40d6-b0b4-e5ff5025a592
 - **Date Posted:** 2024-07-23
 - **Date Discovered:** 2026-09-21
-- **Gecko Match Score:** 96/100
 
 ## Source links
 

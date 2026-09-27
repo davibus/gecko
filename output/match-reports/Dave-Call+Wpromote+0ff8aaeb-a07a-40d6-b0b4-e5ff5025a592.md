@@ -1,6 +1,6 @@
 # Gecko Match Report — Wpromote Paid Search Manager
 
-## Match Score: 96/100
+## : 96/100
 
 Dave is an exceptionally strong functional match for Wpromote's Paid Search Manager position. The source resume directly supports agency portfolio management, Google and Microsoft/Bing Ads, direct response, Search, Shopping, Display, Remarketing, Video, keyword and bid strategy, A/B testing, Google Analytics, advanced Excel, LTV, CPA, ROAS, client presentations, and AI-assisted automation. The score is limited primarily by overqualification and a few platform-specific gaps rather than core capability.
 

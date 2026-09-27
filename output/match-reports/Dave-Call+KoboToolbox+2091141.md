@@ -1,6 +1,6 @@
 # Gecko Match Report — KoboToolbox Frontend Web Application Developer
 
-## Match Score: 42/100
+## : 42/100
 
 Dave offers credible transferable strengths in web technologies, scripting, Python, SQL, Git, APIs, databases, automation, analytics, ecommerce platforms, technical problem solving, and AI-assisted workflows. However, this is a dedicated frontend software-engineering role with several core requirements that are not supported by the source resume. Most importantly, the resume does not establish professional experience building, deploying, and maintaining large API-driven single-page applications with React and TypeScript. This is a material role mismatch, not a keyword gap.
 

@@ -1,7 +1,5 @@
 # Lifecycle Marketing Manager - Axelon Services Corporation
 
-**Match Score: 36/100**
-
 **Scout ID:** 617  
 **Job Number:** `7273885011177826229`  
 **Company:** Axelon Services Corporation  

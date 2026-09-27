@@ -1,7 +1,5 @@
 # Paid Search Analyst - Intermountain Home Services
 
-**Match Score: 78/100**
-
 **Scout ID:** 111  
 **Job Number:** `-7629659836557648634`  
 **Company:** Intermountain Home Services  

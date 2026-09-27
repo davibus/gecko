@@ -1,7 +1,5 @@
 # Email Marketing Manager - Sorenson Communications
 
-**Match Score: 36/100**
-
 **Scout ID:** 223  
 **Job Number:** `-2131569198464352399`  
 **Company:** Sorenson Communications  

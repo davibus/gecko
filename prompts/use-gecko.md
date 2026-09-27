@@ -7,7 +7,7 @@ Job listing/source:
 
 Instructions:
 - Read `GECKO_SYSTEM.md` and `AGENTS.md` first.
-- Use only `input/master-resume/Dave-Call-resume-9-23-26.docx` for resume facts. The older PDF is not a source, and `Dave_Call_Resume_5ec9726395344311.docx` is for formatting only.
+- Use only `input/master-resume/Dave-Call-Resume.txt` for resume facts. The older DOCX and PDF are not content sources, and `Dave_Call_Resume_5ec9726395344311.docx` is for formatting only.
 - Run `python scripts/gecko_v2.py plan` on the archived listing before changing the resume. Review supported, review, and gap items and the source quotes in the plan.
 - Create a dedicated scratch subfolder: `scratch/{Company-Name}+{JobNumber}/` for all temporary files (previews, PNGs, PDFs, intermediate files). Sanitize company names for Windows filenames.
 - Reusable tools and scripts reside in `scripts/`.

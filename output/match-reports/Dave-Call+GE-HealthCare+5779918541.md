@@ -1,7 +1,5 @@
 # Manager, Quality, PPC - Surgery - GE HealthCare
 
-**Match Score: 7/100**
-
 **Scout ID:** 6  
 **Job Number:** `5779918541`  
 **Company:** GE HealthCare  

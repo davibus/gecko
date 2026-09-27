@@ -1,7 +1,5 @@
 # PPC Marketing Manager - Superior Executive Legal Recruiting
 
-**Match Score: 74/100**
-
 **Scout ID:** 152  
 **Job Number:** `-9106951396746321122`  
 **Company:** Superior Executive Legal Recruiting  

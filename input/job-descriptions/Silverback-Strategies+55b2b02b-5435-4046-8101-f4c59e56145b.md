@@ -14,7 +14,6 @@
 - **Authoritative URL:** https://jobs.lever.co/silverbackstrategies/55b2b02b-5435-4046-8101-f4c59e56145b
 - **Date Posted:** 2026-09-15
 - **Date Discovered:** 2026-09-21
-- **Gecko Match Score:** 69/100
 
 ## Source links
 

@@ -1,6 +1,6 @@
 # Gecko Match Report — CampusWorks Digital Marketing Manager
 
-## Match Score: 86/100
+## : 86/100
 
 Dave is a strong functional match for CampusWorks' Digital Marketing Manager role. The source resume directly supports 14+ years of hands-on digital marketing, WordPress and web-platform familiarity, SEO, conversion optimization, paid media, email, analytics, attribution, reporting automation, database work, and cross-functional ownership. The main gaps are platform- and sector-specific: direct Pardot execution, Salesforce dashboard administration, higher-education experience, HEP databases, formal web-accessibility ownership, and explicit ABM program leadership are not established by the source material.
 

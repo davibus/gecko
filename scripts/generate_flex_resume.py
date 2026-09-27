@@ -14,7 +14,7 @@ NAME = f"Flex+{KEY}"
 
 
 def main():
-    source_text()  # Fresh read of the authoritative master DOCX for this generation.
+    source_text()  # Fresh read of the authoritative master archive for this generation.
     scratch = ROOT / "scratch" / NAME
     scratch.mkdir(parents=True, exist_ok=True)
     response = requests.get(f"https://api.lever.co/v0/postings/Flex/{KEY}", timeout=30)
@@ -85,7 +85,7 @@ def main():
     report = ROOT / "output/match-reports" / f"Dave-Call+{NAME}.md"
     report.write_text(f"""# Head of Growth Marketing - Flex
 
-Reviewed against the current master DOCX and the full official listing. This is a stretch leadership application.
+Reviewed against the current master archive and the full official listing. This is a stretch leadership application.
 
 ## Strongest alignment areas
 
@@ -118,7 +118,7 @@ Emphasize paid acquisition scale, measurable growth and efficiency, leadership, 
 
 Prepare examples of budget decisions, holdouts and regression analysis, conversion tests, team leadership, and commercial prioritization. Explain how those methods transfer to a fintech growth function while acknowledging the ARR and PLG gaps. The role is remote in the USA. Listed annual compensation of $275,000-$450,000 combines base, stock, and bonus; it is not stated base salary alone.
 
-## Score rationale
+## Alignment rationale
 
 | Area | Points |
 | --- | --- |
@@ -134,7 +134,7 @@ Prepare examples of budget decisions, holdouts and regression analysis, conversi
 ## Validation and sources
 
 - Microsoft Word computed 2 pages; Word-exported PDF contains 2 pages. Native validation passed with no content/layout audit issues.
-- Factual source: input/master-resume/Dave-Call-resume-9-23-26.docx, freshly read for this generation.
+- Factual source: input/master-resume/Dave-Call-Resume.txt, freshly read for this generation.
 - [Official Flex listing]({listing['hostedUrl']})
 - Archived description: input/job-descriptions/{NAME}.md
 - Evidence and validation files: scratch/{NAME}/

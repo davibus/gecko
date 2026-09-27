@@ -1,7 +1,5 @@
 # Grabber Construction Products - Scout ID 77
 
-**Match Score: 58/100**
-
 **Scout ID:** 77  
 **Job Number:** `2441240171420196721`  
 **Company:** Grabber Construction Products  

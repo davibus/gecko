@@ -14,7 +14,6 @@
 - **Authoritative URL:** 
 - **Date Posted:** 2025-07-31
 - **Date Discovered:** 2026-09-21
-- **Gecko Match Score:** 71/100
 
 ## Source links
 

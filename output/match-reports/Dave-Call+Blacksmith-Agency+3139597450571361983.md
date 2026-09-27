@@ -1,7 +1,5 @@
 # Blacksmith Agency - Scout ID 140
 
-**Match Score: 78/100**
-
 **Scout ID:** 140  
 **Job Number:** `3139597450571361983`  
 **Company:** Blacksmith Agency  

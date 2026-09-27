@@ -1,7 +1,5 @@
 # Senior Paid Search Specialist - Carnegie Dartlet
 
-**Match Score: 78/100**
-
 **Scout ID:** 128  
 **Job Number:** `-3955026892114515435`  
 **Company:** Carnegie Dartlet  

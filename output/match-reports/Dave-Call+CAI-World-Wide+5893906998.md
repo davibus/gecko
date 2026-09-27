@@ -1,7 +1,5 @@
 # Marketing Manager - CAI World-Wide
 
-**Match Score: 49/100**
-
 **Scout ID:** 726  
 **Job Number:** `5893906998`  
 **Company:** CAI World-Wide  

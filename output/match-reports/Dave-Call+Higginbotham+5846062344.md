@@ -1,7 +1,5 @@
 # Marketing Content Writer - Higginbotham
 
-**Match Score: 33/100**
-
 **Scout ID:** 25  
 **Job Number:** `5846062344`  
 **Company:** Higginbotham  

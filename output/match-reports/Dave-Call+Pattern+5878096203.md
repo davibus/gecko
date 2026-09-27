@@ -1,7 +1,5 @@
 # Paid Media Manager - Pattern
 
-**Match Score: 74/100**
-
 **Scout ID:** 559  
 **Job Number:** `5878096203`  
 **Company:** Pattern  

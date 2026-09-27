@@ -1,7 +1,5 @@
 # Paid Media Specialist - Clearlink Technologies
 
-**Match Score: 78/100**
-
 **Scout ID:** 452  
 **Job Number:** `3955512202762409862`  
 **Company:** Clearlink Technologies  

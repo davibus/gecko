@@ -1,7 +1,5 @@
 # Director, Marketing - Sunpro, Inc.
 
-**Match Score: 49/100**
-
 **Scout ID:** 222  
 **Job Number:** `-9040818461177765253`  
 **Company:** Sunpro, Inc.  

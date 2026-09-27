@@ -1,7 +1,5 @@
 # Senior Manager, Retail Media and Commerce Activation - Bausch + Lomb
 
-**Match Score: 61/100**
-
 **Scout ID:** 397  
 **Job Number:** `5890506201`  
 **Company:** Bausch + Lomb  

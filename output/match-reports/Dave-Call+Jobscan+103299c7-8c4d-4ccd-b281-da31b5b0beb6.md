@@ -4,7 +4,6 @@
 - **Company:** Jobscan
 - **Job Title:** Senior Growth Marketing Manager, Content & Lifecycle
 - **Job Number:** 103299c7-8c4d-4ccd-b281-da31b5b0beb6
-- **Match Score:** 48/100
 - **Assessment Date:** September 23, 2026
 - **Location:** Remote - USA; consistent US Eastern-time overlap required
 - **Salary:** $125,000 - $130,000 per year

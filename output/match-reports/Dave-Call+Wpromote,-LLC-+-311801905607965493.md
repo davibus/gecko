@@ -1,7 +1,5 @@
 # B2B Paid Search Director Remote Leadership - Wpromote,-LLC-
 
-**Match Score: 72/100**
-
 **Scout ID:** 615  
 **Job Number:** `-311801905607965493`  
 **Company:** Wpromote,-LLC-  

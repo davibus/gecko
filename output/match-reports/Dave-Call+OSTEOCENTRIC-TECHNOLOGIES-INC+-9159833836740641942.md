@@ -1,7 +1,5 @@
 # Director of Marketing - OSTEOCENTRIC TECHNOLOGIES INC
 
-**Match Score: 49/100**
-
 **Scout ID:** 404  
 **Job Number:** `-9159833836740641942`  
 **Company:** OSTEOCENTRIC TECHNOLOGIES INC  

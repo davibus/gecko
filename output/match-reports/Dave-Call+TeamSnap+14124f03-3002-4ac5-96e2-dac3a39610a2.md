@@ -1,7 +1,5 @@
 # Senior Marketing Manager — TeamSnap
 
-**Match Score: 38/100**
-
 **Scout ID:** 704  
 **Job Number:** `14124f03-3002-4ac5-96e2-dac3a39610a2`  
 **Company:** TeamSnap  

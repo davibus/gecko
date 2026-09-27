@@ -1,4 +1,4 @@
-"""Generate the reviewed Apply? selections with direct master-DOCX evidence."""
+"""Generate the reviewed Apply? selections with direct master-archive evidence."""
 
 import argparse
 import json

@@ -1,7 +1,5 @@
 # Senior .NET Full-stack Developer - Lemon.io
 
-**Match Score: 7/100**
-
 **Scout ID:** 470  
 **Job Number:** `2091130`  
 **Company:** Lemon.io  

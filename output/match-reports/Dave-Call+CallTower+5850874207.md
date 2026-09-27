@@ -1,7 +1,5 @@
 # Manager - Marketing Operations - CallTower
 
-**Match Score: 36/100**
-
 **Scout ID:** 35  
 **Job Number:** `5850874207`  
 **Company:** CallTower  

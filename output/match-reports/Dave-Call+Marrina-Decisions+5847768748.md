@@ -1,7 +1,5 @@
 # REMOTE: Senior Marketing Operations Lead (Lifecycle & Automation) — Marrina Decisions
 
-**Match Score: 36/100**
-
 **Scout ID:** 36  
 **Job Number:** `5847768748`  
 **Company:** Marrina Decisions  

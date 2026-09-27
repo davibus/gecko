@@ -1,7 +1,5 @@
 # Digital Performance Marketing Manager - Studio McGee
 
-**Match Score: 76/100**
-
 **Company:** Studio McGee  
 **Job Title:** Digital Performance Marketing Manager  
 **Job Key (Indeed jk):** `4ead51309acecc1f`  

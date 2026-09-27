@@ -1,7 +1,5 @@
 # Product Marketing Manager, Payments - Stripe
 
-**Match Score: 34/100**
-
 **Scout ID:** 709  
 **Job Number:** `Stripe`  
 **Company:** Stripe  

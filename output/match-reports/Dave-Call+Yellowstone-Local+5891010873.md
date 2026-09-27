@@ -1,7 +1,5 @@
 # Senior Project Manager - Yellowstone Local
 
-**Match Score: 7/100**
-
 **Scout ID:** 401  
 **Job Number:** `5891010873`  
 **Company:** Yellowstone Local  

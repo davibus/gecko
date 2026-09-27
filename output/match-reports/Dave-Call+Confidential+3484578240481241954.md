@@ -1,7 +1,5 @@
 # Director of Digital Sales & Marketing, Online Retail - Confidential
 
-**Match Score: 61/100**
-
 **Scout ID:** 672  
 **Job Number:** `3484578240481241954`  
 **Company:** Confidential  

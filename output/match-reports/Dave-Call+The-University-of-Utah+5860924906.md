@@ -1,7 +1,5 @@
 # Social Media Management - The University of Utah
 
-**Match Score: 53/100**
-
 **Scout ID:** 19  
 **Job Number:** `5860924906`  
 **Company:** The University of Utah  

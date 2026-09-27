@@ -1,7 +1,5 @@
 # Unicity International Inc - Scout ID 547
 
-**Match Score: 54/100**
-
 **Scout ID:** 547  
 **Job Number:** `7538052285135881690`  
 **Company:** Unicity International Inc  

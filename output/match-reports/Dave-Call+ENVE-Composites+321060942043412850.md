@@ -1,7 +1,5 @@
 # Product Marketing Manager - ENVE Composites
 
-**Match Score: 31/100**
-
 **Scout ID:** 531  
 **Job Number:** `321060942043412850`  
 **Company:** ENVE Composites  

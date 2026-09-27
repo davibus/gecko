@@ -1,7 +1,5 @@
 # Paid Search Manager - Virtual Vocations Inc
 
-**Match Score: 78/100**
-
 **Scout ID:** 107  
 **Job Number:** `-3191972996969954871`  
 **Company:** Virtual Vocations Inc  

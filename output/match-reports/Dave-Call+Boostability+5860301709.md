@@ -1,7 +1,5 @@
 # Boostability — Senior Growth Marketing Manager Match Report
 
-**Match Score: 84/100**
-
 ## Strongest alignment areas
 
 - **Senior hands-on growth leadership:** Dave has more than 14 years across digital marketing, ecommerce, analytics, and technology, with director-level ownership and continued direct campaign execution.

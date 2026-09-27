@@ -1,7 +1,5 @@
 # Senior Digital Marketing Analyst - Virtual Vocations Inc
 
-**Match Score: 61/100**
-
 **Scout ID:** 808  
 **Job Number:** `4643609776434463930`  
 **Company:** Virtual Vocations Inc  

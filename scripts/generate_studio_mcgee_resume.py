@@ -13,7 +13,7 @@ import fitz
 from docx import Document
 
 from generate_apply_selected_resumes import CONFIG, build_resume
-from gecko_v2 import ROOT, resume_filename, source_hashes, source_text
+from gecko_v2 import MASTER, ROOT, resume_filename, source_hashes, source_text
 
 
 JOB_ID = 990001
@@ -125,7 +125,7 @@ Lead with multi-channel paid-media scale, budget stewardship, ecommerce ROAS gro
 
 Clarify how much of the role is spent on affiliate recruitment, direct mail, and DSP management versus paid-media strategy and agency oversight. Ask about the agency decision rights, investment mix, remote/hybrid expectations, and manager-level scope. Prepare examples of cross-channel budget decisions, test design, and translating performance analysis into recommendations.
 
-**Validation:** Microsoft Word computed 2 pages; Word-exported PDF has 2 pages. Master SHA-256: `{source_hashes()[str((ROOT / 'input/master-resume/Dave-Call-resume-9-23-26.docx').relative_to(ROOT))]}`.
+**Validation:** Microsoft Word computed 2 pages; Word-exported PDF has 2 pages. Master SHA-256: `{source_hashes()[str(MASTER.relative_to(ROOT))]}`.
 """
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text(body, encoding="utf-8")

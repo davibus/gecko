@@ -1,7 +1,5 @@
 # Vice President, Growth Marketing - Rocket Software
 
-**Match Score: 36/100**
-
 **Scout ID:** 260  
 **Job Number:** `-8891368138074341805`  
 **Company:** Rocket Software  

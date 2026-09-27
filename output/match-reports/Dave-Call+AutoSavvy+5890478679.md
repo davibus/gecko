@@ -1,7 +1,5 @@
 # Marketing Manager - AutoSavvy
 
-**Match Score: 49/100**
-
 **Scout ID:** 7  
 **Job Number:** `5890478679`  
 **Company:** AutoSavvy  

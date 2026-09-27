@@ -1,7 +1,5 @@
 # Manager, E-Commerce Channel - US Vision Care - Bausch + Lomb
 
-**Match Score: 66/100**
-
 **Scout ID:** 70  
 **Job Number:** `5743052896`  
 **Company:** Bausch + Lomb  

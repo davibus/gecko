@@ -14,7 +14,6 @@
 - **Authoritative URL:** https://www.digitalmarketing.com/careers/seo-digital-marketing-senior-analyst-freelance-provo/
 - **Date Posted:** 2025-07-31
 - **Date Discovered:** 2026-09-19
-- **Gecko Match Score:** 65/100
 
 ## Source links
 

@@ -4,7 +4,6 @@
 - **Company:** Bamboo Insurance
 - **Job Title:** Director of Performance Marketing
 - **Job Number:** 5846794031
-- **Match Score:** 70/100
 - **Assessment Date:** September 23, 2026
 - **Location:** Midvale, Utah per Scout; role-specific remote/on-site arrangement needs confirmation
 - **Salary:** Starting at $160,000 annually; final offer depends on skills, experience, and abilities

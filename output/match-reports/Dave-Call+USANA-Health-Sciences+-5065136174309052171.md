@@ -1,7 +1,5 @@
 # Product Marketing Manager - USANA Health Sciences
 
-**Match Score: 31/100**
-
 **Scout ID:** 586  
 **Job Number:** `-5065136174309052171`  
 **Company:** USANA Health Sciences  

@@ -1,7 +1,5 @@
 # Top Talent Recruiter - Scout ID 576
 
-**Match Score: 58/100**
-
 **Scout ID:** 576  
 **Job Number:** `6531534026580225028`  
 **Company:** Top Talent Recruiter  

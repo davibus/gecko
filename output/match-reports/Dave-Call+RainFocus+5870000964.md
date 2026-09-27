@@ -1,7 +1,5 @@
 # Sr. Product Marketing Manager - Events (Remote) - RainFocus
 
-**Match Score: 31/100**
-
 **Scout ID:** 564  
 **Job Number:** `5870000964`  
 **Company:** RainFocus  

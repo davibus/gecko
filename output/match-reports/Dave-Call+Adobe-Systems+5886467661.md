@@ -1,7 +1,5 @@
 # Technology Consultant - Adobe Systems
 
-**Match Score: 7/100**
-
 **Scout ID:** 10  
 **Job Number:** `5886467661`  
 **Company:** Adobe Systems  

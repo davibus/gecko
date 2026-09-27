@@ -1,7 +1,5 @@
 # Head of Demand Generation - Pattern
 
-**Match Score: 62/100**
-
 **Scout ID:** 398  
 **Job Number:** `5879394179`  
 **Company:** Pattern  

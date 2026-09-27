@@ -30,10 +30,9 @@ from check_job_links import (  # noqa: E402
 
 HEADERS = [
     "Scout ID", "Source", "Company", "Job Title", "Gecko Status", "Apply?",
-    "Resume Created", "Applied", "Notes", "Website", "Match Score",
-    "Evidence Confidence", "Match Status", "Location", "Work Arrangement",
+    "Resume Created", "Applied", "Notes", "Location", "Work Arrangement",
     "Employment Type", "Salary", "Date Posted", "Date Found", "Last Seen",
-    "Job URL", "Company Website URL",
+    "Job URL", "Resume Link",
 ]
 
 
@@ -44,35 +43,33 @@ def workbook_fixture() -> Workbook:
     worksheet.append(HEADERS)
     worksheet.append([
         1, "test", "Acme", "Paid Search Manager", "New", "yes", "", "",
-        "Recruiter contacted", "", 90, 95, "Strong", "Remote", "remote",
-        "full-time", "", "", "", "", "https://jobs.test/removed",
-        "https://acme.test",
+        "Recruiter contacted", "Remote", "remote", "full-time", "", "", "", "",
+        "https://jobs.test/removed", "file:///resume-one.docx",
     ])
     worksheet.append([
         2, "test", "Example", "Growth Manager", "New", "yes", "", "",
-        "", "Old value", 80, 90, "Near", "Utah", "hybrid", "full-time",
-        "", "", "", "", "https://jobs.test/exists", "https://missing.test",
+        "", "Utah", "hybrid", "full-time", "", "", "", "",
+        "https://jobs.test/exists", "file:///resume-two.docx",
     ])
     worksheet.append([
         3, "test", "Blocked", "SEO Manager", "New", "yes", "", "",
-        "Keep this", "Keep website", 70, 80, "Near", "Utah", "remote",
-        "full-time", "", "", "", "", "https://jobs.test/unknown", "",
+        "Keep this", "Utah", "remote", "full-time", "", "", "", "",
+        "https://jobs.test/unknown", "",
     ])
-    worksheet.freeze_panes = "K2"
-    worksheet.auto_filter.ref = "A1:V4"
+    worksheet.freeze_panes = "J2"
+    worksheet.auto_filter.ref = "A1:R4"
     worksheet.row_dimensions[2].height = 31
     worksheet.column_dimensions["I"].width = 30
     worksheet.column_dimensions["H"].hidden = True
     worksheet.row_dimensions[4].hidden = True
     worksheet["A1"].fill = PatternFill("solid", fgColor="1F4E78")
     worksheet["A1"].font = Font(color="FFFFFF", bold=True)
-    worksheet["K2"] = "=1+1"
-    worksheet["U2"].hyperlink = "https://jobs.test/removed"
+    worksheet["R2"].hyperlink = "file:///resume-one.docx"
     worksheet.conditional_formatting.add(
-        "A2:V4",
+        "A2:R4",
         FormulaRule(formula=['$E2="New"'], fill=PatternFill("solid", fgColor="FFF2CC")),
     )
-    table = Table(displayName="JobScoutTable", ref="A1:V4")
+    table = Table(displayName="JobScoutTable", ref="A1:R4")
     table.tableStyleInfo = TableStyleInfo(
         name="TableStyleMedium2", showFirstColumn=False, showLastColumn=False,
         showRowStripes=True, showColumnStripes=False,
@@ -183,7 +180,7 @@ class ClassificationTests(unittest.TestCase):
 
 
 class WorkbookPreservationTests(unittest.TestCase):
-    def test_only_notes_and_website_values_change(self):
+    def test_only_notes_change(self):
         workbook = workbook_fixture()
         before = structure_snapshot(workbook)
 
@@ -206,15 +203,12 @@ class WorkbookPreservationTests(unittest.TestCase):
         )
 
         self.assertEqual(workbook["Job Scout"]["I2"].value, "Recruiter contacted\nDoesn't exist")
-        self.assertEqual(workbook["Job Scout"]["J2"].value, "Yes")
         self.assertEqual(workbook["Job Scout"]["I3"].value, "")
-        self.assertEqual(workbook["Job Scout"]["J3"].value, "No Website")
         self.assertEqual(workbook["Job Scout"]["I4"].value, "Keep this")
-        self.assertEqual(workbook["Job Scout"]["J4"].value, "Keep website")
         self.assertEqual((summary.jobs_removed, summary.jobs_existing, summary.job_status_unknown), (1, 1, 1))
 
         after = structure_snapshot(workbook)
-        allowed = {"I2", "J2", "J3"}
+        allowed = {"I2"}
         before_cells = before["sheets"][0].pop("cells")
         after_cells = after["sheets"][0].pop("cells")
         self.assertEqual(before, after)
@@ -248,8 +242,6 @@ class WorkbookPreservationTests(unittest.TestCase):
             self.assertEqual(before, after)
             for coordinate, left in before_cells.items():
                 right = after_cells[coordinate]
-                if coordinate in {"J2", "J3", "J4"}:
-                    left = {**left, "value": "Yes"}
                 self.assertEqual(left, right, coordinate)
 
 

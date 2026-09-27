@@ -1,5 +1,4 @@
-# Gecko Match Score Report
-
+# Gecko Match Analysis
 **Job Title:** Director of Growth Marketing  
 **Company:** Marksmen Inc.  
 **Location:** Alpine, UT 84004 (On-site)  
@@ -7,7 +6,7 @@
 **Application URL:** https://www.indeed.com/viewjob?jk=fa82cf050ba15a2a&from=shareddesktop_copy  
 **Generated Resume:** `output/resumes/Dave-Call+Marksmen-Inc+fa82cf050ba15a2a.docx`
 
-## Match Score: 91/100
+## : 91/100
 
 Dave is a strong match for this hands-on growth leadership role. The source supports more than 14 years across marketing and technology, substantial B2B and B2C responsibility, measurable revenue growth, direct campaign execution, copywriting and content skills, CRM and lifecycle platforms, advanced analytics, automation, and close work with senior leaders. The score is held below the mid-90s because the source does not establish an in-house legal/IP professional-services role, quantify pipeline or former-client reactivation outcomes, or show a dedicated thought-leadership program for law-firm buyers.
 

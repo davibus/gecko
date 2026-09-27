@@ -1,7 +1,5 @@
 # Marketing Manager - Rust Automation & Controls
 
-**Match Score: 49/100**
-
 **Scout ID:** 558  
 **Job Number:** `5889409526`  
 **Company:** Rust Automation & Controls  

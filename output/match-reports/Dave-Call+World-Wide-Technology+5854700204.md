@@ -1,7 +1,5 @@
 # GES Sales/Sales Operations and Business Development Intern -2027 - World Wide Technology
 
-**Match Score: 10/100**
-
 **Scout ID:** 49  
 **Job Number:** `5854700204`  
 **Company:** World Wide Technology  

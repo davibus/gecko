@@ -1,7 +1,5 @@
 # Marketing Manager - Goldener Hirsch
 
-**Match Score: 49/100**
-
 **Scout ID:** 235  
 **Job Number:** `-8368439807200289848`  
 **Company:** Goldener Hirsch  

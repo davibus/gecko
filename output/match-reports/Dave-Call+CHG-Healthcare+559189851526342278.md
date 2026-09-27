@@ -1,7 +1,5 @@
 # Brand Marketing Director - CHG Healthcare
 
-**Match Score: 31/100**
-
 **Scout ID:** 374  
 **Job Number:** `559189851526342278`  
 **Company:** CHG Healthcare  

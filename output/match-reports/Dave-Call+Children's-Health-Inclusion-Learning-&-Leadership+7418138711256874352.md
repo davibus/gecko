@@ -1,7 +1,5 @@
 # Social Media Marketing Manager - Children's Health Inclusion Learning & Leadership
 
-**Match Score: 53/100**
-
 **Scout ID:** 305  
 **Job Number:** `7418138711256874352`  
 **Company:** Children's Health Inclusion Learning & Leadership  

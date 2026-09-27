@@ -14,7 +14,6 @@
 - **Authoritative URL:** https://job-boards.greenhouse.io/trovebrands/jobs/4179441009
 - **Date Posted:** 2026-06-03
 - **Date Discovered:** 2026-09-19
-- **Gecko Match Score:** 72/100
 
 ## Source links
 

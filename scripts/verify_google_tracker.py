@@ -17,17 +17,25 @@ from google_tracker import Config, GoogleTracker, job_key  # noqa: E402
 
 
 def verify_live(tracker: GoogleTracker, job_number: str | None) -> None:
-    application = tracker.application()
     scout = tracker.scout()
-    print(f"Read Google Sheet: {len(application.rows)} Job Tracker rows, {len(scout.rows)} Job Scout rows")
+    try:
+        application = tracker.application()
+    except RuntimeError as error:
+        if "not found" not in str(error).casefold():
+            raise
+        application = None
+    print(f"Read Google Sheet: {len(scout.rows)} Job Scout rows"
+          + (f", {len(application.rows)} Job Tracker rows" if application else ", no Job Tracker tab"))
     if job_number:
+        if application is None:
+            raise RuntimeError("A Job Number lookup requires the optional Job Tracker tab")
         found = tracker.find_application(job_number)
         if not found:
             raise RuntimeError(f"Job Number {job_number!r} was not found")
         print(f"Located Job Number {job_number!r} at row {found[0]}")
     seen = set()
     duplicates = []
-    for row, data in application.rows:
+    for row, data in application.rows if application else []:
         key = job_key(data)
         if not key:
             continue
@@ -48,12 +56,12 @@ def verify_write(config: Config) -> None:
     before = tracker.find_application(number)
     manual = ((before[1].get("Applied"), before[1].get("Contacted")) if before else None)
     tracker.upsert_application({"Job Number": number, "Company": "Gecko Verification",
-                                "Match Score": "80/100", "Applied": "overwrite attempt",
+                                "Status": "resume-created", "Applied": "overwrite attempt",
                                 "Contacted": "overwrite attempt"})
-    tracker.upsert_application({"Job Number": number, "Match Score": "81/100",
+    tracker.upsert_application({"Job Number": number, "Status": "applied",
                                 "Applied": "overwrite attempt", "Contacted": "overwrite attempt"})
     found = tracker.find_application(number)
-    if not found or found[1].get("Match Score") != "81/100":
+    if not found or found[1].get("Status") != "applied":
         raise RuntimeError("Managed-cell update did not persist")
     after_manual = (found[1].get("Applied"), found[1].get("Contacted"))
     if (manual is not None and after_manual != manual) or (manual is None and

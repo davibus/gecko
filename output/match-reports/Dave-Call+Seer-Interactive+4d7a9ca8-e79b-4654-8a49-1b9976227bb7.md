@@ -1,7 +1,5 @@
 # Demand Generation Manager — Seer Interactive
 
-**Match Score: 58/100**
-
 **Scout ID:** 715  
 **Job Number:** `4d7a9ca8-e79b-4654-8a49-1b9976227bb7`  
 **Company:** Seer Interactive  

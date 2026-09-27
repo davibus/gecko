@@ -1,7 +1,5 @@
 # Senior Sales and Marketing Manager - The Front Climbing Club
 
-**Match Score: 21/100**
-
 **Scout ID:** 57  
 **Job Number:** `5889815001`  
 **Company:** The Front Climbing Club  

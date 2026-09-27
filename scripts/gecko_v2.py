@@ -22,7 +22,7 @@ from docx.shared import Inches, Pt, RGBColor
 from silent_subprocess import windows_creationflags
 
 ROOT = Path(__file__).resolve().parents[1]
-MASTER = ROOT / "input/master-resume/Dave-Call-resume-9-23-26.docx"
+MASTER = ROOT / "input/master-resume/Dave-Call-Resume.txt"
 SECTIONS = ("Professional Summary", "Core Competencies & Technical Skills", "Professional Experience", "Education & Certifications")
 TERMS = (
     "SEO", "technical SEO", "paid search", "Google Ads", "Bing Ads", "Microsoft Ads", "Meta Ads", "Google Analytics",
@@ -57,39 +57,106 @@ def words(text: str) -> set[str]:
     return {w for w in key(text).split() if len(w) > 2 and w not in STOP}
 
 
+def master_lines() -> list[str]:
+    """Read the current master archive on every call."""
+    return MASTER.read_text(encoding="utf-8-sig").splitlines()
+
+
 def source_text() -> str:
-    """Read the current DOCX on every call, including table-based skills."""
-    doc = Document(MASTER)
-    lines = [p.text for p in doc.paragraphs if p.text.strip()]
-    lines.extend(cell.text for table in doc.tables for row in table.rows for cell in row.cells if cell.text.strip())
-    return "\n".join(lines)
+    """Read the current master archive on every call."""
+    return "\n".join(line.strip() for line in master_lines() if line.strip())
 
 
 def source_hashes() -> dict[str, str]:
     return {str(MASTER.relative_to(ROOT)): hashlib.sha256(MASTER.read_bytes()).hexdigest()}
 
 
-def extract_evidence(source: str) -> list[dict]:
-    """Take results and work-history bullets from the canonical DOCX only."""
-    lines = [p.text.strip() for p in Document(MASTER).paragraphs]
-    starts = [next(i for i, line in enumerate(lines) if line == f"{job['company']} - {job['location']}")
-              for job in master_jobs()]
-    end = lines.index("PAID SEARCH LEADERSHIP & CLIENT PARTNERSHIP")
-    evidence = []
-    for job_index, start in enumerate(starts):
-        stop = starts[job_index + 1] if job_index + 1 < len(starts) else end
-        for line in lines[start + 1:stop]:
-            if not re.match(r"^[\u2022\ufffd]\s+", line):
-                continue
-            quote = normalized(re.sub(r"^[\u2022\ufffd]\s+", "", line))
+def _is_bullet(line: str) -> bool:
+    return bool(re.match(r"^[\u2022\ufffd*-]\s+", line.strip()))
+
+
+def _bullet_text(line: str) -> str:
+    return normalized(re.sub(r"^[\u2022\ufffd*-]\s+", "", line.strip()))
+
+
+def _is_job_header(line: str) -> bool:
+    line = line.strip()
+    return bool(re.match(r"^.+ \| .+$", line)) and not re.match(r"^.+,\s*[A-Z]{2}\s*\|", line) and not _is_bullet(line)
+
+
+def parsed_jobs() -> list[dict]:
+    """Employment roles from PROFESSIONAL EXPERIENCE; consulting remains in source_text()."""
+    lines = [line.strip() for line in master_lines()]
+    start = lines.index("PROFESSIONAL EXPERIENCE") + 1
+    end = next(i for i, line in enumerate(lines)
+               if line in {"CONSULTING, CONTRACT & CLIENT PROJECTS",
+                           "PAID SEARCH, PERFORMANCE MARKETING & CLIENT PARTNERSHIP SCOPE"})
+    jobs: list[dict] = []
+    current = None
+    skip = {"CONSULTING, CONTRACT & CLIENT PROJECTS", "Additional named client/contract work"}
+    for line in lines[start:end]:
+        if not line or line.startswith("---") or line in skip or line.startswith("The source material"):
+            continue
+        if _is_job_header(line):
+            title, company = line.split(" | ", 1)
+            current = {"title": title.strip(), "company": company.strip(), "location": "", "bullets": []}
+            jobs.append(current)
+            continue
+        if current and re.match(r"^.+,\s*[A-Z]{2}\s*\|", line):
+            current["location"] = line.split("|", 1)[0].strip()
+            continue
+        if current and _is_bullet(line):
+            quote = _bullet_text(line)
             if len(quote) >= 35:
-                evidence.append({"id": f"E{len(evidence)+1:03d}", "job": job_index,
-                                 "source": str(MASTER.relative_to(ROOT)), "quote": quote})
-    results = lines[lines.index("SELECTED RESULTS") + 1:lines.index("PROFESSIONAL EXPERIENCE")]
-    for job_index, line in zip((0, 3, 1, 4), results):
-        quote = normalized(re.sub(r"^[\u2022\ufffd]\s+", "", line))
-        evidence.append({"id": f"E{len(evidence)+1:03d}", "job": job_index,
-                         "source": str(MASTER.relative_to(ROOT)), "quote": quote})
+                current["bullets"].append(quote)
+    if not jobs:
+        raise ValueError("Master archive job history could not be parsed.")
+    return jobs
+
+
+def _highlight_job(quote: str, jobs: list[dict]) -> int | None:
+    for index, job in enumerate(jobs):
+        name = job["company"].split("/")[0].strip()
+        if name and name.casefold() in quote.casefold():
+            return index
+    rules = (
+        (r"\$30 million", "TravelPass"),
+        (r"110,000 ad groups|1\.6 million", "TravelPass"),
+        (r"75\+", "Infinite Agency"),
+        (r"200,000 to .{0,30}800,000|ROAS from 1\.5", "GRIP6"),
+        (r"\$9 million", "LifeSpan"),
+        (r"650", "Intercon"),
+        (r"25% of firm", "Bowen"),
+        (r"Databricks", "1-800 Contacts"),
+        (r"32 businesses", "Any Hour"),
+    )
+    for pattern, needle in rules:
+        if re.search(pattern, quote, re.I):
+            for index, job in enumerate(jobs):
+                if needle.casefold() in job["company"].casefold() or needle.casefold() in job["title"].casefold():
+                    return index
+    return None
+
+
+def extract_evidence(source: str) -> list[dict]:
+    """Take results and work-history bullets from the canonical master archive only."""
+    jobs = parsed_jobs()
+    rel = str(MASTER.relative_to(ROOT))
+    evidence = []
+    for job_index, job in enumerate(jobs):
+        for quote in job["bullets"]:
+            evidence.append({"id": f"E{len(evidence)+1:03d}", "job": job_index, "source": rel, "quote": quote})
+    lines = [line.strip() for line in master_lines()]
+    for line in lines[lines.index("CAREER HIGHLIGHTS & SELECTED RESULTS") + 1:lines.index("PROFESSIONAL EXPERIENCE")]:
+        if not _is_bullet(line):
+            continue
+        quote = _bullet_text(line)
+        job_index = _highlight_job(quote, jobs)
+        if job_index is None or len(quote) < 35:
+            continue
+        if any(item["quote"] == quote and item["job"] == job_index for item in evidence):
+            continue
+        evidence.append({"id": f"E{len(evidence)+1:03d}", "job": job_index, "source": rel, "quote": quote})
     return evidence
 
 
@@ -206,16 +273,16 @@ def requirements(listing: str, source: str, evidence: list[dict]) -> dict[str, l
 def relevant_metric_ids(listing: str, evidence: list[dict]) -> list[str]:
     """Protect proven scale/outcome bullets when the target work makes them useful."""
     metric_rules = (
-        (0, r"\$30 million per month", r"paid|budget|marketing manager|leadership|director"),
-        (1, r"\$200K to \$800K|fourfold", r"e-commerce|ecommerce|growth|revenue|paid"),
-        (2, r"650 B2B retail partners", r"b2b|retail|e-commerce|ecommerce|catalog"),
-        (3, r"75\+ Google Ads accounts", r"paid|search|agency|account|sem"),
-        (4, r"\$9 million in revenue", r"revenue|e-commerce|ecommerce|marketing|growth"),
+        (r"\$30 million per month", r"paid|budget|marketing manager|leadership|director"),
+        (r"\$200,000 to \$800,000|ROAS from 1\.5", r"e-commerce|ecommerce|growth|revenue|paid"),
+        (r"650\+ existing retail|650 B2B", r"b2b|retail|e-commerce|ecommerce|catalog"),
+        (r"75\+ Google Ads accounts", r"paid|search|agency|account|sem"),
+        (r"\$9 million in revenue", r"revenue|e-commerce|ecommerce|marketing|growth"),
     )
     result = []
-    for job, metric, trigger in metric_rules:
+    for metric, trigger in metric_rules:
         if re.search(trigger, listing, re.I):
-            match = next((item for item in evidence if item["job"] == job and re.search(metric, item["quote"], re.I)), None)
+            match = next((item for item in evidence if re.search(metric, item["quote"], re.I)), None)
             if match:
                 result.append(match["id"])
     return result
@@ -224,30 +291,41 @@ def relevant_metric_ids(listing: str, evidence: list[dict]) -> list[str]:
 def polish_quote(quote: str) -> str:
     """Apply small grammar edits without changing facts or product names."""
     for old, new in (("Setup ", "Set up "), ("Created a inventory", "Created an inventory"),
-                     ("I helped convert", "Helped convert")):
+                     ("I helped convert", "Helped convert"),
+                     ("marketingnvironment", "marketing environment")):
         quote = quote.replace(old, new)
     return quote
 
 
+def _near_duplicate(left: str, right: str) -> bool:
+    """Detect accomplishment bullets that repeat substantially the same claim."""
+    left_words, right_words = words(left), words(right)
+    smaller = min(len(left_words), len(right_words))
+    return bool(smaller and len(left_words & right_words) / smaller >= .6)
+
+
 def master_identity() -> dict[str, str]:
-    doc = Document(MASTER)
-    lines = [p.text.strip() for p in doc.paragraphs]
-    return {"name": lines[0], "headline": lines[1], "contact": lines[2], "summary": lines[4],
-            "education": next(line for line in lines if line.startswith("Bachelor of Science")),
-            "certifications": next(line for line in lines if line.startswith("Certifications:"))}
+    lines = [line.strip() for line in master_lines() if line.strip()]
+    education = next(_bullet_text(line) for line in lines if "Brigham Young University" in line)
+    cert_start = lines.index("CERTIFICATIONS") + 1
+    certs = []
+    for line in lines[cert_start:]:
+        if line.startswith("ADDITIONAL") or not _is_bullet(line):
+            break
+        certs.append(_bullet_text(line))
+    return {
+        "name": lines[0],
+        "headline": next(line for line in lines if line.startswith("Digital Marketing |")),
+        "contact": normalized(next(line for line in lines if "linkedin.com/in/mdavidcall" in line)),
+        "summary": lines[lines.index("PROFESSIONAL PROFILE") + 1],
+        "education": education,
+        "certifications": "Certifications: " + "; ".join(certs),
+    }
 
 
 def master_jobs() -> list[dict[str, str]]:
-    doc = Document(MASTER)
-    lines = [p.text.strip() for p in doc.paragraphs]
-    experience = lines[lines.index("PROFESSIONAL EXPERIENCE") + 1:lines.index("PAID SEARCH LEADERSHIP & CLIENT PARTNERSHIP")]
-    employers = [line.rsplit(" - ", 1) for line in experience
-                 if line and not re.match(r"^[\u2022\ufffd]\s+", line) and " - " in line]
-    titles = [table.cell(0, 0).text.strip() for table in doc.tables[1:1 + len(employers)]]
-    if len(titles) != len(employers):
-        raise ValueError("Master DOCX job titles and employers do not align.")
-    return [{"title": title, "company": company, "location": location}
-            for title, (company, location) in zip(titles, employers)]
+    return [{"title": job["title"], "company": job["company"], "location": job["location"]}
+            for job in parsed_jobs()]
 
 
 def create_plan(listing_path: Path) -> dict:
@@ -259,7 +337,12 @@ def create_plan(listing_path: Path) -> dict:
     target = words(listing)
     mandatory_metrics = relevant_metric_ids(listing, evidence)
     selected = []
-    for index in range(len(master_jobs())):
+    jobs = master_jobs()
+    # Four bullets per role fit the original five-role archive. The current
+    # seven-role archive needs a tighter three-bullet budget to preserve the
+    # required 11 pt type and two-page Word layout.
+    bullets_per_job = 4 if len(jobs) <= 5 else 3
+    for index in range(len(jobs)):
         pool = [item for item in evidence if item["job"] == index]
         concise = [item for item in pool if len(item["quote"].split()) <= 55]
         if len(concise) >= 4:
@@ -268,20 +351,32 @@ def create_plan(listing_path: Path) -> dict:
             len(words(item["quote"]) & target) + 3 * bool(re.search(r"\$[\d,]+|\b\d+[%+]", item["quote"]))
             - 4 * bool(re.search(r"\b(?:I|my|we|our)\b", item["quote"])),
             ), reverse=True)
-        chosen = [item["id"] for item in ranked[:4]]
-        for eid in mandatory_metrics:
-            if next((item for item in evidence if item["id"] == eid), None)["job"] == index and eid not in chosen:
-                chosen[-1] = eid
+        mandatory = [item for item in ranked if item["id"] in mandatory_metrics]
+        chosen_items = []
+        for item in mandatory + ranked:
+            if item in chosen_items:
+                continue
+            if any(_near_duplicate(item["quote"], picked["quote"]) for picked in chosen_items):
+                continue
+            chosen_items.append(item)
+            if len(chosen_items) == bullets_per_job:
+                break
+        # Very small source sections may contain only similar bullets. Preserve
+        # the page budget even there instead of silently dropping a role.
+        if len(chosen_items) < bullets_per_job:
+            chosen_items.extend(item for item in ranked if item not in chosen_items)
+            chosen_items = chosen_items[:bullets_per_job]
+        chosen = [item["id"] for item in chosen_items]
         selected.extend(chosen)
     skill_terms = [term for term in TERMS if contains_term(listing, term) and contains_term(source, term)]
     return {"version": 2, "job": meta, "listing": str(listing_path.resolve()),
             "listing_sha256": hashlib.sha256(listing_path.read_bytes()).hexdigest(),
             "source_sha256": source_hashes(), "requirements": reqs, "evidence": evidence,
-            "resume": {**master_identity(), "jobs": master_jobs(),
+            "resume": {**master_identity(), "jobs": jobs,
                        "skills": skill_terms[:24], "selected_evidence_ids": selected,
                        "relevant_metric_ids": mandatory_metrics},
             "review_notes": ["Review requirement classifications and evidence links before generation.",
-                             "All factual content comes from the current master DOCX; other resumes are format references only."]}
+                             "All factual content comes from the current master archive; other resumes are format references only."]}
 
 
 def verify_plan(plan: dict) -> None:
@@ -307,9 +402,9 @@ def verify_plan(plan: dict) -> None:
         if not contains_term(source, term):
             raise ValueError(f"Unsupported skill: {term}")
     if any(plan["resume"].get(field) != value for field, value in master_identity().items()):
-        raise ValueError("Identity, summary, education, or certifications differ from the current master DOCX.")
+        raise ValueError("Identity, summary, education, or certifications differ from the current master archive.")
     if plan["resume"].get("jobs") != master_jobs():
-        raise ValueError("Job history differs from the current master DOCX.")
+        raise ValueError("Job history differs from the current master archive.")
 
 
 def make_resume(plan: dict, path: Path) -> None:
@@ -365,7 +460,12 @@ def make_resume(plan: dict, path: Path) -> None:
         table.alignment = WD_TABLE_ALIGNMENT.CENTER
         table.columns[0].width, table.columns[1].width = Inches(5.7), Inches(1.8)
         table.cell(0, 0).width, table.cell(0, 1).width = Inches(5.7), Inches(1.8)
-        table.cell(0, 0).paragraphs[0].add_run(f"{title} | {company} — {location}").bold = True
+        header = f"{title} | {company} — {location}" if location else f"{title} | {company}"
+        header_paragraph = table.cell(0, 0).paragraphs[0]
+        header_paragraph.add_run(header).bold = True
+        # Keep each job header with its first bullet so a table-backed heading
+        # cannot be orphaned at the bottom of a page in Microsoft Word.
+        header_paragraph.paragraph_format.keep_with_next = True
         table.cell(0, 1).text = ""  # Required right-side date cell.
         borders = OxmlElement("w:tblBorders")
         for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
@@ -386,7 +486,7 @@ def make_resume(plan: dict, path: Path) -> None:
 def inspect_docx(plan: dict, docx_path: Path) -> list[str]:
     issues = []
     if plan.get("source_sha256") != source_hashes():
-        issues.append("Master DOCX changed after planning; rebuild the plan and resume.")
+        issues.append("Master archive changed after planning; rebuild the plan and resume.")
     doc = Document(docx_path)
     paragraphs = [p.text.strip() for p in doc.paragraphs if p.text.strip()]
     evidence = {item["id"]: item for item in plan["evidence"]}
@@ -405,9 +505,10 @@ def inspect_docx(plan: dict, docx_path: Path) -> list[str]:
         issues.append("DOCX contains text outside the approved source-backed plan.")
     if len(doc.tables) != sum(any(evidence[eid]["job"] == i for eid in plan["resume"]["selected_evidence_ids"]) for i in range(len(plan["resume"]["jobs"]))):
         issues.append("Job header/date-cell count differs from the plan.")
-    expected_headers = [f"{job['title']} | {job['company']} — {job['location']}"
-                        for i, job in enumerate(plan["resume"]["jobs"])
-                        if any(evidence[eid]["job"] == i for eid in plan["resume"]["selected_evidence_ids"])]
+    expected_headers = [
+        f"{job['title']} | {job['company']} — {job['location']}" if job["location"] else f"{job['title']} | {job['company']}"
+        for i, job in enumerate(plan["resume"]["jobs"])
+        if any(evidence[eid]["job"] == i for eid in plan["resume"]["selected_evidence_ids"])]
     if [table.cell(0, 0).text.strip() for table in doc.tables] != expected_headers:
         issues.append("Job headers differ from the current master-backed plan.")
     if any(cell.text.strip() for table in doc.tables for cell in [table.cell(0, 1)]):
@@ -418,7 +519,10 @@ def inspect_docx(plan: dict, docx_path: Path) -> list[str]:
         issues.append("Required section order is missing or changed.")
     if not paragraphs[2].endswith("linkedin.com/in/mdavidcall") or "Spanish" in paragraphs[2]:
         issues.append("Header contact format is incorrect.")
-    if abs(doc.styles["Normal"].font.size.pt - 11) > .01 or abs(doc.styles["Normal"].paragraph_format.line_spacing - 1.15) > .01:
+    normal_size = doc.styles["Normal"].font.size
+    normal_spacing = doc.styles["Normal"].paragraph_format.line_spacing
+    if (normal_size is None or abs(normal_size.pt - 11) > .01
+            or normal_spacing is None or abs(normal_spacing - 1.15) > .01):
         issues.append("Body font or line spacing differs from Gecko rules.")
     for p in doc.paragraphs[3:]:
         if p.paragraph_format.line_spacing not in (None, 1.15):

@@ -1,7 +1,5 @@
 # Senior Paid Media Strategist - Common Thread Collective
 
-**Match Score: 74/100**
-
 **Scout ID:** 649  
 **Job Number:** `-5392789095253275295`  
 **Company:** Common Thread Collective  

@@ -1,7 +1,5 @@
 # Marketing Associate - Carver Road Hospitality
 
-**Match Score: 34/100**
-
 **Scout ID:** 29  
 **Job Number:** `5879759095`  
 **Company:** Carver Road Hospitality  

@@ -1,7 +1,5 @@
 # Director, Product & Segment Marketing Manager - NetDocuments
 
-**Match Score: 31/100**
-
 **Scout ID:** 793  
 **Job Number:** `-7816075445964819421`  
 **Company:** NetDocuments  

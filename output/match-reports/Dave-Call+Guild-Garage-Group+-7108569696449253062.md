@@ -1,7 +1,5 @@
 # Marketing Director - Guild Garage Group
 
-**Match Score: 49/100**
-
 **Scout ID:** 529  
 **Job Number:** `-7108569696449253062`  
 **Company:** Guild Garage Group  

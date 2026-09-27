@@ -1,7 +1,5 @@
 # Marketing Director - A Plus Garage Doors
 
-**Match Score: 49/100**
-
 **Scout ID:** 21  
 **Job Number:** `5858206347`  
 **Company:** A Plus Garage Doors  

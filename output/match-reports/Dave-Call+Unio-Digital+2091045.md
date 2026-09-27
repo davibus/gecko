@@ -1,7 +1,5 @@
 # Tier III Service Desk Engineer - Unio Digital
 
-**Match Score: 7/100**
-
 **Scout ID:** 478  
 **Job Number:** `2091045`  
 **Company:** Unio Digital  

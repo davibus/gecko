@@ -291,7 +291,7 @@ class RemotiveProviderTests(unittest.TestCase):
         self.assertEqual(remotive_links[0]["url"], REMOTIVE_JOB["url"])
         self.assertEqual(saved.tags, ["Marketing", "Sales"])
 
-    def test_unrelated_remotive_engineering_roles_are_filtered_before_scoring(self):
+    def test_unrelated_remotive_engineering_roles_are_filtered_before_storage(self):
         class TwoJobProvider:
             raw_count = rss_raw_count = rss_count = 2
             rss_duplicate_count = api_count = failed_feed_count = 0
@@ -315,14 +315,14 @@ class RemotiveProviderTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             with JobStore(Path(directory) / "jobs.sqlite3") as store:
                 summary = discover_remotive_full_feed(
-                    TwoJobProvider(), store, load_preferences(), "", limit=2,
+                    TwoJobProvider(), store, limit=2,
                 )
                 saved = store.all()
 
         self.assertEqual(summary.added, 0)
         self.assertEqual(summary.duplicates, 0)
         self.assertEqual(saved, [])
-        self.assertEqual(summary.scored, 0)
+        self.assertEqual(summary.filtered_by_role, 2)
 
     def test_normalized_category_and_tags_survive_storage(self):
         job = normalize(RawListing(
@@ -339,18 +339,18 @@ class RemotiveProviderTests(unittest.TestCase):
         self.assertEqual(saved.tags, ["PPC", "Analytics"])
 
     @patch("sources.remotive.get_bytes", return_value=REMOTIVE_RSS)
-    def test_full_feed_scores_and_retains_only_relevant_marketing_jobs(self, _mocked_get):
+    def test_full_feed_retains_only_relevant_marketing_jobs(self, _mocked_get):
         provider = RemotiveProvider()
         provider.category_feeds = (("Marketing", "https://remotive.test/marketing"),)
 
         with tempfile.TemporaryDirectory() as directory:
             with JobStore(Path(directory) / "jobs.sqlite3") as store:
                 summary = discover_remotive_full_feed(
-                    provider, store, load_preferences(), "paid search analytics",
+                    provider, store,
                 )
                 saved = store.all(retained_only=True)
                 rerun = discover_remotive_full_feed(
-                    provider, store, load_preferences(), "paid search analytics",
+                    provider, store,
                 )
 
         self.assertEqual(summary.raw_retrieved, 2)
@@ -361,8 +361,7 @@ class RemotiveProviderTests(unittest.TestCase):
         self.assertEqual(summary.failed_feeds, 0)
         self.assertEqual(summary.source_backend, "category-rss")
         self.assertEqual(summary.normalized, 1)
-        self.assertEqual(summary.scored, 1)
-        self.assertEqual(summary.filtered_before_scoring, 1)
+        self.assertEqual(summary.filtered_by_role, 1)
         self.assertEqual(summary.added, 1)
         self.assertEqual(summary.updated, 0)
         self.assertEqual(len(saved), 1)
@@ -380,13 +379,12 @@ class RemotiveProviderTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             with JobStore(Path(directory) / "jobs.sqlite3") as store:
                 summary = discover_remotive_full_feed(
-                    provider, store, load_preferences(), "paid search analytics", limit=1,
+                    provider, store, limit=1,
                 )
                 saved = store.all()
 
         self.assertEqual(summary.unique_available, 1)
         self.assertEqual(summary.unique_imported, 1)
-        self.assertEqual(summary.scored, 1)
         self.assertEqual(len(saved), 1)
         self.assertEqual(saved[0].title, "Paid Search Manager")
 
@@ -415,8 +413,7 @@ class RemotiveDiagnosticTests(unittest.TestCase):
                 ]
 
         output = io.StringIO()
-        with patch("scout.RemotiveProvider", return_value=FakeRemotive()), \
-             patch("scout.extract_resume_text", return_value=""), redirect_stdout(output):
+        with patch("scout.RemotiveProvider", return_value=FakeRemotive()), redirect_stdout(output):
             result = diagnose_remotive_feeds(
                 argparse.Namespace(limit=100), None, load_preferences(),
             )
@@ -427,9 +424,6 @@ class RemotiveDiagnosticTests(unittest.TestCase):
         self.assertEqual(report["successful_category_feeds"], 1)
         self.assertEqual(report["feeds_attempted"], 1)
         self.assertEqual(report["unique_jobs_imported"], 2)
-        self.assertEqual(
-            report["scores_80_plus"] + report["scores_70_79"] + report["scores_below_70"], 2,
-        )
 
     def test_old_rss_diagnostic_alias_uses_category_diagnostic(self):
         with patch("scout.diagnose_remotive_feeds", return_value=0) as delegated:
@@ -452,13 +446,12 @@ class RemotiveDiagnosticTests(unittest.TestCase):
                 )
 
         args = argparse.Namespace(
-            query=["paid search"], results=100, minimum_score=0, examples=5,
+            query=["paid search"], results=100, examples=5,
         )
         with tempfile.TemporaryDirectory() as directory:
             with JobStore(Path(directory) / "jobs.sqlite3") as store:
                 output = io.StringIO()
                 with patch("scout.RemotiveProvider", return_value=FakeRemotive()), \
-                     patch("scout.extract_resume_text", return_value="paid search analytics"), \
                      patch("scout.providers", side_effect=AssertionError("other providers must not run")), \
                      redirect_stdout(output):
                     result = diagnose_remotive(args, store, load_preferences())
@@ -467,7 +460,7 @@ class RemotiveDiagnosticTests(unittest.TestCase):
         self.assertEqual(report["provider"], "remotive")
         self.assertEqual(report["raw_retrieved"], 3)
         self.assertEqual(report["query_matches"], 1)
-        self.assertEqual(report["matched_gecko_filters"], 1)
+        self.assertEqual(report["matched_role_filter"], 1)
         self.assertEqual(report["survived_deduplication"], 1)
         self.assertEqual(report["source_counts"], {"remotive": 1})
 
@@ -484,13 +477,12 @@ class RemotiveDiagnosticTests(unittest.TestCase):
 
         args = argparse.Namespace(
             source="remotive", query=["PPC"], location=["Remote"], page=1,
-            results=20, minimum_score=80, tracker="unused.xlsx",
+            results=20, limit=100, daily_mode=False,
         )
         stdout, stderr = io.StringIO(), io.StringIO()
         with tempfile.TemporaryDirectory() as directory:
             with JobStore(Path(directory) / "jobs.sqlite3") as store, \
                  patch("scout.providers", return_value={"remotive": FailedRemotive()}), \
-                 patch("scout.extract_resume_text", return_value=""), \
                  redirect_stdout(stdout), redirect_stderr(stderr):
                 result = search(args, store, load_preferences())
         report = json.loads(stdout.getvalue())
@@ -502,16 +494,15 @@ class RemotiveDiagnosticTests(unittest.TestCase):
     def test_successful_run_includes_remotive_source_count(self):
         args = argparse.Namespace(
             source="remotive", query=["PPC"], location=["Remote"], page=1,
-            results=20, minimum_score=80, tracker="unused.xlsx",
+            results=20, limit=100, daily_mode=False,
         )
         provider = type("Provider", (), {"name": "remotive", "configured": lambda self: True})()
         output = io.StringIO()
         with tempfile.TemporaryDirectory() as directory:
             with JobStore(Path(directory) / "jobs.sqlite3") as store, \
                  patch("scout.providers", return_value={"remotive": provider}), \
-                 patch("scout.extract_resume_text", return_value=""), \
                  patch("scout.discover_remotive_full_feed", return_value=SearchSummary(
-                     raw_retrieved=20, fetched=8, normalized=8, scored=8,
+                     raw_retrieved=20, fetched=8, normalized=8,
                  )), \
                  patch("scout.discover", side_effect=AssertionError("query discovery must not run")), \
                  patch("scout.sync_tracker"), redirect_stdout(output):
@@ -521,7 +512,6 @@ class RemotiveDiagnosticTests(unittest.TestCase):
         self.assertEqual(report["source_counts"], {"remotive": 8})
         self.assertEqual(report["raw_retrieved"], 20)
         self.assertEqual(report["normalized"], 8)
-        self.assertEqual(report["scored"], 8)
 
 
 if __name__ == "__main__":

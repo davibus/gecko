@@ -1,7 +1,5 @@
 # Paid Search Specialist - SEM/PPC - Internet Paid Search Professional - Digital Marketing
 
-**Match Score: 83/100**
-
 **Scout ID:** 4  
 **Job Number:** `5330853372`  
 **Company:** Digital Marketing  

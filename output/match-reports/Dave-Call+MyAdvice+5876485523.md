@@ -1,7 +1,5 @@
 # Account Manager - MyAdvice
 
-**Match Score: 49/100**
-
 **Scout ID:** 1  
 **Job Number:** `5876485523`  
 **Company:** MyAdvice  

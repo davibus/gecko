@@ -1,7 +1,5 @@
 # Paid Search Strategist (REMOTE) - Blue Wheel Media
 
-**Match Score: 74/100**
-
 **Scout ID:** 652  
 **Job Number:** `6714833163916562188`  
 **Company:** Blue Wheel Media  

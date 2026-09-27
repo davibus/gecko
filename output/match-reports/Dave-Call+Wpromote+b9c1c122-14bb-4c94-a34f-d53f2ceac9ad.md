@@ -1,7 +1,5 @@
 # Content Marketing Manager - Wpromote
 
-**Match Score: 42/100**
-
 **Scout ID:** 707  
 **Job Number:** `b9c1c122-14bb-4c94-a34f-d53f2ceac9ad`  
 **Company:** Wpromote  

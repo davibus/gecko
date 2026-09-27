@@ -4,7 +4,6 @@
 - **Company:** Findem
 - **Job Title:** Digital Marketing Manager — Paid Media & Digital Execution
 - **Job Number:** ae77d4a7-f6dc-4efc-a4c3-1a059ecece35
-- **Match Score:** 68/100
 - **Assessment Date:** September 23, 2026
 - **Location:** Bangalore, on-site
 - **Employment Type:** Full time

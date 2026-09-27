@@ -1,7 +1,5 @@
 # Trove Brands — Owala Sr. Digital Marketing Manager Match Report
 
-**Match Score: 93/100**
-
 ## Strongest alignment areas
 
 - **Ecommerce and consumer growth leadership:** Dave has 14+ years in digital marketing and ecommerce, including director-level ownership, B2C platform expansion, and leadership of an eight-person ecommerce department.

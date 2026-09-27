@@ -1,7 +1,5 @@
 # Product Marketing Manager - jumpapp.com
 
-**Match Score: 31/100**
-
 **Scout ID:** 797  
 **Job Number:** `851784448228674338`  
 **Company:** jumpapp.com  

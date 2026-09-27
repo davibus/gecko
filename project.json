@@ -1,7 +1,7 @@
 {
   "name": "gecko",
   "purpose": "Resume customization and job-fit analysis",
-  "master_resume": "input/master-resume/Dave-Call-resume-9-23-26.docx",
+  "master_resume": "input/master-resume/Dave-Call-Resume.txt",
   "resume_output_dir": "output/resumes",
   "match_report_dir": "output/match-reports",
   "job_tracker": "Google Sheets",

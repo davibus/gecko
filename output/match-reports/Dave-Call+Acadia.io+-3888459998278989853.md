@@ -1,7 +1,5 @@
 # Remote Amazon PPC & Retail Media Manager - Acadia.io
 
-**Match Score: 74/100**
-
 **Scout ID:** 158  
 **Job Number:** `-3888459998278989853`  
 **Company:** Acadia.io  

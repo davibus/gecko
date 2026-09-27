@@ -1,7 +1,5 @@
 # SENIOR MARKETING MANAGER, UNIVERSITY OF UTAH, SALT LAKE CITY, UT - Chartwells HE
 
-**Match Score: 49/100**
-
 **Scout ID:** 580  
 **Job Number:** `859577523810852078`  
 **Company:** Chartwells HE  

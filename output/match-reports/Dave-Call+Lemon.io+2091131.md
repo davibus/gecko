@@ -1,7 +1,5 @@
 # Senior AI Engineer — Lemon.io
 
-**Match Score: 16/100**
-
 **Scout ID:** 469  
 **Job Number:** `2091131`  
 **Company:** Lemon.io  

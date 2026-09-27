@@ -4,7 +4,6 @@
 - **Company:** CSC Generation
 - **Job Title:** Senior Director, Performance Marketing
 - **Job Number:** ea0ef6ae-ff42-4637-a9d9-3d23286980c1
-- **Match Score:** 80/100
 - **Assessment Date:** September 23, 2026
 - **Application URL:** https://jobs.lever.co/cscgeneration-2/ea0ef6ae-ff42-4637-a9d9-3d23286980c1
 - **Salary:** Not specified in the saved listing.

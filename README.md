@@ -2,7 +2,7 @@
 
 Gecko is Dave Call's resume-tailoring workflow for turning a job listing into a targeted, natural-sounding, ATS-friendly resume and qualitative match analysis.
 
-The normal Daily Job Scout command now runs the complete discovery-to-resume workflow. It searches Adzuna, Remotive, and configured Web Careers backends, rejects Jooble, deduplicates and scores results, synchronizes the existing Google Sheet, and sends only newly discovered rows with `Apply? = Yes` and blank `Resume Created` cells through the canonical Gecko V2 generator.
+The normal Daily Job Scout command now runs the complete discovery-to-resume workflow. It searches Adzuna, Remotive, and configured Web Careers backends, rejects Jooble, filters to relevant role families, deduplicates results, synchronizes the existing Google Sheet, and sends only newly discovered rows with `Apply? = Yes` and blank `Resume Created` cells through the canonical Gecko V2 generator.
 
 ```powershell
 python job-scout/scout.py daily
@@ -17,7 +17,7 @@ To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
 1. Open this folder as a project in AntiGravity.
 2. Put a job description or copied job listing into `input/job-descriptions/`.
 3. Use the prompt in `prompts/use-gecko.md`.
-4. Gecko uses `input/master-resume/Dave-Call-resume-9-23-26.docx` as the sole factual source. `Dave_Call_Resume_5ec9726395344311.docx` is for formatting only.
+4. Gecko uses `input/master-resume/Dave-Call-Resume.txt` as the sole factual source. `Dave_Call_Resume_5ec9726395344311.docx` is for formatting only.
    For V2, create and review the evidence-backed plan with `python scripts/gecko_v2.py plan "input/job-descriptions/Company+JobNumber.md"`, then run `python scripts/gecko_v2.py generate "scratch/Company+JobNumber/tailoring-plan.json"`. Generation runs Word-native QA and records any remaining weaknesses. See `docs/workflow.md` for the full process.
 5. Save tailored resumes to `output/resumes/` and match reports to `output/match-reports/`.
 6. After both final deliverables are successfully created and validated, add or update the job in the canonical Google Sheet with `scripts/manage_job_tracker.py`.
@@ -67,7 +67,7 @@ The `add` command is idempotent by Job Number when the application tab exists. I
 - `AGENTS.md` — project instructions AntiGravity should follow
 - `GECKO_SYSTEM.md` — full Gecko operating specification
 - `scripts/` — reusable resume generation, PDF preview, and layout tuning scripts
-- `input/master-resume/` — canonical source resume
+- `input/master-resume/` — canonical source archive (`Dave-Call-Resume.txt`)
 - `input/job-descriptions/` — job listings to tailor against
 - `output/resumes/` — generated resumes
 - `output/match-reports/` — job-fit reports

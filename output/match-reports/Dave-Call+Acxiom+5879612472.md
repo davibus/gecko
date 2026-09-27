@@ -1,7 +1,5 @@
 # Intern - Marketing Operations — Acxiom
 
-**Match Score: 13/100**
-
 **Scout ID:** 14  
 **Job Number:** `5879612472`  
 **Company:** Acxiom  

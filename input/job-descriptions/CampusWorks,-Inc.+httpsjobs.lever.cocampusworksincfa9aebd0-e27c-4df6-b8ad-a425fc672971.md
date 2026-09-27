@@ -14,7 +14,6 @@
 - **Authoritative URL:** https://jobs.lever.co/campusworksinc/fa9aebd0-e27c-4df6-b8ad-a425fc672971
 - **Date Posted:** 2026-07-14
 - **Date Discovered:** 2026-09-21
-- **Gecko Match Score:** 87/100
 
 ## Source links
 

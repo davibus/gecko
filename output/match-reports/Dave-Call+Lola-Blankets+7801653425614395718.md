@@ -1,7 +1,5 @@
 # Director of Ecommerce - Lola Blankets
 
-**Match Score: 61/100**
-
 **Scout ID:** 367  
 **Job Number:** `7801653425614395718`  
 **Company:** Lola Blankets  

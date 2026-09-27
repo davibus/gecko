@@ -1,7 +1,5 @@
 # Senior React Full-stack Developer - Lemon.io
 
-**Match Score: 7/100**
-
 **Scout ID:** 485  
 **Job Number:** `2091101`  
 **Company:** Lemon.io  

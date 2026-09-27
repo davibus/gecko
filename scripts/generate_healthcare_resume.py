@@ -26,7 +26,7 @@ def listing_text(html: str) -> str:
 
 
 def main() -> None:
-    source_text()  # Read the current master DOCX for this generation.
+    source_text()  # Read the current master archive for this generation.
     scratch = ROOT / "scratch" / NAME
     scratch.mkdir(parents=True, exist_ok=True)
     response = requests.get(SOURCE_URL, timeout=30)
@@ -119,7 +119,7 @@ def main() -> None:
 - At GRIP6, monthly marketing volume grew from about $200K to $800K while ROAS improved from 1.5 to 3.5.
 - Customer journey analysis includes micro-conversions, click-to-call, purchase, and lifetime value; the master also documents attribution, GA4/GTM setup, dashboards, forecasting, holdouts, and budget scenarios.
 - E-commerce and B2B leadership, cross-functional work with sales, operations, finance, IT, and product, and experience advising agency clients support the broader growth scope.
-- The position is remote within the US, consistent with the master resume's Lehi, Utah location.
+- The position is remote within the US, consistent with the master archive's American Fork, Utah location.
 
 ## Weaknesses or missing requirements
 
@@ -143,7 +143,7 @@ Lead with acquisition budget scale, channel and ROAS outcomes, measurement and t
 
 Prepare concrete examples of how budget reallocation, attribution analysis, and testing changed investment decisions. Explain the difference between the documented click-to-call analysis and the role's Invoca/offline conversion requirements. Discuss how agency-side experience would transfer to directing an outside partner, and address the insurance and partnership gaps directly.
 
-## Score rationale
+## Alignment rationale
 
 | Area | Points |
 | --- | ---: |
@@ -158,7 +158,7 @@ Prepare concrete examples of how budget reallocation, attribution analysis, and 
 ## Validation and sources
 
 - Microsoft Word computed 2 pages; the Word-exported PDF contains 2 pages. Native validation passed with no content or layout audit issues.
-- Factual source: `input/master-resume/Dave-Call-resume-9-23-26.docx`, freshly read for this generation.
+- Factual source: `input/master-resume/Dave-Call-Resume.txt`, freshly read for this generation.
 - [Official HealthCare listing]({listing['hostedUrl']})
 - Archived description: `input/job-descriptions/{NAME}.md`
 - Evidence and validation files: `scratch/{NAME}/`

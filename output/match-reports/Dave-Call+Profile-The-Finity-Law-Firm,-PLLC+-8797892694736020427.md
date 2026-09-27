@@ -1,7 +1,5 @@
 # Remote PPC Manager - B2B Growth & Revenue - Profile The Finity Law Firm, PLLC
 
-**Match Score: 74/100**
-
 **Scout ID:** 427  
 **Job Number:** `-8797892694736020427`  
 **Company:** Profile The Finity Law Firm, PLLC  

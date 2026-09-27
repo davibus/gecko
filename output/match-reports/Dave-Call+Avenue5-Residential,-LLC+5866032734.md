@@ -1,7 +1,5 @@
 # Affordable Regional Manager - Avenue5 Residential, LLC
 
-**Match Score: 7/100**
-
 **Scout ID:** 32  
 **Job Number:** `5866032734`  
 **Company:** Avenue5 Residential, LLC  

@@ -1,7 +1,5 @@
 # Demand Generation Manager - Virtual Vocations Inc
 
-**Match Score: 52/100**
-
 **Scout ID:** 683  
 **Job Number:** `6288471050083101033`  
 **Company:** Virtual Vocations Inc  

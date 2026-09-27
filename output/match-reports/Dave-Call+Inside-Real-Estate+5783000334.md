@@ -1,7 +1,5 @@
 # Senior Director - Demand Generation - Inside Real Estate
 
-**Match Score: 50/100**
-
 **Scout ID:** 561  
 **Job Number:** `5783000334`  
 **Company:** Inside Real Estate  

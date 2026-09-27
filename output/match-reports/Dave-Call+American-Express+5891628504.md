@@ -1,7 +1,5 @@
 # Audit Manager - U.S. Consumer Services - American Express
 
-**Match Score: 7/100**
-
 **Scout ID:** 400  
 **Job Number:** `5891628504`  
 **Company:** American Express  

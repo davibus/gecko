@@ -1,7 +1,5 @@
 # Senior Director, Demand Generation & ABM - Pattern
 
-**Match Score: 43/100**
-
 **Scout ID:** 716  
 **Job Number:** `1b7ad516-a6b5-4d3f-82a2-6d412977a32d`  
 **Company:** Pattern  

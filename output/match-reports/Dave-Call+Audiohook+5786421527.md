@@ -1,7 +1,5 @@
 # Audiohook - Scout ID 560
 
-**Match Score: 45/100**
-
 **Scout ID:** 560  
 **Job Number:** `5786421527`  
 **Company:** Audiohook  

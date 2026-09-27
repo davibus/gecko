@@ -1,7 +1,5 @@
 # DIgital Marketing Manager - ClearCompanies
 
-**Match Score: 55/100**
-
 **Scout ID:** 88  
 **Job Number:** `8054395519210000542`  
 **Company:** ClearCompanies  

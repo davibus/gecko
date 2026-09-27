@@ -1,7 +1,5 @@
 # Email Strategy & Digital Marketing Manager - Deseret Management Corporation
 
-**Match Score: 36/100**
-
 **Scout ID:** 198  
 **Job Number:** `-7978250797201043650`  
 **Company:** Deseret Management Corporation  

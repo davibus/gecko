@@ -1,7 +1,5 @@
 # Remote Paid Search Specialist | Performance Marketing - Triwill Group
 
-**Match Score: 74/100**
-
 **Scout ID:** 502  
 **Job Number:** `3442824903292324583`  
 **Company:** Triwill Group  

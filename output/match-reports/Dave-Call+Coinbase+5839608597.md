@@ -1,7 +1,5 @@
 # Senior Product Marketing Manager, Trading - Coinbase
 
-**Match Score: 27/100**
-
 **Scout ID:** 67  
 **Job Number:** `5839608597`  
 **Company:** Coinbase  

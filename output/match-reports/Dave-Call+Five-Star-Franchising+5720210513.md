@@ -1,7 +1,5 @@
 # Marketing Manager for Mosquito Shield - Five Star Franchising
 
-**Match Score: 49/100**
-
 **Scout ID:** 416  
 **Job Number:** `5720210513`  
 **Company:** Five Star Franchising  

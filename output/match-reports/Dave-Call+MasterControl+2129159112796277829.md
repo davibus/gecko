@@ -1,7 +1,5 @@
 # Product Marketing Manager - CMMS - MasterControl
 
-**Match Score: 31/100**
-
 **Scout ID:** 782  
 **Job Number:** `2129159112796277829`  
 **Company:** MasterControl  

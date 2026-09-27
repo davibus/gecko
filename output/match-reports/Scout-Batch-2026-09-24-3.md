@@ -2,9 +2,9 @@
 
 All 238 resumes were confirmed as exactly two pages in Microsoft Word and the Word-exported PDF. All 238 jobs are in the Google Job Tracker, and their Scout rows are marked Resume Created.
 
-Most Scout records contain short excerpts. Match scores are conservative and provisional; verify the current employer listing before applying.
+Most Scout records contain short excerpts; verify the current employer listing before applying.
 
-| Scout ID | Company and role | Match score | Resume | Report |
+| Scout ID | Company and role |  | Resume | Report |
 |---:|---|---:|---|---|
 | 112 | AMBA - Paid Social Specialist | 53/100 | [DOCX](../resumes/Dave-Call+AMBA+-3239027341763265019.docx) | [Report](Dave-Call+AMBA+-3239027341763265019.md) |
 | 808 | Virtual Vocations Inc - Senior Digital Marketing Analyst | 61/100 | [DOCX](../resumes/Dave-Call+Virtual-Vocations-Inc+4643609776434463930.docx) | [Report](Dave-Call+Virtual-Vocations-Inc+4643609776434463930.md) |

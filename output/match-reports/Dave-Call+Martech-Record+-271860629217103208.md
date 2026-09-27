@@ -1,7 +1,5 @@
 # Remote Paid Search Strategist | Growth & ROAS - Martech Record
 
-**Match Score: 74/100**
-
 **Scout ID:** 658  
 **Job Number:** `-271860629217103208`  
 **Company:** Martech Record  

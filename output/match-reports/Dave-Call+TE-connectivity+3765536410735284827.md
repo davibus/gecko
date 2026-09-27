@@ -1,7 +1,5 @@
 # SENIOR DIGITAL MARKETING ANALYST (Remote) - TE connectivity
 
-**Match Score: 61/100**
-
 **Scout ID:** 319  
 **Job Number:** `3765536410735284827`  
 **Company:** TE connectivity  

@@ -1,7 +1,5 @@
 # Vasion, Inc. - Scout ID 328
 
-**Match Score: 55/100**
-
 **Scout ID:** 328  
 **Job Number:** `-7991856668815418209`  
 **Company:** Vasion, Inc.  

@@ -1,7 +1,5 @@
 # PPC Specialist - Salon Boss, LLC
 
-**Match Score: 78/100**
-
 **Scout ID:** 82  
 **Job Number:** `-5450231135902286926`  
 **Company:** Salon Boss, LLC  

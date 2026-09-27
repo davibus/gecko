@@ -1,7 +1,5 @@
 # Paid Search Strategist - Mannix Marketing
 
-**Match Score: 74/100**
-
 **Scout ID:** 654  
 **Job Number:** `-8509864411551859075`  
 **Company:** Mannix Marketing  

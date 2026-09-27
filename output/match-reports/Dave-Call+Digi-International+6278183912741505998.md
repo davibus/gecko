@@ -1,7 +1,5 @@
 # Demand Generation Manager (Remote - Hopkins, MN, Mishawaka, IN or Sandy/Lehi, UT) - Digi International
 
-**Match Score: 45/100**
-
 **Scout ID:** 837  
 **Job Number:** `6278183912741505998`  
 **Company:** Digi International  

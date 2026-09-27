@@ -1,7 +1,5 @@
 # Senior Lifecycle Marketing Manager - PRIME CORPORATE SERVICES LLC
 
-**Match Score: 36/100**
-
 **Scout ID:** 680  
 **Job Number:** `7541664880430775900`  
 **Company:** PRIME CORPORATE SERVICES LLC  

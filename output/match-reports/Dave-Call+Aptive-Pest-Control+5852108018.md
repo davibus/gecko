@@ -1,7 +1,5 @@
 # Sr. Manager, Marketing Analytics - Aptive Pest Control
 
-**Match Score: 64/100**
-
 **Scout ID:** 50  
 **Job Number:** `5852108018`  
 **Company:** Aptive Pest Control  

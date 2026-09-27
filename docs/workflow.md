@@ -28,7 +28,7 @@ To proceed with a listing, explicitly run `python job-scout/scout.py select <ID>
    - Sanitize the company name for Windows filenames by replacing spaces with hyphens and removing invalid filename characters (`\ / : * ? " < > |`).
    - All job-specific temporary files must live inside this subfolder (preview PNGs, test PDFs, layout verification images, intermediate files).
    - Do not place new job-specific temporary files directly in the root `scratch/` folder.
-4. Verify all claims against the current master DOCX (`input/master-resume/Dave-Call-resume-9-23-26.docx`). The older PDF and `Dave_Call_Resume_5ec9726395344311.docx` are not content sources; the latter is for formatting only.
+4. Verify all claims against the current master archive (`input/master-resume/Dave-Call-Resume.txt`). The older DOCX, PDF, and `Dave_Call_Resume_5ec9726395344311.docx` are not content sources; the latter is for formatting only.
 5. Tailor the resume subtly and generate the two-page DOCX resume under `output/resumes/Dave-Call+{Company-Name}+{Job-Title}+{JobNumber}.docx` using the reusable generator in `scripts/`.
 6. Generate the qualitative Match Analysis report under `output/match-reports/Dave-Call+{Company-Name}+{JobNumber}.md`.
 7. Verify page count and layout with `scripts/validate_word_native.ps1`; sandbox executions are handed automatically to the interactive Word bridge. Install the bridge once from the normal desktop with `scripts/Install-Gecko-Word-Bridge.cmd`. Keep Word/PDF validation artifacts inside the job's scratch subfolder (`scratch/{Company-Name}+{JobNumber}/`).
@@ -42,7 +42,7 @@ To process every `Job Scout` row with `Apply? = Yes` and a blank `Resume Created
 
 The 600-character completeness gate remains mandatory. If every legitimate source is unavailable or only returns a snippet, Gecko creates no resume and leaves `Resume Created` unchanged. `output/apply-queue-results.md` lists the original and authoritative URLs, every retrieval method and outcome, and the final failure reason; `output/apply-queue-run.log` retains detailed chronological diagnostics. After Word-native QA passes and both final files exist, the runner uses `manage_job_tracker.py`'s canonical recorder to update only Gecko-managed Scout fields (`Resume Created`, `Resume Link`, and lifecycle status) and, when present, the application tab. `Apply?`, `Applied`, `Contacted`, formatting, formulas, and row order remain unchanged. Use `--dry-run` for a single read-only retry-queue snapshot.
 
-The resume workflow now starts with a source-backed tailoring plan. Job Scout's discovery and selection workflow remains separate; its evidence reader now uses the same current master DOCX. For an archived listing, run:
+The resume workflow now starts with a source-backed tailoring plan. Job Scout's discovery and selection workflow remains separate; its evidence reader now uses the same current master archive. For an archived listing, run:
 
 For new jobs, use `scripts/gecko_v2.py`. The older job-specific `generate_*_resume.py` scripts are historical artifacts and must not be used as factual sources or as the current generation path.
 
@@ -50,7 +50,7 @@ For new jobs, use `scripts/gecko_v2.py`. The older job-specific `generate_*_resu
 python scripts/gecko_v2.py plan "input/job-descriptions/Company+JobNumber.md"
 ```
 
-This creates `scratch/Company+JobNumber/tailoring-plan.json` before any resume is changed. Review its required and preferred skills, responsibilities, tools, seniority signals, industry terminology, ATS keywords, evidence links, and gaps. `supported` means a listed term and related master-resume passage were found; `review` is a possible connection that needs human judgment; `gap` means Gecko found no credible passage. The plan's selected bullet IDs can be reordered or removed, but evidence quotes and source hashes cannot be altered. Resume bullets use current master-DOCX passages with only fixed grammar cleanup. If the master changes, rebuild the plan; generation rejects stale source hashes. Do not promote a `review` or `gap` item into a resume claim without a master-DOCX update.
+This creates `scratch/Company+JobNumber/tailoring-plan.json` before any resume is changed. Review its required and preferred skills, responsibilities, tools, seniority signals, industry terminology, ATS keywords, evidence links, and gaps. `supported` means a listed term and related master-resume passage were found; `review` is a possible connection that needs human judgment; `gap` means Gecko found no credible passage. The plan's selected bullet IDs can be reordered or removed, but evidence quotes and source hashes cannot be altered. Resume bullets use current master-archive passages with only fixed grammar cleanup. If the master changes, rebuild the plan; generation rejects stale source hashes. Do not promote a `review` or `gap` item into a resume claim without a master-archive update.
 
 Generate and run the automatic QA gate:
 

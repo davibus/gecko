@@ -1,7 +1,5 @@
 # Marketing Manager - Five Star Franchising
 
-**Match Score: 49/100**
-
 **Scout ID:** 263  
 **Job Number:** `57509565792612835`  
 **Company:** Five Star Franchising  

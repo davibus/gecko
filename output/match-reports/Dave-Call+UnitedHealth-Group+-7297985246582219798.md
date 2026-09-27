@@ -1,7 +1,5 @@
 # Marketing Business Lending Acquisitions Director - Remote - UnitedHealth Group
 
-**Match Score: 18/100**
-
 **Scout ID:** 737  
 **Job Number:** `-7297985246582219798`  
 **Company:** UnitedHealth Group  

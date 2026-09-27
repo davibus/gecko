@@ -1,7 +1,5 @@
 # Regional Marketing Manager - Any Hour Group
 
-**Match Score: 49/100**
-
 **Scout ID:** 415  
 **Job Number:** `5891803696`  
 **Company:** Any Hour Group  

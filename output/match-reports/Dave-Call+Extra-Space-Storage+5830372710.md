@@ -1,5 +1,4 @@
-# Gecko Match Score Report
-
+# Gecko Match Analysis
 **Job Title:** Paid Search Analyst  
 **Company:** Extra Space Storage  
 **Location:** Cottonwood Heights / Salt Lake City, Utah (hybrid; three office days weekly)  
@@ -9,7 +8,7 @@
 **Application URL:** https://careers.extraspace.com/job/Corporate/paid-search-analyst/Salt-Lake-City-Utah/Extra%20Space%20Storage/R-80479  
 **Generated Resume:** `output/resumes/Dave-Call+Extra-Space-Storage+5830372710.docx`
 
-## Match Score: 91/100
+## : 91/100
 
 Dave is an unusually strong technical match for the paid-search execution, analysis, testing, pacing, reporting, and process-improvement responsibilities. His experience substantially exceeds the requested one to three years and includes direct Google Ads and Bing Ads management, desktop editors, advanced Excel, keyword and search-query analysis, account builds, campaign monitoring, scripts, reporting, attribution, bid testing, budget management, and cross-functional communication. The primary risk is overqualification: this is a directed analyst role, while Dave has managed teams, departments, and significantly larger scopes. Vendor-invoice reconciliation and paid-search operations across thousands of physical locations are not specifically established.
 

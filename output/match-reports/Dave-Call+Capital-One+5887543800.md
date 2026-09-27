@@ -1,7 +1,5 @@
 # Director, Agency Partnerships Ad Sales - Capital One Ad Solutions (Remote) — Capital One
 
-**Match Score: 42/100**
-
 **Scout ID:** 45  
 **Job Number:** `5887543800`  
 **Company:** Capital One  

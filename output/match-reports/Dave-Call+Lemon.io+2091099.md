@@ -1,7 +1,5 @@
 # Senior DevOps Engineer - Lemon.io
 
-**Match Score: 7/100**
-
 **Scout ID:** 486  
 **Job Number:** `2091099`  
 **Company:** Lemon.io  

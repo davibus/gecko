@@ -1,7 +1,5 @@
 # Paid Search Marketing Analyst - Virtual Vocations Inc
 
-**Match Score: 74/100**
-
 **Scout ID:** 143  
 **Job Number:** `2804269510300765441`  
 **Company:** Virtual Vocations Inc  

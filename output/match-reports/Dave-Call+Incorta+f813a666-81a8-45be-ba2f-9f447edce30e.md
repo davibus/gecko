@@ -1,6 +1,6 @@
 # Gecko Match Report — Incorta Web and Digital Marketing Manager
 
-## Match Score: 88/100
+## : 88/100
 
 Dave is a strong functional match for Incorta's Web and Digital Marketing Manager role. The source resume directly supports 14+ years of digital marketing, paid media, ecommerce, web development collaboration, technical SEO, GA4/GTM, HTML/CSS/JavaScript, analytics, reporting automation, B2B operations, and substantial budget ownership. The score is reduced by the role's required hands-on Webflow expertise and its explicit Salesforce/HubSpot/Marketo integration, BigQuery, and custom data-layer requirements, which are not all established in the source.
 

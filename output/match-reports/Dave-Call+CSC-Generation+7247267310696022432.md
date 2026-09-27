@@ -1,7 +1,5 @@
 # Vice President, Performance Marketing — CSC Generation
 
-Match Score: 15/100
-
 Conservative automated estimate. Review the evidence links and gaps in the tailoring plan before application.
 
 ## Strongest alignment areas

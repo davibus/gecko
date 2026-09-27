@@ -1,7 +1,5 @@
 # Senior Manager, Marketing — Bowman
 
-**Match Score: 34/100**
-
 **Scout ID:** 60  
 **Job Number:** `5879577416`  
 **Company:** Bowman  

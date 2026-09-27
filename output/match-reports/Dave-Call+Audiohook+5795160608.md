@@ -1,7 +1,5 @@
 # Director of Performance Marketing Sales - Audiohook
 
-**Match Score: 32/100**
-
 **Scout ID:** 571  
 **Job Number:** `5795160608`  
 **Company:** Audiohook  

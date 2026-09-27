@@ -1,7 +1,5 @@
 # Paid Search Strategist - Virtual Vocations Inc
 
-**Match Score: 74/100**
-
 **Scout ID:** 651  
 **Job Number:** `-1067286750725275525`  
 **Company:** Virtual Vocations Inc  

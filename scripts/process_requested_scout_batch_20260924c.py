@@ -45,28 +45,28 @@ UNRELATED = {
 }
 
 SPECIAL = {
-    709: ("digital", 34, "Payments product positioning and product launches are not documented in the master."),
-    694: ("digital", 35, "Insurance product and channel-marketing ownership are not documented in the master."),
-    280: ("analytics", 49, "BI data architecture and engineering ownership are not documented in the master."),
-    281: ("analytics", 47, "AI-driven analytics program ownership is not documented in the master."),
-    838: ("growth", 37, "ABM program ownership, CRM orchestration, and sourced pipeline are not documented."),
-    837: ("growth", 48, "End-to-end B2B demand generation and sourced pipeline are not documented."),
-    676: ("sales", 21, "Enterprise performance-marketing sales leadership and a sales quota are not documented."),
-    54: ("sales", 20, "Strategic account executive quota and deal-closing history are not documented."),
-    508: ("sales", 16, "Building-automation business development and sales-closing history are not documented."),
-    199: ("sales", 21, "Beverage market-development sales and distributor account ownership are not documented."),
-    409: ("digital", 49, "Cannabis or wellness industry marketing requirements are not documented."),
-    116: ("content", 33, "SEO and AI-search editorial ownership are not documented."),
-    331: ("content", 34, "Organic growth and SEO program ownership are not documented."),
-    642: ("content", 35, "End-to-end technical and content SEO ownership are not documented."),
-    641: ("content", 35, "End-to-end technical and content SEO ownership are not documented."),
-    403: ("sales", 18, "Business-lending acquisition and financial-services sales leadership are not documented."),
-    737: ("sales", 18, "Business-lending acquisition and financial-services sales leadership are not documented."),
-    260: ("growth", 39, "Vice-president-level SaaS demand generation and marketing-sourced pipeline leadership are not documented."),
-    61: ("digital", 34, "Medical-device surgery product marketing and clinical buyer expertise are not documented."),
-    67: ("digital", 30, "Cryptocurrency trading product marketing and financial product launches are not documented."),
-    27: ("sales", 28, "Ad-sales client development and quota-bearing sales leadership are not documented."),
-    43: ("sales", 25, "Shopping business-direction and commercial ownership are not documented."),
+    709: ("digital", "Payments product positioning and product launches are not documented in the master."),
+    694: ("digital", "Insurance product and channel-marketing ownership are not documented in the master."),
+    280: ("analytics", "BI data architecture and engineering ownership are not documented in the master."),
+    281: ("analytics", "AI-driven analytics program ownership is not documented in the master."),
+    838: ("growth", "ABM program ownership, CRM orchestration, and sourced pipeline are not documented."),
+    837: ("growth", "End-to-end B2B demand generation and sourced pipeline are not documented."),
+    676: ("sales", "Enterprise performance-marketing sales leadership and a sales quota are not documented."),
+    54: ("sales", "Strategic account executive quota and deal-closing history are not documented."),
+    508: ("sales", "Building-automation business development and sales-closing history are not documented."),
+    199: ("sales", "Beverage market-development sales and distributor account ownership are not documented."),
+    409: ("digital", "Cannabis or wellness industry marketing requirements are not documented."),
+    116: ("content", "SEO and AI-search editorial ownership are not documented."),
+    331: ("content", "Organic growth and SEO program ownership are not documented."),
+    642: ("content", "End-to-end technical and content SEO ownership are not documented."),
+    641: ("content", "End-to-end technical and content SEO ownership are not documented."),
+    403: ("sales", "Business-lending acquisition and financial-services sales leadership are not documented."),
+    737: ("sales", "Business-lending acquisition and financial-services sales leadership are not documented."),
+    260: ("growth", "Vice-president-level SaaS demand generation and marketing-sourced pipeline leadership are not documented."),
+    61: ("digital", "Medical-device surgery product marketing and clinical buyer expertise are not documented."),
+    67: ("digital", "Cryptocurrency trading product marketing and financial product launches are not documented."),
+    27: ("sales", "Ad-sales client development and quota-bearing sales leadership are not documented."),
+    43: ("sales", "Shopping business-direction and commercial ownership are not documented."),
 }
 
 GAPS = {
@@ -80,68 +80,47 @@ GAPS = {
     "sales": "The master documents client consultation and account strategy, but not a sales quota, prospecting pipeline, or closing record.",
 }
 
-BASE = {
-    "paid": 77, "social": 56, "analytics": 64, "ecommerce": 64,
-    "growth": 55, "digital": 52, "content": 36, "sales": 24,
-}
-
-
-def classify(job, scout_id: int) -> tuple[str, int, list[str], str]:
-    # Re-read the master while scoring; gecko.prepare independently re-reads it
+def classify(job, scout_id: int) -> tuple[str, list[str], str]:
+    # Re-read the master while evaluating; gecko.prepare independently re-reads it
     # during generation and again for the final match report.
-    master = gecko.source_text()
-    if "75+ Google Ads accounts" not in master or "Built Tableau dashboards" not in master:
-        raise RuntimeError("Current master resume evidence changed; review assessments")
+    gecko.source_text()
     title = job.title.casefold()
     desc = job.description.casefold()
     if scout_id in UNRELATED:
-        family, score = "digital", 7
+        family = "digital"
         first = f"The master resume does not document the core qualifications for {job.title}."
     elif scout_id in SPECIAL:
-        family, score, first = SPECIAL[scout_id]
+        family, first = SPECIAL[scout_id]
     elif re.search(r"paid search|\bppc\b|\bsem\b|search engine marketing|paid media|advertising manager", title):
-        family, score = "paid", BASE["paid"]
+        family = "paid"
         first = GAPS[family]
     elif re.search(r"social media|social channels|paid social|instagram", title):
-        family, score = "social", BASE["social"]
+        family = "social"
         first = GAPS[family]
     elif re.search(r"analytics|analyst|insights|data analyst|business intelligence", title):
-        family, score = "analytics", BASE["analytics"]
+        family = "analytics"
         first = GAPS[family]
     elif re.search(r"e-?commerce|commerce|retail media|online retail", title):
-        family, score = "ecommerce", BASE["ecommerce"]
+        family = "ecommerce"
         first = GAPS[family]
     elif re.search(r"product marketing|segment marketing|channel marketing|brand marketing|field marketing|event marketing|public relations", title):
-        family, score = "digital", 34
+        family = "digital"
         first = "Product positioning, go-to-market launches, brand/field programs, or event ownership named by the title are not documented in the master."
     elif re.search(r"email|lifecycle|marketing operations|web operations", title):
-        family, score = "digital", 39
+        family = "digital"
         first = "End-to-end email/CRM lifecycle automation or website operations ownership is not documented in the master."
     elif re.search(r"content|seo|organic", title):
-        family, score = "content", BASE["content"]
+        family = "content"
         first = GAPS[family]
     elif re.search(r"sales|account executive|business development|partnerships", title):
-        family, score = "sales", BASE["sales"]
+        family = "sales"
         first = GAPS[family]
     elif re.search(r"growth|demand generation|acquisition", title):
-        family, score = "growth", BASE["growth"]
+        family = "growth"
         first = GAPS[family]
     else:
-        family, score = "digital", BASE["digital"]
+        family = "digital"
         first = GAPS[family]
-    if family == "paid" and ("google ads" in desc or "microsoft ads" in desc):
-        score += 4
-    if family == "analytics" and ("tableau" in desc or "sql" in desc or "looker" in desc):
-        score += 3
-    if family == "ecommerce" and ("google ads" in desc or "amazon" in desc):
-        score += 3
-    if family == "social" and ("meta" in desc or "tiktok" in desc):
-        score += 3
-    if family == "paid" and "director" in title:
-        score -= 6
-    if len(job.description) < 600 and score > 20:
-        score -= 3
-    score = max(5, min(85, score))
     second = ("Scout contains only a short excerpt, so the full requirements and current opening must be confirmed."
               if len(job.description) < 1000 else
               "Review the full listing for additional requirements and application eligibility.")
@@ -158,7 +137,7 @@ def classify(job, scout_id: int) -> tuple[str, int, list[str], str]:
             "Use the archived full listing to check all role requirements and eligibility before applying.")
     if scout_id in {613, 615}:
         note += " Wpromote's B2B director role may be the same opening under two Scout records; confirm the application destination."
-    return family, score, [first, second], note
+    return family, [first, second], note
 
 
 def tracker_add(result: dict) -> tuple[int, str]:

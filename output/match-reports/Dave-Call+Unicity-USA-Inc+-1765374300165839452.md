@@ -1,5 +1,4 @@
-# Gecko Match Score Report
-
+# Gecko Match Analysis
 **Job Title:** Growth Marketing Manager  
 **Company:** Unicity USA Inc  
 **Location:** Provo, Utah  
@@ -9,7 +8,7 @@
 **Application URL:** https://unicity.hrmdirect.com/employment/job-openings.php?jbsrc=2&search=true  
 **Generated Resume:** `output/resumes/Dave-Call+Unicity-USA-Inc+-1765374300165839452.docx`
 
-## Match Score: 93/100
+## : 93/100
 
 Dave is a strong match for the role's ecommerce growth, conversion-funnel ownership, experimentation, analytics, website implementation, reporting, retention, affiliate analysis, and cross-functional execution. His source resume establishes more than 14 years in marketing and technology, director-level ecommerce leadership, GA4 and GTM implementation, A/B and multivariate testing, landing-page optimization, HTML/CSS, SQL, Shopify and Magento, affiliate-program strategy, customer-retention tools, product launches, and close work with web, creative, product, and operating teams. The score is held below the top range because named testing platforms such as Optimizely, VWO, and Convert are not documented, nor are session-recording platforms or direct ownership of onsite surveys.
 

@@ -1,7 +1,5 @@
 # Strategic Partnerships Growth Manager - Lowe Law Group
 
-**Match Score: 21/100**
-
 **Scout ID:** 335  
 **Job Number:** `-2165977317316821011`  
 **Company:** Lowe Law Group  

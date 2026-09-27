@@ -12,7 +12,6 @@
 - **URL:** https://careers.extraspace.com/job/Corporate/paid-search-analyst/Salt-Lake-City-Utah/Extra%20Space%20Storage/R-80479
 - **Date Posted:** 2026-08-06
 - **Date Discovered:** 2026-09-19
-- **Gecko Match Score:** 67/100 (pre-enrichment)
 
 ## Source links
 

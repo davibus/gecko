@@ -1,7 +1,5 @@
 # Sr. Product Marketing Manager - Audience Engagement (Remote) — RainFocus
 
-**Match Score: 34/100**
-
 **Scout ID:** 714  
 **Job Number:** `3aaf4676-cec2-4e54-a77e-02075e283ba7`  
 **Company:** RainFocus  

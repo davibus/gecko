@@ -1,7 +1,5 @@
 # Virtual Vocations Inc - Scout ID 103
 
-**Match Score: 49/100**
-
 **Scout ID:** 103  
 **Job Number:** `6844357924978283146`  
 **Company:** Virtual Vocations Inc  

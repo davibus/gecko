@@ -1,7 +1,5 @@
 # R1 Roofing & Exteriors - Scout ID 87
 
-**Match Score: 25/100**
-
 **Scout ID:** 87  
 **Job Number:** `-4189659387610930586`  
 **Company:** R1 Roofing & Exteriors  

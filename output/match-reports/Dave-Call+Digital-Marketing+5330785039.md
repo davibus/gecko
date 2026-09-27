@@ -1,7 +1,5 @@
 # Digital Marketing — SEO Digital Marketing Senior Analyst, Freelance Match Report
 
-**Match Score: 89/100**
-
 ## Strongest alignment areas
 
 - **Deep SEO and digital-marketing background:** Dave has more than 14 years across SEO, ecommerce, paid media, analytics, website optimization, content, and conversion.

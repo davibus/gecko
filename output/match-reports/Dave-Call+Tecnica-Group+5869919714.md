@@ -1,7 +1,5 @@
 # Tecnica Group - Scout ID 17
 
-**Match Score: 60/100**
-
 **Scout ID:** 17  
 **Job Number:** `5869919714`  
 **Company:** Tecnica Group  

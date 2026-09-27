@@ -1,7 +1,5 @@
 # Senior QA Engineer - Lemon.io
 
-**Match Score: 7/100**
-
 **Scout ID:** 481  
 **Job Number:** `2091100`  
 **Company:** Lemon.io  

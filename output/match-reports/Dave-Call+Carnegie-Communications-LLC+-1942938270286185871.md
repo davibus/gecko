@@ -1,7 +1,5 @@
 # Senior Paid Search Specialist - Carnegie Communications LLC
 
-**Match Score: 78/100**
-
 **Scout ID:** 501  
 **Job Number:** `-1942938270286185871`  
 **Company:** Carnegie Communications LLC  

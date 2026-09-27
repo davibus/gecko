@@ -1,7 +1,5 @@
 # DoiT International - Scout ID 346
 
-**Match Score: 18/100**
-
 **Scout ID:** 346  
 **Job Number:** `-4617210221082659635`  
 **Company:** DoiT International  

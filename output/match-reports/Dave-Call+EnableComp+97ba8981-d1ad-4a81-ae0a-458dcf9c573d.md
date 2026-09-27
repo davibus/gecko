@@ -1,6 +1,6 @@
 # Gecko Match Report — EnableComp Manager, Growth Marketing
 
-## Match Score: 84/100
+## : 84/100
 
 Dave is a strong functional match for EnableComp's hands-on growth marketing role. The source resume directly supports multi-channel demand generation, SEM, paid social, retargeting, email, organic search, landing-page optimization, HubSpot familiarity, campaign analytics, budget management, automation, AI-assisted workflows, and complex B2B collaboration. The score is limited by several important evidence gaps: direct Salesforce work, healthcare or revenue-cycle experience, end-to-end HubSpot nurture ownership, and independent production of blogs and ebooks are not established by the source material.
 

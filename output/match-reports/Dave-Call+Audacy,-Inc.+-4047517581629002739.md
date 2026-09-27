@@ -1,7 +1,5 @@
 # Search Engine Marketing (SEM) Account Manager - Audacy, Inc.
 
-**Match Score: 74/100**
-
 **Scout ID:** 179  
 **Job Number:** `-4047517581629002739`  
 **Company:** Audacy, Inc.  

@@ -1,5 +1,4 @@
-# Gecko Match Score Report
-
+# Gecko Match Analysis
 **Job Title:** SEM Specialist I  
 **Company:** Omni Advertising  
 **Location:** Remote (HQ: Boca Raton, FL)  
@@ -9,7 +8,7 @@
 
 ---
 
-## 🎯 Overall Match Score: **96 / 100**
+## 🎯 Overall : **96 / 100**
 
 > [!NOTE]
 > **Summary Assessment:** Dave Call is a premier candidate for the SEM Specialist position at Omni Advertising. His extensive hands-on history managing agency client portfolios (including 75+ simultaneous Google Ads accounts at The Infinite Agency), building automated bid and pacing scripts, tracking phone/form leads (Click-to-Call), and conducting granular search audits makes him uniquely qualified to execute with zero ramp-up time across automotive dealership accounts.

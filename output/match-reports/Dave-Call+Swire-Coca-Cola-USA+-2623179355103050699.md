@@ -1,7 +1,5 @@
 # Market Development Manager - Swire Coca Cola USA
 
-**Match Score: 18/100**
-
 **Scout ID:** 199  
 **Job Number:** `-2623179355103050699`  
 **Company:** Swire Coca Cola USA  

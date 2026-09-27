@@ -80,39 +80,35 @@ class GeckoV2Tests(unittest.TestCase):
             self.assertTrue(any("Relevant quantified accomplishment omitted" in issue
                                 for issue in v2.inspect_docx(altered, path)))
 
-    def test_reads_updated_master_docx_instead_of_cached_content(self):
-        from docx import Document
+    def test_reads_updated_master_archive_instead_of_cached_content(self):
         with tempfile.TemporaryDirectory() as tmp:
-            master = Path(tmp) / "master.docx"
-            document = Document()
-            document.add_paragraph("First master version")
-            document.save(master)
+            master = Path(tmp) / "Dave-Call-Resume.txt"
+            master.write_text("First master version\n", encoding="utf-8")
             with patch.object(v2, "ROOT", Path(tmp)), patch.object(v2, "MASTER", master):
                 first = v2.source_text()
                 first_hash = v2.source_hashes()
-                document.add_paragraph("New approved accomplishment")
-                document.save(master)
+                master.write_text("First master version\nNew approved accomplishment\n", encoding="utf-8")
                 self.assertIn("New approved accomplishment", v2.source_text())
                 self.assertNotEqual(first, v2.source_text())
                 self.assertNotEqual(first_hash, v2.source_hashes())
 
-    def test_old_pdf_and_format_reference_are_not_evidence(self):
-        self.assertEqual(v2.MASTER.name, "Dave-Call-resume-9-23-26.docx")
+    def test_old_files_and_format_reference_are_not_evidence(self):
+        self.assertEqual(v2.MASTER.name, "Dave-Call-Resume.txt")
         self.assertEqual({Path(path).as_posix() for path in self.plan["source_sha256"]},
-                         {"input/master-resume/Dave-Call-resume-9-23-26.docx"})
-        self.assertTrue(all(e["source"].endswith("Dave-Call-resume-9-23-26.docx")
+                         {"input/master-resume/Dave-Call-Resume.txt"})
+        self.assertTrue(all(e["source"].endswith("Dave-Call-Resume.txt")
                             for e in self.plan["evidence"]))
         self.assertNotIn("Spanish", self.plan["resume"]["contact"])
         self.assertNotIn("Spanish", self.plan["resume"]["certifications"])
 
-    def test_project_notes_do_not_authorize_ai_tool_claims(self):
-        listing = "## Required Qualifications\n- Must have hands-on Codex experience in marketing operations."
+    def test_project_notes_do_not_authorize_unsupported_tool_claims(self):
+        listing = "## Required Qualifications\n- Must have hands-on Marketo experience in marketing operations."
         result = v2.requirements(listing, v2.source_text(), self.plan["evidence"])
-        self.assertEqual(result["tools"][0]["text"], "Codex")
+        self.assertEqual(result["tools"][0]["text"], "Marketo")
         self.assertEqual(result["tools"][0]["status"], "gap")
         self.assertEqual(result["required_skills"][0]["status"], "gap")
 
-    def test_flattened_aggregator_prose_still_yields_scorable_requirements(self):
+    def test_flattened_aggregator_prose_still_yields_qualitative_requirements(self):
         listing = (
             "## Job description\n"
             "Company background and product information. "
@@ -127,20 +123,17 @@ class GeckoV2Tests(unittest.TestCase):
         result = v2.requirements(listing, v2.source_text(), self.plan["evidence"])
         core = result["required_skills"] + result["responsibilities"]
         self.assertGreaterEqual(len(core), 4)
-        plan = {"requirements": result}
-        self.assertIsInstance(v2.match_score(plan), int)
+        self.assertTrue(any(item["status"] in {"supported", "partial", "gap"} for item in core))
 
-    def test_missing_requirements_is_a_scoring_error_not_zero(self):
-        plan = {"requirements": {"required_skills": [], "responsibilities": []}}
-        with self.assertRaisesRegex(ValueError, "no scorable job requirements"):
-            v2.match_score(plan)
-
-    def test_legitimate_zero_score_is_preserved(self):
-        plan = {"requirements": {
-            "required_skills": [{"text": "Unsupported requirement", "status": "gap"}],
-            "responsibilities": [],
-        }}
-        self.assertEqual(v2.match_score(plan), 0)
+    def test_match_report_is_qualitative_and_contains_no_retired_fields(self):
+        qa = {"status": "pass", "remaining_weaknesses": [], "word_pages": 2, "pdf_pages": 2}
+        with tempfile.TemporaryDirectory() as directory, patch.object(v2, "ROOT", Path(directory)):
+            path = v2.write_match_report(self.plan, qa)
+            report = path.read_text(encoding="utf-8")
+        self.assertIn("Strongest alignment areas", report)
+        self.assertNotIn("Match Score", report)
+        self.assertNotIn("Evidence Confidence", report)
+        self.assertNotIn("Match Status", report)
 
 
 if __name__ == "__main__":

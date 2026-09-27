@@ -1,7 +1,5 @@
 # CHG Healthcare — Growth Marketing Manager Match Report
 
-**Match Score: 94/100**
-
 ## Strongest alignment areas
 
 - **End-to-end growth experience:** Dave has more than 14 years across growth, performance marketing, ecommerce, analytics, and technology, including hands-on campaign execution and director-level ownership.

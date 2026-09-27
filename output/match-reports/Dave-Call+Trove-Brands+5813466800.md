@@ -1,7 +1,5 @@
 # Trove Brands — Associate Digital Marketing Director, Owala Match Report
 
-**Match Score: 93/100**
-
 ## Strongest alignment areas
 
 - **Director-level digital and ecommerce leadership:** Dave has 14+ years in digital marketing and ecommerce, including Director of Digital Marketing, Director of E-Commerce & Marketing, and leadership of an eight-person ecommerce department.

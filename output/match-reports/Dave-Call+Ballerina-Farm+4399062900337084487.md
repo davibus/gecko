@@ -1,7 +1,5 @@
 # Growth Marketing Analyst - Ballerina Farm
 
-**Match Score: 61/100**
-
 **Scout ID:** 292  
 **Job Number:** `4399062900337084487`  
 **Company:** Ballerina Farm  

@@ -1,7 +1,5 @@
 # Digital Marketing Project Manager - Eliassen Group
 
-**Match Score: 49/100**
-
 **Scout ID:** 90  
 **Job Number:** `-3764563307708047268`  
 **Company:** Eliassen Group  

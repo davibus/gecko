@@ -1,7 +1,5 @@
 # Social Media Manager - CHG Healthcare
 
-**Match Score: 56/100**
-
 **Scout ID:** 296  
 **Job Number:** `-657974748748901569`  
 **Company:** CHG Healthcare  

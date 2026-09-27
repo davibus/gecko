@@ -1,7 +1,5 @@
 # Marketing Manager - The Ruth and Nathan Hale Theater
 
-**Match Score: 49/100**
-
 **Scout ID:** 233  
 **Job Number:** `-8351493039388850077`  
 **Company:** The Ruth and Nathan Hale Theater  

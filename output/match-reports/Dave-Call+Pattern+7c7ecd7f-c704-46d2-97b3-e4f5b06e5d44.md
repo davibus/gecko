@@ -5,7 +5,6 @@
 - **Job Title:** Digital Marketing Manager
 - **Role name in description:** Digital Advertising Strategist
 - **Job Number:** 7c7ecd7f-c704-46d2-97b3-e4f5b06e5d44
-- **Match Score:** 88/100
 - **Assessment Date:** September 23, 2026
 - **Location:** Lehi, Utah
 - **Work Arrangement:** Hybrid: three days in office, two days remote per week

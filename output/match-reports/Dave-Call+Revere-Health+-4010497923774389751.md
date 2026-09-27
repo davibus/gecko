@@ -1,7 +1,5 @@
 # Senior Marketing Manager - Marketing - Full-Time - Revere Health
 
-**Match Score: 49/100**
-
 **Scout ID:** 528  
 **Job Number:** `-4010497923774389751`  
 **Company:** Revere Health  

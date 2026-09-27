@@ -1,7 +1,5 @@
 # Business Director: Capital One Shopping (Remote-Eligible) - Capital One
 
-**Match Score: 22/100**
-
 **Scout ID:** 43  
 **Job Number:** `5890506739`  
 **Company:** Capital One  

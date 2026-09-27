@@ -1,7 +1,5 @@
 # Senior Data Scientist — Lemon.io
 
-**Match Score: 25/100**
-
 **Scout ID:** 471  
 **Job Number:** `2091129`  
 **Company:** Lemon.io  

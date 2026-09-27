@@ -38,7 +38,7 @@ Gecko customizes Dave Call's resume for individual job postings while preserving
 
 ## Factual source
 
-`input/master-resume/Dave-Call-resume-9-23-26.docx` is the single source of truth for work history, accomplishments, metrics, skills, tools, education, certifications, AI tools, and leadership. Re-read it for each job; never inherit facts from an older generated resume or from this specification. The older PDF is not a content source. `Dave_Call_Resume_5ec9726395344311.docx` may guide formatting only.
+`input/master-resume/Dave-Call-Resume.txt` is the single source of truth for work history, accomplishments, metrics, skills, tools, education, certifications, AI tools, and leadership. It is a comprehensive career archive, not a page-limited resume; tailor from it down to exactly two pages. Re-read it for each job; never inherit facts from an older generated resume or from this specification. Do not use `Dave-Call-resume-9-23-26.docx`, `dcall-resume-3-15-26.pdf`, or previously generated resumes as content sources. `Dave_Call_Resume_5ec9726395344311.docx` may guide formatting only.
 
 ## Match analysis report
 
@@ -50,7 +50,7 @@ Every Gecko job analysis should include:
 - Recommended resume emphasis
 - Interview/application considerations
 
-Evaluate the job description directly against the current master resume. Keep unsupported requirements as explicit gaps. Do not calculate or include a numerical compatibility rating.
+Evaluate the job description directly against the current master archive. Keep unsupported requirements as explicit gaps. Do not calculate or include a numerical compatibility rating.
 
 ## Job tracker
 
@@ -107,4 +107,4 @@ All reusable generation, layout optimization, and pagination verification script
 
 ## Source integrity
 
-Use the current master DOCX as the sole factual source. Any resume designated as a formatting reference may guide visual layout only; its content is never evidence unless confirmed in the master DOCX.
+Use the current master archive (`input/master-resume/Dave-Call-Resume.txt`) as the sole factual source. Any resume designated as a formatting reference may guide visual layout only; its content is never evidence unless confirmed in the master archive.

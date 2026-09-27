@@ -1,7 +1,5 @@
 # Senior Marketing Manager - Private Wealth Law Group
 
-**Match Score: 49/100**
-
 **Scout ID:** 262  
 **Job Number:** `-377921245057416824`  
 **Company:** Private Wealth Law Group  
