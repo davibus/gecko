@@ -16,7 +16,8 @@ The daily command:
 4. applies the existing role-family filter;
 5. deduplicates by stable provider identity, URL, company, and title;
 6. appends only newly discovered jobs to `Job Scout`;
-7. runs Gecko for new rows where `Apply?` is `Yes` and `Resume Created` is blank.
+7. runs Gecko for new rows where `Apply?` is `Yes` and `Resume Created` is blank;
+8. checks Gmail read-only for substantive employer responses to applied jobs and updates `Response`.
 
 `python job-scout/scout.py daily --dry-run` uses a temporary SQLite copy and does not write the Google Sheet, descriptions, resumes, or reports. A failure for one job is logged without stopping later jobs.
 
@@ -41,15 +42,16 @@ The active `Job Scout` schema is:
 7. Resume Created
 8. Applied
 9. Notes
-10. Location
-11. Work Arrangement
-12. Employment Type
-13. Salary
-14. Date Posted
-15. Date Found
-16. Last Seen
-17. Job URL
-18. Resume Link
+10. Response
+11. Location
+12. Work Arrangement
+13. Employment Type
+14. Salary
+15. Date Posted
+16. Date Found
+17. Last Seen
+18. Job URL
+19. Resume Link
 
 The schema migration deletes the retired original columns J, K, L, M, V, X, and Y in place. Future writes are restricted to the headers above and never recreate or repurpose those retired columns. User formatting, filters, manual values, checkboxes, hyperlinks, and row order remain in place because writes target specific cells and structural migration uses native column deletion.
 
@@ -58,6 +60,8 @@ The schema migration deletes the retired original columns J, K, L, M, V, X, and 
 Copy `.env.example` to `.env.local` and configure the provider and Google Sheets credentials. The default queries live in `preferences/default.json`; they contain search preferences only.
 
 The normal source set is `adzuna`, `remotive`, and `web-careers`. Jooble is rejected defensively during discovery, Sheet sync, and resume queue processing. Remotive is read as a remote feed, filtered to the supported role family, ordered newest first, and bounded by `--limit`.
+
+Gmail response tracking requires a Desktop app OAuth client and only the `gmail.readonly` scope. Save the downloaded client JSON as `.secrets/gmail-oauth-client.json`, install `job-scout/requirements.txt`, and run `python job-scout/gmail_response_tracker.py authorize` once from an interactive terminal. The ignored refresh token and processing state are reused by later daily runs. See the root `README.md` for the complete Google Cloud setup.
 
 ## Commands
 
@@ -74,6 +78,8 @@ python job-scout/scout.py enrich 123
 python job-scout/scout.py enrich --all
 python job-scout/scout.py resolve-url 123
 python job-scout/scout.py sync-sheets
+python job-scout/gmail_response_tracker.py authorize
+python job-scout/gmail_response_tracker.py check
 ```
 
 `review` is newest-first and read-only. `select` archives the job description for Gecko. Enrichment retrieves a fuller legitimate description without reclassifying or rating the job.
@@ -91,7 +97,7 @@ No numerical compatibility value is required before generation. The completed re
 
 SQLite stores discovery evidence, source links, lifecycle state, enrichment text, and URL-resolution metadata. Schema migration removes obsolete evaluation columns from existing databases while preserving job records and relationships.
 
-Google Sheet operations update only managed cells by header name. Existing `Apply?`, `Applied`, `Contacted` or note-based contact tracking, formatting, formulas, filters, conditional formatting, colors, hyperlinks, widths, frozen panes, and manual fields remain user-owned.
+Google Sheet operations update only managed cells by header name. Existing `Apply?`, `Applied`, `Contacted`, formatting, formulas, filters, conditional formatting, colors, hyperlinks, widths, frozen panes, and manual fields remain user-owned. Gmail tracking updates only `Response`, refuses ambiguous matches, and preserves a useful existing response unless a newer message is at the same or a later hiring stage.
 
 ## Tests
 

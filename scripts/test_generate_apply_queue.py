@@ -70,7 +70,7 @@ class QueueTests(unittest.TestCase):
             item = queue.QueueRow(2, 42, "Existing", "Role")
             queue.record_success(item, queue.Artifacts(resume, report, listing), self.tracker)
         self.assertEqual([(tab, col) for tab, _, col in self.fake.writes if tab == "Job Scout"],
-                         [("Job Scout", "G"), ("Job Scout", "R"), ("Job Scout", "E")])
+                         [("Job Scout", "G"), ("Job Scout", "S"), ("Job Scout", "E")])
         scout = next(data for _, data in self.tracker.scout().rows if str(data.get("Scout ID")) == "42")
         self.assertEqual(scout["Resume Created"], "X")
         self.assertEqual(scout["Apply?"], "Yes")

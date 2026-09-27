@@ -65,6 +65,7 @@ Google Sheets is the canonical job tracker. Do not create or update a local Exce
 - If Google Sheets is unavailable, report the error without falling back to a local tracker; keep the generated resume and match report.
 - Job Scout searches, daily runs, selections, and completed-resume updates use the same Google Sheets integration.
 - Preserve user formatting and manual fields. Update only specific managed cell values; never recreate tabs, reorder rows, clear populated ranges, reset filters or conditional formatting, or overwrite Applied/Contacted.
+- After the resume queue, Daily Job Scout uses the separate reusable Gmail checker with only `gmail.readonly` access. It may write only conservative employer-response summaries to the matching `Job Scout` `Response` cell. Gmail failures are reported and logged without failing discovery or resume creation.
 
 ## Filename rules
 

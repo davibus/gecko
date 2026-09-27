@@ -26,7 +26,7 @@ APPLICATION_FIELDS = ("Company", "Job Title", "Pay", "Job Number", "Job Link",
 SCOUT_FIELDS = ("Scout ID", "Source", "Company", "Job Title", "Gecko Status",
                 "Location", "Work Arrangement", "Employment Type", "Salary", "Date Posted",
                 "Date Found", "Last Seen", "Job URL", "Resume Link")
-PROTECTED_SCOUT_FIELDS = ("Apply?", "Resume Created", "Applied", "Contacted")
+PROTECTED_SCOUT_FIELDS = ("Apply?", "Resume Created", "Applied", "Contacted", "Response")
 REMOVED_SCOUT_HEADERS = (
     "Website", "Match Score", "Evidence Confidence", "Match Status",
     "Enrichment URL", "URL Status", "Authoritative URL",
@@ -187,6 +187,77 @@ class GoogleTracker:
         if not {"Scout ID", "Job URL", "Gecko Status", "Resume Created", "Apply?"} <= tab.headers.keys():
             raise RuntimeError("Job Scout is missing required columns")
         return tab
+
+    def applied_response_rows(self) -> list[dict[str, Any]]:
+        """Return applied Scout rows with optional application-tab context."""
+        scout = self.scout()
+        if "Response" not in scout.headers:
+            raise RuntimeError("Job Scout is missing the Response column")
+
+        try:
+            application_rows = self.application().rows
+        except RuntimeError as error:
+            if "not found" not in str(error).casefold():
+                raise
+            application_rows = []
+
+        by_url = {
+            canonicalize_url(str(data.get("Job Link") or "")): data
+            for _, data in application_rows if data.get("Job Link")
+        }
+        by_company_title = {
+            (_normal(data.get("Company")), _normal(data.get("Job Title"))): data
+            for _, data in application_rows
+            if data.get("Company") and data.get("Job Title")
+        }
+
+        result = []
+        advanced = {"applied", "contacted", "interview", "rejected", "offer"}
+        for row_number, data in scout.rows:
+            if not (marked(data.get("Applied")) or _normal(data.get("Gecko Status")) in advanced):
+                continue
+            application = by_url.get(canonicalize_url(str(data.get("Job URL") or "")))
+            if application is None:
+                application = by_company_title.get(
+                    (_normal(data.get("Company")), _normal(data.get("Job Title")))
+                )
+            merged = dict(data)
+            if application:
+                for field in ("Job Number", "Date Created", "Job Link"):
+                    if application.get(field) not in (None, ""):
+                        merged[field] = application[field]
+            merged["_row"] = row_number
+            result.append(merged)
+        return result
+
+    def update_response_rows(self, updates: dict[int, str]) -> list[int]:
+        """Update only nonidentical Response cells in one values batch."""
+        if not updates:
+            return []
+        tab = self.scout()
+        if "Response" not in tab.headers:
+            raise RuntimeError("Job Scout is missing the Response column")
+        current = {row: data for row, data in tab.rows}
+        entries = []
+        changed = []
+        column = _col(tab.headers["Response"])
+        for row, value in sorted(updates.items()):
+            if row < 2 or row not in current:
+                raise RuntimeError(f"Cannot update missing Job Scout row {row}")
+            if current[row].get("Response", "") == value:
+                continue
+            entries.append({"range": _a1(tab.title, f"{column}{row}"), "values": [[value]]})
+            changed.append(row)
+        if not entries:
+            return []
+        try:
+            self.api.values().batchUpdate(
+                spreadsheetId=self.config.spreadsheet_id,
+                body={"valueInputOption": "RAW", "data": entries},
+            ).execute()
+        except Exception as error:
+            raise RuntimeError(f"Cannot update Google Sheets Response cells: {error}") from error
+        return changed
 
     def migrate_scout_schema(self) -> dict[str, Any]:
         """Delete retired columns in place; a second run is a verified no-op."""

@@ -16,4 +16,8 @@ __pycache__/
 /.secrets/
 google-sheets-service-account.json
 *service-account-key*.json
+gmail-oauth-client*.json
+gmail-oauth-token*.json
+gmail-response-state.json
+job-scout/data/gmail-response-state.json
 scratch/word-validation-bridge-heartbeat.json

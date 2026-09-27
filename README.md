@@ -2,7 +2,7 @@
 
 Gecko is Dave Call's resume-tailoring workflow for turning a job listing into a targeted, natural-sounding, ATS-friendly resume and qualitative match analysis.
 
-The normal Daily Job Scout command now runs the complete discovery-to-resume workflow. It searches Adzuna, Remotive, and configured Web Careers backends, rejects Jooble, filters to relevant role families, deduplicates results, synchronizes the existing Google Sheet, and sends only newly discovered rows with `Apply? = Yes` and blank `Resume Created` cells through the canonical Gecko V2 generator.
+The normal Daily Job Scout command runs the complete discovery-to-resume workflow. It searches Adzuna, Remotive, and configured Web Careers backends, rejects Jooble, filters to relevant role families, deduplicates results, synchronizes the existing Google Sheet, sends only newly discovered rows with `Apply? = Yes` and blank `Resume Created` cells through the canonical Gecko V2 generator, and then checks Gmail read-only for substantive employer responses to applied jobs.
 
 ```powershell
 python job-scout/scout.py daily
@@ -59,6 +59,25 @@ python scripts/manage_job_tracker.py validate
 ```
 
 The `add` command is idempotent by Job Number when the application tab exists. It reads company, title, pay, source URL, source name, and date found from the archived listing and report; unavailable optional fields remain blank. It also updates the matching Job Scout lifecycle and resume link while preserving user-maintained application/contact fields.
+
+## Gmail response tracking
+
+Daily Job Scout can update the `Response` column on the canonical `Job Scout` tab from employer and recruiter replies. It uses Google's installed-app OAuth flow and requests only `https://www.googleapis.com/auth/gmail.readonly`; it cannot send, delete, archive, label, or otherwise modify mail. Generic job alerts, recommendations, newsletters, and application confirmations without a substantive next step are excluded. Matching message IDs and row-stage metadata are stored in the ignored `job-scout/data/gmail-response-state.json` file so repeated runs do not duplicate updates.
+
+One-time setup:
+
+1. In Google Cloud Console, create or select a project and enable the Gmail API.
+2. Open Google Auth Platform. Configure Branding and Audience. For a personal Gmail account, choose `External`, keep the app in Testing, and add your Gmail address as a test user. For an eligible Workspace-only deployment, `Internal` may be used.
+3. Under Data Access, add only `https://www.googleapis.com/auth/gmail.readonly`.
+4. Under Clients, create an OAuth client with application type `Desktop app`.
+5. Download its JSON file to `.secrets/gmail-oauth-client.json`. Do not commit it.
+6. Install dependencies: `python -m pip install -r job-scout/requirements.txt`.
+7. Authorize once from an interactive terminal: `python job-scout/gmail_response_tracker.py authorize`.
+8. Confirm the read-only check: `python job-scout/gmail_response_tracker.py check`.
+
+The authorization command opens Google's consent page and saves the refresh token to `.secrets/gmail-oauth-token.json`, which is also ignored. The normal `python job-scout/scout.py daily` command then runs Gmail tracking automatically. A Gmail authentication or API error is logged to `output/gmail-response-tracking.log` and reported in the daily summary without failing discovery or resume creation.
+
+Gecko's production tracker is Google Sheets. `output/job-tracker.xlsx` is supported only as an explicitly supplied offline link-audit artifact and is not read or modified by Gmail response tracking.
 
 ## Folder map
 

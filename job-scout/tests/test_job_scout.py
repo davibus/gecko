@@ -78,6 +78,15 @@ class NormalizeTests(unittest.TestCase):
 
 
 class EnvironmentTests(unittest.TestCase):
+    def setUp(self):
+        gmail = SimpleNamespace(
+            emails_checked=0, emails_matched=0, tracker_rows_updated=0,
+            updated_rows=[], skipped_processed=0,
+        )
+        patcher = patch("scout._daily_gmail_response_runner", return_value=(gmail, ""))
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     @staticmethod
     def queue_result():
         return SimpleNamespace(
@@ -307,6 +316,21 @@ class EnvironmentTests(unittest.TestCase):
             result = daily(args, object(), {})
         self.assertEqual(result, 0)
         self.assertIn("No new qualifying jobs", output.getvalue())
+
+    def test_daily_gmail_failure_is_reported_without_changing_exit_code(self):
+        def fake_search(search_args, _store, _preferences):
+            search_args.run_result = {"new_job_ids": [], "existing_job_ids": []}
+            return 0
+
+        output = io.StringIO()
+        args = build_parser().parse_args(["daily"])
+        with (patch("scout.search", side_effect=fake_search),
+              patch("scout._daily_resume_runner", return_value=self.queue_result()),
+              patch("scout._daily_gmail_response_runner", return_value=(None, "simulated outage")),
+              redirect_stdout(output)):
+            result = daily(args, object(), {})
+        self.assertEqual(result, 0)
+        self.assertIn("failed without stopping", output.getvalue())
 
 
 class WebCareerDiagnosticsTests(unittest.TestCase):

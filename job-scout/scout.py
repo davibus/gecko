@@ -121,7 +121,7 @@ def protected_job_ids(jobs, tracker_path=None) -> set[int]:
             scout_id = int(row.get("Scout ID"))
         except (TypeError, ValueError):
             continue
-        if any(marked(row.get(field)) for field in ("Apply?", "Applied", "Contacted", "Resume Created")) or str(row.get("Gecko Status") or "").lower() not in {"", "new", "reviewing"}:
+        if any(marked(row.get(field)) for field in ("Apply?", "Applied", "Contacted", "Resume Created", "Response")) or str(row.get("Gecko Status") or "").lower() not in {"", "new", "reviewing"}:
             protected.add(scout_id)
     try:
         application_rows = tracker.application().rows
@@ -500,7 +500,32 @@ def _daily_resume_runner(new_job_ids, store, *, dry_run=False):
     return result
 
 
-def _print_daily_summary(run_result, queue_result, tracker_summary, *, dry_run=False):
+def _daily_gmail_response_runner():
+    """Run Gmail tracking without allowing it to fail the daily workflow."""
+    try:
+        from gmail_response_tracker import append_log, run_live_check
+
+        result = run_live_check()
+        rows = ",".join(map(str, result.updated_rows)) or "none"
+        append_log(
+            f"GMAIL RESPONSE CHECK checked={result.emails_checked} "
+            f"matched={result.emails_matched} updated={result.tracker_rows_updated} "
+            f"rows={rows} skipped_processed={result.skipped_processed}"
+        )
+        return result, ""
+    except Exception as error:
+        message = str(error)
+        try:
+            from gmail_response_tracker import append_log
+            append_log(f"GMAIL RESPONSE CHECK FAILED error={message}")
+        except Exception:
+            pass
+        print(f"Gmail response tracking warning: {message}", file=sys.stderr)
+        return None, message
+
+
+def _print_daily_summary(run_result, queue_result, tracker_summary, *, dry_run=False,
+                         gmail_result=None, gmail_error=""):
     print("\nDaily Job Scout complete" + (" (dry run)" if dry_run else ""))
     print(f"Sources searched: {run_result.get('sources_searched', 0)}")
     print(f"Jobs discovered: {run_result.get('fetched', 0)}")
@@ -511,6 +536,17 @@ def _print_daily_summary(run_result, queue_result, tracker_summary, *, dry_run=F
     print(f"Resumes already existing: {len(queue_result.snapshot.already_created) + queue_result.recovered}")
     print(f"New Gecko resumes created: {queue_result.created}")
     print(f"Resume failures: {len(queue_result.failures)}")
+    if dry_run:
+        print("Gmail response tracking: skipped in dry run")
+    elif gmail_result is not None:
+        print(f"Gmail emails checked: {gmail_result.emails_checked}")
+        print(f"Gmail responses matched: {gmail_result.emails_matched}")
+        print(f"Response rows updated: {gmail_result.tracker_rows_updated}")
+        print("Updated Response rows: " + (
+            ", ".join(map(str, gmail_result.updated_rows)) if gmail_result.updated_rows else "None"
+        ))
+    else:
+        print(f"Gmail response tracking: failed without stopping Daily Job Scout ({gmail_error})")
     print("\nCreated resumes:")
     if queue_result.successes:
         for index, (item, artifacts) in enumerate(queue_result.successes, 1):
@@ -600,9 +636,11 @@ def daily(args, store, preferences):
         _print_daily_summary(run_result, _empty_queue_result(), {"added": 0}, dry_run=True)
         return 0
     queue_result = _daily_resume_runner(run_result.get("new_job_ids", []), store)
+    gmail_result, gmail_error = _daily_gmail_response_runner()
     _print_daily_summary(
         run_result, queue_result,
         getattr(search_args, "tracker_summary", {"added": 0}),
+        gmail_result=gmail_result, gmail_error=gmail_error,
     )
     return queue_result.exit_code
 

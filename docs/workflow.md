@@ -4,9 +4,11 @@
 
 Each morning, run `python job-scout/scout.py daily`. This is the single discovery-to-resume entry point. It validates active links, searches the configured Adzuna, Remotive, and Web Careers sources, rejects Jooble candidates, applies the role-family filter, deduplicates discoveries, appends only new records to `Job Scout`, and invokes the canonical Gecko V2 queue for new rows whose live `Apply?` value is `Yes` and whose `Resume Created` cell is blank.
 
-The queue retrieves a complete description, archives it with the existing company/job-number convention, creates the evidence-backed tailoring plan, generates the existing two-page DOCX and match report, runs Word-native QA, and records the validated result through `manage_job_tracker.py`. A job failure is logged and reported without stopping later jobs. Confirmed-dead unprotected jobs may be cleared; selected/application history and manual `Applied` / `Contacted` fields are preserved.
+The queue retrieves a complete description, archives it with the existing company/job-number convention, creates the evidence-backed tailoring plan, generates the existing two-page DOCX and match report, runs Word-native QA, and records the validated result through `manage_job_tracker.py`. After the resume queue, the daily command checks Gmail through read-only OAuth for substantive responses to applied jobs and updates only the matching `Response` cells. A job or Gmail failure is logged and reported without stopping later stages. Confirmed-dead unprotected jobs may be cleared; selected/application history and manual `Applied` / `Contacted` fields are preserved.
 
-Use `python job-scout/scout.py daily --dry-run` for discovery against a temporary database copy with no tracker, archive, resume, or match-report writes. The standalone `python scripts/generate_apply_queue.py` remains the explicit retry command for older approved rows that previously failed; the daily command never sweeps old jobs merely because their resume marker is blank.
+Use `python job-scout/scout.py daily --dry-run` for discovery against a temporary database copy with no tracker, archive, resume, match-report, or Gmail access. The standalone `python scripts/generate_apply_queue.py` remains the explicit retry command for older approved rows that previously failed; the daily command never sweeps old jobs merely because their resume marker is blank.
+
+Gmail setup and authorization are documented in `README.md`. Live runs report emails checked, responses matched, and exact tracker rows updated. Gmail failures remain nonfatal and are appended to `output/gmail-response-tracking.log`.
 
 ### Explicit local-workbook link audit
 

@@ -16,7 +16,7 @@ APP = ["Resume #", "Company", "Job Title", "Pay", "Job Number",
        "Job Link", "Resume Link", "Date Created", "Applied", "Contacted", "Source",
        "Date Found", "Status"]
 SCOUT = ["Scout ID", "Source", "Company", "Job Title", "Gecko Status", "Apply?",
-         "Resume Created", "Applied", "Notes", "Location", "Work Arrangement",
+         "Resume Created", "Applied", "Notes", "Response", "Location", "Work Arrangement",
          "Employment Type", "Salary", "Date Posted", "Date Found", "Last Seen",
          "Job URL", "Resume Link"]
 
@@ -34,7 +34,7 @@ class FakeSheets:
         self.data = {
             "Job Tracker": [APP, [7, "Existing", "Role", "", "job-123",
                                   "https://example.test/job", "", "09/01/2026", "TRUE", "called", "", "", ""]],
-            "Job Scout": [SCOUT, [42, "test", "Existing", "Role", "New", "Yes", "", "", "",
+            "Job Scout": [SCOUT, [42, "test", "Existing", "Role", "New", "Yes", "", "", "", "",
                                   "Remote", "remote", "full-time", "", "", "", "",
                                   "https://example.test/job", ""]],
         }
@@ -166,6 +166,18 @@ class GoogleTrackerTests(unittest.TestCase):
         self.assertEqual(stored["Gecko Status"], "Applied")
         self.assertEqual(stored["Resume Created"], "X")
 
+    def test_response_rows_are_applied_only_and_updates_touch_response_only(self):
+        self.fake.data["Job Scout"][1][SCOUT.index("Applied")] = True
+        rows = self.tracker.applied_response_rows()
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["_row"], 2)
+        self.assertEqual(rows[0]["Job Number"], "job-123")
+        changed = self.tracker.update_response_rows({2: "Interview request - received 9/27/26."})
+        self.assertEqual(changed, [2])
+        stored = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
+        self.assertEqual(stored["Response"], "Interview request - received 9/27/26.")
+        self.assertEqual(self.fake.writes[-1], ("Job Scout", 2, "J"))
+
     def test_google_failure_never_falls_back_to_a_local_tracker(self):
         self.fake.fail = True
         with self.assertRaisesRegex(RuntimeError, "Cannot read Google Sheets"):
@@ -191,7 +203,7 @@ class GoogleTrackerTests(unittest.TestCase):
     def test_schema_migration_deletes_retired_columns_and_second_run_is_noop(self):
         legacy = [
             "Scout ID", "Source", "Company", "Job Title", "Gecko Status", "Apply?",
-            "Resume Created", "Applied", "Notes", "Website", "Match Score",
+            "Resume Created", "Applied", "Notes", "Response", "Website", "Match Score",
             "Evidence Confidence", "Match Status", "Location", "Work Arrangement",
             "Employment Type", "Salary", "Date Posted", "Date Found", "Last Seen",
             "Job URL", "Enrichment URL", "Resume Link", "URL Status", "Authoritative URL",
