@@ -39,5 +39,21 @@
     "entry-level",
     "junior",
     "associate"
-  ]
+  ],
+  "deterministic_filters": {
+    "excluded_title_terms": ["intern", "internship", "entry level", "entry-level", "junior", "associate"],
+    "allowed_employment_types": ["full-time", "full time", "permanent"],
+    "allowed_work_arrangements": ["remote", "hybrid", "on-site", "unknown"],
+    "require_preferred_location_for_non_remote": true,
+    "minimum_annual_salary": 0,
+    "excluded_categories": []
+  },
+  "ai_evaluation": {
+    "triage_model": "",
+    "scoring_model": "",
+    "resume_model": "",
+    "candidate_profile": "",
+    "max_triage_description_chars": 6000,
+    "max_scoring_description_chars": 14000
+  }
 }

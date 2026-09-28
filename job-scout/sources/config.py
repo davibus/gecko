@@ -31,11 +31,24 @@ def load_source_config(path: str | Path | None = None) -> dict:
     if not isinstance(payload, dict) or not isinstance(payload.get("providers"), dict):
         raise ValueError("Job source configuration requires a providers object")
     providers = payload["providers"]
+    payload["max_workers"] = int(os.getenv(
+        "JOB_SCOUT_SOURCE_CONCURRENCY", payload.get("max_workers", 6)
+    ))
+    payload["max_results_per_source"] = int(os.getenv(
+        "JOB_SCOUT_MAX_RESULTS_PER_SOURCE", payload.get("max_results_per_source", 50)
+    ))
+    if not 1 <= payload["max_workers"] <= 16:
+        raise ValueError("Job source concurrency must be between 1 and 16")
+    if payload["max_results_per_source"] < 1:
+        raise ValueError("Job source result limit must be at least 1")
     for name, settings in providers.items():
         if not isinstance(settings, dict):
             raise ValueError(f"Provider {name!r} configuration must be an object")
         environment = os.getenv(f"JOB_SCOUT_{name.upper().replace('-', '_')}_ENABLED")
         settings["enabled"] = _boolean(environment, _boolean(settings.get("enabled"), True))
+        limit = settings.get("max_results_per_run")
+        if limit is not None and int(limit) < 1:
+            raise ValueError(f"Provider {name!r} max_results_per_run must be at least 1")
     if providers.get("jooble", {}).get("enabled"):
         raise ValueError("Jooble cannot be enabled in Gecko Job Scout")
     return payload

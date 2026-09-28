@@ -14,11 +14,13 @@ The daily command:
 2. concurrently searches every enabled API, feed, ATS, and search-discovery source;
 3. processes unassigned Indeed URLs manually pasted into Column R (`Job URL`);
 4. rejects Jooble records;
-5. applies the existing role-family filter to automated discovery;
-6. deduplicates by stable provider identity, URL, and deterministic company/title/location identity;
-7. appends automated discoveries and populates valid manual Indeed rows;
-8. runs Gecko for new rows where `Apply?` is `Yes` and `Resume Created` is blank;
-9. checks Gmail read-only for substantive employer responses to applied jobs and updates `Response`.
+5. applies configurable title, location, work-arrangement, employment-type, category, and compensation hard filters;
+6. deduplicates by provider job ID, canonical URL, normalized company/title/location, then fuzzy evidence;
+7. reuses persistent AI results when the normalized description and candidate profile are unchanged;
+8. when AI models are configured, performs compact-profile triage and fully scores only `possible`/`strong` jobs;
+9. appends automated discoveries and populates valid manual Indeed rows;
+10. runs Gecko only for Stage 2 `Apply = Yes` jobs whose live, user-owned `Apply?` is also `Yes` and whose `Resume Created` is blank;
+11. checks Gmail read-only for substantive employer responses to applied jobs and updates `Response`.
 
 `python job-scout/scout.py daily --dry-run` uses a temporary SQLite copy and does not write the Google Sheet, descriptions, resumes, or reports. A failure for one job is logged without stopping later jobs.
 
@@ -74,7 +76,13 @@ The schema migration deletes the retired original columns J, K, L, M, V, X, and 
 
 ## Configuration
 
-Copy `.env.example` to `.env.local` and configure the provider and Google Sheets credentials. The default queries live in `preferences/default.json`; they contain search preferences only.
+Copy `.env.example` to `.env.local` and configure the provider and Google Sheets credentials. Queries, deterministic filters, and AI payload limits live in `preferences/default.json`. A missing salary never causes Gecko to invent compensation; the configured salary floor applies only when a usable salary is present.
+
+AI screening is optional and disabled when either screening model is blank. Configure it with `JOB_SCOUT_TRIAGE_MODEL` and `JOB_SCOUT_SCORING_MODEL`; `GECKO_RESUME_MODEL` independently reserves the strongest model choice for final tailoring. The API client uses `OPENAI_API_KEY` and optionally `OPENAI_BASE_URL`. Stage 1 returns only `relevance` and `reason`; Stage 2 returns `match_score`, `apply`, and `reason`. Results are cached in SQLite by normalized description hash, compact-profile hash, and model pair. The compact profile is in `preferences/candidate-profile.json` and is SHA-256-bound to the current master resume, so a changed master cannot silently use a stale profile. Final Gecko generation still rereads the full master resume and required model PDF.
+
+Source concurrency and volume are bounded by `JOB_SCOUT_SOURCE_CONCURRENCY` and `JOB_SCOUT_MAX_RESULTS_PER_SOURCE`, or their checked-in equivalents in `preferences/job-sources.json`. Providers are fetched concurrently, but each provider retains its own HTTP retry/rate-limit behavior. Results are sorted newest-first before the per-source cap is applied.
+
+AI decisions and scores stay in the persistent local evaluation cache because the live Sheet has no AI-owned columns. Job Scout never overwrites the manual `Apply?`, `Notes`, `Applied`, `Contacted`, or `Response` fields.
 
 Provider enablement and ATS employers are configured in `preferences/job-sources.json`. Override the file with `JOB_SCOUT_SOURCES_CONFIG` or override one provider with `JOB_SCOUT_<PROVIDER>_ENABLED=true|false` (hyphens become underscores). The normal `core` source set contains every supported provider. Providers requiring credentials automatically report `missing credentials` until configured.
 

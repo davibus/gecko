@@ -145,7 +145,7 @@ class GoogleTracker:
         self.service = service or build_service(self.config)
         self.api = self.service.spreadsheets()
 
-    def tab(self, title: str) -> Tab:
+    def tab(self, title: str, *, value_render_option: str = "UNFORMATTED_VALUE") -> Tab:
         try:
             metadata = self.api.get(spreadsheetId=self.config.spreadsheet_id,
                 fields="sheets(properties(sheetId,title,gridProperties(rowCount)))").execute()
@@ -154,7 +154,7 @@ class GoogleTracker:
             if len(matches) != 1:
                 raise RuntimeError(f"Google worksheet {title!r} was not found exactly once")
             values = self.api.values().get(spreadsheetId=self.config.spreadsheet_id,
-                range=_a1(title, "A1:AZ"), valueRenderOption="UNFORMATTED_VALUE").execute().get("values", [])
+                range=_a1(title, "A1:AZ"), valueRenderOption=value_render_option).execute().get("values", [])
         except Exception as error:
             raise RuntimeError(f"Cannot read Google Sheets {title!r}: {error}") from error
         if not values:
@@ -179,8 +179,8 @@ class GoogleTracker:
             raise RuntimeError("Job Tracker is missing required application columns")
         return tab
 
-    def scout(self) -> Tab:
-        tab = self.tab(self.config.scout_tab)
+    def scout(self, *, value_render_option: str = "UNFORMATTED_VALUE") -> Tab:
+        tab = self.tab(self.config.scout_tab, value_render_option=value_render_option)
         if not {"Scout ID", "Job URL", "Gecko Status", "Resume Created", "Apply?"} <= tab.headers.keys():
             raise RuntimeError("Job Scout is missing required columns")
         return tab
@@ -511,8 +511,16 @@ class GoogleTracker:
         self._write(tab, matches[0], values)
 
     def remove_dead_scout(self, scout_ids: set[int]) -> set[int]:
-        tab = self.scout()
-        removed = set()
+        """Clear only Job Scout-managed values and verify those exact cells.
+
+        Missing IDs are already clean, which makes interrupted/repeated cleanup
+        idempotent. Manual columns are deliberately neither inspected nor changed.
+        FORMULA rendering ensures a formula whose displayed result is blank is still
+        cleared and cannot pass verification as an empty cell.
+        """
+        tab = self.scout(value_render_option="FORMULA")
+        target_rows: dict[int, int] = {}
+        write_errors: dict[int, str] = {}
         for row, data in tab.rows:
             try:
                 scout_id = int(data.get("Scout ID"))
@@ -520,16 +528,43 @@ class GoogleTracker:
                 continue
             if scout_id not in scout_ids:
                 continue
-            if any(marked(data.get(field)) for field in (*PROTECTED_SCOUT_FIELDS, "Resume Link")):
-                continue
-            if _normal(data.get("Gecko Status")) not in ("", "new", "reviewing"):
-                continue
-            custom = set(data) - set(SCOUT_FIELDS) - set(PROTECTED_SCOUT_FIELDS) - {"Resume Link"}
-            if any(data.get(field) not in (None, "") for field in custom):
-                continue
-            self._write(tab, row, {field: "" for field in SCOUT_FIELDS if field in tab.headers})
-            removed.add(scout_id)
-        return removed
+            target_rows[row] = scout_id
+            try:
+                self._write(tab, row, {
+                    field: "" for field in SCOUT_FIELDS if field in tab.headers
+                })
+            except RuntimeError as error:
+                # Read back all managed cells below so the error identifies the
+                # exact cells that remain instead of reporting only a row/ID.
+                write_errors[row] = str(error)
+
+        verified = self.scout(value_render_option="FORMULA")
+        verified_rows = dict(verified.rows)
+        failures = []
+        for row, scout_id in target_rows.items():
+            data = verified_rows.get(row, {})
+            for field in SCOUT_FIELDS:
+                if field not in verified.headers:
+                    continue
+                value = data.get(field, "")
+                if value in (None, ""):
+                    continue
+                column = _col(verified.headers[field])
+                reason = write_errors.get(row) or "write completed but the managed value remained"
+                failures.append(
+                    f"sheet={verified.title!r}, row={row}, column={column} ({field}), "
+                    f"cell={column}{row}, remaining_value={value!r}, reason={reason}"
+                )
+        if failures:
+            raise RuntimeError(
+                "Google Sheets Job Scout cleanup left managed cells uncleared:\n- "
+                + "\n- ".join(failures)
+            )
+
+        # Requested IDs not found on the sheet are already cleared. Returning the
+        # full request set makes retries safe after a prior run cleared Sheets but
+        # stopped before deleting the corresponding local record.
+        return set(scout_ids)
 
     def url(self) -> str:
         return f"https://docs.google.com/spreadsheets/d/{quote(self.config.spreadsheet_id)}/edit"

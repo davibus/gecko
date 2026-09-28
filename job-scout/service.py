@@ -6,9 +6,11 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 import re
 
+from ai_evaluation import meaningful_description_change
 from deduplicate import find_duplicate
 from description_retrieval import description_is_sufficient, retrieve_full_description
 from link_validation import DailyLinkValidator
+from hard_filters import deterministic_filter
 from normalize import normalize
 from role_filter import is_relevant_role
 from source_policy import is_jooble_candidate
@@ -38,9 +40,12 @@ class SearchSummary:
     unique_available: int = 0
     unique_imported: int = 0
     filtered_by_role: int = 0
+    deterministic_rejects: int = 0
+    deterministic_reject_reasons: dict[str, int] = field(default_factory=dict)
     jooble_excluded: int = 0
     new_job_ids: list[int] = field(default_factory=list)
     existing_job_ids: list[int] = field(default_factory=list)
+    changed_job_ids: list[int] = field(default_factory=list)
     eligibility_includes_usa: int = 0
     eligibility_worldwide: int = 0
     example_jobs: list[dict] = field(default_factory=list)
@@ -110,6 +115,7 @@ def _discover_listings(
     preserve_existing: bool = False,
     preexisting_ids: set[int] | None = None,
     link_validator: DailyLinkValidator | None = None,
+    preferences: dict | None = None,
 ) -> SearchSummary:
     """Normalize, role-filter, deduplicate, and save listings."""
     summary = SearchSummary()
@@ -124,14 +130,20 @@ def _discover_listings(
             continue
         if require_content and (not raw.title or not raw.description):
             continue
-        if not is_relevant_role(raw.title):
-            summary.filtered_by_role += 1
-            continue
         discovery_backends = raw.metadata.get("_web_search_backends", [])
-        for backend in discovery_backends:
-            summary.backend_qualifying[backend] = summary.backend_qualifying.get(backend, 0) + 1
         job = normalize(raw)
         summary.normalized += 1
+        accepted, filter_reason = deterministic_filter(job, preferences or {})
+        if not accepted:
+            summary.deterministic_rejects += 1
+            summary.deterministic_reject_reasons[filter_reason] = (
+                summary.deterministic_reject_reasons.get(filter_reason, 0) + 1
+            )
+            if not is_relevant_role(raw.title):
+                summary.filtered_by_role += 1
+            continue
+        for backend in discovery_backends:
+            summary.backend_qualifying[backend] = summary.backend_qualifying.get(backend, 0) + 1
         if link_validator is not None:
             link_result = link_validator.check(job)
             if link_result.status == "dead":
@@ -146,6 +158,13 @@ def _discover_listings(
         )
         if duplicate:
             was_existing = duplicate.id in existing_ids
+            current_description = max(
+                (duplicate.description or "", duplicate.enriched_description or ""), key=len
+            )
+            incoming_changed = bool(
+                was_existing and job.description
+                and meaningful_description_change(current_description, job.description)
+            )
             if not (preserve_existing and was_existing):
                 store.merge(duplicate.id, job)
                 merged = store.get(duplicate.id)
@@ -154,6 +173,12 @@ def _discover_listings(
                 if merged and (raw.source.casefold() == "adzuna" or not description_is_sufficient(
                         max((merged.description or "", merged.enriched_description or ""), key=len))):
                     _capture_full_description(merged, store)
+            elif incoming_changed:
+                store.update_description(
+                    duplicate.id, job.description, job.last_seen or job.date_discovered
+                )
+                if duplicate.id not in summary.changed_job_ids:
+                    summary.changed_job_ids.append(duplicate.id)
             summary.duplicates += 1
             duplicate_sources = {duplicate.source.casefold(), *(
                 link.get("source", "").casefold() for link in duplicate.source_links
@@ -190,12 +215,14 @@ def discover(
     preserve_existing: bool = False,
     preexisting_ids: set[int] | None = None,
     link_validator: DailyLinkValidator | None = None,
+    preferences: dict | None = None,
 ) -> SearchSummary:
     """Fetch, normalize, role-filter, deduplicate, and persist listings."""
     listings = (raw for request in requests for raw in provider.search(request))
     return _discover_listings(
         listings, store, require_content=True, preserve_existing=preserve_existing,
         preexisting_ids=preexisting_ids, link_validator=link_validator,
+        preferences=preferences,
     )
 
 
@@ -206,12 +233,13 @@ def discover_feed(
     preserve_existing: bool = False,
     preexisting_ids: set[int] | None = None,
     link_validator: DailyLinkValidator | None = None,
+    preferences: dict | None = None,
 ) -> SearchSummary:
     """Process one cached/public feed or ATS board collection exactly once."""
     return _discover_listings(
         provider.full_feed(), store, require_content=False,
         preserve_existing=preserve_existing, preexisting_ids=preexisting_ids,
-        link_validator=link_validator,
+        link_validator=link_validator, preferences=preferences,
     )
 
 
@@ -223,12 +251,13 @@ def discover_listings(
     preserve_existing: bool = False,
     preexisting_ids: set[int] | None = None,
     link_validator: DailyLinkValidator | None = None,
+    preferences: dict | None = None,
 ) -> SearchSummary:
     """Normalize and persist already-acquired listings on the datastore thread."""
     return _discover_listings(
         listings, store, require_content=require_content,
         preserve_existing=preserve_existing, preexisting_ids=preexisting_ids,
-        link_validator=link_validator,
+        link_validator=link_validator, preferences=preferences,
     )
 
 
@@ -240,11 +269,13 @@ def discover_remotive_full_feed(
     preserve_existing: bool = False,
     preexisting_ids: set[int] | None = None,
     link_validator: DailyLinkValidator | None = None,
+    preferences: dict | None = None,
 ) -> SearchSummary:
     """Persist a bounded, role-filtered Remotive feed in newest-first order."""
     if limit < 1:
         raise ValueError("Remotive limit must be at least 1")
-    pool = [raw for raw in provider.full_feed() if is_relevant_role(raw.title)]
+    all_rows = list(provider.full_feed())
+    pool = [raw for raw in all_rows if deterministic_filter(normalize(raw), preferences or {})[0]]
     if link_validator is not None:
         normalized = [(raw, normalize(raw)) for raw in pool]
         checked = link_validator.check_existing([job for _, job in normalized])
@@ -258,10 +289,11 @@ def discover_remotive_full_feed(
     selected = pool[:limit]
     summary = _discover_listings(
         selected, store, require_content=False, preserve_existing=preserve_existing,
-        preexisting_ids=preexisting_ids,
+        preexisting_ids=preexisting_ids, preferences=preferences,
     )
-    summary.filtered_by_role = max(provider.rss_count - len(pool), 0)
-    summary.fetched = len(pool)
+    summary.deterministic_rejects = max(len(all_rows) - len(pool), 0)
+    summary.filtered_by_role = sum(not is_relevant_role(raw.title) for raw in all_rows)
+    summary.fetched = len(all_rows)
     summary.normalized = len(pool)
     summary.unique_available = len(pool)
     summary.unique_imported = len(selected)

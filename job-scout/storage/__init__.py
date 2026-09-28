@@ -88,6 +88,32 @@ class JobStore:
                 key TEXT PRIMARY KEY,
                 value INTEGER NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS ai_evaluation_cache (
+                description_hash TEXT NOT NULL,
+                profile_hash TEXT NOT NULL,
+                triage_model TEXT NOT NULL,
+                scoring_model TEXT NOT NULL,
+                relevance TEXT NOT NULL,
+                triage_reason TEXT NOT NULL DEFAULT '',
+                match_score INTEGER,
+                apply_decision TEXT NOT NULL DEFAULT 'No',
+                score_reason TEXT NOT NULL DEFAULT '',
+                evaluated_at TEXT NOT NULL,
+                PRIMARY KEY (description_hash, profile_hash, triage_model, scoring_model)
+            );
+            CREATE TABLE IF NOT EXISTS job_evaluations (
+                job_id INTEGER PRIMARY KEY REFERENCES jobs(id) ON DELETE CASCADE,
+                description_hash TEXT NOT NULL,
+                profile_hash TEXT NOT NULL,
+                triage_model TEXT NOT NULL,
+                scoring_model TEXT NOT NULL,
+                relevance TEXT NOT NULL,
+                triage_reason TEXT NOT NULL DEFAULT '',
+                match_score INTEGER,
+                apply_decision TEXT NOT NULL DEFAULT 'No',
+                score_reason TEXT NOT NULL DEFAULT '',
+                evaluated_at TEXT NOT NULL
+            );
         """)
 
     def _columns(self, table: str) -> set[str]:
@@ -286,6 +312,14 @@ class JobStore:
             (job_id, source, source_job_id, url),
         )
 
+    def update_description(self, job_id: int, description: str, last_seen: str) -> None:
+        """Persist a changed posting body without disturbing lifecycle/manual state."""
+        self.connection.execute(
+            "UPDATE jobs SET description=?, last_seen=? WHERE id=?",
+            (description, last_seen, job_id),
+        )
+        self.connection.commit()
+
     def update_status(self, job_id: int, status: str):
         if status not in VALID_STATUSES:
             raise ValueError(f"Unknown status {status!r}; choose from {', '.join(sorted(VALID_STATUSES))}")
@@ -301,9 +335,69 @@ class JobStore:
         if job.status not in {"new", "reviewing"}:
             raise ValueError(f"Cannot delete historical job {job_id} with status {job.status}")
         with self.connection:
-            for table in ("source_links", "enrichments", "url_resolutions"):
+            for table in ("source_links", "enrichments", "url_resolutions", "job_evaluations"):
                 self.connection.execute(f"DELETE FROM {table} WHERE job_id = ?", (job_id,))
             self.connection.execute("DELETE FROM jobs WHERE id = ?", (job_id,))
+
+    @staticmethod
+    def _evaluation_dict(row) -> dict | None:
+        if not row:
+            return None
+        return {key: row[key] for key in (
+            "description_hash", "profile_hash", "triage_model", "scoring_model",
+            "relevance", "triage_reason", "match_score", "apply_decision",
+            "score_reason", "evaluated_at",
+        )}
+
+    def find_cached_evaluation(self, description_hash: str, profile_hash: str,
+                               triage_model: str, scoring_model: str) -> dict | None:
+        row = self.connection.execute("""
+            SELECT * FROM ai_evaluation_cache
+            WHERE description_hash=? AND profile_hash=? AND triage_model=? AND scoring_model=?
+        """, (description_hash, profile_hash, triage_model, scoring_model)).fetchone()
+        return self._evaluation_dict(row)
+
+    def cache_evaluation(self, evaluation: dict) -> None:
+        columns = (
+            "description_hash", "profile_hash", "triage_model", "scoring_model",
+            "relevance", "triage_reason", "match_score", "apply_decision",
+            "score_reason", "evaluated_at",
+        )
+        values = tuple(evaluation.get(column) for column in columns)
+        self.connection.execute(f"""
+            INSERT INTO ai_evaluation_cache ({','.join(columns)})
+            VALUES ({','.join('?' for _ in columns)})
+            ON CONFLICT(description_hash,profile_hash,triage_model,scoring_model) DO UPDATE SET
+                relevance=excluded.relevance,triage_reason=excluded.triage_reason,
+                match_score=excluded.match_score,apply_decision=excluded.apply_decision,
+                score_reason=excluded.score_reason,evaluated_at=excluded.evaluated_at
+        """, values)
+        self.connection.commit()
+
+    def save_job_evaluation(self, job_id: int, evaluation: dict) -> None:
+        columns = (
+            "description_hash", "profile_hash", "triage_model", "scoring_model",
+            "relevance", "triage_reason", "match_score", "apply_decision",
+            "score_reason", "evaluated_at",
+        )
+        values = (job_id, *(evaluation.get(column) for column in columns))
+        self.connection.execute(f"""
+            INSERT INTO job_evaluations (job_id,{','.join(columns)})
+            VALUES ({','.join('?' for _ in range(len(columns) + 1))})
+            ON CONFLICT(job_id) DO UPDATE SET
+                description_hash=excluded.description_hash,profile_hash=excluded.profile_hash,
+                triage_model=excluded.triage_model,scoring_model=excluded.scoring_model,
+                relevance=excluded.relevance,triage_reason=excluded.triage_reason,
+                match_score=excluded.match_score,apply_decision=excluded.apply_decision,
+                score_reason=excluded.score_reason,evaluated_at=excluded.evaluated_at
+        """, values)
+        self.connection.commit()
+
+    def get_job_evaluation(self, job_id: int) -> dict | None:
+        row = self.connection.execute(
+            "SELECT * FROM job_evaluations WHERE job_id=?", (job_id,)
+        ).fetchone()
+        return self._evaluation_dict(row)
 
     def merge(self, canonical_id: int, duplicate: JobListing, retained: bool = True):
         current = self.get(canonical_id)

@@ -25,6 +25,42 @@ def description_similarity(left: str, right: str) -> float:
     return len(a & b) / len(a | b) if a and b else 0.0
 
 
+def _provider_ids(job: JobListing) -> set[tuple[str, str]]:
+    identities = set()
+    if job.source and job.source_job_id:
+        identities.add((_identity(job.source), _identity(job.source_job_id)))
+    identities.update(
+        (_identity(link.get("source", "")), _identity(link.get("source_job_id", "")))
+        for link in job.source_links
+        if link.get("source") and link.get("source_job_id")
+    )
+    return identities
+
+
+def exact_duplicate(candidate: JobListing, existing: list[JobListing]) -> JobListing | None:
+    """Use stable identities in descending order before fuzzy comparison."""
+    provider_ids = _provider_ids(candidate)
+    if provider_ids:
+        match = next((job for job in existing if provider_ids & _provider_ids(job)), None)
+        if match:
+            return match
+    if candidate.canonical_url:
+        match = next((job for job in existing
+                      if job.canonical_url and job.canonical_url == candidate.canonical_url), None)
+        if match:
+            return match
+    identity = tuple(_identity(value) for value in (
+        candidate.company, candidate.title, candidate.location
+    ))
+    if all(identity):
+        match = next((job for job in existing if identity == tuple(_identity(value) for value in (
+            job.company, job.title, job.location
+        ))), None)
+        if match:
+            return match
+    return None
+
+
 def duplicate_confidence(left: JobListing, right: JobListing) -> float:
     if left.canonical_url and left.canonical_url == right.canonical_url:
         return 1.0
@@ -46,6 +82,9 @@ def duplicate_confidence(left: JobListing, right: JobListing) -> float:
 
 
 def find_duplicate(candidate: JobListing, existing: list[JobListing], threshold: float = 0.76) -> JobListing | None:
+    exact = exact_duplicate(candidate, existing)
+    if exact:
+        return exact
     matches = ((duplicate_confidence(candidate, item), item) for item in existing)
     score, match = max(matches, default=(0.0, None), key=lambda pair: pair[0])
     return match if score >= threshold else None

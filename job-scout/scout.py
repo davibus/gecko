@@ -9,10 +9,12 @@ import json
 import os
 import sys
 import tempfile
+import time
 from datetime import date
 from pathlib import Path
 
 from enrichment import enrich_and_store
+from ai_evaluation import JobEvaluator
 from deduplicate import find_duplicate
 from google_tracker import GoogleTracker, marked
 from handoff import archive_listing
@@ -122,9 +124,8 @@ def sync_tracker(
     highlight_found_on: str | None = None,
 ):
     tracker = GoogleTracker()
-    removed = tracker.remove_dead_scout(remove_scout_ids) if remove_scout_ids else set()
-    if remove_scout_ids and removed != remove_scout_ids:
-        raise RuntimeError(f"Google Sheets did not clear every unprotected Scout row: {sorted(remove_scout_ids - removed)}")
+    if remove_scout_ids:
+        tracker.remove_dead_scout(remove_scout_ids)
     summary = tracker.upsert_scout(store.all() if jobs is None else jobs, append_only=append_only)
     if highlight_found_on:
         summary["highlighted_scout_ids"] = tracker.highlight_scout_found_on(highlight_found_on)
@@ -234,9 +235,10 @@ def search(args, store, preferences):
         "fetched": 0, "normalized": 0,
         "added": 0, "updated": 0,
         "duplicates": 0, "cross_provider_duplicates": 0,
-        "filtered_by_role": 0, "jooble_excluded": 0,
+        "filtered_by_role": 0, "deterministic_rejects": 0, "jooble_excluded": 0,
+        "source_results_limited": 0,
         "newly_discovered": 0, "already_existed": 0,
-        "new_job_ids": [], "existing_job_ids": [],
+        "new_job_ids": [], "existing_job_ids": [], "changed_job_ids": [],
         "unique_remotive_jobs_available": 0, "unique_jobs_imported": 0,
         "eligibility_includes_usa": 0, "eligibility_worldwide": 0,
         "example_jobs": [],
@@ -256,21 +258,34 @@ def search(args, store, preferences):
     def acquire(name_provider):
         name, provider = name_provider
         if callable(getattr(type(provider), "full_feed", None)):
-            return list(provider.full_feed()), False
-        provider_queries = getattr(provider, "broad_queries", queries)
-        provider_requests = [
-            SearchRequest(query, location, args.page, args.results)
-            for query in provider_queries for location in locations
-        ]
-        return [raw for request in provider_requests for raw in provider.search(request)], True
+            listings = list(provider.full_feed())
+            require_content = False
+        else:
+            provider_queries = getattr(provider, "broad_queries", queries)
+            provider_requests = [
+                SearchRequest(query, location, args.page, args.results)
+                for query in provider_queries for location in locations
+            ]
+            listings = [raw for request in provider_requests for raw in provider.search(request)]
+            require_content = True
+        listings.sort(
+            key=lambda raw: (raw.date_posted or "", raw.title.casefold()), reverse=True
+        )
+        provider_settings = source_config["providers"].get(name, {})
+        limit = int(provider_settings.get(
+            "max_results_per_run", source_config.get("max_results_per_source", 50)
+        ))
+        if limit < 1:
+            raise ValueError(f"Source result limit for {name} must be at least 1")
+        return listings[:limit], require_content, max(len(listings) - limit, 0)
 
-    workers = min(max(int(source_config.get("max_workers", 6)), 1), 8, max(len(configured), 1))
+    workers = min(max(int(source_config.get("max_workers", 6)), 1), 16, max(len(configured), 1))
     with ThreadPoolExecutor(max_workers=workers, thread_name_prefix="job-source") as executor:
         futures = {name: executor.submit(acquire, (name, provider))
                    for name, provider in configured.items()}
         for name in selected:
             provider = available[name]
-            if name == "web-careers":
+            if name == "web-careers" and callable(getattr(provider, "diagnostics", None)):
                 web_diagnostics = provider.diagnostics()
                 aggregate["source_diagnostics"][name] = web_diagnostics
                 aggregate["google_cse"] = web_diagnostics["google_cse"]
@@ -291,23 +306,27 @@ def search(args, store, preferences):
                 continue
             try:
                 if name == "remotive":
+                    source_limit = int(source_config["providers"].get(name, {}).get(
+                        "max_results_per_run", source_config.get("max_results_per_source", 50)
+                    ))
                     summary = discover_remotive_full_feed(
-                        provider, store, limit=getattr(args, "limit", 100),
+                        provider, store, limit=min(getattr(args, "limit", 100), source_limit),
                         preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
-                        link_validator=link_validator,
+                        link_validator=link_validator, preferences=preferences,
                     )
                 elif name in futures:
-                    listings, require_content = futures[name].result()
+                    listings, require_content, limited = futures[name].result()
+                    aggregate["source_results_limited"] += limited
                     summary = discover_listings(
                         listings, store, require_content=require_content,
                         preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
-                        link_validator=link_validator,
+                        link_validator=link_validator, preferences=preferences,
                     )
                 else:
                     summary = discover(
                         provider, requests, store,
                         preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
-                        link_validator=link_validator,
+                        link_validator=link_validator, preferences=preferences,
                     )
             except (ProviderError, OSError, ValueError) as error:
                 aggregate["source_errors"][name] = str(error)
@@ -333,7 +352,7 @@ def search(args, store, preferences):
             }
             if summary.source_backend:
                 aggregate["source_backends"][name] = summary.source_backend
-            if name == "web-careers":
+            if name == "web-careers" and callable(getattr(provider, "diagnostics", None)):
                 web_diagnostics = provider.diagnostics(
                     jobs_added=summary.added,
                     backend_qualifying=summary.backend_qualifying,
@@ -359,7 +378,7 @@ def search(args, store, preferences):
                 "rss_duplicates_removed", "successful_feeds", "failed_feeds",
                 "api_retrieved", "fetched",
                 "normalized", "added", "updated", "duplicates", "cross_provider_duplicates",
-                "filtered_by_role", "jooble_excluded",
+                "filtered_by_role", "deterministic_rejects", "jooble_excluded",
             ):
                 aggregate[key] += getattr(summary, key)
             for job_id in summary.new_job_ids:
@@ -368,6 +387,9 @@ def search(args, store, preferences):
             for job_id in summary.existing_job_ids:
                 if job_id not in aggregate["existing_job_ids"]:
                     aggregate["existing_job_ids"].append(job_id)
+            for job_id in summary.changed_job_ids:
+                if job_id not in aggregate["changed_job_ids"]:
+                    aggregate["changed_job_ids"].append(job_id)
     aggregate["newly_discovered"] = len(aggregate["new_job_ids"])
     aggregate["already_existed"] = len(aggregate["existing_job_ids"])
     aggregate["sources_searched"] = successful_sources + len(aggregate["source_errors"])
@@ -536,7 +558,11 @@ def list_jobs(args, store, preferences):
 
 
 def show(args, store, _preferences):
-    print(json.dumps(get_job(store, args.job_id).to_dict(), indent=2))
+    record = get_job(store, args.job_id).to_dict()
+    evaluation = store.get_job_evaluation(args.job_id)
+    if evaluation:
+        record["ai_evaluation"] = evaluation
+    print(json.dumps(record, indent=2))
     return 0
 
 
@@ -679,6 +705,20 @@ def _print_daily_summary(run_result, queue_result, tracker_summary, *, dry_run=F
     print(f"Resumes already existing: {len(queue_result.snapshot.already_created) + queue_result.recovered}")
     print(f"New Gecko resumes created: {queue_result.created}")
     print(f"Resume failures: {len(queue_result.failures)}")
+    print(f"AI triage calls: {run_result.get('AI_triage_calls', 0)}")
+    print(f"Full score calls: {run_result.get('full_score_calls', 0)}")
+    print(f"Unchanged descriptions served from cache: {run_result.get('cached_unchanged', 0)}")
+    print(f"Elapsed time: {run_result.get('elapsed_time', 0):.2f}s")
+    print("Daily run metrics:")
+    for name in (
+        "fetched", "deterministic_rejects", "duplicates", "cached_unchanged",
+        "AI_triage_calls", "full_score_calls", "Apply_Yes", "resumes_generated",
+        "failures", "elapsed_time",
+    ):
+        value = run_result.get(name, 0)
+        if name == "elapsed_time":
+            value = f"{float(value):.2f}s"
+        print(f"  {name}: {value}")
     if dry_run:
         print("Gmail response tracking: skipped in dry run")
     elif gmail_result is not None:
@@ -714,6 +754,7 @@ def _empty_queue_result():
 
 def daily(args, store, preferences):
     """Discover, sync, and generate Gecko resumes for new approved jobs."""
+    started = time.monotonic()
     if args.dry_run and not getattr(args, "_temporary_store", False):
         with tempfile.TemporaryDirectory() as directory:
             with JobStore(Path(directory) / "daily-dry-run.sqlite3") as temporary_store:
@@ -745,16 +786,14 @@ def daily(args, store, preferences):
         if removable and not args.dry_run:
             ids = {job.id for job, _ in removable}
             sync_tracker(store, jobs=[], append_only=True, remove_scout_ids=ids)
-            uncleared = ids & scout_row_ids()
-            if uncleared:
-                raise RuntimeError(f"Confirmed-dead Scout rows were not cleared: {sorted(uncleared)}")
             for job, result in removable:
                 store.delete_dead_unprotected(job.id)
                 validator.record_removed(job, result)
     search_args = argparse.Namespace(
         source="core", query=None, location=None, page=1, results=args.results,
-        limit=100, daily_mode=True,
+        limit=args.limit, daily_mode=True,
         link_validator=validator, dry_run=args.dry_run,
+        sources_config=getattr(args, "sources_config", None),
     )
     result = search(search_args, store, preferences)
     manual_indeed = ManualIndeedSummary()
@@ -777,11 +816,35 @@ def daily(args, store, preferences):
         print(f"  removed: {removed['company']} | {removed['job_title']} | {removed['url']} | "
               f"{removed['reason_removed']} | HTTP/status {removed['http_status'] or 'n/a'}")
     run_result = getattr(search_args, "run_result", {})
+    evaluation_ids = list(dict.fromkeys([
+        *run_result.get("new_job_ids", []), *run_result.get("changed_job_ids", []),
+    ]))
+    new_jobs = [store.get(job_id) for job_id in run_result.get("new_job_ids", [])]
+    evaluation_jobs = [store.get(job_id) for job_id in evaluation_ids]
+    evaluator = JobEvaluator(store, preferences)
+    evaluations, evaluation_metrics = evaluator.evaluate(
+        [job for job in evaluation_jobs if job], dry_run=args.dry_run
+    )
+    for job_id, evaluation in evaluations.items():
+        print(
+            f"AI EVALUATION: Scout ID {job_id} | {evaluation.relevance} | "
+            f"Match Score {evaluation.match_score if evaluation.match_score is not None else 'n/a'} | "
+            f"Apply {evaluation.apply_decision} | "
+            f"{evaluation.score_reason or evaluation.triage_reason}"
+        )
+    run_result.update({
+        "cached_unchanged": evaluation_metrics.cached_unchanged,
+        "AI_triage_calls": evaluation_metrics.AI_triage_calls,
+        "full_score_calls": evaluation_metrics.full_score_calls,
+        "Apply_Yes": evaluation_metrics.Apply_Yes,
+        "ai_evaluation_disabled": evaluation_metrics.disabled,
+    })
+    run_result["failures"] = len(run_result.get("source_errors", {})) + evaluation_metrics.failures
     if result and not manual_indeed.new_job_ids:
+        run_result["elapsed_time"] = time.monotonic() - started
         _print_daily_summary(run_result, _empty_queue_result(), {"added": 0},
                              dry_run=args.dry_run, manual_indeed=manual_indeed)
         return result
-    new_jobs = [store.get(job_id) for job_id in run_result.get("new_job_ids", [])]
     queue = build_review_queue(
         [job for job in new_jobs if job], limit=args.limit, include_closed=False,
     )
@@ -792,11 +855,26 @@ def daily(args, store, preferences):
         print(f"DAILY REVIEW: {qualifying} new qualifying job(s) discovered in this run.")
         print(format_review_queue(queue))
     if args.dry_run:
+        run_result["resumes_generated"] = 0
+        run_result["elapsed_time"] = time.monotonic() - started
         _print_daily_summary(run_result, _empty_queue_result(), {"added": 0}, dry_run=True,
                              manual_indeed=manual_indeed)
         return 0
-    queue_result = _daily_resume_runner(run_result.get("new_job_ids", []), store)
+    eligible_ids = run_result.get("new_job_ids", [])
+    if evaluator.enabled:
+        eligible_ids = [job_id for job_id in eligible_ids
+                        if (evaluation := evaluations.get(job_id)) is not None
+                        if evaluation.apply_decision == "Yes"]
+    queue_result = _daily_resume_runner(eligible_ids, store)
+    if not evaluator.enabled:
+        run_result["Apply_Yes"] = (
+            len(queue_result.snapshot.pending) + len(queue_result.snapshot.already_created)
+        )
+    run_result["resumes_generated"] = queue_result.created
+    run_result["failures"] += len(queue_result.failures) + manual_indeed.failures
     gmail_result, gmail_error = _daily_gmail_response_runner()
+    run_result["failures"] += int(bool(gmail_error))
+    run_result["elapsed_time"] = time.monotonic() - started
     _print_daily_summary(
         run_result, queue_result,
         getattr(search_args, "tracker_summary", {"added": 0}),

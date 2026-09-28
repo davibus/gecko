@@ -1,5 +1,6 @@
 {
   "max_workers": 6,
+  "max_results_per_source": 50,
   "providers": {
     "adzuna": {
       "enabled": true

@@ -8,7 +8,7 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from google_tracker import Config, GoogleTracker, NEW_SCOUT_ID_COLOR, job_key
+from google_tracker import Config, GoogleTracker, NEW_SCOUT_ID_COLOR, SCOUT_FIELDS, job_key
 from models import RawListing
 from normalize import normalize
 
@@ -41,6 +41,7 @@ class FakeSheets:
         self.writes = []
         self.structural = []
         self.formats = {}
+        self.unclear_cells = set()
         self.fail = False
 
     def spreadsheets(self):
@@ -107,7 +108,8 @@ class FakeValues:
                 row = self.parent.data[title][row_number - 1]
                 while len(row) < column:
                     row.append("")
-                row[column - 1] = entry["values"][0][0]
+                if (title, row_number, letters) not in self.parent.unclear_cells:
+                    row[column - 1] = entry["values"][0][0]
                 self.parent.writes.append((title, row_number, letters))
             return {}
         return Call(respond)
@@ -274,15 +276,54 @@ class GoogleTrackerTests(unittest.TestCase):
                             for item in highlights))
         self.assertEqual(self.fake.writes, [])
 
-    def test_dead_scout_clear_touches_only_managed_values(self):
-        self.fake.data["Job Scout"][1][5] = ""
-        self.fake.data["Job Scout"].append([43, "test", "Protected", "Role", "New", "Yes"])
-        removed = self.tracker.remove_dead_scout({42, 43})
+    def test_dead_scout_clear_ignores_and_preserves_manual_values(self):
+        row = self.fake.data["Job Scout"][1]
+        row[SCOUT.index("Apply?")] = "Yes"
+        row[SCOUT.index("Resume Created")] = "X"
+        row[SCOUT.index("Applied")] = False
+        row[SCOUT.index("Notes")] = "Keep this manual note"
+        row[SCOUT.index("Response")] = "Keep this response"
+        removed = self.tracker.remove_dead_scout({42})
         self.assertEqual(removed, {42})
-        self.assertEqual(self.fake.data["Job Scout"][1][0], "")
-        self.assertEqual(self.fake.data["Job Scout"][2][0], 43)
+        stored = dict(zip(SCOUT, row))
+        self.assertTrue(all(stored[field] == "" for field in SCOUT_FIELDS))
+        self.assertEqual(stored["Apply?"], "Yes")
+        self.assertEqual(stored["Resume Created"], "X")
+        self.assertIs(stored["Applied"], False)
+        self.assertEqual(stored["Notes"], "Keep this manual note")
+        self.assertEqual(stored["Response"], "Keep this response")
         self.assertEqual(self.fake.data["Job Tracker"][1][8:10], ["TRUE", "called"])
         self.assertEqual(self.fake.structural, [])
+
+    def test_dead_scout_clear_is_idempotent_when_id_is_already_absent(self):
+        self.fake.data["Job Scout"][1][SCOUT.index("Scout ID")] = ""
+        self.fake.data["Job Scout"][1][SCOUT.index("Notes")] = "Preserved"
+        self.assertEqual(self.tracker.remove_dead_scout({42}), {42})
+        self.assertEqual(self.fake.data["Job Scout"][1][SCOUT.index("Notes")], "Preserved")
+
+    def test_dead_scout_clear_removes_formulas_whitespace_and_false_values(self):
+        row = self.fake.data["Job Scout"][1]
+        row[SCOUT.index("Location")] = '=IF(TRUE,"","")'
+        row[SCOUT.index("Salary")] = "   "
+        row[SCOUT.index("Date Posted")] = False
+        self.tracker.remove_dead_scout({42})
+        stored = dict(zip(SCOUT, row))
+        self.assertEqual(stored["Location"], "")
+        self.assertEqual(stored["Salary"], "")
+        self.assertEqual(stored["Date Posted"], "")
+
+    def test_dead_scout_clear_reports_exact_managed_cell_failure(self):
+        company_column = "C"
+        self.fake.unclear_cells.add(("Job Scout", 2, company_column))
+        with self.assertRaises(RuntimeError) as caught:
+            self.tracker.remove_dead_scout({42})
+        message = str(caught.exception)
+        self.assertIn("sheet='Job Scout'", message)
+        self.assertIn("row=2", message)
+        self.assertIn("column=C (Company)", message)
+        self.assertIn("cell=C2", message)
+        self.assertIn("remaining_value='Existing'", message)
+        self.assertIn("reason=write completed but the managed value remained", message)
 
 
 if __name__ == "__main__":

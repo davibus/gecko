@@ -1,0 +1,35 @@
+{
+  "master_resume_sha256": "a3339ba24e76b7a61043f1e8889d7422e3b97cb9f64d9c13607c11d90c66ecf9",
+  "target_roles": [
+    "paid search / PPC leadership",
+    "performance and growth marketing",
+    "digital marketing leadership",
+    "marketing analytics",
+    "e-commerce marketing",
+    "demand generation and marketing operations"
+  ],
+  "major_skills": [
+    "Google Ads", "Microsoft Ads", "paid media strategy", "SEO/SEM",
+    "GA4", "Google Tag Manager", "attribution", "forecasting",
+    "Python", "SQL", "JavaScript", "VBA", "Tableau", "Power BI",
+    "Looker Studio", "APIs", "Shopify", "Magento", "Amazon marketplaces"
+  ],
+  "seniority": "14+ years; manager, director, strategist, analyst, and cross-functional leader",
+  "industries": [
+    "agency", "in-house B2B", "B2C", "e-commerce", "professional services",
+    "travel", "retail/distribution", "fitness", "consumer products"
+  ],
+  "strongest_accomplishments": [
+    "Managed up to $30M/month in paid media with a four-person team",
+    "Managed 12 accounts, 32 campaigns, about 110,000 ad groups, 1.6M keywords, and $3.6M/month for one brand",
+    "Scaled monthly marketing volume from about $200K to $800K while improving ROAS from 1.5 to 3.5",
+    "Managed 150+ campaigns and about $400K/month that generated $9M+ revenue and about 35% of company sales",
+    "Built automated reporting across 10+ channels with Python, Databricks, SQL, Excel, and Funnel.io",
+    "Built an in-house PPC operating structure for a group spanning 32 businesses"
+  ],
+  "paid_media_ppc": "Deep hands-on and leadership experience across Google Ads, Microsoft Ads, search, shopping, display, video, remarketing, social, Amazon, budget pacing, bidding, account structure, and experimentation.",
+  "e_commerce": "Led e-commerce and marketing for B2B/B2C businesses; Shopify, Magento, Amazon Vendor/Seller Central, FBA/FBM, marketplaces, inventory planning, feeds, and ERP/database integrations.",
+  "analytics": "GA4, GTM, Tableau, Power BI, Looker Studio, Funnel.io, SQL, Python, regression, forecasting, attribution, LTV, incrementality, holdouts, geo tests, CRO, and funnel analysis.",
+  "ai_automation": "Python, SQL, JavaScript, VBA, APIs, Google Ads API, web scraping, machine learning, automated reporting, campaign automation, and extensive AI-assisted analysis/coding workflows.",
+  "leadership": "Managed teams and agency transitions; built and trained an in-house PPC team; led cross-functional work with executives, IT, operations, finance, product, sales, creative, and web teams."
+}
