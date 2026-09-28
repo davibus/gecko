@@ -40,7 +40,9 @@ It reads columns by header name, requires `Apply? = Yes`, requires a blank `Resu
 6. If the job is new, Gecko retrieves the structured posting, populates the existing row, assigns the next never-used numeric Scout ID, and includes it in the normal review/resume queue. `Apply?` remains user-owned; set it to `Yes` if the row should produce a resume.
 7. If it is a duplicate, Gecko leaves the pasted URL in Column R, writes `Duplicate — Scout ID ...` in `Notes`, and does not allocate an ID, retrieve it again, or create a resume.
 
-Indeed can return a block page or omit usable structured posting data. In that case Gecko leaves the URL intact, allocates no Scout ID, writes `Indeed retrieval failed — manual review required` in `Notes`, and continues with later rows. Duplicate and failed rows are terminal/idempotent; after correcting a URL or when intentionally retrying a transient failure, clear Gecko's message from `Notes` before the next daily run.
+Indeed can return a block page or omit usable structured posting data. A new row tries the pasted Indeed page once, then searches configured Web Careers backends by `jk` and canonical Indeed URL. If indexed Indeed evidence identifies the role, Gecko accepts an employer careers posting only when title, company, and available location evidence match strongly. The pasted Indeed URL remains in Column R and the confirmed employer URL is retained internally. Only after all configured fallbacks fail does Gecko allocate no Scout ID, write `Indeed retrieval failed — manual review required` with per-stage diagnostics in `Notes`, and continue with later rows.
+
+Failed Indeed rows are retried automatically on later daily runs through fallback search first; Gecko does not repeat the previously blocked direct Indeed request. To retry `jk=3736ea0494f752a7`, leave its URL and failure note in place and run `python job-scout/scout.py daily` again. Duplicate notes remain terminal and are not retried.
 
 Job Scout currently has no numerical match-score field or automatic apply recommendation. Manual Indeed jobs follow that same architecture: Gecko does not invent a score and does not overwrite `Apply?`.
 

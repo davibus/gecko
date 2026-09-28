@@ -127,12 +127,18 @@ def prepare(scout_id: int) -> dict:
         raise RuntimeError(f"Structural DOCX validation failed for {scout_id}")
     if not doc.paragraphs[2].text.endswith("linkedin.com/in/mdavidcall"):
         raise RuntimeError(f"Header validation failed for {scout_id}")
+    visible_text = "\n".join(
+        [paragraph.text for paragraph in doc.paragraphs]
+        + [cell.text for table in doc.tables for row in table.rows for cell in row.cells]
+    )
+    if "\ufffd" in visible_text:
+        raise RuntimeError(f"DOCX contains a Unicode replacement character for {scout_id}")
     with fitz.open(pdf) as pages:
         if len(pages) != 2 or any(max((b[3] for b in page.get_text("blocks")), default=0) > page.rect.height - 18 for page in pages):
             raise RuntimeError(f"PDF layout validation failed for {scout_id}")
     # Re-read the master at evaluation/report time, independent of the generator call.
     master = source_text()
-    if "Built Tableau dashboards" not in master or "75+ Google Ads accounts" not in master:
+    if "Tableau dashboards" not in master or "75+ Google Ads accounts" not in master:
         raise RuntimeError("Current master archive did not contain expected source evidence")
     brief = len(job.description) < 1000
     strengths = "\n".join(f"- {x}" for x in STRENGTHS[family])
@@ -154,6 +160,7 @@ def prepare(scout_id: int) -> dict:
             f"## Interview/application considerations\n\n{source_notice}{note}\n\n"
             f"**Validation:** Microsoft Word computed 2 pages; Word-exported PDF has 2 pages. "
             f"Master SHA-256: `{source_hashes()[str(MASTER.relative_to(ROOT))]}`.\n")
+    body = "\n".join([f"# {job.title} - {job.company}", *body.splitlines()[1:]])
     report.parent.mkdir(parents=True, exist_ok=True)
     report.write_text(body, encoding="utf-8")
     return {"scout_id": scout_id, "company": job.company, "job_number": key,
@@ -165,4 +172,3 @@ if __name__ == "__main__":
     if len(sys.argv) != 2 or not sys.argv[1].isdigit():
         raise SystemExit("Usage: python scripts/generate_requested_scout_batch.py <scout-id>")
     print(json.dumps(prepare(int(sys.argv[1])), indent=2))
-

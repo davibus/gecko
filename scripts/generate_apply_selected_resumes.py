@@ -296,6 +296,12 @@ def build_resume(scout_id: int):
     source = source_text()
     evidence = extract_evidence(source)
     identity, jobs = master_identity(), master_jobs()
+    # This compact two-page layout intentionally carries five detailed roles.
+    # Keep their source indexes explicit because the master archive can grow
+    # without changing the fixed table and paragraph topology of this layout.
+    role_indexes = (0, 1, 3, 4, 5)
+    if max(role_indexes) >= len(jobs):
+        raise ValueError("Master resume is missing a role required by the five-role layout")
     build_layout(output, scratch_dir=scratch)
     doc = docx.Document(output)
     for section in doc.sections:
@@ -311,7 +317,7 @@ def build_resume(scout_id: int):
         set_labeled(p[index],lead,body,lead_color=NAVY)
     used=[]
     empty_bullet_paragraphs=[]
-    for job_index,start in enumerate([12,16,21,25,29]):
+    for layout_index,(job_index,start) in enumerate(zip(role_indexes, [12,16,21,25,29], strict=True)):
         pool=[e for e in evidence if e["job"]==job_index]
         # The current master includes additional legacy text between the GRIP6
         # bullets and the next table-backed role. Keep only clean, attributable
@@ -320,10 +326,10 @@ def build_resume(scout_id: int):
         if len(pool) < 3:
             raise ValueError(f"Master resume has too few clean bullets for job {job_index}")
         clean_limit = 3 if job_index == 1 else 4
-        selected=[i for i in cfg["order"][job_index] if i < min(clean_limit, len(pool))]
+        selected=[i for i in cfg["order"][layout_index] if i < min(clean_limit, len(pool))]
         for offset,source_index in enumerate(selected):
             e=pool[source_index]
-            set_labeled(p[start+offset],LABELS[job_index][source_index],e["quote"])
+            set_labeled(p[start+offset],LABELS[layout_index][source_index],e["quote"])
             used.append(e)
         for offset in range(len(selected),4):
             empty_bullet_paragraphs.append(p[start+offset])
@@ -333,8 +339,11 @@ def build_resume(scout_id: int):
     result=next(e for e in evidence if "$9 million in revenue" in e["quote"])
     set_labeled(p[33],"Revenue Impact: ",result["quote"])
     used.append(result)
-    for table,job in zip(doc.tables,jobs,strict=True):
+    layout_jobs = [jobs[index] for index in role_indexes]
+    for table,job in zip(doc.tables,layout_jobs,strict=True):
         set_plain(table.cell(0,0).paragraphs[0],f"{job['title']} | {job['company']} — {job['location']}",bold=True,color=NAVY)
+        # Replace the legacy mojibake separator with an ASCII-stable heading.
+        set_plain(table.cell(0,0).paragraphs[0],f"{job['title']} | {job['company']} - {job['location']}",bold=True,color=NAVY)
         table.cell(0,1).text=""
     set_plain(p[35],identity["education"],bold=True)
     p[36]._element.getparent().remove(p[36]._element)

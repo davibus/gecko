@@ -6,6 +6,7 @@ import html
 import json
 import os
 import re
+from dataclasses import dataclass
 from urllib.parse import urlencode, urljoin
 
 from models import RawListing
@@ -17,6 +18,16 @@ SCRIPT_RE = re.compile(
     r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>',
     re.I | re.S,
 )
+
+
+@dataclass(frozen=True)
+class SearchHit:
+    """Credential-free search result data shared by discovery workflows."""
+
+    url: str
+    title: str = ""
+    description: str = ""
+    backend: str = ""
 
 
 def _job_nodes(value):
@@ -152,20 +163,53 @@ class WebCareerProvider(JobSource):
         return query
 
     def _result_urls(self, backend: str, request: SearchRequest, query: str) -> list[str]:
+        return [hit.url for hit in self._result_hits(backend, request, query)]
+
+    def _result_hits(self, backend: str, request: SearchRequest, query: str) -> list[SearchHit]:
         if backend == "brave":
             url = "https://api.search.brave.com/res/v1/web/search?" + urlencode({
                 "q": query, "count": min(request.results_per_page, 20),
                 "offset": min(max(request.page - 1, 0), 9), "country": "US", "search_lang": "en",
             })
             payload = get_json(url, {"X-Subscription-Token": self.brave_key})
-            return [item.get("url", "") for item in payload.get("web", {}).get("results", [])]
+            return [SearchHit(
+                url=str(item.get("url") or ""),
+                title=str(item.get("title") or ""),
+                description=str(item.get("description") or ""),
+                backend=backend,
+            ) for item in payload.get("web", {}).get("results", []) if item.get("url")]
         if backend == "google-cse":
             url = "https://customsearch.googleapis.com/customsearch/v1?" + urlencode({
                 "key": self.google_key, "cx": self.google_cx, "q": query,
                 "num": min(request.results_per_page, 10), "start": (request.page - 1) * 10 + 1,
             })
-            return [item.get("link", "") for item in get_json(url).get("items", [])]
+            return [SearchHit(
+                url=str(item.get("link") or ""),
+                title=str(item.get("title") or ""),
+                description=str(item.get("snippet") or ""),
+                backend=backend,
+            ) for item in get_json(url).get("items", []) if item.get("link")]
         raise ProviderError(f"Unsupported web-search backend: {backend}")
+
+    def search_hits(self, query: str, *, maximum: int = 8) -> tuple[list[SearchHit], list[str]]:
+        """Run an exact caller-supplied query through configured web backends."""
+        request = SearchRequest(query=query, results_per_page=maximum)
+        hits: list[SearchHit] = []
+        errors: list[str] = []
+        seen: set[str] = set()
+        for backend in self.backends:
+            try:
+                backend_hits = self._result_hits(backend, request, query)
+            except ProviderError as error:
+                errors.append(f"{backend}={self._safe_error(error)}")
+                continue
+            for hit in backend_hits:
+                if hit.url and hit.url not in seen:
+                    seen.add(hit.url)
+                    hits.append(hit)
+                    if len(hits) >= maximum:
+                        return hits, errors
+        return hits, errors
 
     def search(self, request: SearchRequest):
         query = self._query(request)

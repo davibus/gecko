@@ -11,6 +11,8 @@ from google_tracker import GoogleTracker, Tab
 from normalize import canonicalize_url, normalize
 from sources.base import ProviderError
 from sources.indeed import (
+    IndeedFallbackResult,
+    ManualIndeedFallbackRetriever,
     ManualIndeedProvider,
     canonical_indeed_url,
     extract_indeed_job_key,
@@ -165,7 +167,21 @@ def _find_duplicate(
 
 def _terminal_note(value: object) -> bool:
     text = str(value or "").strip()
-    return text.startswith(DUPLICATE_PREFIX) or text.startswith(RETRIEVAL_FAILURE)
+    return text.startswith(DUPLICATE_PREFIX)
+
+
+def _retrieval_failure_note(value: object) -> bool:
+    return str(value or "").strip().casefold().startswith("indeed retrieval failed")
+
+
+def _direct_failure_detail(error: Exception) -> str:
+    text = str(error).strip()
+    status = re.search(r"\b(?:HTTP(?: Error)?\s*:?[ ]*)(401|403|429)\b", text, re.I)
+    if status:
+        return status.group(1)
+    if "structured job posting" in text.casefold():
+        return "missing structured JobPosting data"
+    return text or type(error).__name__
 
 
 def _status_update(tab: Tab, message: str) -> dict[str, str]:
@@ -178,10 +194,12 @@ def process_manual_indeed_rows(
     store: JobStore,
     *,
     provider: ManualIndeedProvider | None = None,
+    fallback: ManualIndeedFallbackRetriever | None = None,
     today: str | None = None,
 ) -> ManualIndeedSummary:
     """Process unassigned Indeed URLs already pasted into the Job URL column."""
     provider = provider or ManualIndeedProvider()
+    fallback = fallback or ManualIndeedFallbackRetriever()
     found_on = today or date.today().isoformat()
     tab = tracker.scout()
     summary = ManualIndeedSummary()
@@ -197,6 +215,11 @@ def process_manual_indeed_rows(
             summary.skipped += 1
             continue
 
+        retrying_failure = (
+            _retrieval_failure_note(data.get("Notes"))
+            or _retrieval_failure_note(data.get("Gecko Status"))
+        )
+
         jk = extract_indeed_job_key(pasted_url)
         duplicate = _find_duplicate(
             tab, store, current_row=row, jk=jk, url=pasted_url,
@@ -209,16 +232,52 @@ def process_manual_indeed_rows(
             summary.duplicates += 1
             continue
 
-        try:
-            raw = provider.retrieve(pasted_url)
-            job = normalize(raw, discovered=found_on)
-        except (ProviderError, OSError, ValueError, UnicodeError) as error:
-            message = f"{RETRIEVAL_FAILURE}: {error}"
+        raw = None
+        fallback_result = IndeedFallbackResult()
+        direct_detail = "skipped on retry"
+        if retrying_failure:
+            try:
+                fallback_result = fallback.retrieve(pasted_url)
+                raw = fallback_result.listing
+            except (ProviderError, OSError, ValueError, UnicodeError) as error:
+                fallback_result = IndeedFallbackResult(diagnostics=(
+                    f"fallback={error}", "employer lookup=no confirmed posting",
+                ))
+        else:
+            try:
+                raw = provider.retrieve(pasted_url)
+                direct_detail = "succeeded"
+            except (ProviderError, OSError, ValueError, UnicodeError) as error:
+                direct_detail = _direct_failure_detail(error)
+                try:
+                    fallback_result = fallback.retrieve(pasted_url)
+                    raw = fallback_result.listing
+                except (ProviderError, OSError, ValueError, UnicodeError) as fallback_error:
+                    fallback_result = IndeedFallbackResult(diagnostics=(
+                        f"fallback={fallback_error}", "employer lookup=no confirmed posting",
+                    ))
+
+        if raw is None:
+            details = [f"direct={direct_detail}", *fallback_result.diagnostics]
+            message = f"{RETRIEVAL_FAILURE}: {'; '.join(filter(None, details))}"
             update = _status_update(tab, message)
             tracker.update_manual_scout_row(tab, row, update)
             data.update(update)
             summary.failures += 1
             continue
+
+
+        job = normalize(raw, discovered=found_on)
+        if fallback_result.authoritative_url:
+            job.authoritative_url = fallback_result.authoritative_url
+            job.authoritative_url_confidence = 100
+            job.url_destination_type = fallback_result.destination_type
+            job.url_verification_status = "verified"
+            job.source_links.append({
+                "source": "employer",
+                "source_job_id": str(raw.metadata.get("_employer_source_job_id") or ""),
+                "url": fallback_result.authoritative_url,
+            })
 
         duplicate = _find_duplicate(
             tab, store, current_row=row, jk=jk, url=pasted_url,
@@ -234,6 +293,8 @@ def process_manual_indeed_rows(
 
         scout_id = next_scout_id(tab, store)
         job.id = store.save(job, job_id=scout_id)
+        if job.authoritative_url:
+            store.save_url_resolution(job)
         values = {
             "Scout ID": scout_id,
             "Source": "indeed",
@@ -248,6 +309,8 @@ def process_manual_indeed_rows(
             "Date Found": job.date_discovered,
             "Last Seen": job.last_seen,
         }
+        if "Notes" in tab.headers and retrying_failure:
+            values["Notes"] = ""
         tracker.update_manual_scout_row(tab, row, values)
         data.update(values)
         summary.processed += 1

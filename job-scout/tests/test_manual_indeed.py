@@ -17,6 +17,8 @@ from models import RawListing
 from sources.base import ProviderError
 from sources.http import FetchedDocument
 from sources.indeed import ManualIndeedProvider, extract_indeed_job_key
+from sources.indeed import IndeedFallbackResult, ManualIndeedFallbackRetriever
+from sources.web import SearchHit
 from storage import JobStore
 from test_google_tracker import FakeSheets, SCOUT
 
@@ -50,6 +52,31 @@ class FakeProvider:
         if isinstance(value, Exception):
             raise value
         return value
+
+
+class FakeFallback:
+    def __init__(self, values=None):
+        self.values = values or {}
+        self.calls = []
+
+    def retrieve(self, url):
+        self.calls.append(url)
+        value = self.values.get(extract_indeed_job_key(url), IndeedFallbackResult(
+            diagnostics=("Brave=no matching result", "employer lookup=no confirmed posting"),
+        ))
+        if isinstance(value, Exception):
+            raise value
+        return value
+
+
+def recovered(jk: str, **kwargs) -> IndeedFallbackResult:
+    listing = raw(jk, **kwargs)
+    return IndeedFallbackResult(
+        listing=listing,
+        authoritative_url=f"https://careers.example.com/jobs/{jk}",
+        destination_type="official_employer_domain",
+        diagnostics=("employer lookup=confirmed posting",),
+    )
 
 
 class ManualIndeedTests(unittest.TestCase):
@@ -93,6 +120,43 @@ class ManualIndeedTests(unittest.TestCase):
             "userEnteredFormat": {"numberFormat": {"type": "TEXT"}},
         })
         self.assertEqual(self.fake.structural, [])
+
+    def test_direct_success_does_not_invoke_fallback(self):
+        url = "https://www.indeed.com/viewjob?jk=direct"
+        self.fake.data["Job Scout"].append(manual_row(url))
+        fallback = FakeFallback()
+        result = process_manual_indeed_rows(
+            self.tracker, self.store,
+            provider=FakeProvider({"direct": raw("direct")}), fallback=fallback,
+        )
+        self.assertEqual(result.processed, 1)
+        self.assertEqual(fallback.calls, [])
+
+    def _assert_blocked_direct_falls_back(self, status):
+        jk = f"blocked-{status}"
+        url = f"https://www.indeed.com/viewjob?jk={jk}&from=shareddesktop_copy"
+        self.fake.data["Job Scout"].append(manual_row(url))
+        result = process_manual_indeed_rows(
+            self.tracker, self.store,
+            provider=FakeProvider({jk: ProviderError(f"HTTP Error {status}: blocked")}),
+            fallback=FakeFallback({jk: recovered(jk)}),
+        )
+        row = dict(zip(SCOUT, self.fake.data["Job Scout"][2]))
+        self.assertEqual(result.processed, 1)
+        self.assertEqual(row["Scout ID"], 43)
+        self.assertEqual(row["Job URL"], url)
+        saved = self.store.get(43)
+        self.assertEqual(saved.authoritative_url, f"https://careers.example.com/jobs/{jk}")
+        self.assertEqual(saved.source, "Indeed")
+
+    def test_direct_401_uses_fallback(self):
+        self._assert_blocked_direct_falls_back(401)
+
+    def test_direct_403_uses_fallback(self):
+        self._assert_blocked_direct_falls_back(403)
+
+    def test_direct_429_uses_fallback(self):
+        self._assert_blocked_direct_falls_back(429)
 
     def test_same_indeed_job_key_is_flagged_without_retrieval_or_id(self):
         self.fake.data["Job Scout"].append(manual_row(
@@ -193,6 +257,7 @@ class ManualIndeedTests(unittest.TestCase):
                 "blocked": ProviderError("HTTP 403"),
                 "works": raw("works", company="Other Co"),
             }),
+            fallback=FakeFallback(),
         )
         failed = dict(zip(SCOUT, self.fake.data["Job Scout"][2]))
         succeeded = dict(zip(SCOUT, self.fake.data["Job Scout"][3]))
@@ -201,6 +266,38 @@ class ManualIndeedTests(unittest.TestCase):
         self.assertEqual(failed["Scout ID"], "")
         self.assertEqual(succeeded["Source"], "indeed")
         self.assertNotEqual(succeeded["Scout ID"], "")
+
+    def test_all_fallbacks_fail_without_consuming_scout_id(self):
+        url = "https://www.indeed.com/viewjob?jk=nowhere"
+        self.fake.data["Job Scout"].append(manual_row(url))
+        result = process_manual_indeed_rows(
+            self.tracker, self.store,
+            provider=FakeProvider({"nowhere": ProviderError("HTTP Error 401")}),
+            fallback=FakeFallback(),
+        )
+        row = dict(zip(SCOUT, self.fake.data["Job Scout"][2]))
+        self.assertEqual((result.failures, row["Scout ID"]), (1, ""))
+        self.assertIn("direct=401", row["Notes"])
+        self.assertIn("Brave=no matching result", row["Notes"])
+        self.assertIn("employer lookup=no confirmed posting", row["Notes"])
+        self.assertEqual(self.store.highest_scout_id(), 0)
+
+    def test_previously_failed_row_retries_fallback_before_direct(self):
+        url = "https://www.indeed.com/viewjob?jk=retry-me"
+        self.fake.data["Job Scout"].append(manual_row(url))
+        self.fake.data["Job Scout"][2][SCOUT.index("Notes")] = (
+            "Indeed retrieval failed â€” manual review required: direct=401"
+        )
+        provider = FakeProvider({"retry-me": ProviderError("direct must not run")})
+        result = process_manual_indeed_rows(
+            self.tracker, self.store, provider=provider,
+            fallback=FakeFallback({"retry-me": recovered("retry-me")}),
+        )
+        row = dict(zip(SCOUT, self.fake.data["Job Scout"][2]))
+        self.assertEqual(result.processed, 1)
+        self.assertEqual(provider.calls, [])
+        self.assertEqual(row["Notes"], "")
+        self.assertEqual(row["Job URL"], url)
 
 
 class ManualIndeedProviderTests(unittest.TestCase):
@@ -226,6 +323,70 @@ class ManualIndeedProviderTests(unittest.TestCase):
         self.assertEqual(listing.company, "Example Co")
         self.assertEqual(listing.location, "Lehi, UT")
         self.assertEqual(listing.salary, "USD 90000-110000 per YEAR")
+
+
+class ManualIndeedFallbackTests(unittest.TestCase):
+    class FakeSearch:
+        brave_key = "configured"
+
+        def __init__(self, employer_title="Paid Search Manager"):
+            self.employer_title = employer_title
+            self.queries = []
+
+        def configured(self):
+            return True
+
+        def search_hits(self, query, *, maximum=8):
+            self.queries.append(query)
+            if "careers job" in query:
+                return ([SearchHit(
+                    "https://careers.acme.test/jobs/paid-search-manager",
+                    self.employer_title, "Acme careers", "brave",
+                )], [])
+            return ([SearchHit(
+                "https://www.indeed.com/viewjob?jk=blocked",
+                "Paid Search Manager - Acme, Inc. - Salt Lake City, UT | Indeed.com",
+                "Acme is hiring a Paid Search Manager in Salt Lake City.", "brave",
+            )], [])
+
+    @staticmethod
+    def employer_page(title="Paid Search Manager"):
+        payload = {
+            "@context": "https://schema.org", "@type": "JobPosting",
+            "title": title,
+            "description": "Own paid search strategy, execution, reporting, and optimization.",
+            "hiringOrganization": {"name": "Acme, Inc."},
+            "jobLocation": {"address": {
+                "addressLocality": "Salt Lake City", "addressRegion": "UT",
+            }},
+            "url": "https://careers.acme.test/jobs/paid-search-manager",
+        }
+        return FetchedDocument(
+            ("<script type='application/ld+json'>" + json.dumps(payload) + "</script>").encode(),
+            "https://careers.acme.test/jobs/paid-search-manager", "text/html",
+        )
+
+    def test_confident_employer_careers_page_is_used(self):
+        search = self.FakeSearch()
+        fallback = ManualIndeedFallbackRetriever(
+            search=search, fetch=lambda _url: self.employer_page(),
+        )
+        result = fallback.retrieve("https://www.indeed.com/viewjob?jk=blocked")
+        self.assertIsNotNone(result.listing)
+        self.assertEqual(
+            result.authoritative_url,
+            "https://careers.acme.test/jobs/paid-search-manager",
+        )
+        self.assertEqual(result.listing.source_job_id, "blocked")
+
+    def test_incorrect_employer_job_is_not_accepted(self):
+        search = self.FakeSearch(employer_title="SEO Director")
+        fallback = ManualIndeedFallbackRetriever(
+            search=search, fetch=lambda _url: self.employer_page("SEO Director"),
+        )
+        result = fallback.retrieve("https://www.indeed.com/viewjob?jk=blocked")
+        self.assertIsNone(result.listing)
+        self.assertIn("employer lookup=no confirmed posting", result.diagnostics)
 
 
 if __name__ == "__main__":

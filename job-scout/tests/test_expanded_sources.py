@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 import tempfile
 import unittest
@@ -28,6 +29,24 @@ from storage import JobStore
 
 
 class ApiProviderTests(unittest.TestCase):
+    @staticmethod
+    def _usajobs_payload(*, schedule="missing", **overrides):
+        descriptor = {
+            "PositionID": "MKT-123", "PositionTitle": "Marketing Specialist",
+            "PositionURI": "https://www.usajobs.gov/job/123",
+            "OrganizationName": "Agency", "PositionLocationDisplay": "Remote",
+            "PositionRemuneration": [{"MinimumRange": "80000", "MaximumRange": "100000"}],
+            "PublicationStartDate": "2026-09-20",
+            "UserArea": {"Details": {"JobSummary": "Lead digital communications",
+                                       "RemoteIndicator": True}},
+        }
+        if schedule != "missing":
+            descriptor["PositionSchedule"] = schedule
+        descriptor.update(overrides)
+        return {"SearchResult": {"SearchResultItems": [{
+            "MatchedObjectId": "123", "MatchedObjectDescriptor": descriptor,
+        }]}}
+
     @patch("sources.jobicy.get_json")
     def test_jobicy_maps_optional_salary_and_metadata(self, mocked):
         mocked.return_value = {"jobs": [{
@@ -59,29 +78,66 @@ class ApiProviderTests(unittest.TestCase):
             list(RemoteOkProvider().full_feed())
 
     def test_usajobs_missing_credentials_is_explicit(self):
-        provider = UsaJobsProvider(api_key="", email="")
-        self.assertFalse(provider.configured())
-        with self.assertRaisesRegex(ProviderError, "USAJOBS_API_KEY"):
-            list(provider.search(SearchRequest("marketing")))
+        with patch.dict(os.environ, {}, clear=True):
+            provider = UsaJobsProvider(api_key="", email="")
+            self.assertFalse(provider.configured())
+            with self.assertRaisesRegex(ProviderError, "USAJOBS_API_KEY"):
+                list(provider.search(SearchRequest("marketing")))
 
     @patch("sources.usajobs.get_json")
     def test_usajobs_maps_official_search_result(self, mocked):
-        mocked.return_value = {"SearchResult": {"SearchResultItems": [{
-            "MatchedObjectId": "123", "MatchedObjectDescriptor": {
-                "PositionID": "MKT-123", "PositionTitle": "Marketing Specialist",
-                "PositionURI": "https://www.usajobs.gov/job/123",
-                "OrganizationName": "Agency", "PositionLocationDisplay": "Remote",
-                "PositionRemuneration": [{"MinimumRange": "80000", "MaximumRange": "100000"}],
-                "PositionSchedule": ["Full-time"], "PublicationStartDate": "2026-09-20",
-                "UserArea": {"Details": {"JobSummary": "Lead digital communications",
-                                           "RemoteIndicator": True}},
-            },
-        }]}}
+        mocked.return_value = self._usajobs_payload(schedule=["Full-time"])
         job = list(UsaJobsProvider("key", "me@example.com").search(
             SearchRequest("marketing", "Remote")))[0]
         self.assertEqual(job.source, "usajobs")
         self.assertEqual(job.salary, "$80,000 - $100,000")
         self.assertEqual(job.remote_type, "remote")
+        self.assertEqual(job.employment_type, "Full-time")
+
+    @patch("sources.usajobs.get_json")
+    def test_usajobs_maps_schedule_object_name(self, mocked):
+        mocked.return_value = self._usajobs_payload(schedule=[{
+            "Name": "Regular Part-Time (20-34 hours per week)", "Code": "2",
+        }])
+        job = list(UsaJobsProvider("key", "me@example.com").search(
+            SearchRequest("marketing")))[0]
+        self.assertEqual(job.employment_type, "Regular Part-Time (20-34 hours per week)")
+
+    @patch("sources.usajobs.get_json")
+    def test_usajobs_maps_mixed_schedule_values(self, mocked):
+        mocked.return_value = self._usajobs_payload(schedule=[
+            "Full-time", {"Name": "Part-time", "Code": "2"}, None,
+            {"Code": "3"}, {"Unexpected": "not stringified"},
+        ])
+        job = list(UsaJobsProvider("key", "me@example.com").search(
+            SearchRequest("marketing")))[0]
+        self.assertEqual(job.employment_type, "Full-time, Part-time, 3")
+
+    @patch("sources.usajobs.get_json")
+    def test_usajobs_empty_null_and_missing_schedule_are_safe(self, mocked):
+        for schedule in ([], None, "missing"):
+            with self.subTest(schedule=schedule):
+                mocked.return_value = self._usajobs_payload(schedule=schedule)
+                job = list(UsaJobsProvider("key", "me@example.com").search(
+                    SearchRequest("marketing")))[0]
+                self.assertEqual(job.employment_type, "")
+
+    @patch("sources.usajobs.get_json")
+    def test_usajobs_hardens_related_object_and_list_fields(self, mocked):
+        mocked.return_value = self._usajobs_payload(
+            PositionLocationDisplay="", PositionLocation=None,
+            PositionRemuneration=[None, {
+                "MinimumRange": "not disclosed", "MaximumRange": None,
+            }],
+            PositionOfferingType=[{"Name": "Permanent", "Code": "15317"}],
+            QualificationSummary={"Description": "Digital marketing experience required."},
+        )
+        job = list(UsaJobsProvider("key", "me@example.com").search(
+            SearchRequest("marketing")))[0]
+        self.assertEqual(job.location, "")
+        self.assertEqual(job.salary, "not disclosed")
+        self.assertEqual(job.employment_type, "Permanent")
+        self.assertIn("Digital marketing experience required.", job.description)
 
     @patch("sources.themuse.get_json", return_value={"results": []})
     def test_themuse_empty_response_is_valid(self, _mocked):
