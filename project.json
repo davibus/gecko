@@ -1,16 +1,15 @@
 {
   "name": "gecko",
-  "purpose": "Resume customization and job-fit analysis",
+  "purpose": "Job discovery, resume tailoring and generation, and application tracking",
   "master_resume": "input/master-resume/Dave-Call-Resume.txt",
+  "formatting_model": "input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf",
   "resume_output_dir": "output/resumes",
-  "match_report_dir": "output/match-reports",
   "job_tracker": "Google Sheets",
   "google_sheets_module": "job-scout/google_tracker.py",
   "job_tracker_script": "scripts/manage_job_tracker.py",
   "target_pages": 2,
-  "default_font_size_pt": 11,
+  "default_font_size_pt": 10.5,
   "line_spacing": 1.15,
-  "filename_pattern": "Dave-Call+<Company-Name>+<job-number>.docx",
-  "match_report_pattern": "Dave-Call+<Company-Name>+<job-number>.md",
+  "filename_pattern": "Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx",
   "job_description_pattern": "<Company-Name>+<job-number>.md"
 }

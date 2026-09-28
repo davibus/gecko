@@ -1,4 +1,4 @@
-"""Fast title-family filtering before Gecko match scoring."""
+"""Fast title-family filtering for Job Scout discoveries."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ def _title_text(title: str) -> str:
 
 
 # These phrases identify the role families Dave actually wants to review.  The
-# scoring model remains authoritative for fit once a title passes this gate.
+# This gate keeps discovery focused on the configured role families.
 DIRECT_MARKETING_PHRASES = (
     "performance marketing", "paid search", "paid media", "ppc", "sem",
     "search marketing", "digital marketing", "growth marketing",
@@ -65,7 +65,7 @@ GENERIC_MANAGER_PATTERNS = (
 
 
 def role_filter_reason(title: str) -> tuple[bool, str]:
-    """Return whether a title belongs in the scoring pipeline and why."""
+    """Return whether a title belongs in the discovery pipeline and why."""
     value = _title_text(title or "")
     if not value:
         return False, "missing title"

@@ -7,7 +7,7 @@ Job listing/source:
 
 Instructions:
 - Read `GECKO_SYSTEM.md` and `AGENTS.md` first.
-- Use only `input/master-resume/Dave-Call-Resume.txt` for resume facts. The older DOCX and PDF are not content sources, and `Dave_Call_Resume_5ec9726395344311.docx` is for formatting only.
+- Use only `input/master-resume/Dave-Call-Resume.txt` for resume facts and use `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as the required visual formatting/layout model. Stop if either file is missing; never fall back to an older or tailored resume.
 - Run `python scripts/gecko_v2.py plan` on the archived listing before changing the resume. Review supported, review, and gap items and the source quotes in the plan.
 - Create a dedicated scratch subfolder: `scratch/{Company-Name}+{JobNumber}/` for all temporary files (previews, PNGs, PDFs, intermediate files). Sanitize company names for Windows filenames.
 - Reusable tools and scripts reside in `scripts/`.
@@ -16,8 +16,6 @@ Instructions:
 - Keep it exactly two pages.
 - Preserve Gecko formatting conventions.
 - Remove visible job dates but preserve the right-side date space.
-- Create the qualitative Match Analysis report without a numerical compatibility rating.
 - Save the finished DOCX in `output/resumes/` using Gecko filename rules: `Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx`.
-- Save the match report in `output/match-reports/` as `Dave-Call+<Company-Name>+<job-number>.md`.
 - Save the archived listing in `input/job-descriptions/` as `<Company-Name>+<job-number>.md`.
-- Only after the final resume and match report have both been successfully created and validated, upsert the job in the canonical Google Sheet with `scripts/manage_job_tracker.py add`, then validate the tracker. Do not create or update a local Excel tracker. Preserve existing rows and manual Applied/Contacted values.
+- Only after the final resume has been successfully created and validated, upsert the job in the canonical Google Sheet with `scripts/manage_job_tracker.py add`, then validate the tracker. Do not create or update a local Excel tracker. Preserve existing rows and manual Applied/Contacted values.

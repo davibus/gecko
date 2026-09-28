@@ -20,13 +20,6 @@ ENRICHMENT_COLUMNS = (
     "job_id", "original_description", "original_url", "enriched_description",
     "enriched_source_url", "enriched_at", "enrichment_status", "enrichment_error",
 )
-REMOVED_STORAGE_COLUMNS = {
-    "match_score", "evidence_confidence", "provisional", "evidence_json",
-    "strengths_json", "weaknesses_json", "retained", "original_match_score",
-    "original_evidence_confidence", "enriched_match_score",
-    "enriched_evidence_confidence",
-}
-
 SOURCE_PRIORITY = {
     "greenhouse": 0, "lever": 0, "ashby": 0, "workable": 0, "web-careers": 0,
     "usajobs": 1, "jobicy": 1, "remotive": 1, "remoteok": 1,
@@ -100,15 +93,15 @@ class JobStore:
     def _columns(self, table: str) -> set[str]:
         return {row["name"] for row in self.connection.execute(f"PRAGMA table_info({table})")}
 
-    def _rebuild_without_evaluation_fields(self, table: str, columns: tuple[str, ...]) -> None:
+    def _rebuild_canonical_table(self, table: str, columns: tuple[str, ...]) -> None:
         existing = self._columns(table)
-        if not (existing & REMOVED_STORAGE_COLUMNS):
+        if existing <= set(columns):
             return
-        temporary = f"{table}_without_evaluation_fields"
+        temporary = f"{table}_canonical"
         self.connection.execute(f"DROP TABLE IF EXISTS {temporary}")
         if table == "jobs":
             self.connection.execute("""
-                CREATE TABLE jobs_without_evaluation_fields (
+                CREATE TABLE jobs_canonical (
                     id INTEGER PRIMARY KEY,
                     company TEXT NOT NULL, title TEXT NOT NULL, location TEXT,
                     work_arrangement TEXT, employment_type TEXT, salary TEXT,
@@ -121,7 +114,7 @@ class JobStore:
             """)
         else:
             self.connection.execute("""
-                CREATE TABLE enrichments_without_evaluation_fields (
+                CREATE TABLE enrichments_canonical (
                     job_id INTEGER PRIMARY KEY REFERENCES jobs(id) ON DELETE CASCADE,
                     original_description TEXT NOT NULL,
                     original_url TEXT NOT NULL,
@@ -151,9 +144,8 @@ class JobStore:
             self.connection.execute("ALTER TABLE jobs ADD COLUMN category TEXT NOT NULL DEFAULT ''")
         if "tags_json" not in columns:
             self.connection.execute("ALTER TABLE jobs ADD COLUMN tags_json TEXT NOT NULL DEFAULT '[]'")
-        self.connection.execute("DROP INDEX IF EXISTS jobs_score_idx")
-        self._rebuild_without_evaluation_fields("jobs", JOB_COLUMNS)
-        self._rebuild_without_evaluation_fields("enrichments", ENRICHMENT_COLUMNS)
+        self._rebuild_canonical_table("jobs", JOB_COLUMNS)
+        self._rebuild_canonical_table("enrichments", ENRICHMENT_COLUMNS)
         self._create_schema()
         highest = self.connection.execute("SELECT COALESCE(MAX(id), 0) FROM jobs").fetchone()[0]
         self.connection.execute("""

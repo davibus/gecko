@@ -15,7 +15,6 @@ sys.path.insert(0, str(ROOT / "job-scout"))
 from google_tracker import GoogleTracker, job_key, load_environment  # noqa: E402
 
 RESUME_DIR = ROOT / "output/resumes"
-REPORT_DIR = ROOT / "output/match-reports"
 LISTING_DIR = ROOT / "input/job-descriptions"
 
 
@@ -64,18 +63,16 @@ def filename_job_number(path: Path) -> str:
     return path.stem.rsplit("+", 1)[-1]
 
 
-def record_from_files(resume: Path, report: Path, listing: Path | None,
+def record_from_files(resume: Path, listing: Path | None,
                       *, date_override: date | None = None) -> JobRecord:
-    if not resume.is_file() or not report.is_file():
-        raise ValueError("Final DOCX and match report must both exist before tracker update")
+    if not resume.is_file():
+        raise ValueError("Final DOCX must exist before tracker update")
     listing_text = read_text(listing) if listing and listing.is_file() else ""
-    report_text = read_text(report)
-    combined = listing_text + "\n" + report_text
-    job_number = (markdown_field(combined, ("Job Key (Indeed jk)", "Indeed job key", "Job Number"))
-                  or (re.search(r"[?&]jk=([A-Za-z0-9_-]+)", combined) or [None, ""])[1]
+    job_number = (markdown_field(listing_text, ("Job Key (Indeed jk)", "Indeed job key", "Job Number"))
+                  or (re.search(r"[?&]jk=([A-Za-z0-9_-]+)", listing_text) or [None, ""])[1]
                   or filename_job_number(resume))
-    company = markdown_field(listing_text, ("Company",)) or markdown_field(report_text, ("Company",))
-    title = extract_title(listing_text) or extract_title(report_text)
+    company = markdown_field(listing_text, ("Company",))
+    title = extract_title(listing_text)
     missing = [name for name, value in (("company", company), ("job title", title),
                                         ("job number", job_number)) if not value]
     if missing:
@@ -97,14 +94,13 @@ def record_from_files(resume: Path, report: Path, listing: Path | None,
 
 def record_completed_resume(
     resume: Path,
-    report: Path,
     listing: Path | None,
     tracker: GoogleTracker,
     *,
     date_override: date | None = None,
 ) -> tuple[int, bool, JobRecord]:
     """Upsert one validated Gecko result and mark its matching Scout row."""
-    record = record_from_files(resume, report, listing, date_override=date_override)
+    record = record_from_files(resume, listing, date_override=date_override)
     application = {
         "Company": record.company, "Job Title": record.job_title, "Pay": record.pay,
         "Job Number": record.job_number,
@@ -131,7 +127,7 @@ def record_completed_resume(
 def add_job(args: argparse.Namespace, tracker: GoogleTracker | None = None) -> int:
     tracker = tracker or GoogleTracker()
     row, created, record = record_completed_resume(
-        project_path(args.resume), project_path(args.match_report),
+        project_path(args.resume),
         project_path(args.job_description) if args.job_description else None,
         tracker,
         date_override=(datetime.strptime(args.date_created, "%m/%d/%Y").date()
@@ -192,8 +188,7 @@ def main() -> int:
     sub.add_parser("init", help="Verify the configured existing Google worksheets")
     add = sub.add_parser("add", help="Record one QA-passed Gecko resume")
     add.add_argument("--resume", required=True)
-    add.add_argument("--match-report", required=True)
-    add.add_argument("--job-description")
+    add.add_argument("--job-description", required=True)
     add.add_argument("--date-created")
     sub.add_parser("validate", help="Read and validate Google tracker uniqueness")
     args = parser.parse_args()

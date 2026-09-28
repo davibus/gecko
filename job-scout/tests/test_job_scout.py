@@ -131,9 +131,9 @@ class EnvironmentTests(unittest.TestCase):
         args = build_parser().parse_args(["search"])
         self.assertEqual(args.source, "adzuna")
 
-    def test_provider_alias_rejects_jooble(self):
+    def test_source_option_rejects_jooble(self):
         with self.assertRaises(SystemExit):
-            build_parser().parse_args(["search", "--provider", "jooble"])
+            build_parser().parse_args(["search", "--source", "jooble"])
 
     def test_enrich_command_accepts_id_or_all_flag(self):
         parser = build_parser()
@@ -295,16 +295,12 @@ class EnvironmentTests(unittest.TestCase):
         self.assertEqual(daily_summary["source_backends"]["web-careers"], "brave")
         self.assertTrue(daily_summary["google_cse"]["used"])
 
-    def test_provider_alias_accepts_remotive(self):
+    def test_source_option_accepts_remotive(self):
         args = build_parser().parse_args([
-            "search", "--provider", "remotive", "--limit", "100",
+            "search", "--source", "remotive", "--limit", "100",
         ])
         self.assertEqual(args.source, "remotive")
         self.assertEqual(args.limit, 100)
-
-    def test_remotive_rss_diagnostic_command_is_available(self):
-        args = build_parser().parse_args(["diagnose-remotive-rss"])
-        self.assertEqual(args.command, "diagnose-remotive-rss")
 
     def test_remotive_feeds_diagnostic_command_is_available(self):
         args = build_parser().parse_args(["diagnose-remotive-feeds"])
@@ -643,7 +639,7 @@ class ReviewQueueTests(unittest.TestCase):
         job.date_posted = posted
         return job
 
-    def test_review_is_newest_first_and_has_no_evaluation_fields(self):
+    def test_review_is_newest_first(self):
         queue = build_review_queue([
             self.job(1, posted="2026-09-01"),
             self.job(2, posted="2026-09-03"),
@@ -652,7 +648,6 @@ class ReviewQueueTests(unittest.TestCase):
         self.assertEqual([job.id for job in queue["jobs"]], [2, 1])
         payload = json.loads(queue_to_json(queue))
         self.assertEqual(set(payload), {"jobs"})
-        self.assertFalse({"match_score", "evidence_confidence", "match_status"} & set(payload["jobs"][0]))
 
 class StorageAndServiceTests(unittest.TestCase):
     def test_jooble_source_and_jooble_destination_are_excluded_before_storage(self):
@@ -681,7 +676,7 @@ class StorageAndServiceTests(unittest.TestCase):
         self.assertEqual(summary.jooble_excluded, 2)
         self.assertEqual([job.source_job_id for job in saved], ["allowed"])
 
-    def test_discovery_persists_listing_and_status_without_evaluation_fields(self):
+    def test_discovery_persists_listing_and_status(self):
         with tempfile.TemporaryDirectory() as directory:
             database = Path(directory) / "jobs.sqlite3"
             with JobStore(database) as store:
@@ -690,7 +685,6 @@ class StorageAndServiceTests(unittest.TestCase):
                 )
                 jobs = store.all()
                 self.assertEqual(len(jobs), 1)
-                self.assertFalse({"match_score", "evidence_confidence", "match_status"} & set(jobs[0].to_dict()))
                 self.assertEqual(jobs[0].status, "new")
                 store.update_status(jobs[0].id, "reviewing")
                 self.assertEqual(store.get(jobs[0].id).status, "reviewing")
@@ -758,7 +752,7 @@ class EnrichmentTests(unittest.TestCase):
         listing.description = "Lead paid social and paid search growth campaigns."
         return normalize(listing)
 
-    def test_successful_enrichment_preserves_original_without_rating_data(self):
+    def test_successful_enrichment_preserves_original(self):
         detailed = (DESCRIPTION + " Own paid social, SEO, Shopify, reporting, attribution, and team leadership. ") * 12
         payload = json.dumps({
             "@context": "https://schema.org", "@type": "JobPosting",
@@ -783,7 +777,6 @@ class EnrichmentTests(unittest.TestCase):
                 self.assertEqual(saved.original_url, "https://adzuna.test/redirect")
                 self.assertEqual(saved.enrichment_status, "succeeded")
                 self.assertGreater(len(saved.enriched_description), len(saved.original_description))
-                self.assertFalse({"match_score", "evidence_confidence", "match_status"} & set(saved.to_dict()))
 
     def test_official_greenhouse_structured_fallback(self):
         detailed = (DESCRIPTION + " Paid social SEO Shopify automation leadership. ") * 10

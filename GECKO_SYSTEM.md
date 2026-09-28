@@ -2,10 +2,16 @@
 
 ## Purpose
 
-Gecko customizes Dave Call's resume for individual job postings while preserving factual accuracy, a natural voice, and the established resume format.
+Gecko discovers and stores relevant jobs, customizes Dave Call's resume for selected postings, generates the finished document, and tracks the job and application while preserving factual accuracy, a natural voice, and the established resume format.
 
 ## Resume rules
 
+- **Permanent content and format authorities:** Every tailored resume must use `input/master-resume/Dave-Call-Resume.txt` as its only factual content source and `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as its required visual formatting and layout model. These repository-relative paths are the defaults for every manual, queued, and Job Scout generation run.
+- Re-read the master TXT for every generation or customization. Do not use a previously generated resume, project note, older DOCX/PDF, or job-specific generator as a source of claims, wording, accomplishments, metrics, skills, tools, education, or certifications. User-supplied facts may be used only when the user explicitly provides them for that specific resume.
+- Follow the model PDF as closely as practical for its two-page US Letter layout, centered header structure, EB Garamond typography, font sizing, compact margins, olive section headings and rules, section spacing, section hierarchy, bullet treatment, alignment, density, and overall professional appearance. Content may be tailored and reordered, but the model PDF remains the visual authority.
+- The required section hierarchy is: Professional Summary; Core Strengths; Selected Results; Professional Experience; Tools & Platforms; Education & Certifications. Omit a section only when the authoritative master has no supported content for it or two-page pagination requires a conservative reduction.
+- These two authorities override every older Gecko instruction that names another master resume, formatting PDF, DOCX template, or tailored resume as a starting point. Deviate only when the user explicitly instructs Gecko to do so for one specific resume.
+- Before planning or generation, verify that both required files exist. If either is missing, stop with a clear error identifying the missing required Gecko master resume or formatting model. Never fall back to another resume or template.
 - Exactly two pages, with no trailing blank or near-blank page.
 - Pagination must be verified against the actual DOCX in Microsoft Word. Fallback HTML/PDF rendering is not authoritative because its line wrapping and pagination can differ from Word.
 - The preferred validation requires both Microsoft Word's computed page count and its exported PDF to equal exactly 2.
@@ -15,7 +21,7 @@ Gecko customizes Dave Call's resume for individual job postings while preserving
 - When Word automation is unavailable, keep a substantial page-bottom safety margin, report the validation limitation explicitly, and never call fallback-only pagination fully validated.
 - Never trade pagination reliability for page fill. A safely underfilled second page is better than a third page.
 - White background.
-- 11 pt body font.
+- Use the model's 10.5 pt EB Garamond body typography by default; only make conservative job-specific spacing adjustments that preserve the model's hierarchy and Word-native two-page requirement.
 - 1.15 line spacing.
 - Maintain clean spacing after the header and before sections/jobs.
 - Preserve the right-side date cell/space while removing visible date text from job entries.
@@ -39,31 +45,19 @@ Gecko customizes Dave Call's resume for individual job postings while preserving
 
 ## Factual source
 
-`input/master-resume/Dave-Call-Resume.txt` is the single source of truth for work history, accomplishments, metrics, skills, tools, education, certifications, AI tools, and leadership. It is a comprehensive career archive, not a page-limited resume; tailor from it down to exactly two pages. Re-read it for each job; never inherit facts from an older generated resume or from this specification. Do not use `Dave-Call-resume-9-23-26.docx`, `dcall-resume-3-15-26.pdf`, or previously generated resumes as content sources. `Dave_Call_Resume_5ec9726395344311.docx` may guide formatting only.
-
-## Match analysis report
-
-Every Gecko job analysis should include:
-
-- Strongest alignment areas
-- Weaknesses or missing requirements
-- ATS keyword alignment
-- Recommended resume emphasis
-- Interview/application considerations
-
-Evaluate the job description directly against the current master archive. Keep unsupported requirements as explicit gaps. Do not calculate or include a numerical compatibility rating.
+`input/master-resume/Dave-Call-Resume.txt` is the single source of truth for work history, accomplishments, metrics, skills, tools, education, certifications, AI tools, and leadership. It is a comprehensive career archive, not a page-limited resume; tailor from it down to exactly two pages. The required formatting authority is `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf`; its content is never evidence unless independently supported by the master TXT.
 
 ## Job tracker
 
 Google Sheets is the canonical job tracker. Do not create or update a local Excel job tracker. Every successful Gecko resume generation must end by recording the job with `scripts/manage_job_tracker.py`.
 
-- Add the tracker row only after the final DOCX and final match report both exist and have passed their required validation.
-- Pass the final resume, match report, and archived job description to the script's `add` command.
+- Add the tracker row only after the final DOCX exists and has passed its required validation.
+- Pass the final resume and archived job description to the script's `add` command.
 - Let the script derive the next Resume #/Index from the live Sheet and upsert by unique Job Number.
 - Preserve all existing rows and the user's manual `Applied` and `Contacted` values.
 - Leave compensation or other unavailable listing fields blank; never infer or invent them.
 - Treat the tracker update as required for completion. If it fails, report the failure and do not claim the Gecko job is fully complete.
-- If Google Sheets is unavailable, report the error without falling back to a local tracker; keep the generated resume and match report.
+- If Google Sheets is unavailable, report the error without falling back to a local tracker; keep the generated resume.
 - Job Scout searches, daily runs, selections, and completed-resume updates use the same Google Sheets integration.
 - Preserve user formatting and manual fields. Update only specific managed cell values; never recreate tabs, reorder rows, clear populated ranges, reset filters or conditional formatting, or overwrite Applied/Contacted.
 - After the resume queue, Daily Job Scout uses the separate reusable Gmail checker with only `gmail.readonly` access. It may write only conservative employer-response summaries to the matching `Job Scout` `Response` cell. Gmail failures are reported and logged without failing discovery or resume creation.
@@ -72,9 +66,6 @@ Google Sheets is the canonical job tracker. Do not create or update a local Exce
 
 Resume:
 `Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx`
-
-Match report:
-`Dave-Call+<Company-Name>+<job-number>.md`
 
 Archived job description:
 `<Company-Name>+<job-number>.md`
@@ -109,4 +100,4 @@ All reusable generation, layout optimization, and pagination verification script
 
 ## Source integrity
 
-Use the current master archive (`input/master-resume/Dave-Call-Resume.txt`) as the sole factual source. Any resume designated as a formatting reference may guide visual layout only; its content is never evidence unless confirmed in the master archive.
+Use the current master archive (`input/master-resume/Dave-Call-Resume.txt`) as the sole factual source and the required model PDF (`input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf`) as the sole default visual authority. The model's content is never evidence unless confirmed in the master archive. No older or generated resume may substitute for either required file.

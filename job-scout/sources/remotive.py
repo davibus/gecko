@@ -22,7 +22,7 @@ class RemotiveProvider(JobSource):
     endpoint = feed_base
     category_feeds = (
         # Potentially relevant feeds only. Every record still has to pass the
-        # title-family gate before it can enter the candidate/scoring pool.
+        # title-family gate before it can enter the candidate pool.
         ("Marketing", f"{feed_base}/marketing"),
         ("Data and Analytics", f"{feed_base}/data"),
         ("Product Management", f"{feed_base}/product"),
@@ -321,7 +321,7 @@ class RemotiveProvider(JobSource):
         return all(term in searchable for term in terms)
 
     def search(self, request: SearchRequest):
-        """Retain the legacy query-based API adapter for diagnostics/compatibility."""
+        """Search the API-backed job pool for one query."""
         matches = [item for item in self._load_api_jobs() if self._matches(item, request.query)]
         start = max(request.page - 1, 0) * request.results_per_page
         stop = start + request.results_per_page

@@ -19,8 +19,6 @@
 
 - web-careers: https://jobs.lever.co/silverbackstrategies/55b2b02b-5435-4046-8101-f4c59e56145b
 
-The strengths and weaknesses below are the original automated Scout assessment. The separate tailored match report supersedes that assessment: the title is directly relevant, while the three-year agency-tenure minimum is not established by the source resume.
-
 ## Scout strengths
 
 - Paid-media evidence: paid search.

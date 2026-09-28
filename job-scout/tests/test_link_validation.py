@@ -1,4 +1,4 @@
-"""Availability checks and pre-scoring rejection tests."""
+"""Availability checks and early rejection tests."""
 
 from __future__ import annotations
 

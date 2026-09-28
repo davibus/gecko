@@ -10,8 +10,6 @@ param(
 
     [switch]$UpdateTracker,
 
-    [string]$MatchReport,
-
     [string]$JobDescription,
 
     [string]$RequestId,
@@ -283,12 +281,11 @@ Write-Output "Native Word validation passed: Word=$wordPages pages, exported PDF
 Write-Output "Validation record: $result"
 
 if ($UpdateTracker) {
-    if ([string]::IsNullOrWhiteSpace($MatchReport) -or [string]::IsNullOrWhiteSpace($JobDescription)) {
-        throw '-UpdateTracker requires both -MatchReport and -JobDescription.'
+    if ([string]::IsNullOrWhiteSpace($JobDescription)) {
+        throw '-UpdateTracker requires -JobDescription.'
     }
-    $match = Resolve-ProjectPath -PathValue $MatchReport -MustExist
     $job = Resolve-ProjectPath -PathValue $JobDescription -MustExist
-    & python (Join-Path $projectRoot 'scripts\manage_job_tracker.py') add --resume $docx --match-report $match --job-description $job
+    & python (Join-Path $projectRoot 'scripts\manage_job_tracker.py') add --resume $docx --job-description $job
     if ($LASTEXITCODE -ne 0) {
         $status.status = 'native-valid-tracker-pending'
         $status | Add-Member -NotePropertyName tracker_updated -NotePropertyValue $false -Force

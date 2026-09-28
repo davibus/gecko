@@ -34,14 +34,11 @@ class QueueTests(unittest.TestCase):
         processed = []
 
         with TemporaryDirectory() as temp, patch.object(queue, "_write_report"):
-            report = Path(temp) / "report.md"
-            report.write_text("# Qualitative match analysis\n", encoding="utf-8")
-
             def generate(item, _db):
                 processed.append(item.scout_id)
                 if item.scout_id == 42:
                     raise RuntimeError("simulated Word QA failure")
-                return queue.Artifacts(Path(temp) / "resume.docx", report, Path("listing.md"))
+                return queue.Artifacts(Path(temp) / "resume.docx", Path("listing.md"))
 
             def record(item, _artifacts, tracker):
                 queue.manage_job_tracker.mark_batch_resume(item.scout_id, item.row, tracker)
@@ -61,14 +58,12 @@ class QueueTests(unittest.TestCase):
         with TemporaryDirectory() as temp:
             temp = Path(temp)
             resume = temp / "Dave-Call+Existing+queue-42.docx"
-            report = temp / "Dave-Call+Existing+queue-42.md"
             listing = temp / "Existing+queue-42.md"
             resume.write_bytes(b"test artifact")
-            report.write_text("# Role\n\n## Strongest alignment areas\n", encoding="utf-8")
             listing.write_text("# Role\n\n- **Company:** Existing\n- **Job Number:** queue-42\n"
                                "- **Scout ID:** 42\n- **URL:** https://example.test/job\n", encoding="utf-8")
             item = queue.QueueRow(2, 42, "Existing", "Role")
-            queue.record_success(item, queue.Artifacts(resume, report, listing), self.tracker)
+            queue.record_success(item, queue.Artifacts(resume, listing), self.tracker)
         self.assertEqual([(tab, col) for tab, _, col in self.fake.writes if tab == "Job Scout"],
                          [("Job Scout", "G"), ("Job Scout", "S"), ("Job Scout", "E")])
         scout = next(data for _, data in self.tracker.scout().rows if str(data.get("Scout ID")) == "42")
@@ -81,21 +76,18 @@ class QueueTests(unittest.TestCase):
         application = next(data for _, data in self.tracker.application().rows
                            if str(data.get("Job Number")) == "queue-42")
         self.assertEqual(application["Company"], "Existing")
-        self.assertNotIn("Match Score", application)
 
     def test_missing_artifact_or_changed_apply_never_marks_g(self):
         item = queue.QueueRow(2, 42, "Existing", "Role")
         with self.assertRaisesRegex(ValueError, "missing"):
-            queue.record_success(item, queue.Artifacts(Path("missing.docx"), Path("missing.md"),
-                                                       Path("listing.md")), self.tracker)
+            queue.record_success(item, queue.Artifacts(Path("missing.docx"), Path("listing.md")),
+                                 self.tracker)
         self.fake.data["Job Scout"][1][5] = "No"
         with TemporaryDirectory() as temp:
             resume = Path(temp) / "resume.docx"
-            report = Path(temp) / "report.md"
             resume.write_bytes(b"docx")
-            report.write_text("report", encoding="utf-8")
             with self.assertRaisesRegex(RuntimeError, "Apply"):
-                queue.record_success(item, queue.Artifacts(resume, report, Path("listing.md")),
+                queue.record_success(item, queue.Artifacts(resume, Path("listing.md")),
                                      self.tracker)
         self.assertEqual(self.fake.writes, [])
 
@@ -132,12 +124,10 @@ class QueueTests(unittest.TestCase):
         processed = []
         with TemporaryDirectory() as temp, patch.object(queue, "_write_report"):
             temp = Path(temp)
-            report = temp / "report.md"
-            report.write_text("# Qualitative match analysis\n", encoding="utf-8")
 
             def generate(item, _db):
                 processed.append(item.scout_id)
-                return queue.Artifacts(temp / "resume.docx", report, temp / "listing.md")
+                return queue.Artifacts(temp / "resume.docx", temp / "listing.md")
 
             run = queue.run_queue(
                 self.tracker, Path("unused.sqlite3"), eligible_scout_ids={43, 44, 45},

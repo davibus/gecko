@@ -74,6 +74,8 @@ class GeckoV2Tests(unittest.TestCase):
         metric = self.plan["resume"]["relevant_metric_ids"][0]
         altered = json.loads(json.dumps(self.plan))
         altered["resume"]["selected_evidence_ids"].remove(metric)
+        if metric in altered["resume"]["selected_results_ids"]:
+            altered["resume"]["selected_results_ids"].remove(metric)
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "resume.docx"
             v2.make_resume(altered, path)
@@ -94,12 +96,38 @@ class GeckoV2Tests(unittest.TestCase):
 
     def test_old_files_and_format_reference_are_not_evidence(self):
         self.assertEqual(v2.MASTER.name, "Dave-Call-Resume.txt")
+        self.assertEqual(v2.FORMAT_MODEL.name, "MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf")
         self.assertEqual({Path(path).as_posix() for path in self.plan["source_sha256"]},
                          {"input/master-resume/Dave-Call-Resume.txt"})
+        self.assertEqual(self.plan["format_model"],
+                         "input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf")
+        self.assertEqual(self.plan["format_model_sha256"], v2.formatting_model_hash())
         self.assertTrue(all(e["source"].endswith("Dave-Call-Resume.txt")
                             for e in self.plan["evidence"]))
         self.assertNotIn("Spanish", self.plan["resume"]["contact"])
         self.assertNotIn("Spanish", self.plan["resume"]["certifications"])
+
+    def test_missing_required_authorities_fail_without_fallback(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            missing_master = Path(tmp) / "Dave-Call-Resume.txt"
+            missing_model = Path(tmp) / "MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf"
+            with patch.object(v2, "MASTER", missing_master), patch.object(v2, "FORMAT_MODEL", v2.FORMAT_MODEL):
+                with self.assertRaisesRegex(FileNotFoundError, "Required Gecko master resume could not be found"):
+                    v2.create_plan(self.listing)
+            with patch.object(v2, "MASTER", v2.MASTER), patch.object(v2, "FORMAT_MODEL", missing_model):
+                with self.assertRaisesRegex(FileNotFoundError, "Required Gecko formatting model could not be found"):
+                    v2.make_resume(self.plan, Path(tmp) / "resume.docx")
+
+    def test_generated_docx_uses_required_model_typography_and_hierarchy(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "resume.docx"
+            v2.make_resume(self.plan, path)
+            from docx import Document
+            doc = Document(path)
+            self.assertEqual(doc.styles["Normal"].font.name, "EB Garamond")
+            self.assertAlmostEqual(doc.styles["Normal"].font.size.pt, 10.5)
+            headings = [p.text for p in doc.paragraphs if p.text in [s.upper() for s in v2.SECTIONS]]
+            self.assertEqual(headings, [s.upper() for s in v2.SECTIONS])
 
     def test_project_notes_do_not_authorize_unsupported_tool_claims(self):
         listing = "## Required Qualifications\n- Must have hands-on Marketo experience in marketing operations."
@@ -124,17 +152,6 @@ class GeckoV2Tests(unittest.TestCase):
         core = result["required_skills"] + result["responsibilities"]
         self.assertGreaterEqual(len(core), 4)
         self.assertTrue(any(item["status"] in {"supported", "partial", "gap"} for item in core))
-
-    def test_match_report_is_qualitative_and_contains_no_retired_fields(self):
-        qa = {"status": "pass", "remaining_weaknesses": [], "word_pages": 2, "pdf_pages": 2}
-        with tempfile.TemporaryDirectory() as directory, patch.object(v2, "ROOT", Path(directory)):
-            path = v2.write_match_report(self.plan, qa)
-            report = path.read_text(encoding="utf-8")
-        self.assertIn("Strongest alignment areas", report)
-        self.assertNotIn("Match Score", report)
-        self.assertNotIn("Evidence Confidence", report)
-        self.assertNotIn("Match Status", report)
-
 
 if __name__ == "__main__":
     unittest.main()

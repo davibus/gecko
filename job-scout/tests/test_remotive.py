@@ -17,7 +17,7 @@ sys.path.insert(0, str(SCOUT_ROOT))
 from models import RawListing
 from normalize import normalize
 from preferences import load_preferences
-from scout import diagnose_remotive, diagnose_remotive_feeds, diagnose_remotive_rss, search
+from scout import diagnose_remotive, diagnose_remotive_feeds, search
 from service import SearchSummary, discover_remotive_full_feed
 from sources.base import ProviderError, SearchRequest
 from sources.remotive import RemotiveProvider
@@ -424,12 +424,6 @@ class RemotiveDiagnosticTests(unittest.TestCase):
         self.assertEqual(report["successful_category_feeds"], 1)
         self.assertEqual(report["feeds_attempted"], 1)
         self.assertEqual(report["unique_jobs_imported"], 2)
-
-    def test_old_rss_diagnostic_alias_uses_category_diagnostic(self):
-        with patch("scout.diagnose_remotive_feeds", return_value=0) as delegated:
-            result = diagnose_remotive_rss(argparse.Namespace(), None, None)
-        self.assertEqual(result, 0)
-        delegated.assert_called_once()
 
     def test_diagnostic_uses_only_remotive_and_reports_all_stages(self):
         class FakeRemotive:

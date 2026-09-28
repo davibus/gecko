@@ -1,4 +1,4 @@
-"""Discovery orchestration without compatibility scoring or score-based gates."""
+"""Job Scout discovery orchestration."""
 
 from __future__ import annotations
 
@@ -49,7 +49,7 @@ class SearchSummary:
 
 
 def _capture_full_description(job, store):
-    """Persist the fullest legitimate description without evaluating candidate fit."""
+    """Persist the fullest legitimate description available."""
     outcome = retrieve_full_description(job, prefer_fuller=True)
     if job.id is not None and job.authoritative_url:
         store.save_url_resolution(job)
@@ -111,7 +111,7 @@ def _discover_listings(
     preexisting_ids: set[int] | None = None,
     link_validator: DailyLinkValidator | None = None,
 ) -> SearchSummary:
-    """Normalize, role-filter, deduplicate, and save listings without fit evaluation."""
+    """Normalize, role-filter, deduplicate, and save listings."""
     summary = SearchSummary()
     known = store.all()
     existing_ids = {job.id for job in known} if preexisting_ids is None else set(preexisting_ids)

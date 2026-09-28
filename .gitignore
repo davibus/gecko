@@ -4,7 +4,16 @@ Thumbs.db
 *.tmp
 ~$*.xlsx
 __pycache__/
+*.py[cod]
 .tools/
+
+# Reproducible working and diagnostic artifacts
+scratch/*
+!scratch/.gitkeep
+tmp/
+output/*.log
+output/*.xlsx
+output/apply-queue-results.md
 
 # Local credentials and environment overrides
 .env
@@ -20,4 +29,3 @@ gmail-oauth-client*.json
 gmail-oauth-token*.json
 gmail-response-state.json
 job-scout/data/gmail-response-state.json
-scratch/word-validation-bridge-heartbeat.json

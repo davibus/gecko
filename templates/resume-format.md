@@ -1,17 +1,23 @@
-# Gecko Resume Format Reference
+# Gecko Resume Format Model
 
-Preferred layout characteristics:
+The sole default visual authority is:
+
+`input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf`
+
+Follow it as closely as practical for:
 
 - Clean white background
-- Professional, compact two-page design
-- 11 pt font
+- Professional, compact two-page US Letter design
+- Centered three-line header
+- EB Garamond typography (10.5 pt body by default)
+- Olive (`#556B2F`) uppercase section headings with thin rules
+- Compact margins and spacing
+- Section hierarchy: Professional Summary; Core Strengths; Selected Results; Professional Experience; Tools & Platforms; Education & Certifications
+- Bullet styling, alignment, density, and overall appearance
 - 1.15 line spacing
-- Good separation between header, sections, and jobs
 - Header contact line ends with `linkedin.com/in/mdavidcall` and does not include Spanish or other language proficiency
 - No visible table borders
 - Job dates omitted from visible text while retaining the date-space layout
-- Page 2 should be well-filled without crowding
+- Page 2 should be well-filled without crowding; an underfilled second page is safer than a third page
 
-If a dedicated model/template resume is added later, store it in this folder and update `AGENTS.md` with its filename.
-
-`Dave_Call_Resume_5ec9726395344311.docx`, when supplied, is a format reference only. Its content is never evidence unless independently present in `input/master-resume/Dave-Call-Resume.txt`.
+The model PDF supplies layout only. Its content is not evidence unless independently present in `input/master-resume/Dave-Call-Resume.txt`. Do not substitute another PDF, DOCX, or tailored resume unless the user explicitly requests a one-resume exception.

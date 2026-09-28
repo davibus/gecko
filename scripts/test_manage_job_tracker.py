@@ -24,13 +24,11 @@ class TrackerMetadataTests(unittest.TestCase):
         with TemporaryDirectory() as temp:
             root = Path(temp)
             resume = root / "Dave-Call+Example+abc123.docx"
-            report = root / "Dave-Call+Example+abc123.md"
             listing = root / "Example+abc123.md"
             resume.write_bytes(b"completed")
-            report.write_text("# Role\n\n## Strongest alignment areas\n", encoding="utf-8")
             listing.write_text("# Role\n\n- **Company:** Example\n- **Job Number:** abc123\n"
                                "- **Scout ID:** 42\n- **Salary:** \n", encoding="utf-8")
-            record = record_from_files(resume, report, listing)
+            record = record_from_files(resume, listing)
             self.assertEqual((record.job_number, record.scout_id), ("abc123", 42))
             self.assertEqual(record.pay, "")
 

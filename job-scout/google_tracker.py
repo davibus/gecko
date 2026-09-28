@@ -27,10 +27,7 @@ SCOUT_FIELDS = ("Scout ID", "Source", "Company", "Job Title", "Gecko Status",
                 "Location", "Work Arrangement", "Employment Type", "Salary", "Date Posted",
                 "Date Found", "Last Seen", "Job URL", "Resume Link")
 PROTECTED_SCOUT_FIELDS = ("Apply?", "Resume Created", "Applied", "Contacted", "Response")
-REMOVED_SCOUT_HEADERS = (
-    "Website", "Match Score", "Evidence Confidence", "Match Status",
-    "Enrichment URL", "URL Status", "Authoritative URL",
-)
+RETIRED_SCOUT_HEADERS = ("Website", "Enrichment URL", "URL Status", "Authoritative URL")
 
 
 def load_environment(project_root: Path = ROOT) -> None:
@@ -264,7 +261,7 @@ class GoogleTracker:
         tab = self.tab(self.config.scout_tab)
         targets = sorted(
             ((column, header) for header, column in tab.headers.items()
-             if header in REMOVED_SCOUT_HEADERS),
+             if header in RETIRED_SCOUT_HEADERS),
             reverse=True,
         )
         if targets:
@@ -280,7 +277,7 @@ class GoogleTracker:
             except Exception as error:
                 raise RuntimeError(f"Cannot migrate Google Sheets {tab.title!r}: {error}") from error
         migrated = self.tab(self.config.scout_tab)
-        remaining = sorted(set(migrated.headers) & set(REMOVED_SCOUT_HEADERS))
+        remaining = sorted(set(migrated.headers) & set(RETIRED_SCOUT_HEADERS))
         if remaining:
             raise RuntimeError("Retired Job Scout headers remain: " + ", ".join(remaining))
         return {

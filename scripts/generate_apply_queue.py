@@ -45,7 +45,6 @@ class QueueRow:
 @dataclass(frozen=True)
 class Artifacts:
     resume: Path
-    report: Path
     listing: Path
     existing: bool = False
     retrieval_attempts: tuple[RetrievalAttempt, ...] = ()
@@ -257,7 +256,7 @@ def _archive_listing(job, item: QueueRow, store: JobStore) -> tuple[Path, tuple[
 
 
 def generate(item: QueueRow, db: Path) -> Artifacts:
-    """Reuse Gecko V2 planning, rendering, Word QA, and match reporting."""
+    """Reuse Gecko V2 planning, rendering, and Word QA."""
     with JobStore(db) as store:
         job = store.get(item.scout_id)
         if job is not None and (job.company.casefold().strip() != item.company.casefold().strip()
@@ -310,18 +309,17 @@ def _finish_generation(
         final.parent.mkdir(parents=True, exist_ok=True)
         os.replace(candidate, final)
         existing = False
-    report = gecko_v2.write_match_report(plan, qa)
-    return Artifacts(final, report, listing, existing, attempts)
+    return Artifacts(final, listing, existing, attempts)
 
 
 def record_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTracker) -> None:
     """Record the validated resume through the canonical tracker integration."""
-    if not artifacts.resume.is_file() or not artifacts.report.is_file():
-        raise ValueError("Final DOCX and match report are missing")
+    if not artifacts.resume.is_file():
+        raise ValueError("Final DOCX is missing")
     if not _still_pending(tracker, item):
         raise RuntimeError("Apply? or Resume Created changed before tracker update")
     _retry_sheet(lambda: manage_job_tracker.record_completed_resume(
-        artifacts.resume, artifacts.report, artifacts.listing, tracker
+        artifacts.resume, artifacts.listing, tracker
     ))
 
 

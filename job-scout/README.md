@@ -1,6 +1,6 @@
 # Gecko Job Scout
 
-Job Scout discovers role-relevant openings and records them in the canonical Google Sheet. It does not calculate compatibility ratings or use an evaluation field to decide whether a resume may be created.
+Job Scout discovers role-relevant openings and records them in the canonical Google Sheet.
 
 ## Daily workflow
 
@@ -28,7 +28,7 @@ The standalone retry command remains:
 python scripts/generate_apply_queue.py
 ```
 
-It reads columns by header name, requires `Apply? = Yes`, requires a blank `Resume Created`, and never depends on a compatibility rating.
+It reads columns by header name, requires `Apply? = Yes`, and requires a blank `Resume Created`.
 
 ## Manual Indeed workflow
 
@@ -44,7 +44,7 @@ Indeed can return a block page or omit usable structured posting data. A new row
 
 Failed Indeed rows are retried automatically on later daily runs through fallback search first; Gecko does not repeat the previously blocked direct Indeed request. To retry `jk=3736ea0494f752a7`, leave its URL and failure note in place and run `python job-scout/scout.py daily` again. Duplicate notes remain terminal and are not retried.
 
-Job Scout currently has no numerical match-score field or automatic apply recommendation. Manual Indeed jobs follow that same architecture: Gecko does not invent a score and does not overwrite `Apply?`.
+Job Scout never overwrites the user-maintained `Apply?` decision. Manual Indeed jobs follow the same architecture.
 
 ## Google Sheet schema
 
@@ -141,7 +141,7 @@ python job-scout/discover_ats_employers.py --refresh --dry-run
 python job-scout/discover_ats_employers.py --dry-run --platform ashby --limit 20
 ```
 
-The utility extracts identifiers only from recognized public hosted URLs, validates the corresponding public provider endpoint, scores employer relevance separately from Job Scout's role filtering, deduplicates by platform/identifier/name, and writes detailed diagnostics to the ignored generated file `data/ats-employer-discovery.json`. A completed dry-run is carried into a later apply and every board is revalidated. Search errors, malformed responses, redirects, duplicate candidates, open/relevant/U.S./remote job counts, examples, and repeated failure counts remain in the diagnostic report. Existing manually configured entries are preserved even when validation fails; a single temporary failure never deletes an employer.
+The utility extracts identifiers only from recognized public hosted URLs, validates the corresponding public provider endpoint, applies employer-relevance rules separately from Job Scout's role filtering, deduplicates by platform/identifier/name, and writes detailed diagnostics to the ignored generated file `data/ats-employer-discovery.json`. A completed dry-run is carried into a later apply and every board is revalidated. Search errors, malformed responses, redirects, duplicate candidates, open/relevant/U.S./remote job counts, examples, and repeated failure counts remain in the diagnostic output. Existing manually configured entries are preserved even when validation fails; a single temporary failure never deletes an employer.
 
 Curated URLs in `preferences/ats-employer-seeds.json` supplement public search when an index or API quota is incomplete. They are not trusted blindly: the identifier is extracted from the stored hosted URL and the board must pass the same live endpoint validation before selection.
 
@@ -198,16 +198,15 @@ python job-scout/gmail_response_tracker.py check
 
 ## Resume handoff
 
-Gecko evaluates the job description directly against the current master archive (`input/master-resume/Dave-Call-Resume.txt`) while building the tailoring plan. It produces:
+Gecko evaluates the job description directly against the required master archive (`input/master-resume/Dave-Call-Resume.txt`) while building the tailoring plan. Resume generation uses `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as the required visual formatting/layout model. The V2 pipeline stops without fallback if either file is missing. It produces:
 
-- an exactly two-page DOCX after native Microsoft Word validation;
-- a qualitative Match Analysis report with strengths, gaps, ATS terms, resume emphasis, and interview considerations.
+- an exactly two-page DOCX after native Microsoft Word validation.
 
-No numerical compatibility value is required before generation. The completed resume is recorded only after both files exist and native QA passes.
+The completed resume is recorded only after the DOCX exists and native QA passes.
 
 ## Data preservation
 
-SQLite stores discovery evidence, source links, lifecycle state, enrichment text, and URL-resolution metadata. Schema migration removes obsolete evaluation columns from existing databases while preserving job records and relationships.
+SQLite stores discovery evidence, source links, lifecycle state, enrichment text, and URL-resolution metadata. Schema migration keeps canonical columns while preserving job records and relationships.
 
 Google Sheet operations update only managed cells by header name. Existing `Apply?`, `Applied`, `Contacted`, formatting, formulas, filters, conditional formatting, colors, hyperlinks, widths, frozen panes, and manual fields remain user-owned. Gmail tracking updates only `Response`, refuses ambiguous matches, and preserves a useful existing response unless a newer message is at the same or a later hiring stage.
 
@@ -218,4 +217,4 @@ python -m unittest discover -s job-scout/tests -p "test_*.py" -v
 python -m unittest discover -s scripts -p "test_*.py" -v
 ```
 
-The regression suite covers schema migration idempotence, header-based writes, discovery without evaluation fields, daily orchestration, and resume creation without rating data.
+The regression suite covers schema migration idempotence, header-based writes, discovery, daily orchestration, and resume creation.

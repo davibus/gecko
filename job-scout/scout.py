@@ -521,11 +521,6 @@ def diagnose_remotive_feeds(args, _store, preferences):
     return 0 if summary.unique_available else 1
 
 
-def diagnose_remotive_rss(args, store, preferences):
-    """Backward-compatible alias for the category-feed diagnostic."""
-    return diagnose_remotive_feeds(args, store, preferences)
-
-
 def list_jobs(args, store, preferences):
     jobs = [job for job in store.all() if not args.status or job.status == args.status]
     jobs.sort(key=lambda job: (job.date_posted or "", job.company.lower()), reverse=True)
@@ -575,7 +570,7 @@ def review_jobs(args, store, _preferences):
 
 
 def enrich_jobs(args, store, preferences):
-    """Enrich one job or every Adzuna job without evaluating compatibility."""
+    """Enrich one job or every Adzuna job."""
     if bool(args.job_id) == bool(args.all):
         raise ValueError("Specify either a job ID or --all")
     targets = ([job for job in store.all() if job.source.lower() == "adzuna"]
@@ -818,7 +813,7 @@ def build_parser():
     sub = parser.add_subparsers(dest="command", required=True)
     find = sub.add_parser("search", help="Search configured providers and save role-relevant results")
     find.add_argument(
-        "--source", "--provider",
+        "--source",
         choices=["all", "core", *CORE_PROVIDERS],
         default=DEFAULT_SOURCE,
         help=(f"Provider to query (default: {DEFAULT_SOURCE}); core is every enabled "
@@ -850,12 +845,6 @@ def build_parser():
     )
     diagnostic.add_argument("--examples", type=int, default=5)
     diagnostic.set_defaults(function=diagnose_remotive)
-    rss_diagnostic = sub.add_parser(
-        "diagnose-remotive-rss",
-        help="Backward-compatible alias for the Remotive category-feed diagnostic",
-    )
-    rss_diagnostic.add_argument("--limit", type=int, default=100)
-    rss_diagnostic.set_defaults(function=diagnose_remotive_rss)
     feeds_diagnostic = sub.add_parser(
         "diagnose-remotive-feeds",
         help="Dry-run Remotive RSS acquisition and deduplication",

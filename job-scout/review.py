@@ -1,4 +1,4 @@
-"""Read-only Job Scout review queue without compatibility scoring."""
+"""Read-only Job Scout review queue."""
 
 from __future__ import annotations
 
@@ -28,7 +28,7 @@ def _sort_key(job: JobListing):
 def build_review_queue(
     jobs: list[JobListing], *, limit: int = 20, include_closed: bool = False,
 ) -> dict[str, list[JobListing]]:
-    """Return active discoveries newest first, without evaluating candidate compatibility."""
+    """Return active discoveries newest first."""
     if limit < 1:
         raise ValueError("limit must be at least 1")
     eligible = [job for job in jobs if include_closed or job.status not in CLOSED_STATUSES]

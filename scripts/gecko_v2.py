@@ -22,8 +22,15 @@ from docx.shared import Inches, Pt, RGBColor
 from silent_subprocess import windows_creationflags
 
 ROOT = Path(__file__).resolve().parents[1]
-MASTER = ROOT / "input/master-resume/Dave-Call-Resume.txt"
-SECTIONS = ("Professional Summary", "Core Competencies & Technical Skills", "Professional Experience", "Education & Certifications")
+MASTER = ROOT / "input" / "master-resume" / "Dave-Call-Resume.txt"
+FORMAT_MODEL = ROOT / "input" / "master-resume" / "MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf"
+SECTIONS = (
+    "Professional Summary", "Core Strengths", "Selected Results",
+    "Professional Experience", "Tools & Platforms", "Education & Certifications",
+)
+MODEL_FONT = "EB Garamond"
+MODEL_BODY_SIZE = 10.5
+MODEL_OLIVE = (85, 107, 47)
 TERMS = (
     "SEO", "technical SEO", "paid search", "Google Ads", "Bing Ads", "Microsoft Ads", "Meta Ads", "Google Analytics",
     "GA4", "Google Tag Manager", "GTM", "Looker Studio", "Tableau", "SQL", "Python", "JavaScript",
@@ -39,6 +46,19 @@ TERMS = (
 )
 TOOLS = set("Google Ads|Bing Ads|Microsoft Ads|Meta Ads|Google Analytics|GA4|Google Tag Manager|GTM|Looker Studio|Tableau|SQL|Python|JavaScript|HTML5|CSS3|Magento|Shopify|WordPress|Amazon|HubSpot|Semrush|Search Console|Adobe Analytics|Excel|Power BI|Salesforce|Marketo|Klaviyo|Mailchimp|Snowflake|Codex|ChatGPT|Claude|Perplexity|Cursor|AntiGravity".split("|"))
 STOP = set("the and for with from into your their our you will are this that have has must should ability using use work role team experience years strong plus including across based more about through".split())
+
+
+def validate_required_sources() -> None:
+    """Fail closed when either permanent Gecko authority is unavailable."""
+    if not MASTER.is_file():
+        raise FileNotFoundError(f"Required Gecko master resume could not be found: {MASTER}")
+    if not FORMAT_MODEL.is_file():
+        raise FileNotFoundError(f"Required Gecko formatting model could not be found: {FORMAT_MODEL}")
+
+
+def formatting_model_hash() -> str:
+    validate_required_sources()
+    return hashlib.sha256(FORMAT_MODEL.read_bytes()).hexdigest()
 
 
 def normalized(text: str) -> str:
@@ -329,6 +349,7 @@ def master_jobs() -> list[dict[str, str]]:
 
 
 def create_plan(listing_path: Path) -> dict:
+    validate_required_sources()
     listing = listing_path.read_text(encoding="utf-8-sig")
     source = source_text()
     evidence = extract_evidence(source)
@@ -338,10 +359,10 @@ def create_plan(listing_path: Path) -> dict:
     mandatory_metrics = relevant_metric_ids(listing, evidence)
     selected = []
     jobs = master_jobs()
-    # Four bullets per role fit the original five-role archive. The current
-    # seven-role archive needs a tighter three-bullet budget to preserve the
-    # required 11 pt type and two-page Word layout.
-    bullets_per_job = 4 if len(jobs) <= 5 else 3
+    # The required model devotes separate space to selected results and tools.
+    # Keep the longer archive conservative so Word-native pagination stays at
+    # two pages without shrinking the model typography.
+    bullets_per_job = 3 if len(jobs) <= 5 else 2
     for index in range(len(jobs)):
         pool = [item for item in evidence if item["job"] == index]
         concise = [item for item in pool if len(item["quote"].split()) <= 55]
@@ -369,19 +390,38 @@ def create_plan(listing_path: Path) -> dict:
         chosen = [item["id"] for item in chosen_items]
         selected.extend(chosen)
     skill_terms = [term for term in TERMS if contains_term(listing, term) and contains_term(source, term)]
+    metric_pool = [item for item in evidence if re.search(r"\$[\d,]+|\b\d+(?:\.\d+)?[%+]", item["quote"])]
+    ranked_metrics = sorted(metric_pool, key=lambda item: (
+        item["id"] in mandatory_metrics,
+        len(words(item["quote"]) & target),
+    ), reverse=True)
+    selected_results = []
+    for item in ranked_metrics:
+        if item["id"] not in selected_results:
+            selected_results.append(item["id"])
+        if len(selected_results) == 4:
+            break
     return {"version": 2, "job": meta, "listing": str(listing_path.resolve()),
             "listing_sha256": hashlib.sha256(listing_path.read_bytes()).hexdigest(),
-            "source_sha256": source_hashes(), "requirements": reqs, "evidence": evidence,
+            "source_sha256": source_hashes(), "format_model_sha256": formatting_model_hash(),
+            "format_model": FORMAT_MODEL.relative_to(ROOT).as_posix(),
+            "requirements": reqs, "evidence": evidence,
             "resume": {**master_identity(), "jobs": jobs,
                        "skills": skill_terms[:24], "selected_evidence_ids": selected,
+                       "selected_results_ids": selected_results,
                        "relevant_metric_ids": mandatory_metrics},
             "review_notes": ["Review requirement classifications and evidence links before generation.",
-                             "All factual content comes from the current master archive; other resumes are format references only."]}
+                             "All factual content comes from the required master TXT.",
+                             "Visual formatting is governed by the required model PDF; no fallback resume or template is allowed."]}
 
 
 def verify_plan(plan: dict) -> None:
+    validate_required_sources()
     if plan.get("version") != 2 or plan.get("source_sha256") != source_hashes():
         raise ValueError("Plan source has changed; rebuild the tailoring plan.")
+    if (plan.get("format_model") != FORMAT_MODEL.relative_to(ROOT).as_posix()
+            or plan.get("format_model_sha256") != formatting_model_hash()):
+        raise ValueError("Required Gecko formatting model has changed; rebuild the tailoring plan.")
     listing_path = Path(plan["listing"])
     if hashlib.sha256(listing_path.read_bytes()).hexdigest() != plan["listing_sha256"]:
         raise ValueError("Listing has changed; rebuild the tailoring plan.")
@@ -395,6 +435,9 @@ def verify_plan(plan: dict) -> None:
     for eid in plan["resume"]["selected_evidence_ids"]:
         if eid not in actual:
             raise ValueError(f"Unknown evidence ID: {eid}")
+    for eid in plan["resume"].get("selected_results_ids", []):
+        if eid not in actual:
+            raise ValueError(f"Unknown selected-result evidence ID: {eid}")
     if plan["resume"]["relevant_metric_ids"] != relevant_metric_ids(listing_path.read_text(encoding="utf-8-sig"), list(actual.values())):
         raise ValueError("Relevant accomplishment anchors differ from the source and listing.")
     source = source_text()
@@ -415,7 +458,7 @@ def make_resume(plan: dict, path: Path) -> None:
         section.left_margin = section.right_margin = Inches(.5)
         section.page_width, section.page_height = Inches(8.5), Inches(11)
     normal = doc.styles["Normal"]
-    normal.font.name, normal.font.size = "Calibri", Pt(11)
+    normal.font.name, normal.font.size = MODEL_FONT, Pt(MODEL_BODY_SIZE)
     normal.paragraph_format.line_spacing = 1.15
     normal.paragraph_format.space_after = Pt(0)
 
@@ -426,30 +469,55 @@ def make_resume(plan: dict, path: Path) -> None:
         p.paragraph_format.line_spacing = 1.15
         r = p.add_run(text)
         r.bold = bold
-        r.font.name, r.font.size = "Calibri", Pt(11)
+        r.font.name, r.font.size = MODEL_FONT, Pt(MODEL_BODY_SIZE)
         if color:
             r.font.color.rgb = RGBColor(*color)
         return p
 
     def section(title):
-        p = para(title.upper(), bold=True, before=5, after=2, color=(16, 44, 87))
+        p = para(title.upper(), before=5, after=2, color=MODEL_OLIVE)
         p.paragraph_format.keep_with_next = True
         border = OxmlElement("w:pBdr")
         bottom = OxmlElement("w:bottom")
-        for attr, value in (("val", "single"), ("sz", "6"), ("color", "102C57")):
+        for attr, value in (("val", "single"), ("sz", "6"), ("color", "556B2F")):
             bottom.set(qn("w:" + attr), value)
         border.append(bottom)
         p._p.get_or_add_pPr().append(border)
 
-    para(plan["resume"]["name"], bold=True, center=True, after=1, color=(16, 44, 87)).runs[0].font.size = Pt(19)
-    para(plan["resume"]["headline"].upper(), bold=True, center=True, after=2, color=(40, 70, 110))
+    para(plan["resume"]["name"], center=True, after=1).runs[0].font.size = Pt(22)
+    para(plan["resume"]["headline"], center=True, after=2)
     para(plan["resume"]["contact"], center=True, after=3).runs[0].font.size = Pt(9.5)
     section(SECTIONS[0])
     para(plan["resume"]["summary"], after=2)
     section(SECTIONS[1])
-    para(" • ".join(plan["resume"]["skills"]), after=2)
-    section(SECTIONS[2])
+    strengths = plan["resume"]["skills"][:8]
+    if strengths:
+        table = doc.add_table(rows=(len(strengths) + 1) // 2, cols=2)
+        table.autofit = False
+        table.columns[0].width = table.columns[1].width = Inches(3.75)
+        for index, strength in enumerate(strengths):
+            cell = table.cell(index // 2, index % 2)
+            cell.text = ""
+            p = cell.paragraphs[0]
+            p.style = doc.styles["List Bullet"]
+            p.paragraph_format.space_after = Pt(0)
+            p.paragraph_format.line_spacing = 1.15
+            run = p.add_run(strength)
+            run.font.name, run.font.size = MODEL_FONT, Pt(MODEL_BODY_SIZE)
+        borders = OxmlElement("w:tblBorders")
+        for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
+            node = OxmlElement("w:" + edge)
+            node.set(qn("w:val"), "none")
+            borders.append(node)
+        table._tbl.tblPr.append(borders)
     evidence = {item["id"]: item for item in plan["evidence"]}
+    results = [evidence[eid] for eid in plan["resume"].get("selected_results_ids", [])]
+    if results:
+        section(SECTIONS[2])
+        for item in results:
+            p = para(polish_quote(item["quote"]), style="List Bullet", after=1)
+            p.paragraph_format.left_indent = Inches(.18)
+    section(SECTIONS[3])
     for index, job in enumerate(plan["resume"]["jobs"]):
         title, company, location = job["title"], job["company"], job["location"]
         selected = [evidence[eid] for eid in plan["resume"]["selected_evidence_ids"] if evidence[eid]["job"] == index]
@@ -481,7 +549,9 @@ def make_resume(plan: dict, path: Path) -> None:
             # continuation bullet at the top of the following page.
             if item_index < len(selected) - 1:
                 p.paragraph_format.keep_with_next = True
-    section(SECTIONS[3])
+    section(SECTIONS[4])
+    para(" • ".join(plan["resume"]["skills"]), after=2)
+    section(SECTIONS[5])
     para(plan["resume"]["education"], after=1)
     para(plan["resume"]["certifications"])
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -490,50 +560,65 @@ def make_resume(plan: dict, path: Path) -> None:
 
 def inspect_docx(plan: dict, docx_path: Path) -> list[str]:
     issues = []
+    try:
+        validate_required_sources()
+    except FileNotFoundError as exc:
+        issues.append(str(exc))
     if plan.get("source_sha256") != source_hashes():
         issues.append("Master archive changed after planning; rebuild the plan and resume.")
+    if plan.get("format_model_sha256") != formatting_model_hash():
+        issues.append("Formatting model changed after planning; rebuild the plan and resume.")
     doc = Document(docx_path)
     paragraphs = [p.text.strip() for p in doc.paragraphs if p.text.strip()]
     evidence = {item["id"]: item for item in plan["evidence"]}
-    allowed = {polish_quote(evidence[eid]["quote"]) for eid in plan["resume"]["selected_evidence_ids"]}
+    allowed_ids = set(plan["resume"]["selected_evidence_ids"]) | set(plan["resume"].get("selected_results_ids", []))
+    allowed = {polish_quote(evidence[eid]["quote"]) for eid in allowed_ids}
     actual_bullets = [p.text.strip() for p in doc.paragraphs if p.style.name == "List Bullet"]
-    if set(actual_bullets) != allowed or len(actual_bullets) != len(allowed):
+    expected_experience = [polish_quote(evidence[eid]["quote"]) for eid in plan["resume"]["selected_evidence_ids"]]
+    expected_results = [polish_quote(evidence[eid]["quote"]) for eid in plan["resume"].get("selected_results_ids", [])]
+    if sorted(actual_bullets) != sorted(expected_experience + expected_results):
         issues.append("Resume bullets differ from the source-backed tailoring plan.")
     for eid in plan["resume"]["relevant_metric_ids"]:
         if polish_quote(evidence[eid]["quote"]) not in actual_bullets:
             issues.append(f"Relevant quantified accomplishment omitted: {eid}")
-    fixed = {plan["resume"]["name"], plan["resume"]["headline"].upper(), plan["resume"]["summary"],
+    fixed = {plan["resume"]["name"], plan["resume"]["headline"], plan["resume"]["summary"],
              plan["resume"]["contact"], " • ".join(plan["resume"]["skills"]),
              plan["resume"]["education"], plan["resume"]["certifications"]}
     fixed.update(s.upper() for s in SECTIONS)
     if any(p not in fixed and p not in allowed for p in paragraphs):
         issues.append("DOCX contains text outside the approved source-backed plan.")
-    if len(doc.tables) != sum(any(evidence[eid]["job"] == i for eid in plan["resume"]["selected_evidence_ids"]) for i in range(len(plan["resume"]["jobs"]))):
+    expected_job_tables = sum(any(evidence[eid]["job"] == i for eid in plan["resume"]["selected_evidence_ids"]) for i in range(len(plan["resume"]["jobs"])))
+    if len(doc.tables) != expected_job_tables + (1 if plan["resume"]["skills"][:8] else 0):
         issues.append("Job header/date-cell count differs from the plan.")
     expected_headers = [
         f"{job['title']} | {job['company']} — {job['location']}" if job["location"] else f"{job['title']} | {job['company']}"
         for i, job in enumerate(plan["resume"]["jobs"])
         if any(evidence[eid]["job"] == i for eid in plan["resume"]["selected_evidence_ids"])]
-    if [table.cell(0, 0).text.strip() for table in doc.tables] != expected_headers:
+    job_tables = doc.tables[1:] if plan["resume"]["skills"][:8] else doc.tables
+    if [table.cell(0, 0).text.strip() for table in job_tables] != expected_headers:
         issues.append("Job headers differ from the current master-backed plan.")
-    if any(cell.text.strip() for table in doc.tables for cell in [table.cell(0, 1)]):
+    if any(table.cell(0, 1).text.strip() for table in job_tables):
         issues.append("A date cell contains visible text.")
     if any(node.get(qn("w:val")) != "none" for table in doc.tables for node in table._tbl.tblPr.xpath(".//w:tblBorders/*")):
         issues.append("A job table has visible borders.")
-    if [p for p in paragraphs if p in [s.upper() for s in SECTIONS]] != [s.upper() for s in SECTIONS]:
+    expected_sections = [s.upper() for s in SECTIONS if s != "Selected Results" or plan["resume"].get("selected_results_ids")]
+    if [p for p in paragraphs if p in [s.upper() for s in SECTIONS]] != expected_sections:
         issues.append("Required section order is missing or changed.")
     if not paragraphs[2].endswith("linkedin.com/in/mdavidcall") or "Spanish" in paragraphs[2]:
         issues.append("Header contact format is incorrect.")
-    normal_size = doc.styles["Normal"].font.size
-    normal_spacing = doc.styles["Normal"].paragraph_format.line_spacing
-    if (normal_size is None or abs(normal_size.pt - 11) > .01
+    normal = doc.styles["Normal"]
+    normal_size = normal.font.size
+    normal_spacing = normal.paragraph_format.line_spacing
+    if (normal.font.name != MODEL_FONT
+            or normal_size is None or abs(normal_size.pt - MODEL_BODY_SIZE) > .01
             or normal_spacing is None or abs(normal_spacing - 1.15) > .01):
-        issues.append("Body font or line spacing differs from Gecko rules.")
+        issues.append("Body typography or line spacing differs from the required formatting model.")
     for p in doc.paragraphs[3:]:
         if p.paragraph_format.line_spacing not in (None, 1.15):
             issues.append("A body paragraph has incorrect line spacing.")
             break
-        if any(run.font.size is not None and abs(run.font.size.pt - 11) > .01 for run in p.runs):
+        if any(run.font.size is not None and abs(run.font.size.pt - MODEL_BODY_SIZE) > .01
+               and p.text not in {plan["resume"]["name"], plan["resume"]["contact"]} for run in p.runs):
             issues.append("A body paragraph has incorrect font size.")
             break
     if len(doc.sections) != 1 or doc.sections[0].page_width != Inches(8.5) or doc.sections[0].page_height != Inches(11):
@@ -583,33 +668,6 @@ def native_qa(plan: dict, docx_path: Path, scratch: Path) -> dict:
     return report
 
 
-def write_match_report(plan: dict, qa: dict) -> Path:
-    if qa["status"] != "pass":
-        raise ValueError("A match report is final only after V2 QA passes.")
-    reqs = plan["requirements"]
-    core = reqs["required_skills"] + reqs["responsibilities"]
-    supported = [r["text"] for r in core if r["status"] == "supported"]
-    gaps = qa["remaining_weaknesses"]
-    keywords = [r["text"] for r in reqs["ats_keywords"] if r["status"] == "supported"]
-    job = plan["job"]
-    def bullets(items: list[str], limit=8) -> str:
-        return "\n".join(f"- {item}" for item in items[:limit]) or "- None confirmed from the approved sources."
-    body = (f"# {job['title']} — {job['company']}\n\n"
-            "Review the evidence links and gaps in the tailoring plan before application.\n\n"
-            f"## Strongest alignment areas\n\n{bullets(supported)}\n\n"
-            f"## Weaknesses or missing requirements\n\n{bullets(gaps, 15)}\n\n"
-            f"## ATS keyword alignment\n\n{bullets(keywords)}\n\n"
-            "## Recommended resume emphasis\n\n"
-            "Emphasize the source-backed bullets selected in the tailoring plan; keep uncertain requirements as gaps.\n\n"
-            "## Interview/application considerations\n\n"
-            "Prepare concrete examples for supported requirements and address the listed gaps honestly.\n\n"
-            f"QA: Word {qa['word_pages']} pages; exported PDF {qa['pdf_pages']} pages; no automated QA issues.\n")
-    path = ROOT / "output/match-reports" / f"Dave-Call+{job['safe_company']}+{job['job_number']}.md"
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(body, encoding="utf-8")
-    return path
-
-
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -638,8 +696,7 @@ def main() -> int:
     if args.command == "generate":
         make_resume(plan, output)
         report = native_qa(plan, output, scratch)
-        match = str(write_match_report(plan, report)) if report["status"] == "pass" else None
-        print(json.dumps({"docx": str(output), "match_report": match, **report}, indent=2))
+        print(json.dumps({"docx": str(output), **report}, indent=2))
         return 0 if report["status"] == "pass" else 1
     if not output.exists():
         old_output = ROOT / "output/resumes" / f"Dave-Call+{name}.docx"
@@ -648,8 +705,7 @@ def main() -> int:
     if not output.exists():
         raise FileNotFoundError(output)
     report = native_qa(plan, output, scratch)
-    match = str(write_match_report(plan, report)) if report["status"] == "pass" else None
-    print(json.dumps({"match_report": match, **report}, indent=2))
+    print(json.dumps(report, indent=2))
     return 0 if report["status"] == "pass" else 1
 
 

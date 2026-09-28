@@ -203,8 +203,8 @@ class GoogleTrackerTests(unittest.TestCase):
     def test_schema_migration_deletes_retired_columns_and_second_run_is_noop(self):
         legacy = [
             "Scout ID", "Source", "Company", "Job Title", "Gecko Status", "Apply?",
-            "Resume Created", "Applied", "Notes", "Response", "Website", "Match Score",
-            "Evidence Confidence", "Match Status", "Location", "Work Arrangement",
+            "Resume Created", "Applied", "Notes", "Response", "Website",
+            "Location", "Work Arrangement",
             "Employment Type", "Salary", "Date Posted", "Date Found", "Last Seen",
             "Job URL", "Enrichment URL", "Resume Link", "URL Status", "Authoritative URL",
         ]

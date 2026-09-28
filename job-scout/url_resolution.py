@@ -275,7 +275,7 @@ def resolve_authoritative_url(
     config: ResolutionConfig | None = None,
     include_discovery: bool = True,
 ) -> URLResolutionResult:
-    """Resolve one job without changing fit scoring or persisted job fields."""
+    """Resolve one job without changing its persisted discovery fields."""
     config = config or load_resolution_config()
     discovery_url = _discovery_url(job)
     redirect_url = ""
