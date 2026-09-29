@@ -1,20 +1,14 @@
 from __future__ import annotations
 
-import copy
 import sys
-import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from openpyxl import Workbook, load_workbook
-from openpyxl.formatting.rule import FormulaRule
-from openpyxl.styles import Font, PatternFill
-from openpyxl.worksheet.table import Table, TableStyleInfo
-
-
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "job-scout"))
+sys.path.insert(0, str(ROOT / "job-scout/tests"))
 
 from check_job_links import (  # noqa: E402
     CheckResult,
@@ -23,89 +17,10 @@ from check_job_links import (  # noqa: E402
     _generic_removed_redirect,
     check_company_website,
     check_job_url,
-    process_workbook,
-    safe_save,
+    process_google_tracker,
 )
-
-
-HEADERS = [
-    "Scout ID", "Source", "Company", "Job Title", "Gecko Status", "Apply?",
-    "Resume Created", "Applied", "Notes", "Location", "Work Arrangement",
-    "Employment Type", "Salary", "Date Posted", "Date Found", "Last Seen",
-    "Job URL", "Resume Link",
-]
-
-
-def workbook_fixture() -> Workbook:
-    workbook = Workbook()
-    worksheet = workbook.active
-    worksheet.title = "Job Scout"
-    worksheet.append(HEADERS)
-    worksheet.append([
-        1, "test", "Acme", "Paid Search Manager", "New", "yes", "", "",
-        "Recruiter contacted", "Remote", "remote", "full-time", "", "", "", "",
-        "https://jobs.test/removed", "file:///resume-one.docx",
-    ])
-    worksheet.append([
-        2, "test", "Example", "Growth Manager", "New", "yes", "", "",
-        "", "Utah", "hybrid", "full-time", "", "", "", "",
-        "https://jobs.test/exists", "file:///resume-two.docx",
-    ])
-    worksheet.append([
-        3, "test", "Blocked", "SEO Manager", "New", "yes", "", "",
-        "Keep this", "Utah", "remote", "full-time", "", "", "", "",
-        "https://jobs.test/unknown", "",
-    ])
-    worksheet.freeze_panes = "J2"
-    worksheet.auto_filter.ref = "A1:R4"
-    worksheet.row_dimensions[2].height = 31
-    worksheet.column_dimensions["I"].width = 30
-    worksheet.column_dimensions["H"].hidden = True
-    worksheet.row_dimensions[4].hidden = True
-    worksheet["A1"].fill = PatternFill("solid", fgColor="1F4E78")
-    worksheet["A1"].font = Font(color="FFFFFF", bold=True)
-    worksheet["R2"].hyperlink = "file:///resume-one.docx"
-    worksheet.conditional_formatting.add(
-        "A2:R4",
-        FormulaRule(formula=['$E2="New"'], fill=PatternFill("solid", fgColor="FFF2CC")),
-    )
-    table = Table(displayName="JobScoutTable", ref="A1:R4")
-    table.tableStyleInfo = TableStyleInfo(
-        name="TableStyleMedium2", showFirstColumn=False, showLastColumn=False,
-        showRowStripes=True, showColumnStripes=False,
-    )
-    worksheet.add_table(table)
-    return workbook
-
-
-def structure_snapshot(workbook: Workbook) -> dict:
-    result = {"sheetnames": workbook.sheetnames, "sheets": []}
-    for worksheet in workbook.worksheets:
-        cells = {}
-        for row in worksheet.iter_rows():
-            for cell in row:
-                if cell.value is None and not cell.has_style and not cell.hyperlink:
-                    continue
-                cells[cell.coordinate] = {
-                    "value": cell.value,
-                    "style": copy.copy(cell._style) if cell.has_style else None,
-                    "number_format": cell.number_format,
-                    "hyperlink": cell.hyperlink.target if cell.hyperlink else None,
-                }
-        result["sheets"].append({
-            "title": worksheet.title,
-            "freeze": str(worksheet.freeze_panes),
-            "filter": worksheet.auto_filter.ref,
-            "dimensions": worksheet.calculate_dimension(),
-            "row_heights": {key: value.height for key, value in worksheet.row_dimensions.items()},
-            "row_hidden": {key: value.hidden for key, value in worksheet.row_dimensions.items()},
-            "column_widths": {key: value.width for key, value in worksheet.column_dimensions.items()},
-            "column_hidden": {key: value.hidden for key, value in worksheet.column_dimensions.items()},
-            "tables": [(table.name, table.ref, table.tableStyleInfo.name) for table in worksheet.tables.values()],
-            "conditional_formats": [str(item) for item in worksheet.conditional_formatting],
-            "cells": cells,
-        })
-    return result
+from google_tracker import Config, GoogleTracker  # noqa: E402
+from test_google_tracker import FakeSheets, SCOUT  # noqa: E402
 
 
 class ClassificationTests(unittest.TestCase):
@@ -179,70 +94,42 @@ class ClassificationTests(unittest.TestCase):
         self.assertEqual(fetcher.results, [])
 
 
-class WorkbookPreservationTests(unittest.TestCase):
+class GoogleSheetPreservationTests(unittest.TestCase):
     def test_only_notes_change(self):
-        workbook = workbook_fixture()
-        before = structure_snapshot(workbook)
+        fake = FakeSheets()
+        fake.data["Job Scout"] = [SCOUT]
+        for scout_id, company, url, notes in (
+            (1, "Acme", "https://jobs.test/removed", "Recruiter contacted"),
+            (2, "Example", "https://jobs.test/exists", ""),
+            (3, "Blocked", "https://jobs.test/unknown", "Keep this"),
+        ):
+            row = [""] * len(SCOUT)
+            for field, value in {"Scout ID": scout_id, "Company": company,
+                                 "Job URL": url, "Notes": notes}.items():
+                row[SCOUT.index(field)] = value
+            fake.data["Job Scout"].append(row)
+        tracker = GoogleTracker(Config("test", Path("unused.json"), "Job Tracker", "Job Scout"), fake)
 
         job_results = {
             "https://jobs.test/removed": CheckResult("removed", "", reason="HTTP 404"),
             "https://jobs.test/exists": CheckResult("exists", ""),
             "https://jobs.test/unknown": CheckResult("unknown", "", reason="HTTP 403"),
         }
-        website_results = {
-            "https://acme.test": CheckResult("exists", ""),
-            "https://missing.test": CheckResult("removed", ""),
-            "https://jobs.test": CheckResult("unknown", "", reason="No confirmed company site"),
-        }
-        summary = process_workbook(
-            workbook,
+        summary = process_google_tracker(
+            tracker,
             job_checker=lambda url: job_results[url],
-            website_checker=lambda url: website_results[url.rstrip("/")],
+            website_checker=lambda url: CheckResult("unknown", url),
             project_lookup=None,
             progress=lambda _message: None,
         )
 
-        self.assertEqual(workbook["Job Scout"]["I2"].value, "Recruiter contacted\nDoesn't exist")
-        self.assertEqual(workbook["Job Scout"]["I3"].value, "")
-        self.assertEqual(workbook["Job Scout"]["I4"].value, "Keep this")
+        rows = {int(data[0]): dict(zip(SCOUT, data)) for data in fake.data["Job Scout"][1:]}
+        self.assertEqual(rows[1]["Notes"], "Recruiter contacted\nDoesn't exist")
+        self.assertEqual(rows[2]["Notes"], "")
+        self.assertEqual(rows[3]["Notes"], "Keep this")
         self.assertEqual((summary.jobs_removed, summary.jobs_existing, summary.job_status_unknown), (1, 1, 1))
-
-        after = structure_snapshot(workbook)
-        allowed = {"I2"}
-        before_cells = before["sheets"][0].pop("cells")
-        after_cells = after["sheets"][0].pop("cells")
-        self.assertEqual(before, after)
-        for coordinate in set(before_cells) | set(after_cells):
-            left = before_cells.get(coordinate)
-            right = after_cells.get(coordinate)
-            if coordinate in allowed:
-                left = {**left, "value": right["value"]}
-            self.assertEqual(left, right, coordinate)
-
-    def test_round_trip_preserves_structure(self):
-        with tempfile.TemporaryDirectory() as directory:
-            source = Path(directory) / "source.xlsx"
-            output = Path(directory) / "output.xlsx"
-            workbook_fixture().save(source)
-            workbook = load_workbook(source, keep_links=True)
-            before = structure_snapshot(workbook)
-            process_workbook(
-                workbook,
-                job_checker=lambda url: CheckResult("exists", url),
-                website_checker=lambda url: CheckResult("exists", url),
-                project_lookup=None,
-                progress=lambda _message: None,
-            )
-            safe_save(workbook, output)
-            reopened = load_workbook(output, keep_links=True)
-            after = structure_snapshot(reopened)
-
-            before_cells = before["sheets"][0].pop("cells")
-            after_cells = after["sheets"][0].pop("cells")
-            self.assertEqual(before, after)
-            for coordinate, left in before_cells.items():
-                right = after_cells[coordinate]
-                self.assertEqual(left, right, coordinate)
+        self.assertEqual([(tab, row, col) for tab, row, col in fake.writes],
+                         [("Job Scout", 2, "I")])
 
 
 if __name__ == "__main__":

@@ -646,7 +646,7 @@ def resolve_urls(args, store, _preferences):
 
 
 def _daily_resume_runner(new_job_ids, store, *, dry_run=False):
-    """Run the canonical Gecko queue for only IDs discovered in this daily run."""
+    """Run the canonical Gecko queue for every currently approved, incomplete row."""
     new_job_ids = tuple(new_job_ids)
     scripts = PROJECT_ROOT / "scripts"
     if str(scripts) not in sys.path:
@@ -658,7 +658,7 @@ def _daily_resume_runner(new_job_ids, store, *, dry_run=False):
     )
     result = generate_apply_queue.run_queue(
         GoogleTracker(), store.path.resolve(), dry_run=dry_run,
-        eligible_scout_ids=set(new_job_ids), print_summary=False,
+        print_summary=False,
         logger=generate_apply_queue._append_run_log,
     )
     generate_apply_queue._append_run_log(f"DAILY RESUME END exit_code={result.exit_code}")

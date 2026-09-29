@@ -2,23 +2,23 @@
 
 ## Automated Daily Job Scout
 
-Each morning, run `python job-scout/scout.py daily`. This is the single discovery-to-resume entry point. It validates active links, concurrently searches bounded source batches, rejects Jooble candidates, applies deterministic hard filters, deduplicates before AI, reuses description-hash evaluation cache entries, and optionally runs compact-profile triage followed by full scoring only for possible/strong jobs. It appends only new records to `Job Scout` and invokes the canonical Gecko V2 queue only for AI-approved new jobs whose live user-owned `Apply?` value is `Yes` and whose `Resume Created` cell is blank. When AI models are unconfigured, the prior manual-only queue behavior remains active.
+Each morning, run `python job-scout/scout.py daily`. This is the single discovery-to-resume entry point. It validates active links, concurrently searches bounded source batches, rejects Jooble candidates during discovery, applies deterministic hard filters, deduplicates before AI, reuses description-hash evaluation cache entries, and optionally runs compact-profile triage followed by full scoring only for possible/strong jobs. It appends only new records to `Job Scout`, then invokes the canonical Gecko V2 queue for every populated live row whose user-owned `Apply?` value normalizes to `Yes` and whose `Resume Created` value does not normalize to `X`. When AI models are unconfigured, the prior manual-only queue behavior remains active.
 
-The queue retrieves a complete description, archives it with the existing company/job-number convention, creates the evidence-backed tailoring plan, generates the two-page DOCX, runs Word-native QA, and records the validated result through `manage_job_tracker.py`. After the resume queue, the daily command checks Gmail through read-only OAuth for substantive responses to applied jobs and updates only the matching `Response` cells. A job or Gmail failure is logged and reported without stopping later stages. Confirmed-dead unprotected jobs may be cleared; selected/application history and manual `Applied` / `Contacted` fields are preserved.
+The queue attempts to retrieve the fullest available description, but imposes no minimum description length. It can tailor from reliable Sheet fields and stored snippets when a full posting is unavailable. It archives the available context with the existing company/job-number convention, creates the evidence-backed tailoring plan, generates the two-page DOCX, runs Word-native QA, and records the validated result through `manage_job_tracker.py`. Success writes `X` to Column G and clears only an earlier Gecko `Resume not created:` message from Column I. A genuine failure leaves G unchanged, writes its specific retryable reason to I, and does not stop later jobs. After the resume queue, the daily command checks Gmail through read-only OAuth for substantive responses to applied jobs and updates only the matching `Response` cells. Confirmed-dead unprotected jobs may be cleared; selected/application history and manual `Applied` / `Contacted` fields are preserved.
 
-Use `python job-scout/scout.py daily --dry-run` for discovery against a temporary database copy with no tracker, archive, resume, or Gmail access. The standalone `python scripts/generate_apply_queue.py` remains the explicit retry command for older approved rows that previously failed; the daily command never sweeps old jobs merely because their resume marker is blank.
+Use `python job-scout/scout.py daily --dry-run` for discovery against a temporary database copy with no tracker, archive, resume, or Gmail access. The standalone `python scripts/generate_apply_queue.py` runs the same complete live queue and is the explicit retry command for approved rows that previously failed.
 
 Gmail setup and authorization are documented in `README.md`. Live runs report emails checked, responses matched, and exact tracker rows updated. Gmail failures remain nonfatal and are appended to `output/gmail-response-tracking.log`.
 
-### Explicit local-workbook link audit
+### Google Sheets link audit
 
-Google Sheets remains Gecko's canonical tracker. When a local workbook is explicitly supplied for an offline audit, place it at `output/job-tracker.xlsx` and run:
+Run the conservative link audit directly against the canonical Google Sheet:
 
 ```powershell
 python scripts/check_job_links.py
 ```
 
-Test a small copy first with `python scripts/check_job_links.py --limit 5 --output scratch/job-link-check/job-tracker-test.xlsx`. The checker locates `Job URL` and `Notes` by header and appends confirmed removals only to `Notes`. It treats blocks, rate limits, bot challenges, timeouts, and temporary network errors as unknown and leaves the related cell unchanged.
+Test a small read-only sample first with `python scripts/check_job_links.py --limit 5 --dry-run`. The checker locates `Job URL` and `Notes` by header and appends confirmed removals only to `Notes`. It treats blocks, rate limits, bot challenges, timeouts, and temporary network errors as unknown and leaves the related cell unchanged. If Google Sheets is unavailable, the command fails clearly and does not create a local fallback.
 
 To proceed with a listing, explicitly run `python job-scout/scout.py select <ID>`. Selection archives the description in `input/job-descriptions/`; it does not create a resume or application-tracker row. Continue with the unchanged workflow below only after choosing a job. Full setup and commands are in `job-scout/README.md`.
 

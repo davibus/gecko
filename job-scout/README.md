@@ -19,7 +19,7 @@ The daily command:
 7. reuses persistent AI results when the normalized description and candidate profile are unchanged;
 8. when AI models are configured, performs compact-profile triage and fully scores only `possible`/`strong` jobs;
 9. appends automated discoveries and populates valid manual Indeed rows;
-10. runs Gecko only for Stage 2 `Apply = Yes` jobs whose live, user-owned `Apply?` is also `Yes` and whose `Resume Created` is blank;
+10. runs Gecko for every populated live row whose user-owned `Apply?` normalizes to `Yes` and whose `Resume Created` does not normalize to `X`; short descriptions are accepted, failures are written specifically to Column I for later retry, and success writes X to G while clearing only Gecko's prior failure message;
 11. checks Gmail read-only for substantive employer responses to applied jobs and updates `Response`.
 
 `python job-scout/scout.py daily --dry-run` uses a temporary SQLite copy and does not write the Google Sheet, descriptions, resumes, or reports. A failure for one job is logged without stopping later jobs.

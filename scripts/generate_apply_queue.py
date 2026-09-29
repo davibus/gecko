@@ -1,4 +1,4 @@
-"""Process live Google Job Scout rows with Apply? = Yes and Resume Created blank."""
+"""Process live Google rows with Apply? = Yes and Resume Created != X."""
 
 from __future__ import annotations
 
@@ -21,11 +21,9 @@ from google_tracker import GoogleTracker  # noqa: E402
 from description_retrieval import (  # noqa: E402
     DescriptionRetrievalResult,
     RetrievalAttempt,
-    description_is_sufficient,
     retrieve_full_description,
 )
 from handoff import job_number as scout_job_number  # noqa: E402
-from source_policy import is_jooble_candidate  # noqa: E402
 import gecko_v2  # noqa: E402
 import manage_job_tracker  # noqa: E402
 
@@ -40,6 +38,7 @@ class QueueRow:
     title: str
     job_url: str = ""
     source: str = ""
+    fields: dict[str, object] | None = None
 
 
 @dataclass(frozen=True)
@@ -121,6 +120,8 @@ def read_queue(
     missing = set(REQUIRED) - tab.headers.keys()
     if missing:
         raise ValueError("Job Scout is missing required columns: " + ", ".join(sorted(missing)))
+    if tab.headers["Apply?"] != 6 or tab.headers["Resume Created"] != 7:
+        raise ValueError("Job Scout must keep Apply? in Column F and Resume Created in Column G")
     pending, already_created, not_approved, jooble_excluded = [], [], [], []
     for row, data in tab.rows:
         raw_id = data.get("Scout ID")
@@ -132,15 +133,10 @@ def read_queue(
             continue
         item = QueueRow(row, scout_id, str(data.get("Company") or ""),
                         str(data.get("Job Title") or ""), str(data.get("Job URL") or ""),
-                        str(data.get("Source") or ""))
-        if is_jooble_candidate(
-            source=item.source,
-            urls=(item.job_url,),
-        ):
-            jooble_excluded.append(item)
-        elif _flag(data.get("Apply?")) != "yes":
+                        str(data.get("Source") or ""), dict(data))
+        if _flag(data.get("Apply?")) != "yes":
             not_approved.append(item)
-        elif _flag(data.get("Resume Created")) == "":
+        elif _flag(data.get("Resume Created")) != "x":
             pending.append(item)
         else:
             already_created.append(item)
@@ -151,7 +147,7 @@ def _still_pending(tracker: GoogleTracker, item: QueueRow) -> bool:
     """Re-read the row just before generation in case it changed mid-batch."""
     row = next((data for number, data in _retry_sheet(tracker.scout).rows if number == item.row), None)
     return bool(row and str(row.get("Scout ID") or "") == str(item.scout_id)
-                and _flag(row.get("Apply?")) == "yes" and _flag(row.get("Resume Created")) == "")
+                and _flag(row.get("Apply?")) == "yes" and _flag(row.get("Resume Created")) != "x")
 
 
 def _job_number(job) -> str:
@@ -163,15 +159,57 @@ def _job_number(job) -> str:
 
 
 def _saved_listing(item: QueueRow) -> Path | None:
-    """Find a complete archived listing by Scout ID, including older filenames."""
+    """Find an archived listing for this exact live row without imposing a length floor."""
     for path in (ROOT / "input/job-descriptions").glob("*.md"):
         content = path.read_text(encoding="utf-8-sig", errors="replace")
         if re.search(rf"(?m)^- \*\*Scout ID:\*\*\s*{item.scout_id}\s*$", content):
             meta = gecko_v2.listing_metadata(content, path)
             if (meta["company"].strip().casefold() == item.company.strip().casefold()
-                    and description_is_sufficient(content.split("## ")[-1].strip())):
+                    and meta["title"].strip().casefold() == item.title.strip().casefold()):
                 return path
     return None
+
+
+def _row_job_number(item: QueueRow) -> str:
+    if item.source.casefold() == "indeed":
+        jk = parse_qs(urlsplit(item.job_url).query).get("jk", [])
+        if jk and jk[0]:
+            return jk[0]
+    return f"scout-{item.scout_id or item.row}"
+
+
+def _archive_row_context(item: QueueRow) -> Path:
+    """Archive reliable Sheet context when no matching stored job record exists."""
+    if not item.company.strip() or not item.title.strip():
+        missing = " and ".join(name for name, value in (
+            ("company", item.company), ("job title", item.title)
+        ) if not value.strip())
+        raise ValueError(
+            f"Resume not created: {missing} is missing, so the target position cannot be identified."
+        )
+    company = re.sub(r'[\\/:*?"<>|]', "", item.company).replace(" ", "-").rstrip(" .")
+    number = _row_job_number(item)
+    path = ROOT / "input/job-descriptions" / f"{company}+{number}.md"
+    fields = item.fields or {}
+    context = [
+        f"Target position: {item.title}",
+        f"Company: {item.company}",
+    ]
+    for label in ("Location", "Work Arrangement", "Employment Type", "Salary"):
+        value = str(fields.get(label) or "").strip()
+        if value:
+            context.append(f"{label}: {value}")
+    text = (f"# {item.title}\n\n"
+            f"- **Company:** {item.company}\n"
+            f"- **Job Number:** {number}\n"
+            f"- **Scout ID:** {item.scout_id}\n"
+            f"- **URL:** {item.job_url}\n"
+            f"- **Source:** {item.source}\n"
+            f"- **Salary:** {fields.get('Salary') or ''}\n\n"
+            f"## Available job information\n\n" + "\n".join(context) + "\n")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+    return path
 
 
 def _original_source_url(job, item: QueueRow) -> str:
@@ -221,9 +259,9 @@ def _archive_listing(job, item: QueueRow, store: JobStore) -> tuple[Path, tuple[
         if (meta["company"].strip().casefold() != job.company.strip().casefold() or
                 meta["job_number"] != number):
             raise ValueError(f"Archived listing is incomplete or belongs to another job: {path.name}")
-        if "## " in existing and description_is_sufficient(existing.split("## ")[-1].strip()):
+        if "## " in existing:
             attempt = RetrievalAttempt(
-                "saved archived description", str(path), "accepted", "complete archived listing"
+                "saved archived description", str(path), "accepted", "archived job context"
             )
             return path, (attempt,)
     original_url = _original_source_url(job, item)
@@ -234,10 +272,21 @@ def _archive_listing(job, item: QueueRow, store: JobStore) -> tuple[Path, tuple[
         ats_urls=(job.enriched_source_url,),
         aggregator_urls=(original_url, item.job_url),
     )
-    if result.status != "succeeded" or not description_is_sufficient(result.description):
-        raise DescriptionUnavailableError(result, original_url)
-    _persist_queue_retrieval(job, result, store)
-    description = result.description
+    if result.status == "succeeded" and result.description.strip():
+        _persist_queue_retrieval(job, result, store)
+        description = result.description
+        description_url = result.source_url
+    else:
+        description = max((job.enriched_description or "", job.description or ""), key=len).strip()
+        description_url = job.enriched_source_url or job.original_url or job.url
+        if not description:
+            description = (f"Target position: {job.title}\nCompany: {job.company}\n"
+                           f"Location: {job.location}\nWork arrangement: {job.work_arrangement}\n"
+                           f"Employment type: {job.employment_type}")
+        result.attempts.append(RetrievalAttempt(
+            "available stored job context", description_url, "accepted",
+            "used without a minimum description-length requirement",
+        ))
     text = (f"# {job.title}\n\n"
             f"- **Company:** {job.company}\n"
             f"- **Job Number:** {number}\n"
@@ -245,7 +294,7 @@ def _archive_listing(job, item: QueueRow, store: JobStore) -> tuple[Path, tuple[
             f"- **URL:** {result.authoritative_url or job.authoritative_url or job.url}\n"
             f"- **Original Source URL:** {original_url}\n"
             f"- **Authoritative URL:** {result.authoritative_url or job.authoritative_url}\n"
-            f"- **Description Source URL:** {result.source_url}\n"
+            f"- **Description Source URL:** {description_url}\n"
             f"- **Source:** {job.source}\n"
             f"- **Salary:** {job.salary}\n"
             f"- **Date Discovered:** {job.date_discovered}\n\n"
@@ -259,13 +308,13 @@ def generate(item: QueueRow, db: Path) -> Artifacts:
     """Reuse Gecko V2 planning, rendering, and Word QA."""
     with JobStore(db) as store:
         job = store.get(item.scout_id)
-        if job is not None and (job.company.casefold().strip() != item.company.casefold().strip()
-                                or job.title.casefold().strip() != item.title.casefold().strip()):
-            raise ValueError("Worksheet identity does not match the stored job")
-        if job is not None:
+        if job is not None and (job.company.casefold().strip() == item.company.casefold().strip()
+                                and job.title.casefold().strip() == item.title.casefold().strip()):
             listing, attempts = _archive_listing(job, item, store)
         else:
             listing, attempts = _saved_listing(item), ()
+            if listing is None:
+                listing = _archive_row_context(item)
     if listing is None:
         raise ValueError(f"Scout ID {item.scout_id} has no stored record or complete saved description")
     try:
@@ -318,8 +367,8 @@ def record_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTracker)
         raise ValueError("Final DOCX is missing")
     if not _still_pending(tracker, item):
         raise RuntimeError("Apply? or Resume Created changed before tracker update")
-    _retry_sheet(lambda: manage_job_tracker.record_completed_resume(
-        artifacts.resume, artifacts.listing, tracker
+    _retry_sheet(lambda: manage_job_tracker.record_queue_success(
+        artifacts.resume, artifacts.listing, item.scout_id, item.row, tracker
     ))
 
 
@@ -336,26 +385,29 @@ def run_queue(
     eligible_scout_ids: set[int] | None = None,
     generator=generate,
     recorder=record_success,
+    failure_recorder=manage_job_tracker.record_queue_failure,
     logger=None,
     print_summary: bool = True,
 ) -> QueueRunResult:
     snapshot = read_queue(tracker, eligible_scout_ids)
     pending = snapshot.pending
     skipped = snapshot.already_created
+    checked = (len(snapshot.pending) + len(snapshot.already_created)
+               + len(snapshot.not_approved) + len(snapshot.jooble_excluded))
     created = recovered = 0
     successes: list[tuple[QueueRow, Artifacts]] = []
     changed = 0
     failed: list[QueueFailure] = []
-    print(f"Eligible rows: {len(pending)}; skipped with a nonblank marker: {len(skipped)}", flush=True)
-    if snapshot.jooble_excluded:
-        print(f"Jooble rows rejected before Gecko: {len(snapshot.jooble_excluded)}", flush=True)
+    print(f"Found {len(pending)} jobs requiring resumes.", flush=True)
+    print(f"Tracker rows checked: {checked}", flush=True)
+    print(f"Skipped with Resume Created = X: {len(skipped)}", flush=True)
     _log(logger, f"Eligible rows: {len(pending)}; already marked: {len(skipped)}")
     print("Row | Scout ID | Company | Job title", flush=True)
     for item in pending:
         print(f"{item.row} | {item.scout_id} | {item.company} | {item.title}", flush=True)
     if not dry_run:
         print("Processing eligible jobs now.", flush=True)
-    for item in pending:
+    for index, item in enumerate(pending, 1):
         try:
             # A dry run is a single read-only snapshot. Re-reading every row adds
             # API traffic and is unnecessary because no lifecycle write follows.
@@ -364,16 +416,17 @@ def run_queue(
                 changed += 1
                 continue
             if dry_run:
-                print(f"WOULD CREATE: row {item.row} (Scout ID {item.scout_id})")
+                print(f"[{index}/{len(pending)}] WOULD CREATE: {item.company}  {item.title}")
                 continue
+            print(f"[{index}/{len(pending)}] Creating Gecko resume: "
+                  f"{item.company}  {item.title}", flush=True)
             artifacts = generator(item, db)
             recorder(item, artifacts, tracker)
             recovered += int(artifacts.existing)
             created += int(not artifacts.existing)
             successes.append((item, artifacts))
-            print(f"{'VERIFIED EXISTING' if artifacts.existing else 'CREATED'}: row {item.row} "
-                  f"(Scout ID {item.scout_id}), {item.company} / {item.title}: "
-                  f"{artifacts.resume}", flush=True)
+            print(f"Resume created: {artifacts.resume}", flush=True)
+            print(f"Updated Gecko Job Tracker row {item.row}: Resume Created = X", flush=True)
             _log(logger, f"SUCCESS row={item.row} scout_id={item.scout_id} "
                  f"resume={artifacts.resume}")
             for attempt in artifacts.retrieval_attempts:
@@ -403,13 +456,22 @@ def run_queue(
                     authoritative_url="",
                 )
             failed.append(failure)
-            print(f"FAILED: row {item.row} (Scout ID {item.scout_id}), "
-                  f"{item.company} / {item.title}: {error}", file=sys.stderr, flush=True)
+            try:
+                _retry_sheet(lambda: failure_recorder(item.scout_id, item.row, failure.reason, tracker))
+            except Exception as note_error:
+                failure = QueueFailure(
+                    item=failure.item,
+                    reason=f"{failure.reason} (Column I update also failed: {note_error})",
+                    original_url=failure.original_url,
+                    authoritative_url=failure.authoritative_url,
+                    attempts=failure.attempts,
+                )
+                failed[-1] = failure
+            print(f"FAILED: {item.company}  {item.title}", file=sys.stderr, flush=True)
+            print(f"Reason: {failure.reason}", file=sys.stderr, flush=True)
             _log(logger, f"FAIL row={item.row} scout_id={item.scout_id} reason={failure.reason}")
             for attempt in failure.attempts:
                 _log(logger, "  " + attempt.summary())
-        if not dry_run:
-            _write_report(pending, skipped, successes, failed, changed)
     remaining = pending if dry_run else read_queue(tracker, eligible_scout_ids).pending
     failed_ids = {failure.item.scout_id for failure in failed}
     unexpected = [] if dry_run else [item for item in remaining if item.scout_id not in failed_ids]
@@ -420,49 +482,18 @@ def run_queue(
     )
     if print_summary:
         print("\nGecko Resume Queue Complete")
-        print(f"Eligible jobs found: {len(pending)}")
+        print(f"Tracker rows checked: {checked}")
+        print(f"Eligible jobs: {len(pending)}")
         print(f"Skipped: {len(skipped) + changed}")
-        print(f"Jooble rows excluded: {len(snapshot.jooble_excluded)}")
-        print(f"New resumes created: {created}")
+        print(f"Resumes created: {created + recovered}")
         print(f"Existing valid resumes discovered and marked: {recovered}")
         print(f"Failed: {len(failed)}")
+        print(f"Google Sheet rows updated: {len(successes)}")
         print("Rows marked X: " + (", ".join(str(item.row) for item, _ in successes) or "none"))
         print(f"Remaining eligible rows: {len(remaining)}; unexpected: {len(unexpected)}")
         if dry_run:
             print(f"Would create: {len(pending)}")
     return result
-
-
-def _write_report(pending, skipped, successes, failed, changed) -> None:
-    path = ROOT / "output/apply-queue-results.md"
-    path.parent.mkdir(parents=True, exist_ok=True)
-    lines = ["# Gecko apply queue results", "", f"Eligible jobs found: {len(pending)}",
-             f"Skipped: {len(skipped) + changed}",
-             f"New resumes created: {sum(not result.existing for _, result in successes)}",
-             f"Existing valid resumes discovered and marked: {sum(result.existing for _, result in successes)}",
-             f"Failed: {len(failed)}", "", "## Successful jobs", ""]
-    for item, result in successes:
-        lines.append(f"- Row {item.row}; Scout ID {item.scout_id}; {item.company}; {item.title}; "
-                     f"{result.resume}")
-    lines.extend(["", "## Failures", ""])
-    for failure in failed:
-        item = failure.item
-        lines.extend([
-            f"### Row {item.row}: Scout ID {item.scout_id} — {item.company} — {item.title}",
-            "",
-            f"- Original source URL: {failure.original_url or '(not stored)'}",
-            f"- Authoritative URL: {failure.authoritative_url or '(not found)'}",
-            "- Retrieval attempts:",
-        ])
-        if failure.attempts:
-            lines.extend(f"  - {attempt.summary()}" for attempt in failure.attempts)
-        else:
-            lines.append("  - No URL retrieval attempt was reached before this failure.")
-        lines.extend([
-            f"- Final reason: {failure.reason.replace(chr(10), ' ')}",
-            "",
-        ])
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def _append_run_log(message: str) -> None:

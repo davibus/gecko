@@ -1,19 +1,16 @@
-"""Conservatively validate local Job Scout links using header-based lookup."""
+"""Conservatively validate Job Scout links directly in canonical Google Sheets."""
 
 from __future__ import annotations
 
 import argparse
-import errno
 import html
 import ipaddress
 import json
-import os
 import re
 import socket
 import sqlite3
 import ssl
 import sys
-import tempfile
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -22,22 +19,17 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import parse_qs, urljoin, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
-from openpyxl import load_workbook
-from openpyxl.cell.cell import Cell
-
-
 ROOT = Path(__file__).resolve().parents[1]
 JOB_SCOUT_DIR = ROOT / "job-scout"
 if str(JOB_SCOUT_DIR) not in sys.path:
     sys.path.insert(0, str(JOB_SCOUT_DIR))
 
 from link_validation import official_api_url  # noqa: E402
+from google_tracker import GoogleTracker  # noqa: E402
 from url_resolution import classify_url  # noqa: E402
 
 
-DEFAULT_WORKBOOK = ROOT / "output" / "job-tracker.xlsx"
 DEFAULT_DATABASE = JOB_SCOUT_DIR / "data" / "jobs.sqlite3"
-SHEET_NAME = "Job Scout"
 REMOVED_NOTE = "Doesn't exist"
 
 USER_AGENT = (
@@ -460,10 +452,7 @@ def check_company_website(
     )
 
 
-def cell_url(cell: Cell) -> str:
-    if cell.hyperlink and cell.hyperlink.target:
-        return normalize_website_url(cell.hyperlink.target)
-    value = cell.value
+def cell_url(value: object) -> str:
     if isinstance(value, str):
         formula = HYPERLINK_FORMULA_RE.match(value)
         if formula:
@@ -528,60 +517,15 @@ class ProjectWebsiteLookup:
             connection.close()
 
 
-def _worksheet(workbook):
-    exact = [sheet for sheet in workbook.worksheets if sheet.title == SHEET_NAME]
-    if exact:
-        return exact[0]
-    matches = [sheet for sheet in workbook.worksheets if sheet.title.strip().casefold() == SHEET_NAME.casefold()]
-    if len(matches) == 1:
-        return matches[0]
-    raise ValueError(f"Workbook does not contain the required {SHEET_NAME!r} worksheet")
+def _removed_note(current_value: object) -> str | None:
+    current = str(current_value or "").strip()
+    if current.startswith("=") or REMOVED_NOTE.casefold() in current.casefold():
+        return None
+    return f"{current}\n{REMOVED_NOTE}" if current else REMOVED_NOTE
 
 
-def _headers(worksheet) -> tuple[dict[str, int], list[str]]:
-    values = [worksheet.cell(1, column).value for column in range(1, worksheet.max_column + 1)]
-    mapping = {
-        normalize_header(value): column
-        for column, value in enumerate(values, start=1)
-        if normalize_header(value)
-    }
-    return mapping, [str(value or "") for value in values]
-
-
-def validate_layout(worksheet) -> dict[str, int]:
-    headers, _ = _headers(worksheet)
-    aliases = ("job url", "job link", "url", "posting url", "application url")
-    if "notes" not in headers or "company" not in headers or not any(name in headers for name in aliases):
-        raise ValueError("Job Scout requires Company, Notes, and Job URL headers")
-    return headers
-
-
-def _row_is_populated(worksheet, row: int) -> bool:
-    return any(
-        worksheet.cell(row, column).value not in (None, "")
-        for column in range(1, worksheet.max_column + 1)
-    )
-
-
-def _append_removed_note(cell: Cell) -> bool:
-    if cell.data_type == "f":
-        return False
-    current = str(cell.value or "").strip()
-    if REMOVED_NOTE.casefold() in current.casefold():
-        return False
-    cell.value = f"{current}\n{REMOVED_NOTE}" if current else REMOVED_NOTE
-    return True
-
-
-def _company_hyperlink(worksheet, row: int, company_column: int) -> str:
-    cell = worksheet.cell(row, company_column)
-    if cell.hyperlink and cell.hyperlink.target:
-        return company_site_from_url(cell.hyperlink.target)
-    return ""
-
-
-def process_workbook(
-    workbook,
+def process_google_tracker(
+    tracker: GoogleTracker,
     *,
     job_checker: Callable[[str], CheckResult],
     website_checker: Callable[[str], CheckResult],
@@ -590,30 +534,18 @@ def process_workbook(
     start_row: int = 2,
     progress: Callable[[str], None] = print,
 ) -> Summary:
-    worksheet = _worksheet(workbook)
-    headers = validate_layout(worksheet)
-    company_column = headers["company"]
-    notes_column = headers["notes"]
-    job_url_column = next(headers[name] for name in
-                          ("job url", "job link", "url", "posting url", "application url")
-                          if name in headers)
-    title_column = headers.get("job title") or headers.get("title")
-    scout_id_column = headers.get("scout id")
+    tab = tracker.scout(value_render_option="FORMULA")
+    if not {"Company", "Notes", "Job URL"} <= tab.headers.keys():
+        raise ValueError("Job Scout requires Company, Notes, and Job URL headers")
     summary = Summary()
-
-    rows = [
-        row for row in range(max(2, start_row), worksheet.max_row + 1)
-        if _row_is_populated(worksheet, row)
-    ]
+    rows = [(row, data) for row, data in tab.rows if row >= max(2, start_row)]
     if limit is not None:
         rows = rows[: max(0, limit)]
 
-    for row in rows:
+    for row, data in rows:
         summary.populated_rows += 1
-        company = str(worksheet.cell(row, company_column).value or "").strip()
-        title = str(worksheet.cell(row, title_column).value or "").strip() if title_column else ""
-        scout_id = worksheet.cell(row, scout_id_column).value if scout_id_column else None
-        job_url = cell_url(worksheet.cell(row, job_url_column))
+        company = str(data.get("Company") or "").strip()
+        job_url = cell_url(data.get("Job URL"))
         progress(f"Checking row {row}: {company or '(company missing)'}")
 
         job_result = CheckResult("unknown", job_url, reason="Job URL is empty")
@@ -625,10 +557,12 @@ def process_workbook(
                 progress("  Job: EXISTS")
             elif job_result.status == "removed":
                 summary.jobs_removed += 1
-                notes = worksheet.cell(row, notes_column)
-                if _append_removed_note(notes):
+                notes = data.get("Notes")
+                updated = _removed_note(notes)
+                if updated is not None:
+                    tracker.update_scout_notes(row, updated)
                     summary.notes_changed += 1
-                elif notes.data_type == "f":
+                elif str(notes or "").startswith("="):
                     summary.warnings.append(f"Notes row {row} is a formula; confirmed removal was not written")
                 progress("  Job: DOESN'T EXIST")
             else:
@@ -642,28 +576,12 @@ def process_workbook(
     return summary
 
 
-def safe_save(workbook, destination: Path) -> None:
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    descriptor, temporary_name = tempfile.mkstemp(
-        prefix=f".{destination.stem}-",
-        suffix=destination.suffix,
-        dir=destination.parent,
-    )
-    os.close(descriptor)
-    temporary = Path(temporary_name)
-    try:
-        workbook.save(temporary)
-        os.replace(temporary, destination)
-    finally:
-        temporary.unlink(missing_ok=True)
-
-
 def _project_path(value: str | Path) -> Path:
     path = Path(value)
     return path if path.is_absolute() else ROOT / path
 
 
-def _print_summary(summary: Summary, *, saved_to: Path | None, dry_run: bool) -> None:
+def _print_summary(summary: Summary, *, dry_run: bool) -> None:
     print("Summary")
     print(f"Populated rows: {summary.populated_rows}")
     print(f"Checked: {summary.checked}")
@@ -682,45 +600,29 @@ def _print_summary(summary: Summary, *, saved_to: Path | None, dry_run: bool) ->
         for warning in summary.warnings:
             print(f"  - {warning}")
     if dry_run:
-        print("Dry run: workbook was not saved")
-    elif saved_to is not None:
-        print(f"Saved: {saved_to}")
+        print("Dry run: Google Sheets was not changed")
 
 
 def run(args: argparse.Namespace) -> int:
-    source = _project_path(args.workbook)
-    if not source.is_file():
-        raise FileNotFoundError(
-            errno.ENOENT,
-            "Workbook not found. Restore/export the requested workbook before running the check",
-            str(source),
-        )
-    destination = _project_path(args.output) if args.output else source
-    keep_vba = source.suffix.casefold() == ".xlsm"
-    workbook = load_workbook(source, keep_links=True, keep_vba=keep_vba, data_only=False)
     fetcher = ThrottledFetcher(timeout=args.timeout, delay=args.delay)
     project_lookup = ProjectWebsiteLookup(_project_path(args.database)) if args.database else None
-    summary = process_workbook(
-        workbook,
+    tracker = GoogleTracker()
+    if args.dry_run:
+        tracker.update_scout_notes = lambda *_args, **_kwargs: None
+    summary = process_google_tracker(
+        tracker,
         job_checker=lambda url: check_job_url(url, fetcher, retries=args.retries),
         website_checker=lambda url: check_company_website(url, fetcher, retries=args.retries),
         project_lookup=project_lookup,
         limit=args.limit,
         start_row=args.start_row,
     )
-    if not args.dry_run:
-        safe_save(workbook, destination)
-    _print_summary(summary, saved_to=destination, dry_run=args.dry_run)
+    _print_summary(summary, dry_run=args.dry_run)
     return 0
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--workbook", default=str(DEFAULT_WORKBOOK.relative_to(ROOT)),
-        help="Workbook to inspect and update (default: output/job-tracker.xlsx)",
-    )
-    parser.add_argument("--output", help="Save to a separate workbook instead of updating in place")
     parser.add_argument(
         "--database", default=str(DEFAULT_DATABASE.relative_to(ROOT)),
         help="Optional read-only Job Scout SQLite data used to find employer domains",
@@ -730,7 +632,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--timeout", type=float, default=12.0, help="Per-request timeout in seconds")
     parser.add_argument("--delay", type=float, default=0.75, help="Minimum delay between HTTP requests")
     parser.add_argument("--retries", type=int, default=1, help="Retries for temporary network failures")
-    parser.add_argument("--dry-run", action="store_true", help="Check links without saving workbook changes")
+    parser.add_argument("--dry-run", action="store_true", help="Check links without changing Google Sheets")
     return parser
 
 

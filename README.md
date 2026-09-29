@@ -80,7 +80,7 @@ The authorization command opens Google's consent page and saves the refresh toke
 
 Gmail message downloads are paced by `GECKO_GMAIL_REQUEST_DELAY_SECONDS`, which defaults to `0.2` seconds. Rate-limit responses receive bounded exponential-backoff retries; authentication and permission failures are not retried.
 
-Gecko's production tracker is Google Sheets. `output/job-tracker.xlsx` is supported only as an explicitly supplied offline link-audit artifact and is not read or modified by Gmail response tracking.
+Gecko's only job tracker is Google Sheets. Resume queues, link audits, and Gmail response tracking fail clearly if the Sheet is unavailable; none creates or reads a local spreadsheet fallback.
 
 ## Folder map
 

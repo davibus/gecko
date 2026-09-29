@@ -16,6 +16,7 @@ from google_tracker import GoogleTracker, job_key, load_environment  # noqa: E40
 
 RESUME_DIR = ROOT / "output/resumes"
 LISTING_DIR = ROOT / "input/job-descriptions"
+RESUME_FAILURE_PREFIX = "Resume not created:"
 
 
 @dataclass
@@ -124,6 +125,65 @@ def record_completed_resume(
     return row, created, record
 
 
+def record_queue_success(
+    resume: Path,
+    listing: Path | None,
+    scout_id: int,
+    scout_row: int,
+    tracker: GoogleTracker,
+) -> JobRecord:
+    """Validate completed artifacts, then mark only Column G on the source row."""
+    record = record_from_files(resume, listing)
+    mark_batch_resume(scout_id, scout_row, tracker)
+    return record
+
+
+def _without_resume_failure(value: object) -> str:
+    lines = str(value or "").splitlines()
+    kept = [line for line in lines
+            if not line.strip().casefold().startswith(RESUME_FAILURE_PREFIX.casefold())]
+    return "\n".join(kept).strip()
+
+
+def _queue_source_row(scout_id: int, row_number: int, tracker: GoogleTracker):
+    tab = tracker.scout()
+    required = {"Resume Created", "Apply?", "Scout ID", "Notes"}
+    if not required <= tab.headers.keys():
+        raise RuntimeError("Required Scout headers are missing; no cell was changed")
+    if (tab.headers["Apply?"] != 6 or tab.headers["Resume Created"] != 7
+            or tab.headers["Notes"] != 9):
+        raise RuntimeError(
+            "Apply? must be Column F, Resume Created Column G, and Notes Column I; "
+            "no cell was changed"
+        )
+    match = next(((row, data) for row, data in tab.rows if row == row_number), None)
+    if match is None or str(match[1].get("Scout ID") or "") != str(scout_id):
+        raise RuntimeError("Scout row identity changed; no cell was changed")
+    return tab, match[0], match[1]
+
+
+def record_queue_failure(
+    scout_id: int,
+    row_number: int,
+    reason: str,
+    tracker: GoogleTracker,
+) -> None:
+    """Leave Column G unchanged and write a specific retryable failure to Column I."""
+    tab, row, data = _queue_source_row(scout_id, row_number, tracker)
+    if str(data.get("Apply?") or "").strip().casefold() != "yes":
+        raise RuntimeError("Apply? is no longer Yes; no cell was changed")
+    if str(data.get("Resume Created") or "").strip().casefold() == "x":
+        raise RuntimeError("Resume Created is already X; no cell was changed")
+    detail = " ".join(str(reason or "").split()).strip()
+    if detail.casefold().startswith(RESUME_FAILURE_PREFIX.casefold()):
+        message = detail
+    else:
+        message = f"{RESUME_FAILURE_PREFIX} {detail or 'the generation error did not provide details.'}"
+    prior = _without_resume_failure(data.get("Notes"))
+    notes = f"{prior}\n{message}" if prior else message
+    tracker._write(tab, row, {"Notes": notes})
+
+
 def add_job(args: argparse.Namespace, tracker: GoogleTracker | None = None) -> int:
     tracker = tracker or GoogleTracker()
     row, created, record = record_completed_resume(
@@ -138,22 +198,16 @@ def add_job(args: argparse.Namespace, tracker: GoogleTracker | None = None) -> i
 
 
 def mark_batch_resume(scout_id: int, row_number: int, tracker: GoogleTracker) -> None:
-    """Mark the selected Scout row using header positions, preserving later statuses."""
-    tab = tracker.scout()
-    if not {"Resume Created", "Gecko Status", "Apply?", "Scout ID"} <= tab.headers.keys():
-        raise RuntimeError("Required Scout headers are missing; no cell was changed")
-    matches = [(row, data) for row, data in tab.rows if str(data.get("Scout ID")) == str(scout_id)]
-    if len(matches) != 1 or matches[0][0] != row_number:
-        raise RuntimeError("Scout row identity changed; no cell was changed")
-    row, data = matches[0]
+    """Mark Column G and clear only Gecko's prior failure message in Column I."""
+    tab, row, data = _queue_source_row(scout_id, row_number, tracker)
     if str(data.get("Apply?") or "").strip().casefold() != "yes":
         raise RuntimeError("Apply? is no longer Yes; no cell was changed")
-    if str(data.get("Resume Created") or "").strip():
-        raise RuntimeError("Resume Created is no longer blank; no cell was changed")
+    if str(data.get("Resume Created") or "").strip().casefold() == "x":
+        raise RuntimeError("Resume Created is already X; no cell was changed")
     values = {"Resume Created": "X"}
-    if str(data.get("Gecko Status") or "").strip().casefold() not in {
-            "applied", "contacted", "interview", "offer"}:
-        values["Gecko Status"] = "Resume Created"
+    notes = _without_resume_failure(data.get("Notes"))
+    if notes != str(data.get("Notes") or "").strip():
+        values["Notes"] = notes
     tracker._write(tab, row, values)
 
 

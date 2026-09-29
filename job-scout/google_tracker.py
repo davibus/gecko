@@ -256,6 +256,15 @@ class GoogleTracker:
             raise RuntimeError(f"Cannot update Google Sheets Response cells: {error}") from error
         return changed
 
+    def update_scout_notes(self, row: int, value: str) -> None:
+        """Update only Notes on one existing Job Scout row."""
+        tab = self.scout(value_render_option="FORMULA")
+        if "Notes" not in tab.headers:
+            raise RuntimeError("Job Scout is missing the Notes column")
+        if not any(number == row for number, _ in tab.rows):
+            raise RuntimeError(f"Cannot update missing Job Scout row {row}")
+        self._write(tab, row, {"Notes": value})
+
     def migrate_scout_schema(self) -> dict[str, Any]:
         """Delete retired columns in place; a second run is a verified no-op."""
         tab = self.tab(self.config.scout_tab)
