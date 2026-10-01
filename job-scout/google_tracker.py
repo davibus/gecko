@@ -426,7 +426,7 @@ class GoogleTracker:
     def approve_manual_scout_row(
         self, row_number: int, *, company: str, title: str,
     ) -> None:
-        """Fill a qualifying blank Apply? cell after re-verifying the exact row."""
+        """Set Apply? to Yes for a verified Utah/remote Job Scout row."""
         tab = self.scout(value_render_option="FORMULA")
         matches = [(row, data) for row, data in tab.rows if row == row_number]
         if len(matches) != 1:
@@ -435,15 +435,12 @@ class GoogleTracker:
         if (_normal(current.get("Company")) != _normal(company)
                 or _normal(current.get("Job Title")) != _normal(title)):
             raise RuntimeError("Manual Indeed row identity changed; Apply? was not updated")
-        current_apply = str(current.get("Apply?") or "").strip()
-        if current_apply:
-            if _normal(current_apply) == "yes":
-                return
-            raise RuntimeError("Apply? now contains an explicit manual value; no cell was changed")
         if apply_value(
             current.get("Location"), current.get("Work Arrangement")
         ) != "Yes":
             raise RuntimeError("Job is not in Utah or remote; Apply? was not updated")
+        if _normal(current.get("Apply?")) == "yes":
+            return
         self._write(tab, row_number, {"Apply?": "Yes"})
 
     def assign_manual_scout_id(
@@ -660,7 +657,7 @@ class GoogleTracker:
     def mark_scout_resume(
         self, scout_id: int | None, resume_url: str, *, notes: str | None = None,
         require_approved: bool = True, row_number: int | None = None,
-        allow_local: bool = False,
+        allow_local: bool = False, completion_marker: str = "X",
     ) -> int:
         """Atomically mark Column G and write the verified artifact location to Column S."""
         target = str(resume_url or "").strip()
@@ -674,6 +671,9 @@ class GoogleTracker:
                 "A persistent HTTPS URL is required unless this queue explicitly allows "
                 "a verified local DOCX path"
             )
+        marker = str(completion_marker or "").strip().upper()
+        if marker not in {"C", "X"}:
+            raise ValueError("Resume Created marker must be X or legacy C")
         tab = self.scout(value_render_option="FORMULA")
         if scout_id is None:
             matches = [(row, data) for row, data in tab.rows
@@ -701,7 +701,7 @@ class GoogleTracker:
             entries.append({"range": _a1(tab.title, f"E{row}"), "values": [["Resume Created"]]})
         entries.extend([
             {"range": _a1(tab.title, f"S{row}"), "values": [[link_value]]},
-            {"range": _a1(tab.title, f"G{row}"), "values": [["X"]]},
+            {"range": _a1(tab.title, f"G{row}"), "values": [[marker]]},
         ])
         if notes is not None and notes != str(current.get("Notes") or "").strip():
             if tab.headers.get("Notes") != 9:

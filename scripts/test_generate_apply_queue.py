@@ -351,13 +351,67 @@ class QueueTests(unittest.TestCase):
         snapshot = queue.read_queue(self.tracker, source="indeed")
         self.assertIn(row, [item.row for item in snapshot.pending])
 
-    def test_explicit_no_is_not_overwritten(self):
+    def test_qualifying_utah_row_is_set_to_yes_even_when_previously_no(self):
         row = self.add_scout_row(
             apply="No", location="Provo, UT", listing="Manage paid media programs."
         )
         snapshot = queue.read_queue(self.tracker, source="indeed")
+        self.assertIn(row, [item.row for item in snapshot.pending])
+        with TemporaryDirectory() as temp:
+            queue.run_queue(
+                self.tracker, Path(temp) / "empty.sqlite3", source="indeed",
+                generator=lambda *_: (_ for _ in ()).throw(RuntimeError("stop after approval")),
+                print_summary=False,
+            )
+        stored = next(data for number, data in self.tracker.scout().rows if number == row)
+        self.assertEqual(stored["Apply?"], "Yes")
+
+    def test_unspecified_location_and_arrangement_are_left_unchanged(self):
+        row = self.add_scout_row(
+            apply="", location="", arrangement="",
+            listing="Lead demand generation for a distributed company.",
+        )
+        snapshot = queue.read_queue(self.tracker, source="indeed")
         self.assertIn(row, [item.row for item in snapshot.not_approved])
-        self.assertEqual(self.fake.data["Job Scout"][-1][SCOUT.index("Apply?")], "No")
+        self.assertEqual(self.fake.data["Job Scout"][-1][SCOUT.index("Apply?")], "")
+
+    def test_daily_all_source_geographic_approval_matrix(self):
+        utah = self.add_scout_row(
+            scout_id=930, source="Adzuna", company="Utah Company", apply="",
+            location="Salt Lake City, UT", arrangement="Hybrid",
+            listing="Lead lifecycle marketing.",
+        )
+        remote = self.add_scout_row(
+            scout_id=931, source="Remotive", company="Remote Company", apply="",
+            location="United States", arrangement="Remote",
+            listing="Lead performance marketing.",
+        )
+        hybrid = self.add_scout_row(
+            scout_id=932, source="LinkedIn", company="Hybrid Company", apply="",
+            location="Denver, CO", arrangement="Hybrid",
+            listing="Lead brand marketing.",
+        )
+        unspecified = self.add_scout_row(
+            scout_id=933, source="Greenhouse", company="Unspecified Company", apply="",
+            location="", arrangement="",
+            listing="Lead acquisition marketing.",
+        )
+        with TemporaryDirectory() as temp:
+            result = queue.run_queue(
+                self.tracker, Path(temp) / "empty.sqlite3",
+                eligible_scout_ids={930, 931, 932, 933},
+                auto_approve_geographic=True,
+                generator=lambda *_: (_ for _ in ()).throw(RuntimeError("simulated generation failure")),
+                print_summary=False,
+            )
+        live = {row: data for row, data in self.tracker.scout().rows}
+        self.assertEqual(live[utah]["Apply?"], "Yes")
+        self.assertEqual(live[remote]["Apply?"], "Yes")
+        self.assertEqual(live[hybrid]["Apply?"], "")
+        self.assertEqual(live[unspecified]["Apply?"], "")
+        self.assertEqual(live[utah]["Resume Created"], "")
+        self.assertEqual(live[remote]["Resume Created"], "")
+        self.assertEqual(len(result.failures), 2)
 
     def test_qualifying_blank_id_gets_unique_persistent_scout_id(self):
         row = self.add_scout_row(
@@ -434,11 +488,15 @@ class QueueTests(unittest.TestCase):
                 )
                 return queue.Artifacts(resume, listing)
 
-            with patch.object(queue.manage_job_tracker, "RESUME_DIR", resume_dir):
-                run = queue.run_queue(
-                    self.tracker, root / "empty.sqlite3", source="indeed",
-                    generator=generate, print_summary=False,
-                )
+            run = queue.run_queue(
+                self.tracker, root / "empty.sqlite3", source="indeed",
+                generator=generate,
+                recorder=lambda item, *_: queue.manage_job_tracker.mark_batch_resume(
+                    item.scout_id, item.row, self.tracker,
+                    f"https://drive.google.test/{item.scout_id}", completion_marker="X",
+                ),
+                print_summary=False,
+            )
 
         live = {row: data for row, data in self.tracker.scout().rows}
         assigned = [queue._scout_id(live[row]["Scout ID"]) for row in rows]
@@ -448,7 +506,7 @@ class QueueTests(unittest.TestCase):
         self.assertTrue(all(value > 2500 for value in assigned))
         self.assertEqual(generated, assigned)
         self.assertTrue(all(live[row]["Resume Created"] == "X" for row in rows))
-        self.assertTrue(all(str(live[row]["Resume Link"]).startswith("file:///") for row in rows))
+        self.assertTrue(all("https://drive.google.test/" in live[row]["Resume Link"] for row in rows))
         self.assertEqual(live[rows[0]]["Applied"], "x")
 
     def test_one_manual_generation_failure_does_not_block_later_rows(self):
@@ -478,11 +536,15 @@ class QueueTests(unittest.TestCase):
                 )
                 return queue.Artifacts(resume, listing)
 
-            with patch.object(queue.manage_job_tracker, "RESUME_DIR", resume_dir):
-                run = queue.run_queue(
-                    self.tracker, root / "empty.sqlite3", source="indeed",
-                    generator=generate, print_summary=False,
-                )
+            run = queue.run_queue(
+                self.tracker, root / "empty.sqlite3", source="indeed",
+                generator=generate,
+                recorder=lambda item, *_: queue.manage_job_tracker.mark_batch_resume(
+                    item.scout_id, item.row, self.tracker,
+                    f"https://drive.google.test/{item.scout_id}", completion_marker="X",
+                ),
+                print_summary=False,
+            )
 
         live = {row: data for row, data in self.tracker.scout().rows}
         self.assertEqual(generated_rows, rows)
@@ -490,7 +552,7 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(live[rows[0]]["Resume Created"], "X")
         self.assertEqual(live[rows[1]]["Resume Created"], "")
         self.assertEqual(live[rows[2]]["Resume Created"], "X")
-        self.assertTrue(live[rows[2]]["Resume Link"].startswith("file:///"))
+        self.assertIn("https://drive.google.test/", live[rows[2]]["Resume Link"])
 
     def test_column_r_listing_is_primary_and_short_listing_is_accepted(self):
         with TemporaryDirectory() as temp, patch.object(queue, "ROOT", Path(temp)):
@@ -521,7 +583,8 @@ class QueueTests(unittest.TestCase):
                 self.tracker, Path(temp) / "empty.sqlite3", source="indeed",
                 generator=lambda item, db: queue.Artifacts(resume, Path("listing.md")),
                 recorder=lambda item, artifacts, tracker: queue.manage_job_tracker.mark_batch_resume(
-                    item.scout_id, item.row, tracker, "https://drive.google.test/manual-resume"
+                    item.scout_id, item.row, tracker, "https://drive.google.test/manual-resume",
+                    completion_marker="X",
                 ), print_summary=False,
             )
         stored = next(data for number, data in self.tracker.scout(
@@ -530,7 +593,7 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(stored["Resume Created"], "X")
         self.assertIn("https://drive.google.test/manual-resume", stored["Resume Link"])
 
-    def test_default_indeed_success_records_existing_local_resume_without_drive(self):
+    def test_default_indeed_success_records_absolute_local_path(self):
         row = self.add_scout_row(
             scout_id=901, apply="Yes", location="Lehi, UT",
             listing="Manage growth marketing campaigns.",
@@ -547,10 +610,8 @@ class QueueTests(unittest.TestCase):
                 "- **Job Number:** local-901\n- **Scout ID:** 901\n",
                 encoding="utf-8",
             )
-            with patch.object(queue.manage_job_tracker, "RESUME_DIR", resume_dir), \
-                 patch.object(queue.manage_job_tracker, "publish_resume",
-                              side_effect=AssertionError("Drive must not be called")), \
-                 patch.dict(os.environ, {"GOOGLE_DRIVE_RESUME_FOLDER_ID": ""}):
+            with patch.object(queue, "ROOT", root), \
+                 patch.object(queue.manage_job_tracker, "RESUME_DIR", resume_dir):
                 run = queue.run_queue(
                     self.tracker, root / "empty.sqlite3", source="indeed",
                     generator=lambda item, db: queue.Artifacts(resume, listing),
@@ -560,7 +621,7 @@ class QueueTests(unittest.TestCase):
             value_render_option="FORMULA").rows if number == row)
         self.assertEqual(len(run.successes), 1)
         self.assertEqual(stored["Resume Created"], "X")
-        self.assertEqual(stored["Resume Link"], resume.resolve().as_uri())
+        self.assertEqual(stored["Resume Link"], str(resume.resolve()))
 
     def test_local_record_rejects_empty_artifact_without_marking_completion(self):
         row = self.add_scout_row(
@@ -579,7 +640,9 @@ class QueueTests(unittest.TestCase):
                 "- **Job Number:** local-902\n- **Scout ID:** 902\n",
                 encoding="utf-8",
             )
-            with patch.object(queue.manage_job_tracker, "RESUME_DIR", resume_dir):
+            with patch.object(queue.manage_job_tracker, "RESUME_DIR", resume_dir), \
+                 patch.object(queue.manage_job_tracker, "publish_resume",
+                              return_value="https://drive.google.test/local-903"):
                 run = queue.run_queue(
                     self.tracker, root / "empty.sqlite3", source="indeed",
                     generator=lambda item, db: queue.Artifacts(resume, listing),
@@ -591,7 +654,7 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(stored["Resume Created"], "")
         self.assertEqual(stored["Resume Link"], "")
 
-    def test_retry_after_drive_failure_uses_existing_local_artifact(self):
+    def test_retry_after_prior_storage_failure_uses_existing_local_artifact(self):
         row = self.add_scout_row(
             scout_id=903, apply="Yes", location="Draper, UT",
             listing="Lead lifecycle marketing programs.",
@@ -612,7 +675,8 @@ class QueueTests(unittest.TestCase):
                 "- **Job Number:** local-903\n- **Scout ID:** 903\n",
                 encoding="utf-8",
             )
-            with patch.object(queue.manage_job_tracker, "RESUME_DIR", resume_dir):
+            with patch.object(queue, "ROOT", root), \
+                 patch.object(queue.manage_job_tracker, "RESUME_DIR", resume_dir):
                 run = queue.run_queue(
                     self.tracker, root / "empty.sqlite3", source="indeed",
                     generator=lambda item, db: queue.Artifacts(
@@ -623,7 +687,7 @@ class QueueTests(unittest.TestCase):
             value_render_option="FORMULA").rows if number == row)
         self.assertEqual(run.recovered, 1)
         self.assertEqual(stored["Resume Created"], "X")
-        self.assertEqual(stored["Resume Link"], resume.resolve().as_uri())
+        self.assertEqual(stored["Resume Link"], str(resume.resolve()))
         self.assertNotIn("Google Drive", stored["Notes"])
 
     def test_existing_canonical_local_resume_is_recovered_without_regeneration(self):
@@ -667,7 +731,7 @@ class QueueTests(unittest.TestCase):
         stored = next(data for number, data in self.tracker.scout().rows if number == row)
         self.assertEqual(run.recovered, 1)
         self.assertEqual(stored["Resume Created"], "X")
-        self.assertEqual(stored["Resume Link"], resume.resolve().as_uri())
+        self.assertEqual(stored["Resume Link"], str(resume.resolve()))
 
     def test_completed_applied_row_backfills_local_link_without_reapproval(self):
         row = self.add_scout_row(
@@ -688,7 +752,9 @@ class QueueTests(unittest.TestCase):
                 "- **Job Number:** applied-905\n- **Scout ID:** 905\n",
                 encoding="utf-8",
             )
-            with patch.object(queue.manage_job_tracker, "RESUME_DIR", resume_dir):
+            with patch.object(queue.manage_job_tracker, "RESUME_DIR", resume_dir), \
+                 patch.object(queue.manage_job_tracker, "publish_resume",
+                              return_value="https://drive.google.test/applied-905"):
                 run = queue.run_queue(
                     self.tracker, root / "empty.sqlite3", source="indeed",
                     existing_generator=lambda item, db: queue.Artifacts(
@@ -698,10 +764,52 @@ class QueueTests(unittest.TestCase):
 
         stored = next(data for number, data in self.tracker.scout().rows if number == row)
         self.assertEqual(run.recovered, 1)
-        self.assertEqual(stored["Apply?"], "")
+        self.assertEqual(stored["Apply?"], "Yes")
         self.assertEqual(stored["Applied"], "x")
         self.assertEqual(stored["Resume Created"], "X")
-        self.assertEqual(stored["Resume Link"], resume.resolve().as_uri())
+        self.assertIn("https://drive.google.test/applied-905", stored["Resume Link"])
+
+    def test_completed_nonqualifying_row_repairs_link_without_changing_apply(self):
+        row = self.add_scout_row(
+            scout_id=906, apply="No", created="X", location="Denver, CO",
+            arrangement="Hybrid", company="Repair Company", title="Marketing Manager",
+            url="https://www.indeed.com/viewjob?jk=repair-906",
+        )
+        with TemporaryDirectory() as temp:
+            root = Path(temp)
+            resume = root / "Dave-Call+Repair-Company+Marketing-Manager+repair-906.docx"
+            resume.write_bytes(b"rebuilt and validated docx")
+            listing = root / "Repair-Company+repair-906.md"
+            listing.write_text(
+                "# Marketing Manager\n\n- **Company:** Repair Company\n"
+                "- **Job Number:** repair-906\n- **Scout ID:** 906\n",
+                encoding="utf-8",
+            )
+            generated = []
+
+            def rebuild(item, _db):
+                generated.append(item.scout_id)
+                return queue.Artifacts(resume, listing)
+
+            with patch.object(
+                queue.manage_job_tracker, "publish_resume",
+                return_value="https://drive.google.test/repair-906",
+            ):
+                run = queue.run_queue(
+                    self.tracker, root / "empty.sqlite3", source="indeed",
+                    generator=rebuild,
+                    existing_generator=lambda *_: (_ for _ in ()).throw(RuntimeError(
+                        "Resume Created is complete but an exact existing DOCX could not be identified; "
+                        "no duplicate was generated"
+                    )),
+                    print_summary=False,
+                )
+        stored = next(data for number, data in self.tracker.scout().rows if number == row)
+        self.assertEqual(generated, [906])
+        self.assertEqual(len(run.successes), 1)
+        self.assertEqual(stored["Apply?"], "No")
+        self.assertEqual(stored["Resume Created"], "X")
+        self.assertIn("https://drive.google.test/repair-906", stored["Resume Link"])
 
     def test_recovery_tolerates_punctuation_encoding_damage_and_qa_timestamp(self):
         with TemporaryDirectory() as temp:
@@ -890,6 +998,59 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(second.snapshot.pending, [])
         self.assertEqual(second.snapshot.link_backfill, [])
 
+    def test_indeed_rerun_skips_x_with_persistent_link(self):
+        row = self.add_scout_row(
+            scout_id=920, source="Indeed", company="Repeat Company",
+            apply="", location="Ogden, UT", listing="Lead growth marketing programs.",
+        )
+        generated = []
+        with TemporaryDirectory() as temp:
+            resume = Path(temp) / "resume.docx"
+            resume.write_bytes(b"validated docx")
+
+            def generator(item, _db):
+                generated.append(item.scout_id)
+                return queue.Artifacts(resume, Path("listing.md"))
+
+            recorder = lambda item, *_: queue.manage_job_tracker.mark_batch_resume(
+                item.scout_id, item.row, self.tracker,
+                "https://drive.google.test/repeat-920", completion_marker="X",
+            )
+            first = queue.run_queue(
+                self.tracker, Path(temp) / "empty.sqlite3", source="indeed",
+                generator=generator, recorder=recorder, print_summary=False,
+            )
+            second = queue.run_queue(
+                self.tracker, Path(temp) / "empty.sqlite3", source="indeed",
+                generator=lambda *_: self.fail("completed Indeed row was regenerated"),
+                recorder=lambda *_: self.fail("completed Indeed row was rewritten"),
+                print_summary=False,
+            )
+        stored = next(data for number, data in self.tracker.scout().rows if number == row)
+        self.assertEqual(len(first.successes), 1)
+        self.assertEqual(generated, [920])
+        self.assertEqual(stored["Apply?"], "Yes")
+        self.assertEqual(stored["Resume Created"], "X")
+        self.assertEqual(second.snapshot.pending, [])
+        self.assertEqual(second.snapshot.link_backfill, [])
+
+    def test_legacy_c_with_persistent_link_is_skipped(self):
+        row = self.add_scout_row(
+            scout_id=921, source="Indeed", company="Legacy Company",
+            apply="Yes", created="C", location="Denver, CO", arrangement="Onsite",
+        )
+        self.fake.data["Job Scout"][row - 1][SCOUT.index("Resume Link")] = (
+            '=HYPERLINK("https://drive.google.test/legacy-921","Open Resume")'
+        )
+        run = queue.run_queue(
+            self.tracker, Path("unused.sqlite3"), source="indeed", dry_run=True,
+            generator=lambda *_: self.fail("legacy completed row was generated"),
+            recorder=lambda *_: self.fail("legacy completed row was rewritten"),
+            print_summary=False,
+        )
+        self.assertIn(row, [item.row for item in run.snapshot.already_created])
+        self.assertEqual(run.snapshot.link_backfill, [])
+
     def test_x_with_blank_s_backfills_existing_without_generating_duplicate(self):
         row = self.fake.data["Job Scout"][1]
         row[SCOUT.index("Resume Created")] = "X"
@@ -918,7 +1079,7 @@ class QueueTests(unittest.TestCase):
             self.tracker.scout(value_render_option="FORMULA").rows[0][1]["Resume Link"]
         ))
 
-    def test_drive_url_failure_leaves_g_and_s_blank(self):
+    def test_local_path_failure_leaves_g_and_s_blank(self):
         item = queue.QueueRow(2, 42, "Existing", "Role")
         with TemporaryDirectory() as temp:
             resume = Path(temp) / "Dave-Call+Existing+Role+queue-42.docx"
@@ -931,10 +1092,10 @@ class QueueTests(unittest.TestCase):
             with patch.object(
                 queue.manage_job_tracker, "publish_resume",
                 side_effect=RuntimeError(
-                    "Resume created but Google Drive upload failed; Column S was not updated"
+                    "Resume path could not be verified; Column S was not updated"
                 ),
             ):
-                with self.assertRaisesRegex(RuntimeError, "Drive upload failed"):
+                with self.assertRaisesRegex(RuntimeError, "path could not be verified"):
                     queue.record_success(item, queue.Artifacts(resume, listing), self.tracker)
         scout = self.tracker.scout(value_render_option="FORMULA").rows[0][1]
         self.assertEqual(scout["Resume Created"], "")

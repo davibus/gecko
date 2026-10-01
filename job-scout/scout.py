@@ -646,7 +646,7 @@ def resolve_urls(args, store, _preferences):
 
 
 def _daily_resume_runner(new_job_ids, store, *, dry_run=False):
-    """Run the canonical Gecko queue for every currently approved, incomplete row."""
+    """Run the canonical Gecko queue with daily all-source geographic approval."""
     new_job_ids = tuple(new_job_ids)
     scripts = PROJECT_ROOT / "scripts"
     if str(scripts) not in sys.path:
@@ -658,6 +658,7 @@ def _daily_resume_runner(new_job_ids, store, *, dry_run=False):
     )
     result = generate_apply_queue.run_queue(
         GoogleTracker(), store.path.resolve(), dry_run=dry_run,
+        auto_approve_geographic=True,
         print_summary=False,
         logger=generate_apply_queue._append_run_log,
     )
@@ -754,7 +755,7 @@ def _empty_queue_result():
 
 
 def daily(args, store, preferences):
-    """Discover, sync, and generate Gecko resumes for new approved jobs."""
+    """Discover, sync, geographically approve, and generate Gecko resumes."""
     started = time.monotonic()
     if args.dry_run and not getattr(args, "_temporary_store", False):
         with tempfile.TemporaryDirectory() as directory:
@@ -970,7 +971,7 @@ def build_parser():
     )
     review_parser.set_defaults(function=review_jobs)
     daily_parser = sub.add_parser(
-        "daily", help="Search, sync, and create Gecko resumes for new approved jobs"
+        "daily", help="Search, sync, approve Utah/remote jobs, and create Gecko resumes"
     )
     daily_parser.add_argument("--results", type=int, default=20)
     daily_parser.add_argument("--limit", type=int, default=20)

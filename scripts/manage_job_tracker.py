@@ -13,7 +13,6 @@ from typing import Iterable
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "job-scout"))
 from google_tracker import GoogleTracker, job_key, load_environment  # noqa: E402
-from resume_storage import GoogleDriveResumeStore  # noqa: E402
 
 RESUME_DIR = ROOT / "output/resumes"
 LISTING_DIR = ROOT / "input/job-descriptions"
@@ -115,7 +114,8 @@ def record_completed_resume(
     }
     if record.scout_id is not None:
         tracker.mark_scout_resume(
-            record.scout_id, application["Resume Link"], require_approved=False
+            record.scout_id, application["Resume Link"], require_approved=False,
+            allow_local=True,
         )
     try:
         row, created = tracker.upsert_application(application)
@@ -135,13 +135,20 @@ def record_queue_success(
     scout_id: int | None,
     scout_row: int,
     tracker: GoogleTracker,
+    *,
+    completion_marker: str = "X",
+    require_approved: bool = True,
 ) -> JobRecord:
     """Publish a validated resume, then atomically complete Columns G and S."""
     record = record_from_files(resume, listing)
     if record.scout_id is not None and record.scout_id != scout_id:
         raise RuntimeError("Archived listing Scout ID does not match the live Job Scout row")
     resume_url = publish_resume(record, tracker, scout_id=scout_id)
-    mark_batch_resume(scout_id, scout_row, tracker, resume_url)
+    mark_batch_resume(
+        scout_id, scout_row, tracker, resume_url,
+        allow_local=True, completion_marker=completion_marker,
+        require_approved=require_approved,
+    )
     return record
 
 
@@ -165,7 +172,7 @@ def record_queue_success_local(
     if record.scout_id is not None and record.scout_id != scout_id:
         raise RuntimeError("Archived listing Scout ID does not match the live Job Scout row")
     mark_batch_resume(
-        scout_id, scout_row, tracker, path.as_uri(), allow_local=True,
+        scout_id, scout_row, tracker, str(path), allow_local=True,
         require_approved=require_approved,
     )
     return record
@@ -176,17 +183,16 @@ def publish_resume(
     tracker: GoogleTracker,
     *,
     scout_id: int | None = None,
-    store: GoogleDriveResumeStore | None = None,
 ) -> str:
-    """Return the existing or newly uploaded persistent URL for this exact job."""
-    drive = store or GoogleDriveResumeStore(tracker.config.credentials_file)
-    upload = drive.publish(
-        record.resume_path, record.job_number,
-        scout_id=scout_id if scout_id is not None else record.scout_id,
-    )
-    if not upload.url.startswith("https://"):
-        raise RuntimeError("Resume created but no accessible resume URL was returned")
-    return upload.url
+    """Return the absolute local path for a completed Gecko resume."""
+    del tracker, scout_id
+    path = Path(record.resume_path).resolve()
+    local_root = RESUME_DIR.resolve()
+    if path.parent != local_root or path.suffix.casefold() != ".docx":
+        raise ValueError(f"Final resume must be a DOCX directly under {local_root}")
+    if not path.is_file() or path.stat().st_size <= 0:
+        raise ValueError("Final local DOCX is missing or empty")
+    return str(path)
 
 
 def _without_resume_failure(value: object) -> str:
@@ -256,6 +262,7 @@ def add_job(args: argparse.Namespace, tracker: GoogleTracker | None = None) -> i
 def mark_batch_resume(
     scout_id: int | None, row_number: int, tracker: GoogleTracker, resume_url: str,
     *, allow_local: bool = False, require_approved: bool = True,
+    completion_marker: str = "X",
 ) -> None:
     """Write Column G and fixed Column S together after stable-ID verification."""
     tab, row, data = _queue_source_row(scout_id, row_number, tracker)
@@ -264,7 +271,7 @@ def mark_batch_resume(
     notes = _without_resume_failure(data.get("Notes"))
     tracker.mark_scout_resume(
         scout_id, resume_url, notes=notes, row_number=row, allow_local=allow_local,
-        require_approved=require_approved,
+        require_approved=require_approved, completion_marker=completion_marker,
     )
 
 

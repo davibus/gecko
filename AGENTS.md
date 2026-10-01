@@ -68,6 +68,20 @@ Daily Job Scout also runs the reusable read-only Gmail response checker after th
 
 Never bypass `scripts/manage_job_tracker.py`, because it also marks the matching Scout row `Resume Created`. If Google Sheets is unavailable, report the error; do not create a local tracker or silently fall back.
 
+### Daily all-source resume queue
+
+`python job-scout/scout.py daily` is the complete discovery-to-resume workflow. After discovery and Sheet synchronization, it must invoke the canonical `scripts/generate_apply_queue.py` implementation automatically for all sources; do not create a duplicate queue workflow or require a second manual command.
+
+On every non-dry daily run, inspect all existing `Job Scout` rows. Using only `Location` and `Work Arrangement`, set Column F (`Apply?`) to `Yes` for Utah jobs, including on-site and hybrid Utah jobs, and for jobs that explicitly allow remote work. Do not infer remote work from a blank/unspecified arrangement or descriptive listing text, and leave nonqualifying rows' Column F values unchanged.
+
+Process eligible rows through the normal Gecko generation and Word-native validation workflow. Only after the exact DOCX exists under `output/resumes` and passes validation may the workflow write Column G (`Resume Created`) as `X`, fixed Column S (`Resume Link`) as the absolute local DOCX path, and Gecko Status as `Resume Created` unless the row already has a later lifecycle status. Treat both `X` and the prior `C` marker as completed for safe repeat runs. Skip completed rows whose Column S path points to an existing resume; repair missing or invalid paths through the existing workflow without creating duplicate jobs or resumes. Never upload resumes to Google Drive, mark Applied, or submit an application. A generation, validation, local-artifact, or Sheet failure must leave Column G unmarked and report a retryable failure.
+
+Daily column mapping:
+
+- F = `Yes` for Utah or remote jobs
+- G = `X` after successful resume creation
+- S = absolute local path under `output/resumes`
+
 ## Persistent Google Sheets formatting
 
 Preserve user colors, filters, checkbox values, frozen rows, column widths, conditional formatting, formulas, hyperlinks, and manual fields on the live `Job Tracker` and `Job Scout` tabs. Routine operations update only Gecko-managed cell values in place. Never recreate tabs, rewrite entire ranges, change physical row order, or reset formatting or filter criteria. Initialize native Applied/Contacted checkboxes only on newly created rows; never overwrite existing manual values. Outside the Gmail response checker, preserve `Response` as a user-owned field.

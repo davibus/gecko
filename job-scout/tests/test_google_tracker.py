@@ -201,13 +201,13 @@ class GoogleTrackerTests(unittest.TestCase):
             ["E", "S", "G"],
         )
 
-    def test_local_resume_uri_requires_explicit_local_mode(self):
-        local_uri = "file:///C:/Users/DCALL/Desktop/gecko/output/resumes/resume.docx"
+    def test_local_resume_path_requires_explicit_local_mode(self):
+        local_path = "C:\\Users\\DCALL\\Desktop\\gecko\\output\\resumes\\resume.docx"
         with self.assertRaisesRegex(ValueError, "explicitly allows"):
-            self.tracker.mark_scout_resume(42, local_uri)
-        self.tracker.mark_scout_resume(42, local_uri, allow_local=True)
+            self.tracker.mark_scout_resume(42, local_path)
+        self.tracker.mark_scout_resume(42, local_path, allow_local=True)
         stored = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
-        self.assertEqual(stored["Resume Link"], local_uri)
+        self.assertEqual(stored["Resume Link"], local_path)
         self.assertEqual(stored["Resume Created"], "X")
 
     def test_marking_resume_does_not_downgrade_applied_status(self):
@@ -242,11 +242,10 @@ class GoogleTrackerTests(unittest.TestCase):
         self.assertEqual(stored["Apply?"], "Yes")
         self.assertEqual([write[2] for write in self.fake.writes], ["F"])
 
-    def test_manual_approval_preserves_explicit_no(self):
+    def test_manual_approval_overrides_no_for_verified_qualifying_row(self):
         self.fake.data["Job Scout"][1][SCOUT.index("Apply?")] = "No"
-        with self.assertRaisesRegex(RuntimeError, "explicit manual value"):
-            self.tracker.approve_manual_scout_row(2, company="Existing", title="Role")
-        self.assertEqual(self.fake.data["Job Scout"][1][SCOUT.index("Apply?")], "No")
+        self.tracker.approve_manual_scout_row(2, company="Existing", title="Role")
+        self.assertEqual(self.fake.data["Job Scout"][1][SCOUT.index("Apply?")], "Yes")
 
     def test_assign_manual_scout_id_is_unique_and_preserves_existing(self):
         self.fake.data["Job Scout"][1][SCOUT.index("Scout ID")] = ""

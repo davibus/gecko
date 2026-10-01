@@ -66,6 +66,14 @@ Google Sheets is the canonical job tracker. Do not create or update a local Exce
 - Preserve user formatting and manual fields. Update only specific managed cell values; never recreate tabs, reorder rows, clear populated ranges, reset filters or conditional formatting, or overwrite Applied/Contacted.
 - After the resume queue, Daily Job Scout uses the separate reusable Gmail checker with only `gmail.readonly` access. It may write only conservative employer-response summaries to the matching `Job Scout` `Response` cell. Gmail failures are reported and logged without failing discovery or resume creation.
 
+### Daily all-source apply and resume behavior
+
+`python job-scout/scout.py daily` is the complete workflow and automatically invokes the canonical queue implementation after discovery and Sheet synchronization. It evaluates all existing `Job Scout` rows across every source. Based only on `Location` and `Work Arrangement`, Column F (`Apply?`) is set to `Yes` for every Utah job (on-site, hybrid, or remote) and every job that explicitly allows remote work. Blank or unspecified work arrangements are not remote. Apply? values on all other jobs remain unchanged.
+
+Eligible rows use the standard source-backed Gecko generator and Word-native two-page validation. After the exact DOCX exists under `output/resumes` and passes validation, write Column G (`Resume Created`) = `X`, fixed Column S as the absolute local DOCX path, and the normal `Resume Created` Gecko Status without downgrading later application statuses. Both `X` and the prior `C` marker are recognized as completed. Completed rows whose Column S path points to an existing resume are idempotently skipped; missing/invalid resumes or paths are repaired through the same workflow without duplicate jobs or resumes. Never upload resumes to Google Drive, never mark Applied, and never mark completion after a generation, validation, local-artifact, or Sheet failure.
+
+Daily column mapping: F = `Yes` for Utah or remote jobs; G = `X` after successful resume creation; S = absolute local path under `output/resumes`.
+
 ## Filename rules
 
 Resume:

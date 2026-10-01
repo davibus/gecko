@@ -19,7 +19,7 @@ The daily command:
 7. reuses persistent AI results when the normalized description and candidate profile are unchanged;
 8. when AI models are configured, performs compact-profile triage and fully scores only `possible`/`strong` jobs;
 9. appends automated discoveries and populates valid manual Indeed rows;
-10. runs Gecko for every populated live row whose user-owned `Apply?` normalizes to `Yes` and whose `Resume Created` does not normalize to `X`; short descriptions are accepted, failures are written specifically to Column I for later retry, and success writes X to G while clearing only Gecko's prior failure message;
+10. runs Gecko automatically for every eligible incomplete live row across all sources; qualifying Utah/remote rows are set to `Apply? = Yes`, short descriptions are accepted, failures are written specifically to Column I for later retry, and success writes X to G while clearing only Gecko's prior failure message;
 11. checks Gmail read-only for substantive employer responses to applied jobs and updates `Response`.
 
 `python job-scout/scout.py daily --dry-run` uses a temporary SQLite copy and does not write the Google Sheet, descriptions, resumes, or reports. A failure for one job is logged without stopping later jobs.
@@ -30,7 +30,7 @@ The standalone retry command remains:
 python scripts/generate_apply_queue.py
 ```
 
-It reads columns by header name, requires `Apply? = Yes`, and requires a blank `Resume Created`.
+The normal command is `python job-scout/scout.py daily`. It automatically reuses the canonical queue after discovery, reads columns by header name, evaluates existing rows from every source, recognizes canonical `X` and prior `C` completion markers, and preserves unrelated cells.
 
 ## Manual Indeed workflow
 
@@ -39,14 +39,14 @@ It reads columns by header name, requires `Apply? = Yes`, and requires a blank `
 3. Paste it into Column R (`Job URL`) of a new `Job Scout` row.
 4. Run the normal `python job-scout/scout.py daily` command.
 5. Gecko checks the complete Sheet and local datastore for the same Indeed `jk`, canonical URL, or exact normalized company/title/location identity.
-6. If the job is new, Gecko retrieves the structured posting, populates the existing row, assigns the next never-used numeric Scout ID, and includes it in the normal review/resume queue. `Apply?` remains user-owned; set it to `Yes` if the row should produce a resume.
+6. If the job is new, Gecko retrieves the structured posting, populates the existing row, assigns the next never-used numeric Scout ID, and includes it in the normal review/resume queue. During `daily`, Gecko sets Apply? to `Yes` when Location is in Utah or Work Arrangement explicitly permits remote work, just as it does for every other source.
 7. If it is a duplicate, Gecko leaves the pasted URL in Column R, writes `Duplicate — Scout ID ...` in `Notes`, and does not allocate an ID, retrieve it again, or create a resume.
 
 Indeed can return a block page or omit usable structured posting data. A new row tries the pasted Indeed page once, then searches configured Web Careers backends by `jk` and canonical Indeed URL. If indexed Indeed evidence identifies the role, Gecko accepts an employer careers posting only when title, company, and available location evidence match strongly. The pasted Indeed URL remains in Column R and the confirmed employer URL is retained internally. Only after all configured fallbacks fail does Gecko allocate no Scout ID, write `Indeed retrieval failed — manual review required` with per-stage diagnostics in `Notes`, and continue with later rows.
 
 Failed Indeed rows are retried automatically on later daily runs through fallback search first; Gecko does not repeat the previously blocked direct Indeed request. To retry `jk=3736ea0494f752a7`, leave its URL and failure note in place and run `python job-scout/scout.py daily` again. Duplicate notes remain terminal and are not retried.
 
-Job Scout never overwrites the user-maintained `Apply?` decision. Manual Indeed jobs follow the same architecture.
+Outside the all-source Utah/remote eligibility rule, Job Scout preserves the user-maintained `Apply?` decision. Manual Indeed jobs follow the same architecture. The daily column mapping is F = `Yes` for Utah or remote jobs, G = `X` after successful resume creation, and S = the absolute local DOCX path.
 
 ## Google Sheet schema
 
@@ -210,7 +210,7 @@ Gecko evaluates the job description directly against the required master archive
 
 - an exactly two-page DOCX after native Microsoft Word validation.
 
-The completed resume is recorded only after the DOCX exists, native QA passes, the DOCX has a persistent Google Drive URL, and that URL is written to the canonical Sheet. Column G marks resume creation with `X`; fixed Column S contains the clickable `Open Resume` link. A row with G = X and blank S is safely backfilled from a uniquely identified existing DOCX/Drive object without generating a duplicate. The Google Sheet remains the source of truth; no local Excel tracker is used.
+The completed resume is recorded only after the DOCX exists directly under `output/resumes`, native QA passes, and its absolute local path is written to the canonical Sheet. The daily queue marks Column G with canonical `X`; prior `C` remains recognized. Fixed Column S contains the local DOCX path as plain text. A completed row with blank or invalid S is safely repaired from a uniquely identified existing DOCX or rebuilt through the same validated workflow without generating a duplicate resume. The Google Sheet remains the source of truth; no local Excel tracker or Google Drive resume copy is used.
 
 ## Data preservation
 

@@ -2,7 +2,7 @@
 
 Gecko discovers and imports relevant jobs, stores listing data, tailors and generates source-backed resumes, and tracks applications in Google Sheets.
 
-The normal Daily Job Scout command runs the complete discovery-to-resume workflow. It searches enabled official APIs, public feeds, configured ATS boards, and compliant Brave discovery sources; rejects Jooble; filters to relevant role families; deduplicates results; synchronizes the existing Google Sheet; sends only newly discovered rows with `Apply? = Yes` and blank `Resume Created` cells through the canonical Gecko V2 generator; and then checks Gmail read-only for substantive employer responses to applied jobs.
+The normal Daily Job Scout command runs the complete discovery-to-resume workflow. It searches enabled official APIs, public feeds, configured ATS boards, and compliant Brave discovery sources; rejects Jooble; filters to relevant role families; deduplicates results; synchronizes the existing Google Sheet; sets Apply? to Yes for Utah or explicitly remote rows from every source; sends eligible incomplete rows through the canonical Gecko V2 generator; writes X and the persistent resume link only after validation; and then checks Gmail read-only for substantive employer responses to applied jobs.
 
 ```powershell
 python job-scout/scout.py daily
@@ -41,7 +41,7 @@ To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
 
 ## Job tracker
 
-Google Sheets is the canonical job tracker. Do not create or update a local Excel job tracker. Configure the spreadsheet ID, tab names, service-account credentials, and `GOOGLE_DRIVE_RESUME_FOLDER_ID` in `.env.local` using `.env.example`, then check connectivity. Enable both the Google Sheets and Google Drive APIs, and share the configured Drive folder with the service account so completed DOCX files inherit access:
+Google Sheets is the canonical job tracker. Do not create or update a local Excel job tracker. Configure the spreadsheet ID, tab names, and service-account credentials in `.env.local` using `.env.example`, then check connectivity. Enable the Google Sheets API and share the tracker with the service account. Completed DOCX files remain only under `output/resumes`:
 
 ```powershell
 python scripts/manage_job_tracker.py init
@@ -59,7 +59,13 @@ Validate the live Sheet:
 python scripts/manage_job_tracker.py validate
 ```
 
-The `add` command is idempotent by Job Number when the application tab exists. It reads company, title, pay, source URL, source name, and date found from the archived listing; unavailable optional fields remain blank. It uploads or reuses the job's DOCX in the configured Google Drive folder, then updates the matching Job Scout lifecycle while preserving user-maintained application/contact fields. On `Job Scout`, Column G (`Resume Created`) receives `X` and fixed Column S receives `=HYPERLINK("https://…","Open Resume")` in the same row update. Column S is never inserted or shifted; a blank S1 is initialized to `Resume Link`.
+The `add` command is idempotent by Job Number when the application tab exists. It reads company, title, pay, source URL, source name, and date found from the archived listing; unavailable optional fields remain blank. It verifies the job's DOCX is directly under `output/resumes`, then updates the matching Job Scout lifecycle while preserving user-maintained application/contact fields. The daily queue uses Column G (`Resume Created`) = `X` and fixed Column S = the absolute local DOCX path; the prior `C` marker remains recognized as completed. Column S is never inserted or shifted; a blank S1 is initialized to `Resume Link`.
+
+Run the complete all-source workflow with:
+
+`python job-scout/scout.py daily`
+
+The daily command reuses `scripts/generate_apply_queue.py`; there is no duplicate resume workflow. For every source, it sets F (`Apply?`) to `Yes` for Utah or explicitly remote jobs, writes G (`Resume Created`) = `X` only after successful generation and validation, and writes S as the absolute local DOCX path. Nonqualifying Apply? values and unrelated cells are preserved; the workflow never applies to jobs or marks `Applied`.
 
 ## Gmail response tracking
 

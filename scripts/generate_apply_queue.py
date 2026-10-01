@@ -1,4 +1,4 @@
-"""Process live Google rows with Apply? = Yes and Resume Created != X."""
+"""Process eligible live Google Job Scout rows through the Gecko resume workflow."""
 
 from __future__ import annotations
 
@@ -36,6 +36,8 @@ import gecko_v2  # noqa: E402
 import manage_job_tracker  # noqa: E402
 
 REQUIRED = ("Scout ID", "Company", "Job Title", "Apply?", "Resume Created")
+COMPLETION_MARKER = "X"
+LEGACY_COMPLETION_MARKERS = frozenset({"c", "x"})
 
 
 @dataclass(frozen=True)
@@ -117,6 +119,11 @@ class QueueProcessingError(RuntimeError):
 
 def _flag(value: object) -> str:
     return str(value or "").strip().casefold()
+
+
+def _resume_completed(value: object) -> bool:
+    """Recognize the canonical X marker and Gecko's prior C marker."""
+    return _flag(value) in LEGACY_COMPLETION_MARKERS
 
 
 def _scout_id(value: object) -> int | None:
@@ -230,14 +237,17 @@ def _duplicate_key(item: QueueRow) -> tuple[str, str] | None:
 
 def _valid_resume_link(value: object) -> bool:
     text = str(value or "").strip()
+    if re.fullmatch(r"[A-Za-z]:[\\/][^\r\n]+\.docx", text, re.IGNORECASE):
+        path = Path(text).resolve()
+        return (
+            path.parent == (ROOT / "output" / "resumes").resolve()
+            and path.is_file()
+            and path.stat().st_size > 0
+        )
     if re.fullmatch(r"https://[^\s]+", text, re.IGNORECASE):
         return True
-    if re.fullmatch(r"file:///[A-Za-z]:/[^\r\n]+\.docx", text, re.IGNORECASE):
-        return True
-    if re.fullmatch(r"[A-Za-z]:[\\/][^\r\n]+\.docx", text, re.IGNORECASE):
-        return True
     match = re.fullmatch(
-        r'=HYPERLINK\("((?:https://|file:///)[^"\s]+)",\s*"Open Resume"\)',
+        r'=HYPERLINK\("(https://[^"\s]+)",\s*"Open Resume"\)',
         text, re.IGNORECASE,
     )
     return bool(match)
@@ -258,6 +268,8 @@ def read_queue(
     tracker: GoogleTracker,
     eligible_scout_ids: set[int] | None = None,
     source: str | None = None,
+    *,
+    auto_approve_geographic: bool = False,
 ) -> QueueSnapshot:
     """Classify live rows, optionally restricted to the current daily discovery set."""
     tab = _retry_sheet(lambda: tracker.scout(value_render_option="FORMULA"))
@@ -266,9 +278,9 @@ def read_queue(
         raise ValueError("Job Scout is missing required columns: " + ", ".join(sorted(missing)))
     if tab.headers["Apply?"] != 6 or tab.headers["Resume Created"] != 7:
         raise ValueError("Job Scout must keep Apply? in Column F and Resume Created in Column G")
-    if source == "indeed":
+    if source == "indeed" or auto_approve_geographic:
         if len(tab.header_values) < SCOUT_LISTING_COLUMN:
-            raise ValueError("Job Scout must keep the manual Indeed listing/input in Column R")
+            raise ValueError("Job Scout must keep the listing/job URL field in Column R")
         if tab.headers.get("Resume Link") != SCOUT_RESUME_LINK_COLUMN:
             raise ValueError("Job Scout must keep Resume Link in Column S")
     matched: list[QueueRow] = []
@@ -289,13 +301,16 @@ def read_queue(
     }
     completed_keys = {
         key for item in matched
-        if _flag((item.fields or {}).get("Resume Created")) == "x"
+        if _resume_completed((item.fields or {}).get("Resume Created"))
         for key in [_duplicate_key(item)] if key is not None
     }
     seen_pending: set[tuple[str, str]] = set()
     for item in matched:
         data = item.fields or {}
-        qualification = _geographic_qualification(item) if source == "indeed" else ""
+        qualification = (
+            _geographic_qualification(item)
+            if source == "indeed" or auto_approve_geographic else ""
+        )
         if qualification == "Utah":
             stats["utah_qualifying"] += 1
         elif qualification == "Remote":
@@ -304,7 +319,7 @@ def read_queue(
             stats["missing_usable_listing"] += 1
         needs_global_backfill = (
             _flag(data.get("Apply?")) == "yes"
-            and _flag(data.get("Resume Created")) == "x"
+            and _resume_completed(data.get("Resume Created"))
             and not _valid_resume_link(data.get("Resume Link"))
         )
         if (eligible_scout_ids is not None
@@ -312,10 +327,11 @@ def read_queue(
                 and not needs_global_backfill
                 and source is None):
             continue
-        if _flag(data.get("Resume Created")) == "x":
+        if _resume_completed(data.get("Resume Created")):
             stats["already_completed"] += 1
             if not _valid_resume_link(data.get("Resume Link")):
-                if _flag(data.get("Apply?")) == "yes" or source == "indeed":
+                if (_flag(data.get("Apply?")) == "yes" or source == "indeed"
+                        or auto_approve_geographic):
                     link_backfill.append(item)
                     decisions.append((item, "ELIGIBLE: Resume Link backfill"))
                 else:
@@ -328,15 +344,15 @@ def read_queue(
             missing_identity.append(item)
             decisions.append((item, "SKIP: missing required job identity"))
         else:
-            apply_value = str(data.get("Apply?") or "").strip()
-            normalized_apply = _flag(apply_value)
-            auto_apply = False
+            current_apply = str(data.get("Apply?") or "").strip()
+            normalized_apply = _flag(current_apply)
+            auto_apply = ((source == "indeed" or auto_approve_geographic)
+                          and bool(qualification) and normalized_apply != "yes")
             if normalized_apply == "yes":
                 stats["already_approved"] += 1
-            elif not apply_value and source == "indeed" and qualification:
-                auto_apply = True
+            elif auto_apply:
                 stats["would_set_apply_yes"] += 1
-            elif not apply_value and source == "indeed":
+            elif not current_apply and (source == "indeed" or auto_approve_geographic):
                 stats["outside_utah_non_remote"] += 1
                 not_approved.append(item)
                 decisions.append((item, "SKIP: outside Utah and not remote"))
@@ -351,7 +367,7 @@ def read_queue(
                 not_approved.append(item)
                 decisions.append((
                     item,
-                    f"SKIP: Apply? explicit value {apply_value!r} prevents automatic approval",
+                    f"SKIP: Apply? explicit value {current_apply!r} prevents automatic approval",
                 ))
                 continue
             if ((key := _duplicate_key(item)) is not None
@@ -411,9 +427,9 @@ def _still_pending(tracker: GoogleTracker, item: QueueRow, *, link_backfill: boo
     if not identity_matches:
         return False
     if link_backfill:
-        return _flag(row.get("Resume Created")) == "x" and not _valid_resume_link(row.get("Resume Link"))
+        return _resume_completed(row.get("Resume Created")) and not _valid_resume_link(row.get("Resume Link"))
     return (_flag(row.get("Apply?")) == "yes"
-            and _flag(row.get("Resume Created")) != "x")
+            and not _resume_completed(row.get("Resume Created")))
 
 
 def _refresh_item(tracker: GoogleTracker, item: QueueRow) -> QueueRow:
@@ -488,10 +504,8 @@ def _prepare_indeed_item(
     """Apply a qualifying blank decision, then allocate the canonical Scout ID."""
     current = _refresh_item(tracker, item)
     apply_value = str((current.fields or {}).get("Apply?") or "").strip()
-    if not apply_value:
-        qualification = _geographic_qualification(current)
-        if not qualification:
-            raise RuntimeError("Indeed row is no longer Utah or explicitly remote")
+    qualification = _geographic_qualification(current)
+    if qualification and _flag(apply_value) != "yes":
         _retry_sheet(lambda: tracker.approve_manual_scout_row(
             current.row, company=current.company, title=current.title,
         ))
@@ -806,7 +820,7 @@ def recover_existing(item: QueueRow, db: Path) -> Artifacts:
             listing, attempts = _saved_listing(item), ()
     if listing is None:
         raise RuntimeError(
-            "Resume Created is X but no exact archived listing identifies the existing resume"
+            "Resume Created is complete but no exact archived listing identifies the existing resume"
         )
     plan = gecko_v2.create_plan(listing.resolve())
     if (_identity_text(plan["job"]["company"]) != _identity_text(item.company)
@@ -816,7 +830,7 @@ def recover_existing(item: QueueRow, db: Path) -> Artifacts:
     final = _find_existing_resume(plan, scratch)
     if final is None:
         raise RuntimeError(
-            "Resume Created is X but an exact existing DOCX could not be identified; no duplicate was generated"
+            "Resume Created is complete but an exact existing DOCX could not be identified; no duplicate was generated"
         )
     scratch.mkdir(parents=True, exist_ok=True)
     qa = gecko_v2.native_qa(plan, final, scratch)
@@ -865,24 +879,28 @@ def _finish_generation(
 
 def record_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTracker) -> None:
     """Record the validated resume through the canonical tracker integration."""
-    if not artifacts.resume.is_file():
-        raise ValueError("Final DOCX is missing")
+    if not artifacts.resume.is_file() or artifacts.resume.stat().st_size <= 0:
+        raise ValueError("Final DOCX is missing or empty")
     if not (_still_pending(tracker, item)
             or _still_pending(tracker, item, link_backfill=True)):
         raise RuntimeError("Apply? or Resume Created changed before tracker update")
     _retry_sheet(lambda: manage_job_tracker.record_queue_success(
-        artifacts.resume, artifacts.listing, item.scout_id, item.row, tracker
+        artifacts.resume, artifacts.listing, item.scout_id, item.row, tracker,
+        completion_marker=COMPLETION_MARKER,
+        require_approved=not _resume_completed(
+            (item.fields or {}).get("Resume Created")
+        ),
     ))
 
 
 def record_local_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTracker) -> None:
-    """Record a validated manual Indeed resume without requiring Google Drive."""
+    """Record a validated resume using its absolute local DOCX path."""
     if not artifacts.resume.is_file() or artifacts.resume.stat().st_size <= 0:
         raise ValueError("Final local DOCX is missing or empty")
     if not (_still_pending(tracker, item)
             or _still_pending(tracker, item, link_backfill=True)):
         raise RuntimeError("Apply? or Resume Created changed before tracker update")
-    completed_backfill = _flag((item.fields or {}).get("Resume Created")) == "x"
+    completed_backfill = _resume_completed((item.fields or {}).get("Resume Created"))
     _retry_sheet(lambda: manage_job_tracker.record_queue_success_local(
         artifacts.resume, artifacts.listing, item.scout_id, item.row, tracker,
         require_approved=not completed_backfill,
@@ -901,6 +919,7 @@ def run_queue(
     dry_run: bool = False,
     eligible_scout_ids: set[int] | None = None,
     source: str | None = None,
+    auto_approve_geographic: bool = False,
     generator=generate,
     existing_generator=recover_existing,
     recorder=None,
@@ -908,8 +927,38 @@ def run_queue(
     logger=None,
     print_summary: bool = True,
 ) -> QueueRunResult:
-    recorder = recorder or (record_local_success if source == "indeed" else record_success)
-    snapshot = read_queue(tracker, eligible_scout_ids, source)
+    recorder = recorder or record_success
+    snapshot = read_queue(
+        tracker, eligible_scout_ids, source,
+        auto_approve_geographic=auto_approve_geographic,
+    )
+
+    # Source-specific Indeed runs and the all-source daily workflow normalize
+    # matching Utah/remote rows to Apply? = Yes, including preexisting rows.
+    # Nonqualifying rows and unrelated cells are never changed.
+    apply_values_set = 0
+    if (source == "indeed" or auto_approve_geographic) and not dry_run:
+        all_items = {
+            item.row: item
+            for group in (
+                snapshot.pending, snapshot.already_created, snapshot.not_approved,
+                snapshot.link_backfill, snapshot.duplicate_excluded,
+                snapshot.missing_identity,
+            )
+            for item in group
+        }
+        for item in all_items.values():
+            if (_geographic_qualification(item)
+                    and _flag((item.fields or {}).get("Apply?")) != "yes"):
+                _retry_sheet(lambda item=item: tracker.approve_manual_scout_row(
+                    item.row, company=item.company, title=item.title,
+                ))
+                apply_values_set += 1
+        if apply_values_set:
+            snapshot = read_queue(
+                tracker, eligible_scout_ids, source,
+                auto_approve_geographic=auto_approve_geographic,
+            )
     pending = snapshot.pending
     backfill = snapshot.link_backfill
     work = pending + backfill
@@ -923,7 +972,7 @@ def run_queue(
     created = recovered = 0
     successes: list[tuple[QueueRow, Artifacts]] = []
     changed = 0
-    apply_values_set = scout_ids_assigned = 0
+    scout_ids_assigned = 0
     failed: list[QueueFailure] = []
 
     def capture_failure(failed_item: QueueRow, error: Exception) -> None:
@@ -971,7 +1020,7 @@ def run_queue(
     print(f"Found {len(pending)} jobs requiring resumes.", flush=True)
     print(f"Found {len(backfill)} completed jobs requiring Resume Link backfill.", flush=True)
     print(f"Tracker rows checked: {checked}", flush=True)
-    print(f"Skipped with Resume Created = X: {len(skipped)}", flush=True)
+    print(f"Skipped with a completed Resume Created marker: {len(skipped)}", flush=True)
     _log(logger, f"Eligible rows: {len(pending)}; already marked: {len(skipped)}")
     if dry_run:
         print("Dry-run row diagnostics:", flush=True)
@@ -1008,9 +1057,6 @@ def run_queue(
                 if original.scout_id is None and allocator is None:
                     raise RuntimeError("Scout ID allocator could not be initialized")
                 prepared = _prepare_indeed_item(tracker, original, db, allocator)
-                if (_flag((original.fields or {}).get("Apply?")) != "yes"
-                        and _flag((prepared.fields or {}).get("Apply?")) == "yes"):
-                    apply_values_set += 1
                 if original.scout_id is None and prepared.scout_id is not None:
                     scout_ids_assigned += 1
                 prepared_work.append(prepared)
@@ -1042,13 +1088,26 @@ def run_queue(
                 continue
             action = "Recovering existing Gecko resume" if is_backfill else "Creating Gecko resume"
             print(f"[{index}/{len(work)}] {action}: {item.company}  {item.title}", flush=True)
-            artifacts = (existing_generator if is_backfill else generator)(item, db)
+            if is_backfill:
+                try:
+                    artifacts = existing_generator(item, db)
+                except RuntimeError as recovery_error:
+                    repairable = any(fragment in str(recovery_error) for fragment in (
+                        "no exact archived listing",
+                        "exact existing DOCX could not be identified",
+                        "failed Word-native QA",
+                    ))
+                    if not repairable:
+                        raise
+                    artifacts = generator(item, db)
+            else:
+                artifacts = generator(item, db)
             recorder(item, artifacts, tracker)
             recovered += int(artifacts.existing)
             created += int(not artifacts.existing)
             successes.append((item, artifacts))
             print(f"Resume created: {artifacts.resume}", flush=True)
-            print(f"Updated Gecko Job Tracker row {item.row}: Resume Created = X", flush=True)
+            print(f"Updated Gecko Job Tracker row {item.row}: Resume Created = {COMPLETION_MARKER}", flush=True)
             _log(logger, f"SUCCESS row={item.row} scout_id={item.scout_id} "
                  f"resume={artifacts.resume}")
             for attempt in artifacts.retrieval_attempts:
@@ -1058,7 +1117,10 @@ def run_queue(
     if dry_run:
         remaining = work
     else:
-        refreshed = read_queue(tracker, eligible_scout_ids, source)
+        refreshed = read_queue(
+            tracker, eligible_scout_ids, source,
+            auto_approve_geographic=auto_approve_geographic,
+        )
         remaining = refreshed.pending + refreshed.link_backfill
     failed_rows = {failure.item.row for failure in failed}
     unexpected = [] if dry_run else [item for item in remaining if item.row not in failed_rows]
@@ -1083,7 +1145,9 @@ def run_queue(
         print(f"Rows marked Resume Created: {len(successes)}")
         print(f"Failed: {len(failed)}")
         print(f"Google Sheet rows updated: {len(successes)}")
-        print("Rows marked X: " + (", ".join(str(item.row) for item, _ in successes) or "none"))
+        print(f"Rows marked {COMPLETION_MARKER}: " + (
+            ", ".join(str(item.row) for item, _ in successes) or "none"
+        ))
         print(f"Remaining eligible rows: {len(remaining)}; unexpected: {len(unexpected)}")
         if dry_run:
             print(f"Would process: {len(work)}")
@@ -1122,7 +1186,8 @@ def main() -> int:
     parser.add_argument("--db", type=Path, default=DEFAULT_DB)
     parser.add_argument(
         "--source", choices=("indeed",),
-        help="Process only approved, incomplete rows from this source",
+        help=("Process this source, including Indeed Utah/remote approval, "
+              "resume generation, and completion repair"),
     )
     parser.add_argument("--dry-run", action="store_true", help="Show queue decisions without generating or writing")
     args = parser.parse_args()
