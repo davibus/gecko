@@ -41,7 +41,7 @@ To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
 
 ## Job tracker
 
-Google Sheets is the canonical job tracker. Do not create or update a local Excel job tracker. Configure the spreadsheet ID, tab names, and service-account credentials in `.env.local` using `.env.example`, then check connectivity:
+Google Sheets is the canonical job tracker. Do not create or update a local Excel job tracker. Configure the spreadsheet ID, tab names, service-account credentials, and `GOOGLE_DRIVE_RESUME_FOLDER_ID` in `.env.local` using `.env.example`, then check connectivity. Enable both the Google Sheets and Google Drive APIs, and share the configured Drive folder with the service account so completed DOCX files inherit access:
 
 ```powershell
 python scripts/manage_job_tracker.py init
@@ -59,7 +59,7 @@ Validate the live Sheet:
 python scripts/manage_job_tracker.py validate
 ```
 
-The `add` command is idempotent by Job Number when the application tab exists. It reads company, title, pay, source URL, source name, and date found from the archived listing; unavailable optional fields remain blank. It also updates the matching Job Scout lifecycle and resume link while preserving user-maintained application/contact fields.
+The `add` command is idempotent by Job Number when the application tab exists. It reads company, title, pay, source URL, source name, and date found from the archived listing; unavailable optional fields remain blank. It uploads or reuses the job's DOCX in the configured Google Drive folder, then updates the matching Job Scout lifecycle while preserving user-maintained application/contact fields. On `Job Scout`, Column G (`Resume Created`) receives `X` and fixed Column S receives `=HYPERLINK("https://…","Open Resume")` in the same row update. Column S is never inserted or shifted; a blank S1 is initialized to `Resume Link`.
 
 ## Gmail response tracking
 

@@ -15,6 +15,9 @@ Instructions:
 - Generate from the V2 plan with `python scripts/gecko_v2.py generate`; review the rendered resume and `v2-qa.json`. Resolve QA failures before finalizing.
 - Keep it exactly two pages.
 - Preserve Gecko formatting conventions.
+- Require at least 8 master-supported, job-relevant Core Strengths in professional Title Case and at least 8 master-supported, job-relevant Tools & Platforms with official brand capitalization.
+- Format every Professional Experience job with the title alone on line 1 and `Company Name  City, State` on line 2; never use `Job Title | Company`.
+- Run Gecko's structural cleanup/validation before final save and correct any section-count, capitalization, job-hierarchy, combined-header, or lowercase-placeholder failure.
 - Remove visible job dates but preserve the right-side date space.
 - Save the finished DOCX in `output/resumes/` using Gecko filename rules: `Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx`.
 - Save the archived listing in `input/job-descriptions/` as `<Company-Name>+<job-number>.md`.

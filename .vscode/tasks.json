@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Gecko: Daily Job Scout",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "job-scout/scout.py",
+        "daily"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      }
+    },
+    {
+      "label": "Gecko: Create Indeed Resumes",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "scripts/generate_apply_queue.py",
+        "--source",
+        "indeed"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      }
+    }
+  ]
+}

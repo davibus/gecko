@@ -17,7 +17,7 @@ class GeckoV2Tests(unittest.TestCase):
 
     def test_plan_precedes_generation_and_classifies_requirements(self):
         plan = self.plan
-        self.assertEqual(plan["version"], 2)
+        self.assertEqual(plan["version"], 3)
         self.assertTrue(plan["requirements"]["required_skills"])
         self.assertTrue(plan["requirements"]["preferred_skills"])
         self.assertTrue(plan["requirements"]["responsibilities"])
@@ -41,8 +41,8 @@ class GeckoV2Tests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Unsupported or altered evidence"):
             v2.verify_plan(tampered)
         tampered = json.loads(json.dumps(self.plan))
-        tampered["resume"]["skills"].append("Kubernetes")
-        with self.assertRaisesRegex(ValueError, "Unsupported skill"):
+        tampered["resume"]["tools_platforms"].append("Kubernetes")
+        with self.assertRaisesRegex(ValueError, "Tools & Platforms"):
             v2.verify_plan(tampered)
 
     def test_generated_docx_keeps_source_claims_and_layout(self):
@@ -128,6 +128,52 @@ class GeckoV2Tests(unittest.TestCase):
             self.assertAlmostEqual(doc.styles["Normal"].font.size.pt, 10.5)
             headings = [p.text for p in doc.paragraphs if p.text in [s.upper() for s in v2.SECTIONS]]
             self.assertEqual(headings, [s.upper() for s in v2.SECTIONS])
+
+    def test_mandatory_strengths_tools_and_two_line_job_hierarchy(self):
+        self.assertGreaterEqual(len(self.plan["resume"]["core_strengths"]), 8)
+        self.assertGreaterEqual(len(self.plan["resume"]["tools_platforms"]), 8)
+        self.assertEqual(
+            v2.formatting_content_issues(
+                self.plan["resume"]["core_strengths"], self.plan["resume"]["tools_platforms"]),
+            [],
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "resume.docx"
+            v2.make_resume(self.plan, path)
+            from docx import Document
+            doc = Document(path)
+            self.assertGreaterEqual(len([c for r in doc.tables[0].rows for c in r.cells if c.text.strip()]), 8)
+            for table in doc.tables[1:]:
+                self.assertEqual(len(table.rows), 2)
+                self.assertNotIn(" | ", table.cell(0, 0).text)
+                self.assertTrue(table.cell(0, 0).text.strip())
+                self.assertTrue(table.cell(1, 0).text.strip())
+                self.assertFalse(table.cell(0, 1).text.strip())
+                self.assertFalse(table.cell(1, 1).text.strip())
+
+    def test_generation_auto_corrects_section_counts_and_capitalization(self):
+        altered = json.loads(json.dumps(self.plan))
+        altered["resume"]["core_strengths"] = ["marketing analytics"]
+        altered["resume"]["tools_platforms"] = ["google ads"]
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "resume.docx"
+            v2.make_resume(altered, path)
+            self.assertGreaterEqual(len(altered["resume"]["core_strengths"]), 8)
+            self.assertGreaterEqual(len(altered["resume"]["tools_platforms"]), 8)
+            self.assertEqual(v2.inspect_docx(altered, path), [])
+
+    def test_qa_rejects_old_combined_job_header_format(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "resume.docx"
+            v2.make_resume(self.plan, path)
+            from docx import Document
+            doc = Document(path)
+            table = doc.tables[1]
+            table.cell(0, 0).text = table.cell(0, 0).text + " | " + table.cell(1, 0).text
+            table.cell(1, 0).text = ""
+            doc.save(path)
+            issues = v2.inspect_docx(self.plan, path)
+            self.assertTrue(any("prohibited 'Job Title | Company'" in issue for issue in issues))
 
     def test_project_notes_do_not_authorize_unsupported_tool_claims(self):
         listing = "## Required Qualifications\n- Must have hands-on Marketo experience in marketing operations."

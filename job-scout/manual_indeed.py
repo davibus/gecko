@@ -42,6 +42,8 @@ class ManualIndeedSummary:
     duplicates: int = 0
     failures: int = 0
     skipped: int = 0
+    removed: int = 0
+    removed_rows: list[int] = field(default_factory=list)
     new_job_ids: list[int] = field(default_factory=list)
 
     def to_dict(self) -> dict:
@@ -51,6 +53,8 @@ class ManualIndeedSummary:
             "duplicates": self.duplicates,
             "failures": self.failures,
             "skipped": self.skipped,
+            "removed": self.removed,
+            "removed_rows": list(self.removed_rows),
             "new_job_ids": list(self.new_job_ids),
         }
 
@@ -201,8 +205,15 @@ def process_manual_indeed_rows(
     provider = provider or ManualIndeedProvider()
     fallback = fallback or ManualIndeedFallbackRetriever()
     found_on = today or date.today().isoformat()
-    tab = tracker.scout()
     summary = ManualIndeedSummary()
+    summary.removed_rows = tracker.delete_declined_scout_rows()
+    summary.removed = len(summary.removed_rows)
+    removed_label = ", ".join(map(str, summary.removed_rows)) or "none"
+    print(
+        f"Job Scout cleanup removed {summary.removed} row(s); "
+        f"original spreadsheet rows: {removed_label}"
+    )
+    tab = tracker.scout()
 
     for row, data in tab.rows:
         pasted_url = str(data.get("Job URL") or "").strip()

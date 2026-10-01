@@ -1,6 +1,6 @@
 # Gecko from Job URL
 
-Use Gecko for this job: https://www.indeed.com/viewjob?jk=b1e13fda0b6ba9cb&from=shareddesktop_copy
+Use Gecko for this job: "put job URL here"
 
 Read the listing, identify the job number, archive it, and create the V2 tailoring plan with `scripts/gecko_v2.py plan` before modifying the resume. Review its evidence and gaps, then generate the DOCX and run Word-native QA with `scripts/gecko_v2.py generate`. Generate:
 1. The exactly two-page DOCX resume under `output/resumes/Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx` using `scripts/`.
@@ -10,3 +10,4 @@ Read the listing, identify the job number, archive it, and create the V2 tailori
 Ensure a dedicated scratch subfolder `scratch/{Company-Name}+{JobNumber}/` is created for all temporary files (preview PNGs, PDFs, layout verification images, intermediate files). Sanitize company names for Windows filenames. Reusable tools and scripts reside in `scripts/`.
 
 Follow all rules in `GECKO_SYSTEM.md` and `AGENTS.md`.
+This includes the permanent minimum of 8 professionally capitalized Core Strengths, 8 officially capitalized Tools & Platforms, and the two-line Professional Experience job-title/company-location hierarchy enforced by Gecko V2 QA.

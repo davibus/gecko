@@ -77,6 +77,13 @@ class NormalizeTests(unittest.TestCase):
         listing.employment_type = "full_time"
         self.assertEqual(normalize(listing).employment_type, "full-time")
 
+    def test_description_alone_does_not_make_arrangement_remote(self):
+        listing = raw()
+        listing.location = "Dallas, TX"
+        listing.remote_type = ""
+        listing.description = "The company supports remote work in other departments."
+        self.assertEqual(normalize(listing).work_arrangement, "on-site")
+
 
 class EnvironmentTests(unittest.TestCase):
     def setUp(self):

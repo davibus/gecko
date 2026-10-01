@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -47,6 +48,65 @@ TERMS = (
 TOOLS = set("Google Ads|Bing Ads|Microsoft Ads|Meta Ads|Google Analytics|GA4|Google Tag Manager|GTM|Looker Studio|Tableau|SQL|Python|JavaScript|HTML5|CSS3|Magento|Shopify|WordPress|Amazon|HubSpot|Semrush|Search Console|Adobe Analytics|Excel|Power BI|Salesforce|Marketo|Klaviyo|Mailchimp|Snowflake|Codex|ChatGPT|Claude|Perplexity|Cursor|AntiGravity".split("|"))
 STOP = set("the and for with from into your their our you will are this that have has must should ability using use work role team experience years strong plus including across based more about through".split())
 
+# Canonical, source-backed labels used for the two mandatory competency sections.
+# The marker strings must occur in the master archive; selection ranks them by
+# relevance to the target listing and then uses catalog order as a stable tie-breaker.
+CORE_STRENGTHS_CATALOG = (
+    ("Digital Marketing Strategy", ("digital marketing", "marketing strategy")),
+    ("Paid Media Strategy", ("paid media", "PPC strategy")),
+    ("Performance Marketing", ("performance marketing",)),
+    ("Marketing Analytics", ("analytics", "analytical")),
+    ("E-Commerce Strategy", ("e-commerce", "e-commerce operations")),
+    ("Conversion Rate Optimization", ("conversion-rate optimization", "CRO")),
+    ("Cross-Functional Leadership", ("cross-functional leadership", "cross-functional communication")),
+    ("Marketing Automation", ("automation", "process automation")),
+    ("Attribution Modeling", ("attribution models", "attribution")),
+    ("Budget Forecasting", ("forecasting", "budget scenarios")),
+    ("Customer Acquisition", ("customer acquisition",)),
+    ("Lead Generation", ("lead generation",)),
+    ("SEO & SEM Strategy", ("SEO/SEM", "SEO", "SEM")),
+    ("Campaign Optimization", ("campaign", "optimizations")),
+    ("A/B & Multivariate Testing", ("A/B testing", "multivariate testing")),
+    ("Data Visualization", ("data visualization",)),
+    ("Team Development", ("team development", "trained team members")),
+    ("B2B & B2C Marketing", ("B2B", "B2C")),
+    ("Marketing Technology", ("marketing-technology",)),
+    ("Operational Efficiency", ("operational efficiency",)),
+)
+
+TOOLS_PLATFORMS_CATALOG = (
+    ("Google Ads", ("Google Ads", "AdWords")),
+    ("Microsoft Ads", ("Microsoft Ads", "Bing Ads")),
+    ("Google Analytics 4", ("Google Analytics 4", "GA4")),
+    ("Google Tag Manager", ("Google Tag Manager",)),
+    ("Google Search Console", ("Google Search Console",)),
+    ("Looker Studio", ("Looker Studio", "Google Data Studio")),
+    ("Tableau", ("Tableau",)),
+    ("Power BI", ("Power BI",)),
+    ("Google Ads Editor", ("Google Ads Editor",)),
+    ("Bing Ads Editor", ("Bing Ads Editor",)),
+    ("Meta Ads", ("Meta/Facebook Ads", "Meta Ads")),
+    ("Amazon Seller Central", ("Amazon Seller Central",)),
+    ("Amazon Vendor Central", ("Amazon Vendor Central",)),
+    ("Shopify", ("Shopify",)),
+    ("Magento", ("Magento",)),
+    ("HubSpot", ("HubSpot",)),
+    ("Salesforce", ("Salesforce",)),
+    ("Funnel.io", ("Funnel.io",)),
+    ("Python", ("Python",)),
+    ("SQL", ("SQL",)),
+    ("JavaScript", ("JavaScript",)),
+    ("Excel", ("Excel",)),
+    ("Google Ads API", ("Google Ads API",)),
+    ("ChatGPT", ("ChatGPT",)),
+    ("Codex", ("Codex",)),
+    ("Claude", ("Claude",)),
+    ("Gemini", ("Gemini",)),
+    ("Perplexity", ("Perplexity",)),
+    ("Cursor", ("Cursor",)),
+    ("VS Code", ("VS Code",)),
+)
+
 
 def validate_required_sources() -> None:
     """Fail closed when either permanent Gecko authority is unavailable."""
@@ -75,6 +135,114 @@ def contains_term(haystack: str, term: str) -> bool:
 
 def words(text: str) -> set[str]:
     return {w for w in key(text).split() if len(w) > 2 and w not in STOP}
+
+
+def _select_catalog_entries(listing: str, source: str, catalog: tuple, *, maximum: int) -> list[str]:
+    """Choose at least eight canonical, source-backed entries, favoring target relevance."""
+    supported = []
+    for order, (label, markers) in enumerate(catalog):
+        if not any(contains_term(source, marker) for marker in markers):
+            continue
+        direct_hits = sum(contains_term(listing, marker) for marker in markers)
+        overlap = len(words(label) & words(listing))
+        supported.append((direct_hits * 10 + overlap, order, label))
+    if len(supported) < 8:
+        raise ValueError("The master archive does not support at least eight required catalog entries.")
+    relevant_count = sum(score > 0 for score, _, _ in supported)
+    limit = min(maximum, max(8, relevant_count))
+    supported.sort(key=lambda item: (-item[0], item[1]))
+    return [label for _, _, label in supported[:limit]]
+
+
+def select_core_strengths(listing: str, source: str) -> list[str]:
+    return _select_catalog_entries(listing, source, CORE_STRENGTHS_CATALOG, maximum=12)
+
+
+def select_tools_platforms(listing: str, source: str) -> list[str]:
+    return _select_catalog_entries(listing, source, TOOLS_PLATFORMS_CATALOG, maximum=16)
+
+
+def _canonical_labels(catalog: tuple) -> set[str]:
+    return {label for label, _ in catalog}
+
+
+def formatting_content_issues(core_strengths: list[str], tools_platforms: list[str]) -> list[str]:
+    """Validate mandatory counts and canonical professional/brand capitalization."""
+    issues = []
+    if len(core_strengths) < 8:
+        issues.append("CORE STRENGTHS contains fewer than 8 entries.")
+    if len(tools_platforms) < 8:
+        issues.append("TOOLS & PLATFORMS contains fewer than 8 entries.")
+    core_labels = _canonical_labels(CORE_STRENGTHS_CATALOG)
+    tool_labels = _canonical_labels(TOOLS_PLATFORMS_CATALOG)
+    if any(value not in core_labels for value in core_strengths):
+        issues.append("A CORE STRENGTHS entry lacks canonical professional Title Case.")
+    if any(value not in tool_labels for value in tools_platforms):
+        issues.append("A TOOLS & PLATFORMS entry lacks canonical brand capitalization.")
+    if any(value == value.casefold() and re.search(r"[a-z]", value) for value in core_strengths + tools_platforms):
+        issues.append("An obviously lowercase placeholder-style entry remains.")
+    return issues
+
+
+def normalize_resume_format(plan: dict) -> None:
+    """Auto-correct mandatory section entries from current source and listing before rendering."""
+    listing = Path(plan["listing"]).read_text(encoding="utf-8-sig")
+    source = source_text()
+    plan["resume"]["core_strengths"] = select_core_strengths(listing, source)
+    plan["resume"]["tools_platforms"] = select_tools_platforms(listing, source)
+    plan["resume"].pop("skills", None)
+
+
+def document_format_issues(plan: dict, doc: Document) -> list[str]:
+    """Inspect the mandatory section content and two-line experience hierarchy."""
+    issues = formatting_content_issues(
+        plan["resume"].get("core_strengths", []),
+        plan["resume"].get("tools_platforms", []),
+    )
+    if not doc.tables:
+        return issues + ["CORE STRENGTHS table is missing."]
+    actual_strengths = [
+        cell.text.strip() for row in doc.tables[0].rows for cell in row.cells if cell.text.strip()
+    ]
+    if actual_strengths != plan["resume"]["core_strengths"]:
+        issues.append("CORE STRENGTHS entries differ from the validated plan.")
+
+    body_paragraphs = [p.text.strip() for p in doc.paragraphs if p.text.strip()]
+    try:
+        tools_heading = body_paragraphs.index("TOOLS & PLATFORMS")
+        tools_line = body_paragraphs[tools_heading + 1]
+    except (ValueError, IndexError):
+        tools_line = ""
+        issues.append("TOOLS & PLATFORMS section or content is missing.")
+    expected_tools_line = " • ".join(plan["resume"]["tools_platforms"])
+    if tools_line and tools_line != expected_tools_line:
+        issues.append("TOOLS & PLATFORMS entries differ from the validated plan.")
+
+    evidence = {item["id"]: item for item in plan["evidence"]}
+    expected_jobs = [
+        (job["title"], f"{job['company']}  {job['location']}" if job["location"] else job["company"])
+        for index, job in enumerate(plan["resume"]["jobs"])
+        if any(evidence[eid]["job"] == index for eid in plan["resume"]["selected_evidence_ids"])
+    ]
+    job_tables = doc.tables[1:]
+    if len(job_tables) != len(expected_jobs):
+        issues.append("Professional Experience job-header count differs from the plan.")
+        return issues
+    for table, (expected_title, expected_company) in zip(job_tables, expected_jobs):
+        if len(table.rows) != 2 or len(table.columns) != 2:
+            issues.append("A Professional Experience job does not use the required two-line hierarchy.")
+            continue
+        actual_title = table.cell(0, 0).text.strip()
+        actual_company = table.cell(1, 0).text.strip()
+        if actual_title != expected_title:
+            issues.append("A Professional Experience job title is not on its own line.")
+        if actual_company != expected_company:
+            issues.append("A company and city/state line is not directly below its job title.")
+        if " | " in actual_title or " | " in actual_company:
+            issues.append("A job still uses the prohibited 'Job Title | Company' format.")
+        if table.cell(0, 1).text.strip() or table.cell(1, 1).text.strip():
+            issues.append("A date cell contains visible text.")
+    return issues
 
 
 def master_lines() -> list[str]:
@@ -389,7 +557,8 @@ def create_plan(listing_path: Path) -> dict:
             chosen_items = chosen_items[:bullets_per_job]
         chosen = [item["id"] for item in chosen_items]
         selected.extend(chosen)
-    skill_terms = [term for term in TERMS if contains_term(listing, term) and contains_term(source, term)]
+    core_strengths = select_core_strengths(listing, source)
+    tools_platforms = select_tools_platforms(listing, source)
     metric_pool = [item for item in evidence if re.search(r"\$[\d,]+|\b\d+(?:\.\d+)?[%+]", item["quote"])]
     ranked_metrics = sorted(metric_pool, key=lambda item: (
         item["id"] in mandatory_metrics,
@@ -401,13 +570,14 @@ def create_plan(listing_path: Path) -> dict:
             selected_results.append(item["id"])
         if len(selected_results) == 4:
             break
-    return {"version": 2, "job": meta, "listing": str(listing_path.resolve()),
+    return {"version": 3, "job": meta, "listing": str(listing_path.resolve()),
             "listing_sha256": hashlib.sha256(listing_path.read_bytes()).hexdigest(),
             "source_sha256": source_hashes(), "format_model_sha256": formatting_model_hash(),
             "format_model": FORMAT_MODEL.relative_to(ROOT).as_posix(),
             "requirements": reqs, "evidence": evidence,
             "resume": {**master_identity(), "jobs": jobs,
-                       "skills": skill_terms[:24], "selected_evidence_ids": selected,
+                       "core_strengths": core_strengths, "tools_platforms": tools_platforms,
+                       "selected_evidence_ids": selected,
                        "selected_results_ids": selected_results,
                        "relevant_metric_ids": mandatory_metrics},
             "review_notes": ["Review requirement classifications and evidence links before generation.",
@@ -417,7 +587,7 @@ def create_plan(listing_path: Path) -> dict:
 
 def verify_plan(plan: dict) -> None:
     validate_required_sources()
-    if plan.get("version") != 2 or plan.get("source_sha256") != source_hashes():
+    if plan.get("version") != 3 or plan.get("source_sha256") != source_hashes():
         raise ValueError("Plan source has changed; rebuild the tailoring plan.")
     if (plan.get("format_model") != FORMAT_MODEL.relative_to(ROOT).as_posix()
             or plan.get("format_model_sha256") != formatting_model_hash()):
@@ -441,9 +611,15 @@ def verify_plan(plan: dict) -> None:
     if plan["resume"]["relevant_metric_ids"] != relevant_metric_ids(listing_path.read_text(encoding="utf-8-sig"), list(actual.values())):
         raise ValueError("Relevant accomplishment anchors differ from the source and listing.")
     source = source_text()
-    for term in plan["resume"]["skills"]:
-        if not contains_term(source, term):
-            raise ValueError(f"Unsupported skill: {term}")
+    listing = listing_path.read_text(encoding="utf-8-sig")
+    if plan["resume"].get("core_strengths") != select_core_strengths(listing, source):
+        raise ValueError("Core Strengths are stale, unsupported, or incorrectly capitalized; rebuild the plan.")
+    if plan["resume"].get("tools_platforms") != select_tools_platforms(listing, source):
+        raise ValueError("Tools & Platforms are stale, unsupported, or incorrectly capitalized; rebuild the plan.")
+    format_issues = formatting_content_issues(
+        plan["resume"]["core_strengths"], plan["resume"]["tools_platforms"])
+    if format_issues:
+        raise ValueError(" ".join(format_issues))
     if any(plan["resume"].get(field) != value for field, value in master_identity().items()):
         raise ValueError("Identity, summary, education, or certifications differ from the current master archive.")
     if plan["resume"].get("jobs") != master_jobs():
@@ -451,6 +627,7 @@ def verify_plan(plan: dict) -> None:
 
 
 def make_resume(plan: dict, path: Path) -> None:
+    normalize_resume_format(plan)
     verify_plan(plan)
     doc = Document()
     for section in doc.sections:
@@ -490,26 +667,25 @@ def make_resume(plan: dict, path: Path) -> None:
     section(SECTIONS[0])
     para(plan["resume"]["summary"], after=2)
     section(SECTIONS[1])
-    strengths = plan["resume"]["skills"][:8]
-    if strengths:
-        table = doc.add_table(rows=(len(strengths) + 1) // 2, cols=2)
-        table.autofit = False
-        table.columns[0].width = table.columns[1].width = Inches(3.75)
-        for index, strength in enumerate(strengths):
-            cell = table.cell(index // 2, index % 2)
-            cell.text = ""
-            p = cell.paragraphs[0]
-            p.style = doc.styles["List Bullet"]
-            p.paragraph_format.space_after = Pt(0)
-            p.paragraph_format.line_spacing = 1.15
-            run = p.add_run(strength)
-            run.font.name, run.font.size = MODEL_FONT, Pt(MODEL_BODY_SIZE)
-        borders = OxmlElement("w:tblBorders")
-        for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
-            node = OxmlElement("w:" + edge)
-            node.set(qn("w:val"), "none")
-            borders.append(node)
-        table._tbl.tblPr.append(borders)
+    strengths = plan["resume"]["core_strengths"]
+    table = doc.add_table(rows=(len(strengths) + 1) // 2, cols=2)
+    table.autofit = False
+    table.columns[0].width = table.columns[1].width = Inches(3.75)
+    for index, strength in enumerate(strengths):
+        cell = table.cell(index // 2, index % 2)
+        cell.text = ""
+        p = cell.paragraphs[0]
+        p.style = doc.styles["List Bullet"]
+        p.paragraph_format.space_after = Pt(0)
+        p.paragraph_format.line_spacing = 1.15
+        run = p.add_run(strength)
+        run.font.name, run.font.size = MODEL_FONT, Pt(MODEL_BODY_SIZE)
+    borders = OxmlElement("w:tblBorders")
+    for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
+        node = OxmlElement("w:" + edge)
+        node.set(qn("w:val"), "none")
+        borders.append(node)
+    table._tbl.tblPr.append(borders)
     evidence = {item["id"]: item for item in plan["evidence"]}
     results = [evidence[eid] for eid in plan["resume"].get("selected_results_ids", [])]
     if results:
@@ -523,18 +699,23 @@ def make_resume(plan: dict, path: Path) -> None:
         selected = [evidence[eid] for eid in plan["resume"]["selected_evidence_ids"] if evidence[eid]["job"] == index]
         if not selected:
             continue
-        table = doc.add_table(rows=1, cols=2)
+        table = doc.add_table(rows=2, cols=2)
         table.autofit = False
         table.alignment = WD_TABLE_ALIGNMENT.CENTER
         table.columns[0].width, table.columns[1].width = Inches(5.7), Inches(1.8)
-        table.cell(0, 0).width, table.cell(0, 1).width = Inches(5.7), Inches(1.8)
-        header = f"{title} | {company} — {location}" if location else f"{title} | {company}"
-        header_paragraph = table.cell(0, 0).paragraphs[0]
-        header_paragraph.add_run(header).bold = True
+        for row in range(2):
+            table.cell(row, 0).width, table.cell(row, 1).width = Inches(5.7), Inches(1.8)
+        title_paragraph = table.cell(0, 0).paragraphs[0]
+        title_paragraph.add_run(title).bold = True
+        company_line = f"{company}  {location}" if location else company
+        company_paragraph = table.cell(1, 0).paragraphs[0]
+        company_paragraph.add_run(company_line).bold = True
         # Keep each job header with its first bullet so a table-backed heading
         # cannot be orphaned at the bottom of a page in Microsoft Word.
-        header_paragraph.paragraph_format.keep_with_next = True
-        table.cell(0, 1).text = ""  # Required right-side date cell.
+        title_paragraph.paragraph_format.keep_with_next = True
+        company_paragraph.paragraph_format.keep_with_next = True
+        table.cell(0, 1).text = ""  # Required right-side date area.
+        table.cell(1, 1).text = ""
         borders = OxmlElement("w:tblBorders")
         for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
             node = OxmlElement("w:" + edge)
@@ -550,10 +731,13 @@ def make_resume(plan: dict, path: Path) -> None:
             if item_index < len(selected) - 1:
                 p.paragraph_format.keep_with_next = True
     section(SECTIONS[4])
-    para(" • ".join(plan["resume"]["skills"]), after=2)
+    para(" • ".join(plan["resume"]["tools_platforms"]), after=2)
     section(SECTIONS[5])
     para(plan["resume"]["education"], after=1)
     para(plan["resume"]["certifications"])
+    pre_save_issues = document_format_issues(plan, doc)
+    if pre_save_issues:
+        raise ValueError("Resume formatting validation failed before save: " + " ".join(pre_save_issues))
     path.parent.mkdir(parents=True, exist_ok=True)
     doc.save(path)
 
@@ -582,23 +766,12 @@ def inspect_docx(plan: dict, docx_path: Path) -> list[str]:
         if polish_quote(evidence[eid]["quote"]) not in actual_bullets:
             issues.append(f"Relevant quantified accomplishment omitted: {eid}")
     fixed = {plan["resume"]["name"], plan["resume"]["headline"], plan["resume"]["summary"],
-             plan["resume"]["contact"], " • ".join(plan["resume"]["skills"]),
+             plan["resume"]["contact"], " • ".join(plan["resume"]["tools_platforms"]),
              plan["resume"]["education"], plan["resume"]["certifications"]}
     fixed.update(s.upper() for s in SECTIONS)
     if any(p not in fixed and p not in allowed for p in paragraphs):
         issues.append("DOCX contains text outside the approved source-backed plan.")
-    expected_job_tables = sum(any(evidence[eid]["job"] == i for eid in plan["resume"]["selected_evidence_ids"]) for i in range(len(plan["resume"]["jobs"])))
-    if len(doc.tables) != expected_job_tables + (1 if plan["resume"]["skills"][:8] else 0):
-        issues.append("Job header/date-cell count differs from the plan.")
-    expected_headers = [
-        f"{job['title']} | {job['company']} — {job['location']}" if job["location"] else f"{job['title']} | {job['company']}"
-        for i, job in enumerate(plan["resume"]["jobs"])
-        if any(evidence[eid]["job"] == i for eid in plan["resume"]["selected_evidence_ids"])]
-    job_tables = doc.tables[1:] if plan["resume"]["skills"][:8] else doc.tables
-    if [table.cell(0, 0).text.strip() for table in job_tables] != expected_headers:
-        issues.append("Job headers differ from the current master-backed plan.")
-    if any(table.cell(0, 1).text.strip() for table in job_tables):
-        issues.append("A date cell contains visible text.")
+    issues.extend(document_format_issues(plan, doc))
     if any(node.get(qn("w:val")) != "none" for table in doc.tables for node in table._tbl.tblPr.xpath(".//w:tblBorders/*")):
         issues.append("A job table has visible borders.")
     expected_sections = [s.upper() for s in SECTIONS if s != "Selected Results" or plan["resume"].get("selected_results_ids")]
@@ -627,10 +800,6 @@ def inspect_docx(plan: dict, docx_path: Path) -> list[str]:
         issues.append("Page margins are smaller than Gecko's safety margin.")
     if doc.element.body.xpath(".//w:shd"):
         issues.append("Background shading violates the white-page layout.")
-    approved_terms = source_text()
-    for term in plan["resume"]["skills"]:
-        if not contains_term(approved_terms, term):
-            issues.append(f"Unsupported skill: {term}")
     for token, count in Counter(re.findall(r"\b[A-Za-z][A-Za-z0-9+]{2,}\b", " ".join(paragraphs).casefold())).items():
         if token not in STOP and count >= 18 and token in words(Path(plan["listing"]).read_text(encoding="utf-8-sig")):
             issues.append(f"Possible keyword stuffing: {token} appears {count} times.")
@@ -694,9 +863,15 @@ def main() -> int:
         plan["job"]["company"], plan["job"]["title"], plan["job"]["job_number"])
     scratch = ROOT / "scratch" / name
     if args.command == "generate":
-        make_resume(plan, output)
-        report = native_qa(plan, output, scratch)
-        print(json.dumps({"docx": str(output), **report}, indent=2))
+        scratch.mkdir(parents=True, exist_ok=True)
+        candidate = scratch / "manual-candidate.docx"
+        make_resume(plan, candidate)
+        report = native_qa(plan, candidate, scratch)
+        if report["status"] == "pass":
+            output.parent.mkdir(parents=True, exist_ok=True)
+            os.replace(candidate, output)
+        print(json.dumps({"docx": str(output) if report["status"] == "pass" else None,
+                          "candidate": str(candidate), **report}, indent=2))
         return 0 if report["status"] == "pass" else 1
     if not output.exists():
         old_output = ROOT / "output/resumes" / f"Dave-Call+{name}.docx"

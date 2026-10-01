@@ -36,7 +36,9 @@ def canonicalize_url(url: str) -> str:
 
 
 def infer_work_arrangement(raw: RawListing) -> str:
-    value = f"{raw.remote_type} {raw.location} {raw.title} {raw.description[:1500]}".lower()
+    # Keep this field structured: descriptive text may mention remote work without
+    # making the specific opening remote.
+    value = f"{raw.remote_type} {raw.location}".lower()
     if "hybrid" in value:
         return "hybrid"
     if any(term in value for term in ("remote", "telecommute", "work from home")):

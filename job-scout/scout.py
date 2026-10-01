@@ -701,6 +701,7 @@ def _print_daily_summary(run_result, queue_result, tracker_summary, *, dry_run=F
     print(f"Manual Indeed rows processed: {manual_indeed.processed}")
     print(f"Manual Indeed duplicates flagged: {manual_indeed.duplicates}")
     print(f"Manual Indeed retrieval failures: {manual_indeed.failures}")
+    print(f"Job Scout declined rows removed: {manual_indeed.removed}")
     print(f"Jobs marked Apply = Yes: {len(queue_result.snapshot.pending) + len(queue_result.snapshot.already_created)}")
     print(f"Resumes already existing: {len(queue_result.snapshot.already_created) + queue_result.recovered}")
     print(f"New Gecko resumes created: {queue_result.created}")

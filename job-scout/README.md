@@ -210,7 +210,7 @@ Gecko evaluates the job description directly against the required master archive
 
 - an exactly two-page DOCX after native Microsoft Word validation.
 
-The completed resume is recorded only after the DOCX exists and native QA passes.
+The completed resume is recorded only after the DOCX exists, native QA passes, the DOCX has a persistent Google Drive URL, and that URL is written to the canonical Sheet. Column G marks resume creation with `X`; fixed Column S contains the clickable `Open Resume` link. A row with G = X and blank S is safely backfilled from a uniquely identified existing DOCX/Drive object without generating a duplicate. The Google Sheet remains the source of truth; no local Excel tracker is used.
 
 ## Data preservation
 

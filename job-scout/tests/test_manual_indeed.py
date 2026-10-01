@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import json
+import io
 from pathlib import Path
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -97,6 +99,25 @@ class ManualIndeedTests(unittest.TestCase):
         tracked = plain + "&from=shareddesktop_copy&utm_source=something"
         self.assertEqual(extract_indeed_job_key(plain), "eda9b1ae87f489f2")
         self.assertEqual(extract_indeed_job_key(tracked), "eda9b1ae87f489f2")
+
+    def test_cleanup_runs_before_manual_indeed_processing(self):
+        declined_url = "https://www.indeed.com/viewjob?jk=declined"
+        retained_url = "https://www.indeed.com/viewjob?jk=retained"
+        self.fake.data["Job Scout"].append(manual_row(declined_url, apply=" NO "))
+        self.fake.data["Job Scout"].append(manual_row(retained_url, apply="Yes"))
+        provider = FakeProvider({"retained": raw("retained")})
+        output = io.StringIO()
+
+        with redirect_stdout(output):
+            result = process_manual_indeed_rows(
+                self.tracker, self.store, provider=provider, today="2026-09-27",
+            )
+
+        self.assertEqual(result.removed, 1)
+        self.assertEqual(result.removed_rows, [3])
+        self.assertEqual(provider.calls, [retained_url])
+        self.assertIn("cleanup removed 1 row(s)", output.getvalue())
+        self.assertIn("original spreadsheet rows: 3", output.getvalue())
 
     def test_new_url_populates_existing_row_and_preserves_formatting_and_url(self):
         url = "https://www.indeed.com/viewjob?jk=new123&from=shareddesktop_copy"

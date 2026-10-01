@@ -8,7 +8,9 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from google_tracker import Config, GoogleTracker, NEW_SCOUT_ID_COLOR, SCOUT_FIELDS, job_key
+from google_tracker import (
+    Config, GoogleTracker, NEW_SCOUT_ID_COLOR, SCOUT_FIELDS, apply_value, job_key,
+)
 from models import RawListing
 from normalize import normalize
 
@@ -32,13 +34,15 @@ class Call:
 class FakeSheets:
     def __init__(self):
         self.data = {
-            "Job Tracker": [APP, [7, "Existing", "Role", "", "job-123",
+            "Job Tracker": [list(APP), [7, "Existing", "Role", "", "job-123",
                                   "https://example.test/job", "", "09/01/2026", "TRUE", "called", "", "", ""]],
-            "Job Scout": [SCOUT, [42, "test", "Existing", "Role", "New", "Yes", "", "", "", "",
+            "Job Scout": [list(SCOUT), [42, "test", "Existing", "Role", "New", "Yes", "", "", "", "",
                                   "Remote", "remote", "full-time", "", "", "", "",
                                   "https://example.test/job", ""]],
         }
         self.writes = []
+        self.value_input_options = []
+        self.value_batches = []
         self.structural = []
         self.formats = {}
         self.unclear_cells = set()
@@ -74,8 +78,11 @@ class FakeSheets:
                     continue
                 dimension = request["deleteDimension"]["range"]
                 title = list(self.data)[dimension["sheetId"]]
-                for row in self.data[title]:
-                    del row[dimension["startIndex"]:dimension["endIndex"]]
+                if dimension["dimension"] == "ROWS":
+                    del self.data[title][dimension["startIndex"]:dimension["endIndex"]]
+                else:
+                    for row in self.data[title]:
+                        del row[dimension["startIndex"]:dimension["endIndex"]]
             return {}
         return Call(respond)
 
@@ -96,6 +103,10 @@ class FakeValues:
         def respond():
             if self.parent.fail:
                 raise OSError("simulated Google outage")
+            self.parent.value_input_options.append(kwargs["body"]["valueInputOption"])
+            self.parent.value_batches.append([
+                entry["range"] for entry in kwargs["body"]["data"]
+            ])
             for entry in kwargs["body"]["data"]:
                 match = re.fullmatch(r"'([^']+)'!([A-Z]+)(\d+)", entry["range"])
                 title, letters, row_text = match.groups()
@@ -148,6 +159,24 @@ class GoogleTrackerTests(unittest.TestCase):
                  for request in self.fake.structural if "setDataValidation" in request]
         self.assertEqual(rules, ["BOOLEAN", "BOOLEAN"])
 
+    def test_apply_value_uses_only_normalized_location_and_work_arrangement(self):
+        cases = (
+            ("Salt Lake City, UT", "On-site", "Yes"),
+            ("Lehi, Utah", "Hybrid", "Yes"),
+            ("California", "Remote", "Yes"),
+            ("Denver, CO", "Hybrid", "No"),
+            ("Provo, UT", "On-site", "Yes"),
+            ("Dallas, TX", "On-site", "No"),
+        )
+        for location, arrangement, expected in cases:
+            with self.subTest(location=location, arrangement=arrangement):
+                self.assertEqual(apply_value(location, arrangement), expected)
+
+    def test_apply_value_is_case_insensitive_and_ignores_descriptive_text(self):
+        self.assertEqual(apply_value("REMOTE - United States", ""), "Yes")
+        self.assertEqual(apply_value("draper, utah", "HYBRID"), "Yes")
+        self.assertEqual(apply_value("California", "Hybrid"), "No")
+
     def test_existing_application_status_is_not_downgraded(self):
         status_column = APP.index("Status")
         self.fake.data["Job Tracker"][1][status_column] = "Applied"
@@ -155,18 +184,90 @@ class GoogleTrackerTests(unittest.TestCase):
         self.assertEqual(self.fake.data["Job Tracker"][1][status_column], "Applied")
 
     def test_scout_mark_preserves_apply_and_manual_fields(self):
-        self.tracker.mark_scout_resume(42, "file:///resume.docx")
+        self.tracker.mark_scout_resume(42, "https://drive.google.test/resume")
         stored = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
         self.assertEqual(stored["Apply?"], "Yes")
         self.assertEqual(stored["Resume Created"], "X")
-        self.assertEqual(stored["Resume Link"], "file:///resume.docx")
+        self.assertEqual(
+            stored["Resume Link"],
+            '=HYPERLINK("https://drive.google.test/resume","Open Resume")',
+        )
+        self.assertEqual(self.fake.value_input_options[-1], "USER_ENTERED")
+        self.assertEqual(len(self.fake.value_batches), 1)
+        self.assertIn("'Job Scout'!G2", self.fake.value_batches[0])
+        self.assertIn("'Job Scout'!S2", self.fake.value_batches[0])
+        self.assertEqual(
+            [column for title, row, column in self.fake.writes if title == "Job Scout" and row == 2],
+            ["E", "S", "G"],
+        )
+
+    def test_local_resume_uri_requires_explicit_local_mode(self):
+        local_uri = "file:///C:/Users/DCALL/Desktop/gecko/output/resumes/resume.docx"
+        with self.assertRaisesRegex(ValueError, "explicitly allows"):
+            self.tracker.mark_scout_resume(42, local_uri)
+        self.tracker.mark_scout_resume(42, local_uri, allow_local=True)
+        stored = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
+        self.assertEqual(stored["Resume Link"], local_uri)
+        self.assertEqual(stored["Resume Created"], "X")
 
     def test_marking_resume_does_not_downgrade_applied_status(self):
         self.fake.data["Job Scout"][1][4] = "Applied"
-        self.tracker.mark_scout_resume(42, "file:///resume.docx")
+        self.tracker.mark_scout_resume(42, "https://drive.google.test/resume")
         stored = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
         self.assertEqual(stored["Gecko Status"], "Applied")
         self.assertEqual(stored["Resume Created"], "X")
+
+    def test_blank_column_s_header_is_set_without_inserting_a_column(self):
+        self.fake.data["Job Scout"][0][18] = ""
+        self.tracker.mark_scout_resume(42, "https://drive.google.test/resume")
+        self.assertEqual(self.fake.data["Job Scout"][0][18], "Resume Link")
+        self.assertEqual(self.fake.structural, [])
+
+    def test_nonblank_column_s_header_is_preserved_but_s_is_authoritative(self):
+        self.fake.data["Job Scout"][0][18] = "Legacy Link Label"
+        self.tracker.mark_scout_resume(42, "https://drive.google.test/resume")
+        self.assertEqual(self.fake.data["Job Scout"][0][18], "Legacy Link Label")
+        self.assertIn(("Job Scout", 2, "S"), self.fake.writes)
+
+    def test_scout_id_relocates_target_row_before_resume_write(self):
+        self.fake.data["Job Scout"].insert(1, [99, "test", "Other", "Role"])
+        row = self.tracker.mark_scout_resume(42, "https://drive.google.test/resume")
+        self.assertEqual(row, 3)
+        self.assertIn(("Job Scout", 3, "S"), self.fake.writes)
+
+    def test_manual_approval_fills_only_blank_apply_cell(self):
+        self.fake.data["Job Scout"][1][SCOUT.index("Apply?")] = ""
+        self.tracker.approve_manual_scout_row(2, company="Existing", title="Role")
+        stored = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
+        self.assertEqual(stored["Apply?"], "Yes")
+        self.assertEqual([write[2] for write in self.fake.writes], ["F"])
+
+    def test_manual_approval_preserves_explicit_no(self):
+        self.fake.data["Job Scout"][1][SCOUT.index("Apply?")] = "No"
+        with self.assertRaisesRegex(RuntimeError, "explicit manual value"):
+            self.tracker.approve_manual_scout_row(2, company="Existing", title="Role")
+        self.assertEqual(self.fake.data["Job Scout"][1][SCOUT.index("Apply?")], "No")
+
+    def test_assign_manual_scout_id_is_unique_and_preserves_existing(self):
+        self.fake.data["Job Scout"][1][SCOUT.index("Scout ID")] = ""
+        assigned = self.tracker.assign_manual_scout_id(
+            2, 100, company="Existing", title="Role"
+        )
+        self.assertEqual(assigned, 100)
+        self.assertEqual(self.fake.data["Job Scout"][1][SCOUT.index("Scout ID")], 100)
+        self.assertEqual(self.tracker.assign_manual_scout_id(
+            2, 100, company="Existing", title="Role"
+        ), 100)
+
+    def test_assign_manual_scout_id_rejects_zero_and_collision(self):
+        self.fake.data["Job Scout"][1][SCOUT.index("Scout ID")] = ""
+        duplicate = [100, "Indeed", "Other", "Role"]
+        duplicate.extend([""] * (len(SCOUT) - len(duplicate)))
+        self.fake.data["Job Scout"].append(duplicate)
+        with self.assertRaisesRegex(ValueError, "positive"):
+            self.tracker.assign_manual_scout_id(2, 0, company="Existing", title="Role")
+        with self.assertRaisesRegex(RuntimeError, "already in use"):
+            self.tracker.assign_manual_scout_id(2, 100, company="Existing", title="Role")
 
     def test_response_rows_are_applied_only_and_updates_touch_response_only(self):
         self.fake.data["Job Scout"][1][SCOUT.index("Applied")] = True
@@ -180,6 +281,41 @@ class GoogleTrackerTests(unittest.TestCase):
         self.assertEqual(stored["Response"], "Interview request - received 9/27/26.")
         self.assertEqual(self.fake.writes[-1], ("Job Scout", 2, "J"))
 
+    def test_declined_scout_cleanup_deletes_exact_no_rows_bottom_up(self):
+        def add(*, apply="", notes=""):
+            row = [""] * len(SCOUT)
+            row[SCOUT.index("Company")] = f"Company {len(self.fake.data['Job Scout'])}"
+            row[SCOUT.index("Apply?")] = apply
+            row[SCOUT.index("Notes")] = notes
+            self.fake.data["Job Scout"].append(row)
+
+        self.fake.data["Job Scout"][1][SCOUT.index("Apply?")] = "Yes"
+        add(apply="no")
+        add(notes="No")
+        add(apply=" NO ", notes=" no ")
+        add(apply="Yes", notes="")
+        add(apply="Yes", notes="not interested")
+
+        removed = self.tracker.delete_declined_scout_rows()
+
+        self.assertEqual(removed, [5, 4, 3])
+        requests = [item["deleteDimension"]["range"] for item in self.fake.structural]
+        self.assertEqual([item["startIndex"] for item in requests], [4, 3, 2])
+        remaining = [dict(zip(SCOUT, row)) for row in self.fake.data["Job Scout"][1:]]
+        self.assertEqual(
+            [(row["Apply?"], row["Notes"]) for row in remaining],
+            [("Yes", ""), ("Yes", ""), ("Yes", "not interested")],
+        )
+
+    def test_declined_scout_cleanup_requires_configured_f_and_i_headers(self):
+        apply_index = SCOUT.index("Apply?")
+        response_index = SCOUT.index("Response")
+        for row in self.fake.data["Job Scout"]:
+            row[apply_index], row[response_index] = row[response_index], row[apply_index]
+        with self.assertRaisesRegex(RuntimeError, r"Apply\? in Column F"):
+            self.tracker.delete_declined_scout_rows()
+        self.assertEqual(self.fake.structural, [])
+
     def test_google_failure_never_falls_back_to_a_local_tracker(self):
         self.fake.fail = True
         with self.assertRaisesRegex(RuntimeError, "Cannot read Google Sheets"):
@@ -190,7 +326,7 @@ class GoogleTrackerTests(unittest.TestCase):
                "Resume Link": "file:///resumes/Dave-Call+Unicity+-1765374300165839452.docx"}
         self.assertEqual(job_key(row), "-1765374300165839452")
 
-    def test_scout_upsert_preserves_manual_fields_and_does_not_duplicate(self):
+    def test_scout_upsert_recomputes_apply_and_does_not_duplicate(self):
         job = normalize(RawListing(source="test", source_job_id="42",
                                    url="https://example.test/job", title="Role",
                                    company="Existing", description="Manage campaigns"))
@@ -200,7 +336,42 @@ class GoogleTrackerTests(unittest.TestCase):
         self.assertEqual(len(self.fake.data["Job Scout"]), 2)
         row = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
         self.assertEqual(row["Gecko Status"], "Selected")
-        self.assertEqual(row["Apply?"], "Yes")
+        self.assertEqual(row["Apply?"], "No")
+
+    def test_scout_upsert_sets_apply_for_new_and_updated_rows(self):
+        new_job = normalize(RawListing(
+            source="test", source_job_id="100", url="https://example.test/new",
+            title="New Role", company="New Company", location="Dallas, TX",
+            remote_type="On-site", description="Remote work may occasionally be discussed",
+        ))
+        new_job.id = 100
+        self.tracker.upsert_scout([new_job])
+        added = dict(zip(SCOUT, self.fake.data["Job Scout"][-1]))
+        self.assertEqual(added["Apply?"], "No")
+
+        existing = normalize(RawListing(
+            source="test", source_job_id="42", url="https://example.test/job",
+            title="Role", company="Existing", location="Lehi, Utah",
+            remote_type="Hybrid", description="",
+        ))
+        existing.id = 42
+        self.fake.data["Job Scout"][1][SCOUT.index("Apply?")] = "No"
+        self.tracker.upsert_scout([existing])
+        updated = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
+        self.assertEqual(updated["Apply?"], "Yes")
+
+    def test_manual_row_location_update_recomputes_apply_by_header(self):
+        apply_index = SCOUT.index("Apply?")
+        response_index = SCOUT.index("Response")
+        for row in self.fake.data["Job Scout"]:
+            row[apply_index], row[response_index] = row[response_index], row[apply_index]
+        tab = self.tracker.scout()
+        self.tracker.update_manual_scout_row(tab, 2, {
+            "Location": "Denver, CO", "Work Arrangement": "Hybrid",
+        })
+        stored = dict(zip(self.fake.data["Job Scout"][0], self.fake.data["Job Scout"][1]))
+        self.assertEqual(stored["Apply?"], "No")
+        self.assertIn(("Job Scout", 2, "J"), self.fake.writes)
 
     def test_schema_migration_deletes_retired_columns_and_second_run_is_noop(self):
         legacy = [

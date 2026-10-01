@@ -27,6 +27,13 @@ When asked to "use Gecko" for a job:
 6. Save the resume under `output/resumes/`.
 7. After the final resume has been created and validated successfully, add or update the job in the canonical Google Sheet with `scripts/manage_job_tracker.py`.
 
+### Permanent resume content structure
+
+- Every generated resume must include **CORE STRENGTHS** with at least 8 job-relevant, master-supported entries. Use professional Title Case for every entry and include more than 8 when useful.
+- Every generated resume must include **TOOLS & PLATFORMS** with at least 8 job-relevant, master-supported products or platforms. Preserve official brand capitalization and never use generic lowercase capabilities as tool entries.
+- Every **PROFESSIONAL EXPERIENCE** job must render as: job title alone on line 1; `Company Name  City, State` on line 2; accomplishments on line 3 and below. The legacy `Job Title | Company` format is prohibited. Preserve the blank right-side date cell/area.
+- Before the final DOCX is saved, use Gecko's cleanup and validation logic to correct and verify both section counts, canonical capitalization, the two-line job hierarchy, removal of combined headers, and removal of lowercase placeholder entries. A resume that fails these checks is not final.
+
 ### Mandatory pagination validation
 
 - The final DOCX must be exactly two pages when opened or exported by Microsoft Word. A browser, HTML, PDF, or fallback renderer alone is not sufficient proof of DOCX pagination.

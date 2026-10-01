@@ -9,6 +9,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import os
 from pathlib import Path
+import re
 from typing import Any
 from urllib.parse import quote, unquote, urlsplit
 
@@ -20,6 +21,8 @@ ROOT = Path(__file__).resolve().parents[1]
 APPLICATION_TAB = "Job Tracker"
 SCOUT_TAB = "Job Scout"
 SCOPE = "https://www.googleapis.com/auth/spreadsheets"
+SCOUT_LISTING_COLUMN = 18
+SCOUT_RESUME_LINK_COLUMN = 19
 NEW_SCOUT_ID_COLOR = {"red": 217 / 255, "green": 234 / 255, "blue": 211 / 255}
 APPLICATION_FIELDS = ("Company", "Job Title", "Pay", "Job Number", "Job Link",
                       "Resume Link", "Date Created", "Source", "Date Found", "Status")
@@ -98,6 +101,31 @@ def _normal(value: Any) -> str:
     return ("" if value is None else str(value)).strip().casefold()
 
 
+def apply_value(location: Any, work_arrangement: Any) -> str:
+    """Derive Apply? from Gecko's normalized location and arrangement fields."""
+    location_text = " ".join(str(location or "").split())
+    arrangement_text = " ".join(str(work_arrangement or "").split())
+    in_utah = bool(re.search(r"(?<![A-Za-z])(?:utah|ut)(?![A-Za-z])", location_text,
+                             re.IGNORECASE))
+
+    def is_remote(value: str) -> bool:
+        if re.search(r"\b(?:not|isn't|is not)\s+(?:a\s+)?remote\b", value,
+                     re.IGNORECASE):
+            return False
+        fully_remote = bool(re.search(
+            r"\b(?:fully\s+remote|100\s*%\s+remote|remote\s+only)\b",
+            value, re.IGNORECASE,
+        ))
+        if re.search(r"\bhybrid\b", value, re.IGNORECASE) and not fully_remote:
+            return False
+        return fully_remote or bool(re.search(
+            r"\b(?:remote|work\s+from\s+home|work\s+from\s+anywhere)\b",
+            value, re.IGNORECASE,
+        ))
+
+    return "Yes" if in_utah or is_remote(location_text) or is_remote(arrangement_text) else "No"
+
+
 def marked(value: Any) -> bool:
     """An unchecked native checkbox is not a completed/manual mark."""
     return value not in (None, "", False) and _normal(value) not in {"false", "no"}
@@ -137,6 +165,8 @@ class Tab:
     headers: dict[str, int]
     rows: list[tuple[int, dict[str, Any]]]
     grid_rows: int
+    header_values: tuple[str, ...] = ()
+    raw_rows: dict[int, tuple[Any, ...]] | None = None
 
 
 class GoogleTracker:
@@ -169,7 +199,12 @@ class GoogleTracker:
                 rows.append((number, {name: values_row[index - 1] if index <= len(values_row) else ""
                                       for name, index in headers.items()}))
         return Tab(title, matches[0]["sheetId"], headers, rows,
-                   matches[0].get("gridProperties", {}).get("rowCount", 1000))
+                   matches[0].get("gridProperties", {}).get("rowCount", 1000),
+                   tuple(names), {
+                       number: tuple(values_row)
+                       for number, values_row in enumerate(values[1:], 2)
+                       if any(value not in (None, "") for value in values_row)
+                   })
 
     def application(self) -> Tab:
         tab = self.tab(self.config.application_tab)
@@ -183,6 +218,16 @@ class GoogleTracker:
         tab = self.tab(self.config.scout_tab, value_render_option=value_render_option)
         if not {"Scout ID", "Job URL", "Gecko Status", "Resume Created", "Apply?"} <= tab.headers.keys():
             raise RuntimeError("Job Scout is missing required columns")
+        # Column S is the permanent Resume Link column even if its header is blank
+        # or a legacy sheet happens to call it something else. Keep the physical
+        # column authoritative without inserting or moving any columns.
+        tab.headers["Resume Link"] = SCOUT_RESUME_LINK_COLUMN
+        for row, data in tab.rows:
+            raw = (tab.raw_rows or {}).get(row, ())
+            data["Resume Link"] = (
+                raw[SCOUT_RESUME_LINK_COLUMN - 1]
+                if len(raw) >= SCOUT_RESUME_LINK_COLUMN else ""
+            )
         return tab
 
     def applied_response_rows(self) -> list[dict[str, Any]]:
@@ -265,6 +310,45 @@ class GoogleTracker:
             raise RuntimeError(f"Cannot update missing Job Scout row {row}")
         self._write(tab, row, {"Notes": value})
 
+    def delete_declined_scout_rows(self) -> list[int]:
+        """Delete complete Job Scout rows whose Apply? or Notes value is exactly no."""
+        tab = self.scout()
+        if tab.headers.get("Apply?") != 6 or tab.headers.get("Notes") != 9:
+            raise RuntimeError(
+                "Job Scout cleanup requires Apply? in Column F and Notes in Column I; "
+                "no rows were deleted"
+            )
+        rows = sorted((
+            row for row, data in tab.rows
+            if _normal(data.get("Apply?")) == "no" or _normal(data.get("Notes")) == "no"
+        ), reverse=True)
+        if not rows:
+            return []
+        requests = [{"deleteDimension": {"range": {
+            "sheetId": tab.sheet_id,
+            "dimension": "ROWS",
+            "startIndex": row - 1,
+            "endIndex": row,
+        }}} for row in rows]
+        try:
+            self.api.batchUpdate(
+                spreadsheetId=self.config.spreadsheet_id,
+                body={"requests": requests},
+            ).execute()
+        except Exception as error:
+            raise RuntimeError(f"Cannot delete declined Google Job Scout rows: {error}") from error
+
+        remaining = [
+            row for row, data in self.scout().rows
+            if _normal(data.get("Apply?")) == "no" or _normal(data.get("Notes")) == "no"
+        ]
+        if remaining:
+            raise RuntimeError(
+                "Google Job Scout cleanup verification failed; declined rows remain: "
+                + ", ".join(map(str, remaining))
+            )
+        return rows
+
     def migrate_scout_schema(self) -> dict[str, Any]:
         """Delete retired columns in place; a second run is a verified no-op."""
         tab = self.tab(self.config.scout_tab)
@@ -330,7 +414,70 @@ class GoogleTracker:
         unexpected = set(values) - allowed
         if unexpected:
             raise ValueError("Unsupported manual Job Scout fields: " + ", ".join(sorted(unexpected)))
-        self._write(tab, row, values)
+        managed = dict(values)
+        if {"Location", "Work Arrangement"} & managed.keys():
+            current = next(data for number, data in tab.rows if number == row)
+            managed["Apply?"] = apply_value(
+                managed.get("Location", current.get("Location")),
+                managed.get("Work Arrangement", current.get("Work Arrangement")),
+            )
+        self._write(tab, row, managed)
+
+    def approve_manual_scout_row(
+        self, row_number: int, *, company: str, title: str,
+    ) -> None:
+        """Fill a qualifying blank Apply? cell after re-verifying the exact row."""
+        tab = self.scout(value_render_option="FORMULA")
+        matches = [(row, data) for row, data in tab.rows if row == row_number]
+        if len(matches) != 1:
+            raise RuntimeError(f"Cannot locate Job Scout row {row_number}; no cell was changed")
+        _, current = matches[0]
+        if (_normal(current.get("Company")) != _normal(company)
+                or _normal(current.get("Job Title")) != _normal(title)):
+            raise RuntimeError("Manual Indeed row identity changed; Apply? was not updated")
+        current_apply = str(current.get("Apply?") or "").strip()
+        if current_apply:
+            if _normal(current_apply) == "yes":
+                return
+            raise RuntimeError("Apply? now contains an explicit manual value; no cell was changed")
+        if apply_value(
+            current.get("Location"), current.get("Work Arrangement")
+        ) != "Yes":
+            raise RuntimeError("Job is not in Utah or remote; Apply? was not updated")
+        self._write(tab, row_number, {"Apply?": "Yes"})
+
+    def assign_manual_scout_id(
+        self, row_number: int, scout_id: int, *, company: str, title: str,
+    ) -> int:
+        """Persist one positive, currently-unused ID on a verified blank-ID row."""
+        if isinstance(scout_id, bool) or not isinstance(scout_id, int) or scout_id <= 0:
+            raise ValueError("Scout ID must be a positive integer")
+        tab = self.scout(value_render_option="FORMULA")
+        existing_ids = [str(data.get("Scout ID") or "").strip()
+                        for _, data in tab.rows if str(data.get("Scout ID") or "").strip()]
+        if len(existing_ids) != len(set(existing_ids)):
+            raise RuntimeError("Google Job Scout contains duplicate Scout ID values")
+        matches = [(row, data) for row, data in tab.rows if row == row_number]
+        if len(matches) != 1:
+            raise RuntimeError(f"Cannot locate Job Scout row {row_number}; Scout ID was not assigned")
+        _, current = matches[0]
+        if (_normal(current.get("Company")) != _normal(company)
+                or _normal(current.get("Job Title")) != _normal(title)):
+            raise RuntimeError("Manual Indeed row identity changed; Scout ID was not assigned")
+        current_id = str(current.get("Scout ID") or "").strip()
+        if current_id:
+            if current_id == str(scout_id):
+                return scout_id
+            raise RuntimeError("Manual Indeed row already has a different Scout ID")
+        if str(scout_id) in existing_ids:
+            raise RuntimeError(f"Scout ID {scout_id} is already in use")
+        self._write(tab, row_number, {"Scout ID": scout_id})
+        verified = self.scout(value_render_option="FORMULA")
+        assigned = [(row, data) for row, data in verified.rows
+                    if str(data.get("Scout ID") or "").strip() == str(scout_id)]
+        if len(assigned) != 1 or assigned[0][0] != row_number:
+            raise RuntimeError(f"Scout ID {scout_id} was not uniquely persisted")
+        return scout_id
 
     def _checkboxes(self, tab: Tab, row: int) -> None:
         requests = []
@@ -429,6 +576,7 @@ class GoogleTracker:
             values = {
                 "Scout ID": job.id, "Source": job.source, "Company": job.company,
                 "Job Title": job.title, "Gecko Status": status,
+                "Apply?": apply_value(job.location, job.work_arrangement),
                 "Location": job.location, "Work Arrangement": job.work_arrangement,
                 "Employment Type": job.employment_type, "Salary": job.salary,
                 "Date Posted": job.date_posted, "Date Found": job.date_discovered,
@@ -437,7 +585,9 @@ class GoogleTracker:
             if existing:
                 for stable in ("Scout ID", "Source", "Company", "Job Title", "Date Posted", "Date Found"):
                     values.pop(stable, None)
-            self._write(tab, row, {key: value for key, value in values.items() if key in SCOUT_FIELDS})
+            managed_fields = set(SCOUT_FIELDS) | {"Apply?"}
+            self._write(tab, row, {key: value for key, value in values.items()
+                                   if key in managed_fields})
         return {"rows": len(tab.rows), "added": added, "updated": updated,
                 "jooble_excluded": excluded}
 
@@ -507,17 +657,66 @@ class GoogleTracker:
             raise RuntimeError(f"Cannot highlight Google Sheets Scout IDs found on {day}: {error}") from error
         return len(target_rows)
 
-    def mark_scout_resume(self, scout_id: int, resume_url: str) -> None:
-        tab = self.scout()
-        matches = [row for row, data in tab.rows if str(data.get("Scout ID")) == str(scout_id)]
+    def mark_scout_resume(
+        self, scout_id: int | None, resume_url: str, *, notes: str | None = None,
+        require_approved: bool = True, row_number: int | None = None,
+        allow_local: bool = False,
+    ) -> int:
+        """Atomically mark Column G and write the verified artifact location to Column S."""
+        target = str(resume_url or "").strip()
+        is_https = bool(re.fullmatch(r"https://[^\s]+", target, re.IGNORECASE))
+        is_local = bool(
+            re.fullmatch(r"file:///[A-Za-z]:/[^\r\n]+\.docx", target, re.IGNORECASE)
+            or re.fullmatch(r"[A-Za-z]:[\\/][^\r\n]+\.docx", target, re.IGNORECASE)
+        )
+        if not is_https and not (allow_local and is_local):
+            raise ValueError(
+                "A persistent HTTPS URL is required unless this queue explicitly allows "
+                "a verified local DOCX path"
+            )
+        tab = self.scout(value_render_option="FORMULA")
+        if scout_id is None:
+            matches = [(row, data) for row, data in tab.rows
+                       if row == row_number and not str(data.get("Scout ID") or "").strip()]
+        else:
+            matches = [(row, data) for row, data in tab.rows
+                       if str(data.get("Scout ID")) == str(scout_id)]
         if len(matches) != 1:
-            raise RuntimeError(f"Cannot locate unique Scout ID {scout_id} in Google Sheets")
-        current = next(data for row, data in tab.rows if row == matches[0])
+            identity = f"Scout ID {scout_id}" if scout_id is not None else f"blank-ID row {row_number}"
+            raise RuntimeError(f"Cannot locate unique {identity} in Google Sheets")
+        row, current = matches[0]
+        if require_approved and _normal(current.get("Apply?")) != "yes":
+            raise RuntimeError("Apply? is no longer Yes; no cell was changed")
+        if tab.headers.get("Apply?") != 6 or tab.headers.get("Resume Created") != 7:
+            raise RuntimeError("Apply? must be Column F and Resume Created must be Column G; no cell was changed")
         advanced = _normal(current.get("Gecko Status")) in {"applied", "contacted", "interview", "offer"}
-        values = {"Resume Created": "X", "Resume Link": resume_url}
+        escaped = target.replace('"', '""')
+        link_value = f'=HYPERLINK("{escaped}","Open Resume")' if is_https else target
+        entries = []
+        header_s = (tab.header_values[SCOUT_RESUME_LINK_COLUMN - 1]
+                    if len(tab.header_values) >= SCOUT_RESUME_LINK_COLUMN else "")
+        if not str(header_s).strip():
+            entries.append({"range": _a1(tab.title, "S1"), "values": [["Resume Link"]]})
         if not advanced:
-            values["Gecko Status"] = "Resume Created"
-        self._write(tab, matches[0], values)
+            entries.append({"range": _a1(tab.title, f"E{row}"), "values": [["Resume Created"]]})
+        entries.extend([
+            {"range": _a1(tab.title, f"S{row}"), "values": [[link_value]]},
+            {"range": _a1(tab.title, f"G{row}"), "values": [["X"]]},
+        ])
+        if notes is not None and notes != str(current.get("Notes") or "").strip():
+            if tab.headers.get("Notes") != 9:
+                raise RuntimeError("Notes must be Column I; no cell was changed")
+            entries.append({"range": _a1(tab.title, f"I{row}"), "values": [[notes]]})
+        try:
+            self.api.values().batchUpdate(
+                spreadsheetId=self.config.spreadsheet_id,
+                body={"valueInputOption": "USER_ENTERED", "data": entries},
+            ).execute()
+        except Exception as error:
+            raise RuntimeError(
+                f"Cannot complete Google Sheets Job Scout row {row}: {error}"
+            ) from error
+        return row
 
     def remove_dead_scout(self, scout_ids: set[int]) -> set[int]:
         """Clear only Job Scout-managed values and verify those exact cells.
