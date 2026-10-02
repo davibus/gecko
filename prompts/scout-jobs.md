@@ -4,6 +4,7 @@ Run Gecko Job Scout and show me the relevant new jobs.
 
 Instructions:
 - Read `GECKO_SYSTEM.md`, `AGENTS.md`, and `job-scout/README.md` first.
+- Run the requested discovery live and verify its actual tracker writes; do not substitute a dry run unless I explicitly request read-only behavior.
 - Use Adzuna only; do not require or query Brave and do not scrape job boards.
 - Run `python job-scout/scout.py search --source adzuna` from the project root.
 - Then run `python job-scout/scout.py list --status new`.

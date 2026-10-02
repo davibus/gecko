@@ -800,7 +800,12 @@ def inspect_docx(plan: dict, docx_path: Path) -> list[str]:
         issues.append("Page margins are smaller than Gecko's safety margin.")
     if doc.element.body.xpath(".//w:shd"):
         issues.append("Background shading violates the white-page layout.")
-    for token, count in Counter(re.findall(r"\b[A-Za-z][A-Za-z0-9+]{2,}\b", " ".join(paragraphs).casefold())).items():
+    # Fixed identity, summary, tools, education, and certification text is
+    # source-governed rather than tailored from the listing. Excluding it
+    # prevents legitimate repeated product names (for example, Google Ads,
+    # Microsoft Ads, and Meta Ads) from tripping the stuffing safeguard.
+    stuffing_text = " ".join(paragraph for paragraph in paragraphs if paragraph not in fixed)
+    for token, count in Counter(re.findall(r"\b[A-Za-z][A-Za-z0-9+]{2,}\b", stuffing_text.casefold())).items():
         if token not in STOP and count >= 18 and token in words(Path(plan["listing"]).read_text(encoding="utf-8-sig")):
             issues.append(f"Possible keyword stuffing: {token} appears {count} times.")
     return issues

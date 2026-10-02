@@ -2,6 +2,8 @@
 
 Gecko discovers and imports relevant jobs, stores listing data, tailors and generates source-backed resumes, and tracks applications in Google Sheets.
 
+Gecko commands use their live write path by default when the requested work includes writes. Normal invocations produce the real artifacts and managed Google Sheet updates, then read affected cells back for verification. Use an explicit `--dry-run` or a documented diagnostic command only when a read-only result is wanted. Live authorization remains limited to the requested workflow and never includes applying to a job, sending messages, purchases, destructive work, or bypassing access restrictions.
+
 The normal Daily Job Scout command runs the complete discovery-to-resume workflow. It searches enabled official APIs, public feeds, configured ATS boards, and compliant Brave discovery sources; rejects Jooble; filters to relevant role families; deduplicates results; synchronizes the existing Google Sheet; sets Apply? to Yes for Utah or explicitly remote rows from every source; sends eligible incomplete rows through the canonical Gecko V2 generator; writes X and the persistent resume link only after validation; and then checks Gmail read-only for substantive employer responses to applied jobs.
 
 ```powershell
@@ -10,7 +12,7 @@ python job-scout/scout.py daily
 
 Use `python job-scout/scout.py daily --dry-run` to perform network discovery against a temporary SQLite copy without changing the live tracker, creating descriptions, or generating resumes. See `job-scout/README.md` for source setup, duplicate behavior, failure recovery, and diagnostics.
 
-For manual Indeed intake, paste an Indeed job URL into Column R (`Job URL`) of a new `Job Scout` row, then run the same daily command. Gecko extracts the `jk`, checks the full dataset for duplicates, retrieves structured posting data, and populates that row. Duplicates and blocked retrievals are recorded in `Notes` without assigning a Scout ID or stopping the run. See `job-scout/README.md` for the exact behavior and retry procedure.
+For manual Indeed intake, paste an Indeed job URL into the `Job URL` field (currently Column P) of a new `Job Scout` row, then run the same daily command. Gecko extracts the `jk`, checks the full dataset for duplicates, retrieves structured posting data, and populates that row. Duplicates and blocked retrievals are recorded in `Notes` without assigning an ID or stopping the run. See `job-scout/README.md` for the exact behavior and retry procedure.
 
 To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
 
@@ -59,13 +61,13 @@ Validate the live Sheet:
 python scripts/manage_job_tracker.py validate
 ```
 
-The `add` command is idempotent by Job Number when the application tab exists. It reads company, title, pay, source URL, source name, and date found from the archived listing; unavailable optional fields remain blank. It verifies the job's DOCX is directly under `output/resumes`, then updates the matching Job Scout lifecycle while preserving user-maintained application/contact fields. The daily queue uses Column G (`Resume Created`) = `X` and fixed Column S = the absolute local DOCX path; the prior `C` marker remains recognized as completed. Column S is never inserted or shifted; a blank S1 is initialized to `Resume Link`.
+The `add` command is idempotent by Job Number when the application tab exists. It verifies the DOCX under `output/resumes`, then updates the matching Job Scout lifecycle while preserving user-maintained application/contact fields. Queue fields are resolved by unambiguous header on the configured intake tab. The current mapping is F `Apply?`, G `Resume Created`, I `Cost`, and Q `Resume Link`. Cost `x` excludes creation and repair. Successful rows receive `X` and the complete `file:///` URL created by `Path.resolve().as_uri()` directly in Q; the writer verifies the DOCX exists and never substitutes `Open Resume` display text. Repair rows with X and blank Q are recreated in the current Gecko style without overwriting an existing resume.
 
 Run the complete all-source workflow with:
 
 `python job-scout/scout.py daily`
 
-The daily command reuses `scripts/generate_apply_queue.py`; there is no duplicate resume workflow. For every source, it sets F (`Apply?`) to `Yes` for Utah or explicitly remote jobs, writes G (`Resume Created`) = `X` only after successful generation and validation, and writes S as the absolute local DOCX path. Nonqualifying Apply? values and unrelated cells are preserved; the workflow never applies to jobs or marks `Applied`.
+The daily command reuses `scripts/generate_apply_queue.py`; there is no duplicate resume workflow. For every source, it sets F (`Apply?`) to `Yes` for Utah or explicitly remote jobs, respects I (`Cost`) = `x`, writes G (`Resume Created`) = `X` only after successful generation and validation, and writes the verified local file link to Q (`Resume Link`). Nonqualifying Apply? values and unrelated cells are preserved; the workflow never applies to jobs or marks `Applied`.
 
 ## Gmail response tracking
 

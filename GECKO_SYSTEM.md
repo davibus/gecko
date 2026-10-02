@@ -4,6 +4,12 @@
 
 Gecko discovers and stores relevant jobs, customizes Dave Call's resume for selected postings, generates the finished document, and tracks the job and application while preserving factual accuracy, a natural voice, and the established resume format.
 
+## Execution policy
+
+Requested Gecko work uses the live write path by default. Implement the change, run the affected canonical workflow, and expose the actual generated files and configured Google Sheet results. Do not replace authorized execution with a dry run, preview, simulation, mock, or a list of instructions, and do not stop after code edits when a live run is needed for completion. Keep explicit `--dry-run`, validation, audit, and other intentionally read-only commands available for users who request them.
+
+The request authorizes only its necessary in-scope writes, including resume generation and Gecko-managed tracker updates. It never authorizes applying to jobs, marking `Applied`, sending messages, purchases, unrelated changes, destructive operations, or bypassing access controls. Preserve every eligibility rule, exclusion (including Cost `x`), duplicate safeguard, protected field, and unrelated value. Verify generated artifacts on disk and read every affected tracker cell back after a live write, including resolving the Resume Link to the generated file. Report exact blockers and partial changes; never report live success without read-back verification or ask for redundant confirmation.
+
 ## Resume rules
 
 - **Permanent content and format authorities:** Every tailored resume must use `input/master-resume/Dave-Call-Resume.txt` as its only factual content source and `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as its required visual formatting and layout model. These repository-relative paths are the defaults for every manual, queued, and Job Scout generation run.
@@ -70,9 +76,11 @@ Google Sheets is the canonical job tracker. Do not create or update a local Exce
 
 `python job-scout/scout.py daily` is the complete workflow and automatically invokes the canonical queue implementation after discovery and Sheet synchronization. It evaluates all existing `Job Scout` rows across every source. Based only on `Location` and `Work Arrangement`, Column F (`Apply?`) is set to `Yes` for every Utah job (on-site, hybrid, or remote) and every job that explicitly allows remote work. Blank or unspecified work arrangements are not remote. Apply? values on all other jobs remain unchanged.
 
-Eligible rows use the standard source-backed Gecko generator and Word-native two-page validation. After the exact DOCX exists under `output/resumes` and passes validation, write Column G (`Resume Created`) = `X`, fixed Column S as the absolute local DOCX path, and the normal `Resume Created` Gecko Status without downgrading later application statuses. Both `X` and the prior `C` marker are recognized as completed. Completed rows whose Column S path points to an existing resume are idempotently skipped; missing/invalid resumes or paths are repaired through the same workflow without duplicate jobs or resumes. Never upload resumes to Google Drive, never mark Applied, and never mark completion after a generation, validation, local-artifact, or Sheet failure.
+The queue resolves exact, unambiguous headers on the configured intake worksheet. Its current mapping is F `Apply?`, G `Resume Created`, I `Cost`, and Q `Resume Link`; future column movement is safe because reads and writes use headers. A row whose Cost is `x` after trimming and case normalization is excluded from both creation and recreation. `Apply? = yes` with blank Resume Created creates a resume. `Apply? = yes`, `Resume Created = X`, and blank or whitespace Resume Link recreates the resume from the current master TXT and current model PDF; the existing X does not block repair. `Resume Created = X` with a nonblank valid link is idempotently skipped.
 
-Daily column mapping: F = `Yes` for Utah or remote jobs; G = `X` after successful resume creation; S = absolute local path under `output/resumes`.
+After the exact DOCX under `output/resumes` passes structural and Word-native two-page validation, write `Resume Created = X`, a clickable absolute file-URI link to that DOCX in Resume Link, and the normal `Resume Created` Gecko Status without downgrading later application statuses. The shared writer must verify the saved DOCX, create the URL with `Path.resolve().as_uri()`, and store the complete `file:///` URL directly as Column Q's visible value; `HYPERLINK` formulas and `Open Resume` display text are prohibited. Preserve existing resume files; when replacement is necessary, create a versioned filename with the job number still last. If generation, validation, or link creation fails, a new row remains unmarked, a repair row keeps its existing X, Resume Link stays blank, and the retryable failure is written to `Notes` rather than `Cost`. Never upload resumes to Google Drive, mark Applied, or submit an application.
+
+Daily column mapping: F = `Apply?`; G = `Resume Created`; I = `Cost` (`x` excludes); Q = `Resume Link` (clickable absolute file URI under `output/resumes`).
 
 ## Filename rules
 

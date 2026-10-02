@@ -57,6 +57,15 @@ class GeckoV2Tests(unittest.TestCase):
             doc.save(path)
             self.assertIn("Resume bullets differ from the source-backed tailoring plan.", v2.inspect_docx(self.plan, path))
 
+    def test_official_tool_names_do_not_trigger_keyword_stuffing(self):
+        listing = v2.ROOT / "input/job-descriptions/Pattern+3245845963235237630.md"
+        plan = v2.create_plan(listing)
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "resume.docx"
+            v2.make_resume(plan, path)
+            issues = v2.inspect_docx(plan, path)
+        self.assertFalse(any("keyword stuffing: ads" in issue.casefold() for issue in issues))
+
     def test_native_word_failure_blocks_pass(self):
         with tempfile.TemporaryDirectory() as tmp:
             docx = Path(tmp) / "resume.docx"

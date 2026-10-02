@@ -131,7 +131,7 @@ class ManualIndeedTests(unittest.TestCase):
 
         row = dict(zip(SCOUT, self.fake.data["Job Scout"][2]))
         self.assertEqual(result.new_job_ids, [43])
-        self.assertEqual(row["Scout ID"], 43)
+        self.assertEqual(row["ID"], 43)
         self.assertEqual(row["Source"], "indeed")
         self.assertEqual(row["Company"], "Acme, Inc.")
         self.assertEqual(row["Job URL"], url)
@@ -164,7 +164,7 @@ class ManualIndeedTests(unittest.TestCase):
         )
         row = dict(zip(SCOUT, self.fake.data["Job Scout"][2]))
         self.assertEqual(result.processed, 1)
-        self.assertEqual(row["Scout ID"], 43)
+        self.assertEqual(row["ID"], 43)
         self.assertEqual(row["Job URL"], url)
         saved = self.store.get(43)
         self.assertEqual(saved.authoritative_url, f"https://careers.example.com/jobs/{jk}")
@@ -191,7 +191,7 @@ class ManualIndeedTests(unittest.TestCase):
         row = dict(zip(SCOUT, self.fake.data["Job Scout"][2]))
         self.assertEqual(result.duplicates, 1)
         self.assertEqual(provider.calls, [])
-        self.assertEqual(row["Scout ID"], "")
+        self.assertEqual(row["ID"], "")
         self.assertIn("Scout ID 42", row["Notes"])
         self.assertIn("Indeed JK", row["Notes"])
 
@@ -213,7 +213,7 @@ class ManualIndeedTests(unittest.TestCase):
         row = dict(zip(SCOUT, self.fake.data["Job Scout"][2]))
         self.assertEqual(result.duplicates, 1)
         self.assertIn("company/title/location", row["Notes"])
-        self.assertEqual(row["Scout ID"], "")
+        self.assertEqual(row["ID"], "")
 
     def test_different_job_at_same_company_is_not_rejected(self):
         existing = self.fake.data["Job Scout"][1]
@@ -233,7 +233,7 @@ class ManualIndeedTests(unittest.TestCase):
         self.assertEqual(result.duplicates, 0)
 
     def test_ids_use_highest_value_and_high_water_mark_never_reuses_deleted_id(self):
-        self.fake.data["Job Scout"][1][SCOUT.index("Scout ID")] = 900
+        self.fake.data["Job Scout"][1][SCOUT.index("ID")] = 900
         self.fake.data["Job Scout"].append(manual_row(
             "https://www.indeed.com/viewjob?jk=first"
         ))
@@ -242,7 +242,7 @@ class ManualIndeedTests(unittest.TestCase):
         )
         self.assertEqual(first.new_job_ids, [901])
         self.store.delete_dead_unprotected(901)
-        self.fake.data["Job Scout"][2][SCOUT.index("Scout ID")] = ""
+        self.fake.data["Job Scout"][2][SCOUT.index("ID")] = ""
         self.fake.data["Job Scout"][2][SCOUT.index("Job URL")] = (
             "https://www.indeed.com/viewjob?jk=second"
         )
@@ -255,7 +255,7 @@ class ManualIndeedTests(unittest.TestCase):
         self.fake.data["Job Scout"].append(manual_row(
             "https://www.indeed.com/viewjob?jk=done"
         ))
-        self.fake.data["Job Scout"][2][SCOUT.index("Scout ID")] = 43
+        self.fake.data["Job Scout"][2][SCOUT.index("ID")] = 43
         self.fake.data["Job Scout"].append(manual_row(
             "https://www.indeed.com/viewjob?jk=duplicate"
         ))
@@ -284,9 +284,9 @@ class ManualIndeedTests(unittest.TestCase):
         succeeded = dict(zip(SCOUT, self.fake.data["Job Scout"][3]))
         self.assertEqual((result.failures, result.processed), (1, 1))
         self.assertIn("manual review required", failed["Notes"])
-        self.assertEqual(failed["Scout ID"], "")
+        self.assertEqual(failed["ID"], "")
         self.assertEqual(succeeded["Source"], "indeed")
-        self.assertNotEqual(succeeded["Scout ID"], "")
+        self.assertNotEqual(succeeded["ID"], "")
 
     def test_all_fallbacks_fail_without_consuming_scout_id(self):
         url = "https://www.indeed.com/viewjob?jk=nowhere"
@@ -297,7 +297,7 @@ class ManualIndeedTests(unittest.TestCase):
             fallback=FakeFallback(),
         )
         row = dict(zip(SCOUT, self.fake.data["Job Scout"][2]))
-        self.assertEqual((result.failures, row["Scout ID"]), (1, ""))
+        self.assertEqual((result.failures, row["ID"]), (1, ""))
         self.assertIn("direct=401", row["Notes"])
         self.assertIn("Brave=no matching result", row["Notes"])
         self.assertIn("employer lookup=no confirmed posting", row["Notes"])

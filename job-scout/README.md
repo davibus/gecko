@@ -2,6 +2,8 @@
 
 Job Scout discovers role-relevant openings and records them in the canonical Google Sheet.
 
+Requested Job Scout work runs live by default. The normal command performs the authorized Sheet, archive, and resume writes and verifies changed cells by reading them back; `--dry-run` remains an explicit read-only option. Live execution never weakens Cost `x`, eligibility, duplicate prevention, protected-field, or access safeguards and never applies to jobs or sends messages.
+
 ## Daily workflow
 
 ```powershell
@@ -12,14 +14,14 @@ The daily command:
 
 1. validates known active links;
 2. concurrently searches every enabled API, feed, ATS, and search-discovery source;
-3. processes unassigned Indeed URLs manually pasted into Column R (`Job URL`);
+3. processes unassigned Indeed URLs manually pasted into the `Job URL` field (currently Column P);
 4. rejects Jooble records;
 5. applies configurable title, location, work-arrangement, employment-type, category, and compensation hard filters;
 6. deduplicates by provider job ID, canonical URL, normalized company/title/location, then fuzzy evidence;
 7. reuses persistent AI results when the normalized description and candidate profile are unchanged;
 8. when AI models are configured, performs compact-profile triage and fully scores only `possible`/`strong` jobs;
 9. appends automated discoveries and populates valid manual Indeed rows;
-10. runs Gecko automatically for every eligible incomplete live row across all sources; qualifying Utah/remote rows are set to `Apply? = Yes`, short descriptions are accepted, failures are written specifically to Column I for later retry, and success writes X to G while clearing only Gecko's prior failure message;
+10. runs Gecko automatically for every eligible live row across all sources; Cost `x` rows are excluded, qualifying Utah/remote rows are set to `Apply? = Yes`, X-with-blank-link rows are recreated, failures are written to `Notes`, and success writes X to `Resume Created` plus the complete `Path.resolve().as_uri()` `file:///` URL directly to `Resume Link` (never an `Open Resume` label);
 11. checks Gmail read-only for substantive employer responses to applied jobs and updates `Response`.
 
 `python job-scout/scout.py daily --dry-run` uses a temporary SQLite copy and does not write the Google Sheet, descriptions, resumes, or reports. A failure for one job is logged without stopping later jobs.
@@ -36,41 +38,42 @@ The normal command is `python job-scout/scout.py daily`. It automatically reuses
 
 1. Find a job manually on Indeed.
 2. Copy the Indeed job URL (a `viewjob` URL containing `jk` is preferred).
-3. Paste it into Column R (`Job URL`) of a new `Job Scout` row.
+3. Paste it into the `Job URL` field (currently Column P) of a new `Job Scout` row.
 4. Run the normal `python job-scout/scout.py daily` command.
 5. Gecko checks the complete Sheet and local datastore for the same Indeed `jk`, canonical URL, or exact normalized company/title/location identity.
 6. If the job is new, Gecko retrieves the structured posting, populates the existing row, assigns the next never-used numeric Scout ID, and includes it in the normal review/resume queue. During `daily`, Gecko sets Apply? to `Yes` when Location is in Utah or Work Arrangement explicitly permits remote work, just as it does for every other source.
-7. If it is a duplicate, Gecko leaves the pasted URL in Column R, writes `Duplicate — Scout ID ...` in `Notes`, and does not allocate an ID, retrieve it again, or create a resume.
+7. If it is a duplicate, Gecko leaves the pasted URL in `Job URL`, writes `Duplicate — ID ...` in `Notes`, and does not allocate an ID, retrieve it again, or create a resume.
 
-Indeed can return a block page or omit usable structured posting data. A new row tries the pasted Indeed page once, then searches configured Web Careers backends by `jk` and canonical Indeed URL. If indexed Indeed evidence identifies the role, Gecko accepts an employer careers posting only when title, company, and available location evidence match strongly. The pasted Indeed URL remains in Column R and the confirmed employer URL is retained internally. Only after all configured fallbacks fail does Gecko allocate no Scout ID, write `Indeed retrieval failed — manual review required` with per-stage diagnostics in `Notes`, and continue with later rows.
+Indeed can return a block page or omit usable structured posting data. A new row tries the pasted Indeed page once, then searches configured Web Careers backends by `jk` and canonical Indeed URL. If indexed Indeed evidence identifies the role, Gecko accepts an employer careers posting only when title, company, and available location evidence match strongly. The pasted Indeed URL remains in `Job URL` and the confirmed employer URL is retained internally. Only after all configured fallbacks fail does Gecko allocate no ID, write `Indeed retrieval failed — manual review required` with per-stage diagnostics in `Notes`, and continue with later rows.
 
 Failed Indeed rows are retried automatically on later daily runs through fallback search first; Gecko does not repeat the previously blocked direct Indeed request. To retry `jk=3736ea0494f752a7`, leave its URL and failure note in place and run `python job-scout/scout.py daily` again. Duplicate notes remain terminal and are not retried.
 
-Outside the all-source Utah/remote eligibility rule, Job Scout preserves the user-maintained `Apply?` decision. Manual Indeed jobs follow the same architecture. The daily column mapping is F = `Yes` for Utah or remote jobs, G = `X` after successful resume creation, and S = the absolute local DOCX path.
+Outside the all-source Utah/remote eligibility rule, Job Scout preserves the user-maintained `Apply?` decision. Manual Indeed jobs follow the same architecture. Current queue columns are F `Apply?`, G `Resume Created`, I `Cost`, and Q `Resume Link`, but code resolves them by exact header. Cost `x` always excludes creation and recreation.
 
 ## Google Sheet schema
 
 The active `Job Scout` schema is:
 
-1. Scout ID
+1. ID
 2. Source
 3. Company
 4. Job Title
-5. Gecko Status
+5. Status
 6. Apply?
 7. Resume Created
 8. Applied
-9. Notes
-10. Response
-11. Location
-12. Work Arrangement
-13. Employment Type
-14. Salary
-15. Date Posted
-16. Date Found
-17. Last Seen
-18. Job URL
-19. Resume Link
+9. Cost
+10. Notes
+11. Response
+12. Location
+13. Work Arrangement
+14. Employment Type
+15. Salary
+16. Job URL
+17. Resume Link
+18. Date Posted
+19. Date Found
+20. Last Seen
 
 The schema migration deletes the retired original columns J, K, L, M, V, X, and Y in place. Future writes are restricted to the headers above and never recreate or repurpose those retired columns. User formatting, filters, manual values, checkboxes, hyperlinks, and row order remain in place because writes target specific cells and structural migration uses native column deletion.
 
@@ -136,20 +139,20 @@ The saved ATS employer universe is a curated watch list of direct-employer board
 Employer discovery is a separate maintenance operation. It never runs as part of `python job-scout/scout.py daily`, avoiding daily Brave usage, excess ATS traffic, slow runs, and unstable configuration changes. Run it explicitly:
 
 ```powershell
+# Discover, validate, and merge newly validated employers (live default)
+python job-scout/discover_ats_employers.py
+
 # Discover and validate without changing job-sources.json
 python job-scout/discover_ats_employers.py --dry-run
 
-# Revalidate, rank, and merge validated employers
-python job-scout/discover_ats_employers.py --apply
-
 # Periodic revalidation plus discovery of newly indexed boards
-python job-scout/discover_ats_employers.py --refresh --dry-run
+python job-scout/discover_ats_employers.py --refresh
 
 # Bounded or platform-specific maintenance
 python job-scout/discover_ats_employers.py --dry-run --platform ashby --limit 20
 ```
 
-The utility extracts identifiers only from recognized public hosted URLs, validates the corresponding public provider endpoint, applies employer-relevance rules separately from Job Scout's role filtering, deduplicates by platform/identifier/name, and writes detailed diagnostics to the ignored generated file `data/ats-employer-discovery.json`. A completed dry-run is carried into a later apply and every board is revalidated. Search errors, malformed responses, redirects, duplicate candidates, open/relevant/U.S./remote job counts, examples, and repeated failure counts remain in the diagnostic output. Existing manually configured entries are preserved even when validation fails; a single temporary failure never deletes an employer.
+The utility extracts identifiers only from recognized public hosted URLs, validates the corresponding public provider endpoint, applies employer-relevance rules separately from Job Scout's role filtering, deduplicates by platform/identifier/name, and writes detailed diagnostics to the ignored generated file `data/ats-employer-discovery.json`. A normal invocation applies validated additions; `--dry-run` makes it read-only. Every board is revalidated before a write. Search errors, malformed responses, redirects, duplicate candidates, open/relevant/U.S./remote job counts, examples, and repeated failure counts remain in the diagnostic output. Existing manually configured entries are preserved even when validation fails; a single temporary failure never deletes an employer.
 
 Curated URLs in `preferences/ats-employer-seeds.json` supplement public search when an index or API quota is incomplete. They are not trusted blindly: the identifier is extracted from the stored hosted URL and the board must pass the same live endpoint validation before selection.
 
@@ -160,7 +163,7 @@ To add an employer manually, first open its actual hosted board and copy the fir
 - Ashby: `https://jobs.ashbyhq.com/<board>` becomes `{"name": "Acme", "board": "<board>"}`.
 - Workable: `https://apply.workable.com/<account>` becomes `{"name": "Acme", "account": "<account>"}`.
 
-Add the hosted URL to the seed file and run a dry-run followed by apply, or carefully add the object to the matching `companies` array and run `--refresh --dry-run`. Never add a board that requires login, presents a CAPTCHA, redirects to an unrelated employer, or cannot be confirmed through the public provider response.
+Add the hosted URL to the seed file and run the normal live command, or carefully add the object to the matching `companies` array and run `--refresh`. Use `--dry-run` only when a read-only preview is explicitly wanted. Never add a board that requires login, presents a CAPTCHA, redirects to an unrelated employer, or cannot be confirmed through the public provider response.
 
 ### Deduplication and source preference
 
@@ -210,7 +213,7 @@ Gecko evaluates the job description directly against the required master archive
 
 - an exactly two-page DOCX after native Microsoft Word validation.
 
-The completed resume is recorded only after the DOCX exists directly under `output/resumes`, native QA passes, and its absolute local path is written to the canonical Sheet. The daily queue marks Column G with canonical `X`; prior `C` remains recognized. Fixed Column S contains the local DOCX path as plain text. A completed row with blank or invalid S is safely repaired from a uniquely identified existing DOCX or rebuilt through the same validated workflow without generating a duplicate resume. The Google Sheet remains the source of truth; no local Excel tracker or Google Drive resume copy is used.
+The completed resume is recorded only after the DOCX exists directly under `output/resumes` and native QA passes. The current Gecko style comes from the required master TXT and model PDF, including the mandatory Core Strengths and Tools & Platforms counts and the two-line experience hierarchy. The daily queue marks `Resume Created` with canonical `X` and writes a clickable absolute file URI to `Resume Link` (currently Q). Cost `x` rows are excluded. An approved completed row with a blank link is recreated from the current authorities; any preexisting DOCX is preserved and a versioned filename is used. A valid nonblank link makes the row idempotently complete. Local file links are machine-scoped and require access to the same Windows path; no public URL or Google Drive copy is invented.
 
 ## Data preservation
 

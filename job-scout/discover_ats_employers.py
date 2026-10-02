@@ -571,7 +571,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--dry-run", action="store_true", help="Discover/validate without changing config")
-    mode.add_argument("--apply", action="store_true", help="Merge newly validated employers into config")
+    mode.add_argument("--apply", action="store_true", help="Merge newly validated employers into config (the default)")
     parser.add_argument("--refresh", action="store_true",
                         help="Revalidate configured employers and discover newly indexed boards")
     parser.add_argument("--platform", choices=PLATFORMS, action="append",
@@ -621,8 +621,8 @@ def run(args: argparse.Namespace) -> int:
 
 def main() -> int:
     args = build_parser().parse_args()
-    if not args.apply:
-        args.dry_run = True
+    if not args.dry_run:
+        args.apply = True
     try:
         return run(args)
     except (ProviderError, ValueError, OSError, json.JSONDecodeError) as error:

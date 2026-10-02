@@ -2,6 +2,8 @@
 
 Use Gecko for this job: "put job URL here"
 
+Execute this workflow live by default. Generate the real resume, make the necessary Gecko-managed tracker updates, and verify the saved file and affected cells by reading them back. Do not substitute a dry run or ask for redundant confirmation.
+
 Read the listing, identify the job number, archive it, and create the V2 tailoring plan with `scripts/gecko_v2.py plan` before modifying the resume. Review its evidence and gaps, then generate the DOCX and run Word-native QA with `scripts/gecko_v2.py generate`. Generate:
 1. The exactly two-page DOCX resume under `output/resumes/Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx` using `scripts/`.
 2. The archived listing under `input/job-descriptions/<Company-Name>+<job-number>.md`.

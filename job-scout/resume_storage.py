@@ -118,6 +118,6 @@ class GoogleDriveResumeStore:
             ).execute()
         except Exception as error:
             raise RuntimeError(
-                f"Resume created but Google Drive upload failed; Column S was not updated: {error}"
+                f"Resume created but Google Drive upload failed; Resume Link was not updated: {error}"
             ) from error
         return ResumeUpload(str(item.get("id") or ""), _web_url(item), False)

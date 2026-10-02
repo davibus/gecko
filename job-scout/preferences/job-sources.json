@@ -874,12 +874,32 @@
       "enabled": true,
       "companies": [
         {
+          "name": "1Password",
+          "board": "1password"
+        },
+        {
           "name": "Abridge",
           "board": "abridge"
         },
         {
+          "name": "Absorb",
+          "board": "absorblms"
+        },
+        {
           "name": "Acorns",
           "board": "Acorns"
+        },
+        {
+          "name": "Acquisition.com",
+          "board": "acquisition"
+        },
+        {
+          "name": "Ambience Healthcare",
+          "board": "ambiencehealthcare"
+        },
+        {
+          "name": "Angi",
+          "board": "angi"
         },
         {
           "name": "Ashby",
@@ -906,8 +926,36 @@
           "board": "bioptimizers"
         },
         {
+          "name": "Cantina",
+          "board": "cantina"
+        },
+        {
           "name": "Checkbox Technology",
           "board": "Checkbox Technology"
+        },
+        {
+          "name": "Cogent Security",
+          "board": "cogent-security"
+        },
+        {
+          "name": "Constructor",
+          "board": "constructor"
+        },
+        {
+          "name": "Dandy",
+          "board": "dandy"
+        },
+        {
+          "name": "Dash0",
+          "board": "dash0"
+        },
+        {
+          "name": "Deepgram",
+          "board": "Deepgram"
+        },
+        {
+          "name": "DeepJudge",
+          "board": "deepjudge"
         },
         {
           "name": "Directive",
@@ -918,12 +966,28 @@
           "board": "duck-duck-go"
         },
         {
+          "name": "Eight Sleep",
+          "board": "eightsleep"
+        },
+        {
           "name": "Equip",
           "board": "equip"
         },
         {
+          "name": "Fireworks",
+          "board": "fireworks"
+        },
+        {
           "name": "Flashpoint",
           "board": "flashpoint.io"
+        },
+        {
+          "name": "Found",
+          "board": "found"
+        },
+        {
+          "name": "Freshpaint",
+          "board": "freshpaint"
         },
         {
           "name": "FurtherAI",
@@ -936,6 +1000,10 @@
         {
           "name": "Goodlord",
           "board": "goodlord"
+        },
+        {
+          "name": "Gray Swan AI",
+          "board": "Gray Swan AI"
         },
         {
           "name": "Handshake",
@@ -958,16 +1026,44 @@
           "board": "hawk"
         },
         {
+          "name": "Hinge Health",
+          "board": "hinge-health"
+        },
+        {
           "name": "Illumio",
           "board": "illumio"
+        },
+        {
+          "name": "Kindred",
+          "board": "kindred"
         },
         {
           "name": "Knox Systems",
           "board": "knox-systems"
         },
         {
+          "name": "Laurel",
+          "board": "laurel"
+        },
+        {
+          "name": "LiveKit",
+          "board": "livekit"
+        },
+        {
           "name": "Morning Consult",
           "board": "morningconsult"
+        },
+        {
+          "name": "Nash",
+          "board": "nash"
+        },
+        {
+          "name": "OnePay",
+          "board": "oneapp"
+        },
+        {
+          "name": "Ontic",
+          "board": "ontic"
         },
         {
           "name": "OpenEd",
@@ -994,6 +1090,30 @@
           "board": "reducto"
         },
         {
+          "name": "Render",
+          "board": "render"
+        },
+        {
+          "name": "Reprise Financial",
+          "board": "reprise financial"
+        },
+        {
+          "name": "Rula",
+          "board": "rula"
+        },
+        {
+          "name": "Sanity",
+          "board": "sanity"
+        },
+        {
+          "name": "Semgrep",
+          "board": "semgrep"
+        },
+        {
+          "name": "Siege Media",
+          "board": "siegemedia"
+        },
+        {
           "name": "Silktide",
           "board": "silktide"
         },
@@ -1002,12 +1122,20 @@
           "board": "skydio"
         },
         {
+          "name": "Socure",
+          "board": "socure"
+        },
+        {
           "name": "Solink",
           "board": "solink"
         },
         {
           "name": "STNDRD",
           "board": "stndrd"
+        },
+        {
+          "name": "Stryker Digital",
+          "board": "stryker-digital"
         },
         {
           "name": "Superhuman",
@@ -1026,6 +1154,10 @@
           "board": "tern"
         },
         {
+          "name": "Thumbtack",
+          "board": "thumbtack"
+        },
+        {
           "name": "Tin Can",
           "board": "tin-can"
         },
@@ -1042,12 +1174,24 @@
           "board": "true-classic-tees"
         },
         {
+          "name": "Vanta",
+          "board": "vanta"
+        },
+        {
+          "name": "Whippy",
+          "board": "whippy"
+        },
+        {
           "name": "WHOOP",
           "board": "whoop"
         },
         {
           "name": "XDS",
           "board": "xds"
+        },
+        {
+          "name": "Xero",
+          "board": "xero"
         }
       ]
     },
@@ -1055,8 +1199,16 @@
       "enabled": true,
       "companies": [
         {
+          "name": "AB Marketing LLC",
+          "account": "ab-marketing"
+        },
+        {
           "name": "ActivTrak",
           "account": "activtrak"
+        },
+        {
+          "name": "Akkadian Labs",
+          "account": "akkadianlabs"
         },
         {
           "name": "AlgaeCal",
@@ -1067,8 +1219,24 @@
           "account": "apexwheels"
         },
         {
+          "name": "AutoLeap",
+          "account": "autoleap"
+        },
+        {
+          "name": "Avomind",
+          "account": "avomind"
+        },
+        {
           "name": "Azumo",
           "account": "azumo"
+        },
+        {
+          "name": "Booksy",
+          "account": "booksy-1"
+        },
+        {
+          "name": "Bully Pulpit International",
+          "account": "bully-pulpit-international-1"
         },
         {
           "name": "Channel Factory",
@@ -1079,8 +1247,100 @@
           "account": "clearstory"
         },
         {
+          "name": "Compound Growth Marketing",
+          "account": "compound-growth-marketing"
+        },
+        {
+          "name": "Coursedog",
+          "account": "coursedog-1"
+        },
+        {
+          "name": "CrewBloom",
+          "account": "crewbloom"
+        },
+        {
+          "name": "Curology",
+          "account": "curology"
+        },
+        {
+          "name": "Decentralized Masters",
+          "account": "decentralized-masters"
+        },
+        {
+          "name": "Digital",
+          "account": "digital-368"
+        },
+        {
+          "name": "Dodge Construction Network",
+          "account": "dodge-construction-network"
+        },
+        {
+          "name": "Facet",
+          "account": "facetwealth"
+        },
+        {
+          "name": "Facilities Management Express",
+          "account": "fmx"
+        },
+        {
+          "name": "Feeld",
+          "account": "feeldco"
+        },
+        {
+          "name": "Flosum",
+          "account": "flosum"
+        },
+        {
+          "name": "FormAssembly Inc.",
+          "account": "formassembly"
+        },
+        {
+          "name": "Freebird",
+          "account": "freebird"
+        },
+        {
+          "name": "Funnel Leasing",
+          "account": "funnel-leasing"
+        },
+        {
           "name": "Future Publishing",
           "account": "futureplc"
+        },
+        {
+          "name": "GBG",
+          "account": "gbg"
+        },
+        {
+          "name": "Hi-Altitude Brands",
+          "account": "hialtitudebrands"
+        },
+        {
+          "name": "HireHawk",
+          "account": "hirehawk"
+        },
+        {
+          "name": "ICBD",
+          "account": "icbd-holdings"
+        },
+        {
+          "name": "IMPACT",
+          "account": "impactplus"
+        },
+        {
+          "name": "IntelliShift",
+          "account": "intellishift"
+        },
+        {
+          "name": "Interactive Strategies",
+          "account": "interactivestrategies"
+        },
+        {
+          "name": "Jam+",
+          "account": "jam-4"
+        },
+        {
+          "name": "Jenzabar",
+          "account": "jenzabar1"
         },
         {
           "name": "Jump 450 Media",
@@ -1091,12 +1351,80 @@
           "account": "keywords-intl1"
         },
         {
+          "name": "LawnStarter",
+          "account": "lawnstarter"
+        },
+        {
+          "name": "Modern AI",
+          "account": "modern-ai"
+        },
+        {
+          "name": "Modern Family Law",
+          "account": "modern-family-law-1"
+        },
+        {
+          "name": "Nautilus Solar Energy",
+          "account": "nautilus-solar-energy"
+        },
+        {
+          "name": "Newrich Network",
+          "account": "newrich-network"
+        },
+        {
+          "name": "Paired",
+          "account": "pairedrecruiting"
+        },
+        {
+          "name": "Paleovalley & Wild Pastures",
+          "account": "paleovalley-wildpastures"
+        },
+        {
+          "name": "Palm Venture Studios",
+          "account": "palm-venture-studios"
+        },
+        {
+          "name": "Panorama Education",
+          "account": "panorama-education"
+        },
+        {
           "name": "Pareto Publishing",
           "account": "pareto-publishing"
         },
         {
+          "name": "Partner One Software Inc",
+          "account": "partner-one-capital"
+        },
+        {
+          "name": "PERSUIT",
+          "account": "persuit-1"
+        },
+        {
+          "name": "PlanetArt",
+          "account": "planetart"
+        },
+        {
+          "name": "Popmenu",
+          "account": "popmenu"
+        },
+        {
           "name": "PracticeTek",
           "account": "practicetek"
+        },
+        {
+          "name": "Prime System Solutions",
+          "account": "prime-system"
+        },
+        {
+          "name": "Prosci",
+          "account": "prosci"
+        },
+        {
+          "name": "QRY",
+          "account": "qry"
+        },
+        {
+          "name": "REGEX SEO",
+          "account": "regexseocareers"
         },
         {
           "name": "Right Hook Digital",
@@ -1107,12 +1435,88 @@
           "account": "rocketams"
         },
         {
+          "name": "Rockstar",
+          "account": "rockstar-3"
+        },
+        {
+          "name": "RR Digital",
+          "account": "rrdigital"
+        },
+        {
           "name": "Sans",
           "account": "sans-2"
         },
         {
+          "name": "Savvy Talent",
+          "account": "savvytalent"
+        },
+        {
+          "name": "Seeq",
+          "account": "seeq"
+        },
+        {
+          "name": "Sidetrade",
+          "account": "sidetrade"
+        },
+        {
+          "name": "Skylight",
+          "account": "skylight-frame"
+        },
+        {
+          "name": "SmartFinancial",
+          "account": "smartfinancial"
+        },
+        {
+          "name": "Squiz",
+          "account": "squiz"
+        },
+        {
+          "name": "Sweat Pants Agency",
+          "account": "sweat-pants-agency"
+        },
+        {
+          "name": "The Semios Group",
+          "account": "semios"
+        },
+        {
+          "name": "TickPick",
+          "account": "tickpick"
+        },
+        {
+          "name": "tmp",
+          "account": "the-marketing-practice"
+        },
+        {
+          "name": "TP-Link Systems Inc.",
+          "account": "tp-link-usa-corp"
+        },
+        {
+          "name": "UN/COMMON",
+          "account": "uncommonagency"
+        },
+        {
+          "name": "Uptalent.io",
+          "account": "uptalent-dot-i-o"
+        },
+        {
+          "name": "Valsoft Corporation",
+          "account": "valsoft-corp"
+        },
+        {
           "name": "Vouched",
           "account": "vouched"
+        },
+        {
+          "name": "Workana",
+          "account": "workana-premium"
+        },
+        {
+          "name": "Writesonic",
+          "account": "writesonic"
+        },
+        {
+          "name": "Zicasso",
+          "account": "zicasso"
         }
       ]
     },

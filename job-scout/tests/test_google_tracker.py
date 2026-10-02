@@ -5,9 +5,12 @@ from __future__ import annotations
 from pathlib import Path
 import re
 import sys
+from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import google_tracker
 from google_tracker import (
     Config, GoogleTracker, NEW_SCOUT_ID_COLOR, SCOUT_FIELDS, apply_value, job_key,
 )
@@ -17,10 +20,10 @@ from normalize import normalize
 APP = ["Resume #", "Company", "Job Title", "Pay", "Job Number",
        "Job Link", "Resume Link", "Date Created", "Applied", "Contacted", "Source",
        "Date Found", "Status"]
-SCOUT = ["Scout ID", "Source", "Company", "Job Title", "Gecko Status", "Apply?",
-         "Resume Created", "Applied", "Notes", "Response", "Location", "Work Arrangement",
-         "Employment Type", "Salary", "Date Posted", "Date Found", "Last Seen",
-         "Job URL", "Resume Link"]
+SCOUT = ["ID", "Source", "Company", "Job Title", "Status", "Apply?",
+         "Resume Created", "Applied", "Cost", "Notes", "Response", "Location",
+         "Work Arrangement", "Employment Type", "Salary", "Job URL", "Resume Link",
+         "Date Posted", "Date Found", "Last Seen"]
 
 
 class Call:
@@ -37,8 +40,8 @@ class FakeSheets:
             "Job Tracker": [list(APP), [7, "Existing", "Role", "", "job-123",
                                   "https://example.test/job", "", "09/01/2026", "TRUE", "called", "", "", ""]],
             "Job Scout": [list(SCOUT), [42, "test", "Existing", "Role", "New", "Yes", "", "", "", "",
-                                  "Remote", "remote", "full-time", "", "", "", "",
-                                  "https://example.test/job", ""]],
+                                  "", "Remote", "remote", "full-time", "",
+                                  "https://example.test/job", "", "", "", ""]],
         }
         self.writes = []
         self.value_input_options = []
@@ -190,50 +193,73 @@ class GoogleTrackerTests(unittest.TestCase):
         self.assertEqual(stored["Resume Created"], "X")
         self.assertEqual(
             stored["Resume Link"],
-            '=HYPERLINK("https://drive.google.test/resume","Open Resume")',
+            "https://drive.google.test/resume",
         )
-        self.assertEqual(self.fake.value_input_options[-1], "USER_ENTERED")
+        self.assertEqual(self.fake.value_input_options[-1], "RAW")
         self.assertEqual(len(self.fake.value_batches), 1)
         self.assertIn("'Job Scout'!G2", self.fake.value_batches[0])
-        self.assertIn("'Job Scout'!S2", self.fake.value_batches[0])
+        self.assertIn("'Job Scout'!Q2", self.fake.value_batches[0])
         self.assertEqual(
             [column for title, row, column in self.fake.writes if title == "Job Scout" and row == 2],
-            ["E", "S", "G"],
+            ["E", "Q", "G"],
         )
 
     def test_local_resume_path_requires_explicit_local_mode(self):
         local_path = "C:\\Users\\DCALL\\Desktop\\gecko\\output\\resumes\\resume.docx"
         with self.assertRaisesRegex(ValueError, "explicitly allows"):
             self.tracker.mark_scout_resume(42, local_path)
-        self.tracker.mark_scout_resume(42, local_path, allow_local=True)
+        with TemporaryDirectory() as temp:
+            resume_dir = Path(temp).resolve()
+            resume = resume_dir / "resume.docx"
+            resume.write_bytes(b"docx")
+            local_uri = resume.as_uri()
+            with patch.object(google_tracker, "RESUME_DIR", resume_dir):
+                self.tracker.mark_scout_resume(42, local_uri, allow_local=True)
         stored = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
-        self.assertEqual(stored["Resume Link"], local_path)
+        self.assertEqual(stored["Resume Link"], local_uri)
         self.assertEqual(stored["Resume Created"], "X")
+
+    def test_local_resume_uri_requires_existing_docx(self):
+        with TemporaryDirectory() as temp:
+            resume_dir = Path(temp).resolve()
+            missing = (resume_dir / "missing.docx").as_uri()
+            with patch.object(google_tracker, "RESUME_DIR", resume_dir):
+                with self.assertRaisesRegex(ValueError, "missing or empty"):
+                    self.tracker.mark_scout_resume(42, missing, allow_local=True)
+        self.assertEqual(self.fake.writes, [])
 
     def test_marking_resume_does_not_downgrade_applied_status(self):
         self.fake.data["Job Scout"][1][4] = "Applied"
         self.tracker.mark_scout_resume(42, "https://drive.google.test/resume")
         stored = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
-        self.assertEqual(stored["Gecko Status"], "Applied")
+        self.assertEqual(stored["Status"], "Applied")
         self.assertEqual(stored["Resume Created"], "X")
 
-    def test_blank_column_s_header_is_set_without_inserting_a_column(self):
-        self.fake.data["Job Scout"][0][18] = ""
-        self.tracker.mark_scout_resume(42, "https://drive.google.test/resume")
-        self.assertEqual(self.fake.data["Job Scout"][0][18], "Resume Link")
-        self.assertEqual(self.fake.structural, [])
+    def test_missing_resume_link_header_fails_without_writing(self):
+        self.fake.data["Job Scout"][0][SCOUT.index("Resume Link")] = ""
+        with self.assertRaisesRegex(RuntimeError, "Resume Link"):
+            self.tracker.mark_scout_resume(42, "https://drive.google.test/resume")
+        self.assertEqual(self.fake.writes, [])
 
-    def test_nonblank_column_s_header_is_preserved_but_s_is_authoritative(self):
-        self.fake.data["Job Scout"][0][18] = "Legacy Link Label"
+    def test_moved_resume_link_header_is_written_by_header(self):
+        for row in self.fake.data["Job Scout"]:
+            row[SCOUT.index("Resume Link")], row[SCOUT.index("Last Seen")] = (
+                row[SCOUT.index("Last Seen")], row[SCOUT.index("Resume Link")]
+            )
         self.tracker.mark_scout_resume(42, "https://drive.google.test/resume")
-        self.assertEqual(self.fake.data["Job Scout"][0][18], "Legacy Link Label")
-        self.assertIn(("Job Scout", 2, "S"), self.fake.writes)
+        self.assertIn(("Job Scout", 2, "T"), self.fake.writes)
+
+    def test_ambiguous_renamed_id_headers_fail_clearly(self):
+        self.fake.data["Job Scout"][0].append("Scout ID")
+        self.fake.data["Job Scout"][1].append(999)
+        with self.assertRaisesRegex(RuntimeError, "ambiguous header.*Scout ID"):
+            self.tracker.scout()
 
     def test_scout_id_relocates_target_row_before_resume_write(self):
         self.fake.data["Job Scout"].insert(1, [99, "test", "Other", "Role"])
         row = self.tracker.mark_scout_resume(42, "https://drive.google.test/resume")
         self.assertEqual(row, 3)
-        self.assertIn(("Job Scout", 3, "S"), self.fake.writes)
+        self.assertIn(("Job Scout", 3, "Q"), self.fake.writes)
 
     def test_manual_approval_fills_only_blank_apply_cell(self):
         self.fake.data["Job Scout"][1][SCOUT.index("Apply?")] = ""
@@ -248,18 +274,18 @@ class GoogleTrackerTests(unittest.TestCase):
         self.assertEqual(self.fake.data["Job Scout"][1][SCOUT.index("Apply?")], "Yes")
 
     def test_assign_manual_scout_id_is_unique_and_preserves_existing(self):
-        self.fake.data["Job Scout"][1][SCOUT.index("Scout ID")] = ""
+        self.fake.data["Job Scout"][1][SCOUT.index("ID")] = ""
         assigned = self.tracker.assign_manual_scout_id(
             2, 100, company="Existing", title="Role"
         )
         self.assertEqual(assigned, 100)
-        self.assertEqual(self.fake.data["Job Scout"][1][SCOUT.index("Scout ID")], 100)
+        self.assertEqual(self.fake.data["Job Scout"][1][SCOUT.index("ID")], 100)
         self.assertEqual(self.tracker.assign_manual_scout_id(
             2, 100, company="Existing", title="Role"
         ), 100)
 
     def test_assign_manual_scout_id_rejects_zero_and_collision(self):
-        self.fake.data["Job Scout"][1][SCOUT.index("Scout ID")] = ""
+        self.fake.data["Job Scout"][1][SCOUT.index("ID")] = ""
         duplicate = [100, "Indeed", "Other", "Role"]
         duplicate.extend([""] * (len(SCOUT) - len(duplicate)))
         self.fake.data["Job Scout"].append(duplicate)
@@ -278,7 +304,7 @@ class GoogleTrackerTests(unittest.TestCase):
         self.assertEqual(changed, [2])
         stored = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
         self.assertEqual(stored["Response"], "Interview request - received 9/27/26.")
-        self.assertEqual(self.fake.writes[-1], ("Job Scout", 2, "J"))
+        self.assertEqual(self.fake.writes[-1], ("Job Scout", 2, "K"))
 
     def test_declined_scout_cleanup_deletes_exact_no_rows_bottom_up(self):
         def add(*, apply="", notes=""):
@@ -306,13 +332,12 @@ class GoogleTrackerTests(unittest.TestCase):
             [("Yes", ""), ("Yes", ""), ("Yes", "not interested")],
         )
 
-    def test_declined_scout_cleanup_requires_configured_f_and_i_headers(self):
+    def test_declined_scout_cleanup_uses_moved_headers(self):
         apply_index = SCOUT.index("Apply?")
         response_index = SCOUT.index("Response")
         for row in self.fake.data["Job Scout"]:
             row[apply_index], row[response_index] = row[response_index], row[apply_index]
-        with self.assertRaisesRegex(RuntimeError, r"Apply\? in Column F"):
-            self.tracker.delete_declined_scout_rows()
+        self.tracker.delete_declined_scout_rows()
         self.assertEqual(self.fake.structural, [])
 
     def test_google_failure_never_falls_back_to_a_local_tracker(self):
@@ -334,7 +359,7 @@ class GoogleTrackerTests(unittest.TestCase):
         self.tracker.upsert_scout([job])
         self.assertEqual(len(self.fake.data["Job Scout"]), 2)
         row = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
-        self.assertEqual(row["Gecko Status"], "Selected")
+        self.assertEqual(row["Status"], "Selected")
         self.assertEqual(row["Apply?"], "No")
 
     def test_scout_upsert_sets_apply_for_new_and_updated_rows(self):
@@ -370,7 +395,7 @@ class GoogleTrackerTests(unittest.TestCase):
         })
         stored = dict(zip(self.fake.data["Job Scout"][0], self.fake.data["Job Scout"][1]))
         self.assertEqual(stored["Apply?"], "No")
-        self.assertIn(("Job Scout", 2, "J"), self.fake.writes)
+        self.assertIn(("Job Scout", 2, "K"), self.fake.writes)
 
     def test_schema_migration_deletes_retired_columns_and_second_run_is_noop(self):
         legacy = [
@@ -383,8 +408,11 @@ class GoogleTrackerTests(unittest.TestCase):
         row = list(range(1, len(legacy) + 1))
         self.fake.data["Job Scout"] = [legacy, row]
         result = self.tracker.migrate_scout_schema()
-        self.assertEqual(result["headers"], SCOUT)
-        self.assertEqual(self.fake.data["Job Scout"][1], [row[legacy.index(name)] for name in SCOUT])
+        retained = [name for name in legacy if name not in {
+            "Website", "Enrichment URL", "URL Status", "Authoritative URL"
+        }]
+        self.assertEqual(result["headers"], retained)
+        self.assertEqual(self.fake.data["Job Scout"][1], [row[legacy.index(name)] for name in retained])
         request_count = len(self.fake.structural)
         again = self.tracker.migrate_scout_schema()
         self.assertEqual(again["deleted"], [])
@@ -412,7 +440,7 @@ class GoogleTrackerTests(unittest.TestCase):
         self.fake.data["Job Scout"].append(today)
         completed = list(today)
         completed[0] = 45
-        completed[SCOUT.index("Gecko Status")] = "Resume Created"
+        completed[SCOUT.index("Status")] = "Resume Created"
         self.fake.data["Job Scout"].append(completed)
         self.fake.formats[3] = {
             "userEnteredFormat": {"backgroundColor": NEW_SCOUT_ID_COLOR},
@@ -456,7 +484,8 @@ class GoogleTrackerTests(unittest.TestCase):
         removed = self.tracker.remove_dead_scout({42})
         self.assertEqual(removed, {42})
         stored = dict(zip(SCOUT, row))
-        self.assertTrue(all(stored[field] == "" for field in SCOUT_FIELDS))
+        physical = {"Scout ID": "ID", "Gecko Status": "Status"}
+        self.assertTrue(all(stored[physical.get(field, field)] == "" for field in SCOUT_FIELDS))
         self.assertEqual(stored["Apply?"], "Yes")
         self.assertEqual(stored["Resume Created"], "X")
         self.assertIs(stored["Applied"], False)
@@ -466,7 +495,7 @@ class GoogleTrackerTests(unittest.TestCase):
         self.assertEqual(self.fake.structural, [])
 
     def test_dead_scout_clear_is_idempotent_when_id_is_already_absent(self):
-        self.fake.data["Job Scout"][1][SCOUT.index("Scout ID")] = ""
+        self.fake.data["Job Scout"][1][SCOUT.index("ID")] = ""
         self.fake.data["Job Scout"][1][SCOUT.index("Notes")] = "Preserved"
         self.assertEqual(self.tracker.remove_dead_scout({42}), {42})
         self.assertEqual(self.fake.data["Job Scout"][1][SCOUT.index("Notes")], "Preserved")

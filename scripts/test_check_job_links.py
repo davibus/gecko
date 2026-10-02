@@ -104,7 +104,7 @@ class GoogleSheetPreservationTests(unittest.TestCase):
             (3, "Blocked", "https://jobs.test/unknown", "Keep this"),
         ):
             row = [""] * len(SCOUT)
-            for field, value in {"Scout ID": scout_id, "Company": company,
+            for field, value in {"ID": scout_id, "Company": company,
                                  "Job URL": url, "Notes": notes}.items():
                 row[SCOUT.index(field)] = value
             fake.data["Job Scout"].append(row)
@@ -129,7 +129,7 @@ class GoogleSheetPreservationTests(unittest.TestCase):
         self.assertEqual(rows[3]["Notes"], "Keep this")
         self.assertEqual((summary.jobs_removed, summary.jobs_existing, summary.job_status_unknown), (1, 1, 1))
         self.assertEqual([(tab, row, col) for tab, row, col in fake.writes],
-                         [("Job Scout", 2, "I")])
+                         [("Job Scout", 2, "J")])
 
 
 if __name__ == "__main__":

@@ -18,19 +18,22 @@ from source_policy import is_jooble_candidate
 from url_resolution import best_job_url
 
 ROOT = Path(__file__).resolve().parents[1]
+RESUME_DIR = (ROOT / "output" / "resumes").resolve()
 APPLICATION_TAB = "Job Tracker"
 SCOUT_TAB = "Job Scout"
 SCOPE = "https://www.googleapis.com/auth/spreadsheets"
-SCOUT_LISTING_COLUMN = 18
-SCOUT_RESUME_LINK_COLUMN = 19
 NEW_SCOUT_ID_COLOR = {"red": 217 / 255, "green": 234 / 255, "blue": 211 / 255}
 APPLICATION_FIELDS = ("Company", "Job Title", "Pay", "Job Number", "Job Link",
                       "Resume Link", "Date Created", "Source", "Date Found", "Status")
 SCOUT_FIELDS = ("Scout ID", "Source", "Company", "Job Title", "Gecko Status",
                 "Location", "Work Arrangement", "Employment Type", "Salary", "Date Posted",
                 "Date Found", "Last Seen", "Job URL", "Resume Link")
-PROTECTED_SCOUT_FIELDS = ("Apply?", "Resume Created", "Applied", "Contacted", "Response")
+PROTECTED_SCOUT_FIELDS = ("Apply?", "Resume Created", "Applied", "Cost", "Notes", "Contacted", "Response")
 RETIRED_SCOUT_HEADERS = ("Website", "Enrichment URL", "URL Status", "Authoritative URL")
+SCOUT_HEADER_ALIASES = {
+    "Scout ID": ("Scout ID", "ID"),
+    "Gecko Status": ("Gecko Status", "Status"),
+}
 
 
 def load_environment(project_root: Path = ROOT) -> None:
@@ -99,6 +102,30 @@ def _col(index: int) -> str:
 
 def _normal(value: Any) -> str:
     return ("" if value is None else str(value)).strip().casefold()
+
+
+def verified_resume_file_uri(path: str | Path) -> str:
+    """Return Path.resolve().as_uri() for an existing Gecko resume DOCX."""
+    resolved = Path(path).resolve()
+    if resolved.parent != RESUME_DIR or resolved.suffix.casefold() != ".docx":
+        raise ValueError(f"Resume must be a DOCX directly under {RESUME_DIR}")
+    if not resolved.is_file() or resolved.stat().st_size <= 0:
+        raise ValueError("Resume DOCX is missing or empty")
+    uri = resolved.as_uri()
+    if not uri.casefold().startswith("file:///"):
+        raise ValueError("Could not create an absolute file URI for the resume")
+    return uri
+
+
+def verified_resume_uri_target(value: str) -> str:
+    """Canonicalize and verify a file URI before it is written to Google Sheets."""
+    parsed = urlsplit(value)
+    if parsed.scheme.casefold() != "file" or parsed.netloc not in ("", "localhost"):
+        raise ValueError("Resume Link must be a local file URI")
+    local = unquote(parsed.path)
+    if re.fullmatch(r"/[A-Za-z]:/.*", local):
+        local = local[1:]
+    return verified_resume_file_uri(Path(local))
 
 
 def apply_value(location: Any, work_arrangement: Any) -> str:
@@ -189,9 +216,12 @@ class GoogleTracker:
             raise RuntimeError(f"Cannot read Google Sheets {title!r}: {error}") from error
         if not values:
             raise RuntimeError(f"Google worksheet {title!r} has no header row")
-        names = [str(value) for value in values[0]]
-        if len(names) != len(set(names)):
-            raise RuntimeError(f"Google worksheet {title!r} has duplicate headers")
+        names = [str(value).strip() for value in values[0]]
+        normalized = [_normal(name) for name in names if name]
+        if len(normalized) != len(set(normalized)):
+            raise RuntimeError(
+                f"Google worksheet {title!r} has duplicate or ambiguous headers"
+            )
         headers = {name: index for index, name in enumerate(names, 1) if name}
         rows = []
         for number, values_row in enumerate(values[1:], 2):
@@ -216,17 +246,30 @@ class GoogleTracker:
 
     def scout(self, *, value_render_option: str = "UNFORMATTED_VALUE") -> Tab:
         tab = self.tab(self.config.scout_tab, value_render_option=value_render_option)
-        if not {"Scout ID", "Job URL", "Gecko Status", "Resume Created", "Apply?"} <= tab.headers.keys():
-            raise RuntimeError("Job Scout is missing required columns")
-        # Column S is the permanent Resume Link column even if its header is blank
-        # or a legacy sheet happens to call it something else. Keep the physical
-        # column authoritative without inserting or moving any columns.
-        tab.headers["Resume Link"] = SCOUT_RESUME_LINK_COLUMN
-        for row, data in tab.rows:
-            raw = (tab.raw_rows or {}).get(row, ())
-            data["Resume Link"] = (
-                raw[SCOUT_RESUME_LINK_COLUMN - 1]
-                if len(raw) >= SCOUT_RESUME_LINK_COLUMN else ""
+        for canonical, aliases in SCOUT_HEADER_ALIASES.items():
+            matches = [
+                (name, column) for name, column in tab.headers.items()
+                if _normal(name) in {_normal(alias) for alias in aliases}
+            ]
+            if len(matches) != 1:
+                labels = ", ".join(repr(alias) for alias in aliases)
+                detail = "missing" if not matches else "ambiguous"
+                raise RuntimeError(
+                    f"Google worksheet {tab.title!r} has {detail} header for "
+                    f"{canonical!r}; expected exactly one of {labels}"
+                )
+            physical_name, column = matches[0]
+            tab.headers[canonical] = column
+            for _, data in tab.rows:
+                data[canonical] = data.get(physical_name, "")
+        required = {
+            "Scout ID", "Job URL", "Gecko Status", "Resume Created", "Apply?",
+            "Cost", "Resume Link",
+        }
+        missing = sorted(required - tab.headers.keys())
+        if missing:
+            raise RuntimeError(
+                "Job Scout is missing required columns: " + ", ".join(missing)
             )
         return tab
 
@@ -313,11 +356,8 @@ class GoogleTracker:
     def delete_declined_scout_rows(self) -> list[int]:
         """Delete complete Job Scout rows whose Apply? or Notes value is exactly no."""
         tab = self.scout()
-        if tab.headers.get("Apply?") != 6 or tab.headers.get("Notes") != 9:
-            raise RuntimeError(
-                "Job Scout cleanup requires Apply? in Column F and Notes in Column I; "
-                "no rows were deleted"
-            )
+        if "Notes" not in tab.headers:
+            raise RuntimeError("Job Scout cleanup requires the Notes header; no rows were deleted")
         rows = sorted((
             row for row, data in tab.rows
             if _normal(data.get("Apply?")) == "no" or _normal(data.get("Notes")) == "no"
@@ -659,13 +699,12 @@ class GoogleTracker:
         require_approved: bool = True, row_number: int | None = None,
         allow_local: bool = False, completion_marker: str = "X",
     ) -> int:
-        """Atomically mark Column G and write the verified artifact location to Column S."""
+        """Atomically mark Resume Created and write its verified Resume Link."""
         target = str(resume_url or "").strip()
         is_https = bool(re.fullmatch(r"https://[^\s]+", target, re.IGNORECASE))
-        is_local = bool(
-            re.fullmatch(r"file:///[A-Za-z]:/[^\r\n]+\.docx", target, re.IGNORECASE)
-            or re.fullmatch(r"[A-Za-z]:[\\/][^\r\n]+\.docx", target, re.IGNORECASE)
-        )
+        is_local = target.casefold().startswith("file:///")
+        if allow_local and is_local:
+            target = verified_resume_uri_target(target)
         if not is_https and not (allow_local and is_local):
             raise ValueError(
                 "A persistent HTTPS URL is required unless this queue explicitly allows "
@@ -687,30 +726,30 @@ class GoogleTracker:
         row, current = matches[0]
         if require_approved and _normal(current.get("Apply?")) != "yes":
             raise RuntimeError("Apply? is no longer Yes; no cell was changed")
-        if tab.headers.get("Apply?") != 6 or tab.headers.get("Resume Created") != 7:
-            raise RuntimeError("Apply? must be Column F and Resume Created must be Column G; no cell was changed")
         advanced = _normal(current.get("Gecko Status")) in {"applied", "contacted", "interview", "offer"}
-        escaped = target.replace('"', '""')
-        link_value = f'=HYPERLINK("{escaped}","Open Resume")' if is_https else target
         entries = []
-        header_s = (tab.header_values[SCOUT_RESUME_LINK_COLUMN - 1]
-                    if len(tab.header_values) >= SCOUT_RESUME_LINK_COLUMN else "")
-        if not str(header_s).strip():
-            entries.append({"range": _a1(tab.title, "S1"), "values": [["Resume Link"]]})
         if not advanced:
-            entries.append({"range": _a1(tab.title, f"E{row}"), "values": [["Resume Created"]]})
+            entries.append({
+                "range": _a1(tab.title, f"{_col(tab.headers['Gecko Status'])}{row}"),
+                "values": [["Resume Created"]],
+            })
         entries.extend([
-            {"range": _a1(tab.title, f"S{row}"), "values": [[link_value]]},
-            {"range": _a1(tab.title, f"G{row}"), "values": [[marker]]},
+            {"range": _a1(tab.title, f"{_col(tab.headers['Resume Link'])}{row}"),
+             "values": [[target]]},
+            {"range": _a1(tab.title, f"{_col(tab.headers['Resume Created'])}{row}"),
+             "values": [[marker]]},
         ])
         if notes is not None and notes != str(current.get("Notes") or "").strip():
-            if tab.headers.get("Notes") != 9:
-                raise RuntimeError("Notes must be Column I; no cell was changed")
-            entries.append({"range": _a1(tab.title, f"I{row}"), "values": [[notes]]})
+            if "Notes" not in tab.headers:
+                raise RuntimeError("Job Scout is missing Notes; no cell was changed")
+            entries.append({
+                "range": _a1(tab.title, f"{_col(tab.headers['Notes'])}{row}"),
+                "values": [[notes]],
+            })
         try:
             self.api.values().batchUpdate(
                 spreadsheetId=self.config.spreadsheet_id,
-                body={"valueInputOption": "USER_ENTERED", "data": entries},
+                body={"valueInputOption": "RAW", "data": entries},
             ).execute()
         except Exception as error:
             raise RuntimeError(

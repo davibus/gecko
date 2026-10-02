@@ -857,11 +857,12 @@ def daily(args, store, preferences):
         print(f"DAILY REVIEW: {qualifying} new qualifying job(s) discovered in this run.")
         print(format_review_queue(queue))
     if args.dry_run:
+        queue_result = _daily_resume_runner([], store, dry_run=True)
         run_result["resumes_generated"] = 0
         run_result["elapsed_time"] = time.monotonic() - started
-        _print_daily_summary(run_result, _empty_queue_result(), {"added": 0}, dry_run=True,
+        _print_daily_summary(run_result, queue_result, {"added": 0}, dry_run=True,
                              manual_indeed=manual_indeed)
-        return 0
+        return queue_result.exit_code
     eligible_ids = run_result.get("new_job_ids", [])
     if evaluator.enabled:
         eligible_ids = [job_id for job_id in eligible_ids

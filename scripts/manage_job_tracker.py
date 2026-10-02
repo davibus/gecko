@@ -12,7 +12,12 @@ from typing import Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "job-scout"))
-from google_tracker import GoogleTracker, job_key, load_environment  # noqa: E402
+from google_tracker import (  # noqa: E402
+    GoogleTracker,
+    job_key,
+    load_environment,
+    verified_resume_file_uri,
+)
 
 RESUME_DIR = ROOT / "output/resumes"
 LISTING_DIR = ROOT / "input/job-descriptions"
@@ -139,7 +144,7 @@ def record_queue_success(
     completion_marker: str = "X",
     require_approved: bool = True,
 ) -> JobRecord:
-    """Publish a validated resume, then atomically complete Columns G and S."""
+    """Verify a validated resume, then atomically complete its queue fields."""
     record = record_from_files(resume, listing)
     if record.scout_id is not None and record.scout_id != scout_id:
         raise RuntimeError("Archived listing Scout ID does not match the live Job Scout row")
@@ -172,7 +177,7 @@ def record_queue_success_local(
     if record.scout_id is not None and record.scout_id != scout_id:
         raise RuntimeError("Archived listing Scout ID does not match the live Job Scout row")
     mark_batch_resume(
-        scout_id, scout_row, tracker, str(path), allow_local=True,
+        scout_id, scout_row, tracker, verified_resume_file_uri(path), allow_local=True,
         require_approved=require_approved,
     )
     return record
@@ -184,15 +189,9 @@ def publish_resume(
     *,
     scout_id: int | None = None,
 ) -> str:
-    """Return the absolute local path for a completed Gecko resume."""
+    """Return a clickable absolute file URI for a completed Gecko resume."""
     del tracker, scout_id
-    path = Path(record.resume_path).resolve()
-    local_root = RESUME_DIR.resolve()
-    if path.parent != local_root or path.suffix.casefold() != ".docx":
-        raise ValueError(f"Final resume must be a DOCX directly under {local_root}")
-    if not path.is_file() or path.stat().st_size <= 0:
-        raise ValueError("Final local DOCX is missing or empty")
-    return str(path)
+    return verified_resume_file_uri(record.resume_path)
 
 
 def _without_resume_failure(value: object) -> str:
@@ -204,15 +203,9 @@ def _without_resume_failure(value: object) -> str:
 
 def _queue_source_row(scout_id: int | None, row_number: int, tracker: GoogleTracker):
     tab = tracker.scout(value_render_option="FORMULA")
-    required = {"Resume Created", "Apply?", "Scout ID", "Notes"}
+    required = {"Resume Created", "Apply?", "Scout ID", "Cost", "Notes", "Resume Link"}
     if not required <= tab.headers.keys():
         raise RuntimeError("Required Scout headers are missing; no cell was changed")
-    if (tab.headers["Apply?"] != 6 or tab.headers["Resume Created"] != 7
-            or tab.headers["Notes"] != 9):
-        raise RuntimeError(
-            "Apply? must be Column F, Resume Created Column G, and Notes Column I; "
-            "no cell was changed"
-        )
     if scout_id is None:
         matches = [(row, data) for row, data in tab.rows
                    if row == row_number and not str(data.get("Scout ID") or "").strip()]
@@ -232,7 +225,7 @@ def record_queue_failure(
     reason: str,
     tracker: GoogleTracker,
 ) -> None:
-    """Leave Column G unchanged and write a specific retryable failure to Column I."""
+    """Leave Resume Created unchanged and write a retryable failure to Notes."""
     tab, row, data = _queue_source_row(scout_id, row_number, tracker)
     if str(data.get("Apply?") or "").strip().casefold() != "yes":
         raise RuntimeError("Apply? is no longer Yes; no cell was changed")
@@ -264,10 +257,12 @@ def mark_batch_resume(
     *, allow_local: bool = False, require_approved: bool = True,
     completion_marker: str = "X",
 ) -> None:
-    """Write Column G and fixed Column S together after stable-ID verification."""
+    """Write Resume Created and Resume Link together after stable-ID verification."""
     tab, row, data = _queue_source_row(scout_id, row_number, tracker)
     if require_approved and str(data.get("Apply?") or "").strip().casefold() != "yes":
         raise RuntimeError("Apply? is no longer Yes; no cell was changed")
+    if str(data.get("Cost") or "").strip().casefold() == "x":
+        raise RuntimeError("Cost is X; no cell was changed")
     notes = _without_resume_failure(data.get("Notes"))
     tracker.mark_scout_resume(
         scout_id, resume_url, notes=notes, row_number=row, allow_local=allow_local,

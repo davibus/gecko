@@ -11,7 +11,7 @@ from pathlib import Path
 import re
 import sys
 import time
-from urllib.parse import parse_qs, urlsplit
+from urllib.parse import parse_qs, unquote, urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,8 +19,6 @@ sys.path.insert(0, str(ROOT / "job-scout"))
 from storage import DEFAULT_DB, JobStore  # noqa: E402
 from google_tracker import (  # noqa: E402
     GoogleTracker,
-    SCOUT_LISTING_COLUMN,
-    SCOUT_RESUME_LINK_COLUMN,
     apply_value,
 )
 from manual_indeed import next_scout_id  # noqa: E402
@@ -35,7 +33,10 @@ from normalize import normalize  # noqa: E402
 import gecko_v2  # noqa: E402
 import manage_job_tracker  # noqa: E402
 
-REQUIRED = ("Scout ID", "Company", "Job Title", "Apply?", "Resume Created")
+REQUIRED = (
+    "Scout ID", "Company", "Job Title", "Apply?", "Resume Created", "Cost",
+    "Job URL", "Resume Link",
+)
 COMPLETION_MARKER = "X"
 LEGACY_COMPLETION_MARKERS = frozenset({"c", "x"})
 
@@ -78,6 +79,7 @@ class QueueSnapshot:
     link_backfill: list[QueueRow]
     duplicate_excluded: list[QueueRow]
     missing_identity: list[QueueRow]
+    cost_excluded: list[QueueRow]
     decisions: list[tuple[QueueRow, str]]
     stats: dict[str, int]
 
@@ -160,14 +162,12 @@ def _url_only(value: object) -> bool:
     return bool(re.fullmatch(r"https?://\S+", str(value or "").strip(), re.IGNORECASE))
 
 
-def _column_r_value(tab, row: int, data: dict[str, object]) -> str:
-    raw = (tab.raw_rows or {}).get(row, ())
-    physical = raw[SCOUT_LISTING_COLUMN - 1] if len(raw) >= SCOUT_LISTING_COLUMN else ""
+def _listing_value(data: dict[str, object]) -> str:
     for name in ("Job Listing", "Job Description", "Listing", "Description"):
         value = str(data.get(name) or "").strip()
         if value:
             return value
-    return str(physical or "").strip()
+    return str(data.get("Job URL") or "").strip()
 
 
 def _usable_listing(value: object) -> bool:
@@ -202,10 +202,10 @@ def _geographic_qualification(item: QueueRow) -> str:
 
 
 def _queue_item(tab, row: int, data: dict[str, object]) -> QueueRow:
-    column_r = _column_r_value(tab, row, data)
+    listing_value = _listing_value(data)
     raw_url = str(data.get("Job URL") or "").strip()
-    job_url = raw_url if _url_only(raw_url) else (column_r if _url_only(column_r) else "")
-    listing_content = column_r if not _url_only(column_r) else ""
+    job_url = raw_url if _url_only(raw_url) else (listing_value if _url_only(listing_value) else "")
+    listing_content = listing_value if not _url_only(listing_value) else ""
     return QueueRow(
         row, _scout_id(data.get("Scout ID")), str(data.get("Company") or ""),
         str(data.get("Job Title") or ""), job_url, str(data.get("Source") or ""),
@@ -237,20 +237,17 @@ def _duplicate_key(item: QueueRow) -> tuple[str, str] | None:
 
 def _valid_resume_link(value: object) -> bool:
     text = str(value or "").strip()
-    if re.fullmatch(r"[A-Za-z]:[\\/][^\r\n]+\.docx", text, re.IGNORECASE):
-        path = Path(text).resolve()
-        return (
-            path.parent == (ROOT / "output" / "resumes").resolve()
-            and path.is_file()
-            and path.stat().st_size > 0
-        )
     if re.fullmatch(r"https://[^\s]+", text, re.IGNORECASE):
         return True
-    match = re.fullmatch(
-        r'=HYPERLINK\("(https://[^"\s]+)",\s*"Open Resume"\)',
-        text, re.IGNORECASE,
-    )
-    return bool(match)
+    if re.fullmatch(r"file:///[A-Za-z]:/[^\r\n]+\.docx", text, re.IGNORECASE):
+        parsed = urlsplit(text)
+        local = unquote(parsed.path)
+        if re.fullmatch(r"/[A-Za-z]:/.*", local):
+            local = local[1:]
+        path = Path(local).resolve()
+        return (path.parent == (ROOT / "output" / "resumes").resolve()
+                and path.is_file() and path.stat().st_size > 0)
+    return False
 
 
 def _retry_sheet(action):
@@ -276,13 +273,6 @@ def read_queue(
     missing = set(REQUIRED) - tab.headers.keys()
     if missing:
         raise ValueError("Job Scout is missing required columns: " + ", ".join(sorted(missing)))
-    if tab.headers["Apply?"] != 6 or tab.headers["Resume Created"] != 7:
-        raise ValueError("Job Scout must keep Apply? in Column F and Resume Created in Column G")
-    if source == "indeed" or auto_approve_geographic:
-        if len(tab.header_values) < SCOUT_LISTING_COLUMN:
-            raise ValueError("Job Scout must keep the listing/job URL field in Column R")
-        if tab.headers.get("Resume Link") != SCOUT_RESUME_LINK_COLUMN:
-            raise ValueError("Job Scout must keep Resume Link in Column S")
     matched: list[QueueRow] = []
     for row, data in tab.rows:
         if not _matches_source(data, source):
@@ -290,7 +280,7 @@ def read_queue(
         matched.append(_queue_item(tab, row, data))
 
     pending, already_created, not_approved, jooble_excluded, link_backfill = [], [], [], [], []
-    duplicate_excluded, missing_identity, decisions = [], [], []
+    duplicate_excluded, missing_identity, cost_excluded, decisions = [], [], [], []
     stats = {
         "indeed_rows_checked": len(matched), "utah_qualifying": 0,
         "remote_qualifying": 0, "would_set_apply_yes": 0, "already_approved": 0,
@@ -298,15 +288,22 @@ def read_queue(
         "outside_utah_non_remote": 0, "would_assign_scout_id": 0,
         "eligible_for_resume": 0, "already_completed": 0,
         "missing_usable_listing": 0, "duplicate_exclusions": 0,
+        "cost_excluded": 0, "repair_eligible": 0,
     }
     completed_keys = {
         key for item in matched
-        if _resume_completed((item.fields or {}).get("Resume Created"))
+        if (_resume_completed((item.fields or {}).get("Resume Created"))
+            and _flag((item.fields or {}).get("Cost")) != "x")
         for key in [_duplicate_key(item)] if key is not None
     }
     seen_pending: set[tuple[str, str]] = set()
     for item in matched:
         data = item.fields or {}
+        if _flag(data.get("Cost")) == "x":
+            cost_excluded.append(item)
+            stats["cost_excluded"] += 1
+            decisions.append((item, "SKIP: Cost = X"))
+            continue
         qualification = (
             _geographic_qualification(item)
             if source == "indeed" or auto_approve_geographic else ""
@@ -330,10 +327,10 @@ def read_queue(
         if _resume_completed(data.get("Resume Created")):
             stats["already_completed"] += 1
             if not _valid_resume_link(data.get("Resume Link")):
-                if (_flag(data.get("Apply?")) == "yes" or source == "indeed"
-                        or auto_approve_geographic):
+                if _flag(data.get("Apply?")) == "yes":
                     link_backfill.append(item)
-                    decisions.append((item, "ELIGIBLE: Resume Link backfill"))
+                    stats["repair_eligible"] += 1
+                    decisions.append((item, "REPAIR: Resume Created = X and Resume Link is blank"))
                 else:
                     already_created.append(item)
                     decisions.append((item, "SKIP: Resume already created"))
@@ -384,11 +381,11 @@ def read_queue(
             if item.scout_id is None:
                 stats["would_assign_scout_id"] += 1
             if _usable_listing(item.listing_content):
-                listing_note = "usable Column R listing content"
+                listing_note = "usable Job URL/listing content"
             elif item.job_url:
-                listing_note = "Column R listing URL; description retrieval would run"
+                listing_note = "Job URL; description retrieval would run"
             else:
-                listing_note = "no usable Column R listing"
+                listing_note = "no usable Job URL/listing"
             id_note = (f"existing Scout ID {item.scout_id}" if item.scout_id is not None
                        else "WOULD ASSIGN SCOUT ID")
             if auto_apply:
@@ -405,7 +402,7 @@ def read_queue(
     )
     return QueueSnapshot(
         pending, already_created, not_approved, jooble_excluded, link_backfill,
-        duplicate_excluded, missing_identity, decisions, stats,
+        duplicate_excluded, missing_identity, cost_excluded, decisions, stats,
     )
 
 
@@ -427,8 +424,12 @@ def _still_pending(tracker: GoogleTracker, item: QueueRow, *, link_backfill: boo
     if not identity_matches:
         return False
     if link_backfill:
-        return _resume_completed(row.get("Resume Created")) and not _valid_resume_link(row.get("Resume Link"))
+        return (_flag(row.get("Cost")) != "x"
+                and _flag(row.get("Apply?")) == "yes"
+                and _resume_completed(row.get("Resume Created"))
+                and not _valid_resume_link(row.get("Resume Link")))
     return (_flag(row.get("Apply?")) == "yes"
+            and _flag(row.get("Cost")) != "x"
             and not _resume_completed(row.get("Resume Created")))
 
 
@@ -512,6 +513,8 @@ def _prepare_indeed_item(
         current = _refresh_item(tracker, current)
     if _flag((current.fields or {}).get("Apply?")) != "yes":
         raise RuntimeError("Apply? is no longer Yes; resume generation was not started")
+    if _flag((current.fields or {}).get("Cost")) == "x":
+        raise RuntimeError("Cost is X; resume generation was not started")
     if current.scout_id is None:
         if allocator is None:
             allocator = _BatchScoutIdAllocator.from_live_state(tracker, db)
@@ -564,7 +567,7 @@ def _archive_row_context(item: QueueRow) -> Path:
         )
     if not _has_reliable_job_information(item):
         raise ValueError(
-            "Resume not created: Column R has no usable job listing and the structured row "
+            "Resume not created: Job URL has no usable job listing and the structured row "
             "does not contain enough reliable job information."
         )
     company = re.sub(r'[\\/:*?"<>|]', "", item.company).replace(" ", "-").rstrip(" .")
@@ -583,7 +586,7 @@ def _archive_row_context(item: QueueRow) -> Path:
     effective_source = item.source.strip() or ("Indeed" if _is_indeed_url(item.job_url) else "")
     primary = item.listing_content.strip()
     description = (
-        f"## Job description (Google Sheet Column R)\n\n{primary}\n\n"
+        f"## Job description (Google Sheet Job URL/listing field)\n\n{primary}\n\n"
         if _usable_listing(primary) else ""
     )
     text = (f"# {item.title}\n\n"
@@ -715,14 +718,14 @@ def _job_from_sheet_row(item: QueueRow):
     return job
 
 
-def generate(item: QueueRow, db: Path) -> Artifacts:
+def generate(item: QueueRow, db: Path, *, force_recreate: bool = False) -> Artifacts:
     """Reuse Gecko V2 planning, rendering, and Word QA."""
     with JobStore(db) as store:
         job = store.get(item.scout_id) if item.scout_id is not None else None
         if _usable_listing(item.listing_content):
             listing, attempts = _archive_row_context(item), (
                 RetrievalAttempt(
-                    "Google Sheet Column R", "Job Scout", "accepted",
+                    "Google Sheet Job URL/listing field", "Job Scout", "accepted",
                     "used as the primary job listing",
                 ),
             )
@@ -740,11 +743,16 @@ def generate(item: QueueRow, db: Path) -> Artifacts:
     if listing is None:
         raise ValueError(f"Scout ID {item.scout_id} has no stored record or complete saved description")
     try:
-        return _finish_generation(item, listing, attempts)
+        return _finish_generation(item, listing, attempts, force_recreate=force_recreate)
     except Exception as error:
         if isinstance(error, (DescriptionUnavailableError, QueueProcessingError)):
             raise
         raise QueueProcessingError(str(error), item, attempts) from error
+
+
+def recreate(item: QueueRow, db: Path) -> Artifacts:
+    """Rebuild a repair-row resume from current authorities without replacing old files."""
+    return generate(item, db, force_recreate=True)
 
 
 def _validated_artifact_near(
@@ -835,12 +843,13 @@ def recover_existing(item: QueueRow, db: Path) -> Artifacts:
     scratch.mkdir(parents=True, exist_ok=True)
     qa = gecko_v2.native_qa(plan, final, scratch)
     if qa["status"] != "pass":
-        raise RuntimeError("Existing resume failed Word-native QA; Column S was not updated")
+        raise RuntimeError("Existing resume failed Word-native QA; Resume Link was not updated")
     return Artifacts(final, listing, True, attempts)
 
 
 def _finish_generation(
-    item: QueueRow, listing: Path, attempts: tuple[RetrievalAttempt, ...]
+    item: QueueRow, listing: Path, attempts: tuple[RetrievalAttempt, ...],
+    *, force_recreate: bool = False,
 ) -> Artifacts:
     plan = gecko_v2.create_plan(listing.resolve())
     if (_identity_text(plan["job"]["company"]) != _identity_text(item.company)
@@ -854,13 +863,9 @@ def _finish_generation(
     expected = ROOT / "output/resumes" / gecko_v2.resume_filename(
         plan["job"]["company"], plan["job"]["title"], plan["job"]["job_number"])
     candidate = scratch / "queue-candidate.docx"
-    numbered = list(expected.parent.glob(
-        f"Dave-Call+{plan['job']['safe_company']}+*+{plan['job']['job_number']}.docx"
-    ))
-    if len(numbered) > 1:
-        raise ValueError("Multiple candidate resumes exist for this job number; resolve the duplicate first")
-    final = _find_existing_resume(plan, scratch) or expected
-    existing = final.is_file() and final.stat().st_size > 0
+    final = None if force_recreate else _find_existing_resume(plan, scratch)
+    final = final or expected
+    existing = not force_recreate and final.is_file() and final.stat().st_size > 0
     qa = gecko_v2.native_qa(plan, final, scratch) if existing else {"status": "fail"}
     rebuilt = False
     if qa["status"] != "pass":
@@ -871,8 +876,18 @@ def _finish_generation(
         raise RuntimeError("V2 QA failed: " + "; ".join(qa["issues"]))
     if rebuilt:
         expected.parent.mkdir(parents=True, exist_ok=True)
-        os.replace(candidate, expected)
-        final = expected
+        destination = expected
+        if destination.exists():
+            base, job_number = expected.stem.rsplit("+", 1)
+            version = 2
+            while True:
+                versioned = expected.with_name(f"{base}+v{version}+{job_number}.docx")
+                if not versioned.exists():
+                    destination = versioned
+                    break
+                version += 1
+        os.replace(candidate, destination)
+        final = destination
         existing = False
     return Artifacts(final, listing, existing, attempts)
 
@@ -921,7 +936,7 @@ def run_queue(
     source: str | None = None,
     auto_approve_geographic: bool = False,
     generator=generate,
-    existing_generator=recover_existing,
+    existing_generator=recreate,
     recorder=None,
     failure_recorder=manage_job_tracker.record_queue_failure,
     logger=None,
@@ -943,12 +958,13 @@ def run_queue(
             for group in (
                 snapshot.pending, snapshot.already_created, snapshot.not_approved,
                 snapshot.link_backfill, snapshot.duplicate_excluded,
-                snapshot.missing_identity,
+                snapshot.missing_identity, snapshot.cost_excluded,
             )
             for item in group
         }
         for item in all_items.values():
-            if (_geographic_qualification(item)
+            if (_flag((item.fields or {}).get("Cost")) != "x"
+                    and _geographic_qualification(item)
                     and _flag((item.fields or {}).get("Apply?")) != "yes"):
                 _retry_sheet(lambda item=item: tracker.approve_manual_scout_row(
                     item.row, company=item.company, title=item.title,
@@ -965,10 +981,11 @@ def run_queue(
     skipped = snapshot.already_created
     excluded = (len(snapshot.already_created) + len(snapshot.not_approved)
                 + len(snapshot.jooble_excluded) + len(snapshot.duplicate_excluded)
-                + len(snapshot.missing_identity))
+                + len(snapshot.missing_identity) + len(snapshot.cost_excluded))
     checked = (len(snapshot.pending) + len(snapshot.already_created) + len(snapshot.link_backfill)
                + len(snapshot.not_approved) + len(snapshot.jooble_excluded)
-               + len(snapshot.duplicate_excluded) + len(snapshot.missing_identity))
+               + len(snapshot.duplicate_excluded) + len(snapshot.missing_identity)
+               + len(snapshot.cost_excluded))
     created = recovered = 0
     successes: list[tuple[QueueRow, Artifacts]] = []
     changed = 0
@@ -1005,7 +1022,7 @@ def run_queue(
         except Exception as note_error:
             failure = QueueFailure(
                 item=failure.item,
-                reason=f"{failure.reason} (Column I update also failed: {note_error})",
+                reason=f"{failure.reason} (Notes update also failed: {note_error})",
                 original_url=failure.original_url,
                 authoritative_url=failure.authoritative_url,
                 attempts=failure.attempts,
@@ -1070,15 +1087,9 @@ def run_queue(
             # API traffic and is unnecessary because no lifecycle write follows.
             is_backfill = item.row in backfill_rows
             if dry_run:
-                existing = _dry_run_existing_resume(item) if source == "indeed" else None
-                if existing is not None:
-                    action = ("WOULD RECOVER EXISTING RESUME | WOULD WRITE RESUME LINK | "
-                              "WOULD MARK RESUME CREATED")
-                else:
-                    action = ("WOULD GENERATE | WOULD WRITE RESUME LINK | "
-                              "WOULD MARK RESUME CREATED") if source == "indeed" else (
-                                  "WOULD BACKFILL" if is_backfill else "WOULD CREATE"
-                              )
+                action = ("WOULD RECREATE | WOULD WRITE RESUME LINK | KEEP RESUME CREATED = X"
+                          if is_backfill else
+                          "WOULD CREATE | WOULD WRITE RESUME LINK | WOULD MARK RESUME CREATED = X")
                 print(f"[{index}/{len(work)}] Row {item.row} | {item.company} | "
                       f"{item.title} | {action}")
                 continue
@@ -1086,20 +1097,10 @@ def run_queue(
                 print(f"SKIP: row {item.row} (Scout ID {item.scout_id}): queue flags changed")
                 changed += 1
                 continue
-            action = "Recovering existing Gecko resume" if is_backfill else "Creating Gecko resume"
+            action = "Recreating Gecko resume" if is_backfill else "Creating Gecko resume"
             print(f"[{index}/{len(work)}] {action}: {item.company}  {item.title}", flush=True)
             if is_backfill:
-                try:
-                    artifacts = existing_generator(item, db)
-                except RuntimeError as recovery_error:
-                    repairable = any(fragment in str(recovery_error) for fragment in (
-                        "no exact archived listing",
-                        "exact existing DOCX could not be identified",
-                        "failed Word-native QA",
-                    ))
-                    if not repairable:
-                        raise
-                    artifacts = generator(item, db)
+                artifacts = existing_generator(item, db)
             else:
                 artifacts = generator(item, db)
             recorder(item, artifacts, tracker)
@@ -1135,6 +1136,10 @@ def run_queue(
         print("\nGecko Resume Queue Complete")
         print(f"Tracker rows checked: {checked}")
         print(f"Eligible jobs: {len(work)}")
+        print(f"New resumes eligible: {len(pending)}")
+        print(f"Repair rows eligible: {len(backfill)}")
+        print(f"Completed rows skipped: {len(skipped)}")
+        print(f"Cost-excluded rows: {len(snapshot.cost_excluded)}")
         print(f"Skipped: {excluded + changed}")
         print(f"Resumes created: {created + recovered}")
         print(f"Existing valid resumes discovered and marked: {recovered}")
@@ -1165,7 +1170,9 @@ def run_queue(
             print(f"Would assign Scout ID: {stats['would_assign_scout_id']}")
             print(f"Eligible for Gecko resume: {stats['eligible_for_resume']}")
             print(f"Already completed: {stats['already_completed']}")
-            print(f"Missing usable Column R listing: {stats['missing_usable_listing']}")
+            print(f"Repair eligible: {stats['repair_eligible']}")
+            print(f"Cost-excluded: {stats['cost_excluded']}")
+            print(f"Missing usable Job URL/listing: {stats['missing_usable_listing']}")
             print(f"Duplicate exclusions: {stats['duplicate_exclusions']}")
             print(f"Would process: {len(work)}")
     return result

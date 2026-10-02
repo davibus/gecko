@@ -4,6 +4,12 @@ You are working inside the Gecko resume-customization project.
 
 Always read `GECKO_SYSTEM.md` before performing resume work.
 
+## Execution default
+
+Execute the live write path by default for requested work. Implement the requested change and run the affected canonical workflow so the real files and configured Google Sheet results are visible. Do not substitute a dry run, preview, simulation, mock execution, or instructions for an authorized live execution, and do not stop after editing code when execution is necessary to complete the request. Explicit dry-run and other read-only commands remain available only when the user requests them or when the command is inherently diagnostic.
+
+Authorization covers the requested work and its necessary writes, including generated resumes and managed tracker cells. It does not authorize unrelated actions, job applications, messages, purchases, destructive operations, or bypassing access restrictions. Preserve eligibility rules, Cost `x` exclusion, duplicate prevention, protected/manual fields, and unrelated data. After every live tracker write, read the affected cells back and verify the expected values and resume link target. If execution is blocked, report the exact blocker and what actually changed; never claim a live write succeeded without verification. Do not ask the user to reconfirm actions already authorized by the request.
+
 ## Source of truth
 
 The permanent Gecko authorities are:
@@ -74,13 +80,16 @@ Never bypass `scripts/manage_job_tracker.py`, because it also marks the matching
 
 On every non-dry daily run, inspect all existing `Job Scout` rows. Using only `Location` and `Work Arrangement`, set Column F (`Apply?`) to `Yes` for Utah jobs, including on-site and hybrid Utah jobs, and for jobs that explicitly allow remote work. Do not infer remote work from a blank/unspecified arrangement or descriptive listing text, and leave nonqualifying rows' Column F values unchanged.
 
-Process eligible rows through the normal Gecko generation and Word-native validation workflow. Only after the exact DOCX exists under `output/resumes` and passes validation may the workflow write Column G (`Resume Created`) as `X`, fixed Column S (`Resume Link`) as the absolute local DOCX path, and Gecko Status as `Resume Created` unless the row already has a later lifecycle status. Treat both `X` and the prior `C` marker as completed for safe repeat runs. Skip completed rows whose Column S path points to an existing resume; repair missing or invalid paths through the existing workflow without creating duplicate jobs or resumes. Never upload resumes to Google Drive, mark Applied, or submit an application. A generation, validation, local-artifact, or Sheet failure must leave Column G unmarked and report a retryable failure.
+Resolve queue fields by their exact, unambiguous headers on the configured intake worksheet before reading or writing; never assume the application-history worksheet is the queue. The current physical mapping is F `Apply?`, G `Resume Created`, I `Cost`, and Q `Resume Link`. If `Cost` is `x` after trimming and case normalization, skip creation and recreation. Process `Apply? = yes` rows with blank `Resume Created`, and recreate current-style resumes when `Apply? = yes`, `Resume Created = X`, and `Resume Link` is blank or whitespace. Skip rows that already have `X` and a nonblank valid link.
+
+Only after the exact DOCX exists under `output/resumes` and passes validation may the workflow write `Resume Created = X`, a clickable absolute file-URI link in `Resume Link`, and Gecko Status as `Resume Created` unless the row already has a later lifecycle status. Build the link from the actual saved file with Python `Path.resolve().as_uri()`, verify the DOCX exists before writing, and store the complete `file:///` URL directly as the visible Column Q value. Never use a `HYPERLINK` formula or `Open Resume` display text. A repair must preserve the existing X if generation, validation, or link creation fails, leave Resume Link blank, and log the retryable failure in `Notes`, never `Cost`. Do not overwrite an existing resume during repair; create a versioned filename that still ends with the job number. Never upload resumes to Google Drive, mark Applied, or submit an application.
 
 Daily column mapping:
 
 - F = `Yes` for Utah or remote jobs
 - G = `X` after successful resume creation
-- S = absolute local path under `output/resumes`
+- I = `Cost`; `x` excludes the row from creation and repair
+- Q = clickable absolute file URI for the validated DOCX under `output/resumes`
 
 ## Persistent Google Sheets formatting
 

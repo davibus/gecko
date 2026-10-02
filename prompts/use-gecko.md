@@ -7,6 +7,7 @@ Job listing/source:
 
 Instructions:
 - Read `GECKO_SYSTEM.md` and `AGENTS.md` first.
+- Execute the requested workflow live by default: generate the real resume, perform the necessary managed tracker writes, and verify the saved file and affected cells by reading them back. Use dry-run or preview modes only when I explicitly request read-only behavior; do not ask me to reconfirm writes already authorized here.
 - Use only `input/master-resume/Dave-Call-Resume.txt` for resume facts and use `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as the required visual formatting/layout model. Stop if either file is missing; never fall back to an older or tailored resume.
 - Run `python scripts/gecko_v2.py plan` on the archived listing before changing the resume. Review supported, review, and gap items and the source quotes in the plan.
 - Create a dedicated scratch subfolder: `scratch/{Company-Name}+{JobNumber}/` for all temporary files (previews, PNGs, PDFs, intermediate files). Sanitize company names for Windows filenames.

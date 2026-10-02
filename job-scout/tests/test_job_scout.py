@@ -171,7 +171,7 @@ class EnvironmentTests(unittest.TestCase):
         self.assertEqual(args.limit, 20)
         self.assertFalse(args.dry_run)
 
-    def test_daily_dry_run_uses_temporary_database_and_skips_resume_queue(self):
+    def test_daily_dry_run_uses_temporary_database_and_runs_read_only_queue(self):
         with tempfile.TemporaryDirectory() as directory:
             database = Path(directory) / "jobs.sqlite3"
             with JobStore(database) as store:
@@ -186,12 +186,17 @@ class EnvironmentTests(unittest.TestCase):
                       patch("scout.sheet_only_active_jobs", return_value=[]),
                       patch("scout.protected_job_ids", return_value=set()),
                       patch("scout.DailyLinkValidator.check_existing", return_value=[]),
-                      patch("scout._daily_resume_runner") as runner,
+                      patch("scout._daily_resume_runner",
+                            return_value=SimpleNamespace(
+                                exit_code=0, created=0, recovered=0, failures=[], successes=[],
+                                snapshot=SimpleNamespace(pending=[], already_created=[]),
+                            )) as runner,
                       redirect_stdout(io.StringIO())):
                     result = daily(args, store, load_preferences())
                 self.assertEqual(store.all(), [])
         self.assertEqual(result, 0)
-        runner.assert_not_called()
+        runner.assert_called_once()
+        self.assertTrue(runner.call_args.kwargs["dry_run"])
 
     def test_daily_search_dry_run_never_synchronizes_google_sheets(self):
         provider = unittest.mock.Mock()

@@ -83,7 +83,7 @@ class ResumeStorageTests(unittest.TestCase):
         with TemporaryDirectory() as temp:
             resume = Path(temp) / "resume.docx"
             resume.write_bytes(b"docx")
-            with self.assertRaisesRegex(RuntimeError, "Column S was not updated"):
+            with self.assertRaisesRegex(RuntimeError, "Resume Link was not updated"):
                 store.publish(resume, "job-123", scout_id=42)
 
     def test_multiple_matches_are_rejected(self):
