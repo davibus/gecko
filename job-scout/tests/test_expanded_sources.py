@@ -25,6 +25,7 @@ from sources.search_discovery import SearchDiscoveryProvider
 from sources.themuse import TheMuseProvider
 from sources.usajobs import UsaJobsProvider
 from sources.weworkremotely import WeWorkRemotelyProvider
+from sources.workingnomads import WorkingNomadsProvider
 from storage import JobStore
 
 
@@ -142,6 +143,61 @@ class ApiProviderTests(unittest.TestCase):
     @patch("sources.themuse.get_json", return_value={"results": []})
     def test_themuse_empty_response_is_valid(self, _mocked):
         self.assertEqual(list(TheMuseProvider("key").search(SearchRequest("marketing"))), [])
+
+    @patch("sources.workingnomads.get_json_value")
+    def test_workingnomads_maps_feed_fields_and_normalizes_tags(self, mocked):
+        mocked.return_value = [{
+            "url": "https://www.workingnomads.com/job/go/98765/",
+            "title": "Paid Search Manager",
+            "company_name": "Acme Remote",
+            "location": "USA, Canada (UTC-8 to UTC-4 only)",
+            "description": "Own paid search and analytics.",
+            "pub_date": "2026-10-01T12:30:00Z",
+            "category_name": "Marketing",
+            "tags": " PPC, Analytics, ppc,  Remote , ",
+        }]
+        job = list(WorkingNomadsProvider().search(SearchRequest("unrelated query")))[0]
+        self.assertEqual(job.source, "workingnomads")
+        self.assertEqual(job.source_job_id, "98765")
+        self.assertEqual(job.url, "https://www.workingnomads.com/job/go/98765/")
+        self.assertEqual(job.title, "Paid Search Manager")
+        self.assertEqual(job.company, "Acme Remote")
+        self.assertEqual(job.location, "USA, Canada (UTC-8 to UTC-4 only)")
+        self.assertEqual(job.description, "Own paid search and analytics.")
+        self.assertEqual(job.date_posted, "2026-10-01T12:30:00Z")
+        self.assertEqual(job.category, "Marketing")
+        self.assertEqual(job.tags, ["PPC", "Analytics", "Remote"])
+        self.assertEqual(job.remote_type, "remote")
+
+    @patch("sources.workingnomads.get_json_value", return_value={"jobs": []})
+    def test_workingnomads_rejects_malformed_root(self, _mocked):
+        with self.assertRaisesRegex(ProviderError, "expected a list"):
+            list(WorkingNomadsProvider().full_feed())
+
+    @patch("sources.workingnomads.get_json_value")
+    def test_workingnomads_skips_malformed_records_and_uses_stable_url_id(self, mocked):
+        url = "https://www.workingnomads.com/jobs/paid-media-manager"
+        mocked.return_value = [None, "bad", {}, {
+            "url": url, "title": "Paid Media Manager", "location": "Europe only",
+            "tags": "Marketing",
+        }, {
+            "url": "https://www.workingnomads.com/job/go/123/",
+            "title": ["not", "text"],
+        }]
+        first = list(WorkingNomadsProvider().full_feed())
+        second = list(WorkingNomadsProvider().full_feed())
+        self.assertEqual(len(first), 1)
+        self.assertEqual(first, second)
+        self.assertEqual(first[0].source_job_id,
+                         WorkingNomadsProvider._source_job_id(url))
+        self.assertTrue(first[0].source_job_id.startswith("url-"))
+
+    @patch("sources.workingnomads.get_json_value", return_value=[])
+    def test_workingnomads_fetches_feed_once_across_searches(self, mocked):
+        provider = WorkingNomadsProvider()
+        list(provider.search(SearchRequest("marketing")))
+        list(provider.search(SearchRequest("analytics", "Utah")))
+        mocked.assert_called_once_with(provider.endpoint, {"Accept": "application/json"})
 
 
 class AtsProviderTests(unittest.TestCase):

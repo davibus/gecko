@@ -869,8 +869,8 @@ def _finish_generation(
     qa = gecko_v2.native_qa(plan, final, scratch) if existing else {"status": "fail"}
     rebuilt = False
     if qa["status"] != "pass":
-        gecko_v2.make_resume(plan, candidate)
-        qa = gecko_v2.native_qa(plan, candidate, scratch)
+        qa = gecko_v2.generate_two_page_resume(plan, candidate, scratch)
+        plan_path.write_text(json.dumps(plan, indent=2, ensure_ascii=False), encoding="utf-8")
         rebuilt = True
     if qa["status"] != "pass":
         raise RuntimeError("V2 QA failed: " + "; ".join(qa["issues"]))

@@ -38,6 +38,7 @@ When asked to "use Gecko" for a job:
 - Every generated resume must include **CORE STRENGTHS** with at least 8 job-relevant, master-supported entries. Use professional Title Case for every entry and include more than 8 when useful.
 - Every generated resume must include **TOOLS & PLATFORMS** with at least 8 job-relevant, master-supported products or platforms. Preserve official brand capitalization and never use generic lowercase capabilities as tool entries.
 - Every **PROFESSIONAL EXPERIENCE** job must render as: job title alone on line 1; `Company Name  City, State` on line 2; accomplishments on line 3 and below. The legacy `Job Title | Company` format is prohibited. Preserve the blank right-side date cell/area.
+- Target 3 concise, master-supported accomplishment bullets per **PROFESSIONAL EXPERIENCE** job, chosen for relevance to the job description. Use 2 when a third distinct, useful bullet is unnecessary or when native Microsoft Word pagination requires it. The exactly-two-page limit always takes priority over keeping a third bullet.
 - Before the final DOCX is saved, use Gecko's cleanup and validation logic to correct and verify both section counts, canonical capitalization, the two-line job hierarchy, removal of combined headers, and removal of lowercase placeholder entries. A resume that fails these checks is not final.
 
 ### Mandatory pagination validation
@@ -50,6 +51,7 @@ When asked to "use Gecko" for a job:
 - If bridge validation fails, run/report the health diagnostics once and stop before the tracker update. Do not repeatedly retry Word COM from the sandbox, do not ask the user to perform manual pagination, and do not add a tracker row while validation is `native-pending`.
 - If native Word pagination is unavailable, use a conservative layout with substantial bottom-page safety margin, clearly disclose that native validation is unavailable, and do not describe fallback-only pagination as equivalent to Word validation.
 - Never add content merely to fill space when doing so risks a third page. An underfilled second page is preferable to a three-page resume.
+- If a three-bullet draft runs over two pages, remove the least job-relevant third bullets first and repeat native Word validation after each reduction; do not reduce a displayed job below two bullets solely to make it fit.
 - Do not claim the Gecko workflow is fully validated until the actual DOCX has been confirmed as exactly two pages in Microsoft Word.
 
 If the job comes from Indeed, use the `jk` value as the job number and name the DOCX:

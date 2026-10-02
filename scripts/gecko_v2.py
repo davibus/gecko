@@ -527,10 +527,10 @@ def create_plan(listing_path: Path) -> dict:
     mandatory_metrics = relevant_metric_ids(listing, evidence)
     selected = []
     jobs = master_jobs()
-    # The required model devotes separate space to selected results and tools.
-    # Keep the longer archive conservative so Word-native pagination stays at
-    # two pages without shrinking the model typography.
-    bullets_per_job = 3 if len(jobs) <= 5 else 2
+    # Start with three relevant accomplishments per role. The native Word
+    # pagination pass may selectively remove a role's third-ranked bullet, but
+    # never its first two, when that is necessary to preserve two pages.
+    bullets_per_job = 3
     for index in range(len(jobs)):
         pool = [item for item in evidence if item["job"] == index]
         concise = [item for item in pool if len(item["quote"].split()) <= 55]
@@ -550,11 +550,12 @@ def create_plan(listing_path: Path) -> dict:
             chosen_items.append(item)
             if len(chosen_items) == bullets_per_job:
                 break
-        # Very small source sections may contain only similar bullets. Preserve
-        # the page budget even there instead of silently dropping a role.
-        if len(chosen_items) < bullets_per_job:
+        # Keep two source-backed bullets when available, but do not add a
+        # repetitive third bullet merely to reach the preferred count.
+        minimum_useful_bullets = min(2, len(ranked))
+        if len(chosen_items) < minimum_useful_bullets:
             chosen_items.extend(item for item in ranked if item not in chosen_items)
-            chosen_items = chosen_items[:bullets_per_job]
+            chosen_items = chosen_items[:minimum_useful_bullets]
         chosen = [item["id"] for item in chosen_items]
         selected.extend(chosen)
     core_strengths = select_core_strengths(listing, source)
@@ -842,6 +843,36 @@ def native_qa(plan: dict, docx_path: Path, scratch: Path) -> dict:
     return report
 
 
+def _third_bullet_fallbacks(plan: dict) -> list[str]:
+    """Return least-useful third bullets first for native page-fit reduction."""
+    evidence = {item["id"]: item for item in plan["evidence"]}
+    selected = plan["resume"]["selected_evidence_ids"]
+    listing_terms = words(Path(plan["listing"]).read_text(encoding="utf-8-sig"))
+    mandatory = set(plan["resume"].get("relevant_metric_ids", []))
+    candidates = []
+    for job_index in range(len(plan["resume"]["jobs"])):
+        role_ids = [eid for eid in selected if evidence[eid]["job"] == job_index]
+        for eid in role_ids[2:]:
+            quote = evidence[eid]["quote"]
+            relevance = len(words(quote) & listing_terms)
+            candidates.append((eid in mandatory, relevance, -len(words(quote)), job_index, eid))
+    return [item[-1] for item in sorted(candidates)]
+
+
+def generate_two_page_resume(plan: dict, path: Path, scratch: Path) -> dict:
+    """Generate a three-bullet-first resume and trim only third bullets on overflow."""
+    make_resume(plan, path)
+    report = native_qa(plan, path, scratch)
+    if max(report.get("word_pages") or 0, report.get("pdf_pages") or 0) <= 2:
+        return report
+    fallbacks = _third_bullet_fallbacks(plan)
+    while max(report.get("word_pages") or 0, report.get("pdf_pages") or 0) > 2 and fallbacks:
+        plan["resume"]["selected_evidence_ids"].remove(fallbacks.pop(0))
+        make_resume(plan, path)
+        report = native_qa(plan, path, scratch)
+    return report
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -870,8 +901,8 @@ def main() -> int:
     if args.command == "generate":
         scratch.mkdir(parents=True, exist_ok=True)
         candidate = scratch / "manual-candidate.docx"
-        make_resume(plan, candidate)
-        report = native_qa(plan, candidate, scratch)
+        report = generate_two_page_resume(plan, candidate, scratch)
+        args.plan.write_text(json.dumps(plan, indent=2, ensure_ascii=False), encoding="utf-8")
         if report["status"] == "pass":
             output.parent.mkdir(parents=True, exist_ok=True)
             os.replace(candidate, output)

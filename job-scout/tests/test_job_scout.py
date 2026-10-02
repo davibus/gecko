@@ -28,13 +28,15 @@ from sources.base import JobSource, SearchRequest
 from sources.base import ProviderError
 from sources.http import FetchedDocument
 from sources.jooble import JoobleProvider
+from sources.unavailable import UnavailableProvider
 from sources.web import WebCareerProvider
+from sources.workingnomads import WorkingNomadsProvider
 from storage import JobStore
 from handoff import archive_listing
 from manual_indeed import ManualIndeedSummary
 from scout import (
     CORE_PROVIDERS, _daily_resume_runner, build_parser, daily,
-    load_local_environment, search,
+    load_local_environment, main, providers, search,
 )
 
 
@@ -223,6 +225,34 @@ class EnvironmentTests(unittest.TestCase):
                          "themuse", "indeed", "linkedin", "glassdoor",
                          "ziprecruiter"} <= set(CORE_PROVIDERS))
         self.assertNotIn("jooble", CORE_PROVIDERS)
+
+    def test_workingnomads_registry_respects_enabled_configuration(self):
+        source_config = SCOUT_ROOT / "preferences" / "job-sources.json"
+        payload = json.loads(source_config.read_text(encoding="utf-8"))
+        with patch.dict(os.environ, {}, clear=True):
+            self.assertIsInstance(providers(source_config)["workingnomads"],
+                                  WorkingNomadsProvider)
+        payload["providers"]["workingnomads"]["enabled"] = False
+        with tempfile.TemporaryDirectory() as directory:
+            disabled_config = Path(directory) / "job-sources.json"
+            disabled_config.write_text(json.dumps(payload), encoding="utf-8")
+            with patch.dict(os.environ, {}, clear=True):
+                disabled = providers(disabled_config)["workingnomads"]
+        self.assertIsInstance(disabled, UnavailableProvider)
+        self.assertEqual(disabled.status, "disabled")
+
+    def test_verify_sources_dispatch_never_opens_production_database(self):
+        args = build_parser().parse_args(["verify-sources", "--results", "5"])
+        self.assertFalse(args.requires_store)
+        with (patch("scout.build_parser") as parser,
+              patch("scout.load_local_environment"),
+              patch("scout.load_preferences", return_value={}),
+              patch("scout.JobStore") as job_store,
+              patch.object(args, "function", return_value=0) as verify):
+            parser.return_value.parse_args.return_value = args
+            self.assertEqual(main(), 0)
+        job_store.assert_not_called()
+        verify.assert_called_once_with(args, None, {})
 
     @patch("scout._daily_resume_runner", return_value=queue_result.__func__())
     @patch("scout.search", return_value=0)

@@ -14,11 +14,13 @@ from .unavailable import UnavailableProvider
 from .usajobs import UsaJobsProvider
 from .web import WebCareerProvider
 from .weworkremotely import WeWorkRemotelyProvider
+from .workingnomads import WorkingNomadsProvider
 
 __all__ = [
     "AdzunaProvider", "AshbyProvider", "GreenhouseProvider", "IndeedProvider",
     "JobicyProvider", "LeverProvider", "ManualIndeedProvider", "JoobleProvider",
     "RemoteOkProvider", "RemotiveProvider", "SearchDiscoveryProvider", "TheMuseProvider",
-    "UnavailableProvider", "UsaJobsProvider", "WeWorkRemotelyProvider", "WorkableProvider",
+    "UnavailableProvider", "UsaJobsProvider", "WeWorkRemotelyProvider", "WorkingNomadsProvider",
+    "WorkableProvider",
     "JobSource", "ProviderError", "WebCareerProvider",
 ]

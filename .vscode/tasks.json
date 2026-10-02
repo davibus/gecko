@@ -2,41 +2,47 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Gecko: Daily Job Scout",
+      "label": "Gecko Job Scout",
       "type": "shell",
-      "command": "python",
-      "args": [
-        "job-scout/scout.py",
-        "daily"
-      ],
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
+      "command": "powershell.exe -NoExit",
+      "isBackground": true,
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
-        "panel": "dedicated",
-        "focus": true
+        "panel": "dedicated"
       }
     },
     {
-      "label": "Gecko: Create Indeed Resumes",
+      "label": "Indeed Resumes",
       "type": "shell",
-      "command": "python",
-      "args": [
-        "scripts/generate_apply_queue.py",
-        "--source",
-        "indeed"
-      ],
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
+      "command": "powershell.exe -NoExit",
+      "isBackground": true,
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
-        "panel": "dedicated",
-        "focus": true
+        "panel": "dedicated"
       }
+    },
+    {
+      "label": "Gmail Responses",
+      "type": "shell",
+      "command": "powershell.exe -NoExit",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Open Gecko Terminals",
+      "dependsOn": [
+        "Gecko Job Scout",
+        "Indeed Resumes",
+        "Gmail Responses"
+      ],
+      "dependsOrder": "parallel",
+      "problemMatcher": []
     }
   ]
 }

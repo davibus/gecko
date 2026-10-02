@@ -10,6 +10,22 @@ Requested Job Scout work runs live by default. The normal command performs the a
 python job-scout/scout.py daily
 ```
 
+## Archive applied resumes
+
+Preview the exact file moves and `Resume Link` cell updates for rows whose
+`Applied` value is exactly `x`. Preview is the default and makes no changes:
+
+```powershell
+python scripts/archive_applied_resumes.py
+```
+
+After reviewing the complete plan, perform and verify the moves and cell
+updates explicitly:
+
+```powershell
+python scripts/archive_applied_resumes.py --apply
+```
+
 The daily command:
 
 1. validates known active links;
@@ -104,12 +120,15 @@ Provider enablement and ATS employers are configured in `preferences/job-sources
 | Ashby | Public lightweight job-posting API | Employer board slugs in source config |
 | Workable | Public published-jobs endpoint | Employer account subdomains in source config |
 | We Work Remotely | Official Sales & Marketing RSS | None |
-| Working Nomads | Unsupported/disabled safely | No supported public API/feed is documented |
+| Working Nomads | Public JSON feed | None |
 | The Muse | Public Jobs API | `THE_MUSE_API_KEY` |
 | Indeed | Authorized API when configured; otherwise Brave public-page discovery | Optional `INDEED_API_ENDPOINT` and `INDEED_API_TOKEN`, or Brave |
 | LinkedIn | Brave discovery of public indexed job-detail pages | `BRAVE_SEARCH_API_KEY` |
 | Glassdoor | Brave discovery of public indexed job-detail pages | `BRAVE_SEARCH_API_KEY` |
 | ZipRecruiter | Brave discovery of public indexed job-detail pages | `BRAVE_SEARCH_API_KEY` |
+
+Working Nomads uses its public JSON feed at
+`https://www.workingnomads.com/api/exposed_jobs/` and requires no API key or other credentials.
 
 Search-discovery providers never log in, reuse cookies, bypass CAPTCHAs, rotate proxies, or evade anti-bot controls. A discovered page is accepted only when it exposes usable public `JobPosting` structured data. Otherwise it is skipped and reported.
 

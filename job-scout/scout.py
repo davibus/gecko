@@ -31,7 +31,7 @@ from sources import (
     AdzunaProvider, AshbyProvider, GreenhouseProvider, IndeedProvider,
     JobicyProvider, LeverProvider, ProviderError, RemoteOkProvider, RemotiveProvider,
     SearchDiscoveryProvider, TheMuseProvider, UnavailableProvider, UsaJobsProvider,
-    WeWorkRemotelyProvider, WebCareerProvider, WorkableProvider,
+    WeWorkRemotelyProvider, WebCareerProvider, WorkingNomadsProvider, WorkableProvider,
 )
 from sources.base import SearchRequest
 from sources.config import load_source_config
@@ -88,10 +88,7 @@ def providers(config_path=None):
         "ashby": AshbyProvider(settings["ashby"].get("companies")),
         "workable": WorkableProvider(settings["workable"].get("companies")),
         "weworkremotely": WeWorkRemotelyProvider(),
-        "workingnomads": UnavailableProvider(
-            "workingnomads",
-            "No supported public API or feed is currently documented; scraping is disabled",
-        ),
+        "workingnomads": WorkingNomadsProvider(),
         "themuse": TheMuseProvider(),
         "indeed": (indeed_api if indeed_api.configured() else SearchDiscoveryProvider(
             "indeed", "site:indeed.com/viewjob",
@@ -936,7 +933,7 @@ def build_parser():
         "verify-sources", help="Read-only live verification of every Job Scout provider",
     )
     verify_parser.add_argument("--results", type=int, default=5)
-    verify_parser.set_defaults(function=verify_sources)
+    verify_parser.set_defaults(function=verify_sources, requires_store=False)
     listing = sub.add_parser("list", help="Show saved jobs")
     listing.add_argument("--status", choices=["new", "reviewing", "selected", "resume-created", "applied", "contacted", "interview", "rejected", "offer", "ignored"])
     listing.add_argument("--json", action="store_true")
@@ -995,6 +992,8 @@ def main():
         load_local_environment()
         load_local_environment(PROJECT_ROOT / ".env.google-sheets.local")
         preferences = load_preferences(args.preferences)
+        if not getattr(args, "requires_store", True):
+            return args.function(args, None, preferences)
         with JobStore(args.db) as store:
             return args.function(args, store, preferences)
     except (OSError, RuntimeError, ValueError, ProviderError) as error:
