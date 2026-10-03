@@ -7,6 +7,13 @@ __pycache__/
 *.py[cod]
 .tools/
 
+# Google Drive native-document pointer files are not portable file contents.
+*.gsheet
+*.gdoc
+
+# Local Google Drive tracker shortcut and archival resume materials.
+/output/resumes/perfected-gecko-resumes/
+
 # Reproducible working and diagnostic artifacts
 scratch/*
 !scratch/.gitkeep
