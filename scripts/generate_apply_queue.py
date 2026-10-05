@@ -20,6 +20,7 @@ from storage import DEFAULT_DB, JobStore  # noqa: E402
 from google_tracker import (  # noqa: E402
     GoogleTracker,
     apply_value,
+    resume_already_created,
 )
 from manual_indeed import next_scout_id  # noqa: E402
 from description_retrieval import (  # noqa: E402
@@ -30,6 +31,8 @@ from description_retrieval import (  # noqa: E402
 from handoff import job_number as scout_job_number  # noqa: E402
 from models import RawListing  # noqa: E402
 from normalize import normalize  # noqa: E402
+from rejected_jobs import REJECT_STATUSES, PermanentlyRejectedError  # noqa: E402
+from rejection_workflow import process_rejected_rows  # noqa: E402
 import gecko_v2  # noqa: E402
 import manage_job_tracker  # noqa: E402
 
@@ -80,6 +83,7 @@ class QueueSnapshot:
     duplicate_excluded: list[QueueRow]
     missing_identity: list[QueueRow]
     cost_excluded: list[QueueRow]
+    rejected_excluded: list[QueueRow]
     decisions: list[tuple[QueueRow, str]]
     stats: dict[str, int]
 
@@ -270,6 +274,7 @@ def read_queue(
 ) -> QueueSnapshot:
     """Classify live rows, optionally restricted to the current daily discovery set."""
     tab = _retry_sheet(lambda: tracker.scout(value_render_option="FORMULA"))
+    rejected_jobs = _retry_sheet(lambda: tracker.rejected_jobs_index())
     missing = set(REQUIRED) - tab.headers.keys()
     if missing:
         raise ValueError("Job Scout is missing required columns: " + ", ".join(sorted(missing)))
@@ -280,7 +285,7 @@ def read_queue(
         matched.append(_queue_item(tab, row, data))
 
     pending, already_created, not_approved, jooble_excluded, link_backfill = [], [], [], [], []
-    duplicate_excluded, missing_identity, cost_excluded, decisions = [], [], [], []
+    duplicate_excluded, missing_identity, cost_excluded, rejected_excluded, decisions = [], [], [], [], []
     stats = {
         "indeed_rows_checked": len(matched), "utah_qualifying": 0,
         "remote_qualifying": 0, "would_set_apply_yes": 0, "already_approved": 0,
@@ -289,6 +294,7 @@ def read_queue(
         "eligible_for_resume": 0, "already_completed": 0,
         "missing_usable_listing": 0, "duplicate_exclusions": 0,
         "cost_excluded": 0, "repair_eligible": 0,
+        "rejected_exclusions": 0,
     }
     completed_keys = {
         key for item in matched
@@ -299,6 +305,21 @@ def read_queue(
     seen_pending: set[tuple[str, str]] = set()
     for item in matched:
         data = item.fields or {}
+        if _flag(data.get("Gecko Status")) in REJECT_STATUSES:
+            rejected_excluded.append(item)
+            stats["rejected_exclusions"] += 1
+            decisions.append((item, "SKIP: row is marked for permanent rejection"))
+            continue
+        rejected_id = _indeed_job_key(item.job_url) if _flag(item.source) == "indeed" or _is_indeed_url(item.job_url) else ""
+        if rejected_jobs.match(
+            source=item.source,
+            job_id=rejected_id,
+            url=item.job_url,
+        ) is not None:
+            rejected_excluded.append(item)
+            stats["rejected_exclusions"] += 1
+            decisions.append((item, "SKIP: permanently rejected job"))
+            continue
         if _flag(data.get("Cost")) == "x":
             cost_excluded.append(item)
             stats["cost_excluded"] += 1
@@ -314,29 +335,21 @@ def read_queue(
             stats["remote_qualifying"] += 1
         if not _usable_listing(item.listing_content) and not item.job_url:
             stats["missing_usable_listing"] += 1
-        needs_global_backfill = (
-            _flag(data.get("Apply?")) == "yes"
-            and _resume_completed(data.get("Resume Created"))
-            and not _valid_resume_link(data.get("Resume Link"))
-        )
-        if (eligible_scout_ids is not None
-                and (item.scout_id is None or item.scout_id not in eligible_scout_ids)
-                and not needs_global_backfill
-                and source is None):
-            continue
-        if _resume_completed(data.get("Resume Created")):
+        if resume_already_created(data.get("Resume Created")):
             stats["already_completed"] += 1
-            if not _valid_resume_link(data.get("Resume Link")):
-                if _flag(data.get("Apply?")) == "yes":
-                    link_backfill.append(item)
-                    stats["repair_eligible"] += 1
-                    decisions.append((item, "REPAIR: Resume Created = X and Resume Link is blank"))
-                else:
-                    already_created.append(item)
-                    decisions.append((item, "SKIP: Resume already created"))
+            already_created.append(item)
+            if not str(data.get("Resume Link") or "").strip():
+                decisions.append((item, "SKIP RESUME: existing tracker row already has Resume Created = X; Resume Link is blank"))
             else:
-                already_created.append(item)
-                decisions.append((item, "SKIP: Resume already created"))
+                decisions.append((item, "SKIP RESUME: existing tracker row already has Resume Created = X"))
+        elif _resume_completed(data.get("Resume Created")):
+            stats["already_completed"] += 1
+            already_created.append(item)
+            decisions.append((item, "SKIP: legacy resume completion marker"))
+        elif (eligible_scout_ids is not None
+              and (item.scout_id is None or item.scout_id not in eligible_scout_ids)
+              and source is None):
+            continue
         elif not item.company.strip() or not item.title.strip():
             missing_identity.append(item)
             decisions.append((item, "SKIP: missing required job identity"))
@@ -402,12 +415,18 @@ def read_queue(
     )
     return QueueSnapshot(
         pending, already_created, not_approved, jooble_excluded, link_backfill,
-        duplicate_excluded, missing_identity, cost_excluded, decisions, stats,
+        duplicate_excluded, missing_identity, cost_excluded, rejected_excluded,
+        decisions, stats,
     )
 
 
-def _still_pending(tracker: GoogleTracker, item: QueueRow, *, link_backfill: bool = False) -> bool:
+def _still_pending(tracker: GoogleTracker, item: QueueRow) -> bool:
     """Re-read the row just before generation in case it changed mid-batch."""
+    rejected_id = _indeed_job_key(item.job_url) if _flag(item.source) == "indeed" or _is_indeed_url(item.job_url) else ""
+    if _retry_sheet(lambda: tracker.rejected_jobs_index()).match(
+        source=item.source, job_id=rejected_id, url=item.job_url,
+    ) is not None:
+        return False
     matches = [data for row, data in _retry_sheet(
         lambda: tracker.scout(value_render_option="FORMULA")
     ).rows if (
@@ -417,17 +436,16 @@ def _still_pending(tracker: GoogleTracker, item: QueueRow, *, link_backfill: boo
     if len(matches) != 1:
         return False
     row = matches[0]
+    if resume_already_created(row.get("Resume Created")):
+        return False
+    if _flag(row.get("Gecko Status")) in REJECT_STATUSES:
+        return False
     identity_matches = (
         _flag(row.get("Company")) == _flag(item.company)
         and _flag(row.get("Job Title")) == _flag(item.title)
     )
     if not identity_matches:
         return False
-    if link_backfill:
-        return (_flag(row.get("Cost")) != "x"
-                and _flag(row.get("Apply?")) == "yes"
-                and _resume_completed(row.get("Resume Created"))
-                and not _valid_resume_link(row.get("Resume Link")))
     return (_flag(row.get("Apply?")) == "yes"
             and _flag(row.get("Cost")) != "x"
             and not _resume_completed(row.get("Resume Created")))
@@ -443,7 +461,17 @@ def _refresh_item(tracker: GoogleTracker, item: QueueRow) -> QueueRow:
     if len(matches) != 1:
         raise RuntimeError("Could not re-read the unique Job Scout row")
     row, data = matches[0]
+    if resume_already_created(data.get("Resume Created")):
+        raise RuntimeError("SKIP RESUME: existing tracker row already has Resume Created = X")
     refreshed = _queue_item(tab, row, data)
+    indeed_id = _indeed_job_key(refreshed.job_url) if (
+        _flag(refreshed.source) == "indeed" or _is_indeed_url(refreshed.job_url)
+    ) else ""
+    if (_flag((refreshed.fields or {}).get("Gecko Status")) in REJECT_STATUSES
+            or _retry_sheet(lambda: tracker.rejected_jobs_index()).match(
+                source=refreshed.source, job_id=indeed_id, url=refreshed.job_url,
+            ) is not None):
+        raise PermanentlyRejectedError("Job is permanently rejected; queue fields were not changed")
     if (_flag(refreshed.company) != _flag(item.company)
             or _flag(refreshed.title) != _flag(item.title)):
         raise RuntimeError("Job Scout row identity changed before resume generation")
@@ -718,8 +746,13 @@ def _job_from_sheet_row(item: QueueRow):
     return job
 
 
-def generate(item: QueueRow, db: Path, *, force_recreate: bool = False) -> Artifacts:
+def generate(item: QueueRow, db: Path, *, force_recreate: bool = False,
+             tracker: GoogleTracker | None = None) -> Artifacts:
     """Reuse Gecko V2 planning, rendering, and Word QA."""
+    if force_recreate:
+        raise RuntimeError("Resume recreation is disabled; inspect the existing tracker row")
+    if not _still_pending(tracker or GoogleTracker(), item):
+        raise RuntimeError("SKIP RESUME: live tracker row is no longer eligible for generation")
     with JobStore(db) as store:
         job = store.get(item.scout_id) if item.scout_id is not None else None
         if _usable_listing(item.listing_content):
@@ -751,8 +784,8 @@ def generate(item: QueueRow, db: Path, *, force_recreate: bool = False) -> Artif
 
 
 def recreate(item: QueueRow, db: Path) -> Artifacts:
-    """Rebuild a repair-row resume from current authorities without replacing old files."""
-    return generate(item, db, force_recreate=True)
+    """Reject the retired automatic completed-row regeneration entry point."""
+    raise RuntimeError("Resume recreation is disabled; inspect the existing tracker row")
 
 
 def _validated_artifact_near(
@@ -851,6 +884,8 @@ def _finish_generation(
     item: QueueRow, listing: Path, attempts: tuple[RetrievalAttempt, ...],
     *, force_recreate: bool = False,
 ) -> Artifacts:
+    if force_recreate:
+        raise RuntimeError("Resume recreation is disabled; inspect the existing tracker row")
     plan = gecko_v2.create_plan(listing.resolve())
     if (_identity_text(plan["job"]["company"]) != _identity_text(item.company)
             or _identity_text(plan["job"]["title"]) != _identity_text(item.title)):
@@ -896,15 +931,12 @@ def record_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTracker)
     """Record the validated resume through the canonical tracker integration."""
     if not artifacts.resume.is_file() or artifacts.resume.stat().st_size <= 0:
         raise ValueError("Final DOCX is missing or empty")
-    if not (_still_pending(tracker, item)
-            or _still_pending(tracker, item, link_backfill=True)):
+    if not _still_pending(tracker, item):
         raise RuntimeError("Apply? or Resume Created changed before tracker update")
     _retry_sheet(lambda: manage_job_tracker.record_queue_success(
         artifacts.resume, artifacts.listing, item.scout_id, item.row, tracker,
         completion_marker=COMPLETION_MARKER,
-        require_approved=not _resume_completed(
-            (item.fields or {}).get("Resume Created")
-        ),
+        require_approved=True,
     ))
 
 
@@ -912,13 +944,11 @@ def record_local_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTr
     """Record a validated resume using its absolute local DOCX path."""
     if not artifacts.resume.is_file() or artifacts.resume.stat().st_size <= 0:
         raise ValueError("Final local DOCX is missing or empty")
-    if not (_still_pending(tracker, item)
-            or _still_pending(tracker, item, link_backfill=True)):
+    if not _still_pending(tracker, item):
         raise RuntimeError("Apply? or Resume Created changed before tracker update")
-    completed_backfill = _resume_completed((item.fields or {}).get("Resume Created"))
     _retry_sheet(lambda: manage_job_tracker.record_queue_success_local(
         artifacts.resume, artifacts.listing, item.scout_id, item.row, tracker,
-        require_approved=not completed_backfill,
+        require_approved=True,
     ))
 
 
@@ -976,16 +1006,17 @@ def run_queue(
                 auto_approve_geographic=auto_approve_geographic,
             )
     pending = snapshot.pending
-    backfill = snapshot.link_backfill
-    work = pending + backfill
+    backfill = snapshot.link_backfill  # Retained for result compatibility; always empty.
+    work = pending
     skipped = snapshot.already_created
     excluded = (len(snapshot.already_created) + len(snapshot.not_approved)
                 + len(snapshot.jooble_excluded) + len(snapshot.duplicate_excluded)
-                + len(snapshot.missing_identity) + len(snapshot.cost_excluded))
+                + len(snapshot.missing_identity) + len(snapshot.cost_excluded)
+                + len(snapshot.rejected_excluded))
     checked = (len(snapshot.pending) + len(snapshot.already_created) + len(snapshot.link_backfill)
                + len(snapshot.not_approved) + len(snapshot.jooble_excluded)
                + len(snapshot.duplicate_excluded) + len(snapshot.missing_identity)
-               + len(snapshot.cost_excluded))
+               + len(snapshot.cost_excluded) + len(snapshot.rejected_excluded))
     created = recovered = 0
     successes: list[tuple[QueueRow, Artifacts]] = []
     changed = 0
@@ -1035,7 +1066,16 @@ def run_queue(
             _log(logger, "  " + attempt.summary())
 
     print(f"Found {len(pending)} jobs requiring resumes.", flush=True)
-    print(f"Found {len(backfill)} completed jobs requiring Resume Link backfill.", flush=True)
+    missing_links = [
+        item for item in skipped
+        if resume_already_created((item.fields or {}).get("Resume Created"))
+        and not str((item.fields or {}).get("Resume Link") or "").strip()
+    ]
+    for item in missing_links:
+        message = (f"SKIP RESUME: row {item.row} already has Resume Created = X; "
+                   "Resume Link is blank; manual review needed")
+        print(message, flush=True)
+        _log(logger, message)
     print(f"Tracker rows checked: {checked}", flush=True)
     print(f"Skipped with a completed Resume Created marker: {len(skipped)}", flush=True)
     _log(logger, f"Eligible rows: {len(pending)}; already marked: {len(skipped)}")
@@ -1048,7 +1088,6 @@ def run_queue(
         print(f"{item.row} | {item.scout_id or ''} | {item.company} | {item.title}", flush=True)
     if not dry_run:
         print("Processing eligible jobs now.", flush=True)
-    backfill_rows = {item.row for item in backfill}
 
     # Prepare every manual row before the slower Word generation phase. This
     # prevents an interruption or one generation failure from leaving later
@@ -1065,18 +1104,15 @@ def run_queue(
             _log(logger, f"Scout ID allocator initialization failed: {error}")
         for original in work:
             try:
-                if original.row in backfill_rows:
-                    prepared = _refresh_item(tracker, original)
-                    if prepared.scout_id is None:
-                        raise RuntimeError("Completed resume link backfill has no Scout ID")
-                    prepared_work.append(prepared)
-                    continue
                 if original.scout_id is None and allocator is None:
                     raise RuntimeError("Scout ID allocator could not be initialized")
                 prepared = _prepare_indeed_item(tracker, original, db, allocator)
                 if original.scout_id is None and prepared.scout_id is not None:
                     scout_ids_assigned += 1
                 prepared_work.append(prepared)
+            except PermanentlyRejectedError as error:
+                changed += 1
+                _log(logger, f"SKIP permanently rejected row={original.row}: {error}")
             except Exception as error:
                 capture_failure(original, error)
         work = prepared_work
@@ -1085,24 +1121,18 @@ def run_queue(
         try:
             # A dry run is a single read-only snapshot. Re-reading every row adds
             # API traffic and is unnecessary because no lifecycle write follows.
-            is_backfill = item.row in backfill_rows
             if dry_run:
-                action = ("WOULD RECREATE | WOULD WRITE RESUME LINK | KEEP RESUME CREATED = X"
-                          if is_backfill else
-                          "WOULD CREATE | WOULD WRITE RESUME LINK | WOULD MARK RESUME CREATED = X")
+                action = "WOULD CREATE | WOULD WRITE RESUME LINK | WOULD MARK RESUME CREATED = X"
                 print(f"[{index}/{len(work)}] Row {item.row} | {item.company} | "
                       f"{item.title} | {action}")
                 continue
-            if not _still_pending(tracker, item, link_backfill=is_backfill):
+            if not _still_pending(tracker, item):
                 print(f"SKIP: row {item.row} (Scout ID {item.scout_id}): queue flags changed")
                 changed += 1
                 continue
-            action = "Recreating Gecko resume" if is_backfill else "Creating Gecko resume"
-            print(f"[{index}/{len(work)}] {action}: {item.company}  {item.title}", flush=True)
-            if is_backfill:
-                artifacts = existing_generator(item, db)
-            else:
-                artifacts = generator(item, db)
+            print(f"[{index}/{len(work)}] Creating Gecko resume: {item.company}  {item.title}", flush=True)
+            artifacts = (generator(item, db, tracker=tracker)
+                         if generator is generate else generator(item, db))
             recorder(item, artifacts, tracker)
             recovered += int(artifacts.existing)
             created += int(not artifacts.existing)
@@ -1113,6 +1143,10 @@ def run_queue(
                  f"resume={artifacts.resume}")
             for attempt in artifacts.retrieval_attempts:
                 _log(logger, "  " + attempt.summary())
+        except PermanentlyRejectedError as error:
+            changed += 1
+            print(f"SKIP: {item.company} | {item.title} ({error})")
+            _log(logger, f"SKIP permanently rejected row={item.row}: {error}")
         except Exception as error:
             capture_failure(item, error)
     if dry_run:
@@ -1137,9 +1171,10 @@ def run_queue(
         print(f"Tracker rows checked: {checked}")
         print(f"Eligible jobs: {len(work)}")
         print(f"New resumes eligible: {len(pending)}")
-        print(f"Repair rows eligible: {len(backfill)}")
+        print(f"Completed rows requiring regeneration: 0")
         print(f"Completed rows skipped: {len(skipped)}")
         print(f"Cost-excluded rows: {len(snapshot.cost_excluded)}")
+        print(f"Permanently rejected rows skipped: {len(snapshot.rejected_excluded)}")
         print(f"Skipped: {excluded + changed}")
         print(f"Resumes created: {created + recovered}")
         print(f"Existing valid resumes discovered and marked: {recovered}")
@@ -1174,6 +1209,7 @@ def run_queue(
             print(f"Cost-excluded: {stats['cost_excluded']}")
             print(f"Missing usable Job URL/listing: {stats['missing_usable_listing']}")
             print(f"Duplicate exclusions: {stats['duplicate_exclusions']}")
+            print(f"Rejected-history exclusions: {stats['rejected_exclusions']}")
             print(f"Would process: {len(work)}")
     return result
 
@@ -1201,8 +1237,15 @@ def main() -> int:
     logger = None if args.dry_run else _append_run_log
     if logger is not None:
         logger(f"RUN START dry_run={args.dry_run} source={args.source or 'all'} db={args.db.resolve()}")
+    tracker = GoogleTracker()
+    if not args.dry_run:
+        with JobStore(args.db.resolve()) as store:
+            rejection_summary = process_rejected_rows(tracker, store)
+        if rejection_summary.marked:
+            print("Rejected Jobs maintenance:")
+            print(json.dumps(rejection_summary.to_dict(), indent=2))
     result = run_queue(
-        GoogleTracker(), args.db.resolve(), dry_run=args.dry_run, source=args.source,
+        tracker, args.db.resolve(), dry_run=args.dry_run, source=args.source,
         logger=logger,
     )
     if logger is not None:

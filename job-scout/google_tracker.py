@@ -14,6 +14,14 @@ from typing import Any
 from urllib.parse import quote, unquote, urlsplit
 
 from normalize import canonicalize_url
+from rejected_jobs import (
+    REJECTED_HEADERS,
+    REJECTED_TAB,
+    REJECT_STATUSES,
+    PermanentlyRejectedError,
+    RejectedJob,
+    RejectedJobsIndex,
+)
 from source_policy import is_jooble_candidate
 from url_resolution import best_job_url
 
@@ -102,6 +110,11 @@ def _col(index: int) -> str:
 
 def _normal(value: Any) -> str:
     return ("" if value is None else str(value)).strip().casefold()
+
+
+def resume_already_created(value: Any) -> bool:
+    """An existing X is authoritative even when its Resume Link is blank."""
+    return _normal(value) == "x"
 
 
 def verified_resume_file_uri(path: str | Path) -> str:
@@ -236,6 +249,182 @@ class GoogleTracker:
                        if any(value not in (None, "") for value in values_row)
                    })
 
+    def _sheet_properties(self) -> list[dict[str, Any]]:
+        try:
+            metadata = self.api.get(
+                spreadsheetId=self.config.spreadsheet_id,
+                fields=("sheets(properties(sheetId,title,hidden,"
+                        "gridProperties(rowCount,columnCount,frozenRowCount)))"),
+            ).execute()
+        except Exception as error:
+            raise RuntimeError(f"Cannot read Google Sheets metadata: {error}") from error
+        return [item.get("properties", {}) for item in metadata.get("sheets", [])]
+
+    def rejected_jobs(self, *, create: bool = False) -> Tab | None:
+        """Return the durable rejection-support tab, creating it hidden when requested."""
+        matches = [item for item in self._sheet_properties() if item.get("title") == REJECTED_TAB]
+        if len(matches) > 1:
+            raise RuntimeError(f"Google worksheet {REJECTED_TAB!r} was not found exactly once")
+        if not matches:
+            if not create:
+                return None
+            try:
+                self.api.batchUpdate(
+                    spreadsheetId=self.config.spreadsheet_id,
+                    body={"requests": [{"addSheet": {"properties": {
+                        "title": REJECTED_TAB,
+                        "hidden": True,
+                        "gridProperties": {
+                            "rowCount": 1000,
+                            "columnCount": len(REJECTED_HEADERS),
+                            "frozenRowCount": 1,
+                        },
+                    }}}]},
+                ).execute()
+                self.api.values().batchUpdate(
+                    spreadsheetId=self.config.spreadsheet_id,
+                    body={"valueInputOption": "RAW", "data": [{
+                        "range": _a1(REJECTED_TAB, f"A1:{_col(len(REJECTED_HEADERS))}1"),
+                        "values": [list(REJECTED_HEADERS)],
+                    }]},
+                ).execute()
+            except Exception as error:
+                raise RuntimeError(f"Cannot create Google Sheets {REJECTED_TAB!r}: {error}") from error
+        tab = self.tab(REJECTED_TAB)
+        missing = [header for header in REJECTED_HEADERS if header not in tab.headers]
+        if missing:
+            raise RuntimeError(
+                f"{REJECTED_TAB} is missing required columns: " + ", ".join(missing)
+            )
+        return tab
+
+    def rejected_jobs_index(self, *, create: bool = False) -> RejectedJobsIndex:
+        tab = self.rejected_jobs(create=create)
+        if tab is None:
+            return RejectedJobsIndex()
+        return RejectedJobsIndex(RejectedJob.from_mapping(data) for _, data in tab.rows)
+
+    def _assert_scout_row_not_rejected(self, data: dict[str, Any]) -> None:
+        if _normal(data.get("Gecko Status")) in REJECT_STATUSES:
+            raise PermanentlyRejectedError("Job is marked Reject; no tracker cells were changed")
+        if self.rejected_jobs_index().match(
+            source=data.get("Source"), url=data.get("Job URL"),
+        ) is not None:
+            raise PermanentlyRejectedError("Job is permanently rejected; no tracker cells were changed")
+
+    def append_rejected_job(self, record: RejectedJob) -> int:
+        """Durably append and read back a rejection before any visible-row deletion."""
+        return self.append_rejected_jobs([record])[0]
+
+    def append_rejected_jobs(self, records: list[RejectedJob]) -> list[int]:
+        """Persist and verify a batch with bounded Sheets requests; safe to retry."""
+        for record in records:
+            if not record.job_id and not record.normalized_url:
+                raise ValueError("Rejected job requires a stable Job ID or normalized job URL")
+        if not records:
+            return []
+        tab = self.rejected_jobs(create=True)
+        assert tab is not None
+        index = RejectedJobsIndex(RejectedJob.from_mapping(data) for _, data in tab.rows)
+        row_for_record: list[int] = []
+        new_rows: dict[int, RejectedJob] = {}
+        next_row = self._next_row(tab)
+        for record in records:
+            matched = index.match(
+                source=record.source,
+                job_id=record.job_id,
+                url=record.normalized_url or record.original_url,
+            )
+            if matched is not None:
+                row = next((number for number, values in tab.rows
+                    if RejectedJobsIndex((RejectedJob.from_mapping(values),)).match(
+                        source=record.source, job_id=record.job_id,
+                        url=record.normalized_url or record.original_url,
+                    ) is not None), None)
+                if row is None:
+                    row = next(number for number, candidate in new_rows.items()
+                        if RejectedJobsIndex((candidate,)).match(
+                            source=record.source, job_id=record.job_id,
+                            url=record.normalized_url or record.original_url,
+                        ) is not None)
+                row_for_record.append(row)
+                continue
+            row = next_row
+            next_row += 1
+            row_for_record.append(row)
+            new_rows[row] = record
+            index = RejectedJobsIndex((*index.records, record))
+
+        if new_rows:
+            if max(new_rows) > tab.grid_rows:
+                self.api.batchUpdate(spreadsheetId=self.config.spreadsheet_id,
+                    body={"requests": [{"appendDimension": {"sheetId": tab.sheet_id,
+                        "dimension": "ROWS", "length": max(new_rows) - tab.grid_rows}}]}).execute()
+                tab.grid_rows = max(new_rows)
+            data = [{
+                "range": _a1(REJECTED_TAB, f"A{row}:H{row}"),
+                "values": [[record.as_mapping()[header] for header in REJECTED_HEADERS]],
+            } for row, record in new_rows.items()]
+            try:
+                self.api.values().batchUpdate(
+                    spreadsheetId=self.config.spreadsheet_id,
+                    body={"valueInputOption": "RAW", "data": data},
+                ).execute()
+            except Exception as error:
+                raise RuntimeError(f"Cannot write Rejected Jobs batch: {error}") from error
+            verified = self.rejected_jobs()
+            assert verified is not None
+            actual = dict(verified.rows)
+            for row, record in new_rows.items():
+                if row not in actual or RejectedJob.from_mapping(actual[row]) != record:
+                    raise RuntimeError(
+                        f"Rejected Jobs write verification failed at row {row}; visible rows were not deleted"
+                    )
+        return row_for_record
+
+    def delete_scout_rows(
+        self,
+        rows: list[int],
+        *,
+        expected_fingerprints: dict[int, tuple[str, ...]] | None = None,
+    ) -> list[int]:
+        """Delete exact visible Scout rows after a final identity recheck."""
+        rows = sorted(set(rows), reverse=True)
+        if not rows:
+            return []
+        tab = self.scout()
+        current = dict(tab.rows)
+        existing = set(current)
+        missing = [row for row in rows if row not in existing]
+        if missing:
+            raise RuntimeError("Cannot delete missing Job Scout rows: " + ", ".join(map(str, missing)))
+        if expected_fingerprints:
+            changed = [
+                row for row in rows
+                if row not in expected_fingerprints
+                or tuple(str(current[row].get(name) or "").strip() for name in (
+                    "Scout ID", "Source", "Company", "Job Title", "Gecko Status", "Job URL",
+                )) != expected_fingerprints[row]
+            ]
+            if changed:
+                raise RuntimeError(
+                    "Cannot delete changed Job Scout rows: " + ", ".join(map(str, changed))
+                )
+        requests = [{"deleteDimension": {"range": {
+            "sheetId": tab.sheet_id,
+            "dimension": "ROWS",
+            "startIndex": row - 1,
+            "endIndex": row,
+        }}} for row in rows]
+        try:
+            self.api.batchUpdate(
+                spreadsheetId=self.config.spreadsheet_id,
+                body={"requests": requests},
+            ).execute()
+        except Exception as error:
+            raise RuntimeError(f"Cannot delete rejected Google Job Scout rows: {error}") from error
+        return rows
+
     def application(self) -> Tab:
         tab = self.tab(self.config.application_tab)
         required = {"Company", "Job Number", "Job Link", "Resume Link",
@@ -360,7 +549,8 @@ class GoogleTracker:
             raise RuntimeError("Job Scout cleanup requires the Notes header; no rows were deleted")
         rows = sorted((
             row for row, data in tab.rows
-            if _normal(data.get("Apply?")) == "no" or _normal(data.get("Notes")) == "no"
+            if not resume_already_created(data.get("Resume Created"))
+            and (_normal(data.get("Apply?")) == "no" or _normal(data.get("Notes")) == "no")
         ), reverse=True)
         if not rows:
             return []
@@ -380,7 +570,8 @@ class GoogleTracker:
 
         remaining = [
             row for row, data in self.scout().rows
-            if _normal(data.get("Apply?")) == "no" or _normal(data.get("Notes")) == "no"
+            if not resume_already_created(data.get("Resume Created"))
+            and (_normal(data.get("Apply?")) == "no" or _normal(data.get("Notes")) == "no")
         ]
         if remaining:
             raise RuntimeError(
@@ -450,6 +641,9 @@ class GoogleTracker:
         """Update one existing intake row without changing structure or user-owned fields."""
         if row < 2 or not any(number == row for number, _ in tab.rows):
             raise RuntimeError(f"Cannot update missing Job Scout row {row}")
+        self._assert_scout_row_not_rejected(
+            next(data for number, data in tab.rows if number == row)
+        )
         allowed = set(SCOUT_FIELDS) | {"Notes"}
         unexpected = set(values) - allowed
         if unexpected:
@@ -472,6 +666,7 @@ class GoogleTracker:
         if len(matches) != 1:
             raise RuntimeError(f"Cannot locate Job Scout row {row_number}; no cell was changed")
         _, current = matches[0]
+        self._assert_scout_row_not_rejected(current)
         if (_normal(current.get("Company")) != _normal(company)
                 or _normal(current.get("Job Title")) != _normal(title)):
             raise RuntimeError("Manual Indeed row identity changed; Apply? was not updated")
@@ -498,6 +693,7 @@ class GoogleTracker:
         if len(matches) != 1:
             raise RuntimeError(f"Cannot locate Job Scout row {row_number}; Scout ID was not assigned")
         _, current = matches[0]
+        self._assert_scout_row_not_rejected(current)
         if (_normal(current.get("Company")) != _normal(company)
                 or _normal(current.get("Job Title")) != _normal(title)):
             raise RuntimeError("Manual Indeed row identity changed; Scout ID was not assigned")
@@ -538,6 +734,13 @@ class GoogleTracker:
         number = _normal(record.get("Job Number"))
         if not number:
             raise ValueError("Job Number is required")
+        rejected = self.rejected_jobs_index().match(
+            source=record.get("Source"),
+            job_id=record.get("Job Number"),
+            url=record.get("Job Link"),
+        )
+        if rejected is not None:
+            raise RuntimeError("Job is permanently rejected; Job Tracker was not changed")
         tab = self.application()
         matches = [row for row, data in tab.rows if job_key(data) == number]
         if len(matches) > 1:
@@ -574,6 +777,7 @@ class GoogleTracker:
 
     def upsert_scout(self, jobs: list, *, append_only: bool = False) -> dict[str, int]:
         tab = self.scout()
+        rejected_jobs = self.rejected_jobs_index()
         ids = [str(data.get("Scout ID")) for _, data in tab.rows if data.get("Scout ID") not in (None, "")]
         if len(ids) != len(set(ids)):
             raise RuntimeError("Google Job Scout contains duplicate Scout ID values")
@@ -581,9 +785,12 @@ class GoogleTracker:
                  if data.get("Scout ID") not in (None, "")}
         by_url = {canonicalize_url(str(data.get("Job URL") or "")): row for row, data in tab.rows
                   if data.get("Job URL")}
-        added = updated = excluded = 0
+        added = updated = excluded = rejected = 0
         for job in jobs:
             url = best_job_url(job)
+            if rejected_jobs.matches_job(job) is not None:
+                rejected += 1
+                continue
             if is_jooble_candidate(
                 source=job.source,
                 urls=(job.url, job.canonical_url, job.authoritative_url, url),
@@ -626,7 +833,7 @@ class GoogleTracker:
             self._write(tab, row, {key: value for key, value in values.items()
                                    if key in managed_fields})
         return {"rows": len(tab.rows), "added": added, "updated": updated,
-                "jooble_excluded": excluded}
+                "jooble_excluded": excluded, "rejected_excluded": rejected}
 
     def highlight_scout_found_on(self, day: str) -> int:
         """Keep light green on Scout IDs first found today while preserving gray."""
@@ -724,6 +931,9 @@ class GoogleTracker:
             identity = f"Scout ID {scout_id}" if scout_id is not None else f"blank-ID row {row_number}"
             raise RuntimeError(f"Cannot locate unique {identity} in Google Sheets")
         row, current = matches[0]
+        self._assert_scout_row_not_rejected(current)
+        if resume_already_created(current.get("Resume Created")):
+            raise RuntimeError("SKIP RESUME: existing tracker row already has Resume Created = X")
         if require_approved and _normal(current.get("Apply?")) != "yes":
             raise RuntimeError("Apply? is no longer Yes; no cell was changed")
         advanced = _normal(current.get("Gecko Status")) in {"applied", "contacted", "interview", "offer"}

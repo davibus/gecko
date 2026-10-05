@@ -4,6 +4,18 @@ Job Scout discovers role-relevant openings and records them in the canonical Goo
 
 Requested Job Scout work runs live by default. The normal command performs the authorized Sheet, archive, and resume writes and verifies changed cells by reading them back; `--dry-run` remains an explicit read-only option. Live execution never weakens Cost `x`, eligibility, duplicate prevention, protected-field, or access safeguards and never applies to jobs or sends messages.
 
+## Permanently reject a job
+
+Set the row's `Gecko Status` (or renamed `Status`) value to `Reject` or `Delete / Reject`, then run:
+
+```powershell
+python job-scout/scout.py reject-jobs
+```
+
+Gecko first writes the job to the hidden `Rejected Jobs` support tab, reads the record back, and only then removes the visible `Job Scout` row. If the archive write fails, the row stays visible. `daily` and `sync-sheets` run the same maintenance step automatically.
+
+All scout and resume-queue paths skip a rejected job by source-qualified stable Job ID first (Indeed `jk` when present), or by normalized canonical URL when an ID is unavailable. Company + title alone never creates a permanent rejection, and ordinary row disappearance is not interpreted as rejection.
+
 ## Daily workflow
 
 ```powershell
@@ -37,7 +49,7 @@ The daily command:
 7. reuses persistent AI results when the normalized description and candidate profile are unchanged;
 8. when AI models are configured, performs compact-profile triage and fully scores only `possible`/`strong` jobs;
 9. appends automated discoveries and populates valid manual Indeed rows;
-10. runs Gecko automatically for every eligible live row across all sources; Cost `x` rows are excluded, qualifying Utah/remote rows are set to `Apply? = Yes`, X-with-blank-link rows are recreated, failures are written to `Notes`, and success writes X to `Resume Created` plus the complete `Path.resolve().as_uri()` `file:///` URL directly to `Resume Link` (never an `Open Resume` label);
+10. runs Gecko automatically for every eligible live row across all sources; Cost `x` rows are excluded, qualifying Utah/remote rows are set to `Apply? = Yes`, existing X rows are skipped even with a blank link, failures are written to `Notes`, and success writes X to `Resume Created` plus the complete `Path.resolve().as_uri()` `file:///` URL directly to `Resume Link` (never an `Open Resume` label);
 11. checks Gmail read-only for substantive employer responses to applied jobs and updates `Response`.
 
 `python job-scout/scout.py daily --dry-run` uses a temporary SQLite copy and does not write the Google Sheet, descriptions, resumes, or reports. A failure for one job is logged without stopping later jobs.
@@ -64,7 +76,7 @@ Indeed can return a block page or omit usable structured posting data. A new row
 
 Failed Indeed rows are retried automatically on later daily runs through fallback search first; Gecko does not repeat the previously blocked direct Indeed request. To retry `jk=3736ea0494f752a7`, leave its URL and failure note in place and run `python job-scout/scout.py daily` again. Duplicate notes remain terminal and are not retried.
 
-Outside the all-source Utah/remote eligibility rule, Job Scout preserves the user-maintained `Apply?` decision. Manual Indeed jobs follow the same architecture. Current queue columns are F `Apply?`, G `Resume Created`, I `Cost`, and Q `Resume Link`, but code resolves them by exact header. Cost `x` always excludes creation and recreation.
+Outside the all-source Utah/remote eligibility rule, Job Scout preserves the user-maintained `Apply?` decision. Manual Indeed jobs follow the same architecture. Current queue columns are F `Apply?`, G `Resume Created`, I `Cost`, and Q `Resume Link`, but code resolves them by exact header. Cost `x` always excludes creation.
 
 ## Google Sheet schema
 
@@ -232,7 +244,7 @@ Gecko evaluates the job description directly against the required master archive
 
 - an exactly two-page DOCX after native Microsoft Word validation.
 
-The completed resume is recorded only after the DOCX exists directly under `output/resumes` and native QA passes. The current Gecko style comes from the required master TXT and model PDF, including the mandatory Core Strengths and Tools & Platforms counts and the two-line experience hierarchy. The daily queue marks `Resume Created` with canonical `X` and writes a clickable absolute file URI to `Resume Link` (currently Q). Cost `x` rows are excluded. An approved completed row with a blank link is recreated from the current authorities; any preexisting DOCX is preserved and a versioned filename is used. A valid nonblank link makes the row idempotently complete. Local file links are machine-scoped and require access to the same Windows path; no public URL or Google Drive copy is invented.
+The completed resume is recorded only after the DOCX exists directly under `output/resumes` and native QA passes. The current Gecko style comes from the required master TXT and model PDF, including the mandatory Core Strengths and Tools & Platforms counts and the two-line experience hierarchy. The daily queue marks `Resume Created` with canonical `X` and writes a clickable absolute file URI to `Resume Link` (currently Q). Every scout and the queue read the existing tracker row by stable identity. An X, ignoring case and spaces, always skips generation and preserves the existing marker and link. A blank link is reported for manual review, never regenerated automatically. Cost `x` rows are excluded. Local file links are machine-scoped and require access to the same Windows path; no public URL or Google Drive copy is invented.
 
 ## Data preservation
 

@@ -77,6 +77,10 @@ class FakeSheets:
             requests = kwargs["body"]["requests"]
             self.structural.extend(requests)
             for request in requests:
+                if "addSheet" in request:
+                    title = request["addSheet"]["properties"]["title"]
+                    self.data[title] = []
+                    continue
                 if "deleteDimension" not in request:
                     continue
                 dimension = request["deleteDimension"]["range"]
@@ -111,8 +115,10 @@ class FakeValues:
                 entry["range"] for entry in kwargs["body"]["data"]
             ])
             for entry in kwargs["body"]["data"]:
-                match = re.fullmatch(r"'([^']+)'!([A-Z]+)(\d+)", entry["range"])
-                title, letters, row_text = match.groups()
+                match = re.fullmatch(
+                    r"'([^']+)'!([A-Z]+)(\d+)(?::([A-Z]+)(\d+))?", entry["range"]
+                )
+                title, letters, row_text, _, _ = match.groups()
                 column = 0
                 for letter in letters:
                     column = column * 26 + ord(letter) - 64
@@ -122,9 +128,13 @@ class FakeValues:
                 row = self.parent.data[title][row_number - 1]
                 while len(row) < column:
                     row.append("")
-                if (title, row_number, letters) not in self.parent.unclear_cells:
-                    row[column - 1] = entry["values"][0][0]
-                self.parent.writes.append((title, row_number, letters))
+                for offset, value in enumerate(entry["values"][0]):
+                    while len(row) < column + offset:
+                        row.append("")
+                    target_letters = google_tracker._col(column + offset)
+                    if (title, row_number, target_letters) not in self.parent.unclear_cells:
+                        row[column + offset - 1] = value
+                    self.parent.writes.append((title, row_number, target_letters))
             return {}
         return Call(respond)
 
@@ -361,6 +371,32 @@ class GoogleTrackerTests(unittest.TestCase):
         row = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
         self.assertEqual(row["Status"], "Selected")
         self.assertEqual(row["Apply?"], "No")
+
+    def test_rediscovery_preserves_x_and_resume_link(self):
+        job = normalize(RawListing(
+            source="test", source_job_id="42", url="https://example.test/job",
+            title="Role", company="Existing", description="Manage campaigns",
+        ))
+        job.id = 42
+        for marker, link in (("X", "https://example.test/existing"),
+                             ("x", ""), (" X ", "https://example.test/other")):
+            row = self.fake.data["Job Scout"][1]
+            row[SCOUT.index("Resume Created")] = marker
+            row[SCOUT.index("Resume Link")] = link
+            self.tracker.upsert_scout([job])
+            stored = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
+            self.assertEqual((stored["Resume Created"], stored["Resume Link"]),
+                             (marker, link))
+            self.assertEqual(len(self.fake.data["Job Scout"]), 2)
+
+    def test_declined_cleanup_preserves_completed_resume_row(self):
+        row = self.fake.data["Job Scout"][1]
+        row[SCOUT.index("Apply?")] = "No"
+        row[SCOUT.index("Resume Created")] = " x "
+        row[SCOUT.index("Resume Link")] = "https://example.test/existing"
+        self.assertEqual(self.tracker.delete_declined_scout_rows(), [])
+        self.assertEqual(len(self.fake.data["Job Scout"]), 2)
+        self.assertEqual(row[SCOUT.index("Resume Created")], " x ")
 
     def test_scout_upsert_sets_apply_for_new_and_updated_rows(self):
         new_job = normalize(RawListing(

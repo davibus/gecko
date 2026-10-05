@@ -12,6 +12,7 @@ from description_retrieval import description_is_sufficient, retrieve_full_descr
 from link_validation import DailyLinkValidator
 from hard_filters import deterministic_filter
 from normalize import normalize
+from rejected_jobs import RejectedJobsIndex
 from role_filter import is_relevant_role
 from source_policy import is_jooble_candidate
 from sources.base import JobSource, SearchRequest
@@ -43,6 +44,7 @@ class SearchSummary:
     deterministic_rejects: int = 0
     deterministic_reject_reasons: dict[str, int] = field(default_factory=dict)
     jooble_excluded: int = 0
+    rejected_history_excluded: int = 0
     new_job_ids: list[int] = field(default_factory=list)
     existing_job_ids: list[int] = field(default_factory=list)
     changed_job_ids: list[int] = field(default_factory=list)
@@ -116,6 +118,7 @@ def _discover_listings(
     preexisting_ids: set[int] | None = None,
     link_validator: DailyLinkValidator | None = None,
     preferences: dict | None = None,
+    rejected_jobs: RejectedJobsIndex | None = None,
 ) -> SearchSummary:
     """Normalize, role-filter, deduplicate, and save listings."""
     summary = SearchSummary()
@@ -133,6 +136,9 @@ def _discover_listings(
         discovery_backends = raw.metadata.get("_web_search_backends", [])
         job = normalize(raw)
         summary.normalized += 1
+        if rejected_jobs is not None and rejected_jobs.matches_job(job) is not None:
+            summary.rejected_history_excluded += 1
+            continue
         accepted, filter_reason = deterministic_filter(job, preferences or {})
         if not accepted:
             summary.deterministic_rejects += 1
@@ -216,13 +222,14 @@ def discover(
     preexisting_ids: set[int] | None = None,
     link_validator: DailyLinkValidator | None = None,
     preferences: dict | None = None,
+    rejected_jobs: RejectedJobsIndex | None = None,
 ) -> SearchSummary:
     """Fetch, normalize, role-filter, deduplicate, and persist listings."""
     listings = (raw for request in requests for raw in provider.search(request))
     return _discover_listings(
         listings, store, require_content=True, preserve_existing=preserve_existing,
         preexisting_ids=preexisting_ids, link_validator=link_validator,
-        preferences=preferences,
+        preferences=preferences, rejected_jobs=rejected_jobs,
     )
 
 
@@ -234,12 +241,13 @@ def discover_feed(
     preexisting_ids: set[int] | None = None,
     link_validator: DailyLinkValidator | None = None,
     preferences: dict | None = None,
+    rejected_jobs: RejectedJobsIndex | None = None,
 ) -> SearchSummary:
     """Process one cached/public feed or ATS board collection exactly once."""
     return _discover_listings(
         provider.full_feed(), store, require_content=False,
         preserve_existing=preserve_existing, preexisting_ids=preexisting_ids,
-        link_validator=link_validator, preferences=preferences,
+        link_validator=link_validator, preferences=preferences, rejected_jobs=rejected_jobs,
     )
 
 
@@ -252,12 +260,13 @@ def discover_listings(
     preexisting_ids: set[int] | None = None,
     link_validator: DailyLinkValidator | None = None,
     preferences: dict | None = None,
+    rejected_jobs: RejectedJobsIndex | None = None,
 ) -> SearchSummary:
     """Normalize and persist already-acquired listings on the datastore thread."""
     return _discover_listings(
         listings, store, require_content=require_content,
         preserve_existing=preserve_existing, preexisting_ids=preexisting_ids,
-        link_validator=link_validator, preferences=preferences,
+        link_validator=link_validator, preferences=preferences, rejected_jobs=rejected_jobs,
     )
 
 
@@ -270,6 +279,7 @@ def discover_remotive_full_feed(
     preexisting_ids: set[int] | None = None,
     link_validator: DailyLinkValidator | None = None,
     preferences: dict | None = None,
+    rejected_jobs: RejectedJobsIndex | None = None,
 ) -> SearchSummary:
     """Persist a bounded, role-filtered Remotive feed in newest-first order."""
     if limit < 1:
@@ -289,7 +299,7 @@ def discover_remotive_full_feed(
     selected = pool[:limit]
     summary = _discover_listings(
         selected, store, require_content=False, preserve_existing=preserve_existing,
-        preexisting_ids=preexisting_ids, preferences=preferences,
+        preexisting_ids=preexisting_ids, preferences=preferences, rejected_jobs=rejected_jobs,
     )
     summary.deterministic_rejects = max(len(all_rows) - len(pool), 0)
     summary.filtered_by_role = sum(not is_relevant_role(raw.title) for raw in all_rows)

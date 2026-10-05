@@ -61,7 +61,7 @@ Validate the live Sheet:
 python scripts/manage_job_tracker.py validate
 ```
 
-The `add` command is idempotent by Job Number when the application tab exists. It verifies the DOCX under `output/resumes`, then updates the matching Job Scout lifecycle while preserving user-maintained application/contact fields. Queue fields are resolved by unambiguous header on the configured intake tab. The current mapping is F `Apply?`, G `Resume Created`, I `Cost`, and Q `Resume Link`. Cost `x` excludes creation and repair. Successful rows receive `X` and the complete `file:///` URL created by `Path.resolve().as_uri()` directly in Q; the writer verifies the DOCX exists and never substitutes `Open Resume` display text. Repair rows with X and blank Q are recreated in the current Gecko style without overwriting an existing resume.
+The `add` command is idempotent by Job Number when the application tab exists. It verifies the DOCX under `output/resumes`, then updates the matching Job Scout lifecycle while preserving user-maintained application/contact fields. Queue fields are resolved by unambiguous header on the configured intake tab. The current mapping is F `Apply?`, G `Resume Created`, I `Cost`, and Q `Resume Link`. Every scout and the queue read the existing row before generation. An `X` in Resume Created, ignoring case and spaces, always skips regeneration and preserves the existing marker and link; a blank link is reported for manual review. Cost `x` excludes creation. Successful new rows receive `X` and the complete `file:///` URL created by `Path.resolve().as_uri()` directly in Q; the writer verifies the DOCX exists and never substitutes `Open Resume` display text.
 
 Run the complete all-source workflow with:
 

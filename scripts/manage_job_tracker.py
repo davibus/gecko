@@ -17,7 +17,11 @@ from google_tracker import (  # noqa: E402
     job_key,
     load_environment,
     verified_resume_file_uri,
+    resume_already_created,
 )
+from rejected_jobs import PermanentlyRejectedError  # noqa: E402
+from normalize import canonicalize_url  # noqa: E402
+from sources.indeed import extract_indeed_job_key  # noqa: E402
 
 RESUME_DIR = ROOT / "output/resumes"
 LISTING_DIR = ROOT / "input/job-descriptions"
@@ -107,6 +111,8 @@ def record_completed_resume(
 ) -> tuple[int, bool, JobRecord]:
     """Upsert one validated Gecko result and mark its matching Scout row."""
     record = record_from_files(resume, listing, date_override=date_override)
+    _assert_not_rejected(record, tracker)
+    _assert_no_existing_scout_resume(record, tracker)
     resume_url = publish_resume(record, tracker)
     application = {
         "Company": record.company, "Job Title": record.job_title, "Pay": record.pay,
@@ -146,6 +152,7 @@ def record_queue_success(
 ) -> JobRecord:
     """Verify a validated resume, then atomically complete its queue fields."""
     record = record_from_files(resume, listing)
+    _assert_not_rejected(record, tracker)
     if record.scout_id is not None and record.scout_id != scout_id:
         raise RuntimeError("Archived listing Scout ID does not match the live Job Scout row")
     resume_url = publish_resume(record, tracker, scout_id=scout_id)
@@ -174,6 +181,7 @@ def record_queue_success_local(
     if not path.is_file() or path.stat().st_size <= 0:
         raise ValueError("Final local DOCX is missing or empty")
     record = record_from_files(path, listing)
+    _assert_not_rejected(record, tracker)
     if record.scout_id is not None and record.scout_id != scout_id:
         raise RuntimeError("Archived listing Scout ID does not match the live Job Scout row")
     mark_batch_resume(
@@ -192,6 +200,41 @@ def publish_resume(
     """Return a clickable absolute file URI for a completed Gecko resume."""
     del tracker, scout_id
     return verified_resume_file_uri(record.resume_path)
+
+
+def _assert_not_rejected(record: JobRecord, tracker: GoogleTracker) -> None:
+    if tracker.rejected_jobs_index().match(
+        source=record.source,
+        job_id=record.job_number,
+        url=record.job_link,
+    ) is not None:
+        raise PermanentlyRejectedError(
+            "Job is permanently rejected; no resume or tracker fields were written"
+        )
+
+
+def _assert_no_existing_scout_resume(record: JobRecord, tracker: GoogleTracker) -> None:
+    """Protect manual tracker upserts when a listing lacks a Scout ID."""
+    tab = tracker.scout(value_render_option="FORMULA")
+    if "Resume Created" not in tab.headers:
+        raise RuntimeError("Job Scout is missing Resume Created; tracker update was stopped")
+    scout_id = str(record.scout_id or "")
+    if not scout_id and re.fullmatch(r"scout-\d+", record.job_number, re.IGNORECASE):
+        scout_id = record.job_number.split("-")[-1]
+    url = canonicalize_url(record.job_link) if record.job_link else ""
+    indeed_key = extract_indeed_job_key(record.job_link) or (
+        record.job_number if record.source.casefold() == "indeed" else ""
+    )
+    for _, data in tab.rows:
+        existing_url = str(data.get("Job URL") or "")
+        if not (
+            (scout_id and str(data.get("Scout ID") or "").strip() == scout_id)
+            or (url and canonicalize_url(existing_url) == url)
+            or (indeed_key and extract_indeed_job_key(existing_url) == indeed_key)
+        ):
+            continue
+        if resume_already_created(data.get("Resume Created")):
+            raise RuntimeError("SKIP RESUME: existing tracker row already has Resume Created = X")
 
 
 def _without_resume_failure(value: object) -> str:
@@ -259,6 +302,14 @@ def mark_batch_resume(
 ) -> None:
     """Write Resume Created and Resume Link together after stable-ID verification."""
     tab, row, data = _queue_source_row(scout_id, row_number, tracker)
+    if resume_already_created(data.get("Resume Created")):
+        raise RuntimeError("SKIP RESUME: existing tracker row already has Resume Created = X")
+    if tracker.rejected_jobs_index().match(
+        source=data.get("Source"),
+        job_id=data.get("Job Number"),
+        url=data.get("Job URL") or data.get("Job Link"),
+    ) is not None:
+        raise PermanentlyRejectedError("Job is permanently rejected; no queue fields were changed")
     if require_approved and str(data.get("Apply?") or "").strip().casefold() != "yes":
         raise RuntimeError("Apply? is no longer Yes; no cell was changed")
     if str(data.get("Cost") or "").strip().casefold() == "x":

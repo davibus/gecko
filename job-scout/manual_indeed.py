@@ -7,8 +7,9 @@ from datetime import date
 import re
 from urllib.parse import urlsplit
 
-from google_tracker import GoogleTracker, Tab
+from google_tracker import GoogleTracker, Tab, resume_already_created
 from normalize import canonicalize_url, normalize
+from rejected_jobs import RejectedJobsIndex
 from sources.base import ProviderError
 from sources.indeed import (
     IndeedFallbackResult,
@@ -43,6 +44,7 @@ class ManualIndeedSummary:
     failures: int = 0
     skipped: int = 0
     removed: int = 0
+    rejected: int = 0
     removed_rows: list[int] = field(default_factory=list)
     new_job_ids: list[int] = field(default_factory=list)
 
@@ -54,6 +56,7 @@ class ManualIndeedSummary:
             "failures": self.failures,
             "skipped": self.skipped,
             "removed": self.removed,
+            "rejected": self.rejected,
             "removed_rows": list(self.removed_rows),
             "new_job_ids": list(self.new_job_ids),
         }
@@ -200,12 +203,14 @@ def process_manual_indeed_rows(
     provider: ManualIndeedProvider | None = None,
     fallback: ManualIndeedFallbackRetriever | None = None,
     today: str | None = None,
+    rejected_jobs: RejectedJobsIndex | None = None,
 ) -> ManualIndeedSummary:
     """Process unassigned Indeed URLs already pasted into the Job URL column."""
     provider = provider or ManualIndeedProvider()
     fallback = fallback or ManualIndeedFallbackRetriever()
     found_on = today or date.today().isoformat()
     summary = ManualIndeedSummary()
+    rejected_jobs = rejected_jobs or tracker.rejected_jobs_index()
     summary.removed_rows = tracker.delete_declined_scout_rows()
     summary.removed = len(summary.removed_rows)
     removed_label = ", ".join(map(str, summary.removed_rows)) or "none"
@@ -220,6 +225,10 @@ def process_manual_indeed_rows(
         if not is_indeed_url(pasted_url):
             continue
         summary.scanned += 1
+        if resume_already_created(data.get("Resume Created")):
+            summary.skipped += 1
+            print(f"SKIP RESUME: existing tracker row {row} already has Resume Created = X")
+            continue
         if (_scout_id(data.get("Scout ID")) is not None
                 or _terminal_note(data.get("Notes"))
                 or _terminal_note(data.get("Gecko Status"))):
@@ -232,6 +241,10 @@ def process_manual_indeed_rows(
         )
 
         jk = extract_indeed_job_key(pasted_url)
+        if rejected_jobs.match(source="indeed", job_id=jk, url=pasted_url) is not None:
+            summary.rejected += 1
+            summary.skipped += 1
+            continue
         duplicate = _find_duplicate(
             tab, store, current_row=row, jk=jk, url=pasted_url,
         )
@@ -289,6 +302,11 @@ def process_manual_indeed_rows(
                 "source_job_id": str(raw.metadata.get("_employer_source_job_id") or ""),
                 "url": fallback_result.authoritative_url,
             })
+
+        if rejected_jobs.matches_job(job) is not None:
+            summary.rejected += 1
+            summary.skipped += 1
+            continue
 
         duplicate = _find_duplicate(
             tab, store, current_row=row, jk=jk, url=pasted_url,

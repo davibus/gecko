@@ -18,6 +18,7 @@ sys.path.insert(0, str(ROOT / "job-scout/tests"))
 import generate_apply_queue as queue
 from google_tracker import Config, GoogleTracker
 from test_google_tracker import FakeSheets, SCOUT
+from rejected_jobs import rejection_record
 
 
 class QueueTests(unittest.TestCase):
@@ -81,7 +82,7 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(rows[45]["Apply?"], "yes")
         self.assertEqual(rows[46]["Resume Created"], "X")
 
-    def test_current_queue_eligibility_matrix_includes_repair_and_cost_exclusion(self):
+    def test_current_queue_eligibility_matrix_skips_x_and_cost(self):
         repair = self.add_scout_row(scout_id=1001, apply=" yes ", created=" X ")
         self.fake.data["Job Scout"][repair - 1][SCOUT.index("Resume Link")] = "   "
         create = self.add_scout_row(scout_id=1002, apply="YES", created="")
@@ -95,28 +96,73 @@ class QueueTests(unittest.TestCase):
 
         snapshot = queue.read_queue(self.tracker, source="indeed")
 
-        self.assertIn(repair, [item.row for item in snapshot.link_backfill])
+        self.assertIn(repair, [item.row for item in snapshot.already_created])
+        self.assertEqual(snapshot.link_backfill, [])
         self.assertIn(create, [item.row for item in snapshot.pending])
         self.assertIn(cost, [item.row for item in snapshot.cost_excluded])
         self.assertIn(linked, [item.row for item in snapshot.already_created])
         self.assertIn(declined, [item.row for item in snapshot.not_approved])
 
-    def test_repair_link_failure_preserves_existing_x_and_blank_q(self):
+    def test_blank_link_x_is_reported_without_generation(self):
         row = self.add_scout_row(scout_id=1010, apply="Yes", created="X")
         failure_recorder = Mock()
-        run = queue.run_queue(
+        output = io.StringIO()
+        with redirect_stdout(output):
+            run = queue.run_queue(
             self.tracker, Path("unused.sqlite3"), source="indeed",
-            existing_generator=lambda *_: queue.Artifacts(Path("resume.docx"), Path("listing.md")),
+            existing_generator=Mock(side_effect=AssertionError("X must not generate")),
             recorder=Mock(side_effect=RuntimeError("simulated link failure")),
             failure_recorder=failure_recorder, print_summary=False,
-        )
+            )
         stored = next(data for number, data in self.tracker.scout().rows if number == row)
-        self.assertEqual(len(run.failures), 1)
+        self.assertEqual(len(run.failures), 0)
         self.assertEqual(stored["Resume Created"], "X")
         self.assertEqual(stored["Resume Link"], "")
-        failure_recorder.assert_called_once()
+        failure_recorder.assert_not_called()
+        self.assertIn("Resume Link is blank; manual review needed", output.getvalue())
 
-    def test_repair_uses_versioned_filename_without_overwriting_existing_resume(self):
+    def test_all_x_variants_skip_queue_and_preserve_links(self):
+        rows = []
+        for marker in ("X", "x", " X ", " x "):
+            row = self.add_scout_row(scout_id=1300 + len(rows), apply="Yes", created=marker)
+            link = f"https://example.test/resume/{len(rows)}"
+            self.fake.data["Job Scout"][row - 1][SCOUT.index("Resume Link")] = link
+            rows.append((row, marker, link))
+        generated = Mock(side_effect=AssertionError("X row reached generator"))
+        result = queue.run_queue(
+            self.tracker, Path("unused.sqlite3"), source="indeed",
+            generator=generated, existing_generator=generated, print_summary=False,
+        )
+        self.assertEqual(result.exit_code, 0)
+        self.assertEqual(result.snapshot.link_backfill, [])
+        generated.assert_not_called()
+        for row, marker, link in rows:
+            stored = next(data for number, data in self.tracker.scout().rows if number == row)
+            self.assertEqual((stored["Resume Created"], stored["Resume Link"]), (marker, link))
+
+    def test_writer_refuses_stale_queue_item_after_x_appears(self):
+        row = self.add_scout_row(scout_id=1350, apply="Yes", created="")
+        item = next(item for item in queue.read_queue(self.tracker, source="indeed").pending
+                    if item.row == row)
+        self.fake.data["Job Scout"][row - 1][SCOUT.index("Resume Created")] = " x "
+        self.assertFalse(queue._still_pending(self.tracker, item))
+        with self.assertRaisesRegex(RuntimeError, "SKIP RESUME"):
+            queue.manage_job_tracker.mark_batch_resume(
+                1350, row, self.tracker, "https://example.test/new-resume",
+            )
+        stored = next(data for number, data in self.tracker.scout().rows if number == row)
+        self.assertEqual(stored["Resume Created"], " x ")
+        self.assertEqual(stored["Resume Link"], "")
+
+    def test_direct_generator_refuses_live_x_before_creating_files(self):
+        row = self.add_scout_row(scout_id=1360, apply="Yes", created="")
+        item = next(item for item in queue.read_queue(self.tracker, source="indeed").pending
+                    if item.row == row)
+        self.fake.data["Job Scout"][row - 1][SCOUT.index("Resume Created")] = " X "
+        with self.assertRaisesRegex(RuntimeError, "SKIP RESUME"):
+            queue.generate(item, Path("unused.sqlite3"), tracker=self.tracker)
+
+    def test_retired_recreation_path_refuses_existing_resume(self):
         with TemporaryDirectory() as temp:
             root = Path(temp)
             output = root / "output" / "resumes"
@@ -140,16 +186,10 @@ class QueueTests(unittest.TestCase):
                  patch.object(queue.gecko_v2, "create_plan", return_value=plan), \
                  patch.object(queue.gecko_v2, "make_resume", side_effect=make_resume), \
                  patch.object(queue.gecko_v2, "native_qa", return_value={"status": "pass"}):
-                artifacts = queue._finish_generation(
-                    item, listing, (), force_recreate=True,
-                )
+                with self.assertRaisesRegex(RuntimeError, "Resume recreation is disabled"):
+                    queue._finish_generation(item, listing, (), force_recreate=True)
 
             self.assertEqual(expected.read_bytes(), b"old resume")
-            self.assertEqual(artifacts.resume.read_bytes(), b"current resume")
-            self.assertEqual(
-                artifacts.resume.name,
-                "Dave-Call+Version-Company+Marketing-Director+v2+job-1011.docx",
-            )
 
     def test_final_step_updates_managed_cells_and_preserves_apply(self):
         self.fake.data["Job Scout"][1][SCOUT.index("Applied")] = "TRUE"
@@ -240,7 +280,8 @@ class QueueTests(unittest.TestCase):
                 "test", {"Location": "Remote"},
             )
             listing = queue._archive_row_context(item)
-            plan = queue.gecko_v2.create_plan(listing)
+            with patch.object(queue.gecko_v2, "master_identity", return_value={"headline": "Digital Marketing | Growth"}):
+                plan = queue.gecko_v2.create_plan(listing)
         self.assertEqual(plan["job"]["company"], "Existing")
         self.assertEqual(plan["job"]["title"], "Paid Search Manager")
 
@@ -266,7 +307,7 @@ class QueueTests(unittest.TestCase):
         snapshot = run.snapshot
 
         self.assertEqual([item.scout_id for item in snapshot.pending], [50, 51])
-        self.assertEqual([item.scout_id for item in snapshot.link_backfill], [52])
+        self.assertEqual([item.scout_id for item in snapshot.already_created], [52])
         self.assertEqual([item.scout_id for item in snapshot.not_approved], [53])
         self.assertTrue(run.dry_run)
         self.assertEqual(run.successes, [])
@@ -301,8 +342,9 @@ class QueueTests(unittest.TestCase):
             )
             with patch.object(queue, "ROOT", root), patch.object(
                 queue, "retrieve_full_description", return_value=retrieval
-            ), patch.object(queue, "_finish_generation", return_value=expected) as finish:
-                actual = queue.generate(item, root / "missing.sqlite3")
+            ), patch.object(queue, "_still_pending", return_value=True), \
+                 patch.object(queue, "_finish_generation", return_value=expected) as finish:
+                actual = queue.generate(item, root / "missing.sqlite3", tracker=self.tracker)
 
             self.assertEqual(actual, expected)
             content = finish.call_args.args[1].read_text(encoding="utf-8")
@@ -341,7 +383,7 @@ class QueueTests(unittest.TestCase):
 
         snapshot = queue.read_queue(self.tracker, source="indeed")
 
-        self.assertIn(row, [item.row for item in snapshot.link_backfill])
+        self.assertIn(row, [item.row for item in snapshot.already_created])
         self.assertNotIn(row, [item.row for item in snapshot.pending])
 
     def test_duplicate_indeed_job_key_is_queued_once(self):
@@ -358,6 +400,56 @@ class QueueTests(unittest.TestCase):
 
         self.assertIn(first, [item.row for item in snapshot.pending])
         self.assertIn(second, [item.row for item in snapshot.duplicate_excluded])
+
+    def test_rejected_indeed_job_is_never_queued_or_modified(self):
+        row = self.add_scout_row(
+            company="Rejected Company",
+            apply="Yes",
+            url="https://www.indeed.com/viewjob?jk=rejected-jk&utm_source=email",
+        )
+        self.tracker.append_rejected_job(rejection_record(
+            source="Indeed", job_id="rejected-jk",
+            url="https://www.indeed.com/viewjob?jk=rejected-jk",
+            company="Rejected Company", title="Marketing Director",
+            date_rejected="2026-10-04", reason="Reject",
+        ))
+        writes_before = list(self.fake.writes)
+
+        snapshot = queue.read_queue(self.tracker, source="indeed")
+
+        self.assertIn(row, [item.row for item in snapshot.rejected_excluded])
+        self.assertNotIn(row, [item.row for item in snapshot.pending])
+        self.assertEqual(self.fake.writes, writes_before)
+
+    def test_reject_marked_row_is_never_queued_before_maintenance(self):
+        row = self.add_scout_row(
+            company="Marked Reject",
+            apply="Yes",
+            url="https://www.indeed.com/viewjob?jk=marked-reject",
+        )
+        self.fake.data["Job Scout"][row - 1][SCOUT.index("Status")] = "Reject"
+
+        snapshot = queue.read_queue(self.tracker, source="indeed")
+
+        self.assertIn(row, [item.row for item in snapshot.rejected_excluded])
+        self.assertNotIn(row, [item.row for item in snapshot.pending])
+
+    def test_final_resume_tracker_write_guard_rechecks_rejection_history(self):
+        url = "https://www.indeed.com/viewjob?jk=late-reject"
+        row = self.add_scout_row(
+            scout_id=1777, company="Late Rejection", url=url, apply="Yes",
+        )
+        self.tracker.append_rejected_job(rejection_record(
+            source="Indeed", job_id="late-reject", url=url,
+            company="Late Rejection", title="Marketing Director",
+            date_rejected="2026-10-04", reason="Reject",
+        ))
+        before = list(self.fake.data["Job Scout"][row - 1])
+        with self.assertRaisesRegex(RuntimeError, "permanently rejected"):
+            queue.manage_job_tracker.mark_batch_resume(
+                1777, row, self.tracker, "https://drive.google.test/resume",
+            )
+        self.assertEqual(self.fake.data["Job Scout"][row - 1], before)
 
     def test_blank_apply_utah_location_would_auto_approve(self):
         row = self.add_scout_row(
@@ -855,11 +947,11 @@ class QueueTests(unittest.TestCase):
                 )
 
         stored = next(data for number, data in self.tracker.scout().rows if number == row)
-        self.assertEqual(run.recovered, 1)
+        self.assertEqual(run.recovered, 0)
         self.assertEqual(stored["Apply?"], "Yes")
         self.assertEqual(stored["Applied"], "x")
         self.assertEqual(stored["Resume Created"], "X")
-        self.assertIn("https://drive.google.test/applied-905", stored["Resume Link"])
+        self.assertEqual(stored["Resume Link"], "")
 
     def test_completed_nonqualifying_row_is_not_repaired(self):
         row = self.add_scout_row(
@@ -993,8 +1085,8 @@ class QueueTests(unittest.TestCase):
             expected = queue.Artifacts(root / "resume.docx", root / "listing.md")
             with patch.object(queue, "ROOT", root), patch.object(
                 queue, "_finish_generation", return_value=expected
-            ) as finish:
-                actual = queue.generate(item, root / "empty.sqlite3")
+            ) as finish, patch.object(queue, "_still_pending", return_value=True):
+                actual = queue.generate(item, root / "empty.sqlite3", tracker=self.tracker)
 
             self.assertEqual(actual, expected)
             listing = finish.call_args.args[1]
@@ -1140,8 +1232,8 @@ class QueueTests(unittest.TestCase):
             recorder=lambda *_: self.fail("legacy completed row was rewritten"),
             print_summary=False,
         )
-        self.assertNotIn(row, [item.row for item in run.snapshot.already_created])
-        self.assertIn(row, [item.row for item in run.snapshot.link_backfill])
+        self.assertIn(row, [item.row for item in run.snapshot.already_created])
+        self.assertEqual(run.snapshot.link_backfill, [])
 
     def test_x_with_blank_s_backfills_existing_without_generating_duplicate(self):
         row = self.fake.data["Job Scout"][1]
@@ -1165,11 +1257,9 @@ class QueueTests(unittest.TestCase):
                 ), print_summary=False,
             )
         self.assertEqual(generated, [])
-        self.assertEqual(recovered, [42])
-        self.assertEqual(run.recovered, 1)
-        self.assertTrue(queue._valid_resume_link(
-            self.tracker.scout(value_render_option="FORMULA").rows[0][1]["Resume Link"]
-        ))
+        self.assertEqual(recovered, [])
+        self.assertEqual(run.recovered, 0)
+        self.assertEqual(self.tracker.scout(value_render_option="FORMULA").rows[0][1]["Resume Link"], "")
 
     def test_local_path_failure_leaves_g_and_s_blank(self):
         item = queue.QueueRow(2, 42, "Existing", "Role")

@@ -4,12 +4,30 @@ from pathlib import Path
 import sys
 from tempfile import TemporaryDirectory
 import unittest
+from types import SimpleNamespace
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from manage_job_tracker import filename_job_number, markdown_field, record_from_files
+from manage_job_tracker import (
+    JobRecord, _assert_no_existing_scout_resume,
+    filename_job_number, markdown_field, record_from_files,
+)
 
 
 class TrackerMetadataTests(unittest.TestCase):
+    def test_manual_tracker_upsert_refuses_existing_x_without_scout_id(self):
+        record = JobRecord("Example", "Role", "", "abc123",
+                           "https://www.indeed.com/viewjob?jk=abc123",
+                           Path("resume.docx"), None, source="indeed")
+        tab = SimpleNamespace(headers={"Resume Created": 7}, rows=[
+            (2, {"Scout ID": 42, "Job URL": "https://www.indeed.com/viewjob?jk=abc123",
+                 "Resume Created": " X "}),
+        ])
+        tracker = SimpleNamespace(scout=lambda **_kwargs: tab)
+        with self.assertRaisesRegex(RuntimeError, "SKIP RESUME"):
+            _assert_no_existing_scout_resume(record, tracker)
+        tab.rows[0][1]["Resume Created"] = ""
+        _assert_no_existing_scout_resume(record, tracker)
+
     def test_job_number_stays_last_in_title_bearing_resume_name(self):
         self.assertEqual(filename_job_number(Path("Dave-Call+Example+Growth-Marketing-Manager+abc123.docx")),
                          "abc123")

@@ -119,6 +119,22 @@ class ManualIndeedTests(unittest.TestCase):
         self.assertIn("cleanup removed 1 row(s)", output.getvalue())
         self.assertIn("original spreadsheet rows: 3", output.getvalue())
 
+    def test_existing_x_skips_manual_indeed_intake(self):
+        url = "https://www.indeed.com/viewjob?jk=already-created"
+        row = manual_row(url, apply="Yes")
+        row[SCOUT.index("Resume Created")] = " x "
+        row[SCOUT.index("Resume Link")] = "https://example.test/existing"
+        self.fake.data["Job Scout"].append(row)
+        provider = FakeProvider({"already-created": raw("already-created")})
+        output = io.StringIO()
+        with redirect_stdout(output):
+            result = process_manual_indeed_rows(self.tracker, self.store, provider=provider)
+        self.assertEqual(provider.calls, [])
+        self.assertEqual(result.skipped, 1)
+        self.assertEqual(row[SCOUT.index("Resume Created")], " x ")
+        self.assertEqual(row[SCOUT.index("Resume Link")], "https://example.test/existing")
+        self.assertIn("SKIP RESUME", output.getvalue())
+
     def test_new_url_populates_existing_row_and_preserves_formatting_and_url(self):
         url = "https://www.indeed.com/viewjob?jk=new123&from=shareddesktop_copy"
         self.fake.data["Job Scout"].append(manual_row(url, apply="Yes"))

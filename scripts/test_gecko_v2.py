@@ -4,6 +4,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 import gecko_v2 as v2
@@ -34,6 +35,24 @@ class GeckoV2Tests(unittest.TestCase):
             "Dave-Call+Acme-West+Director,-SEO-Growth-US+abc123.docx",
         )
         self.assertTrue(v2.resume_filename("Acme", "Very Long Title " * 20, "abc123").endswith("+abc123.docx"))
+
+    def test_manual_generator_checks_live_x_before_writing(self):
+        import sys
+        sys.path.insert(0, str(v2.ROOT / "job-scout"))
+        with tempfile.TemporaryDirectory() as temp:
+            listing = Path(temp) / "Acme+abc123.md"
+            listing.write_text("- **Scout ID:** 123\n- **URL:** https://example.test/job\n", encoding="utf-8")
+            tab = SimpleNamespace(
+                headers={"Resume Created": 7},
+                rows=[(2, {"Scout ID": "123", "Resume Created": " x ",
+                           "Job URL": "https://example.test/job"})],
+            )
+            with patch("google_tracker.GoogleTracker") as tracker:
+                tracker.return_value.scout.return_value = tab
+                with self.assertRaisesRegex(RuntimeError, "SKIP RESUME"):
+                    v2._assert_no_existing_tracker_resume({"listing": str(listing)})
+                tab.rows[0][1]["Resume Created"] = ""
+                v2._assert_no_existing_tracker_resume({"listing": str(listing)})
 
     def test_changed_evidence_and_unsupported_skill_are_rejected(self):
         tampered = json.loads(json.dumps(self.plan))

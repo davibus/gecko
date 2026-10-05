@@ -76,15 +76,25 @@ Daily Job Scout also runs the reusable read-only Gmail response checker after th
 
 Never bypass `scripts/manage_job_tracker.py`, because it also marks the matching Scout row `Resume Created`. If Google Sheets is unavailable, report the error; do not create a local tracker or silently fall back.
 
+### Permanent job rejection
+
+`Rejected Jobs` is Gecko's hidden, durable rejection-history tab. Job Scout, manual Indeed intake, Indeed-only resume runs, tracker upserts, and the shared resume queue must consult it in addition to ordinary duplicate detection. Match a permanent rejection by source-qualified stable Job ID first (use Indeed `jk` whenever available), then by normalized canonical job URL when no stable ID is available. Never permanently reject by Company + Job Title alone; a similar role or repost may be a legitimate new opening.
+
+To permanently remove a job, set its `Gecko Status`/`Status` cell to `Reject` (also accepted: `Delete / Reject`) and run:
+
+`python job-scout/scout.py reject-jobs`
+
+Daily and Sheet-sync operations also process marked rows. Gecko must write and read back the complete rejection record before deleting the visible `Job Scout` row. If the support write or verification fails, leave the visible row intact. Never infer rejection from an ordinary missing, moved, or manually deleted row.
+
 ### Daily all-source resume queue
 
 `python job-scout/scout.py daily` is the complete discovery-to-resume workflow. After discovery and Sheet synchronization, it must invoke the canonical `scripts/generate_apply_queue.py` implementation automatically for all sources; do not create a duplicate queue workflow or require a second manual command.
 
 On every non-dry daily run, inspect all existing `Job Scout` rows. Using only `Location` and `Work Arrangement`, set Column F (`Apply?`) to `Yes` for Utah jobs, including on-site and hybrid Utah jobs, and for jobs that explicitly allow remote work. Do not infer remote work from a blank/unspecified arrangement or descriptive listing text, and leave nonqualifying rows' Column F values unchanged.
 
-Resolve queue fields by their exact, unambiguous headers on the configured intake worksheet before reading or writing; never assume the application-history worksheet is the queue. The current physical mapping is F `Apply?`, G `Resume Created`, I `Cost`, and Q `Resume Link`. If `Cost` is `x` after trimming and case normalization, skip creation and recreation. Process `Apply? = yes` rows with blank `Resume Created`, and recreate current-style resumes when `Apply? = yes`, `Resume Created = X`, and `Resume Link` is blank or whitespace. Skip rows that already have `X` and a nonblank valid link.
+Resolve queue fields by their exact, unambiguous headers on the configured intake worksheet before reading or writing; never assume the application-history worksheet is the queue. The current physical mapping is F `Apply?`, G `Resume Created`, I `Cost`, and Q `Resume Link`. Before creating or queuing a resume for any job from any scout, read the existing tracker row by stable identity. If `Resume Created` is `X` after trimming and case normalization, skip generation, preserve the marker and existing link exactly, even when the link is blank, and report a missing link for manual review. Rediscovery must not reset this state. If `Cost` is `x` after trimming and case normalization, skip creation. Process qualifying `Apply? = yes` rows with blank `Resume Created`.
 
-Only after the exact DOCX exists under `output/resumes` and passes validation may the workflow write `Resume Created = X`, a clickable absolute file-URI link in `Resume Link`, and Gecko Status as `Resume Created` unless the row already has a later lifecycle status. Build the link from the actual saved file with Python `Path.resolve().as_uri()`, verify the DOCX exists before writing, and store the complete `file:///` URL directly as the visible Column Q value. Never use a `HYPERLINK` formula or `Open Resume` display text. A repair must preserve the existing X if generation, validation, or link creation fails, leave Resume Link blank, and log the retryable failure in `Notes`, never `Cost`. Do not overwrite an existing resume during repair; create a versioned filename that still ends with the job number. Never upload resumes to Google Drive, mark Applied, or submit an application.
+Only after the exact DOCX exists under `output/resumes` and passes validation may the workflow write `Resume Created = X`, a clickable absolute file-URI link in `Resume Link`, and Gecko Status as `Resume Created` unless the row already has a later lifecycle status. Build the link from the actual saved file with Python `Path.resolve().as_uri()`, verify the DOCX exists before writing, and store the complete `file:///` URL directly as the visible Column Q value. Never use a `HYPERLINK` formula or `Open Resume` display text. A failed new generation leaves Resume Created blank and logs the retryable failure in `Notes`, never `Cost`. Never upload resumes to Google Drive, mark Applied, or submit an application.
 
 Daily column mapping:
 

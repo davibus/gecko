@@ -503,7 +503,7 @@ def master_identity() -> dict[str, str]:
         certs.append(_bullet_text(line))
     return {
         "name": lines[0],
-        "headline": next(line for line in lines if line.startswith("Digital Marketing |")),
+        "headline": lines[lines.index("MASTER RESUME / CAREER ARCHIVE") + 1],
         "contact": normalized(next(line for line in lines if "linkedin.com/in/mdavidcall" in line)),
         "summary": lines[lines.index("PROFESSIONAL PROFILE") + 1],
         "education": education,
@@ -873,6 +873,38 @@ def generate_two_page_resume(plan: dict, path: Path, scratch: Path) -> dict:
     return report
 
 
+def _assert_no_existing_tracker_resume(plan: dict) -> None:
+    """Check the live intake row before manual V2 resume generation or publication."""
+    sys.path.insert(0, str(ROOT / "job-scout"))
+    from google_tracker import GoogleTracker, resume_already_created
+    from normalize import canonicalize_url
+    from sources.indeed import extract_indeed_job_key
+
+    listing = Path(plan["listing"]).read_text(encoding="utf-8-sig")
+    id_match = re.search(r"^- \*\*Scout ID:\*\*\s*(\d+)\s*$", listing, re.MULTILINE)
+    url_match = re.search(r"^- \*\*URL:\*\*\s*(\S+)", listing, re.MULTILINE)
+    scout_id = id_match.group(1) if id_match else ""
+    job_number = str(plan.get("job", {}).get("job_number") or "")
+    if not scout_id and re.fullmatch(r"scout-\d+", job_number, re.IGNORECASE):
+        scout_id = job_number.split("-")[-1]
+    url = canonicalize_url(url_match.group(1)) if url_match else ""
+    indeed_key = extract_indeed_job_key(url) if url else ""
+    if not indeed_key and job_number and not job_number.casefold().startswith("scout-"):
+        indeed_key = job_number
+    tab = GoogleTracker().scout(value_render_option="FORMULA")
+    if "Resume Created" not in tab.headers:
+        raise RuntimeError("Job Scout is missing Resume Created; generation was stopped")
+    matches = [data for _, data in tab.rows if (
+        (scout_id and str(data.get("Scout ID") or "").strip() == scout_id)
+        or (url and canonicalize_url(str(data.get("Job URL") or "")) == url)
+        or (indeed_key and extract_indeed_job_key(str(data.get("Job URL") or "")) == indeed_key)
+    )]
+    if len(matches) > 1:
+        raise RuntimeError("Multiple Job Scout rows match the manual resume plan")
+    if matches and resume_already_created(matches[0].get("Resume Created")):
+        raise RuntimeError("SKIP RESUME: existing tracker row already has Resume Created = X")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -899,13 +931,19 @@ def main() -> int:
         plan["job"]["company"], plan["job"]["title"], plan["job"]["job_number"])
     scratch = ROOT / "scratch" / name
     if args.command == "generate":
+        if output.exists():
+            raise FileExistsError(f"Resume already exists: {output}")
+        _assert_no_existing_tracker_resume(plan)
         scratch.mkdir(parents=True, exist_ok=True)
         candidate = scratch / "manual-candidate.docx"
         report = generate_two_page_resume(plan, candidate, scratch)
         args.plan.write_text(json.dumps(plan, indent=2, ensure_ascii=False), encoding="utf-8")
         if report["status"] == "pass":
+            _assert_no_existing_tracker_resume(plan)
+            if output.exists():
+                raise FileExistsError(f"Resume already exists: {output}")
             output.parent.mkdir(parents=True, exist_ok=True)
-            os.replace(candidate, output)
+            os.rename(candidate, output)
         print(json.dumps({"docx": str(output) if report["status"] == "pass" else None,
                           "candidate": str(candidate), **report}, indent=2))
         return 0 if report["status"] == "pass" else 1

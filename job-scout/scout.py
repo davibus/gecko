@@ -23,6 +23,8 @@ from manual_indeed import ManualIndeedSummary, process_manual_indeed_rows
 from models import RawListing
 from normalize import normalize
 from normalize import canonicalize_url
+from rejected_jobs import RejectedJobsIndex
+from rejection_workflow import process_rejected_rows
 from preferences import load_preferences
 from review import build_review_queue, format_review_queue, queue_to_json
 from role_filter import is_relevant_role
@@ -140,7 +142,18 @@ def sync_tracker(
 
 def sync_sheets(args, store, _preferences):
     """Synchronize Job Scout datastore values to the canonical Google Sheet."""
+    summary = process_rejected_rows(GoogleTracker(), store)
+    print("Rejected Jobs maintenance:")
+    print(json.dumps(summary.to_dict(), indent=2))
     sync_tracker(store, force_google=True)
+    return 0
+
+
+def reject_jobs(args, store, _preferences):
+    """Archive explicit Reject rows and only then remove them from Job Scout."""
+    del args
+    summary = process_rejected_rows(GoogleTracker(), store)
+    print(json.dumps(summary.to_dict(), indent=2))
     return 0
 
 
@@ -208,6 +221,15 @@ def sheet_only_active_jobs(tracker_path, known_ids: set[int]):
 def search(args, store, preferences):
     daily_mode = bool(getattr(args, "daily_mode", False))
     link_validator = getattr(args, "link_validator", None) if daily_mode else None
+    rejected_jobs = RejectedJobsIndex()
+    if isinstance(store, JobStore):
+        rejection_tracker = GoogleTracker()
+        if not getattr(args, "dry_run", False):
+            rejection_summary = process_rejected_rows(rejection_tracker, store)
+            if rejection_summary.marked:
+                print("Rejected Jobs maintenance:")
+                print(json.dumps(rejection_summary.to_dict(), indent=2))
+        rejected_jobs = rejection_tracker.rejected_jobs_index()
     preexisting_ids = {job.id for job in store.all()}
     source_config = load_source_config(getattr(args, "sources_config", None))
     available = providers(getattr(args, "sources_config", None))
@@ -233,6 +255,7 @@ def search(args, store, preferences):
         "added": 0, "updated": 0,
         "duplicates": 0, "cross_provider_duplicates": 0,
         "filtered_by_role": 0, "deterministic_rejects": 0, "jooble_excluded": 0,
+        "rejected_history_excluded": 0,
         "source_results_limited": 0,
         "newly_discovered": 0, "already_existed": 0,
         "new_job_ids": [], "existing_job_ids": [], "changed_job_ids": [],
@@ -310,6 +333,7 @@ def search(args, store, preferences):
                         provider, store, limit=min(getattr(args, "limit", 100), source_limit),
                         preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
                         link_validator=link_validator, preferences=preferences,
+                        rejected_jobs=rejected_jobs,
                     )
                 elif name in futures:
                     listings, require_content, limited = futures[name].result()
@@ -318,12 +342,14 @@ def search(args, store, preferences):
                         listings, store, require_content=require_content,
                         preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
                         link_validator=link_validator, preferences=preferences,
+                        rejected_jobs=rejected_jobs,
                     )
                 else:
                     summary = discover(
                         provider, requests, store,
                         preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
                         link_validator=link_validator, preferences=preferences,
+                        rejected_jobs=rejected_jobs,
                     )
             except (ProviderError, OSError, ValueError) as error:
                 aggregate["source_errors"][name] = str(error)
@@ -376,6 +402,7 @@ def search(args, store, preferences):
                 "api_retrieved", "fetched",
                 "normalized", "added", "updated", "duplicates", "cross_provider_duplicates",
                 "filtered_by_role", "deterministic_rejects", "jooble_excluded",
+                "rejected_history_excluded",
             ):
                 aggregate[key] += getattr(summary, key)
             for job_id in summary.new_job_ids:
@@ -983,6 +1010,11 @@ def build_parser():
         help="Synchronize Job Scout datastore values to the canonical Google Sheet",
     )
     sync_parser.set_defaults(function=sync_sheets)
+    reject_parser = sub.add_parser(
+        "reject-jobs",
+        help="Archive rows marked Reject to Rejected Jobs, verify them, then remove them",
+    )
+    reject_parser.set_defaults(function=reject_jobs)
     return parser
 
 
