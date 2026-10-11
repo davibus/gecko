@@ -18,6 +18,8 @@ from google_tracker import (  # noqa: E402
     GoogleTracker,
     verified_resume_file_uri,
     verified_resume_uri_target,
+    resume_already_created,
+    _col,
 )
 
 RESUME_DIR = ROOT / "output" / "resumes"
@@ -119,8 +121,8 @@ def _resolve_from_metadata(
 def plan_repairs(tracker: GoogleTracker) -> tuple[int, int, list[Repair], list[Unresolved]]:
     formulas = tracker.scout(value_render_option="FORMULA")
     displayed = tracker.scout(value_render_option="FORMATTED_VALUE")
-    if formulas.headers.get("Resume Link") != 17:
-        raise RuntimeError("Configured intake worksheet does not have Resume Link in Column Q")
+    if "Resume Link" not in formulas.headers:
+        raise RuntimeError("Configured intake worksheet is missing required header: Resume Link")
     display_rows = dict(displayed.raw_rows or {})
     resumes = sorted(RESUME_DIR.resolve().glob("*.docx"), key=lambda path: path.name.casefold())
     repairs: list[Repair] = []
@@ -131,7 +133,13 @@ def plan_repairs(tracker: GoogleTracker) -> tuple[int, int, list[Repair], list[U
         if shown != "Open Resume":
             continue
         found += 1
+        if resume_already_created(data.get("Resume Created")):
+            unresolved.append(Unresolved(row, "Resume Created is X; link requires manual review"))
+            continue
         formula = str(data.get("Resume Link") or "")
+        if formula.startswith("="):
+            unresolved.append(Unresolved(row, "Resume Link contains a formula; skipped protected cell"))
+            continue
         target = _formula_target(formula)
         path, source = _resolve_from_metadata(data, target, resumes)
         if path is None:
@@ -149,11 +157,12 @@ def plan_repairs(tracker: GoogleTracker) -> tuple[int, int, list[Repair], list[U
 def apply_repairs(tracker: GoogleTracker, repairs: list[Repair]) -> None:
     if not repairs:
         return
-    data = [
-        {"range": f"'{tracker.config.scout_tab.replace(chr(39), chr(39) * 2)}'!Q{item.row}",
-         "values": [[item.uri]]}
-        for item in repairs
-    ]
+    tab = tracker.scout(value_render_option="FORMULA")
+    data, expected = tracker._prepare_writes(
+        tab, {(item.row, "Resume Link"): item.uri for item in repairs}
+    )
+    if len(expected) != len(repairs):
+        raise RuntimeError("Resume Link repair skipped formula or ARRAYFORMULA cells")
     tracker.api.values().batchUpdate(
         spreadsheetId=tracker.config.spreadsheet_id,
         body={"valueInputOption": "RAW", "data": data},
@@ -195,7 +204,7 @@ def main() -> int:
         verification = verify_repairs(tracker, repairs)
     result = {
         "worksheet": tracker.config.scout_tab,
-        "column": "Q",
+        "column": _col(tracker.scout().headers["Resume Link"]),
         "rows_inspected": inspected,
         "open_resume_found": found,
         "updated": len(repairs) if apply_live else 0,

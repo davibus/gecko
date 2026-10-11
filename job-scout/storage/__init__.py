@@ -15,6 +15,7 @@ JOB_COLUMNS = (
     "id", "company", "title", "location", "work_arrangement", "employment_type",
     "salary", "source", "source_job_id", "url", "canonical_url", "date_posted",
     "date_discovered", "last_seen", "description", "category", "tags_json", "status",
+    "indeed_application_method", "indeed_application_verified_on",
 )
 ENRICHMENT_COLUMNS = (
     "job_id", "original_description", "original_url", "enriched_description",
@@ -56,6 +57,8 @@ class JobStore:
                 date_posted TEXT, date_discovered TEXT NOT NULL, last_seen TEXT NOT NULL,
                 description TEXT, category TEXT NOT NULL DEFAULT '',
                 tags_json TEXT NOT NULL DEFAULT '[]', status TEXT NOT NULL DEFAULT 'new',
+                indeed_application_method TEXT NOT NULL DEFAULT '',
+                indeed_application_verified_on TEXT NOT NULL DEFAULT '',
                 UNIQUE(source, source_job_id)
             );
             CREATE TABLE IF NOT EXISTS source_links (
@@ -135,6 +138,8 @@ class JobStore:
                     date_posted TEXT, date_discovered TEXT NOT NULL, last_seen TEXT NOT NULL,
                     description TEXT, category TEXT NOT NULL DEFAULT '',
                     tags_json TEXT NOT NULL DEFAULT '[]', status TEXT NOT NULL DEFAULT 'new',
+                    indeed_application_method TEXT NOT NULL DEFAULT '',
+                    indeed_application_verified_on TEXT NOT NULL DEFAULT '',
                     UNIQUE(source, source_job_id)
                 )
             """)
@@ -170,6 +175,10 @@ class JobStore:
             self.connection.execute("ALTER TABLE jobs ADD COLUMN category TEXT NOT NULL DEFAULT ''")
         if "tags_json" not in columns:
             self.connection.execute("ALTER TABLE jobs ADD COLUMN tags_json TEXT NOT NULL DEFAULT '[]'")
+        if "indeed_application_method" not in columns:
+            self.connection.execute("ALTER TABLE jobs ADD COLUMN indeed_application_method TEXT NOT NULL DEFAULT ''")
+        if "indeed_application_verified_on" not in columns:
+            self.connection.execute("ALTER TABLE jobs ADD COLUMN indeed_application_verified_on TEXT NOT NULL DEFAULT ''")
         self._rebuild_canonical_table("jobs", JOB_COLUMNS)
         self._rebuild_canonical_table("enrichments", ENRICHMENT_COLUMNS)
         self._create_schema()
@@ -194,6 +203,8 @@ class JobStore:
             description=row["description"] or "", category=row["category"] or "",
             tags=json.loads(row["tags_json"] or "[]"), status=row["status"],
             source_links=list(links),
+            indeed_application_method=row["indeed_application_method"] or "",
+            indeed_application_verified_on=row["indeed_application_verified_on"] or "",
         )
 
     def all(self, *, retained_only: bool = False) -> list[JobListing]:
@@ -261,15 +272,16 @@ class JobStore:
             cursor = self.connection.execute("""
                 INSERT INTO jobs (id,company,title,location,work_arrangement,employment_type,salary,
                     source,source_job_id,url,canonical_url,date_posted,date_discovered,last_seen,
-                    description,category,tags_json,status)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                    description,category,tags_json,status,indeed_application_method,indeed_application_verified_on)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                 RETURNING id
             """, (
                 job_id, job.company, job.title, job.location, job.work_arrangement,
                 job.employment_type, job.salary, job.source, job.source_job_id, job.url,
                 job.canonical_url, job.date_posted, job.date_discovered,
                 job.last_seen or job.date_discovered, job.description, job.category,
-                json.dumps(job.tags), job.status,
+                json.dumps(job.tags), job.status, job.indeed_application_method,
+                job.indeed_application_verified_on,
             ))
             saved_id = int(cursor.fetchone()[0])
             for link in job.source_links:
@@ -283,8 +295,8 @@ class JobStore:
         cursor = self.connection.execute("""
             INSERT INTO jobs (company,title,location,work_arrangement,employment_type,salary,source,
                 source_job_id,url,canonical_url,date_posted,date_discovered,last_seen,description,
-                category,tags_json,status)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                category,tags_json,status,indeed_application_method,indeed_application_verified_on)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
             ON CONFLICT(source, source_job_id) DO UPDATE SET
                 company=excluded.company,title=excluded.title,location=excluded.location,
                 work_arrangement=excluded.work_arrangement,employment_type=excluded.employment_type,
@@ -292,13 +304,19 @@ class JobStore:
                 date_posted=excluded.date_posted,last_seen=excluded.last_seen,
                 description=CASE WHEN length(excluded.description) > length(description)
                     THEN excluded.description ELSE description END,
-                category=excluded.category,tags_json=excluded.tags_json
+                category=excluded.category,tags_json=excluded.tags_json,
+                indeed_application_method=CASE WHEN excluded.indeed_application_method != ''
+                    THEN excluded.indeed_application_method ELSE indeed_application_method END,
+                indeed_application_verified_on=CASE WHEN excluded.indeed_application_method != ''
+                    THEN excluded.indeed_application_verified_on ELSE indeed_application_verified_on END
             RETURNING id
         """, (
             job.company, job.title, job.location, job.work_arrangement, job.employment_type,
             job.salary, job.source, job.source_job_id, job.url, job.canonical_url,
             job.date_posted, job.date_discovered, job.last_seen or job.date_discovered,
             job.description, job.category, json.dumps(job.tags), job.status,
+            job.indeed_application_method,
+            job.indeed_application_verified_on,
         ))
         job_id = int(cursor.fetchone()[0])
         for link in job.source_links:
@@ -317,6 +335,16 @@ class JobStore:
         self.connection.execute(
             "UPDATE jobs SET description=?, last_seen=? WHERE id=?",
             (description, last_seen, job_id),
+        )
+        self.connection.commit()
+
+    def update_indeed_application_method(self, job_id: int, method: str, verified_on: str) -> None:
+        """Keep fresh Indeed control evidence through duplicate discovery."""
+        if not method.strip():
+            return
+        self.connection.execute(
+            "UPDATE jobs SET indeed_application_method=?, indeed_application_verified_on=? WHERE id=?",
+            (method, verified_on, job_id)
         )
         self.connection.commit()
 
@@ -409,13 +437,17 @@ class JobStore:
                 url=CASE WHEN url = '' AND ? != '' THEN ? ELSE url END,
                 canonical_url=CASE WHEN canonical_url = '' AND ? != '' THEN ? ELSE canonical_url END,
                 description=CASE WHEN length(?) > length(description) THEN ? ELSE description END,
-                category=CASE WHEN ? != '' THEN ? ELSE category END, tags_json=?
+                category=CASE WHEN ? != '' THEN ? ELSE category END, tags_json=?,
+                indeed_application_method=CASE WHEN ? != '' THEN ? ELSE indeed_application_method END,
+                indeed_application_verified_on=CASE WHEN ? != '' THEN ? ELSE indeed_application_verified_on END
             WHERE id=?
         """, (
             duplicate.last_seen or duplicate.date_discovered, duplicate.salary, duplicate.salary,
             duplicate.url, duplicate.url, duplicate.canonical_url, duplicate.canonical_url,
             duplicate.description, duplicate.description, duplicate.category, duplicate.category,
-            json.dumps(merged_tags), canonical_id,
+            json.dumps(merged_tags), duplicate.indeed_application_method,
+            duplicate.indeed_application_method, duplicate.indeed_application_verified_on,
+            duplicate.indeed_application_verified_on, canonical_id,
         ))
         current_priority = SOURCE_PRIORITY.get((current.source if current else "").casefold(), 2)
         incoming_priority = SOURCE_PRIORITY.get(duplicate.source.casefold(), 2)

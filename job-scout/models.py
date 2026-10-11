@@ -65,6 +65,8 @@ class JobListing:
     url_resolution_error: str = ""
     status: str = "new"
     source_links: list[dict[str, str]] = field(default_factory=list)
+    indeed_application_method: str = ""
+    indeed_application_verified_on: str = ""
     id: int | None = None
 
     def to_dict(self) -> dict[str, Any]:

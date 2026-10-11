@@ -67,4 +67,8 @@ def normalize(raw: RawListing, discovered: str | None = None) -> JobListing:
         tags=[clean_text(tag) for tag in raw.tags if clean_text(tag)],
         last_seen=discovered_date,
         source_links=[{"source": clean_text(raw.source), "source_job_id": clean_text(raw.source_job_id), "url": raw.url.strip()}],
+        indeed_application_method=str(raw.metadata.get("_indeed_application_method") or "")
+        if raw.source.casefold() == "indeed" else "",
+        indeed_application_verified_on=discovered_date
+        if raw.source.casefold() == "indeed" and raw.metadata.get("_indeed_application_method") else "",
     )

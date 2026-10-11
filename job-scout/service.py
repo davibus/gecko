@@ -163,6 +163,11 @@ def _discover_listings(
             or classify_url(raw.url) == "official_ats"
         )
         if duplicate:
+            if job.source.casefold() == "indeed" and job.indeed_application_method:
+                store.update_indeed_application_method(duplicate.id, job.indeed_application_method,
+                                                       job.indeed_application_verified_on)
+                duplicate.indeed_application_method = job.indeed_application_method
+                duplicate.indeed_application_verified_on = job.indeed_application_verified_on
             was_existing = duplicate.id in existing_ids
             current_description = max(
                 (duplicate.description or "", duplicate.enriched_description or ""), key=len

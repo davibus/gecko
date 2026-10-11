@@ -97,6 +97,11 @@ class SearchDiscoveryProvider(JobSource):
                         remote_type="remote" if item.get("jobLocationType") == "TELECOMMUTE" else "",
                         metadata={**item, "_discovered_via": "brave"},
                     )
+                    if self.name.casefold() == "indeed":
+                        from .indeed import application_method_from_page
+                        method = application_method_from_page(page)
+                        if method:
+                            listing.metadata["_indeed_application_method"] = method
                     if listing.title and listing.company and listing.description:
                         yielded = True
                         yield listing

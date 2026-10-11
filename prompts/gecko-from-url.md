@@ -13,4 +13,4 @@ Before generation, read the matching live Job Scout row by stable identity. A no
 Ensure a dedicated scratch subfolder `scratch/{Company-Name}+{JobNumber}/` is created for all temporary files (preview PNGs, PDFs, layout verification images, intermediate files). Sanitize company names for Windows filenames. Reusable tools and scripts reside in `scripts/`.
 
 Follow all rules in `GECKO_SYSTEM.md` and `AGENTS.md`.
-This includes the permanent minimum of 8 professionally capitalized Core Strengths, 8 officially capitalized Tools & Platforms, and the two-line Professional Experience job-title/company-location hierarchy enforced by Gecko V2 QA.
+This includes the permanent minimum of 8 professionally capitalized Core Strengths, 8 officially capitalized Tools & Platforms, and a complete one-physical-line `Job Title - Company Name - City, ST` heading for every Professional Experience entry. Verified employment dates must align flush right on that same physical line; Gecko V2 Word QA rejects wrapped or overlapping fields.

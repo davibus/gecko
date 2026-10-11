@@ -42,7 +42,7 @@ The daily command:
 
 1. validates known active links;
 2. concurrently searches every enabled API, feed, ATS, and search-discovery source;
-3. processes unassigned Indeed URLs manually pasted into the `Job URL` field (currently Column P);
+3. processes unassigned Indeed URLs manually pasted into the `Job URL` field;
 4. rejects Jooble records;
 5. applies configurable title, location, work-arrangement, employment-type, category, and compensation hard filters;
 6. deduplicates by provider job ID, canonical URL, normalized company/title/location, then fuzzy evidence;
@@ -66,7 +66,7 @@ The normal command is `python job-scout/scout.py daily`. It automatically reuses
 
 1. Find a job manually on Indeed.
 2. Copy the Indeed job URL (a `viewjob` URL containing `jk` is preferred).
-3. Paste it into the `Job URL` field (currently Column P) of a new `Job Scout` row.
+3. Paste it into the `Job URL` field of a new `Job Scout` row.
 4. Run the normal `python job-scout/scout.py daily` command.
 5. Gecko checks the complete Sheet and local datastore for the same Indeed `jk`, canonical URL, or exact normalized company/title/location identity.
 6. If the job is new, Gecko retrieves the structured posting, populates the existing row, assigns the next never-used numeric Scout ID, and includes it in the normal review/resume queue. During `daily`, Gecko sets Apply? to `Yes` when Location is in Utah or Work Arrangement explicitly permits remote work, just as it does for every other source.
@@ -76,34 +76,23 @@ Indeed can return a block page or omit usable structured posting data. A new row
 
 Failed Indeed rows are retried automatically on later daily runs through fallback search first; Gecko does not repeat the previously blocked direct Indeed request. To retry `jk=3736ea0494f752a7`, leave its URL and failure note in place and run `python job-scout/scout.py daily` again. Duplicate notes remain terminal and are not retried.
 
-Outside the all-source Utah/remote eligibility rule, Job Scout preserves the user-maintained `Apply?` decision. Manual Indeed jobs follow the same architecture. Current queue columns are F `Apply?`, G `Resume Created`, I `Cost`, and Q `Resume Link`, but code resolves them by exact header. Cost `x` always excludes creation.
+Outside the all-source Utah/remote eligibility rule, Job Scout preserves the user-maintained `Apply?` decision. Manual Indeed jobs follow the same architecture. Cost `x` always excludes creation.
 
 ## Google Sheet schema
 
-The active `Job Scout` schema is:
+See [../docs/tracker-schema.md](../docs/tracker-schema.md) for the live workbook tabs, IDs, verified `Job Scout` headers, aliases, and workflow rules. `tracker_schema.py` is the central runtime schema; live job headers are resolved by name. `Daily Tasks` receives the five-date vertical dashboard; `Daily Run` is preserved historical data. `Scratch` is unassigned. Missing required tabs block work rather than being created implicitly.
 
-1. ID
-2. Source
-3. Company
-4. Job Title
-5. Status
-6. Apply?
-7. Resume Created
-8. Applied
-9. Cost
-10. Notes
-11. Response
-12. Location
-13. Work Arrangement
-14. Employment Type
-15. Salary
-16. Job URL
-17. Resume Link
-18. Date Posted
-19. Date Found
-20. Last Seen
+For a persisted, report-only dry run, use `python scripts/daily_report.py --dry-run` (see [daily-report.md](../docs/daily-report.md)). It writes only the five-date `Daily Tasks` vertical dashboard and local audit files. Job and unassigned tabs stay read-only. The older `python job-scout/scout.py daily-report --dry-run` is console-only.
 
-The schema migration deletes the retired original columns J, K, L, M, V, X, and Y in place. Future writes are restricted to the headers above and never recreate or repurpose those retired columns. User formatting, filters, manual values, checkboxes, hyperlinks, and row order remain in place because writes target specific cells and structural migration uses native column deletion.
+For Source = Indeed, the 'Apply or on Company Website (If Indeed)' field stores the exact visible text of the primary application/status control on the Indeed job page. Examples include 'Apply Now', 'Apply on Company Website', 'Already applied', and 'Job no longer available'. Do not normalize the text. If it cannot be reliably resolved, leave the current value unchanged and continue.
+
+
+
+The current header row determines every field position. The main visible blue application button is the first choice for this field; when it is absent, use the primary application-status message in the Indeed job header. Preserve the exact visible wording and capitalization. Unrelated page text, external URLs, and API method labels do not decide this field.
+
+To backfill existing rows without a Scout sync, run `python job-scout/scout.py backfill-indeed-status --browser-observations <path>`. The JSON array contains recent observations of the rendered Indeed page, one per row: `row`, `source_url`, `page_url`, `visible: true`, and ISO `observed_at`, plus either `button_text` with `primary_blue: true` or `status_text` with `primary_status: true`. Capture the actual visible control or job-header status in a supported browser session; the command cannot infer it from a URL or employer page. Observations expire after two hours. Without browser observations, the command reports unresolved rows and makes no writes. It reads the live `Job Scout` tab, selects Indeed rows by `Source`, writes only the named status cell for verified changes in batches, and reads each batch back. A missing or ambiguous control, or a verification challenge, remains unresolved.
+
+The optional `migrate-sheets` command identifies retired columns by header name; its historical column letters do not describe the current sheet.
 
 ## Configuration
 
@@ -112,6 +101,53 @@ Copy `.env.example` to `.env.local` and configure the provider and Google Sheets
 AI screening is optional and disabled when either screening model is blank. Configure it with `JOB_SCOUT_TRIAGE_MODEL` and `JOB_SCOUT_SCORING_MODEL`; `GECKO_RESUME_MODEL` independently reserves the strongest model choice for final tailoring. The API client uses `OPENAI_API_KEY` and optionally `OPENAI_BASE_URL`. Stage 1 returns only `relevance` and `reason`; Stage 2 returns `match_score`, `apply`, and `reason`. Results are cached in SQLite by normalized description hash, compact-profile hash, and model pair. The compact profile is in `preferences/candidate-profile.json` and is SHA-256-bound to the current master resume, so a changed master cannot silently use a stale profile. Final Gecko generation still rereads the full master resume and required model PDF.
 
 Source concurrency and volume are bounded by `JOB_SCOUT_SOURCE_CONCURRENCY` and `JOB_SCOUT_MAX_RESULTS_PER_SOURCE`, or their checked-in equivalents in `preferences/job-sources.json`. Providers are fetched concurrently, but each provider retains its own HTTP retry/rate-limit behavior. Results are sorted newest-first before the per-source cap is applied.
+
+### Maintaining the compact candidate profile
+
+When both AI screening models are configured, `daily` validates the candidate profile before opening the database, checking existing links, discovering jobs, or writing to Sheets. Direct calls to `daily()` perform the same check. Environment model overrides take precedence over preference values; whitespace-only or empty model values disable this early AI check. The evaluator's existing profile validation remains in place.
+
+`candidate_profile.py` resolves the master from its own checkout root, not another Gecko working copy. The default profile is beside it at `preferences/candidate-profile.json`; `ai_evaluation.candidate_profile` can select a different profile (relative paths resolve from the process working directory). The fingerprint is SHA-256 of `MASTER_RESUME.read_bytes()`: line endings and encoding are significant.
+
+There is no automatic content-refresh command. Refresh requires reviewing the source and maintaining the compact summary:
+
+1. From the repository root, inspect the effective profile setting and loader paths. Back up the selected JSON before editing it, using a timestamped copy under `scratch/candidate-profile-repair/`. Preserve uncommitted master-resume changes.
+2. Read the complete current master and record its raw-byte hash. This PowerShell command uses the loader's exact source path:
+
+   ```powershell
+   python -c "import sys,hashlib; sys.path.insert(0,'job-scout'); import candidate_profile as c; b=c.MASTER_RESUME.read_bytes(); print(c.MASTER_RESUME.resolve()); print(c.DEFAULT_PROFILE.resolve()); print(hashlib.sha256(b).hexdigest()); print(b.decode('utf-8-sig'))"
+   ```
+
+3. Review every profile field against that source and update relevant skills, industries, accomplishments, and summaries. Preserve the required keys listed in `load_candidate_profile()`. Do not invent dates, experience, or outcomes, or resolve contradictory source dates by guessing. Retain content for a formatting-only change only after explicitly proving the decoded text is identical to the previously fingerprinted source after line-ending/encoding normalization.
+4. Only after review, set `master_resume_sha256` to the hash recorded in step 2. The following PowerShell block checks that the source has not changed during review. Replace the placeholder with the reviewed hash and use the selected profile path if it is customized. This stamps the reviewed JSON; it does not review or refresh its content for you.
+
+   ```powershell
+   @'
+   import hashlib, json, sys
+   from pathlib import Path
+   sys.path.insert(0, 'job-scout')
+   import candidate_profile as c
+   target = c.DEFAULT_PROFILE  # Or Path('the configured profile path')
+   reviewed_hash = '<SHA-256 reviewed in step 2>'
+   source = c.MASTER_RESUME.read_bytes()
+   if hashlib.sha256(source).hexdigest() != reviewed_hash:
+       raise SystemExit('Source differs from reviewed bytes; review it again')
+   profile = json.loads(target.read_text(encoding='utf-8-sig'))
+   profile['master_resume_sha256'] = reviewed_hash
+   target.write_bytes((json.dumps(profile, ensure_ascii=False, indent=2) + '\n').encode('utf-8'))
+   c.load_candidate_profile(target)
+   print('Candidate profile validation passed')
+   '@ | python -
+   ```
+
+5. Validate directly and run the focused tests before resuming daily. For a custom profile, pass its path to `load_candidate_profile()` in the first command.
+
+   ```powershell
+   python -c "import sys; sys.path.insert(0,'job-scout'); from candidate_profile import load_candidate_profile; p=load_candidate_profile(); print('PASS',p['master_resume_sha256'])"
+   python -m unittest discover -s job-scout/tests -p test_candidate_profile.py -v
+   python -m unittest discover -s job-scout/tests -p test_ai_pipeline.py -v
+   ```
+
+These checks do not launch discovery or resume generation. After they pass, resume the normal workflow with `python job-scout/scout.py daily`. Do not bypass the hash check or modify the master merely to match an old fingerprint. Existing completion markers, links, exclusions, permanent rejections, IDs, and manual tracker fields retain their normal protections.
 
 AI decisions and scores stay in the persistent local evaluation cache because the live Sheet has no AI-owned columns. Job Scout never overwrites the manual `Apply?`, `Notes`, `Applied`, `Contacted`, or `Response` fields.
 
@@ -231,6 +267,7 @@ python job-scout/scout.py enrich 123
 python job-scout/scout.py enrich --all
 python job-scout/scout.py resolve-url 123
 python job-scout/scout.py sync-sheets
+python job-scout/scout.py daily-report --dry-run
 python job-scout/scout.py verify-sources
 python job-scout/gmail_response_tracker.py authorize
 python job-scout/gmail_response_tracker.py check
@@ -244,7 +281,7 @@ Gecko evaluates the job description directly against the required master archive
 
 - an exactly two-page DOCX after native Microsoft Word validation.
 
-The completed resume is recorded only after the DOCX exists directly under `output/resumes` and native QA passes. The current Gecko style comes from the required master TXT and model PDF, including the mandatory Core Strengths and Tools & Platforms counts and the two-line experience hierarchy. The daily queue marks `Resume Created` with canonical `X` and writes a clickable absolute file URI to `Resume Link` (currently Q). Every scout and the queue read the existing tracker row by stable identity. An X, ignoring case and spaces, always skips generation and preserves the existing marker and link. A blank link is reported for manual review, never regenerated automatically. Cost `x` rows are excluded. Local file links are machine-scoped and require access to the same Windows path; no public URL or Google Drive copy is invented.
+The completed resume is recorded only after the DOCX exists directly under `output/resumes` and native QA passes. The current Gecko style comes from the required master TXT and model PDF, with every employment heading on one physical line (`Job Title - Company Name - City, ST`) and verified dates flush with the right text margin on that same line. This applies to Indeed Scout, Job Scout, and the shared apply queue; mandatory Core Strengths and Tools & Platforms counts still apply. The daily queue marks `Resume Created` with canonical `X` and writes a clickable absolute file URI to `Resume Link`. Every scout and the queue read the existing tracker row by stable identity. An X, ignoring case and spaces, always skips generation and preserves the existing marker and link. A blank link is reported for manual review, never regenerated automatically. A nonblank link with a blank marker also stops generation for manual review. Cost `x` rows, including effective formula results, are excluded. Local file links are machine-scoped and require access to the same Windows path; no public URL or Google Drive copy is invented.
 
 ## Data preservation
 

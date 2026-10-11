@@ -8,6 +8,7 @@ import json
 import re
 from dataclasses import dataclass, field
 from difflib import SequenceMatcher
+from html.parser import HTMLParser
 from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit
 
 from models import RawListing
@@ -20,6 +21,57 @@ SCRIPT_RE = re.compile(
     r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>',
     re.I | re.S,
 )
+
+
+class _ApplicationControls(HTMLParser):
+    """Collect primary Indeed controls and job-header status headings."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.controls: list[str] = []
+        self.statuses: list[str] = []
+        self.stack: list[tuple[str, dict[str, str | None]]] = []
+        self.active: list[tuple[str, int, list[str]]] = []
+
+    def handle_starttag(self, tag, attrs):
+        attributes = dict(attrs)
+        if tag not in {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr", "path"}:
+            self.stack.append((tag, attributes))
+        identity = " ".join(str(attributes.get(key) or "")
+                            for key in ("id", "class", "data-testid"))
+        primary = re.search(r"(?:viewjob-indeed-apply|indeed.?apply.?button|apply.?button|btn.primary)", identity, re.I)
+        if tag in {"button", "a"} and primary:
+            if ("disabled" not in attributes and attributes.get("aria-hidden") != "true"
+                    and "display:none" not in attributes.get("style", "").replace(" ", "").casefold()):
+                self.active.append(("control", len(self.stack), []))
+        if tag in {"h2", "h3"} and any(a.get("data-testid") == "alert" for _, a in self.stack[:-1]) and any(
+            a.get("data-testid") == "desktop-job-header" for _, a in self.stack[:-1]
+        ):
+            self.active.append(("status", len(self.stack), []))
+
+    def handle_data(self, data):
+        for _, _, parts in self.active:
+            parts.append(data)
+
+    def handle_endtag(self, tag):
+        index = next((i for i in range(len(self.stack) - 1, -1, -1)
+                      if self.stack[i][0] == tag), None)
+        if index is None:
+            return
+        while self.active and self.active[-1][1] >= index + 1:
+            kind, _, parts = self.active.pop()
+            label = " ".join(" ".join(parts).split())
+            (self.controls if kind == "control" else self.statuses).append(label)
+        del self.stack[index:]
+
+
+def application_method_from_page(page: str) -> str:
+    """Return the exact visible primary label or job-header status text."""
+    parser = _ApplicationControls()
+    parser.feed(page)
+    if parser.controls:
+        return parser.controls[0] if len(parser.controls) == 1 else ""
+    return parser.statuses[0] if len(parser.statuses) == 1 else ""
 
 
 def extract_indeed_job_key(url: str) -> str:
@@ -312,6 +364,9 @@ class ManualIndeedProvider:
         listings = _structured_listings(document)
         if listings:
             listing = listings[0]
+            method = application_method_from_page(document.body.decode("utf-8", errors="replace"))
+            if method:
+                listing.metadata["_indeed_application_method"] = method
             listing.source = self.name
             listing.source_job_id = job_key
             listing.url = url.strip()

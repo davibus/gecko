@@ -7,7 +7,8 @@ from datetime import date
 import re
 from urllib.parse import urlsplit
 
-from google_tracker import GoogleTracker, Tab, resume_already_created
+from google_tracker import (GoogleTracker, Tab, resume_already_created,
+                            is_expired_indeed, normalized_indeed_status)
 from normalize import canonicalize_url, normalize
 from rejected_jobs import RejectedJobsIndex
 from sources.base import ProviderError
@@ -338,6 +339,13 @@ def process_manual_indeed_rows(
             "Date Found": job.date_discovered,
             "Last Seen": job.last_seen,
         }
+        method = str(job.indeed_application_method or "").strip()
+        current_method = str(data.get("Apply or on Company Website (If Indeed)") or "").strip()
+        fresh = job.indeed_application_verified_on == found_on
+        if is_expired_indeed(current_method):
+            values["Apply or on Company Website (If Indeed)"] = "Expired"
+        elif method and fresh and method != current_method:
+            values["Apply or on Company Website (If Indeed)"] = normalized_indeed_status(method)
         if "Notes" in tab.headers and retrying_failure:
             values["Notes"] = ""
         tracker.update_manual_scout_row(tab, row, values)

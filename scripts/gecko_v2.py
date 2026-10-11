@@ -30,8 +30,39 @@ SECTIONS = (
     "Professional Experience", "Tools & Platforms", "Education & Certifications",
 )
 MODEL_FONT = "EB Garamond"
-MODEL_BODY_SIZE = 10.5
+MODEL_BODY_SIZE = 11
 MODEL_OLIVE = (85, 107, 47)
+
+
+def employment_heading(job: dict[str, str]) -> str:
+    """Build the one-line heading from the unchanged, verified job fields."""
+    fields = [job.get(name, "").strip() for name in ("title", "company", "location")]
+    if any(not field or re.search(r"[\t\r\n]", field) for field in fields):
+        raise ValueError("Employment heading requires title, company, and single-line location.")
+    if not re.fullmatch(r".+, [A-Z]{2}", fields[2]):
+        raise ValueError(f"Employment location must be City, ST: {fields[2]!r}")
+    return " - ".join(fields)
+
+
+MONTH_ABBREVIATIONS = {month: month[:3] for month in (
+    "January", "February", "March", "April", "May", "June", "July",
+    "August", "September", "October", "November", "December")}
+
+
+def employment_dates(job: dict[str, str]) -> str:
+    """Compact the verified month/year range without discarding either month."""
+    source = job.get("dates", "").strip()
+    match = re.fullmatch(
+        r"(" + "|".join(MONTH_ABBREVIATIONS) + r") (\d{4}) - "
+        r"(?:(" + "|".join(MONTH_ABBREVIATIONS) + r") (\d{4})|Present)"
+        r"(?: \(Contract\))?",
+        source,
+    )
+    if not match:
+        raise ValueError(f"Unverified or unsupported employment dates: {source!r}")
+    start_month, start_year, end_month, end_year = match.groups()
+    end = f"{MONTH_ABBREVIATIONS[end_month]} {end_year}" if end_month else "Present"
+    return f"{MONTH_ABBREVIATIONS[start_month]} {start_year}–{end}"
 TERMS = (
     "SEO", "technical SEO", "paid search", "Google Ads", "Bing Ads", "Microsoft Ads", "Meta Ads", "Google Analytics",
     "GA4", "Google Tag Manager", "GTM", "Looker Studio", "Tableau", "SQL", "Python", "JavaScript",
@@ -194,7 +225,7 @@ def normalize_resume_format(plan: dict) -> None:
 
 
 def document_format_issues(plan: dict, doc: Document) -> list[str]:
-    """Inspect the mandatory section content and two-line experience hierarchy."""
+    """Inspect mandatory sections and the single-line employment headers."""
     issues = formatting_content_issues(
         plan["resume"].get("core_strengths", []),
         plan["resume"].get("tools_platforms", []),
@@ -220,7 +251,7 @@ def document_format_issues(plan: dict, doc: Document) -> list[str]:
 
     evidence = {item["id"]: item for item in plan["evidence"]}
     expected_jobs = [
-        (job["title"], f"{job['company']}  {job['location']}" if job["location"] else job["company"])
+        (employment_heading(job), employment_dates(job))
         for index, job in enumerate(plan["resume"]["jobs"])
         if any(evidence[eid]["job"] == index for eid in plan["resume"]["selected_evidence_ids"])
     ]
@@ -228,20 +259,26 @@ def document_format_issues(plan: dict, doc: Document) -> list[str]:
     if len(job_tables) != len(expected_jobs):
         issues.append("Professional Experience job-header count differs from the plan.")
         return issues
-    for table, (expected_title, expected_company) in zip(job_tables, expected_jobs):
-        if len(table.rows) != 2 or len(table.columns) != 2:
-            issues.append("A Professional Experience job does not use the required two-line hierarchy.")
+    for table, (expected_header, expected_dates) in zip(job_tables, expected_jobs):
+        if len(table.rows) != 1 or len(table.columns) != 2:
+            issues.append("A Professional Experience job does not use the required single-line header.")
             continue
-        actual_title = table.cell(0, 0).text.strip()
-        actual_company = table.cell(1, 0).text.strip()
-        if actual_title != expected_title:
-            issues.append("A Professional Experience job title is not on its own line.")
-        if actual_company != expected_company:
-            issues.append("A company and city/state line is not directly below its job title.")
-        if " | " in actual_title or " | " in actual_company:
-            issues.append("A job still uses the prohibited 'Job Title | Company' format.")
-        if table.cell(0, 1).text.strip() or table.cell(1, 1).text.strip():
-            issues.append("A date cell contains visible text.")
+        if table.cell(0, 0).text.strip() != expected_header:
+            issues.append("Job title, company, and location differ from the single-line source header.")
+        heading_paragraph = table.cell(0, 0).paragraphs[0]
+        if len(table.cell(0, 0).paragraphs) != 1 or len(heading_paragraph.runs) != 1:
+            issues.append("An employment heading is split across paragraphs or runs.")
+        if heading_paragraph._p.xpath(".//w:br | .//w:tab"):
+            issues.append("An employment heading contains a line break or tab.")
+        if not heading_paragraph.runs or heading_paragraph.runs[0].bold is not True:
+            issues.append("An employment heading lost its bold styling.")
+        date_cell = table.cell(0, 1)
+        if date_cell.text.strip() != expected_dates:
+            issues.append("Employment dates differ from the verified master range.")
+        if len(date_cell.paragraphs) != 1 or date_cell.paragraphs[0].alignment != WD_ALIGN_PARAGRAPH.RIGHT:
+            issues.append("Employment dates are not right-aligned in one paragraph.")
+        if date_cell.paragraphs[0]._p.xpath(".//w:br | .//w:tab"):
+            issues.append("Employment dates contain a line break or tab.")
     return issues
 
 
@@ -287,11 +324,11 @@ def parsed_jobs() -> list[dict]:
             continue
         if _is_job_header(line):
             title, company = line.split(" | ", 1)
-            current = {"title": title.strip(), "company": company.strip(), "location": "", "bullets": []}
+            current = {"title": title.strip(), "company": company.strip(), "location": "", "dates": "", "bullets": []}
             jobs.append(current)
             continue
         if current and re.match(r"^.+,\s*[A-Z]{2}\s*\|", line):
-            current["location"] = line.split("|", 1)[0].strip()
+            current["location"], current["dates"] = (part.strip() for part in line.split("|", 1))
             continue
         if current and _is_bullet(line):
             quote = _bullet_text(line)
@@ -299,6 +336,8 @@ def parsed_jobs() -> list[dict]:
                 current["bullets"].append(quote)
     if not jobs:
         raise ValueError("Master archive job history could not be parsed.")
+    if any(not job["location"] or not job["dates"] for job in jobs):
+        raise ValueError("A master archive job is missing verified location or employment dates.")
     return jobs
 
 
@@ -502,7 +541,7 @@ def master_identity() -> dict[str, str]:
             break
         certs.append(_bullet_text(line))
     return {
-        "name": lines[0],
+        "name": next(line for line in lines if line.casefold() == "dave call"),
         "headline": lines[lines.index("MASTER RESUME / CAREER ARCHIVE") + 1],
         "contact": normalized(next(line for line in lines if "linkedin.com/in/mdavidcall" in line)),
         "summary": lines[lines.index("PROFESSIONAL PROFILE") + 1],
@@ -512,7 +551,7 @@ def master_identity() -> dict[str, str]:
 
 
 def master_jobs() -> list[dict[str, str]]:
-    return [{"title": job["title"], "company": job["company"], "location": job["location"]}
+    return [{"title": job["title"], "company": job["company"], "location": job["location"], "dates": job["dates"]}
             for job in parsed_jobs()]
 
 
@@ -696,27 +735,41 @@ def make_resume(plan: dict, path: Path) -> None:
             p.paragraph_format.left_indent = Inches(.18)
     section(SECTIONS[3])
     for index, job in enumerate(plan["resume"]["jobs"]):
-        title, company, location = job["title"], job["company"], job["location"]
+        heading, dates = employment_heading(job), employment_dates(job)
         selected = [evidence[eid] for eid in plan["resume"]["selected_evidence_ids"] if evidence[eid]["job"] == index]
         if not selected:
             continue
-        table = doc.add_table(rows=2, cols=2)
+        table = doc.add_table(rows=1, cols=2)
         table.autofit = False
         table.alignment = WD_TABLE_ALIGNMENT.CENTER
-        table.columns[0].width, table.columns[1].width = Inches(5.7), Inches(1.8)
-        for row in range(2):
-            table.cell(row, 0).width, table.cell(row, 1).width = Inches(5.7), Inches(1.8)
+        # Keep both fields within the existing 7.5-inch text area. Zero cell
+        # padding gives the longest verified heading the full left-cell width.
+        table.columns[0].width, table.columns[1].width = Inches(6.2), Inches(1.3)
+        table.cell(0, 0).width, table.cell(0, 1).width = Inches(6.2), Inches(1.3)
+        for cell in table.rows[0].cells:
+            tc_mar = OxmlElement("w:tcMar")
+            for side in ("top", "left", "bottom", "right"):
+                margin = OxmlElement(f"w:{side}")
+                margin.set(qn("w:w"), "0")
+                margin.set(qn("w:type"), "dxa")
+                tc_mar.append(margin)
+            cell._tc.get_or_add_tcPr().append(tc_mar)
         title_paragraph = table.cell(0, 0).paragraphs[0]
-        title_paragraph.add_run(title).bold = True
-        company_line = f"{company}  {location}" if location else company
-        company_paragraph = table.cell(1, 0).paragraphs[0]
-        company_paragraph.add_run(company_line).bold = True
+        title_paragraph.paragraph_format.space_before = Pt(0)
+        title_paragraph.paragraph_format.space_after = Pt(0)
+        heading_run = title_paragraph.add_run(heading)
+        heading_run.bold = True
+        heading_run.font.size = Pt(10.5)
+        date_paragraph = table.cell(0, 1).paragraphs[0]
+        date_paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+        date_paragraph.paragraph_format.space_before = Pt(0)
+        date_paragraph.paragraph_format.space_after = Pt(0)
+        date_run = date_paragraph.add_run(dates)
+        date_run.font.size = Pt(10.5)
         # Keep each job header with its first bullet so a table-backed heading
         # cannot be orphaned at the bottom of a page in Microsoft Word.
         title_paragraph.paragraph_format.keep_with_next = True
-        company_paragraph.paragraph_format.keep_with_next = True
-        table.cell(0, 1).text = ""  # Required right-side date area.
-        table.cell(1, 1).text = ""
+        date_paragraph.paragraph_format.keep_with_next = True
         borders = OxmlElement("w:tblBorders")
         for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
             node = OxmlElement("w:" + edge)
@@ -828,12 +881,36 @@ def native_qa(plan: dict, docx_path: Path, scratch: Path) -> dict:
     if pdf.exists():
         with fitz.open(pdf) as rendered:
             if len(rendered) == 2:
+                rendered_lines = []
                 for number, page in enumerate(rendered, 1):
                     blocks = [fitz.Rect(b[:4]) for b in page.get_text("blocks") if normalized(str(b[4]))]
                     if not blocks or max(block.y1 for block in blocks) > page.rect.height - 18:
                         issues.append(f"Page {number} has possible bottom overflow or no extractable text.")
                     if any(b.x0 < 12 or b.x1 > page.rect.width - 12 for b in blocks):
                         issues.append(f"Page {number} has possible horizontal overflow.")
+                    for block in page.get_text("dict")["blocks"]:
+                        for line in block.get("lines", []):
+                            rendered_lines.append((number, page.rect.width, fitz.Rect(line["bbox"]),
+                                                   normalized("".join(span["text"] for span in line["spans"]))))
+                evidence = {item["id"]: item for item in plan["evidence"]}
+                for index, job in enumerate(plan["resume"]["jobs"]):
+                    if not any(evidence[eid]["job"] == index for eid in plan["resume"]["selected_evidence_ids"]):
+                        continue
+                    header = employment_heading(job)
+                    header_lines = [(page_no, box) for page_no, _, box, line in rendered_lines
+                                    if key(line) == key(header)]
+                    if len(header_lines) != 1:
+                        issues.append(f"Employment header wrapped or changed in Word PDF: {job['company']}.")
+                        continue
+                    page_no, header_box = header_lines[0]
+                    date_lines = [(width, box) for page, width, box, line in rendered_lines
+                                  if page == page_no and line == normalized(employment_dates(job))
+                                  and abs(box.y0 - header_box.y0) < 2]
+                    if len(date_lines) != 1 or not (
+                        date_lines[0][1].x0 > header_box.x1 + 2
+                        and abs((date_lines[0][0] - 36) - date_lines[0][1].x1) < 4
+                    ):
+                        issues.append(f"Employment dates wrapped, overlapped, or missed the right margin: {job['company']}.")
     reqs = plan["requirements"]
     weaknesses = [r["text"] for group in ("required_skills", "preferred_skills", "responsibilities") for r in reqs[group] if r["status"] != "supported"]
     report = {"status": "pass" if not issues else "fail", "word_pages": native.get("word_pages"),

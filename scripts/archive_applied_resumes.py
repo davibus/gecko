@@ -97,11 +97,6 @@ def build_plan(
         )
     applied_column = tab.headers["Applied"]
     link_column = tab.headers["Resume Link"]
-    if applied_column != 8:
-        raise RuntimeError(
-            f"Applied is in Column {_column_letter(applied_column)}, not the expected Column H; "
-            "no changes were made"
-        )
 
     resume_dir = resume_dir.resolve()
     applied_dir = applied_dir.resolve()
@@ -196,6 +191,13 @@ def _write_cell(
     value: str,
 ) -> None:
     cell = f"{_column_letter(column)}{row}"
+    tab = tracker.tab(worksheet, value_render_option="FORMULA")
+    fields = [name for name, index in tab.headers.items() if index == column]
+    if len(fields) != 1 or fields[0] != "Resume Link":
+        raise RuntimeError(f"Cannot update {worksheet} {cell}: Resume Link header moved")
+    entries, expected = tracker._prepare_writes(tab, {(row, "Resume Link"): value})
+    if not entries or (row, "Resume Link") not in expected:
+        raise RuntimeError(f"Skipped formula or ARRAYFORMULA output at {worksheet} {cell}")
     try:
         tracker.api.values().update(
             spreadsheetId=tracker.config.spreadsheet_id,
@@ -427,8 +429,6 @@ def print_plan(plan: ArchivePlan, *, applying: bool) -> None:
     print(f"Worksheet: {plan.worksheet}")
     print(f"Applied header: Column {applied_letter}")
     print(f"Resume Link header: Column {link_letter}")
-    if link_letter != "S":
-        print("Note: Column S is not Resume Link and will not be changed.")
     print(f"Archive folder: {APPLIED_DIR}")
     print(f"Planned moves: {len(plan.moves)}")
     print(f"Already archived: {len(plan.already_archived)}")

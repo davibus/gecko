@@ -5,15 +5,52 @@ import sys
 from tempfile import TemporaryDirectory
 import unittest
 from types import SimpleNamespace
+from unittest.mock import Mock, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from manage_job_tracker import (
     JobRecord, _assert_no_existing_scout_resume,
-    filename_job_number, markdown_field, record_from_files,
+    filename_job_number, markdown_field, record_from_files, record_completed_resume,
 )
 
 
 class TrackerMetadataTests(unittest.TestCase):
+    def test_current_workbook_records_only_uniquely_matched_scout_row(self):
+        record = JobRecord("Example", "Role", "", "abc123",
+                           "https://www.indeed.com/viewjob?jk=abc123",
+                           Path("resume.docx"), None, source="indeed")
+        row = (2, {"Scout ID": 42, "Job URL": record.job_link,
+                   "Resume Created": "", "Cost": ""})
+        tracker = SimpleNamespace(
+            rejected_jobs_index=lambda: SimpleNamespace(match=lambda **_kwargs: None),
+            application=Mock(side_effect=RuntimeError(
+                "Google worksheet 'Job Tracker' was not found exactly once")),
+            scout=lambda **_kwargs: SimpleNamespace(headers={"Resume Created": 7}, rows=[row]),
+        )
+        with (patch("manage_job_tracker.record_from_files", return_value=record),
+              patch("manage_job_tracker.publish_resume", return_value="file:///verified.docx"),
+              patch("manage_job_tracker.mark_batch_resume") as mark):
+            result = record_completed_resume(record.resume_path, None, tracker)
+        self.assertEqual(result[:2], (2, False))
+        mark.assert_called_once_with(42, 2, tracker, "file:///verified.docx",
+                                     allow_local=True, require_approved=False)
+
+    def test_current_workbook_stops_when_no_unique_scout_row_exists(self):
+        record = JobRecord("Example", "Role", "", "abc123",
+                           "https://www.indeed.com/viewjob?jk=abc123",
+                           Path("resume.docx"), None, source="indeed")
+        tracker = SimpleNamespace(
+            rejected_jobs_index=lambda: SimpleNamespace(match=lambda **_kwargs: None),
+            application=Mock(side_effect=RuntimeError(
+                "Google worksheet 'Job Tracker' was not found exactly once")),
+            scout=lambda **_kwargs: SimpleNamespace(headers={"Resume Created": 7}, rows=[]),
+        )
+        with (patch("manage_job_tracker.record_from_files", return_value=record),
+              patch("manage_job_tracker.mark_batch_resume") as mark):
+            with self.assertRaisesRegex(RuntimeError, "No tracker cells were changed"):
+                record_completed_resume(record.resume_path, None, tracker)
+        mark.assert_not_called()
+
     def test_manual_tracker_upsert_refuses_existing_x_without_scout_id(self):
         record = JobRecord("Example", "Role", "", "abc123",
                            "https://www.indeed.com/viewjob?jk=abc123",

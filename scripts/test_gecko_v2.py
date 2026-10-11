@@ -153,11 +153,11 @@ class GeckoV2Tests(unittest.TestCase):
             from docx import Document
             doc = Document(path)
             self.assertEqual(doc.styles["Normal"].font.name, "EB Garamond")
-            self.assertAlmostEqual(doc.styles["Normal"].font.size.pt, 10.5)
+            self.assertAlmostEqual(doc.styles["Normal"].font.size.pt, 11)
             headings = [p.text for p in doc.paragraphs if p.text in [s.upper() for s in v2.SECTIONS]]
             self.assertEqual(headings, [s.upper() for s in v2.SECTIONS])
 
-    def test_mandatory_strengths_tools_and_two_line_job_hierarchy(self):
+    def test_mandatory_strengths_tools_and_single_line_job_headers(self):
         self.assertGreaterEqual(len(self.plan["resume"]["core_strengths"]), 8)
         self.assertGreaterEqual(len(self.plan["resume"]["tools_platforms"]), 8)
         self.assertEqual(
@@ -171,13 +171,50 @@ class GeckoV2Tests(unittest.TestCase):
             from docx import Document
             doc = Document(path)
             self.assertGreaterEqual(len([c for r in doc.tables[0].rows for c in r.cells if c.text.strip()]), 8)
-            for table in doc.tables[1:]:
-                self.assertEqual(len(table.rows), 2)
-                self.assertNotIn(" | ", table.cell(0, 0).text)
-                self.assertTrue(table.cell(0, 0).text.strip())
-                self.assertTrue(table.cell(1, 0).text.strip())
-                self.assertFalse(table.cell(0, 1).text.strip())
-                self.assertFalse(table.cell(1, 1).text.strip())
+            evidence = {item["id"]: item for item in self.plan["evidence"]}
+            selected_jobs = {evidence[eid]["job"] for eid in self.plan["resume"]["selected_evidence_ids"]}
+            jobs = [job for index, job in enumerate(self.plan["resume"]["jobs"]) if index in selected_jobs]
+            self.assertEqual(len(doc.tables) - 1, len(jobs))
+            for table, job in zip(doc.tables[1:], jobs):
+                self.assertEqual(len(table.rows), 1)
+                self.assertEqual(table.cell(0, 0).text, v2.employment_heading(job))
+                self.assertEqual(len(table.cell(0, 0).paragraphs), 1)
+                self.assertEqual(len(table.cell(0, 0).paragraphs[0].runs), 1)
+                self.assertTrue(table.cell(0, 0).paragraphs[0].runs[0].bold)
+                self.assertFalse(table.cell(0, 0).paragraphs[0]._p.xpath(".//w:br | .//w:tab"))
+                self.assertEqual(table.cell(0, 1).text, v2.employment_dates(job))
+                self.assertEqual(table.cell(0, 1).paragraphs[0].alignment, 2)
+                self.assertAlmostEqual(table.cell(0, 0).width.inches, 6.2, places=1)
+                self.assertAlmostEqual(table.cell(0, 1).width.inches, 1.3, places=1)
+
+    def test_heading_formatter_preserves_punctuation_and_rejects_missing_fields(self):
+        cases = (
+            ("Manager", "Acme", "Provo, UT"),
+            ("Director of E-Commerce / Marketing", "Intercon Inc.", "Salt Lake City, UT"),
+            ("VP, Growth & Analytics", "Smith-Jones, LLC", "West Valley City, UT"),
+            ("Director, Marketing Strategy & Development", "Bowen Law Professional Group", "Salt Lake City, UT"),
+        )
+        for title, company, location in cases:
+            self.assertEqual(v2.employment_heading({"title": title, "company": company, "location": location}),
+                             f"{title} - {company} - {location}")
+        for missing in ("title", "company", "location"):
+            job = {"title": "Manager", "company": "Acme", "location": "Provo, UT"}
+            job[missing] = ""
+            with self.assertRaises(ValueError):
+                v2.employment_heading(job)
+        with self.assertRaises(ValueError):
+            v2.employment_heading({"title": "Manager\nGrowth", "company": "Acme", "location": "Provo, UT"})
+        with self.assertRaises(ValueError):
+            v2.employment_heading({"title": "Manager", "company": "Acme", "location": "Utah"})
+
+    def test_employment_dates_preserve_verified_months_and_present(self):
+        self.assertEqual(v2.employment_dates({"dates": "November 2022 - June 2023 (Contract)"}),
+                         "Nov 2022–Jun 2023")
+        self.assertEqual(v2.employment_dates({"dates": "March 2021 - Present"}),
+                         "Mar 2021–Present")
+        for source in ("", "2022-2025", "November 2022 - Tomorrow"):
+            with self.assertRaises(ValueError):
+                v2.employment_dates({"dates": source})
 
     def test_generation_auto_corrects_section_counts_and_capitalization(self):
         altered = json.loads(json.dumps(self.plan))
@@ -190,24 +227,34 @@ class GeckoV2Tests(unittest.TestCase):
             self.assertGreaterEqual(len(altered["resume"]["tools_platforms"]), 8)
             self.assertEqual(v2.inspect_docx(altered, path), [])
 
-    def test_qa_rejects_old_combined_job_header_format(self):
+    def test_qa_rejects_missing_dates_misalignment_and_split_heading(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "resume.docx"
             v2.make_resume(self.plan, path)
             from docx import Document
             doc = Document(path)
             table = doc.tables[1]
-            table.cell(0, 0).text = table.cell(0, 0).text + " | " + table.cell(1, 0).text
-            table.cell(1, 0).text = ""
+            table.cell(0, 1).text = ""
             doc.save(path)
             issues = v2.inspect_docx(self.plan, path)
-            self.assertTrue(any("prohibited 'Job Title | Company'" in issue for issue in issues))
+            self.assertTrue(any("Employment dates differ" in issue for issue in issues))
+            table.cell(0, 1).text = v2.employment_dates(self.plan["resume"]["jobs"][0])
+            table.cell(0, 1).paragraphs[0].alignment = 0
+            doc.save(path)
+            self.assertTrue(any("Employment dates are not right-aligned" in issue for issue in v2.inspect_docx(self.plan, path)))
+            table.cell(0, 0).paragraphs[0].add_run(" extra")
+            doc.save(path)
+            self.assertTrue(any("split across paragraphs or runs" in issue for issue in v2.inspect_docx(self.plan, path)))
 
-    def test_project_notes_do_not_authorize_unsupported_tool_claims(self):
+    def test_current_master_listed_marketo_is_supported(self):
         listing = "## Required Qualifications\n- Must have hands-on Marketo experience in marketing operations."
         result = v2.requirements(listing, v2.source_text(), self.plan["evidence"])
         self.assertEqual(result["tools"][0]["text"], "Marketo")
-        self.assertEqual(result["tools"][0]["status"], "gap")
+        self.assertEqual(result["tools"][0]["status"], "supported")
+
+    def test_unlisted_requirement_remains_a_gap(self):
+        listing = "## Required Qualifications\n- Must have hands-on Core Web Vitals experience."
+        result = v2.requirements(listing, v2.source_text(), self.plan["evidence"])
         self.assertEqual(result["required_skills"][0]["status"], "gap")
 
     def test_flattened_aggregator_prose_still_yields_qualitative_requirements(self):

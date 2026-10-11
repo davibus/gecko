@@ -21,6 +21,8 @@ from google_tracker import (  # noqa: E402
     GoogleTracker,
     apply_value,
     resume_already_created,
+    is_expired_indeed,
+    INDEED_APPLICATION_HEADER,
 )
 from manual_indeed import next_scout_id  # noqa: E402
 from description_retrieval import (  # noqa: E402
@@ -32,6 +34,9 @@ from handoff import job_number as scout_job_number  # noqa: E402
 from models import RawListing  # noqa: E402
 from normalize import normalize  # noqa: E402
 from rejected_jobs import REJECT_STATUSES, PermanentlyRejectedError  # noqa: E402
+from tracker_schema import (  # noqa: E402
+    RESUME_COMPLETION_MARKER, LEGACY_RESUME_MARKERS, COST_EXCLUSION_MARKER,
+)
 from rejection_workflow import process_rejected_rows  # noqa: E402
 import gecko_v2  # noqa: E402
 import manage_job_tracker  # noqa: E402
@@ -40,8 +45,8 @@ REQUIRED = (
     "Scout ID", "Company", "Job Title", "Apply?", "Resume Created", "Cost",
     "Job URL", "Resume Link",
 )
-COMPLETION_MARKER = "X"
-LEGACY_COMPLETION_MARKERS = frozenset({"c", "x"})
+COMPLETION_MARKER = RESUME_COMPLETION_MARKER
+LEGACY_COMPLETION_MARKERS = LEGACY_RESUME_MARKERS
 
 
 @dataclass(frozen=True)
@@ -273,7 +278,9 @@ def read_queue(
     auto_approve_geographic: bool = False,
 ) -> QueueSnapshot:
     """Classify live rows, optionally restricted to the current daily discovery set."""
-    tab = _retry_sheet(lambda: tracker.scout(value_render_option="FORMULA"))
+    # Decisions use effective cell values. FORMULA would expose Cost's formula
+    # text instead of its displayed x exclusion value.
+    tab = _retry_sheet(lambda: tracker.scout())
     rejected_jobs = _retry_sheet(lambda: tracker.rejected_jobs_index())
     missing = set(REQUIRED) - tab.headers.keys()
     if missing:
@@ -299,7 +306,8 @@ def read_queue(
     completed_keys = {
         key for item in matched
         if (_resume_completed((item.fields or {}).get("Resume Created"))
-            and _flag((item.fields or {}).get("Cost")) != "x")
+            or str((item.fields or {}).get("Resume Link") or "").strip())
+        and _flag((item.fields or {}).get("Cost")) != COST_EXCLUSION_MARKER
         for key in [_duplicate_key(item)] if key is not None
     }
     seen_pending: set[tuple[str, str]] = set()
@@ -320,7 +328,7 @@ def read_queue(
             stats["rejected_exclusions"] += 1
             decisions.append((item, "SKIP: permanently rejected job"))
             continue
-        if _flag(data.get("Cost")) == "x":
+        if _flag(data.get("Cost")) == COST_EXCLUSION_MARKER:
             cost_excluded.append(item)
             stats["cost_excluded"] += 1
             decisions.append((item, "SKIP: Cost = X"))
@@ -346,6 +354,12 @@ def read_queue(
             stats["already_completed"] += 1
             already_created.append(item)
             decisions.append((item, "SKIP: legacy resume completion marker"))
+        elif str(data.get("Resume Link") or "").strip():
+            already_created.append(item)
+            decisions.append((item, "SKIP RESUME: existing Resume Link with blank marker; manual review needed"))
+        elif is_expired_indeed(data.get(INDEED_APPLICATION_HEADER)):
+            not_approved.append(item)
+            decisions.append((item, "SKIP: Indeed job expired"))
         elif (eligible_scout_ids is not None
               and (item.scout_id is None or item.scout_id not in eligible_scout_ids)
               and source is None):
@@ -428,7 +442,7 @@ def _still_pending(tracker: GoogleTracker, item: QueueRow) -> bool:
     ) is not None:
         return False
     matches = [data for row, data in _retry_sheet(
-        lambda: tracker.scout(value_render_option="FORMULA")
+        lambda: tracker.scout()
     ).rows if (
         (item.scout_id is not None and str(data.get("Scout ID") or "") == str(item.scout_id))
         or (item.scout_id is None and row == item.row and not str(data.get("Scout ID") or "").strip())
@@ -437,6 +451,10 @@ def _still_pending(tracker: GoogleTracker, item: QueueRow) -> bool:
         return False
     row = matches[0]
     if resume_already_created(row.get("Resume Created")):
+        return False
+    if str(row.get("Resume Link") or "").strip():
+        return False
+    if is_expired_indeed(row.get(INDEED_APPLICATION_HEADER)):
         return False
     if _flag(row.get("Gecko Status")) in REJECT_STATUSES:
         return False
@@ -447,12 +465,12 @@ def _still_pending(tracker: GoogleTracker, item: QueueRow) -> bool:
     if not identity_matches:
         return False
     return (_flag(row.get("Apply?")) == "yes"
-            and _flag(row.get("Cost")) != "x"
+            and _flag(row.get("Cost")) != COST_EXCLUSION_MARKER
             and not _resume_completed(row.get("Resume Created")))
 
 
 def _refresh_item(tracker: GoogleTracker, item: QueueRow) -> QueueRow:
-    tab = _retry_sheet(lambda: tracker.scout(value_render_option="FORMULA"))
+    tab = _retry_sheet(lambda: tracker.scout())
     if item.scout_id is not None:
         matches = [(row, data) for row, data in tab.rows
                    if _scout_id(data.get("Scout ID")) == item.scout_id]
@@ -463,6 +481,10 @@ def _refresh_item(tracker: GoogleTracker, item: QueueRow) -> QueueRow:
     row, data = matches[0]
     if resume_already_created(data.get("Resume Created")):
         raise RuntimeError("SKIP RESUME: existing tracker row already has Resume Created = X")
+    if str(data.get("Resume Link") or "").strip():
+        raise RuntimeError("SKIP RESUME: existing Resume Link requires manual review")
+    if is_expired_indeed(data.get(INDEED_APPLICATION_HEADER)):
+        raise RuntimeError("SKIP RESUME: Indeed job expired")
     refreshed = _queue_item(tab, row, data)
     indeed_id = _indeed_job_key(refreshed.job_url) if (
         _flag(refreshed.source) == "indeed" or _is_indeed_url(refreshed.job_url)
@@ -541,7 +563,7 @@ def _prepare_indeed_item(
         current = _refresh_item(tracker, current)
     if _flag((current.fields or {}).get("Apply?")) != "yes":
         raise RuntimeError("Apply? is no longer Yes; resume generation was not started")
-    if _flag((current.fields or {}).get("Cost")) == "x":
+    if _flag((current.fields or {}).get("Cost")) == COST_EXCLUSION_MARKER:
         raise RuntimeError("Cost is X; resume generation was not started")
     if current.scout_id is None:
         if allocator is None:
@@ -993,7 +1015,8 @@ def run_queue(
             for item in group
         }
         for item in all_items.values():
-            if (_flag((item.fields or {}).get("Cost")) != "x"
+            if (_flag((item.fields or {}).get("Cost")) != COST_EXCLUSION_MARKER
+                    and not is_expired_indeed((item.fields or {}).get(INDEED_APPLICATION_HEADER))
                     and _geographic_qualification(item)
                     and _flag((item.fields or {}).get("Apply?")) != "yes"):
                 _retry_sheet(lambda item=item: tracker.approve_manual_scout_row(
@@ -1077,7 +1100,7 @@ def run_queue(
         print(message, flush=True)
         _log(logger, message)
     print(f"Tracker rows checked: {checked}", flush=True)
-    print(f"Skipped with a completed Resume Created marker: {len(skipped)}", flush=True)
+    print(f"Skipped with completion marker or existing Resume Link: {len(skipped)}", flush=True)
     _log(logger, f"Eligible rows: {len(pending)}; already marked: {len(skipped)}")
     if dry_run:
         print("Dry-run row diagnostics:", flush=True)

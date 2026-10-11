@@ -14,10 +14,12 @@ from datetime import date
 from pathlib import Path
 
 from enrichment import enrich_and_store
-from ai_evaluation import JobEvaluator
+from ai_evaluation import JobEvaluator, validate_candidate_profile_for_ai
 from deduplicate import find_duplicate
+from daily_report import read_live_snapshot
 from google_tracker import GoogleTracker, marked
 from handoff import archive_listing
+from indeed_application_backfill import backfill as backfill_indeed_buttons, load_browser_observations
 from link_validation import DailyLinkValidator
 from manual_indeed import ManualIndeedSummary, process_manual_indeed_rows
 from models import RawListing
@@ -38,6 +40,7 @@ from sources import (
 from sources.base import SearchRequest
 from sources.config import load_source_config
 from storage import DEFAULT_DB, JobStore
+from tracker_schema import STATUS_LABELS
 from url_resolution import resolve_and_store, url_status_label
 
 
@@ -780,6 +783,7 @@ def _empty_queue_result():
 
 def daily(args, store, preferences):
     """Discover, sync, geographically approve, and generate Gecko resumes."""
+    validate_candidate_profile_for_ai(preferences)
     started = time.monotonic()
     if args.dry_run and not getattr(args, "_temporary_store", False):
         with tempfile.TemporaryDirectory() as directory:
@@ -910,6 +914,24 @@ def daily(args, store, preferences):
     return queue_result.exit_code or result
 
 
+def backfill_indeed_application_method(args, _store, _preferences):
+    """Backfill the named Indeed application/status field on existing rows."""
+    observations = load_browser_observations(args.browser_observations)
+    result = backfill_indeed_buttons(GoogleTracker(), observations)
+    print(json.dumps(result.as_dict(), indent=2))
+    if result.unresolved_rows:
+        print("Unresolved rows require visible primary application or status observations from Indeed.")
+    return 0
+
+
+def daily_report(args, _store, _preferences):
+    """Print an observed/proposed/completed report without modifying Sheets."""
+    if not args.dry_run:
+        raise ValueError("daily-report currently requires --dry-run")
+    print(json.dumps(read_live_snapshot(GoogleTracker()), indent=2))
+    return 0
+
+
 def build_parser():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--db", default=str(DEFAULT_DB), help="SQLite database path")
@@ -962,7 +984,7 @@ def build_parser():
     verify_parser.add_argument("--results", type=int, default=5)
     verify_parser.set_defaults(function=verify_sources, requires_store=False)
     listing = sub.add_parser("list", help="Show saved jobs")
-    listing.add_argument("--status", choices=["new", "reviewing", "selected", "resume-created", "applied", "contacted", "interview", "rejected", "offer", "ignored"])
+    listing.add_argument("--status", choices=tuple(STATUS_LABELS))
     listing.add_argument("--json", action="store_true")
     listing.set_defaults(function=list_jobs)
     detail = sub.add_parser("show", help="Show a complete saved record")
@@ -973,7 +995,7 @@ def build_parser():
     choose.set_defaults(function=select)
     status = sub.add_parser("status", help="Change a saved job's lifecycle status")
     status.add_argument("job_id", type=int)
-    status.add_argument("status", choices=["new", "reviewing", "selected", "resume-created", "applied", "contacted", "interview", "rejected", "offer", "ignored"])
+    status.add_argument("status", choices=tuple(STATUS_LABELS))
     status.set_defaults(function=set_status)
     enrich_parser = sub.add_parser("enrich", help="Retrieve fuller descriptions")
     enrich_parser.add_argument("job_id", nargs="?", type=int)
@@ -1005,11 +1027,23 @@ def build_parser():
         help="Run discovery against a temporary database without tracker or resume writes",
     )
     daily_parser.set_defaults(function=daily)
+    report_parser = sub.add_parser(
+        "daily-report", help="Read-only live tracker snapshot with proposed resume counts"
+    )
+    report_parser.add_argument("--dry-run", action="store_true", required=True)
+    report_parser.set_defaults(function=daily_report, requires_store=False)
     sync_parser = sub.add_parser(
         "sync-sheets",
         help="Synchronize Job Scout datastore values to the canonical Google Sheet",
     )
     sync_parser.set_defaults(function=sync_sheets)
+    indeed_backfill = sub.add_parser(
+        "backfill-indeed-status",
+        help="Update only existing Indeed application/status cells from recent rendered browser observations",
+    )
+    indeed_backfill.add_argument("--browser-observations", type=Path,
+        help="JSON array of freshly observed primary buttons or job-header status messages")
+    indeed_backfill.set_defaults(function=backfill_indeed_application_method, requires_store=False)
     reject_parser = sub.add_parser(
         "reject-jobs",
         help="Archive rows marked Reject to Rejected Jobs, verify them, then remove them",
@@ -1024,6 +1058,9 @@ def main():
         load_local_environment()
         load_local_environment(PROJECT_ROOT / ".env.google-sheets.local")
         preferences = load_preferences(args.preferences)
+        if args.function is daily:
+            # JobStore initialization can write schema changes, so check first.
+            validate_candidate_profile_for_ai(preferences)
         if not getattr(args, "requires_store", True):
             return args.function(args, None, preferences)
         with JobStore(args.db) as store:

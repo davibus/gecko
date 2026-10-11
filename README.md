@@ -1,4 +1,10 @@
+The live Gecko Job Tracker tabs, sheet IDs, named headers, aliases, and workflow rules are in [docs/tracker-schema.md](docs/tracker-schema.md). `job-scout/tracker_schema.py` is the central runtime schema; job tracker code resolves current Sheet headers by name. The verified workbook has `Daily Run` history, `Daily Tasks` five-date vertical dashboard, `Job Scout`, empty `Deleted Jobs`, empty unassigned `Scratch`, and hidden `Rejected Jobs`. It has no `Daily Reports` or `List of Job Sources` tab. Missing tabs are reported, never created implicitly.
+
+For Source = Indeed, the 'Apply or on Company Website (If Indeed)' field stores the exact visible text of the primary application/status control on the Indeed job page. Examples include 'Apply Now', 'Apply on Company Website', 'Already applied', and 'Job no longer available'. Do not normalize the text. If it cannot be reliably resolved, leave the current value unchanged and continue.
+
 # Gecko — Job Discovery and Resume Workflow
+
+The canonical project name is **Gecko Main**. Open the project from the `gecko_main` directory and use that name in new scripts, documentation, commands, paths, and configuration. `AGENTS.md` records the deprecated directory name.
 
 Gecko discovers and imports relevant jobs, stores listing data, tailors and generates source-backed resumes, and tracks applications in Google Sheets.
 
@@ -12,7 +18,9 @@ python job-scout/scout.py daily
 
 Use `python job-scout/scout.py daily --dry-run` to perform network discovery against a temporary SQLite copy without changing the live tracker, creating descriptions, or generating resumes. See `job-scout/README.md` for source setup, duplicate behavior, failure recovery, and diagnostics.
 
-For manual Indeed intake, paste an Indeed job URL into the `Job URL` field (currently Column P) of a new `Job Scout` row, then run the same daily command. Gecko extracts the `jk`, checks the full dataset for duplicates, retrieves structured posting data, and populates that row. Duplicates and blocked retrievals are recorded in `Notes` without assigning an ID or stopping the run. See `job-scout/README.md` for the exact behavior and retry procedure.
+Use `python scripts/inspect_tracker_schema.py` for read-only live tab, ID, and header validation. Use `python scripts/daily_report.py --dry-run` to write the five-date vertical dashboard in `Daily Tasks`, insert history in `Daily Run`, and save local JSON/JSONL audit files. Each block shows named metrics in A/B and existing tracker source counts in E/F. `Daily Tasks` keeps the five newest distinct Denver reporting dates; same-date reruns replace that date's block. `Daily Run` inserts new blocks at row 3, preserving older history. It reads the tracker and canonical queue without modifying jobs or resumes. Discovery, Indeed page verification, and Gmail checks that cannot safely run are marked `Unavailable` except for the specified numeric-zero display metrics in `Daily Run`. See [docs/daily-report.md](docs/daily-report.md). The older `python job-scout/scout.py daily-report --dry-run` remains a console-only snapshot.
+
+For manual Indeed intake, paste an Indeed job URL into the `Job URL` field of a new `Job Scout` row, then run the same daily command. Gecko extracts the `jk`, checks the full dataset for duplicates, retrieves structured posting data, and populates that row. Duplicates and blocked retrievals are recorded in `Notes` without assigning an ID or stopping the run. See `job-scout/README.md` for the exact behavior and retry procedure.
 
 To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
 
@@ -22,7 +30,7 @@ To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
 2. Put a job description or copied job listing into `input/job-descriptions/`.
 3. Use the prompt in `prompts/use-gecko.md`.
 4. Gecko uses `input/master-resume/Dave-Call-Resume.txt` as the sole factual source and `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as the required visual formatting/layout model. Generation stops rather than falling back when either file is missing.
-   For V2, create and review the evidence-backed plan with `python scripts/gecko_v2.py plan "input/job-descriptions/Company+JobNumber.md"`, then run `python scripts/gecko_v2.py generate "scratch/Company+JobNumber/tailoring-plan.json"`. Generation runs Word-native QA and records any remaining weaknesses. See `docs/workflow.md` for the full process.
+   For V2, create and review the evidence-backed plan with `python scripts/gecko_v2.py plan "input/job-descriptions/Company+JobNumber.md"`, then run `python scripts/gecko_v2.py generate "scratch/Company+JobNumber/tailoring-plan.json"`. Generation runs Word-native QA and records any remaining weaknesses. Every new resume uses a one-physical-line `Job Title - Company Name - City, ST` heading at left with verified employment dates aligned to the right text margin. See `docs/workflow.md` for the full process.
 5. Save tailored resumes to `output/resumes/`.
 6. After the final resume is successfully created and validated, add or update the job in the canonical Google Sheet with `scripts/manage_job_tracker.py`.
 
@@ -31,7 +39,7 @@ To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
 - Tailor the resume subtly to the job rather than rewriting it in an obviously AI-generated way.
 - Keep the finished resume exactly two pages.
 - Follow the required model PDF's white-background, two-page US Letter design: centered header, EB Garamond typography, compact margins, olive section headings and rules, clean spacing, and matching section hierarchy and density.
-- Remove visible job-date text while preserving the right-side date space/cell for manual entry later.
+- Show verified employment dates flush right on the same physical line as each job heading.
 - Name resumes `Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx` and archived job descriptions `<Company-Name>+<job-number>.md`. For Indeed, use the `jk` value as the job number.
 - Use relevant AI/productivity tools naturally when helpful: Codex, ChatGPT, Claude, Perplexity, Cursor, AntiGravity.
 - When relevant, include the senior-scale metric: managed $30 million per month with a team of 4.
@@ -39,7 +47,7 @@ To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
 - Keep the user's professional voice and only make claims supported by the source resume or explicit user-provided facts.
 
 - Keep all temporary files, test scripts, and layout preview PNGs in dedicated subfolders: `scratch/{Company-Name}+{JobNumber}/`.
-- Record every completed job in Google Sheets only after the final resume exists and passes validation. The tracker assigns sequential Resume #/Index values from the Sheet, prevents new duplicate Job Numbers, and preserves manual `Applied` and `Contacted` entries.
+- Record every completed job in Google Sheets only after the final resume exists and passes validation. The current workbook records completion on a uniquely matched `Job Scout` row and preserves manual fields. A separate legacy application tab, if configured, retains its Resume #/Index behavior.
 
 ## Job tracker
 
@@ -61,13 +69,13 @@ Validate the live Sheet:
 python scripts/manage_job_tracker.py validate
 ```
 
-The `add` command is idempotent by Job Number when the application tab exists. It verifies the DOCX under `output/resumes`, then updates the matching Job Scout lifecycle while preserving user-maintained application/contact fields. Queue fields are resolved by unambiguous header on the configured intake tab. The current mapping is F `Apply?`, G `Resume Created`, I `Cost`, and Q `Resume Link`. Every scout and the queue read the existing row before generation. An `X` in Resume Created, ignoring case and spaces, always skips regeneration and preserves the existing marker and link; a blank link is reported for manual review. Cost `x` excludes creation. Successful new rows receive `X` and the complete `file:///` URL created by `Path.resolve().as_uri()` directly in Q; the writer verifies the DOCX exists and never substitutes `Open Resume` display text.
+The `add` command is idempotent by Job Number when a legacy application tab is explicitly configured. It verifies the DOCX under `output/resumes`, then updates the matching Job Scout lifecycle while preserving user-maintained application/contact fields. Queue fields are resolved by unambiguous header on the configured intake tab. Every scout and the queue read the existing row before generation. An `X` in Resume Created, ignoring case and spaces, always skips regeneration and preserves the existing marker and link; a blank link is reported for manual review. A nonblank link with a blank marker also stops generation for manual review. Cost `x` excludes creation. Successful new rows receive `X` and the complete `file:///` URL created by `Path.resolve().as_uri()` directly in `Resume Link`; the writer verifies the DOCX exists and never substitutes `Open Resume` display text.
 
 Run the complete all-source workflow with:
 
 `python job-scout/scout.py daily`
 
-The daily command reuses `scripts/generate_apply_queue.py`; there is no duplicate resume workflow. For every source, it sets F (`Apply?`) to `Yes` for Utah or explicitly remote jobs, respects I (`Cost`) = `x`, writes G (`Resume Created`) = `X` only after successful generation and validation, and writes the verified local file link to Q (`Resume Link`). Nonqualifying Apply? values and unrelated cells are preserved; the workflow never applies to jobs or marks `Applied`.
+The daily command reuses `scripts/generate_apply_queue.py`; there is no duplicate resume workflow. For every source, it sets `Apply?` to `Yes` for Utah or explicitly remote jobs, respects `Cost` = `x`, writes `Resume Created` = `X` only after successful generation and validation, and writes the verified local file link to `Resume Link`. Nonqualifying Apply? values and unrelated cells are preserved; the workflow never applies to jobs or marks `Applied`.
 
 ## Gmail response tracking
 
@@ -100,7 +108,7 @@ Gecko's only job tracker is Google Sheets. Resume queues, link audits, and Gmail
 - `input/master-resume/` — canonical content archive (`Dave-Call-Resume.txt`) and required visual model (`MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf`)
 - `input/job-descriptions/` — job listings to tailor against
 - `output/resumes/` — generated resumes
-- Google Sheets (`Job Tracker` and `Job Scout` tabs) — canonical application and discovery tracker
+- Google Sheets (`Job Scout` tab) — current canonical job tracker; `Rejected Jobs` stores durable rejection history
 - `scratch/{Company-Name}+{JobNumber}/` — job-specific temporary files, previews, and layout tests
 - `templates/` — notes about the preferred resume layout
 - `prompts/` — reusable operating prompts

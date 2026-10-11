@@ -18,6 +18,8 @@ from google_tracker import (  # noqa: E402
     load_environment,
     verified_resume_file_uri,
     resume_already_created,
+    is_expired_indeed,
+    INDEED_APPLICATION_HEADER,
 )
 from rejected_jobs import PermanentlyRejectedError  # noqa: E402
 from normalize import canonicalize_url  # noqa: E402
@@ -113,6 +115,31 @@ def record_completed_resume(
     record = record_from_files(resume, listing, date_override=date_override)
     _assert_not_rejected(record, tracker)
     _assert_no_existing_scout_resume(record, tracker)
+    try:
+        tracker.application()
+        has_application_tab = True
+    except RuntimeError as error:
+        if "was not found exactly once" not in str(error):
+            raise
+        has_application_tab = False
+    if not has_application_tab:
+        # The current workbook uses Job Scout as its sole job ledger. Resolve
+        # a pre-existing row before changing any cell; never create a guessed
+        # row from a resume filename or silently restore the retired tab.
+        matches = _matching_scout_rows(record, tracker)
+        if len(matches) != 1:
+            raise RuntimeError(
+                f"Expected one existing Job Scout row for {record.job_number!r}; "
+                f"found {len(matches)}. No tracker cells were changed"
+            )
+        row, data = matches[0]
+        scout_id = str(data.get("Scout ID") or "").strip()
+        if scout_id and not scout_id.isdigit():
+            raise RuntimeError(f"Job Scout row {row} has a nonnumeric ID; no cells were changed")
+        resume_url = publish_resume(record, tracker)
+        mark_batch_resume(int(scout_id) if scout_id else None, row, tracker,
+                          resume_url, allow_local=True, require_approved=False)
+        return row, False, record
     resume_url = publish_resume(record, tracker)
     application = {
         "Company": record.company, "Job Title": record.job_title, "Pay": record.pay,
@@ -218,6 +245,14 @@ def _assert_no_existing_scout_resume(record: JobRecord, tracker: GoogleTracker) 
     tab = tracker.scout(value_render_option="FORMULA")
     if "Resume Created" not in tab.headers:
         raise RuntimeError("Job Scout is missing Resume Created; tracker update was stopped")
+    for _, data in _matching_scout_rows(record, tracker, tab=tab):
+        if resume_already_created(data.get("Resume Created")):
+            raise RuntimeError("SKIP RESUME: existing tracker row already has Resume Created = X")
+
+
+def _matching_scout_rows(record: JobRecord, tracker: GoogleTracker, *, tab=None):
+    """Find a live row by stable ID, canonical URL, or Indeed job key."""
+    tab = tab or tracker.scout(value_render_option="FORMULA")
     scout_id = str(record.scout_id or "")
     if not scout_id and re.fullmatch(r"scout-\d+", record.job_number, re.IGNORECASE):
         scout_id = record.job_number.split("-")[-1]
@@ -225,7 +260,8 @@ def _assert_no_existing_scout_resume(record: JobRecord, tracker: GoogleTracker) 
     indeed_key = extract_indeed_job_key(record.job_link) or (
         record.job_number if record.source.casefold() == "indeed" else ""
     )
-    for _, data in tab.rows:
+    matches = []
+    for row, data in tab.rows:
         existing_url = str(data.get("Job URL") or "")
         if not (
             (scout_id and str(data.get("Scout ID") or "").strip() == scout_id)
@@ -233,8 +269,8 @@ def _assert_no_existing_scout_resume(record: JobRecord, tracker: GoogleTracker) 
             or (indeed_key and extract_indeed_job_key(existing_url) == indeed_key)
         ):
             continue
-        if resume_already_created(data.get("Resume Created")):
-            raise RuntimeError("SKIP RESUME: existing tracker row already has Resume Created = X")
+        matches.append((row, data))
+    return matches
 
 
 def _without_resume_failure(value: object) -> str:
@@ -272,6 +308,8 @@ def record_queue_failure(
     tab, row, data = _queue_source_row(scout_id, row_number, tracker)
     if str(data.get("Apply?") or "").strip().casefold() != "yes":
         raise RuntimeError("Apply? is no longer Yes; no cell was changed")
+    if is_expired_indeed(data.get(INDEED_APPLICATION_HEADER)):
+        raise RuntimeError("Expired Indeed job cannot enter the resume queue")
     detail = " ".join(str(reason or "").split()).strip()
     if detail.casefold().startswith(RESUME_FAILURE_PREFIX.casefold()):
         message = detail
@@ -304,6 +342,8 @@ def mark_batch_resume(
     tab, row, data = _queue_source_row(scout_id, row_number, tracker)
     if resume_already_created(data.get("Resume Created")):
         raise RuntimeError("SKIP RESUME: existing tracker row already has Resume Created = X")
+    if is_expired_indeed(data.get(INDEED_APPLICATION_HEADER)):
+        raise RuntimeError("Expired Indeed job cannot receive a resume link")
     if tracker.rejected_jobs_index().match(
         source=data.get("Source"),
         job_id=data.get("Job Number"),

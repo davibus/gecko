@@ -1,0 +1,3 @@
+{"at": "2026-10-10T07:21:31.901569-06:00", "event": "snapshot", "run_id": "20261010T072101-a4c3405328", "tab_counts": {"Deleted Jobs": 0, "Job Scout": 1441, "Rejected Jobs": 30, "Scratch": 0}}
+{"at": "2026-10-10T07:21:33.205292-06:00", "event": "safety_verified", "run_id": "20261010T072101-a4c3405328", "unchanged": true}
+{"at": "2026-10-10T07:21:36.652544-06:00", "event": "report_row_verified", "retained_dates": ["2026-10-10"], "row": 3, "run_id": "20261010T072101-a4c3405328", "updated_rows": [8, 9, 10, 11, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 69, 72]}

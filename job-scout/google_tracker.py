@@ -7,9 +7,11 @@ filters, validation, and sheet structure are never replaced during an upsert.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import date
 import os
 from pathlib import Path
 import re
+import sys
 from typing import Any
 from urllib.parse import quote, unquote, urlsplit
 
@@ -23,25 +25,22 @@ from rejected_jobs import (
     RejectedJobsIndex,
 )
 from source_policy import is_jooble_candidate
+from tracker_schema import (
+    LEGACY_APPLICATION_TAB as APPLICATION_TAB, SCOUT_TAB,
+    DAILY_TASKS_TAB, SCOUT_FIELDS,
+    PROTECTED_SCOUT_FIELDS, RETIRED_SCOUT_HEADERS, SCOUT_HEADER_ALIASES,
+    CURRENT_SCOUT_HEADERS, INDEED_APPLICATION_HEADER, resolve_headers,
+    header_key as _header_key, INDEED_EXPIRED_TEXTS, STATUS_LABELS, STATUS_RANKS,
+    discover_tabs,
+)
 from url_resolution import best_job_url
 
 ROOT = Path(__file__).resolve().parents[1]
 RESUME_DIR = (ROOT / "output" / "resumes").resolve()
-APPLICATION_TAB = "Job Tracker"
-SCOUT_TAB = "Job Scout"
 SCOPE = "https://www.googleapis.com/auth/spreadsheets"
 NEW_SCOUT_ID_COLOR = {"red": 217 / 255, "green": 234 / 255, "blue": 211 / 255}
 APPLICATION_FIELDS = ("Company", "Job Title", "Pay", "Job Number", "Job Link",
                       "Resume Link", "Date Created", "Source", "Date Found", "Status")
-SCOUT_FIELDS = ("Scout ID", "Source", "Company", "Job Title", "Gecko Status",
-                "Location", "Work Arrangement", "Employment Type", "Salary", "Date Posted",
-                "Date Found", "Last Seen", "Job URL", "Resume Link")
-PROTECTED_SCOUT_FIELDS = ("Apply?", "Resume Created", "Applied", "Cost", "Notes", "Contacted", "Response")
-RETIRED_SCOUT_HEADERS = ("Website", "Enrichment URL", "URL Status", "Authoritative URL")
-SCOUT_HEADER_ALIASES = {
-    "Scout ID": ("Scout ID", "ID"),
-    "Gecko Status": ("Gecko Status", "Status"),
-}
 
 
 def load_environment(project_root: Path = ROOT) -> None:
@@ -115,6 +114,14 @@ def _normal(value: Any) -> str:
 def resume_already_created(value: Any) -> bool:
     """An existing X is authoritative even when its Resume Link is blank."""
     return _normal(value) == "x"
+
+
+def is_expired_indeed(value: Any) -> bool:
+    return _normal(value) in INDEED_EXPIRED_TEXTS
+
+
+def normalized_indeed_status(value: Any) -> Any:
+    return "Expired" if is_expired_indeed(value) else value
 
 
 def verified_resume_file_uri(path: str | Path) -> str:
@@ -218,24 +225,28 @@ class GoogleTracker:
     def tab(self, title: str, *, value_render_option: str = "UNFORMATTED_VALUE") -> Tab:
         try:
             metadata = self.api.get(spreadsheetId=self.config.spreadsheet_id,
-                fields="sheets(properties(sheetId,title,gridProperties(rowCount)))").execute()
+                fields="sheets(properties(sheetId,title,gridProperties(rowCount,columnCount)))").execute()
             matches = [item["properties"] for item in metadata.get("sheets", [])
                        if item["properties"]["title"] == title]
             if len(matches) != 1:
                 raise RuntimeError(f"Google worksheet {title!r} was not found exactly once")
             values = self.api.values().get(spreadsheetId=self.config.spreadsheet_id,
-                range=_a1(title, "A1:AZ"), valueRenderOption=value_render_option).execute().get("values", [])
+                range=_a1(title, f"A1:{_col(matches[0].get('gridProperties', {}).get('columnCount', 52))}"),
+                valueRenderOption=value_render_option).execute().get("values", [])
         except Exception as error:
             raise RuntimeError(f"Cannot read Google Sheets {title!r}: {error}") from error
         if not values:
             raise RuntimeError(f"Google worksheet {title!r} has no header row")
         names = [str(value).strip() for value in values[0]]
-        normalized = [_normal(name) for name in names if name]
-        if len(normalized) != len(set(normalized)):
-            raise RuntimeError(
-                f"Google worksheet {title!r} has duplicate or ambiguous headers"
-            )
-        headers = {name: index for index, name in enumerate(names, 1) if name}
+        headers = resolve_headers(names)
+        known = (*APPLICATION_FIELDS, *SCOUT_FIELDS, *PROTECTED_SCOUT_FIELDS,
+                 *REJECTED_HEADERS,
+                 INDEED_APPLICATION_HEADER, "Resume #", "Index")
+        for canonical in known:
+            header_matches = [(name, index) for name, index in headers.items()
+                       if _header_key(name) == _header_key(canonical)]
+            if len(header_matches) == 1:
+                headers[canonical] = header_matches[0][1]
         rows = []
         for number, values_row in enumerate(values[1:], 2):
             if any(value not in (None, "") for value in values_row):
@@ -260,36 +271,38 @@ class GoogleTracker:
             raise RuntimeError(f"Cannot read Google Sheets metadata: {error}") from error
         return [item.get("properties", {}) for item in metadata.get("sheets", [])]
 
+    def discover_workbook(self, *, required=()) -> dict[str, dict]:
+        """Read current tab metadata and header rows without changing the workbook."""
+        tabs = discover_tabs(self._sheet_properties(), required=required)
+        for title, info in tabs.items():
+            width = info["grid"].get("columnCount", 26)
+            values = self.api.values().get(
+                spreadsheetId=self.config.spreadsheet_id,
+                range=_a1(title, f"A1:{_col(width)}10"),
+                valueRenderOption="FORMULA",
+            ).execute().get("values", [])
+            info["top_rows"] = values
+            # Only assigned header-based tabs have a validated header row.
+            info["physical_headers"] = [str(value) for value in values[0]] if values else []
+            if title == REJECTED_TAB and not values:
+                raise RuntimeError("Required Rejected Jobs header row is missing")
+            if title not in {SCOUT_TAB, REJECTED_TAB, DAILY_TASKS_TAB} or not values:
+                info["header_row"] = None
+                info["headers"] = {}
+            else:
+                info["header_row"] = 1
+                required_headers = REJECTED_HEADERS if title == REJECTED_TAB else ()
+                info["headers"] = resolve_headers(info["physical_headers"],
+                                                  required=required_headers)
+        return tabs
+
     def rejected_jobs(self, *, create: bool = False) -> Tab | None:
-        """Return the durable rejection-support tab, creating it hidden when requested."""
+        """Read durable rejection history; never create a tab implicitly."""
         matches = [item for item in self._sheet_properties() if item.get("title") == REJECTED_TAB]
         if len(matches) > 1:
             raise RuntimeError(f"Google worksheet {REJECTED_TAB!r} was not found exactly once")
         if not matches:
-            if not create:
-                return None
-            try:
-                self.api.batchUpdate(
-                    spreadsheetId=self.config.spreadsheet_id,
-                    body={"requests": [{"addSheet": {"properties": {
-                        "title": REJECTED_TAB,
-                        "hidden": True,
-                        "gridProperties": {
-                            "rowCount": 1000,
-                            "columnCount": len(REJECTED_HEADERS),
-                            "frozenRowCount": 1,
-                        },
-                    }}}]},
-                ).execute()
-                self.api.values().batchUpdate(
-                    spreadsheetId=self.config.spreadsheet_id,
-                    body={"valueInputOption": "RAW", "data": [{
-                        "range": _a1(REJECTED_TAB, f"A1:{_col(len(REJECTED_HEADERS))}1"),
-                        "values": [list(REJECTED_HEADERS)],
-                    }]},
-                ).execute()
-            except Exception as error:
-                raise RuntimeError(f"Cannot create Google Sheets {REJECTED_TAB!r}: {error}") from error
+            raise RuntimeError(f"Required Google worksheet {REJECTED_TAB!r} is missing; no write made")
         tab = self.tab(REJECTED_TAB)
         missing = [header for header in REJECTED_HEADERS if header not in tab.headers]
         if missing:
@@ -300,8 +313,7 @@ class GoogleTracker:
 
     def rejected_jobs_index(self, *, create: bool = False) -> RejectedJobsIndex:
         tab = self.rejected_jobs(create=create)
-        if tab is None:
-            return RejectedJobsIndex()
+        assert tab is not None
         return RejectedJobsIndex(RejectedJob.from_mapping(data) for _, data in tab.rows)
 
     def _assert_scout_row_not_rejected(self, data: dict[str, Any]) -> None:
@@ -361,10 +373,14 @@ class GoogleTracker:
                     body={"requests": [{"appendDimension": {"sheetId": tab.sheet_id,
                         "dimension": "ROWS", "length": max(new_rows) - tab.grid_rows}}]}).execute()
                 tab.grid_rows = max(new_rows)
-            data = [{
-                "range": _a1(REJECTED_TAB, f"A{row}:H{row}"),
-                "values": [[record.as_mapping()[header] for header in REJECTED_HEADERS]],
-            } for row, record in new_rows.items()]
+            data, expected = self._prepare_writes(tab, {
+                (row, header): record.as_mapping()[header]
+                for row, record in new_rows.items() for header in REJECTED_HEADERS
+            })
+            required_writes = sum(value not in (None, "") for record in new_rows.values()
+                                  for value in record.as_mapping().values())
+            if len(expected) != required_writes:
+                raise RuntimeError("Rejected Jobs has protected formula cells; visible rows were not deleted")
             try:
                 self.api.values().batchUpdate(
                     spreadsheetId=self.config.spreadsheet_id,
@@ -410,6 +426,7 @@ class GoogleTracker:
                 raise RuntimeError(
                     "Cannot delete changed Job Scout rows: " + ", ".join(map(str, changed))
                 )
+        self._assert_no_formula_row_movement(tab, "delete rejected Job Scout rows")
         requests = [{"deleteDimension": {"range": {
             "sheetId": tab.sheet_id,
             "dimension": "ROWS",
@@ -429,17 +446,18 @@ class GoogleTracker:
         tab = self.tab(self.config.application_tab)
         required = {"Company", "Job Number", "Job Link", "Resume Link",
                     "Date Created", "Applied", "Contacted"}
-        if not required <= tab.headers.keys() or not ({"Resume #", "Index"} & tab.headers.keys()):
-            raise RuntimeError("Job Tracker is missing required application columns")
+        missing = sorted(required - tab.headers.keys())
+        if not ({"Resume #", "Index"} & tab.headers.keys()):
+            missing.append("Resume # or Index")
+        if missing:
+            raise RuntimeError("Job Tracker is missing required headers: " + ", ".join(missing))
         return tab
 
     def scout(self, *, value_render_option: str = "UNFORMATTED_VALUE") -> Tab:
         tab = self.tab(self.config.scout_tab, value_render_option=value_render_option)
         for canonical, aliases in SCOUT_HEADER_ALIASES.items():
-            matches = [
-                (name, column) for name, column in tab.headers.items()
-                if _normal(name) in {_normal(alias) for alias in aliases}
-            ]
+            matches = list({column: (name, column) for name, column in tab.headers.items()
+                if _header_key(name) in {_header_key(alias) for alias in aliases}}.values())
             if len(matches) != 1:
                 labels = ", ".join(repr(alias) for alias in aliases)
                 detail = "missing" if not matches else "ambiguous"
@@ -451,10 +469,8 @@ class GoogleTracker:
             tab.headers[canonical] = column
             for _, data in tab.rows:
                 data[canonical] = data.get(physical_name, "")
-        required = {
-            "Scout ID", "Job URL", "Gecko Status", "Resume Created", "Apply?",
-            "Cost", "Resume Link",
-        }
+        required = set(SCOUT_FIELDS) | {"Apply?", "Resume Created", "Applied",
+                                        "Cost", "Notes", "Response"}
         missing = sorted(required - tab.headers.keys())
         if missing:
             raise RuntimeError(
@@ -512,16 +528,15 @@ class GoogleTracker:
         if "Response" not in tab.headers:
             raise RuntimeError("Job Scout is missing the Response column")
         current = {row: data for row, data in tab.rows}
-        entries = []
-        changed = []
-        column = _col(tab.headers["Response"])
+        proposed = {}
         for row, value in sorted(updates.items()):
             if row < 2 or row not in current:
                 raise RuntimeError(f"Cannot update missing Job Scout row {row}")
             if current[row].get("Response", "") == value:
                 continue
-            entries.append({"range": _a1(tab.title, f"{column}{row}"), "values": [[value]]})
-            changed.append(row)
+            proposed[(row, "Response")] = value
+        entries, expected = self._prepare_writes(tab, proposed)
+        changed = [row for row, _ in expected]
         if not entries:
             return []
         try:
@@ -531,6 +546,10 @@ class GoogleTracker:
             ).execute()
         except Exception as error:
             raise RuntimeError(f"Cannot update Google Sheets Response cells: {error}") from error
+        verified = dict(self.scout().rows)
+        for (row, field), value in expected.items():
+            if verified.get(row, {}).get(field, "") != value:
+                raise RuntimeError(f"Google Sheets Response readback failed at row {row}")
         return changed
 
     def update_scout_notes(self, row: int, value: str) -> None:
@@ -554,6 +573,7 @@ class GoogleTracker:
         ), reverse=True)
         if not rows:
             return []
+        self._assert_no_formula_row_movement(tab, "delete declined Job Scout rows")
         requests = [{"deleteDimension": {"range": {
             "sheetId": tab.sheet_id,
             "dimension": "ROWS",
@@ -589,6 +609,7 @@ class GoogleTracker:
             reverse=True,
         )
         if targets:
+            self._assert_no_formula_row_movement(tab, "migrate Job Scout columns")
             requests = [{"deleteDimension": {"range": {
                 "sheetId": tab.sheet_id, "dimension": "COLUMNS",
                 "startIndex": column - 1, "endIndex": column,
@@ -610,16 +631,14 @@ class GoogleTracker:
         }
 
     def _write(self, tab: Tab, row: int, values: dict[str, Any]) -> None:
-        entries = []
-        current = next((record for number, record in tab.rows if number == row), {})
-        for field, value in values.items():
-            if field not in tab.headers:
-                continue
-            value = "" if value is None else value
-            if current.get(field, "") == value:
-                continue
-            entries.append({"range": _a1(tab.title, f"{_col(tab.headers[field])}{row}"),
-                            "values": [[value]]})
+        entries, expected = self._prepare_writes(tab, {(row, field): value
+                                                       for field, value in values.items()})
+        if not any(number == row for number, _ in tab.rows):
+            missing = {field for field, value in values.items()
+                       if value not in (None, "") and (row, field) not in expected}
+            if missing:
+                raise RuntimeError("New Google Sheets row has protected managed cells: "
+                                   + ", ".join(sorted(missing)))
         if not entries:
             return
         try:
@@ -633,6 +652,94 @@ class GoogleTracker:
                     body={"valueInputOption": "RAW", "data": entries}).execute()
         except Exception as error:
             raise RuntimeError(f"Cannot update Google Sheets {tab.title!r} row {row}: {error}") from error
+        verified = self.tab(tab.title)
+        raw = (verified.raw_rows or {}).get(row, ())
+        for (_, field), value in expected.items():
+            column = tab.headers[field]
+            actual = raw[column - 1] if column <= len(raw) else ""
+            if actual != value:
+                raise RuntimeError(
+                    f"Google Sheets readback failed for {tab.title!r} "
+                    f"{_col(column)}{row} ({field}); expected {value!r}, got {actual!r}"
+                )
+
+    def _prepare_writes(self, tab: Tab, proposed: dict[tuple[int, str], Any]
+                        ) -> tuple[list[dict[str, Any]], dict[str | tuple[int, str], Any]]:
+        """Resolve live headers and protect formulas before any value batch is sent."""
+        if not proposed:
+            return [], {}
+        allowed = (set(APPLICATION_FIELDS) | {"Index", "Resume #", "Applied", "Contacted"}
+                   if tab.title == self.config.application_tab else
+                   set(SCOUT_FIELDS) | {"Apply?", "Resume Created", "Notes", "Response"}
+                   if tab.title == self.config.scout_tab else set(REJECTED_HEADERS)
+                   if tab.title == REJECTED_TAB else set())
+        unexpected = {field for _, field in proposed} - allowed
+        if unexpected:
+            raise ValueError("Unmanaged Google Sheets fields: " + ", ".join(sorted(unexpected)))
+        live = (self.scout(value_render_option="FORMULA")
+                if tab.title == self.config.scout_tab else
+                self.tab(tab.title, value_render_option="FORMULA"))
+        if live.sheet_id != tab.sheet_id or any(live.headers.get(field) != tab.headers.get(field)
+                                                for _, field in proposed):
+            raise RuntimeError("Google Sheets headers changed before writing; no cells were updated")
+        anchors = [(row, column) for row, raw in (live.raw_rows or {}).items()
+                   for column, value in enumerate(raw, 1)
+                   if isinstance(value, str) and value.lstrip().startswith("=")
+                   and "ARRAYFORMULA" in value.upper()]
+        current = dict(live.rows)
+        original = dict(tab.rows)
+        identity_fields = (("Scout ID", "Source", "Job URL")
+                           if tab.title == self.config.scout_tab else ("Job Number", "Job Link"))
+        for row, _ in proposed:
+            if row in original and any(
+                str(original[row].get(field) or "") != str(current.get(row, {}).get(field) or "")
+                for field in identity_fields if field in tab.headers
+            ):
+                raise RuntimeError(f"Google Sheets row {row} moved or changed before writing; no cells were updated")
+        if tab.title == self.config.scout_tab:
+            proposed = dict(proposed)
+            for row in {row for row, _ in proposed}:
+                status = proposed.get((row, INDEED_APPLICATION_HEADER),
+                                      current.get(row, {}).get(INDEED_APPLICATION_HEADER))
+                if is_expired_indeed(status):
+                    if (row, INDEED_APPLICATION_HEADER) in proposed:
+                        proposed[(row, INDEED_APPLICATION_HEADER)] = "Expired"
+                    elif _normal(status) != "expired":
+                        proposed[(row, INDEED_APPLICATION_HEADER)] = "Expired"
+                    proposed[(row, "Apply?")] = "No"
+        entries: list[dict[str, Any]] = []
+        expected: dict[str | tuple[int, str], Any] = {}
+        for (row, field), raw_value in proposed.items():
+            column = live.headers.get(field)
+            if column is None:
+                raise RuntimeError(f"Google Sheets is missing managed header {field!r}")
+            value = "" if raw_value is None else raw_value
+            old = current.get(row, {}).get(field, "")
+            if old == value:
+                continue
+            cell = f"{_col(column)}{row} ({field})"
+            if isinstance(old, str) and old.startswith("="):
+                print(f"Skipped formula cell {tab.title} {cell}", file=sys.stderr)
+                continue
+            if any(row >= anchor_row and column >= anchor_col
+                   for anchor_row, anchor_col in anchors):
+                print(f"Skipped possible ARRAYFORMULA output {tab.title} {cell}; "
+                      "the spill range cannot be guaranteed", file=sys.stderr)
+                continue
+            entries.append({"range": _a1(tab.title, f"{_col(column)}{row}"),
+                            "values": [[value]]})
+            expected[(row, field)] = value
+        return entries, expected
+
+    def _assert_no_formula_row_movement(self, tab: Tab, operation: str) -> None:
+        formula_tab = self.tab(tab.title, value_render_option="FORMULA")
+        formulas = [(row, _col(column)) for row, raw in (formula_tab.raw_rows or {}).items()
+                    for column, value in enumerate(raw, 1)
+                    if isinstance(value, str) and value.startswith("=")]
+        if formulas:
+            row, column = formulas[0]
+            raise RuntimeError(f"Cannot {operation}: {tab.title} contains a formula at "
+                               f"{column}{row}; formulas cannot be guaranteed to stay with their jobs")
 
     def _next_row(self, tab: Tab) -> int:
         return max((row for row, _ in tab.rows), default=1) + 1
@@ -649,9 +756,13 @@ class GoogleTracker:
         if unexpected:
             raise ValueError("Unsupported manual Job Scout fields: " + ", ".join(sorted(unexpected)))
         managed = dict(values)
+        current = next(data for number, data in tab.rows if number == row)
+        status = managed.get(INDEED_APPLICATION_HEADER, current.get(INDEED_APPLICATION_HEADER))
+        if is_expired_indeed(status):
+            managed[INDEED_APPLICATION_HEADER] = "Expired"
+            managed["Apply?"] = "No"
         if {"Location", "Work Arrangement"} & managed.keys():
-            current = next(data for number, data in tab.rows if number == row)
-            managed["Apply?"] = apply_value(
+            managed["Apply?"] = "No" if is_expired_indeed(status) else apply_value(
                 managed.get("Location", current.get("Location")),
                 managed.get("Work Arrangement", current.get("Work Arrangement")),
             )
@@ -667,6 +778,8 @@ class GoogleTracker:
             raise RuntimeError(f"Cannot locate Job Scout row {row_number}; no cell was changed")
         _, current = matches[0]
         self._assert_scout_row_not_rejected(current)
+        if is_expired_indeed(current.get(INDEED_APPLICATION_HEADER)):
+            raise RuntimeError("Expired Indeed job cannot be approved")
         if (_normal(current.get("Company")) != _normal(company)
                 or _normal(current.get("Job Title")) != _normal(title)):
             raise RuntimeError("Manual Indeed row identity changed; Apply? was not updated")
@@ -784,8 +897,10 @@ class GoogleTracker:
         by_id = {str(data.get("Scout ID")): row for row, data in tab.rows
                  if data.get("Scout ID") not in (None, "")}
         by_url = {canonicalize_url(str(data.get("Job URL") or "")): row for row, data in tab.rows
-                  if data.get("Job URL")}
+                   if data.get("Job URL")}
+        original_rows = {row for row, _ in tab.rows}
         added = updated = excluded = rejected = 0
+        planned: dict[int, dict[str, Any]] = {}
         for job in jobs:
             url = best_job_url(job)
             if rejected_jobs.matches_job(job) is not None:
@@ -801,13 +916,13 @@ class GoogleTracker:
             if row and append_only:
                 continue
             existing = next((data for number, data in tab.rows if number == row), {})
-            labels = {"new": "New", "reviewing": "Reviewing", "selected": "Selected",
-                      "resume-created": "Resume Created", "applied": "Applied", "contacted": "Contacted",
-                      "interview": "Interview", "rejected": "Rejected", "ignored": "Ignored", "offer": "Offer"}
-            ranks = {name: rank for rank, name in enumerate(labels.values())}
-            incoming = labels.get(job.status, job.status.replace("-", " ").title())
+            incoming = STATUS_LABELS.get(job.status, job.status.replace("-", " ").title())
             previous = str(existing.get("Gecko Status") or "New")
-            status = incoming if ranks.get(incoming, 0) > ranks.get(previous, 0) else previous
+            # An unfamiliar status may be a user-maintained lifecycle value.
+            # Never replace it with a discovery status we cannot rank.
+            status = (incoming if not existing or
+                      (previous in STATUS_RANKS and incoming in STATUS_RANKS
+                       and STATUS_RANKS[incoming] > STATUS_RANKS[previous]) else previous)
             if not row:
                 row = self._next_row(tab)
                 tab.rows.append((row, {}))
@@ -826,12 +941,62 @@ class GoogleTracker:
                 "Date Posted": job.date_posted, "Date Found": job.date_discovered,
                 "Last Seen": job.last_seen or job.date_discovered, "Job URL": url,
             }
+            if _normal(job.source) == "indeed":
+                method = str(job.indeed_application_method or "").strip()
+                current_method = str(existing.get(INDEED_APPLICATION_HEADER) or "").strip()
+                fresh = job.indeed_application_verified_on == date.today().isoformat()
+                if is_expired_indeed(current_method):
+                    values[INDEED_APPLICATION_HEADER] = "Expired"
+                elif method and fresh and method != current_method:
+                    values[INDEED_APPLICATION_HEADER] = normalized_indeed_status(method)
+            if is_expired_indeed(values.get(INDEED_APPLICATION_HEADER, existing.get(INDEED_APPLICATION_HEADER))):
+                values["Apply?"] = "No"
             if existing:
                 for stable in ("Scout ID", "Source", "Company", "Job Title", "Date Posted", "Date Found"):
                     values.pop(stable, None)
+                if values["Apply?"] != "Yes" and not is_expired_indeed(
+                        values.get(INDEED_APPLICATION_HEADER, existing.get(INDEED_APPLICATION_HEADER))):
+                    values.pop("Apply?", None)
             managed_fields = set(SCOUT_FIELDS) | {"Apply?"}
-            self._write(tab, row, {key: value for key, value in values.items()
-                                   if key in managed_fields})
+            planned[row] = {key: value for key, value in values.items()
+                            if key in managed_fields}
+        proposed: dict[tuple[int, str], Any] = {}
+        current_rows = dict(tab.rows)
+        for row, values in planned.items():
+            current = current_rows[row]
+            for field, raw_value in values.items():
+                if field not in tab.headers:
+                    raise RuntimeError(f"Job Scout is missing required header: {field}")
+                value = "" if raw_value is None else raw_value
+                if current.get(field, "") == value:
+                    continue
+                proposed[(row, field)] = value
+        entries, expected = self._prepare_writes(tab, proposed)
+        protected_new = [f"{field} row {row}" for (row, field), value in proposed.items()
+                         if row not in original_rows and value not in (None, "")
+                         and (row, field) not in expected]
+        if protected_new:
+            raise RuntimeError("New Job Scout rows have protected managed cells: "
+                               + ", ".join(protected_new))
+        if entries:
+            last_row = max(row for row, _ in expected)
+            if last_row > tab.grid_rows:
+                self.api.batchUpdate(spreadsheetId=self.config.spreadsheet_id,
+                    body={"requests": [{"appendDimension": {"sheetId": tab.sheet_id,
+                        "dimension": "ROWS", "length": last_row - tab.grid_rows}}]}).execute()
+            self.api.values().batchUpdate(spreadsheetId=self.config.spreadsheet_id,
+                body={"valueInputOption": "RAW", "data": entries}).execute()
+            verified = self.scout()
+            raw_rows = verified.raw_rows or {}
+            for (row, field), value in expected.items():
+                column = tab.headers[field]
+                raw = raw_rows.get(row, ())
+                actual = raw[column - 1] if column <= len(raw) else ""
+                if actual != value:
+                    raise RuntimeError(
+                        f"Google Sheets readback failed for Job Scout "
+                        f"{_col(column)}{row} ({field}); expected {value!r}, got {actual!r}"
+                    )
         return {"rows": len(tab.rows), "added": added, "updated": updated,
                 "jooble_excluded": excluded, "rejected_excluded": rejected}
 
@@ -934,28 +1099,27 @@ class GoogleTracker:
         self._assert_scout_row_not_rejected(current)
         if resume_already_created(current.get("Resume Created")):
             raise RuntimeError("SKIP RESUME: existing tracker row already has Resume Created = X")
+        prior_link = str(current.get("Resume Link") or "").strip()
+        if prior_link and prior_link != target:
+            raise RuntimeError("Resume Link already has a different value; manual review is required")
+        if is_expired_indeed(current.get(INDEED_APPLICATION_HEADER)):
+            raise RuntimeError("Expired Indeed job cannot receive a resume link")
         if require_approved and _normal(current.get("Apply?")) != "yes":
             raise RuntimeError("Apply? is no longer Yes; no cell was changed")
         advanced = _normal(current.get("Gecko Status")) in {"applied", "contacted", "interview", "offer"}
-        entries = []
+        proposed = {}
         if not advanced:
-            entries.append({
-                "range": _a1(tab.title, f"{_col(tab.headers['Gecko Status'])}{row}"),
-                "values": [["Resume Created"]],
-            })
-        entries.extend([
-            {"range": _a1(tab.title, f"{_col(tab.headers['Resume Link'])}{row}"),
-             "values": [[target]]},
-            {"range": _a1(tab.title, f"{_col(tab.headers['Resume Created'])}{row}"),
-             "values": [[marker]]},
-        ])
+            proposed[(row, "Gecko Status")] = "Resume Created"
+        proposed[(row, "Resume Link")] = target
+        proposed[(row, "Resume Created")] = marker
         if notes is not None and notes != str(current.get("Notes") or "").strip():
             if "Notes" not in tab.headers:
                 raise RuntimeError("Job Scout is missing Notes; no cell was changed")
-            entries.append({
-                "range": _a1(tab.title, f"{_col(tab.headers['Notes'])}{row}"),
-                "values": [[notes]],
-            })
+            proposed[(row, "Notes")] = notes
+        entries, expected = self._prepare_writes(tab, proposed)
+        if ((row, "Resume Link") not in expected and current.get("Resume Link") != target
+                or (row, "Resume Created") not in expected):
+            raise RuntimeError("Resume completion cells are formula protected; no completion cells were changed")
         try:
             self.api.values().batchUpdate(
                 spreadsheetId=self.config.spreadsheet_id,
@@ -965,6 +1129,11 @@ class GoogleTracker:
             raise RuntimeError(
                 f"Cannot complete Google Sheets Job Scout row {row}: {error}"
             ) from error
+        verified = self.scout()
+        data = dict(verified.rows).get(row, {})
+        for (_, field), value in expected.items():
+            if data.get(field, "") != value:
+                raise RuntimeError(f"Job Scout {field} readback failed at row {row}")
         return row
 
     def remove_dead_scout(self, scout_ids: set[int]) -> set[int]:
@@ -972,8 +1141,7 @@ class GoogleTracker:
 
         Missing IDs are already clean, which makes interrupted/repeated cleanup
         idempotent. Manual columns are deliberately neither inspected nor changed.
-        FORMULA rendering ensures a formula whose displayed result is blank is still
-        cleared and cannot pass verification as an empty cell.
+        Formula cells are retained and reported by the shared write guard.
         """
         tab = self.scout(value_render_option="FORMULA")
         target_rows: dict[int, int] = {}
@@ -1005,6 +1173,8 @@ class GoogleTracker:
                     continue
                 value = data.get(field, "")
                 if value in (None, ""):
+                    continue
+                if field != "Scout ID" and isinstance(value, str) and value.startswith("="):
                     continue
                 column = _col(verified.headers[field])
                 reason = write_errors.get(row) or "write completed but the managed value remained"

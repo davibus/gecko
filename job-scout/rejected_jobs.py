@@ -8,20 +8,9 @@ from urllib.parse import urlsplit
 
 from normalize import canonicalize_url
 from sources.indeed import canonical_indeed_url, extract_indeed_job_key
+from tracker_schema import REJECTED_TAB, REJECTED_HEADERS, REJECT_STATUSES
 
 
-REJECTED_TAB = "Rejected Jobs"
-REJECTED_HEADERS = (
-    "Source",
-    "Job ID",
-    "Original Job URL",
-    "Normalized Job URL",
-    "Company",
-    "Job Title",
-    "Date Rejected",
-    "Reason or Status",
-)
-REJECT_STATUSES = frozenset({"reject", "delete / reject", "delete/reject"})
 
 
 class PermanentlyRejectedError(RuntimeError):

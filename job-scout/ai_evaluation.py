@@ -97,11 +97,26 @@ class OpenAIJsonClient:
             raise RuntimeError(f"Job Scout AI request failed for model {model}: {error}") from error
 
 
+def screening_models(preferences: dict) -> tuple[str, str]:
+    """Resolve the same environment overrides for preflight and evaluation."""
+    settings = preferences.get("ai_evaluation", {})
+    return (
+        os.getenv("JOB_SCOUT_TRIAGE_MODEL", settings.get("triage_model", "")).strip(),
+        os.getenv("JOB_SCOUT_SCORING_MODEL", settings.get("scoring_model", "")).strip(),
+    )
+
+
+def validate_candidate_profile_for_ai(preferences: dict) -> None:
+    """Fail before daily side effects when both screening models are enabled."""
+    if all(screening_models(preferences)):
+        settings = preferences.get("ai_evaluation", {})
+        load_candidate_profile(settings.get("candidate_profile") or None)
+
+
 class JobEvaluator:
     def __init__(self, store, preferences: dict, client=None):
         settings = preferences.get("ai_evaluation", {})
-        self.triage_model = os.getenv("JOB_SCOUT_TRIAGE_MODEL", settings.get("triage_model", "")).strip()
-        self.scoring_model = os.getenv("JOB_SCOUT_SCORING_MODEL", settings.get("scoring_model", "")).strip()
+        self.triage_model, self.scoring_model = screening_models(preferences)
         self.resume_model = os.getenv("GECKO_RESUME_MODEL", settings.get("resume_model", "")).strip()
         self.max_triage_chars = int(settings.get("max_triage_description_chars", 6000))
         self.max_scoring_chars = int(settings.get("max_scoring_description_chars", 14000))

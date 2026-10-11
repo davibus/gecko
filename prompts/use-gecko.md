@@ -18,9 +18,9 @@ Instructions:
 - Keep it exactly two pages.
 - Preserve Gecko formatting conventions.
 - Require at least 8 master-supported, job-relevant Core Strengths in professional Title Case and at least 8 master-supported, job-relevant Tools & Platforms with official brand capitalization.
-- Format every Professional Experience job with the title alone on line 1 and `Company Name  City, State` on line 2; never use `Job Title | Company`.
-- Run Gecko's structural cleanup/validation before final save and correct any section-count, capitalization, job-hierarchy, combined-header, or lowercase-placeholder failure.
-- Remove visible job dates but preserve the right-side date space.
+- Format every Professional Experience job on one physical line as `Job Title - Company Name - City, ST` at left and verified employment dates flush right, with a single space around each normal hyphen. Use verified master TXT fields and check every rendered line for wrapping or overlap.
+- Run Gecko's structural cleanup/validation before final save and correct any section-count, capitalization, single-line employment-header, or lowercase-placeholder failure.
+- Show verified employment dates at the right text margin on the same physical line as every job heading.
 - Save the finished DOCX in `output/resumes/` using Gecko filename rules: `Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx`.
 - Save the archived listing in `input/job-descriptions/` as `<Company-Name>+<job-number>.md`.
 - Only after the final resume has been successfully created and validated, upsert the job in the canonical Google Sheet with `scripts/manage_job_tracker.py add`, then validate the tracker. Do not create or update a local Excel tracker. Preserve existing rows and manual Applied/Contacted values.

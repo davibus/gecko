@@ -1,3 +1,7 @@
+See [tracker-schema.md](tracker-schema.md) for the live workbook tabs, verified `Job Scout` headers, aliases, write rules, and read-only daily report command. Runtime mapping lives in `job-scout/tracker_schema.py` and always resolves live headers by name.
+
+For Source = Indeed, the 'Apply or on Company Website (If Indeed)' field stores the exact visible text of the primary application/status control on the Indeed job page. Examples include 'Apply Now', 'Apply on Company Website', 'Already applied', and 'Job no longer available'. Do not normalize the text. If it cannot be reliably resolved, leave the current value unchanged and continue.
+
 # Gecko Workflow
 
 ## Execution default
@@ -6,11 +10,11 @@ Run the affected canonical workflow live after implementing requested changes. N
 
 ## Automated Daily Job Scout
 
-Each morning, run `python job-scout/scout.py daily`. This is the single discovery-to-resume entry point. It appends new records to the configured intake worksheet, then invokes the canonical Gecko queue across every source. Queue fields are resolved by exact unambiguous headers; the current mapping is F `Apply?`, G `Resume Created`, I `Cost`, and Q `Resume Link`. Every scout and the queue inspect the existing row by stable identity. An X in Resume Created, ignoring case and surrounding spaces, always skips resume generation and preserves the marker and link. A blank link is reported for manual review. Cost `x` excludes a row. Approved rows with blank Resume Created may be created.
+Each morning, run `python job-scout/scout.py daily`. This is the single discovery-to-resume entry point. It appends new records to the configured intake worksheet, then invokes the canonical Gecko queue across every source. Queue fields are resolved by exact unambiguous headers; every scout and the queue inspect the existing row by stable identity. An X in Resume Created, ignoring case and surrounding spaces, always skips resume generation and preserves the marker and link. A blank link on an X row is reported for manual review. A nonblank link with a blank marker also requires manual review. Cost `x` excludes a row. Approved rows with both completion fields blank may be created.
 
-The queue archives available job context, creates the evidence-backed tailoring plan from the current master TXT, renders in the current model-PDF style, and runs Word-native two-page QA. The exact resume remains under `output/resumes`. Success atomically writes `Resume Created = X` and a clickable absolute file URI to `Resume Link`. A creation failure leaves G blank, records the retryable reason in `Notes`, never `Cost`, and continues to later rows.
+The queue archives available job context, creates the evidence-backed tailoring plan from the current master TXT, renders in the current model-PDF style, and runs Word-native two-page QA. The exact resume remains under `output/resumes`. Success atomically writes `Resume Created = X` and a clickable absolute file URI to `Resume Link`. A creation failure leaves the named `Resume Created` field blank, records the retryable reason in `Notes`, never `Cost`, and continues to later rows. A nonblank existing link with a blank marker requires manual review and stops generation.
 
-Use `python job-scout/scout.py daily --dry-run` for discovery plus a read-only queue classification against a temporary database copy. It reports new eligible, repair eligible, completed, and Cost-excluded rows without tracker, archive, resume, or Gmail writes. The standalone `python scripts/generate_apply_queue.py --dry-run` reports the same queue-only snapshot.
+Use `python scripts/inspect_tracker_schema.py` to validate live tab names, IDs, and named headers without changing Sheets. Use `python job-scout/scout.py daily --dry-run` for discovery plus read-only queue classification against a temporary database copy. It does not write tracker cells, archive jobs, create resumes, or update Gmail responses. `python scripts/daily_report.py --dry-run` writes managed vertical dashboard cells in `Daily Tasks`, inserts a `Daily Run` history block at row 3, and saves local audit files from a live Sheet snapshot. `Daily Tasks` keeps the newest five distinct dates in descending order; older `Daily Run` history remains below new blocks. See [daily-report.md](daily-report.md). The older `python job-scout/scout.py daily-report --dry-run` prints a console-only snapshot. The standalone `python scripts/generate_apply_queue.py --dry-run` reports the queue-only snapshot.
 
 Gmail setup and authorization are documented in `README.md`. Live runs report emails checked, responses matched, and exact tracker rows updated. Gmail failures remain nonfatal and are appended to `output/gmail-response-tracking.log`.
 
@@ -45,15 +49,15 @@ To proceed with a listing, explicitly run `python job-scout/scout.py select <ID>
 
 ## V2 tailoring and QA
 
-To process the configured intake worksheet, run `python scripts/generate_apply_queue.py`. Matching ignores case and surrounding spaces. It creates approved rows with blank Resume Created, skips every X row regardless of Resume Link, reports blank links for manual review, and skips Cost `x`. The runner processes jobs one at a time and continues after individual failures.
+To process the configured intake worksheet, run `python scripts/generate_apply_queue.py`. Matching ignores case and surrounding spaces. It creates approved rows only when both `Resume Created` and `Resume Link` are blank, skips every X row regardless of link, reports blank links on X rows for manual review, and skips Cost `x`. The runner processes jobs one at a time and continues after individual failures.
 
 There is no description-length gate. If reliable listing and structured Sheet context are both unavailable, Gecko creates no resume and leaves completion unchanged. After Word-native QA passes, the canonical recorder verifies the DOCX is directly under `output/resumes`, creates the URL with `Path.resolve().as_uri()`, and writes that complete `file:///` URL directly as the visible Resume Link value. It never writes a `HYPERLINK` formula or `Open Resume` label. It updates only Resume Created, Resume Link, lifecycle status, and Gecko failure text in Notes. It re-finds the destination by stable ID before writing, so row movement cannot attach a resume to another job. Applied, Cost, formatting, formulas, and row order remain unchanged.
 
-The complete command is `python job-scout/scout.py daily`. It evaluates existing rows across every source and uses only Location and Work Arrangement to set Apply? for Utah or explicitly remote jobs. It then applies the shared Cost exclusion and creation/repair rules. After the exact DOCX passes Word-native validation, it writes G = X and Q = the clickable local file URI. It never submits an application or marks Applied.
+The complete command is `python job-scout/scout.py daily`. It evaluates existing rows across every source and uses only Location and Work Arrangement to set Apply? for Utah or explicitly remote jobs. It then applies the shared Cost exclusion and creation rules. After the exact DOCX passes Word-native validation, it writes `Resume Created` = X and `Resume Link` = the clickable local file URI. It never submits an application or marks Applied.
 
 The resume workflow starts with a source-backed tailoring plan bound to the current master archive and required formatting-model hashes. Job Scout's discovery and selection workflow remains separate; its evidence reader uses the same current master archive. For an archived listing, run:
 
-For new jobs, use `scripts/gecko_v2.py`. The older job-specific `generate_*_resume.py` scripts are historical artifacts and must not be used as factual sources or as the current generation path.
+For new jobs, use `scripts/gecko_v2.py`. Resume Creator, Indeed Scout, Job Scout, and the apply queue share this generator and its employment-heading formatter. Each Professional Experience entry has one physical line: `Job Title - Company Name - City, ST` at left and compact, verified master TXT employment dates flush with the right text margin. A borderless two-column Word table uses zero cell padding and right-aligned dates. The generator keeps the existing margins and 11-point main text; only heading text may receive a minimal size adjustment. Word-native QA must show both fields unwrapped, nonoverlapping, and the document at exactly two pages. A line that cannot fit legibly fails QA. The older job-specific `generate_*_resume.py` scripts are historical artifacts and must not be used as factual sources or as the current generation path.
 
 ```powershell
 python scripts/gecko_v2.py plan "input/job-descriptions/Company+JobNumber.md"
@@ -80,7 +84,7 @@ Only after the final resume exists and V2 QA passes, run the tracker command in 
 - Appropriate ATS terms
 - Correct filename: `Dave-Call+{Company-Name}+{Job-Title}+{JobNumber}.docx`
 - Archived listing saved as `input/job-descriptions/{Company-Name}+{JobNumber}.md`
-- No visible job-date text (preserve date spacing)
+- Verified job dates flush right on the same physical line as every job heading
 - No page overflow or excessive empty blocks
 - All temporary artifacts contained within `scratch/{Company-Name}+{JobNumber}/`
 - All reusable scripts maintained in `scripts/`

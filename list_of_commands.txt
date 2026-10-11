@@ -1,0 +1,154 @@
+I inspected the CLI parsers and entry points in job-scout/scout.py:925, the runnable files under scripts/, both README files, AGENTS.md, and GECKO_SYSTEM.md. There is no package.json in this       
+  repository, so there are no package scripts to list. This command catalog was originally assembled without running the listed commands.                                                                                                             
+                                                                                                                                                                                                       
+  Commands assume the repository root as the working directory. Python argparse commands also accept -h or --help. For every scout.py subcommand, the global options --db PATH, --preferences PATH, and
+  --sources-config PATH go before the subcommand.                                                                                                                                                      
+                                                                                                                                                                                                       
+  ### Discovery and Job Scout                                                                                                                                                                          
+                                                                                                                                                                                                       
+   Exact command                                                     Purpose and available arguments                                   Changes tracker or files?                                       
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   python job-scout/scout.py search                                  Search and save jobs. Flags: --source                             Yes: SQLite and Google Sheet; may archive listings.             
+                                                                     {all,core,adzuna,remotive,web-                                                                                                    
+                                                                     careers,jobicy,remoteok,usajobs,greenhouse,lever,ashby,workabl                                                                    
+                                                                     e,weworkremotely,workingnomads,themuse,indeed,linkedin,glassdo                                                                    
+                                                                     or,ziprecruiter}, repeatable --query TEXT, repeatable                                                                             
+                                                                     --location TEXT, --page N, --results N, --limit N. Default                                                                        
+                                                                     source is adzuna.                                                                                                                 
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python job-scout/scout.py daily                                   Full discovery, Sheet sync, eligibility review, resume queue,     Yes: live mode can change SQLite, Sheet, descriptions, resumes, 
+                                                                     and Gmail response check. Flags: --results N, --limit N,          and logs. --dry-run avoids Sheet/resume writes but code still   
+                                                                     --dry-run.                                                        opens the live SQLite store and writes the apply-queue log.     
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python job-scout/scout.py sync-sheets                             Process marked rejections and synchronize saved jobs to           Yes: SQLite and Sheet, including verified rejection archival/   
+                                                                     Sheets. No subcommand flags.                                      removal where marked.                                           
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python job-scout/scout.py reject-jobs                             Archive rows marked Reject to Rejected Jobs, verify, then         Yes: Sheet and possibly SQLite.                                 
+                                                                     remove visible rows. No subcommand flags.
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python job-scout/scout.py backfill-indeed-status --browser-       Update existing Indeed application/status cells from recent       Sheet: only verified target cells when observations qualify.    
+   observations PATH                                                 rendered-page observations. --browser-observations PATH is                                                                        
+                                                                     optional syntactically; without observations it reports                                                                           
+                                                                     unresolved rows.                                                                                                                  
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python job-scout/scout.py diagnose-remotive                       Report Remotive API, filtering, and deduplication stages.         No Sheet/job changes; opening JobStore can create or migrate    
+                                                                     Flags: repeatable --query TEXT, --results N, --examples N.        SQLite.                                                         
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python job-scout/scout.py diagnose-remotive-feeds                 Test bounded Remotive RSS acquisition. Flag: --limit N.           No Sheet/job changes; uses temporary SQLite and opens the       
+                                                                                                                                       configured SQLite store.                                        
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python job-scout/scout.py verify-sources                          Check configured providers live. Flag: --results N.               No tracker or local file writes in its dispatch path.           
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python job-scout/discover_ats_employers.py                        Discover and validate ATS employer boards; merge approved         Files: default/--apply can change config and writes the JSON    
+                                                                     additions into config by default. Flags: mutually exclusive       report. Even --dry-run writes the report. No tracker write.     
+                                                                     --dry-run or --apply, --refresh, repeatable --platform                                                                            
+                                                                     {greenhouse,lever,ashby,workable}, --limit N, --config PATH,                                                                      
+                                                                     --report PATH, --seeds PATH.                                                                                                      
+                                                                                                                                                                                                       
+  ### Saved jobs and review                                                                                                                                                                            
+                                                                                                                                                                                                       
+   Exact command                                     Purpose and available arguments                                              Changes tracker or files?                                            
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   python job-scout/scout.py list                    List saved jobs. Flags: --status {new,reviewing,selected,resume-             No Sheet/job change; SQLite initialization or migration is possible. 
+                                                     created,applied,contacted,interview,rejected,offer,ignored}, --json.
+  ────────────────────────────────────────────────  ───────────────────────────────────────────────────────────────────────────  ──────────────────────────────────────────────────────────────────────
+   python job-scout/scout.py show JOB_ID             Show one full saved record. Required integer JOB_ID; no other subcommand     Same SQLite caveat; no Sheet change.                                 
+                                                     flags.                                                                                                                                            
+  ────────────────────────────────────────────────  ───────────────────────────────────────────────────────────────────────────  ──────────────────────────────────────────────────────────────────────
+   python job-scout/scout.py review                  Display prioritized review queue. Flags: --limit N, --json, --include-       Same SQLite caveat; no Sheet change.                                 
+                                                     closed.                                                                                                                                           
+  ────────────────────────────────────────────────  ───────────────────────────────────────────────────────────────────────────  ──────────────────────────────────────────────────────────────────────
+   python job-scout/scout.py select JOB_ID           Archive a listing for resume work and mark it selected. Required integer     Yes: archived description, SQLite status, and Sheet sync.            
+                                                     JOB_ID.                                                                                                                                           
+  ────────────────────────────────────────────────  ───────────────────────────────────────────────────────────────────────────  ──────────────────────────────────────────────────────────────────────
+   python job-scout/scout.py status JOB_ID STATUS    Set lifecycle status. STATUS choices are the same values accepted by list    Yes: SQLite and Sheet sync.                                          
+                                                     --status.                                                                                                                                         
+  ────────────────────────────────────────────────  ───────────────────────────────────────────────────────────────────────────  ──────────────────────────────────────────────────────────────────────
+   python job-scout/scout.py enrich JOB_ID           Retrieve a fuller description for one job. Alternatively, python job-        Yes: SQLite and Sheet sync.                                          
+                                                     scout/scout.py enrich --all targets all Adzuna jobs; exactly one selector                                                                         
+                                                     is required.                                                                                                                                      
+  ────────────────────────────────────────────────  ───────────────────────────────────────────────────────────────────────────  ──────────────────────────────────────────────────────────────────────
+   python job-scout/scout.py resolve-url JOB_ID      Verify/resolve one job URL. Alternatively use --jooble for stored Jooble-    Yes: SQLite and Sheet sync.                                          
+                                                     sourced records; exactly one selector is required. Additional flags:                                                                              
+                                                     --limit N, --force.                                                                                                                               
+                                                                                                                                                                                                       
+  ### Resume generation and tracker
+                                                                                                                                                                                                       
+   Exact command                                                     Purpose and available arguments                                   Changes tracker or files?                                       
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   python scripts/gecko_v2.py plan LISTING                           Create a source-backed tailoring plan from a listing path.        Files: creates scratch plan; no tracker write.                  
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python scripts/gecko_v2.py generate PLAN                          Generate and natively QA a resume from a plan JSON path.          Files: scratch artifacts and, on QA pass, final DOCX; no        
+                                                                                                                                       tracker write.                                                  
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python scripts/gecko_v2.py qa PLAN                                Recheck the existing DOCX associated with a plan.                 Files: QA and Word validation artifacts; no tracker write.      
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python scripts/generate_apply_queue.py                            Process eligible rows across sources. Flags: --db PATH,           Yes: live mode can create resumes, descriptions, logs, SQLite   
+                                                                     --source indeed, --dry-run.                                       changes, and managed Sheet cells; --dry-run only reports queue  
+                                                                                                                                       decisions.                                                      
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python scripts/manage_job_tracker.py init                         Verify configured existing Google worksheets.                     No tracker or file write.                                       
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python scripts/manage_job_tracker.py add --resume PATH --job-     Record one completed, QA-passed resume. Optional --date-          Yes: managed Sheet cells. It does not generate the DOCX.        
+   description PATH                                                  created MM/DD/YYYY.                                                                                                               
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python scripts/manage_job_tracker.py validate                     Check live Scout IDs and application-tracker Job Numbers/         No tracker or file write.
+                                                                     indexes for duplicates.                                                                                                           
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .         Authoritative Word and exported-PDF pagination check.             Files: PDF, result, and bridge request artifacts. Sheet: only   
+   \scripts\validate_word_native.ps1 -DocxPath PATH -PdfPath PATH    -DocxPath and -PdfPath are required; -ResultPath is optional.     with -UpdateTracker.                                            
+   -ResultPath PATH                                                  -UpdateTracker requires -JobDescription PATH and invokes                                                                          
+                                                                     tracker add after a pass. -RequestId and -InteractiveWorker                                                                       
+                                                                     are bridge-worker parameters.                                                                                                     
+                                                                                                                                                                                                       
+  ### Sheet audits and targeted maintenance                                                                                                                                                            
+                                                                                                                                                                                                       
+   Exact command       Purpose and available arguments                                                                Changes tracker or files?                                                        
+  ━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   python scripts/     Check live Job Scout URLs and append confirmed removal findings to Notes. Flags: --database    Sheet unless --dry-run; database is read for employer-domain context.            
+   check_job_links.    PATH, --limit N, --start-row N, --timeout SECONDS, --delay SECONDS, --retries N, --dry-run.                                                                                     
+   py                                                                                                                                                                                                  
+  ──────────────────  ─────────────────────────────────────────────────────────────────────────────────────────────  ──────────────────────────────────────────────────────────────────────────────────
+   python scripts/     Repair eligible visible resume links. Mutually exclusive --dry-run or --apply; apply is the    Sheet in default/--apply mode. --report writes a JSON file even with --dry-run.  
+   repair_resume_li    default. Optional --report PATH.                                                                                                                                                
+   nks.py                                                                                                                                                                                              
+  ──────────────────  ─────────────────────────────────────────────────────────────────────────────────────────────  ──────────────────────────────────────────────────────────────────────────────────
+   python scripts/     Preview moves for Applied = x resumes. Flag: --apply to execute.                               Default: no writes. --apply: moves files and updates/verifies Resume Link cells. 
+   archive_applied_                                                                                                                                                                                    
+   resumes.py                                                                                                                                                                                          
+  ──────────────────  ─────────────────────────────────────────────────────────────────────────────────────────────  ──────────────────────────────────────────────────────────────────────────────────
+   python scripts/     Normalize qualifying expired Indeed statuses to Expired and set Apply? to No. No flags.        Sheet: affected non-formula cells only, with readback.
+   expire_indeed_jo                                                                                                                                                                                    
+   bs.py                                                                                                                                                                                               
+                                                                                                                                                                                                       
+  ### Gmail, bridge, and automation                                                                                                                                                                    
+                                                                                                                                                                                                       
+   Exact command                                                     Purpose and available arguments                                   Changes tracker or files?                                       
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   python job-scout/gmail_response_tracker.py authorize              Interactive Gmail read-only OAuth authorization. No flags.        File: saves OAuth token; no tracker write.                      
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   python job-scout/gmail_response_tracker.py check                  Check responses for applied jobs. No flags.                       Sheet: may update Response; also writes processing state/log    
+                                                                                                                                       files. Gmail itself is read only.                               
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   scripts\Install-Gecko-Word-Bridge.cmd                             Install the persistent Word validation bridge for the             System/files: scheduled tasks and bridge state. Its underlying  
+                                                                     interactive Windows user. No flags on the wrapper.                install_word_validation_bridge.ps1 also accepts -Uninstall.     
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .         Bridge health diagnostic. Optional -Json, -SkipWordComProbe,      No tracker write; diagnostic read.                              
+   \scripts\Test-Gecko-Word-Bridge.ps1                               -HeartbeatPath PATH.                                                                                                              
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   scripts\Restart-Gecko-Word-Bridge.cmd                             Restart installed bridge tasks. No flags.                         System/files: restarts tasks and resets heartbeat.              
+  ────────────────────────────────────────────────────────────────  ────────────────────────────────────────────────────────────────  ─────────────────────────────────────────────────────────────────
+   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .         Run a checkpointed Cursor Agent task. Use -Prompt TEXT instead    Files: checkpoint and logs; the supplied agent task may make    
+   \scripts\run_cursor_overnight.ps1 -PromptFile PATH                of -PromptFile PATH. Other parameters: -Workspace PATH,           further changes. No fixed tracker write in this wrapper.        
+                                                                     -StateDirectory PATH, -AgentPath PATH, -MinimumRetrySeconds N;                                                                    
+                                                                     -TestMode is restricted to the test harness.                                                                                      
+                                                                                                                                                                                                       
+  The READMEs also document setup and test invocations: python -m pip install -r job-scout/requirements.txt, python -m unittest discover -s job-scout/tests -p "test_*.py" -v, and python -m unittest  
+  discover -s scripts -p "test_*.py" -v. Dependency installation changes the Python environment; tests are intended to use mocked network calls. I excluded bridge workers, the fake Cursor fixture,   
+  import-only modules, and one-off inline maintenance snippets from the supported user command list.                                                                                                   
+                                                                                                                                                                                                       
+  Worked for 6m 24s · done 6:42 AM                                                                                                                                                                     
+                                                                                                         
+2026-10-10 addition: python scripts/daily_report.py --dry-run [--verbose] [--json] [--date YYYY-MM-DD] [--run-id RUN_ID] writes only the five-date vertical Daily Tasks dashboard plus reports/daily audit files; Daily Run remains historical; it does not run job discovery, resume generation, Indeed page checks, or Gmail tracking.
+
+2026-10-10 tracker resync: python scripts/inspect_tracker_schema.py [--json] reads live workbook metadata and named headers; no Sheet or local data writes. The verified tabs are Daily Run, Daily Tasks, Job Scout, Deleted Jobs, and Rejected Jobs.

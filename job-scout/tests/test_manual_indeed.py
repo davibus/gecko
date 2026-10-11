@@ -8,6 +8,7 @@ from pathlib import Path
 import tempfile
 import unittest
 from contextlib import redirect_stdout
+from unittest.mock import patch
 
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -18,9 +19,10 @@ from manual_indeed import process_manual_indeed_rows
 from models import RawListing
 from sources.base import ProviderError
 from sources.http import FetchedDocument
-from sources.indeed import ManualIndeedProvider, extract_indeed_job_key
+from sources.indeed import IndeedProvider, ManualIndeedProvider, extract_indeed_job_key, application_method_from_page
 from sources.indeed import IndeedFallbackResult, ManualIndeedFallbackRetriever
 from sources.web import SearchHit
+from sources.base import SearchRequest
 from storage import JobStore
 from test_google_tracker import FakeSheets, SCOUT
 
@@ -82,6 +84,55 @@ def recovered(jk: str, **kwargs) -> IndeedFallbackResult:
 
 
 class ManualIndeedTests(unittest.TestCase):
+    def test_application_method_requires_indeed_control(self):
+        self.assertEqual(application_method_from_page('<button class="jobsearch-IndeedApplyButton-newDesign"><span>Apply on Company Website</span></button>'), 'Apply on Company Website')
+        self.assertEqual(application_method_from_page('<button id="indeedApplyButton">Apply Now</button>'), 'Apply Now')
+        self.assertEqual(application_method_from_page('<a data-testid="viewjob-indeed-apply" style="background-color: rgb(0, 79, 203)">Apply now</a>'), 'Apply now')
+        self.assertEqual(application_method_from_page('<a class="jobsearch-IndeedApplyButton" href="https://indeed.test/apply">Easy Apply</a>'), 'Easy Apply')
+        self.assertEqual(application_method_from_page('<button id="indeedApplyButton">Continue application</button>'), 'Continue application')
+        self.assertEqual(application_method_from_page('<div data-testid="desktop-job-header"><div data-testid="alert"><h3>This job has expired on Indeed</h3><p>Explanation</p></div></div>'), 'This job has expired on Indeed')
+        self.assertEqual(application_method_from_page('<div data-testid="desktop-job-header"><div data-testid="alert"><h3>Already applied</h3></div></div>'), 'Already applied')
+        self.assertEqual(application_method_from_page('<p>Apply on Company Website</p><a href="https://employer.test">Details</a>'), '')
+        self.assertEqual(application_method_from_page('<div data-testid="alert"><h3>Job no longer available</h3></div>'), '')
+        self.assertEqual(application_method_from_page('<button class="secondary">Apply on Company Website</button><button id="indeedApplyButton">Apply Now</button>'), 'Apply Now')
+        self.assertEqual(application_method_from_page('<button id="indeedApplyButton">Apply Now</button><button class="jobsearch-IndeedApplyButton">Apply on Company Website</button>'), '')
+        self.assertEqual(application_method_from_page('<button>Apply on Company Website</button>'), '')
+        self.assertEqual(application_method_from_page('<button id="indeedApplyButton" disabled>Apply on Company Website</button>'), '')
+        self.assertEqual(application_method_from_page('<button id="indeedApplyButton"><svg aria-label="Apply on Company Website"></svg></button>'), '')
+
+    def test_blue_button_controls_sheet_value_and_preserves_unknown(self):
+        for label, expected in (("Apply on Company Website", "Apply on Company Website"),
+                                ("Apply Now", "Apply Now"), ("Easy Apply", "Easy Apply")):
+            with self.subTest(label=label):
+                url = f"https://www.indeed.com/viewjob?jk={label.replace(' ', '')}"
+                listing = raw(extract_indeed_job_key(url), company=f"Employer {label}")
+                listing.metadata["_indeed_application_method"] = application_method_from_page(
+                    f'<button id="indeedApplyButton">{label}</button>')
+                self.fake.data["Job Scout"].append(manual_row(url))
+                process_manual_indeed_rows(self.tracker, self.store,
+                    provider=FakeProvider({listing.source_job_id: listing}), today="2026-09-27")
+                actual = dict(zip(SCOUT, self.fake.data["Job Scout"][-1]))
+                self.assertEqual(actual["Apply or on Company Website (If Indeed)"], expected)
+                self.assertNotIn("Indeed Apply", actual.values())
+
+        url = "https://www.indeed.com/viewjob?jk=unreadable"
+        row = manual_row(url)
+        row[SCOUT.index("Apply or on Company Website (If Indeed)")] = "Manual choice"
+        self.fake.data["Job Scout"].append(row)
+        process_manual_indeed_rows(self.tracker, self.store,
+            provider=FakeProvider({"unreadable": raw("unreadable", company="Unreadable Employer")}), today="2026-09-27")
+        self.assertEqual(row[SCOUT.index("Apply or on Company Website (If Indeed)")], "Manual choice")
+
+        url = "https://www.indeed.com/viewjob?jk=conflict"
+        row = manual_row(url)
+        row[SCOUT.index("Apply or on Company Website (If Indeed)")] = "Manual choice"
+        self.fake.data["Job Scout"].append(row)
+        listing = raw("conflict", company="Conflict Employer")
+        listing.metadata["_indeed_application_method"] = application_method_from_page(
+            '<button id="indeedApplyButton">Apply Now</button>')
+        process_manual_indeed_rows(self.tracker, self.store,
+            provider=FakeProvider({"conflict": listing}), today="2026-09-27")
+        self.assertEqual(row[SCOUT.index("Apply or on Company Website (If Indeed)")], "Apply Now")
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.store = JobStore(Path(self.temp.name) / "jobs.sqlite3")
@@ -338,6 +389,31 @@ class ManualIndeedTests(unittest.TestCase):
 
 
 class ManualIndeedProviderTests(unittest.TestCase):
+    def test_api_method_label_is_not_primary_button_evidence(self):
+        provider = IndeedProvider(endpoint="https://indeed.test/api", token="test")
+        with patch("sources.indeed.get_json", return_value={"results": [{
+            "jk": "abc", "title": "Role", "company": "Employer",
+            "applicationMethod": "Apply on Company Website",
+        }]}):
+            listing = list(provider.search(SearchRequest(query="Role")))[0]
+        self.assertNotIn("_indeed_application_method", listing.metadata)
+
+    def test_provider_uses_primary_button_not_external_link_or_page_text(self):
+        payload = {"@type": "JobPosting", "title": "Role", "description": "Work",
+                   "hiringOrganization": {"name": "Employer"}}
+        base = "<script type='application/ld+json'>" + json.dumps(payload) + "</script>"
+        for control, expected in (
+            ('<button id="indeedApplyButton">Apply on Company Website</button>', "Apply on Company Website"),
+            ('<button id="indeedApplyButton">Apply Now</button>', "Apply Now"),
+            ('<button id="indeedApplyButton">Easy Apply</button>', "Easy Apply"),
+            ('<p>Apply on Company Website</p><a href="https://employer.test">Details</a>', ""),
+        ):
+            with self.subTest(control=control):
+                provider = ManualIndeedProvider(fetch=lambda _url: FetchedDocument(
+                    (base + control).encode(), "https://www.indeed.com/viewjob?jk=abc", "text/html"))
+                listing = provider.retrieve("https://www.indeed.com/viewjob?jk=abc")
+                self.assertEqual(listing.metadata.get("_indeed_application_method", ""), expected)
+
     def test_structured_job_posting_is_retrieved(self):
         payload = {
             "@context": "https://schema.org", "@type": "JobPosting",

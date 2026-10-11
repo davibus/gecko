@@ -1,0 +1,25 @@
+{
+  "run_id": "20261011T035754-63f4b94d66",
+  "run_date": "2026-10-11",
+  "started_at": "2026-10-11T03:57:58.541465-06:00",
+  "mode": "dry-run report",
+  "configuration": {
+    "scout_tab": "Job Scout",
+    "spreadsheet_id_tail": "zq8t8I"
+  },
+  "metrics": {},
+  "script_health": {
+    "Daily reporting": {
+      "status": "Failed"
+    }
+  },
+  "warnings": [],
+  "errors": [
+    "RuntimeError: reporting operation failed (details redacted)"
+  ],
+  "validation": {},
+  "sheet_updated": false,
+  "overall_status": "FAIL",
+  "completed_at": "2026-10-11T03:58:00.375796-06:00",
+  "execution_seconds": 1.834
+}

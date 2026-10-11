@@ -82,6 +82,15 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(rows[45]["Apply?"], "yes")
         self.assertEqual(rows[46]["Resume Created"], "X")
 
+    def test_expired_indeed_is_never_queued_or_auto_approved(self):
+        row = self.add_scout_row(scout_id=1042, apply="Yes", location="Utah")
+        self.fake.data["Job Scout"][row - 1][SCOUT.index("Apply or on Company Website (If Indeed)")] = " eXpIrEd "
+        snapshot = queue.read_queue(self.tracker, source="indeed", auto_approve_geographic=True)
+        self.assertNotIn(row, [item.row for item in snapshot.pending])
+        self.assertIn(row, [item.row for item in snapshot.not_approved])
+        self.assertFalse(queue._still_pending(self.tracker, queue._queue_item(
+            self.tracker.scout(), row, dict(self.tracker.scout().rows)[row])))
+
     def test_current_queue_eligibility_matrix_skips_x_and_cost(self):
         repair = self.add_scout_row(scout_id=1001, apply=" yes ", created=" X ")
         self.fake.data["Job Scout"][repair - 1][SCOUT.index("Resume Link")] = "   "
@@ -120,6 +129,26 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(stored["Resume Link"], "")
         failure_recorder.assert_not_called()
         self.assertIn("Resume Link is blank; manual review needed", output.getvalue())
+
+    def test_existing_link_without_marker_is_never_regenerated(self):
+        row = self.add_scout_row(scout_id=1012, apply="Yes", created="")
+        self.fake.data["Job Scout"][row - 1][SCOUT.index("Resume Link")] = "file:///existing.docx"
+        snapshot = queue.read_queue(self.tracker, source="indeed")
+        self.assertIn(row, [item.row for item in snapshot.already_created])
+        self.assertNotIn(row, [item.row for item in snapshot.pending])
+        item = queue._queue_item(self.tracker.scout(), row, dict(self.tracker.scout().rows)[row])
+        self.assertFalse(queue._still_pending(self.tracker, item))
+        with self.assertRaisesRegex(RuntimeError, "existing Resume Link"):
+            queue._refresh_item(self.tracker, item)
+
+    def test_formula_result_x_in_cost_excludes_queue(self):
+        row = self.add_scout_row(scout_id=1013, apply="Yes", created="")
+        column = SCOUT.index("Cost") + 1
+        self.fake.data["Job Scout"][row - 1][column - 1] = '=IF(TRUE,"x","")'
+        self.fake.formula_results[("Job Scout", row, column)] = "x"
+        snapshot = queue.read_queue(self.tracker, source="indeed")
+        self.assertIn(row, [item.row for item in snapshot.cost_excluded])
+        self.assertNotIn(row, [item.row for item in snapshot.pending])
 
     def test_all_x_variants_skip_queue_and_preserve_links(self):
         rows = []
@@ -208,7 +237,7 @@ class QueueTests(unittest.TestCase):
                               return_value="https://drive.google.test/queue-42"):
                 queue.record_success(item, queue.Artifacts(resume, listing), self.tracker)
         self.assertEqual([(tab, col) for tab, _, col in self.fake.writes if tab == "Job Scout"],
-                         [("Job Scout", "E"), ("Job Scout", "Q"),
+                    [("Job Scout", "E"), ("Job Scout", "R"),
                           ("Job Scout", "G"), ("Job Scout", "J")])
         scout = next(data for _, data in self.tracker.scout().rows if str(data.get("Scout ID")) == "42")
         self.assertEqual(scout["Resume Created"], "X")

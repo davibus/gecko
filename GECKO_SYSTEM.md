@@ -1,5 +1,7 @@
 # Gecko Operating Specification
 
+The canonical project name is **Gecko Main** and the canonical directory is `gecko_main`. Use this name and directory in all new scripts, documentation, commands, paths, and configuration. See `AGENTS.md` for the deprecated-name rule.
+
 ## Purpose
 
 Gecko discovers and stores relevant jobs, customizes Dave Call's resume for selected postings, generates the finished document, and tracks the job and application while preserving factual accuracy, a natural voice, and the established resume format.
@@ -17,10 +19,10 @@ The request authorizes only its necessary in-scope writes, including resume gene
 - Follow the model PDF as closely as practical for its two-page US Letter layout, centered header structure, EB Garamond typography, font sizing, compact margins, olive section headings and rules, section spacing, section hierarchy, bullet treatment, alignment, density, and overall professional appearance. Content may be tailored and reordered, but the model PDF remains the visual authority.
 - The required section hierarchy is: Professional Summary; Core Strengths; Selected Results; Professional Experience; Tools & Platforms; Education & Certifications. **Core Strengths and Tools & Platforms are mandatory and may never be omitted.** Another section may be omitted only when the authoritative master has no supported content for it or two-page pagination requires a conservative reduction.
 - **Core Strengths standard:** Every resume must contain at least 8 job-relevant, master-supported Core Strengths; include more when useful. Every entry must use professional Title Case with significant words capitalized. Do not use lowercase placeholders or move product/platform names into this capability section merely to reach the minimum.
-- **Professional Experience hierarchy:** Every job must use three levels in this exact order: line 1 is the job title alone; line 2 is `Company Name  City, State` (two spaces between company and location); line 3 and below contain the description/accomplishment bullets. Never use the legacy `Job Title | Company  City` combination. Apply this to every job while preserving the separate blank right-side date cell/area required by the model.
+- **Professional Experience hierarchy:** Every job has one physical header line with `Job Title - Company Name - City, ST` on the left and verified employment dates flush with the right text margin. Use one normal hyphen and one space on each side between fields. Preserve the unchanged verified title, company, location, and dates from the master TXT. Use a borderless two-column table with zero cell padding, a single bold left-heading paragraph/run, and a right-aligned date paragraph; never align dates with manual spaces. Compact verified month names and recover usable width before minimal heading-only size adjustments. Fail validation if either field wraps or overlaps. Accomplishment bullets follow below. This employment-header instruction supersedes the model PDF wherever its header treatment differs.
 - **Professional Experience bullet count:** Target 3 concise, master-supported accomplishment bullets per job, ranked for relevance to the target job description. Use 2 when a third distinct, useful bullet is not warranted or when native Microsoft Word pagination requires the reduction. Never retain a third bullet at the cost of exceeding exactly two pages; the two-page limit has priority.
 - **Tools & Platforms standard:** Every resume must contain at least 8 job-relevant, master-supported tools or platforms; include more when useful. Use professional capitalization and official brand capitalization (for example, Google Ads, Google Analytics 4, Looker Studio, ChatGPT). Do not use generic lowercase capabilities such as `automation`, `e-commerce`, `forecasting`, `crm`, or `ai` as tool entries; place supported broader capabilities under Core Strengths instead.
-- Before a candidate DOCX can replace or become the final resume, auto-normalize its Core Strengths and Tools & Platforms from the master-supported canonical catalogs, then validate: both mandatory sections exist and contain at least 8 entries; their capitalization is canonical; every job uses the required two-line title/company-location hierarchy; no `Job Title | Company` header remains; and no lowercase placeholder-style entries remain. Correct failures before final save and run the same structural checks again during QA.
+- Before a candidate DOCX can replace or become the final resume, auto-normalize its Core Strengths and Tools & Platforms from the master-supported canonical catalogs, then validate: both mandatory sections exist and contain at least 8 entries; their capitalization is canonical; every job has the complete one-line title/company/location heading and right-aligned source dates on that same physical line; and no lowercase placeholder-style entries remain. Correct failures before final save and check rendered lines again during Word-native QA.
 - These two authorities override every older Gecko instruction that names another master resume, formatting PDF, DOCX template, or tailored resume as a starting point. Deviate only when the user explicitly instructs Gecko to do so for one specific resume.
 - Before planning or generation, verify that both required files exist. If either is missing, stop with a clear error identifying the missing required Gecko master resume or formatting model. Never fall back to another resume or template.
 - Exactly two pages, with no trailing blank or near-blank page.
@@ -33,10 +35,10 @@ The request authorizes only its necessary in-scope writes, including resume gene
 - Never trade pagination reliability for page fill. A safely underfilled second page is better than a third page.
 - When a three-bullet draft exceeds two pages in native Word, remove the least job-relevant third bullets first, never reducing a displayed job below two bullets solely for page fit, and re-run native validation after each adjustment until Word and the exported PDF both report exactly two pages.
 - White background.
-- Use the model's 10.5 pt EB Garamond body typography by default; only make conservative job-specific spacing adjustments that preserve the model's hierarchy and Word-native two-page requirement.
+- Use 11 pt EB Garamond main text; only make conservative heading-specific size and job-specific spacing adjustments that preserve the model's hierarchy and Word-native two-page requirement.
 - 1.15 line spacing.
 - Maintain clean spacing after the header and before sections/jobs.
-- Preserve the right-side date cell/space while removing visible date text from job entries.
+- Display verified employment dates in the right-aligned date cell on the same physical line as each job heading.
 - Remove table borders from final output.
 - Avoid excessive white space on page 2.
 - Use as much of the two pages as reasonably possible with relevant content.
@@ -61,11 +63,23 @@ The request authorizes only its necessary in-scope writes, including resume gene
 
 ## Job tracker
 
+Exception for expired Indeed jobs: if `Apply or on Company Website (If Indeed)` equals `This job has expired on Indeed` or `Expired`, ignoring case and surrounding whitespace, normalize the full message to `Expired` and set `Apply?` (or the live `Apply` header) to `No`. Expiration overrides Utah/remote auto-approval and excludes the row from every resume queue. Resolve headers from the current sheet, update only affected non-formula cells, report skips, and verify by readback. Preserve existing resume files, links, and `Resume Created = X`.
+
+The live Gecko Job Tracker tabs, header aliases, protected cells, and report commands are specified in `docs/tracker-schema.md`; `job-scout/tracker_schema.py` is the runtime map. Read live headers by name before tracker work. The current workbook has a five-date vertical dashboard in `Daily Tasks`, run history in `Daily Run`, and an unassigned `Scratch` tab, but no `Daily Reports`, `List of Job Sources`, `Indeed`, or `Job Tracker` tab. `scripts/daily_report.py --dry-run` writes the `Daily Tasks` dashboard and inserts `Daily Run` history at row 3. Do not create or rename tabs implicitly.
+
+All tracker write paths use the current unambiguous header mapping and write only explicitly managed cells. Preserve every custom column, existing formula, and ARRAYFORMULA anchor/output range. Re-read formula state before each write, skip formula-protected cells, and report skipped updates. Do not replace entire rows or clear ranges containing unmanaged cells. Stop sorting, cleanup, deletion, and row movement when formulas cannot be guaranteed to stay with their original jobs. Continue to enforce durable rejection history, raw resume file-URI links, and the Resume Created = X no-recreation rule.
+
+For Source = Indeed, the 'Apply or on Company Website (If Indeed)' field stores the exact visible text of the primary application/status control on the Indeed job page. Examples include 'Apply Now', 'Apply on Company Website', 'Already applied', and 'Job no longer available'. Do not normalize the text. If it cannot be reliably resolved, leave the current value unchanged and continue.
+
+Use the main blue application button first. If it is absent, use the primary visible application-status message in the Indeed job header. URLs, API labels, descriptions, and surrounding page text are not evidence for this field. Resolve the spreadsheet column by its current header name.
+
+
+
 Google Sheets is the canonical job tracker. Do not create or update a local Excel job tracker. Every successful Gecko resume generation must end by recording the job with `scripts/manage_job_tracker.py`.
 
 - Add the tracker row only after the final DOCX exists and has passed its required validation.
 - Pass the final resume and archived job description to the script's `add` command.
-- Let the script derive the next Resume #/Index from the live Sheet and upsert by unique Job Number.
+- In the current workbook, match exactly one existing `Job Scout` row by `ID`, canonical `Job URL`, or Indeed `jk`. Stop without writing if the row cannot be identified uniquely. The legacy Resume #/Index path applies only if its separate application tab exists.
 - Preserve all existing rows and the user's manual `Applied` and `Contacted` values.
 - Leave compensation or other unavailable listing fields blank; never infer or invent them.
 - Treat the tracker update as required for completion. If it fails, report the failure and do not claim the Gecko job is fully complete.
@@ -78,13 +92,13 @@ Google Sheets is the canonical job tracker. Do not create or update a local Exce
 
 ### Daily all-source apply and resume behavior
 
-`python job-scout/scout.py daily` is the complete workflow and automatically invokes the canonical queue implementation after discovery and Sheet synchronization. It evaluates all existing `Job Scout` rows across every source. Based only on `Location` and `Work Arrangement`, Column F (`Apply?`) is set to `Yes` for every Utah job (on-site, hybrid, or remote) and every job that explicitly allows remote work. Blank or unspecified work arrangements are not remote. Apply? values on all other jobs remain unchanged.
+`python job-scout/scout.py daily` is the complete workflow and automatically invokes the canonical queue implementation after discovery and Sheet synchronization. It evaluates all existing `Job Scout` rows across every source. Based only on `Location` and `Work Arrangement`, `Apply?` is set to `Yes` for every Utah job (on-site, hybrid, or remote) and every job that explicitly allows remote work. Blank or unspecified work arrangements are not remote. Apply? values on all other jobs remain unchanged.
 
-The queue resolves exact, unambiguous headers on the configured intake worksheet. Its current mapping is F `Apply?`, G `Resume Created`, I `Cost`, and Q `Resume Link`; future column movement is safe because reads and writes use headers. Before creating or queuing a resume from any scout, read the existing tracker row by stable identity. If `Resume Created` is `X` after trimming and case normalization, skip generation, preserve the marker and existing link exactly, even when the link is blank, and report a missing link for manual review. Rediscovery must not reset this state. Cost `x` excludes creation. A qualifying `Apply? = yes` row with blank Resume Created may create a resume.
+The queue resolves exact, unambiguous headers on the configured intake worksheet. Before creating or queuing a resume from any scout, read the existing tracker row by stable identity. If `Resume Created` is `X` after trimming and case normalization, skip generation, preserve the marker and existing link exactly, even when the link is blank, and report a missing link for manual review. A nonblank link with a blank marker also stops generation for manual review. Rediscovery must not reset either state. Cost `x`, including an effective `x` from a protected formula, excludes creation. A qualifying `Apply? = yes` row may create a resume only when both completion fields are blank.
 
-After the exact DOCX under `output/resumes` passes structural and Word-native two-page validation, write `Resume Created = X`, a clickable absolute file-URI link to that DOCX in Resume Link, and the normal `Resume Created` Gecko Status without downgrading later application statuses. The shared writer must verify the saved DOCX, create the URL with `Path.resolve().as_uri()`, and store the complete `file:///` URL directly as Column Q's visible value; `HYPERLINK` formulas and `Open Resume` display text are prohibited. If generation, validation, or link creation fails, a new row remains unmarked and the retryable failure is written to `Notes` rather than `Cost`. Never upload resumes to Google Drive, mark Applied, or submit an application.
+After the exact DOCX under `output/resumes` passes structural and Word-native two-page validation, write `Resume Created = X`, a clickable absolute file-URI link to that DOCX in Resume Link, and the normal `Resume Created` Gecko Status without downgrading later application statuses. The shared writer must verify the saved DOCX, create the URL with `Path.resolve().as_uri()`, and store the complete `file:///` URL directly as the `Resume Link` cell value; `HYPERLINK` formulas and `Open Resume` display text are prohibited. If generation, validation, or link creation fails, a new row remains unmarked and the retryable failure is written to `Notes` rather than `Cost`. Never upload resumes to Google Drive, mark Applied, or submit an application.
 
-Daily column mapping: F = `Apply?`; G = `Resume Created`; I = `Cost` (`x` excludes); Q = `Resume Link` (clickable absolute file URI under `output/resumes`).
+
 
 ## Filename rules
 

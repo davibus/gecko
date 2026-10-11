@@ -78,9 +78,8 @@ class ArchiveAppliedResumesTests(unittest.TestCase):
             self.assertTrue(collision.exists())
             self.assertTrue(outside.exists())
 
-    def test_plan_requires_applied_in_column_h(self):
-        with self.assertRaisesRegex(RuntimeError, "expected Column H"):
-            archive.build_plan(make_tab([], applied_column=9))
+    def test_plan_uses_rearranged_applied_header(self):
+        self.assertEqual(archive.build_plan(make_tab([], applied_column=9)).applied_column, 9)
 
     def test_apply_moves_file_updates_only_link_and_verifies(self):
         with TemporaryDirectory() as temp:

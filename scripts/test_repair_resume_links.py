@@ -23,6 +23,7 @@ HEADERS = {
     "Job Title": 4,
     "Job URL": 16,
     "Resume Link": 17,
+    "Resume Created": 7,
 }
 
 
@@ -43,6 +44,7 @@ def tab(value: str, raw_value: str) -> Tab:
         "Job Title": "Marketing Manager",
         "Job URL": "https://example.test/jobs/job-42",
         "Resume Link": value,
+        "Resume Created": "",
     }
     raw = [""] * 17
     raw[16] = raw_value
@@ -50,7 +52,15 @@ def tab(value: str, raw_value: str) -> Tab:
 
 
 class RepairResumeLinksTests(unittest.TestCase):
-    def test_plan_uses_existing_formula_target_and_as_uri(self):
+    def test_existing_x_is_never_link_backfilled(self):
+        formula_tab = tab("Open Resume", "Open Resume")
+        formula_tab.rows[0][1]["Resume Created"] = " x "
+        tracker = FakeTracker(formula_tab, tab("Open Resume", "Open Resume"))
+        _, found, repairs, unresolved = repair.plan_repairs(tracker)
+        self.assertEqual((found, repairs), (1, []))
+        self.assertIn("manual review", unresolved[0].reason)
+
+    def test_plan_preserves_existing_formula(self):
         with TemporaryDirectory() as temp:
             resume_dir = Path(temp).resolve()
             resume = resume_dir / "Dave-Call+Example-Company+Marketing-Manager+job-42.docx"
@@ -60,10 +70,8 @@ class RepairResumeLinksTests(unittest.TestCase):
             with patch.object(repair, "RESUME_DIR", resume_dir), \
                  patch.object(google_tracker, "RESUME_DIR", resume_dir):
                 inspected, found, repairs, unresolved = repair.plan_repairs(tracker)
-        self.assertEqual((inspected, found, len(repairs)), (1, 1, 1))
-        self.assertEqual(repairs[0].uri, resume.as_uri())
-        self.assertEqual(repairs[0].source, "formula")
-        self.assertEqual(unresolved, [])
+        self.assertEqual((inspected, found, len(repairs)), (1, 1, 0))
+        self.assertIn("formula", unresolved[0].reason)
 
     def test_ambiguous_identifier_is_left_unresolved(self):
         with TemporaryDirectory() as temp:
