@@ -74,10 +74,10 @@ def duplicate_confidence(left: JobListing, right: JobListing) -> float:
     company = _similarity(left.company, right.company)
     title = _similarity(left.title, right.title)
     location = _similarity(left.location, right.location) if left.location and right.location else 0.65
-    description = description_similarity(left.description, right.description)
     # Company and title are required identity anchors; description resolves reposts.
     if company < 0.72 or title < 0.72:
         return 0.0
+    description = description_similarity(left.description, right.description)
     return company * 0.25 + title * 0.35 + location * 0.10 + description * 0.30
 
 

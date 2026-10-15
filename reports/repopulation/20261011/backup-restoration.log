@@ -1,0 +1,18 @@
+Checking 905 historical posting URLs
+URL checks complete: 751 valid
+Unique valid restoration candidates: 524
+{
+  "counts": {
+    "backup_total": 1932,
+    "rejected_history": 11,
+    "disabled_jooble": 999,
+    "protected_lifecycle": 17,
+    "unverified_url": 134,
+    "expired_or_dead": 20,
+    "duplicate_or_existing": 227,
+    "restored": 524,
+    "current_db_after": 558,
+    "excluded": 1408
+  },
+  "audit": "C:\\gecko_main\\reports\\repopulation\\20261011\\backup-restoration-audit.json"
+}

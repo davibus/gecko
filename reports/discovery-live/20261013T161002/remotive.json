@@ -1,0 +1,81 @@
+{
+  "pipeline": {
+    "raw_retrieved": 3,
+    "rss_retrieved": 0,
+    "rss_unique": 0,
+    "rss_duplicates_removed": 0,
+    "successful_feeds": 0,
+    "failed_feeds": 0,
+    "feed_results": [],
+    "api_retrieved": 0,
+    "source_backend": "",
+    "fetched": 3,
+    "normalized": 3,
+    "added": 0,
+    "updated": 0,
+    "duplicates": 0,
+    "cross_provider_duplicates": 0,
+    "unique_available": 0,
+    "unique_imported": 0,
+    "filtered_by_role": 2,
+    "deterministic_rejects": 2,
+    "deterministic_reject_reasons": {
+      "outside target role families": 2
+    },
+    "jooble_excluded": 0,
+    "rejected_history_excluded": 1,
+    "missing_content_excluded": 0,
+    "dead_url_excluded": 0,
+    "source_results_limited": 0,
+    "url_review_excluded": 0,
+    "url_validated": 0,
+    "new_job_ids": [],
+    "existing_job_ids": [],
+    "changed_job_ids": [],
+    "eligibility_includes_usa": 0,
+    "eligibility_worldwide": 0,
+    "example_jobs": [],
+    "backend_qualifying": {},
+    "backend_added": {}
+  },
+  "record_decisions": [
+    {
+      "source": "remotive",
+      "source_job_id": "1680495",
+      "url": "https://remotive.com/remote-jobs/marketing/remote-office-assistant-1680495",
+      "company": "Coalition Technologies",
+      "title": "Remote Office Assistant",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "remotive",
+      "source_job_id": "2091144",
+      "url": "https://remotive.com/remote-jobs/all-others/content-reviewer-united-states-2091144",
+      "company": "TELUS Digital",
+      "title": "Content Reviewer - United States",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "remotive",
+      "source_job_id": "2091129",
+      "url": "https://remotive.com/remote-jobs/data/senior-data-scientist-2091129",
+      "company": "Lemon.io",
+      "title": "Senior Data Scientist",
+      "reason": "rejection history"
+    }
+  ],
+  "queries_pages": [
+    {
+      "kind": "full feed",
+      "status": "completed",
+      "parsed": 3
+    }
+  ],
+  "board_errors": [],
+  "errors": "",
+  "health": {
+    "status": "success",
+    "found": 3,
+    "detail": ""
+  }
+}

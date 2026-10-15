@@ -24,6 +24,7 @@ from google_tracker import (  # noqa: E402
 from rejected_jobs import PermanentlyRejectedError  # noqa: E402
 from normalize import canonicalize_url  # noqa: E402
 from sources.indeed import extract_indeed_job_key  # noqa: E402
+import resume_naming
 
 RESUME_DIR = ROOT / "output/resumes"
 LISTING_DIR = ROOT / "input/job-descriptions"
@@ -72,7 +73,7 @@ def extract_title(text: str) -> str:
 
 
 def filename_job_number(path: Path) -> str:
-    return path.stem.rsplit("+", 1)[-1]
+    return resume_naming.job_number(path)
 
 
 def record_from_files(resume: Path, listing: Path | None,
@@ -138,7 +139,7 @@ def record_completed_resume(
             raise RuntimeError(f"Job Scout row {row} has a nonnumeric ID; no cells were changed")
         resume_url = publish_resume(record, tracker)
         mark_batch_resume(int(scout_id) if scout_id else None, row, tracker,
-                          resume_url, allow_local=True, require_approved=False)
+                          resume_url, allow_local=True, require_approved=True)
         return row, False, record
     resume_url = publish_resume(record, tracker)
     application = {
@@ -152,7 +153,7 @@ def record_completed_resume(
     }
     if record.scout_id is not None:
         tracker.mark_scout_resume(
-            record.scout_id, application["Resume Link"], require_approved=False,
+            record.scout_id, application["Resume Link"], require_approved=True,
             allow_local=True,
         )
     try:
@@ -344,6 +345,9 @@ def mark_batch_resume(
         raise RuntimeError("SKIP RESUME: existing tracker row already has Resume Created = X")
     if is_expired_indeed(data.get(INDEED_APPLICATION_HEADER)):
         raise RuntimeError("Expired Indeed job cannot receive a resume link")
+    from google_tracker import marked
+    if marked(data.get("Applied")):
+        raise RuntimeError("Already applied job cannot receive a new resume link")
     if tracker.rejected_jobs_index().match(
         source=data.get("Source"),
         job_id=data.get("Job Number"),
@@ -354,6 +358,13 @@ def mark_batch_resume(
         raise RuntimeError("Apply? is no longer Yes; no cell was changed")
     if str(data.get("Cost") or "").strip().casefold() == "x":
         raise RuntimeError("Cost is X; no cell was changed")
+    from google_tracker import resume_approval_value
+    effective = tracker.scout()
+    matches = [value for number, value in effective.rows if number == row]
+    if require_approved and (len(matches) != 1 or resume_approval_value(
+            matches[0].get("Location"), matches[0].get("Work Arrangement"),
+            matches[0].get("Cost")) != "Yes"):
+        raise RuntimeError("Utah/remote location and no required application fee are required")
     notes = _without_resume_failure(data.get("Notes"))
     tracker.mark_scout_resume(
         scout_id, resume_url, notes=notes, row_number=row, allow_local=allow_local,

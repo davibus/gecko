@@ -170,6 +170,23 @@ class ManualIndeedTests(unittest.TestCase):
         self.assertIn("cleanup removed 1 row(s)", output.getvalue())
         self.assertIn("original spreadsheet rows: 3", output.getvalue())
 
+    def test_daily_mode_preserves_declined_rows_and_skips_their_intake(self):
+        declined_url = "https://www.indeed.com/viewjob?jk=declined"
+        retained_url = "https://www.indeed.com/viewjob?jk=retained"
+        self.fake.data["Job Scout"].append(manual_row(declined_url, apply=" NO "))
+        self.fake.data["Job Scout"].append(manual_row(retained_url, apply="Yes"))
+        provider = FakeProvider({"retained": raw("retained")})
+
+        result = process_manual_indeed_rows(
+            self.tracker, self.store, provider=provider,
+            today="2026-09-27", cleanup_declined=False,
+        )
+
+        self.assertEqual(result.removed, 0)
+        self.assertEqual(result.declined_preserved, 1)
+        self.assertEqual(provider.calls, [retained_url])
+        self.assertEqual(self.fake.data["Job Scout"][2][SCOUT.index("Job URL")], declined_url)
+
     def test_existing_x_skips_manual_indeed_intake(self):
         url = "https://www.indeed.com/viewjob?jk=already-created"
         row = manual_row(url, apply="Yes")

@@ -1,0 +1,127 @@
+Skipped formula cell Job Scout E2 (Apply?)
+Skipped formula cell Job Scout M2 (Location)
+Skipped formula-protected Last Updated at row 2
+======================================================================
+ERROR: test_array_formula_output_and_anchor_are_preserved (test_google_tracker.GoogleTrackerTests.test_array_formula_output_and_anchor_are_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\job-scout\tests\test_google_tracker.py", line 751, in test_array_formula_output_and_anchor_are_preserved
+    sheet[1][SCOUT.index("Status")] = '=ARRAYFORMULA(IF(A2:A,"New",""))'
+             ~~~~~~~~~~~^^^^^^^^^^
+ValueError: 'Status' is not in list
+
+======================================================================
+ERROR: test_custom_column_and_reordered_headers_survive_managed_write (test_google_tracker.GoogleTrackerTests.test_custom_column_and_reordered_headers_survive_managed_write)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\job-scout\tests\test_google_tracker.py", line 733, in test_custom_column_and_reordered_headers_survive_managed_write
+    status = sheet[0].index("Status")
+ValueError: 'Status' is not in list
+
+======================================================================
+ERROR: test_highlight_scout_found_on_colors_only_matching_id_cells (test_google_tracker.GoogleTrackerTests.test_highlight_scout_found_on_colors_only_matching_id_cells)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\job-scout\tests\test_google_tracker.py", line 645, in test_highlight_scout_found_on_colors_only_matching_id_cells
+    completed[SCOUT.index("Status")] = "Resume Created"
+              ~~~~~~~~~~~^^^^^^^^^^
+ValueError: 'Status' is not in list
+
+======================================================================
+ERROR: test_managed_formula_is_skipped_and_other_cell_updates (test_google_tracker.GoogleTrackerTests.test_managed_formula_is_skipped_and_other_cell_updates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\job-scout\tests\test_google_tracker.py", line 743, in test_managed_formula_is_skipped_and_other_cell_updates
+    sheet[1][SCOUT.index("Status")] = '=IF(A2=42,"New","")'
+             ~~~~~~~~~~~^^^^^^^^^^
+ValueError: 'Status' is not in list
+
+======================================================================
+ERROR: test_manual_approval_overrides_no_for_verified_qualifying_row (test_google_tracker.GoogleTrackerTests.test_manual_approval_overrides_no_for_verified_qualifying_row)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\job-scout\tests\test_google_tracker.py", line 436, in test_manual_approval_overrides_no_for_verified_qualifying_row
+    self.tracker.approve_manual_scout_row(2, company="Existing", title="Role")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\gecko_main\job-scout\google_tracker.py", line 832, in approve_manual_scout_row
+    raise RuntimeError("Existing approval decision is explicit; no auto-approval")
+RuntimeError: Existing approval decision is explicit; no auto-approval
+
+======================================================================
+ERROR: test_marking_resume_does_not_downgrade_applied_status (test_google_tracker.GoogleTrackerTests.test_marking_resume_does_not_downgrade_applied_status)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\job-scout\tests\test_google_tracker.py", line 388, in test_marking_resume_does_not_downgrade_applied_status
+    self.tracker.mark_scout_resume(42, "https://drive.google.test/resume")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\gecko_main\job-scout\google_tracker.py", line 1191, in mark_scout_resume
+    raise RuntimeError("Apply? is no longer Yes; no cell was changed")
+RuntimeError: Apply? is no longer Yes; no cell was changed
+
+======================================================================
+ERROR: test_rediscovery_preserves_lifecycle_and_unknown_manual_status (test_google_tracker.GoogleTrackerTests.test_rediscovery_preserves_lifecycle_and_unknown_manual_status)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\job-scout\tests\test_google_tracker.py", line 554, in test_rediscovery_preserves_lifecycle_and_unknown_manual_status
+    row[SCOUT.index("Status")] = status
+        ~~~~~~~~~~~^^^^^^^^^^
+ValueError: 'Status' is not in list
+
+======================================================================
+ERROR: test_scout_upsert_preserves_nonqualifying_apply_and_does_not_duplicate (test_google_tracker.GoogleTrackerTests.test_scout_upsert_preserves_nonqualifying_apply_and_does_not_duplicate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\job-scout\tests\test_google_tracker.py", line 525, in test_scout_upsert_preserves_nonqualifying_apply_and_does_not_duplicate
+    self.assertEqual(row["Status"], "Selected")
+                     ~~~^^^^^^^^^^
+KeyError: 'Status'
+
+======================================================================
+FAIL: test_manual_approval_fills_only_blank_apply_cell (test_google_tracker.GoogleTrackerTests.test_manual_approval_fills_only_blank_apply_cell)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\job-scout\tests\test_google_tracker.py", line 432, in test_manual_approval_fills_only_blank_apply_cell
+    self.assertEqual([write[2] for write in self.fake.writes], ["F"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['E', 'I'] != ['F']
+
+First differing element 0:
+'E'
+'F'
+
+First list contains 1 additional elements.
+First extra element 1:
+'I'
+
+- ['E', 'I']
++ ['F']
+
+======================================================================
+FAIL: test_response_rows_are_applied_only_and_updates_touch_response_only (test_google_tracker.GoogleTrackerTests.test_response_rows_are_applied_only_and_updates_touch_response_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\job-scout\tests\test_google_tracker.py", line 467, in test_response_rows_are_applied_only_and_updates_touch_response_only
+    self.assertEqual(changed, [2])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: Lists differ: [2, 2] != [2]
+
+First list contains 1 additional elements.
+First extra element 1:
+2
+
+- [2, 2]
++ [2]
+
+======================================================================
+FAIL: test_scout_mark_preserves_apply_and_manual_fields (test_google_tracker.GoogleTrackerTests.test_scout_mark_preserves_apply_and_manual_fields)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\job-scout\tests\test_google_tracker.py", line 355, in test_scout_mark_preserves_apply_and_manual_fields
+    self.assertIn("'Job Scout'!G2", self.fake.value_batches[0])
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "'Job Scout'!G2" not found in ["'Job Scout'!R2", "'Job Scout'!F2", "'Job Scout'!I2"]
+
+----------------------------------------------------------------------
+Ran 51 tests in 0.929s
+
+FAILED (failures=3, errors=8)

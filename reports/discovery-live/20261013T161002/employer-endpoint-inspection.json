@@ -1,0 +1,62 @@
+[
+  {
+    "company": "Checkbox Technology",
+    "page": "https://www.checkbox.ai/careers",
+    "final_url": "https://www.checkbox.ai/careers",
+    "title": [
+      "Careers at Checkbox | Jobs at a Multi-Award Winning Company"
+    ],
+    "ats_links": []
+  },
+  {
+    "company": "Outschool",
+    "page": "https://outschool.com/careers",
+    "final_url": "https://outschool.com/careers",
+    "title": [
+      "Careers at Outschool"
+    ],
+    "ats_links": [
+      "https://jobs.ashbyhq.com/outschool/0fcdf074-5368-4c8d-8f83-fef0bd27b3c7",
+      "https://jobs.ashbyhq.com/outschool/28737f02-0594-4143-a66c-c52e9f5fbcac",
+      "https://jobs.ashbyhq.com/outschool/2a203f36-30d3-4c6c-ad1b-f0921f7c3467",
+      "https://jobs.ashbyhq.com/outschool/54ca4d04-395c-4ae4-bc28-325af9dec655",
+      "https://jobs.ashbyhq.com/outschool/6b00e6b7-14cb-45e5-bea7-887aa968d9de",
+      "https://jobs.ashbyhq.com/outschool/a1ceffb7-59b9-47d7-b067-4042f28e3405",
+      "https://jobs.ashbyhq.com/outschool/b6c478c2-ab8f-4dbd-9a5f-47cca4cf44eb"
+    ]
+  },
+  {
+    "company": "Hightouch",
+    "page": "https://hightouch.com/careers",
+    "final_url": "https://hightouch.com/careers",
+    "title": [
+      "Careers | Hightouch"
+    ],
+    "ats_links": []
+  },
+  {
+    "company": "Oxylabs",
+    "page": "https://oxylabs.io/careers",
+    "error": "Request failed for https://oxylabs.io/careers: HTTP Error 404: Not Found"
+  },
+  {
+    "company": "Suger.io",
+    "page": "https://www.suger.io/careers",
+    "final_url": "https://www.fours.com/careers/",
+    "title": [
+      "Careers at Fours | Join Our Cloud Marketplace GTM Team"
+    ],
+    "ats_links": [
+      "https://jobs.lever.co/fours"
+    ]
+  },
+  {
+    "company": "Goodlord",
+    "page": "https://www.goodlord.co/careers",
+    "final_url": "https://www.goodlord.com/about/careers",
+    "title": [
+      "Careers | Goodlord"
+    ],
+    "ats_links": []
+  }
+]

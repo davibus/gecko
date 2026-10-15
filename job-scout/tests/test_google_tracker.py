@@ -21,8 +21,8 @@ from normalize import normalize
 APP = ["Resume #", "Company", "Job Title", "Pay", "Job Number",
        "Job Link", "Resume Link", "Date Created", "Applied", "Contacted", "Source",
        "Date Found", "Status"]
-SCOUT = ["ID", "Source", "Company", "Job Title", "Status", "Apply?",
-         "Resume Created", "Applied", "Cost", "Notes", "Apply or on Company Website (If Indeed)", "Response", "Location",
+SCOUT = ["ID", "Source", "Company", "Job Title", "Apply?",
+         "Resume Created", "Applied", "Cost", "Last Updated", "Notes", "Apply or on Company Website (If Indeed)", "Response", "Location",
          "Work Arrangement", "Employment Type", "Salary", "Job URL", "Resume Link",
          "Date Posted", "Date Found", "Last Seen"]
 
@@ -39,12 +39,17 @@ class Call:
 
 class FakeSheets:
     def __init__(self):
+        scout_row = [""] * len(SCOUT)
+        for name, value in {"ID": 42, "Source": "test", "Company": "Existing",
+                            "Job Title": "Role", "Apply?": "Yes", "Cost": "Free",
+                            "Location": "Remote", "Work Arrangement": "remote",
+                            "Employment Type": "full-time",
+                            "Job URL": "https://example.test/job"}.items():
+            scout_row[SCOUT.index(name)] = value
         self.data = {
             "Job Tracker": [list(APP), [7, "Existing", "Role", "", "job-123",
                                   "https://example.test/job", "", "09/01/2026", "TRUE", "called", "", "", ""]],
-            "Job Scout": [list(SCOUT), [42, "test", "Existing", "Role", "New", "Yes", "", "", "", "", "",
-                                  "", "Remote", "remote", "full-time", "",
-                                  "https://example.test/job", "", "", "", ""]],
+            "Job Scout": [list(SCOUT), scout_row],
             "Rejected Jobs": [["Source", "Job ID", "Original Job URL",
                                "Normalized Job URL", "Company", "Job Title",
                                "Date Rejected", "Reason or Status"]],
@@ -152,6 +157,48 @@ class FakeValues:
 
 
 class GoogleTrackerTests(unittest.TestCase):
+    def test_numeric_id_collision_cannot_match_a_different_posting(self):
+        job = normalize(RawListing('test', 'other', 'https://example.test/other',
+                                   'Paid Search Manager', 'Other', location='Remote'))
+        job.id = 42
+        with self.assertRaisesRegex(RuntimeError, 'different posting'):
+            self.tracker.upsert_scout([job], append_only=True)
+        self.assertEqual(self.fake.writes, [])
+
+    def test_last_updated_records_gecko_write_separately_from_notes(self):
+        tab = self.tracker.scout()
+        self.tracker._write(tab, 2, {"Notes": "Manual note plus Gecko result"})
+        stored = dict(zip(SCOUT, self.fake.data['Job Scout'][1]))
+        self.assertEqual(stored['Notes'], 'Manual note plus Gecko result')
+        self.assertRegex(stored['Last Updated'], r'^\d{4}-\d{2}-\d{2}T.*[+-]\d{2}:\d{2} \| Gecko$')
+
+    def test_last_updated_formula_is_preserved(self):
+        self.fake.data['Job Scout'][1][SCOUT.index('Last Updated')] = '=TODAY()'
+        self.tracker._write(self.tracker.scout(), 2, {'Notes': 'Updated notes'})
+        self.assertEqual(self.fake.data['Job Scout'][1][SCOUT.index('Last Updated')], '=TODAY()')
+
+    def test_last_updated_noop_preserves_historical_date(self):
+        self.fake.data['Job Scout'][1][SCOUT.index('Last Updated')] = '2026-10-01 | Firecrawl'
+        tab = self.tracker.scout()
+        self.tracker._write(tab, 2, {'Notes': dict(tab.rows)[2].get('Notes', '')})
+        self.assertEqual(self.fake.data['Job Scout'][1][SCOUT.index('Last Updated')], '2026-10-01 | Firecrawl')
+
+    def test_scout_refill_accepts_job_list_without_status_header(self):
+        headers = [name for name in SCOUT if name != "Status"]
+        self.fake.data["Job Scout"] = [headers]
+        job = normalize(RawListing("Indeed", "fresh-123",
+            "https://www.indeed.com/viewjob?jk=fresh-123", "Role", "New Company",
+            location="Utah", description="A job"))
+        job.id = 2222
+        result = self.tracker.upsert_scout([job], append_only=True)
+        self.assertEqual(result["added"], 1)
+        self.assertEqual(self.fake.data["Job Scout"][0], headers)
+        stored = dict(zip(headers, self.fake.data["Job Scout"][1]))
+        self.assertEqual(stored["ID"], 2222)
+        self.assertEqual(stored["Apply?"], "Yes")
+        self.assertEqual(stored["Job URL"], job.url)
+        self.assertEqual(len(self.fake.data["Rejected Jobs"]), 1)
+
     def test_missing_rejection_tab_blocks_write_without_creating_tab(self):
         self.fake.data.pop("Rejected Jobs")
         with self.assertRaisesRegex(RuntimeError, "no write made"):
@@ -206,6 +253,7 @@ class GoogleTrackerTests(unittest.TestCase):
         row.append("=1+1")
         row[headers.index("Source")] = "Indeed"
         row[headers.index(INDEED_APPLICATION_HEADER)] = " This JOB has expired on Indeed "
+        row[headers.index('Job URL')] = 'https://indeed.com/viewjob?jk=abc'
         row[headers.index("Apply?")] = "Yes"
         job = normalize(RawListing("Indeed", "abc", "https://indeed.com/viewjob?jk=abc",
                                    "Role", "Existing", location="Utah", description="A job"))
@@ -516,7 +564,7 @@ class GoogleTrackerTests(unittest.TestCase):
         self.assertEqual(len(self.fake.data["Job Scout"]), 2)
         self.assertEqual(row[SCOUT.index("Resume Created")], " x ")
 
-    def test_scout_upsert_sets_apply_for_new_and_updated_rows(self):
+    def test_scout_upsert_approves_new_eligible_rows_and_preserves_existing_decisions(self):
         new_job = normalize(RawListing(
             source="test", source_job_id="100", url="https://example.test/new",
             title="New Role", company="New Company", location="Dallas, TX",
@@ -525,7 +573,7 @@ class GoogleTrackerTests(unittest.TestCase):
         new_job.id = 100
         self.tracker.upsert_scout([new_job])
         added = dict(zip(SCOUT, self.fake.data["Job Scout"][-1]))
-        self.assertEqual(added["Apply?"], "No")
+        self.assertEqual(added["Apply?"], "")
 
         existing = normalize(RawListing(
             source="test", source_job_id="42", url="https://example.test/job",
@@ -536,7 +584,7 @@ class GoogleTrackerTests(unittest.TestCase):
         self.fake.data["Job Scout"][1][SCOUT.index("Apply?")] = "No"
         self.tracker.upsert_scout([existing])
         updated = dict(zip(SCOUT, self.fake.data["Job Scout"][1]))
-        self.assertEqual(updated["Apply?"], "Yes")
+        self.assertEqual(updated["Apply?"], "No")
 
     def test_manual_row_location_update_recomputes_apply_by_header(self):
         apply_index = SCOUT.index("Apply?")

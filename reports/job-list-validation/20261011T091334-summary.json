@@ -1,0 +1,37 @@
+{
+  "job_rows_scanned": 33,
+  "valid_urls": 24,
+  "invalid_urls_cleared": 0,
+  "urls_needing_review": 9,
+  "indeed_apply_now": 0,
+  "indeed_company_website": 0,
+  "expired_jobs": 0,
+  "other_application_statuses": 0,
+  "confirmed_paid": 0,
+  "apply_no_changed": 0,
+  "resume_links_formatted": 0,
+  "resume_links_missing": 33,
+  "rows_highlighted": 0,
+  "affected_rows": {
+    "Job URL": [],
+    "Cost": [],
+    "Notes": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "Apply or on Company Website (If Indeed)": [],
+    "Apply?": [],
+    "Resume Link": [],
+    "light_red": []
+  },
+  "warnings": [],
+  "audit_log": "C:\\gecko_main\\reports\\job-list-validation\\20261011T091334.jsonl",
+  "highlighted_rows": []
+}

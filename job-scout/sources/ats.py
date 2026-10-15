@@ -103,7 +103,21 @@ class LeverProvider(ConfiguredAtsProvider):
         if not site:
             raise ValueError("missing site")
         region = "api.eu.lever.co" if company.get("region") == "eu" else "api.lever.co"
-        payload = get_json(f"https://{region}/v0/postings/{quote(site)}?mode=json&limit=200")
+        payload = []
+        skip = 0
+        seen_pages = set()
+        while True:
+            batch = get_json(f"https://{region}/v0/postings/{quote(site)}?mode=json&limit=200&skip={skip}")
+            if not isinstance(batch, list):
+                raise ProviderError("Lever returned an unexpected postings payload")
+            signature = tuple(str(item.get('id')) for item in batch)
+            if batch and signature in seen_pages:
+                raise ProviderError(f'Lever pagination repeated for {site}')
+            seen_pages.add(signature)
+            payload.extend(batch)
+            if len(batch) < 200:
+                break
+            skip += len(batch)
         if not isinstance(payload, list):
             raise ProviderError("Lever returned an unexpected postings payload")
         result = []

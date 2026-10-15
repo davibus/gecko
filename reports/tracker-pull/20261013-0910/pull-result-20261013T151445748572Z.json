@@ -1,0 +1,32 @@
+{
+  "snapshot": "C:\\gecko_main\\reports\\tracker-pull\\20261013-0910\\job-list.json",
+  "sheet_jobs": 826,
+  "discovery_jobs_changed": 0,
+  "source_conflicts": [
+    {
+      "id": 2236,
+      "row": 16,
+      "reason": "Source differs"
+    },
+    {
+      "id": 2252,
+      "row": 32,
+      "reason": "Source differs"
+    },
+    {
+      "id": 1197,
+      "row": 115,
+      "reason": "Source differs"
+    },
+    {
+      "id": 2177,
+      "row": 543,
+      "reason": "Source differs"
+    }
+  ],
+  "sheet_only_ids": [],
+  "applied": true,
+  "verified": true,
+  "database_backup": "C:\\gecko_main\\reports\\tracker-pull\\20261013-0910\\jobs-before-pull-20261013T151445748572Z.sqlite3",
+  "snapshot_sha256": "9f9474511a3aecad1d31d466ed681adfa0072323587f87094259ffaaeb155574"
+}

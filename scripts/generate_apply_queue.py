@@ -20,6 +20,9 @@ from storage import DEFAULT_DB, JobStore  # noqa: E402
 from google_tracker import (  # noqa: E402
     GoogleTracker,
     apply_value,
+    application_fee_required,
+    resume_approval_value,
+    marked,
     resume_already_created,
     is_expired_indeed,
     INDEED_APPLICATION_HEADER,
@@ -28,11 +31,13 @@ from manual_indeed import next_scout_id  # noqa: E402
 from description_retrieval import (  # noqa: E402
     DescriptionRetrievalResult,
     RetrievalAttempt,
+    description_is_sufficient,
     retrieve_full_description,
 )
 from handoff import job_number as scout_job_number  # noqa: E402
 from models import RawListing  # noqa: E402
 from normalize import normalize  # noqa: E402
+from normalize import canonicalize_url  # noqa: E402
 from rejected_jobs import REJECT_STATUSES, PermanentlyRejectedError  # noqa: E402
 from tracker_schema import (  # noqa: E402
     RESUME_COMPLETION_MARKER, LEGACY_RESUME_MARKERS, COST_EXCLUSION_MARKER,
@@ -151,6 +156,48 @@ def _identity_text(value: object) -> str:
     return " ".join(re.findall(r"[a-z0-9]+", str(value or "").casefold()))
 
 
+def _same_posting_url(left: object, right: object) -> bool:
+    """Compare posting identity without scheme or tracking-query noise."""
+    a = urlsplit(canonicalize_url(str(left or "")))
+    b = urlsplit(canonicalize_url(str(right or "")))
+    if not a.hostname or not b.hostname:
+        return False
+    def posting_host(host: str) -> str:
+        normalized = host.casefold().removeprefix("www.")
+        # Greenhouse redirects its older boards host to the current job-boards
+        # host without changing the employer path or posting ID.
+        return "job-boards.greenhouse.io" if normalized == "boards.greenhouse.io" else normalized
+
+    if posting_host(a.hostname) != posting_host(b.hostname):
+        return False
+    if a.path.rstrip("/").casefold() != b.path.rstrip("/").casefold():
+        return False
+    # A path such as /jobs/<id> identifies one opening. Query-only job pages
+    # need the nontracking query to agree as well.
+    return bool(a.path.strip("/")) and (a.path.strip("/") not in {"job", "jobs", "viewjob"}
+                                             or a.query == b.query)
+
+
+def _stored_job_matches_row(job, item: QueueRow) -> bool:
+    return (
+        _identity_text(job.company) == _identity_text(item.company)
+        and _identity_text(job.title) == _identity_text(item.title)
+        and any(_same_posting_url(url, item.job_url) for url in (
+            job.url, job.original_url, job.authoritative_url, job.url_redirect_url,
+            *(link.get("url", "") for link in job.source_links),
+        ))
+    )
+
+
+def _archive_has_live_source_id(item: QueueRow, archive_number: str,
+                                stored_number: str) -> bool:
+    if _flag(item.source) != "adzuna" or archive_number != stored_number:
+        return False
+    match = re.search(r"/(?:details|land/ad)/(\d+)(?:/|$)",
+                      urlsplit(item.job_url).path, re.I)
+    return bool(match and match.group(1) == stored_number)
+
+
 def _indeed_job_key(value: object) -> str:
     url = str(value or "").strip()
     parsed = urlsplit(url)
@@ -169,6 +216,15 @@ def _is_indeed_url(value: object) -> bool:
 
 def _url_only(value: object) -> bool:
     return bool(re.fullmatch(r"https?://\S+", str(value or "").strip(), re.IGNORECASE))
+
+
+def _valid_job_url(value: object) -> bool:
+    raw = str(value or "").strip()
+    if not _url_only(raw):
+        return False
+    parsed = urlsplit(raw)
+    return parsed.scheme.casefold() in {"http", "https"} and bool(parsed.hostname) and not (
+        parsed.username or parsed.password)
 
 
 def _listing_value(data: dict[str, object]) -> str:
@@ -289,6 +345,9 @@ def read_queue(
     for row, data in tab.rows:
         if not _matches_source(data, source):
             continue
+        if (eligible_scout_ids is not None and source is None
+                and _scout_id(data.get("Scout ID")) not in eligible_scout_ids):
+            continue
         matched.append(_queue_item(tab, row, data))
 
     pending, already_created, not_approved, jooble_excluded, link_backfill = [], [], [], [], []
@@ -313,7 +372,7 @@ def read_queue(
     seen_pending: set[tuple[str, str]] = set()
     for item in matched:
         data = item.fields or {}
-        if _flag(data.get("Gecko Status")) in REJECT_STATUSES:
+        if _flag(data.get("Apply?")) in REJECT_STATUSES:
             rejected_excluded.append(item)
             stats["rejected_exclusions"] += 1
             decisions.append((item, "SKIP: row is marked for permanent rejection"))
@@ -333,10 +392,7 @@ def read_queue(
             stats["cost_excluded"] += 1
             decisions.append((item, "SKIP: Cost = X"))
             continue
-        qualification = (
-            _geographic_qualification(item)
-            if source == "indeed" or auto_approve_geographic else ""
-        )
+        qualification = _geographic_qualification(item)
         if qualification == "Utah":
             stats["utah_qualifying"] += 1
         elif qualification == "Remote":
@@ -360,6 +416,12 @@ def read_queue(
         elif is_expired_indeed(data.get(INDEED_APPLICATION_HEADER)):
             not_approved.append(item)
             decisions.append((item, "SKIP: Indeed job expired"))
+        elif marked(data.get("Applied")):
+            not_approved.append(item)
+            decisions.append((item, "SKIP: job already applied"))
+        elif not _valid_job_url(item.job_url):
+            not_approved.append(item)
+            decisions.append((item, "SKIP: missing or invalid Job URL"))
         elif (eligible_scout_ids is not None
               and (item.scout_id is None or item.scout_id not in eligible_scout_ids)
               and source is None):
@@ -371,7 +433,11 @@ def read_queue(
             current_apply = str(data.get("Apply?") or "").strip()
             normalized_apply = _flag(current_apply)
             auto_apply = ((source == "indeed" or auto_approve_geographic)
-                          and bool(qualification) and normalized_apply != "yes")
+                          and bool(qualification) and not normalized_apply)
+            if normalized_apply == "yes" and not qualification:
+                not_approved.append(item)
+                decisions.append((item, "SKIP: Yes lacks Utah or explicit remote eligibility"))
+                continue
             if normalized_apply == "yes":
                 stats["already_approved"] += 1
             elif auto_apply:
@@ -456,7 +522,9 @@ def _still_pending(tracker: GoogleTracker, item: QueueRow) -> bool:
         return False
     if is_expired_indeed(row.get(INDEED_APPLICATION_HEADER)):
         return False
-    if _flag(row.get("Gecko Status")) in REJECT_STATUSES:
+    if marked(row.get("Applied")) or not _valid_job_url(row.get("Job URL")):
+        return False
+    if _flag(row.get("Apply?")) in REJECT_STATUSES:
         return False
     identity_matches = (
         _flag(row.get("Company")) == _flag(item.company)
@@ -465,7 +533,8 @@ def _still_pending(tracker: GoogleTracker, item: QueueRow) -> bool:
     if not identity_matches:
         return False
     return (_flag(row.get("Apply?")) == "yes"
-            and _flag(row.get("Cost")) != COST_EXCLUSION_MARKER
+            and resume_approval_value(row.get("Location"), row.get("Work Arrangement"),
+                                      row.get("Cost")) == "Yes"
             and not _resume_completed(row.get("Resume Created")))
 
 
@@ -489,7 +558,7 @@ def _refresh_item(tracker: GoogleTracker, item: QueueRow) -> QueueRow:
     indeed_id = _indeed_job_key(refreshed.job_url) if (
         _flag(refreshed.source) == "indeed" or _is_indeed_url(refreshed.job_url)
     ) else ""
-    if (_flag((refreshed.fields or {}).get("Gecko Status")) in REJECT_STATUSES
+    if (_flag((refreshed.fields or {}).get("Apply?")) in REJECT_STATUSES
             or _retry_sheet(lambda: tracker.rejected_jobs_index()).match(
                 source=refreshed.source, job_id=indeed_id, url=refreshed.job_url,
             ) is not None):
@@ -556,15 +625,17 @@ def _prepare_indeed_item(
     current = _refresh_item(tracker, item)
     apply_value = str((current.fields or {}).get("Apply?") or "").strip()
     qualification = _geographic_qualification(current)
-    if qualification and _flag(apply_value) != "yes":
+    if qualification and not application_fee_required((current.fields or {}).get("Cost")) and not _flag(apply_value):
         _retry_sheet(lambda: tracker.approve_manual_scout_row(
             current.row, company=current.company, title=current.title,
         ))
         current = _refresh_item(tracker, current)
     if _flag((current.fields or {}).get("Apply?")) != "yes":
         raise RuntimeError("Apply? is no longer Yes; resume generation was not started")
-    if _flag((current.fields or {}).get("Cost")) == COST_EXCLUSION_MARKER:
-        raise RuntimeError("Cost is X; resume generation was not started")
+    if resume_approval_value((current.fields or {}).get("Location"),
+            (current.fields or {}).get("Work Arrangement"),
+            (current.fields or {}).get("Cost")) != "Yes":
+        raise RuntimeError("Location is unverified or an application fee is required; resume generation was not started")
     if current.scout_id is None:
         if allocator is None:
             allocator = _BatchScoutIdAllocator.from_live_state(tracker, db)
@@ -580,14 +651,23 @@ def _job_number(job) -> str:
         jk = parse_qs(urlsplit(job.url).query).get("jk", [])
         if jk and jk[0]:
             return jk[0]
+    if job.source.casefold() == "web-careers":
+        last_segment = urlsplit(job.url).path.rstrip("/").rsplit("/", 1)[-1]
+        if re.fullmatch(r"\d{5,}", last_segment):
+            return last_segment
     return scout_job_number(job)
 
 
-def _saved_listing(item: QueueRow) -> Path | None:
+def _saved_listing(item: QueueRow, *, known_urls: tuple[str, ...] = (),
+                   known_job_number: str = "") -> Path | None:
     """Find an archived listing for this exact live row without imposing a length floor."""
     for path in (ROOT / "input/job-descriptions").glob("*.md"):
         content = path.read_text(encoding="utf-8-sig", errors="replace")
         meta = gecko_v2.listing_metadata(content, path)
+        saved_urls = re.findall(
+            r"(?im)^- \*\*(?:URL|Original Source URL|Authoritative URL):\*\*\s*(https?://\S+)",
+            content,
+        )
         scout_matches = (
             item.scout_id is not None
             and re.search(rf"(?m)^- \*\*Scout ID:\*\*\s*{item.scout_id}\s*$", content)
@@ -595,7 +675,11 @@ def _saved_listing(item: QueueRow) -> Path | None:
         number_matches = item.scout_id is None and meta["job_number"] == _row_job_number(item)
         if ((scout_matches or number_matches)
                 and _identity_text(meta["company"]) == _identity_text(item.company)
-                and _identity_text(meta["title"]) == _identity_text(item.title)):
+                and _identity_text(meta["title"]) == _identity_text(item.title)
+                and (any(_same_posting_url(url, candidate) for url in saved_urls
+                         for candidate in (item.job_url, *known_urls))
+                     or _archive_has_live_source_id(item, meta["job_number"], known_job_number))
+                and description_is_sufficient(_archived_description(content))):
             return path
     return None
 
@@ -604,6 +688,21 @@ def _row_job_number(item: QueueRow) -> str:
     if jk := _indeed_job_key(item.job_url):
         return jk
     return f"scout-{item.scout_id or item.row}"
+
+
+def _archived_description(content: str) -> str:
+    headings = list(re.finditer(
+        r"(?im)^##\s+(?:Full\s+)?Job description(?:\s*\([^\r\n]*\))?\s*$",
+        content,
+    ))
+    if not headings:
+        return ""
+    body = content[headings[-1].end():]
+    return re.split(
+        r"(?im)^##\s+(?:Structured job information|Scout excerpt|Scout weaknesses|"
+        r"Verified requirements from full listing)\s*$",
+        body, maxsplit=1,
+    )[0].strip()
 
 
 def _archive_row_context(item: QueueRow) -> Path:
@@ -685,7 +784,9 @@ def _persist_queue_retrieval(job, result: DescriptionRetrievalResult, store: Job
 def _archive_listing(
     job, item: QueueRow, store: JobStore, *, persist_retrieval: bool = True,
 ) -> tuple[Path, tuple[RetrievalAttempt, ...]]:
-    saved = _saved_listing(item)
+    saved = _saved_listing(item, known_urls=tuple(
+        str(link.get("url") or "") for link in job.source_links
+    ), known_job_number=_job_number(job))
     if saved:
         attempt = RetrievalAttempt(
             "saved archived description", str(saved), "accepted", "complete archived listing"
@@ -694,15 +795,40 @@ def _archive_listing(
     company = re.sub(r'[\\/:*?"<>|]', "", job.company).replace(" ", "-").rstrip(" .")
     number = _job_number(job)
     path = ROOT / "input/job-descriptions" / f"{company}+{number}.md"
+    archived_authoritative = ""
     if path.exists():
         existing = path.read_text(encoding="utf-8-sig")
-        if f"**Scout ID:**" in existing and f"**Scout ID:** {job.id}" not in existing:
-            raise ValueError(f"Archived listing belongs to another Scout job: {path.name}")
+        prior_authoritative = re.search(
+            r"(?im)^- \*\*Authoritative URL:\*\*\s*(https?://\S+)", existing,
+        )
+        archived_authoritative = prior_authoritative.group(1) if prior_authoritative else ""
         meta = gecko_v2.listing_metadata(existing, path)
         if (meta["company"].strip().casefold() != job.company.strip().casefold() or
+                _identity_text(meta["title"]) != _identity_text(job.title) or
                 meta["job_number"] != number):
             raise ValueError(f"Archived listing is incomplete or belongs to another job: {path.name}")
-        if "## " in existing:
+        archived_urls = re.findall(
+            r"(?im)^- \*\*(?:URL|Original Source URL|Authoritative URL):\*\*\s*(https?://\S+)",
+            existing,
+        )
+        if not (any(_same_posting_url(url, candidate) for url in archived_urls
+                    for candidate in (item.job_url, *(
+                        str(link.get("url") or "") for link in job.source_links
+                    ))) or _archive_has_live_source_id(item, meta["job_number"], number)):
+            raise ValueError(f"Archived listing URL differs from the live job: {path.name}")
+        if description_is_sufficient(_archived_description(existing)):
+            if f"**Scout ID:**" in existing and f"**Scout ID:** {job.id}" not in existing:
+                # A sheet reset can assign a new row ID to the same source job.
+                # Keep the old archive intact and bind a scratch copy to the
+                # current row only after stable job number and title agree.
+                scratch = ROOT / "scratch" / f"{company}+{number}"
+                scratch.mkdir(parents=True, exist_ok=True)
+                rebound = scratch / path.name
+                rebound.write_text(re.sub(
+                    r"(?m)^(- \*\*Scout ID:\*\*\s*)\S+",
+                    lambda match: match.group(1) + str(job.id), existing, count=1,
+                ), encoding="utf-8")
+                path = rebound
             attempt = RetrievalAttempt(
                 "saved archived description", str(path), "accepted", "archived job context"
             )
@@ -710,12 +836,12 @@ def _archive_listing(
     original_url = _original_source_url(job, item)
     result = retrieve_full_description(
         job,
-        authoritative_urls=(job.authoritative_url,),
+        authoritative_urls=(job.authoritative_url, archived_authoritative),
         redirect_urls=(job.url_redirect_url,),
         ats_urls=(job.enriched_source_url,),
         aggregator_urls=(original_url, item.job_url),
     )
-    if result.status == "succeeded" and result.description.strip():
+    if result.status == "succeeded" and description_is_sufficient(result.description):
         if persist_retrieval:
             _persist_queue_retrieval(job, result, store)
         description = result.description
@@ -723,13 +849,11 @@ def _archive_listing(
     else:
         description = max((job.enriched_description or "", job.description or ""), key=len).strip()
         description_url = job.enriched_source_url or job.original_url or job.url
-        if not description:
-            description = (f"Target position: {job.title}\nCompany: {job.company}\n"
-                           f"Location: {job.location}\nWork arrangement: {job.work_arrangement}\n"
-                           f"Employment type: {job.employment_type}")
+        if not description_is_sufficient(description):
+            raise DescriptionUnavailableError(result, item.job_url)
         result.attempts.append(RetrievalAttempt(
             "available stored job context", description_url, "accepted",
-            "used without a minimum description-length requirement",
+            "complete stored description",
         ))
     scout_line = f"- **Scout ID:** {job.id}\n" if job.id is not None else ""
     text = (f"# {job.title}\n\n"
@@ -745,6 +869,12 @@ def _archive_listing(
             f"- **Date Discovered:** {job.date_discovered}\n\n"
             f"## Job description\n\n{description}\n")
     path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists():
+        scratch = ROOT / "scratch" / f"{company}+{number}"
+        scratch.mkdir(parents=True, exist_ok=True)
+        backup = scratch / "previous-archived-description.md"
+        if not backup.exists():
+            backup.write_bytes(path.read_bytes())
     path.write_text(text, encoding="utf-8")
     return path, tuple(result.attempts)
 
@@ -784,8 +914,7 @@ def generate(item: QueueRow, db: Path, *, force_recreate: bool = False,
                     "used as the primary job listing",
                 ),
             )
-        elif job is not None and (job.company.casefold().strip() == item.company.casefold().strip()
-                                and job.title.casefold().strip() == item.title.casefold().strip()):
+        elif job is not None and _stored_job_matches_row(job, item):
             listing, attempts = _archive_listing(job, item, store)
         elif item.job_url:
             listing, attempts = _archive_listing(
@@ -836,13 +965,16 @@ def _find_existing_resume(plan: dict, scratch: Path) -> Path | None:
     """Locate only an artifact tied to the canonical job identity or QA record."""
     output_dir = ROOT / "output/resumes"
     expected = output_dir / gecko_v2.resume_filename(
-        plan["job"]["company"], plan["job"]["title"], plan["job"]["job_number"]
+        plan["job"]["company"], plan["job"]["title"], plan["job"]["job_number"], folder=output_dir
     )
     if expected.is_file() and expected.stat().st_size > 0:
         return expected
     numbered = list(output_dir.glob(
         f"Dave-Call+{plan['job']['safe_company']}+*+{plan['job']['job_number']}.docx"
     ))
+    numbered.extend(path for path in gecko_v2.resume_naming.related_files(
+        output_dir, plan['job']['company'], plan['job']['title'], plan['job']['job_number'])
+        if path.is_file() and path not in numbered)
     if len(numbered) == 1 and numbered[0].stat().st_size > 0:
         return numbered[0]
     # Older interrupted manual runs briefly emitted the same canonical name
@@ -861,7 +993,7 @@ def _dry_run_existing_resume(item: QueueRow) -> Path | None:
     if not job_number:
         return None
     output_dir = ROOT / "output/resumes"
-    expected = output_dir / gecko_v2.resume_filename(item.company, item.title, job_number)
+    expected = output_dir / gecko_v2.resume_filename(item.company, item.title, job_number, folder=output_dir)
     if expected.is_file() and expected.stat().st_size > 0:
         return expected
     legacy = output_dir / (expected.name.rsplit("+", 1)[0] + ".docx")
@@ -876,8 +1008,7 @@ def recover_existing(item: QueueRow, db: Path) -> Artifacts:
     """Reliably identify an existing validated resume without generating a duplicate."""
     with JobStore(db) as store:
         job = store.get(item.scout_id) if item.scout_id is not None else None
-        if job is not None and (job.company.casefold().strip() == item.company.casefold().strip()
-                                and job.title.casefold().strip() == item.title.casefold().strip()):
+        if job is not None and _stored_job_matches_row(job, item):
             listing, attempts = _archive_listing(job, item, store)
         else:
             listing, attempts = _saved_listing(item), ()
@@ -908,6 +1039,12 @@ def _finish_generation(
 ) -> Artifacts:
     if force_recreate:
         raise RuntimeError("Resume recreation is disabled; inspect the existing tracker row")
+    archived = listing.read_text(encoding="utf-8-sig", errors="replace")
+    description = _archived_description(archived)
+    if not description_is_sufficient(description):
+        raise ValueError(
+            "Full job description unavailable or insufficient; resume was not generated"
+        )
     plan = gecko_v2.create_plan(listing.resolve())
     if (_identity_text(plan["job"]["company"]) != _identity_text(item.company)
             or _identity_text(plan["job"]["title"]) != _identity_text(item.title)):
@@ -918,12 +1055,28 @@ def _finish_generation(
     plan_path = scratch / "tailoring-plan.json"
     plan_path.write_text(json.dumps(plan, indent=2, ensure_ascii=False), encoding="utf-8")
     expected = ROOT / "output/resumes" / gecko_v2.resume_filename(
-        plan["job"]["company"], plan["job"]["title"], plan["job"]["job_number"])
+        plan["job"]["company"], plan["job"]["title"], plan["job"]["job_number"], reserve=True, folder=ROOT / 'output/resumes')
     candidate = scratch / "queue-candidate.docx"
     final = None if force_recreate else _find_existing_resume(plan, scratch)
+    candidates = []
+    if final is not None:
+        candidates.append(final)
+    candidates.extend(path for path in sorted(expected.parent.glob(
+        f"{expected.stem.rsplit('+', 1)[0]}+v*+{plan['job']['job_number']}.docx"
+    )) if path not in candidates)
+    candidates.extend(path for path in gecko_v2.resume_naming.related_files(
+        expected.parent, plan['job']['company'], plan['job']['title'], plan['job']['job_number'])
+        if path.is_file() and path not in candidates)
+    qa = {"status": "fail"}
+    existing = False
+    for option in candidates:
+        if not option.is_file() or option.stat().st_size <= 0:
+            continue
+        checked = gecko_v2.native_qa(plan, option, scratch)
+        if checked["status"] == "pass":
+            final, qa, existing = option, checked, True
+            break
     final = final or expected
-    existing = not force_recreate and final.is_file() and final.stat().st_size > 0
-    qa = gecko_v2.native_qa(plan, final, scratch) if existing else {"status": "fail"}
     rebuilt = False
     if qa["status"] != "pass":
         qa = gecko_v2.generate_two_page_resume(plan, candidate, scratch)
@@ -932,17 +1085,13 @@ def _finish_generation(
     if qa["status"] != "pass":
         raise RuntimeError("V2 QA failed: " + "; ".join(qa["issues"]))
     if rebuilt:
+        gecko_v2.resume_summary.assert_unique(candidate, ROOT / "output/resumes")
         expected.parent.mkdir(parents=True, exist_ok=True)
         destination = expected
         if destination.exists():
-            base, job_number = expected.stem.rsplit("+", 1)
-            version = 2
-            while True:
-                versioned = expected.with_name(f"{base}+v{version}+{job_number}.docx")
-                if not versioned.exists():
-                    destination = versioned
-                    break
-                version += 1
+            destination = expected.parent / gecko_v2.resume_naming.filename(
+                plan['job']['company'], plan['job']['title'], plan['job']['job_number'],
+                expected.parent, reserve=True, revision=True)
         os.replace(candidate, destination)
         final = destination
         existing = False
@@ -1015,10 +1164,16 @@ def run_queue(
             for item in group
         }
         for item in all_items.values():
-            if (_flag((item.fields or {}).get("Cost")) != COST_EXCLUSION_MARKER
+            if (application_fee_required((item.fields or {}).get("Cost"))
+                    and _flag((item.fields or {}).get("Apply?")) not in {"no", *REJECT_STATUSES}):
+                _retry_sheet(lambda item=item: tracker.disqualify_required_fee_row(
+                    item.row, company=item.company, title=item.title,
+                ))
+                continue
+            if (not application_fee_required((item.fields or {}).get("Cost"))
                     and not is_expired_indeed((item.fields or {}).get(INDEED_APPLICATION_HEADER))
                     and _geographic_qualification(item)
-                    and _flag((item.fields or {}).get("Apply?")) != "yes"):
+                    and not _flag((item.fields or {}).get("Apply?"))):
                 _retry_sheet(lambda item=item: tracker.approve_manual_scout_row(
                     item.row, company=item.company, title=item.title,
                 ))
@@ -1245,6 +1400,24 @@ def _append_run_log(message: str) -> None:
         handle.write(f"{stamp} {message}\n")
 
 
+def validate_requested_ids(tracker: GoogleTracker, ids: set[int]) -> dict[int, int]:
+    """Require one current physical Column A row for each explicitly named ID."""
+    if not ids or any(value <= 0 for value in ids):
+        raise ValueError("--ids requires positive Column A IDs")
+    tab = tracker.scout()
+    if tab.headers.get("Scout ID") != 1:
+        raise RuntimeError("The live ID header is not in Column A; targeted run stopped")
+    matches: dict[int, list[int]] = {value: [] for value in ids}
+    for row, data in tab.rows:
+        value = _scout_id(data.get("Scout ID"))
+        if value in matches:
+            matches[value].append(row)
+    bad = {value: rows for value, rows in matches.items() if len(rows) != 1}
+    if bad:
+        raise RuntimeError(f"Requested Column A IDs are missing or duplicated: {bad}")
+    return {value: rows[0] for value, rows in matches.items()}
+
+
 def main() -> int:
     sys.stdout.reconfigure(errors="backslashreplace")
     sys.stderr.reconfigure(errors="backslashreplace")
@@ -1256,12 +1429,23 @@ def main() -> int:
               "resume generation, and completion repair"),
     )
     parser.add_argument("--dry-run", action="store_true", help="Show queue decisions without generating or writing")
+    parser.add_argument("--ids", type=int, nargs="+", metavar="ID",
+                        help="Process only these current Column A IDs; skip unrelated rejection maintenance")
     args = parser.parse_args()
+    if args.ids and args.source:
+        parser.error("--ids and --source cannot be combined")
+    if args.ids and len(args.ids) != len(set(args.ids)):
+        parser.error("--ids must not repeat an ID")
     logger = None if args.dry_run else _append_run_log
     if logger is not None:
         logger(f"RUN START dry_run={args.dry_run} source={args.source or 'all'} db={args.db.resolve()}")
     tracker = GoogleTracker()
-    if not args.dry_run:
+    target_ids = set(args.ids) if args.ids else None
+    if target_ids is not None:
+        rows = validate_requested_ids(tracker, target_ids)
+        print("Targeted Column A IDs: " + ", ".join(
+            f"{value} (row {rows[value]})" for value in sorted(rows)))
+    if not args.dry_run and target_ids is None:
         with JobStore(args.db.resolve()) as store:
             rejection_summary = process_rejected_rows(tracker, store)
         if rejection_summary.marked:
@@ -1269,6 +1453,7 @@ def main() -> int:
             print(json.dumps(rejection_summary.to_dict(), indent=2))
     result = run_queue(
         tracker, args.db.resolve(), dry_run=args.dry_run, source=args.source,
+        eligible_scout_ids=target_ids,
         logger=logger,
     )
     if logger is not None:

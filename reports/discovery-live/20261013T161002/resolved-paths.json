@@ -1,0 +1,5 @@
+{
+  "root": "C:\\gecko_main",
+  "source_config": "C:\\gecko_main\\job-scout\\preferences\\job-sources.json",
+  "database": "C:\\gecko_main\\job-scout\\data\\jobs.sqlite3"
+}

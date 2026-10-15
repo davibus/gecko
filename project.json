@@ -1,18 +1,21 @@
 {
-  "name": "gecko",
+  "name": "Gecko Main",
   "purpose": "Job discovery, resume tailoring and generation, and application tracking",
-  "master_resume": "input/master-resume/Dave-Call-Resume.txt",
+  "master_resume": "input/master-resume/master-resume-v2.txt",
   "formatting_model": "input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf",
   "resume_output_dir": "output/resumes",
   "job_tracker": "Google Sheets",
   "google_sheets_module": "job-scout/google_tracker.py",
   "tracker_schema_module": "job-scout/tracker_schema.py",
   "tracker_schema_document": "docs/tracker-schema.md",
-  "daily_tracker_report_command": "python job-scout/scout.py daily-report --dry-run",
+  "daily_tracker_report_command": "python scripts/daily_report.py --dry-run",
   "job_tracker_script": "scripts/manage_job_tracker.py",
   "target_pages": 2,
   "default_font_size_pt": 10.5,
   "line_spacing": 1.15,
-  "filename_pattern": "Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx",
-  "job_description_pattern": "<Company-Name>+<job-number>.md"
+  "filename_pattern": "Dave-Call+<Company-Name>+<Job-Title>+<Resume-ID>.docx",
+  "job_description_pattern": "<Company-Name>+<job-number>.md",
+  "resume_id_max_digits": 5,
+  "resume_filename_max_characters": 150,
+  "resume_identity_registry": "output/resumes/.resume-identities.json"
 }

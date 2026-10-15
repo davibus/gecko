@@ -1,0 +1,4 @@
+from current_batch_ui import UI
+from pathlib import Path
+import json
+Q=Path('/mnt/c/gecko_main/openclaw/application-queue');j='2240';p=json.loads((Q/j/'application-package.json').read_text());e=json.loads((Q/j/'submission-result.json').read_text());u=UI('batch20261014-'+j);r=u.call(['evaluate','--fn','() => ({url:location.href,title:document.title,text:document.body.innerText})']);f=r['result'];assert f['url']==p['company_application_url']+'/confirmation' and f['title']=='Thank you for applying';assert 'Your application has been received' in f['text'] or 'We have received your application' in f['text'];e.update(outcome='submitted',confirmation_url=f['url'],confirmation_text=f['text']);(Q/j/'confirmation.json').write_text(json.dumps(r,indent=2));(Q/j/'submission-result.json').write_text(json.dumps(e,indent=2));print('Podium 2240 receipt confirmed')

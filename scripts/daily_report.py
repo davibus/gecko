@@ -22,7 +22,7 @@ from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "job-scout"))
-from google_tracker import GoogleTracker, _a1, _col, apply_value, is_expired_indeed  # noqa: E402
+from google_tracker import GoogleTracker, _a1, _col, resume_approval_value, is_expired_indeed  # noqa: E402
 from rejected_jobs import RejectedJob, RejectedJobsIndex, normalize_job_url  # noqa: E402
 from tracker_schema import (DAILY_TASKS_TAB, DELETED_JOBS_TAB, REJECTED_TAB,
                             DAILY_RUN_TAB, INDEED_APPLICATION_HEADER, REJECT_STATUSES,
@@ -53,6 +53,9 @@ def public_error(error: Exception) -> str:
         return f"{name}: authentication or permission failure (details redacted)"
     if any(word in message for word in ("429", "quota", "rate limit")):
         return f"{name}: rate limit or quota failure (details redacted)"
+    if isinstance(error, RuntimeError) and str(error).startswith((
+            "Daily Tasks ", "Daily Run ", "Job-tracking data changed")):
+        return f"{name}: {error}"
     return f"{name}: reporting operation failed (details redacted)"
 
 
@@ -222,7 +225,7 @@ def evaluate(tabs: dict, scout_title: str) -> dict:
                                    or (not key(data.get("Resume Created")) and state != "blank"))
         applied = key(data.get("Applied")) == "x"
         app["already_applied"] += applied
-        if key(data.get("Gecko Status") or data.get("Status")) in REJECT_STATUSES:
+        if key(data.get("Apply?")) in REJECT_STATUSES:
             marked_reject.append(row_record(number, data, "marked permanent rejection; move unsafe if formulas exist"))
             continue
         if rejected.match(source=data.get("Source"), url=data.get("Job URL")):
@@ -235,8 +238,8 @@ def evaluate(tabs: dict, scout_title: str) -> dict:
         if expired:
             app["excluded_expired"] += 1
             continue
-        apply = key(data.get("Apply?")) == "yes" or apply_value(
-            data.get("Location"), data.get("Work Arrangement")) == "Yes"
+        apply = key(data.get("Apply?")) == "yes" and resume_approval_value(
+            data.get("Location"), data.get("Work Arrangement"), data.get("Cost")) == "Yes"
         if not apply:
             app["excluded_apply"] += 1
             continue
@@ -553,6 +556,11 @@ def run(tracker: GoogleTracker, run_id: str, run_date: str, audit_root: Path,
                 tracker, fields, pending_path=pending_path)
             history_row, history_height = (None, 0) if refresh_today else write_history(tracker, fields)
         report["sheet_updated"] = bool(changed_rows or history_height)
+        report["tab_results"] = {"Daily Tasks": {"state": "verified" if row_number else "not retained",
+                            "row": row_number},
+            "Daily Run": {"state": "untouched" if refresh_today else
+                          "inserted" if history_height else "already present and verified",
+                          "row": history_row}}
         if refresh_today:
             report["daily_run_untouched"] = True
             report["entry_action"] = "updated" if run_date in baseline_entries else "created"
@@ -597,6 +605,10 @@ def run(tracker: GoogleTracker, run_id: str, run_date: str, audit_root: Path,
     except Exception as error:
         report["overall_status"] = "FAIL"
         report["errors"].append(public_error(error))
+        report["tab_results"] = {"Daily Tasks": {"state": "write failed" if row_number is None else "written; final run failed",
+                            "reason": public_error(error) if row_number is None else None},
+            "Daily Run": {"state": "untouched" if refresh_today else "not verified",
+                          "reason": public_error(error) if not refresh_today else None}}
         report["script_health"].setdefault("Daily reporting", {})["status"] = "Failed"
         event("failure", error=public_error(error))
         if row_number is not None and report["metrics"] and not refresh_today:
@@ -625,7 +637,48 @@ def main(argv=None) -> int:
     parser.add_argument("--refresh-today", action="store_true",
                         help="Refresh only today's Daily Tasks block; leave Daily Run unchanged")
     parser.add_argument("--run-id")
+    parser.add_argument("--reconcile-audit", metavar="RUN_ID",
+                        help="Repair a failed audit with the same Run ID and validated source data")
+    parser.add_argument("--restore-daily-tasks-audit", metavar="RUN_ID",
+                        help="Restore missing Daily Tasks from a verified audit whose Daily Run exists")
+    parser.add_argument("--restore-missing-daily-run", action="store_true",
+                        help="With --reconcile-audit, recreate the verified-missing Daily Run tab")
+    parser.add_argument("--restore-history-audit", metavar="PATH",
+                        help="With --reconcile-audit, restore an earlier verified Daily Tasks date if empty")
     args = parser.parse_args(argv)
+    if args.restore_daily_tasks_audit:
+        if args.reconcile_audit or args.refresh_today or args.date or args.run_id or args.restore_missing_daily_run:
+            parser.error("--restore-daily-tasks-audit cannot be combined with a new run or history write")
+        if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,79}", args.restore_daily_tasks_audit):
+            parser.error("invalid audit Run ID")
+        from reconcile_daily_report import restore_tasks
+        audit_root = ROOT / "reports" / "daily"
+        matches = list(audit_root.glob(f"*/{args.restore_daily_tasks_audit}.json"))
+        if len(matches) != 1:
+            parser.error("audit Run ID was not found exactly once")
+        result = restore_tasks(GoogleTracker(), matches[0],
+            historical_audit=Path(args.restore_history_audit) if args.restore_history_audit else None,
+            report_api=sys.modules[__name__])
+        print(json.dumps(result, indent=2))
+        return 0 if result["status"] == "VERIFIED" else 1
+    if args.reconcile_audit:
+        if args.refresh_today or args.date or args.run_id:
+            parser.error("--reconcile-audit cannot be combined with a new run or date")
+        if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,79}", args.reconcile_audit):
+            parser.error("invalid audit Run ID")
+        from reconcile_daily_report import reconcile
+        audit_root = ROOT / "reports" / "daily"
+        matches = list(audit_root.glob(f"*/{args.reconcile_audit}.json"))
+        if len(matches) != 1:
+            parser.error("failed audit Run ID was not found exactly once")
+        result = reconcile(GoogleTracker(), matches[0],
+            restore_missing_daily_run=args.restore_missing_daily_run,
+            historical_audit=Path(args.restore_history_audit) if args.restore_history_audit else None,
+            report_api=sys.modules[__name__])
+        print(json.dumps(result, indent=2))
+        return 0 if result["overall_status"] == "WARNING" else 1
+    if args.restore_missing_daily_run or args.restore_history_audit:
+        parser.error("restore options require --reconcile-audit")
     if args.refresh_today and args.date:
         parser.error("--refresh-today uses the current America/Denver date; omit --date")
     run_id = args.run_id or f"{now():%Y%m%dT%H%M%S}-{uuid4().hex[:10]}"

@@ -1,0 +1,38 @@
+{
+  "configured": {
+    "adzuna": true,
+    "remotive": true,
+    "web-careers": true,
+    "jobicy": true,
+    "remoteok": true,
+    "usajobs": true,
+    "greenhouse": true,
+    "lever": true,
+    "ashby": true,
+    "workable": true,
+    "weworkremotely": true,
+    "workingnomads": true,
+    "themuse": false,
+    "indeed": true,
+    "linkedin": true,
+    "glassdoor": true,
+    "ziprecruiter": true
+  },
+  "environment_present": {
+    "ADZUNA_APP_ID": true,
+    "ADZUNA_APP_KEY": true,
+    "USAJOBS_API_KEY": true,
+    "USAJOBS_EMAIL": true,
+    "INDEED_API_ENDPOINT": false,
+    "INDEED_API_TOKEN": false,
+    "BRAVE_SEARCH_API_KEY": true,
+    "THE_MUSE_API_KEY": false,
+    "GOOGLE_CSE_API_KEY": false,
+    "GOOGLE_CSE_CX": false,
+    "GECKO_GOOGLE_CSE_ENABLED": false,
+    "JOB_SCOUT_SOURCES_CONFIG": false,
+    "JOB_SCOUT_MAX_RESULTS_PER_SOURCE": false
+  },
+  "effective_source_limit": 0,
+  "project_root": "C:\\gecko_main"
+}

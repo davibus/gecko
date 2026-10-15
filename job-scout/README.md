@@ -12,7 +12,7 @@ Set the row's `Gecko Status` (or renamed `Status`) value to `Reject` or `Delete 
 python job-scout/scout.py reject-jobs
 ```
 
-Gecko first writes the job to the hidden `Rejected Jobs` support tab, reads the record back, and only then removes the visible `Job Scout` row. If the archive write fails, the row stays visible. `daily` and `sync-sheets` run the same maintenance step automatically.
+Gecko first writes the job to the hidden `Rejected Jobs` support tab, reads the record back, and only then removes the visible `Job List` row. If the archive write fails, the row stays visible. `daily` and `sync-sheets` run the same maintenance step automatically.
 
 All scout and resume-queue paths skip a rejected job by source-qualified stable Job ID first (Indeed `jk` when present), or by normalized canonical URL when an ID is unavailable. Company + title alone never creates a permanent rejection, and ordinary row disappearance is not interpreted as rejection.
 
@@ -66,7 +66,7 @@ The normal command is `python job-scout/scout.py daily`. It automatically reuses
 
 1. Find a job manually on Indeed.
 2. Copy the Indeed job URL (a `viewjob` URL containing `jk` is preferred).
-3. Paste it into the `Job URL` field of a new `Job Scout` row.
+3. Paste it into the `Job URL` field of a new `Job List` row.
 4. Run the normal `python job-scout/scout.py daily` command.
 5. Gecko checks the complete Sheet and local datastore for the same Indeed `jk`, canonical URL, or exact normalized company/title/location identity.
 6. If the job is new, Gecko retrieves the structured posting, populates the existing row, assigns the next never-used numeric Scout ID, and includes it in the normal review/resume queue. During `daily`, Gecko sets Apply? to `Yes` when Location is in Utah or Work Arrangement explicitly permits remote work, just as it does for every other source.
@@ -80,7 +80,7 @@ Outside the all-source Utah/remote eligibility rule, Job Scout preserves the use
 
 ## Google Sheet schema
 
-See [../docs/tracker-schema.md](../docs/tracker-schema.md) for the live workbook tabs, IDs, verified `Job Scout` headers, aliases, and workflow rules. `tracker_schema.py` is the central runtime schema; live job headers are resolved by name. `Daily Tasks` receives the five-date vertical dashboard; `Daily Run` is preserved historical data. `Scratch` is unassigned. Missing required tabs block work rather than being created implicitly.
+See [../docs/tracker-schema.md](../docs/tracker-schema.md) for the live workbook tabs, IDs, verified `Job List` headers, aliases, and workflow rules. `tracker_schema.py` is the central runtime schema; live job headers are resolved by name. `Daily Tasks` receives the five-date vertical dashboard; `Daily Run` stores report history. `Scratch` is unassigned. Missing required tabs block work rather than being created implicitly.
 
 For a persisted, report-only dry run, use `python scripts/daily_report.py --dry-run` (see [daily-report.md](../docs/daily-report.md)). It writes only the five-date `Daily Tasks` vertical dashboard and local audit files. Job and unassigned tabs stay read-only. The older `python job-scout/scout.py daily-report --dry-run` is console-only.
 
@@ -90,7 +90,7 @@ For Source = Indeed, the 'Apply or on Company Website (If Indeed)' field stores 
 
 The current header row determines every field position. The main visible blue application button is the first choice for this field; when it is absent, use the primary application-status message in the Indeed job header. Preserve the exact visible wording and capitalization. Unrelated page text, external URLs, and API method labels do not decide this field.
 
-To backfill existing rows without a Scout sync, run `python job-scout/scout.py backfill-indeed-status --browser-observations <path>`. The JSON array contains recent observations of the rendered Indeed page, one per row: `row`, `source_url`, `page_url`, `visible: true`, and ISO `observed_at`, plus either `button_text` with `primary_blue: true` or `status_text` with `primary_status: true`. Capture the actual visible control or job-header status in a supported browser session; the command cannot infer it from a URL or employer page. Observations expire after two hours. Without browser observations, the command reports unresolved rows and makes no writes. It reads the live `Job Scout` tab, selects Indeed rows by `Source`, writes only the named status cell for verified changes in batches, and reads each batch back. A missing or ambiguous control, or a verification challenge, remains unresolved.
+To backfill existing rows without a Scout sync, run `python job-scout/scout.py backfill-indeed-status --browser-observations <path>`. The JSON array contains recent observations of the rendered Indeed page, one per row: `row`, `source_url`, `page_url`, `visible: true`, and ISO `observed_at`, plus either `button_text` with `primary_blue: true` or `status_text` with `primary_status: true`. Capture the actual visible control or job-header status in a supported browser session; the command cannot infer it from a URL or employer page. Observations expire after two hours. Without browser observations, the command reports unresolved rows and makes no writes. It reads the live `Job List` tab, selects Indeed rows by `Source`, writes only the named status cell for verified changes in batches, and reads each batch back. A missing or ambiguous control, or a verification challenge, remains unresolved.
 
 The optional `migrate-sheets` command identifies retired columns by header name; its historical column letters do not describe the current sheet.
 
@@ -277,7 +277,7 @@ python job-scout/gmail_response_tracker.py check
 
 ## Resume handoff
 
-Gecko evaluates the job description directly against the required master archive (`input/master-resume/Dave-Call-Resume.txt`) while building the tailoring plan. Resume generation uses `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as the required visual formatting/layout model. The V2 pipeline stops without fallback if either file is missing. It produces:
+Gecko evaluates the job description directly against the required master archive (`input/master-resume/master-resume-v2.txt`) while building the tailoring plan. Resume generation uses `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as the required visual formatting/layout model. The V2 pipeline stops without fallback if either file is missing. It produces:
 
 - an exactly two-page DOCX after native Microsoft Word validation.
 
@@ -297,3 +297,10 @@ python -m unittest discover -s scripts -p "test_*.py" -v
 ```
 
 The regression suite covers schema migration idempotence, header-based writes, discovery, daily orchestration, and resume creation.
+
+
+## Permanent short resume filename rule
+
+Resume filenames must use `Dave-Call+<Company-Name>+<Job-Title>+<Resume-ID>.docx`, ending in a unique numeric identifier of at most five digits (Gecko uses five zero-padded digits). Never put a full posting ID, Indeed jk, UUID, hash, or long numeric job number in a resume filename. Keep filenames at most 150 characters, sanitizing Windows-invalid characters and shortening an excessively long title at a word boundary. Reserve identifiers through `job-scout/resume_naming.py`; do not truncate a source ID or guess uniqueness. Full posting IDs remain in the identity registry and DOCX metadata for job matching. Use the same rule for explicitly requested renames, verify tracker links after any rename, and preserve the existing Resume Created = X guard. Archived job descriptions and scratch folders continue to use full posting IDs.
+
+Example: `Dave-Call+Array+Digital-Marketing-Manager+00001.docx`.

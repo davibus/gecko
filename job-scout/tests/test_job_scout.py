@@ -307,6 +307,18 @@ class EnvironmentTests(unittest.TestCase):
         self.assertFalse(kwargs["dry_run"])
         self.assertNotIn("eligible_scout_ids", kwargs)
 
+    def test_daily_resume_runner_limits_generation_when_ids_are_given(self):
+        queue_result = self.queue_result()
+        fake_queue = SimpleNamespace(
+            _append_run_log=unittest.mock.Mock(),
+            run_queue=unittest.mock.Mock(return_value=queue_result),
+        )
+        store = SimpleNamespace(path=Path("daily.sqlite3"))
+        with patch.dict(sys.modules, {"generate_apply_queue": fake_queue}):
+            _daily_resume_runner([10, 11], store, resume_ids={2218, 2219})
+        self.assertEqual(fake_queue.run_queue.call_args.kwargs["eligible_scout_ids"],
+                         {2218, 2219})
+
     def test_daily_invokes_web_careers_provider(self):
         class StubProvider:
             def __init__(self, name):

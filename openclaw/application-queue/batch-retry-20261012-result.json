@@ -1,0 +1,638 @@
+{
+  "runId": "ff75abf1-7338-4ba3-89e0-e492df431e2d",
+  "status": "error",
+  "summary": "failed",
+  "result": {
+    "payloads": [
+      {
+        "text": "\u26a0\ufe0f LLM request failed (rate limited, HTTP 429). This is usually temporary \u2014 try again shortly. Note: some tool actions may have already been executed \u2014 please verify before retrying.",
+        "isError": true,
+        "mediaUrl": null
+      }
+    ],
+    "meta": {
+      "durationMs": 314599,
+      "agentMeta": {
+        "sessionId": "2f45dad1-0296-44c0-8dc4-4a7cc97c32da",
+        "provider": "openai",
+        "model": "gpt-5.6-terra",
+        "contextTokens": 258400,
+        "contextTokensSource": "runtime",
+        "agentHarnessId": "codex",
+        "credentialSource": {
+          "kind": "profile"
+        },
+        "usage": {
+          "input": 95557,
+          "output": 5502,
+          "cacheRead": 2088192,
+          "cacheWrite": 0,
+          "reasoningTokens": 1678,
+          "total": 2189251
+        },
+        "lastCallUsage": {
+          "input": 95557,
+          "output": 5502,
+          "cacheRead": 2088192,
+          "cacheWrite": 0,
+          "reasoningTokens": 1678,
+          "total": 2189251,
+          "contextUsage": {
+            "state": "unavailable"
+          }
+        },
+        "codeModeEngaged": false,
+        "terminalReceipt": {
+          "runId": "ff75abf1-7338-4ba3-89e0-e492df431e2d",
+          "sessionId": "2f45dad1-0296-44c0-8dc4-4a7cc97c32da",
+          "turnId": "01a13250-2239-7b43-9f57-0674a7ca9178",
+          "requested": {
+            "provider": "openai",
+            "model": "gpt-5.6-terra"
+          },
+          "effective": {
+            "provider": "openai",
+            "model": "gpt-5.6-terra",
+            "responseModel": "gpt-5.6-terra"
+          },
+          "successfulToolNames": [
+            "progress_card",
+            "bash",
+            "browser",
+            "apply_patch"
+          ],
+          "rerouted": false,
+          "terminalDisposition": "not-visible"
+        }
+      },
+      "aborted": false,
+      "systemPromptReport": {
+        "source": "run",
+        "generatedAt": 1791845474843,
+        "sessionId": "2f45dad1-0296-44c0-8dc4-4a7cc97c32da",
+        "sessionKey": "agent:gecko-resume-application-assistant:retry-1262-1268-be90db35b7634b288adbf36038cbfad7",
+        "provider": "openai",
+        "model": "gpt-5.6-terra",
+        "workspaceDir": "/home/dcall/.openclaw/workspace-gecko",
+        "systemPrompt": {
+          "chars": 15463,
+          "projectContextChars": 0,
+          "nonProjectContextChars": 15463,
+          "hash": "1a4974b66058c5dcf818d419d4a04af10a823e9f68cb58d42c6a1031b524b360"
+        },
+        "injectedWorkspaceFiles": [
+          {
+            "name": "AGENTS.md",
+            "path": "/home/dcall/.openclaw/workspace-gecko/AGENTS.md",
+            "missing": false,
+            "rawChars": 7722,
+            "injectionStatus": "native_unverified",
+            "injectedChars": null,
+            "truncated": null
+          },
+          {
+            "name": "SOUL.md",
+            "path": "/home/dcall/.openclaw/workspace-gecko/SOUL.md",
+            "missing": false,
+            "rawChars": 1526,
+            "injectedChars": 1526,
+            "truncated": false
+          },
+          {
+            "name": "IDENTITY.md",
+            "path": "/home/dcall/.openclaw/workspace-gecko/IDENTITY.md",
+            "missing": false,
+            "rawChars": 1398,
+            "injectedChars": 1398,
+            "truncated": false
+          },
+          {
+            "name": "USER.md",
+            "path": "/home/dcall/.openclaw/workspace-gecko/USER.md",
+            "missing": false,
+            "rawChars": 1136,
+            "injectedChars": 1136,
+            "truncated": false
+          }
+        ],
+        "skills": {
+          "promptChars": 5198,
+          "hash": "87945298aee0723e944458cbcbefd067ae4767ff51b10f5257ef2c9187dbdb26",
+          "entries": [
+            {
+              "name": "browser-automation",
+              "blockChars": 324
+            },
+            {
+              "name": "canvas",
+              "blockChars": 243
+            },
+            {
+              "name": "clawhub",
+              "blockChars": 322
+            },
+            {
+              "name": "control-ui",
+              "blockChars": 358
+            },
+            {
+              "name": "diagram-maker",
+              "blockChars": 284
+            },
+            {
+              "name": "healthcheck",
+              "blockChars": 296
+            },
+            {
+              "name": "meme-maker",
+              "blockChars": 269
+            },
+            {
+              "name": "node-connect",
+              "blockChars": 353
+            },
+            {
+              "name": "node-inspect-debugger",
+              "blockChars": 295
+            },
+            {
+              "name": "notion",
+              "blockChars": 290
+            },
+            {
+              "name": "python-debugpy",
+              "blockChars": 283
+            },
+            {
+              "name": "skill-creator",
+              "blockChars": 302
+            },
+            {
+              "name": "spike",
+              "blockChars": 269
+            },
+            {
+              "name": "tmux",
+              "blockChars": 287
+            },
+            {
+              "name": "visualize",
+              "blockChars": 300
+            },
+            {
+              "name": "weather",
+              "blockChars": 307
+            }
+          ]
+        },
+        "tools": {
+          "listChars": 0,
+          "schemaChars": 14085,
+          "entries": [
+            {
+              "name": "agents_list",
+              "summaryChars": 116,
+              "summaryHash": "a86dafe00675913d8f07e9bac4c134435539c31e80cac7c431f879cc0285ab16",
+              "schemaChars": 76,
+              "schemaHash": "d746974fa9afd5e951f76f9af38954b0ad7f436f2120dc974da65e5ee39f856f",
+              "propertiesCount": 0
+            },
+            {
+              "name": "agents_wait",
+              "summaryChars": 202,
+              "summaryHash": "eedf035982c7c4b9b386ed87e932630b03bc6f07fcdf94709b287665c77c168d",
+              "schemaChars": 190,
+              "schemaHash": "d2e4a65d79496cb2475ad745f4af959f3061753e4df8e68993a9ace6fbd35dc6",
+              "propertiesCount": 2
+            },
+            {
+              "name": "message",
+              "summaryChars": 64,
+              "summaryHash": "c76c94110d6313f5f35415528841472d4003682533cb3a07c48a9001bb63baae",
+              "schemaChars": 2688,
+              "schemaHash": "dda9d628920659a39d714dab13c590d98304fa3cd94093ad503daaf92de40f12",
+              "propertiesCount": 31
+            },
+            {
+              "name": "progress_card",
+              "summaryChars": 1741,
+              "summaryHash": "4a8d34f1acc1d1938e5ee87272f1426d1233827d519e2f9f8f96fa2de5f39ea8",
+              "schemaChars": 401,
+              "schemaHash": "4df2ff9b9fb69b792b92f3d1d67a295fc7061797e031a42793731348c50b29e2",
+              "propertiesCount": 2
+            },
+            {
+              "name": "sessions_spawn",
+              "summaryChars": 3152,
+              "summaryHash": "71b60c11c8135beb3c4f9afc057dce5498300b4ce306edbd0ee4a5c1c066f088",
+              "schemaChars": 5255,
+              "schemaHash": "f3aaabf1cd7d72ffb5557420e92a87c0b9fd0fd5923012789cd8e58eec36a581",
+              "propertiesCount": 30
+            },
+            {
+              "name": "ask_user",
+              "summaryChars": 857,
+              "summaryHash": "e903258acafe070ab656997ab2d4f0a52f52b557fa592724d97c9dca08938857",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "automations",
+              "summaryChars": 5516,
+              "summaryHash": "cfe58456f8799b7eaabea22f5c699a47e2cabfa4f930f3c2e6f743b593db646f",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "browser",
+              "summaryChars": 4675,
+              "summaryHash": "8aaa824a54fcbe99d53c6882c41ddd28a6d573eff340dcdc787abea6fc1d729b",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "canvas",
+              "summaryChars": 67,
+              "summaryHash": "1f9f9d063d5eeb9a4ccc1b0709fd2420b08092e771a18d1b5914f5db0b37e1cc",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "codex_plugins",
+              "summaryChars": 189,
+              "summaryHash": "1745d513a81a391a456663b74c47e01bb777c53c59d2dcd93b7df82171ecd51f",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "conversations_list",
+              "summaryChars": 159,
+              "summaryHash": "527335ff7cc669a406a88dbb1ea150631cea16155fa517fc76c8be38f8285190",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "conversations_send",
+              "summaryChars": 152,
+              "summaryHash": "7031570c2ea879e8ebb39548c931374a864db8bfeb4d634de7d234a7f43fbbe3",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "conversations_turn",
+              "summaryChars": 190,
+              "summaryHash": "67bb15e899769e37e6d2ff596dba9c33ac6c828e12ef2903fc40fbf5df56aeb3",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "dashboard",
+              "summaryChars": 1373,
+              "summaryHash": "b2fb814de22c52538a217bc3ad182b640974e66917d53e4857b5e1f904a1d1a9",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "dir_fetch",
+              "summaryChars": 796,
+              "summaryHash": "001fc4287f508af50c98c05bb35adaf8ee9ad09ee748e088aa819e22935b6947",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "dir_list",
+              "summaryChars": 795,
+              "summaryHash": "3d27dd93b528870a7036069538faad8b45f4d831cd7582f25e9fdf1afea81c3d",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "file_fetch",
+              "summaryChars": 642,
+              "summaryHash": "34d7b58f39d044fb09b6e6df42d57d510369ad0e94abd554bec83108525344b2",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "file_write",
+              "summaryChars": 603,
+              "summaryHash": "91a18020223fa2bf59bb3f43640d80be81c17d40640d97f315653f890debd80b",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "gateway",
+              "summaryChars": 172,
+              "summaryHash": "37523c5d9a9072bc525a0c58f193198e1337a3caa78cca6da4e624027a3a2dcf",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "gateway_exec",
+              "summaryChars": 367,
+              "summaryHash": "dad3f3073a59cd44ffd60442c936b871796bae946a652776a130fffc89dcf755",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "gateway_process",
+              "summaryChars": 255,
+              "summaryHash": "1ca21d50545f267b8376a287e8f6f9491ca4510c330822c7a190c80f837b23ca",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "github_identity_status",
+              "summaryChars": 205,
+              "summaryHash": "69fb13ca34c73fef10fdb08c4ac532e50413b8c76400886d02331d59009dc735",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "image_generate",
+              "summaryChars": 375,
+              "summaryHash": "02e1424e4a119f3cd75f2b6776fce1ee0ddf69a3c467010247561772f28029f2",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "intent",
+              "summaryChars": 266,
+              "summaryHash": "ff1256d0b5c53d9ec8dfd5e5ce9dc3cdc802359835a8e25a562cd3e952e2020a",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "ls",
+              "summaryChars": 192,
+              "summaryHash": "90bdd7a772f66ad236d45f18e28ee873b8c795fe219804f2c19074a867423e20",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "memory_get",
+              "summaryChars": 681,
+              "summaryHash": "97156dcb491b385583229cff85c5003edf179fdc7a6a9a02e7f09055f96eb38a",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "memory_search",
+              "summaryChars": 878,
+              "summaryHash": "5cb75621432e6bd5f02b0beccf1007a84a5fe760a5fa204cf806c6cec1f6df3f",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "mobile_ui",
+              "summaryChars": 453,
+              "summaryHash": "1bb7df5038cc1c8a999c91cfd7f7e40d3cdc9b45bd8ef4fbcf5bbc1c54f7d3ce",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "node_inference",
+              "summaryChars": 206,
+              "summaryHash": "49c5e7e56c65dee8e708065c58240d64d8067dc07d9d13597890ecb5388ac88d",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "nodes",
+              "summaryChars": 516,
+              "summaryHash": "0ddada295a8604352fb098058e6462eda948afaac4fa62cabdaba0a5d2258ed7",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "pdf",
+              "summaryChars": 266,
+              "summaryHash": "a38284285a3e55bbc0e30d8d66d9a0b37e2701f02d58cfc899da1043323d6983",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "plugins",
+              "summaryChars": 559,
+              "summaryHash": "fa71d5572edf3058f9cac95aa7d9d6ddd49f646ec314030defe73d7b5482d78b",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "portal",
+              "summaryChars": 681,
+              "summaryHash": "52e614d6c72bedba4886a2e10ce202ef9f4434080932ab47adbd8489875571ce",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "presence",
+              "summaryChars": 627,
+              "summaryHash": "8de54af9193a1045808067afdf77d51a129fbfb256610fcb74a7b913d3d8b02e",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "secrets",
+              "summaryChars": 798,
+              "summaryHash": "f7f4d365c0632c02381d35f7bc8c984e3d637ac421376ac2b32aa6070e7e46c2",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "session_status",
+              "summaryChars": 192,
+              "summaryHash": "23343479c1bf552695627bd580795ca22cdc1020232f6984bf0cad5557f74dbd",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "sessions",
+              "summaryChars": 576,
+              "summaryHash": "8b2e6eeb8e261f113e58602cf5f93993d02554971be4a2aeae31efdbec663a4d",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "sessions_history",
+              "summaryChars": 511,
+              "summaryHash": "67a4c4ff9e919455c8a115421913208b3d5a4ffd71720d1205833d6b4f850408",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "sessions_list",
+              "summaryChars": 880,
+              "summaryHash": "8bdca38def2db23dbd73e4fd9dc7b425f49fdfb34fba25250fd1ed2ea2f4d6af",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "sessions_search",
+              "summaryChars": 177,
+              "summaryHash": "334f96a1cafd9325d695608fe065a4a00888f6b55279d396590575b39e62728a",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "sessions_send",
+              "summaryChars": 1550,
+              "summaryHash": "a04ba2d2b770de097fb6c3a612f892e21c3bda6079f03c232a6676b3f993d2b9",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "skill_workshop",
+              "summaryChars": 2027,
+              "summaryHash": "4a407b70b66780a1eb3a68dcbec86ed1645a875a62a3c7546315ba83a5cbcee2",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "subagents",
+              "summaryChars": 159,
+              "summaryHash": "3a6c28bad09ee88cf3a09610ab7c234e5cbcf2b542ff6fe01a361b15baf6f927",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "talk_voice",
+              "summaryChars": 423,
+              "summaryHash": "1ef5de0b72ff39c136cb78b74795a69c7048a23f7e7b3f86323fbf780f926c67",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "terminal",
+              "summaryChars": 281,
+              "summaryHash": "7cd87f59b6645de1e5e9f45cc730410e1bc1bb1ee90a2bb5a50e7a09b9a7af88",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "theme",
+              "summaryChars": 790,
+              "summaryHash": "89c28af46851a2eac2c7b868a9b561064952917277a5384e3a526ace3742cd64",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "transcripts",
+              "summaryChars": 112,
+              "summaryHash": "77b3b93af0d12a84fa84e3f745a86e5730bacf60a66f683a8d9fdf708197d443",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "tts",
+              "summaryChars": 245,
+              "summaryHash": "841f7db9ad3ece79d54c59de7395e7a8591d24327be97750c4d76c1bff5a107a",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "web_fetch",
+              "summaryChars": 78,
+              "summaryHash": "616ac805dfdeaeadbb5e03504e84d52b01ecaa88c7e7100fa4c06eca8eb6195f",
+              "schemaChars": 0,
+              "schemaHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+              "propertiesCount": null
+            },
+            {
+              "name": "computer",
+              "summaryChars": 694,
+              "summaryHash": "661715d56b741f0272478ef81dcf50f5387bf1eec5ae1a8f05766c5e70501351",
+              "schemaChars": 4822,
+              "schemaHash": "830cb5e912edf40c7d9c25fa22b59724839c3c7aa62d02a477e6db0d8c5ef131",
+              "propertiesCount": 54
+            },
+            {
+              "name": "openclaw",
+              "summaryChars": 456,
+              "summaryHash": "45212b5ccc76e78f8dc05e9a9d90d721c53f16f18ee08a23a5868020bbe24f6d",
+              "schemaChars": 196,
+              "schemaHash": "c27c83eba39eec4937836d4b6e38616c9edbb5ce0be25bba57e1af3c4a3cfe25",
+              "propertiesCount": 2
+            },
+            {
+              "name": "sessions_yield",
+              "summaryChars": 337,
+              "summaryHash": "1dddf4158ea2c44cf79c93b483fd18bc48c6e32fe32fafca3fe83b5309310ce8",
+              "schemaChars": 457,
+              "schemaHash": "e54b20b3d09698b9748bc9adfa6efab9013adfe3474da39c5e0ca5c71d048760",
+              "propertiesCount": 3
+            }
+          ]
+        }
+      },
+      "replayInvalid": true,
+      "livenessState": "abandoned",
+      "error": {
+        "kind": "incomplete_turn",
+        "message": "You've reached your Codex subscription usage limit. Next reset in 30 days, Nov 11 at 8:29 AM MST. Wait until the reset time, use another Codex account if available, or switch to another configured model/provider.",
+        "fallbackSafe": false,
+        "terminalPresentation": false
+      },
+      "toolSummary": {
+        "calls": 55,
+        "tools": [
+          "bash",
+          "progress_card",
+          "browser",
+          "apply_patch"
+        ],
+        "failures": 4
+      },
+      "executionTrace": {
+        "fallbackUsed": false
+      },
+      "terminalReply": {
+        "disposition": "empty"
+      }
+    },
+    "sourceReplyDeliveryState": "missing"
+  }
+}

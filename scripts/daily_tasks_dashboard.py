@@ -6,7 +6,7 @@ from datetime import date, datetime
 import json
 from pathlib import Path
 
-from google_tracker import _a1
+from google_tracker import _a1, append_rows_requests
 from tracker_schema import DAILY_TASKS_TAB
 
 TITLE = "GECKO DAILY TASKS REPORT"
@@ -48,7 +48,7 @@ def _trim(rows):
     return result
 
 
-def _block(fields, *, display_sources=True):
+def _block(fields, *, display_sources=True, source_offset=6):
     run_date = date.fromisoformat(str(fields["Run Date"]))
     rows = [[TITLE, "", "", "", "", ""],
             [f"{run_date:%B} {run_date.day}, {run_date.year}", "", "", "", "", ""],
@@ -77,7 +77,8 @@ def _block(fields, *, display_sources=True):
             if isinstance(value, (int, float)) and not isinstance(value, bool):
                 styles["numbers"].append(len(rows))
             rows.append([name, value, "", "", "", ""])
-        if section == "JOB DISCOVERY":
+        if section == "JOB DISCOVERY" and source_offset == 12:
+            # Reports made before the E9 layout expanded this section.
             styles["source_header"].append(first)
             needed = first + 1 + len(sources)
             while len(rows) < needed:
@@ -87,6 +88,17 @@ def _block(fields, *, display_sources=True):
                 display = SOURCE_NAMES.get(str(source).casefold(), str(source)) if display_sources else str(source)
                 rows[offset][4:6] = [display, int(count)]
         rows.append(["", "", "", "", "", ""])
+    # The source table is beside the metrics and begins at E9:F9 for the
+    # first report (block row 3). It does not consume the A:B section flow.
+    if source_offset != 12:
+        needed = source_offset + 1 + len(sources)
+        while len(rows) < needed:
+            rows.append(["", "", "", "", "", ""])
+        styles["source_header"].append(source_offset)
+        rows[source_offset][4:6] = ["Existing Tracker Jobs by Source", "Jobs in Tracker"]
+        for offset, (source, count) in enumerate(sources, source_offset + 1):
+            display = SOURCE_NAMES.get(str(source).casefold(), str(source)) if display_sources else str(source)
+            rows[offset][4:6] = [display, int(count)]
     rows.append(["", "", "", "", "", ""])
     return rows, styles
 
@@ -100,6 +112,8 @@ def _parse(rows):
         raise RuntimeError("Daily Tasks A:F contains unrelated content; no write made")
     starts = [i for i, row in enumerate(grid) if row[0] == TITLE]
     if not starts:
+        if len(grid) == 1:
+            return {}, 1
         raise RuntimeError("Daily Tasks has no recognizable dashboard blocks")
     if any(any(v not in (None, "") for v in row) for row in grid[1:starts[0]]):
         raise RuntimeError("Unrelated Daily Tasks content precedes dashboard")
@@ -124,14 +138,14 @@ def _parse(rows):
         found[run_date] = values
     if list(found) != sorted(found, reverse=True) or len(found) > MAX_DATES:
         raise RuntimeError("Daily Tasks report dates are not in canonical order")
-    expected, _, _ = _render(found)
-    prior_labels, _, _ = _render(found, display_sources=False)
-    if _trim(expected) != grid and _trim(prior_labels) != grid:
+    variants = [_render(found, display_sources=labels, source_offset=offset)[0]
+                for labels in (True, False) for offset in (6, 12)]
+    if all(_trim(variant) != grid for variant in variants):
         raise RuntimeError("Daily Tasks dashboard contains partial or unrelated content")
     return found, len(grid)
 
 
-def _render(entries, *, display_sources=True):
+def _render(entries, *, display_sources=True, source_offset=6):
     rows = [[TOP, "", "", "", "", ""], ["", "", "", "", "", ""]]
     styles = {name: [] for name in ("title", "date", "section", "source_header",
                                      "status_pass", "status_warning", "status_fail",
@@ -139,7 +153,8 @@ def _render(entries, *, display_sources=True):
     starts = {}
     for report_date in sorted(entries, reverse=True):
         starts[report_date] = len(rows) + 1
-        block, local = _block(entries[report_date], display_sources=display_sources)
+        block, local = _block(entries[report_date], display_sources=display_sources,
+                              source_offset=source_offset)
         base = len(rows)
         rows.extend(block)
         for name, offsets in local.items():
@@ -186,9 +201,6 @@ def _format_requests(sheet_id, styles, end_row, initial):
         rep(row, 1, 2, {"horizontalAlignment": "RIGHT"})
     for row in styles["audit"]:
         rep(row, 1, 2, {"wrapStrategy": "WRAP", "verticalAlignment": "TOP"})
-        requests.append({"updateDimensionProperties": {"range": {"sheetId": sheet_id,
-            "dimension": "ROWS", "startIndex": row, "endIndex": row+1},
-            "properties": {"pixelSize": 54}, "fields": "pixelSize"}})
     for row in range(2, end_row):
         requests.append({"repeatCell": {"range": {"sheetId": sheet_id,
             "startRowIndex": row, "endRowIndex": row+1, "startColumnIndex": 5,
@@ -218,9 +230,14 @@ def write(tracker, fields, *, pending_path: Path | None = None):
             for col in range(1, 7):
                 if cell(before,row,col) not in (cell(original,row,col), cell(intended,row,col)):
                     raise RuntimeError("Daily Tasks differs from pending report plan; manual review required")
-        tracker.api.values().update(spreadsheetId=tracker.config.spreadsheet_id,
-            range=_a1(DAILY_TASKS_TAB, f"A1:F{limit}"), valueInputOption="RAW",
-            body={"values": intended + [[""]*6 for _ in range(limit-len(intended))]}).execute()
+        if _trim(before) != _trim(intended):
+            try:
+                tracker.api.values().update(spreadsheetId=tracker.config.spreadsheet_id,
+                    range=_a1(DAILY_TASKS_TAB, f"A1:F{limit}"), valueInputOption="RAW",
+                    body={"values": intended + [[""]*6 for _ in range(limit-len(intended))]}).execute()
+            except Exception:
+                if _trim(read(tracker)) != _trim(intended):
+                    raise
         before = read(tracker)
         if _trim(before) != _trim(intended):
             raise RuntimeError("Pending Daily Tasks report recovery failed readback")
@@ -237,8 +254,6 @@ def write(tracker, fields, *, pending_path: Path | None = None):
     entries = {d: proposed[d] for d in dates}
     desired, styles, starts = _render(entries)
     height = max(len(desired), old_height)
-    if height > prop.get("gridProperties", {}).get("rowCount", 1000):
-        raise RuntimeError("Daily Tasks has insufficient rows for reporting")
     if prop.get("gridProperties", {}).get("columnCount", 26) < 6:
         raise RuntimeError("Daily Tasks has insufficient columns for reporting")
     meta = tracker.api.get(spreadsheetId=tracker.config.spreadsheet_id,
@@ -263,14 +278,33 @@ def write(tracker, fields, *, pending_path: Path | None = None):
             if c > 6 and isinstance(value, str) and "ARRAYFORMULA" in value.upper() and value.lstrip().startswith("="):
                 if r <= height:
                     raise RuntimeError("ARRAYFORMULA may spill into reporting area")
+    # Deleting physical worksheet rows can leave fewer rows than the dashboard
+    # needs. Append only missing rows after the content and formula checks.
+    capacity = prop.get("gridProperties", {}).get("rowCount", 0)
+    if height > capacity:
+        try:
+            tracker.api.batchUpdate(spreadsheetId=tracker.config.spreadsheet_id,
+                body={"requests": append_rows_requests(
+                    prop["sheetId"], capacity, height - capacity)}).execute()
+        except Exception:
+            current = [p for p in tracker._sheet_properties() if p.get("title") == DAILY_TASKS_TAB]
+            if len(current) != 1 or current[0].get("gridProperties", {}).get("rowCount", 0) < height:
+                raise
+        current = [p for p in tracker._sheet_properties() if p.get("title") == DAILY_TASKS_TAB]
+        if len(current) != 1 or current[0].get("gridProperties", {}).get("rowCount", 0) < height:
+            raise RuntimeError("Daily Tasks row expansion failed readback")
     if pending_path:
         pending_path.parent.mkdir(parents=True, exist_ok=True)
         pending_path.write_text(json.dumps({"run_id": fields["Run ID"], "date": report_date,
             "before": _trim(before), "desired": desired}, default=str), encoding="utf-8")
     padded = desired + [[""]*6 for _ in range(height-len(desired))]
-    tracker.api.values().update(spreadsheetId=tracker.config.spreadsheet_id,
-        range=_a1(DAILY_TASKS_TAB, f"A1:F{height}"), valueInputOption="RAW",
-        body={"values": padded}).execute()
+    try:
+        tracker.api.values().update(spreadsheetId=tracker.config.spreadsheet_id,
+            range=_a1(DAILY_TASKS_TAB, f"A1:F{height}"), valueInputOption="RAW",
+            body={"values": padded}).execute()
+    except Exception:
+        if _trim(read(tracker)) != _trim(desired):
+            raise
     after = read(tracker)
     if _trim(after) != _trim(desired):
         raise RuntimeError("Daily Tasks dashboard failed cell readback; local pending plan retained")
@@ -278,7 +312,8 @@ def write(tracker, fields, *, pending_path: Path | None = None):
         for col in range(7, len(line)+1):
             if cell(after, row, col) != cell(before, row, col):
                 raise RuntimeError("Unrelated Daily Tasks content changed")
-    initially_blank = not any(any(value not in (None, "") for value in row[:6]) for row in before)
+    initially_blank = (not any(any(value not in (None, "") for value in row[:6]) for row in before)
+                       or prop.get("gridProperties", {}).get("frozenRowCount") != 1)
     tracker.api.batchUpdate(spreadsheetId=tracker.config.spreadsheet_id,
         body={"requests": _format_requests(prop["sheetId"], styles, height,
                                             initially_blank)}).execute()

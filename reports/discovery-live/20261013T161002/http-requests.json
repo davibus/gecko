@@ -1,0 +1,5207 @@
+[
+  {
+    "endpoint": "https://api.search.brave.com/res/v1/web/search",
+    "attempt": 1,
+    "status": 402,
+    "error": "Request failed for https://api.search.brave.com/res/v1/web/search: HTTP Error 402: Payment Required | {\"type\": \"ErrorResponse\", \"error\": {\"id\": \"3531ee45-c2a3-410d-bcd8-9a9fb685d2ef\", \"status\": 402, \"detail\": \"Prepaid credit balance is insufficient for this request. Top up to continue.\", \"meta\": {\"plan\": \"Search\", \"current_balance_units\": 5000, \"min_request_cost_units\": 10000, \"component\": \"rate_limiter\"}, \"code\": \"CREDIT_EXHAUSTED\"}, \"time\": 1791929429}",
+    "seconds": 0.284
+  },
+  {
+    "endpoint": "https://remotive.com/remote-jobs/feed/marketing",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 8086,
+    "raw_records": 1,
+    "seconds": 0.367
+  },
+  {
+    "endpoint": "https://remotive.com/remote-jobs/feed/data",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 6699,
+    "raw_records": 1,
+    "seconds": 0.188
+  },
+  {
+    "endpoint": "https://remotive.com/remote-jobs/feed/product",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1225,
+    "raw_records": 0,
+    "seconds": 0.177
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1424,
+    "raw_records": 1,
+    "seconds": 0.815
+  },
+  {
+    "endpoint": "https://remotive.com/remote-jobs/feed/business-development",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1253,
+    "raw_records": 0,
+    "seconds": 0.419
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 5802,
+    "raw_records": 4,
+    "seconds": 0.505
+  },
+  {
+    "endpoint": "https://jobicy.com/api/v2/remote-jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1078751,
+    "raw_records": 123,
+    "seconds": 1.17
+  },
+  {
+    "endpoint": "https://remotive.com/remote-jobs/feed/strategy",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1217,
+    "raw_records": 0,
+    "seconds": 0.431
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2960,
+    "raw_records": 2,
+    "seconds": 0.404
+  },
+  {
+    "endpoint": "https://remotive.com/remote-jobs/feed/communications",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1235,
+    "raw_records": 0,
+    "seconds": 0.795
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.738
+  },
+  {
+    "endpoint": "https://remotive.com/remote-jobs/feed/account-management",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1247,
+    "raw_records": 0,
+    "seconds": 0.554
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.484
+  },
+  {
+    "endpoint": "https://remotive.com/remote-jobs/feed/operations",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1223,
+    "raw_records": 0,
+    "seconds": 0.483
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.527
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.707
+  },
+  {
+    "endpoint": "https://remotive.com/remote-jobs/feed/all-others",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 38159,
+    "raw_records": 1,
+    "seconds": 0.876
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.503
+  },
+  {
+    "endpoint": "https://remoteok.com/api",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 595192,
+    "raw_records": 100,
+    "seconds": 1.026
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 25254,
+    "raw_records": 17,
+    "seconds": 0.832
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 7238,
+    "raw_records": 5,
+    "seconds": 0.644
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2960,
+    "raw_records": 2,
+    "seconds": 0.696
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 131412,
+    "raw_records": 5,
+    "seconds": 1.111
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.551
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.379
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 435510,
+    "raw_records": 13,
+    "seconds": 0.903
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.583
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/airtable/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 29531,
+    "raw_records": 3,
+    "seconds": 0.454
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/ag1/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 49364,
+    "raw_records": 4,
+    "seconds": 0.642
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.38
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/6sense/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 619649,
+    "raw_records": 29,
+    "seconds": 1.292
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/appspace/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 63640,
+    "raw_records": 6,
+    "seconds": 0.609
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.57
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/addepar1/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1318479,
+    "raw_records": 112,
+    "seconds": 2.009
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/array/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 161979,
+    "raw_records": 18,
+    "seconds": 0.992
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 4358,
+    "raw_records": 3,
+    "seconds": 0.864
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 513701,
+    "raw_records": 16,
+    "seconds": 1.948
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/b12/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 28949,
+    "raw_records": 4,
+    "seconds": 0.472
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/residenthome/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 93066,
+    "raw_records": 8,
+    "seconds": 1.216
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/alphasense/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2601599,
+    "raw_records": 194,
+    "seconds": 2.44
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 4288,
+    "raw_records": 3,
+    "seconds": 0.854
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/bobbie/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 129638,
+    "raw_records": 9,
+    "seconds": 0.689
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/bitwarden/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 365979,
+    "raw_records": 41,
+    "seconds": 0.969
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 131411,
+    "raw_records": 5,
+    "seconds": 1.141
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/barkleyokrp/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 784069,
+    "raw_records": 39,
+    "seconds": 1.581
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1482,
+    "raw_records": 1,
+    "seconds": 0.764
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/branch/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 31284,
+    "raw_records": 2,
+    "seconds": 0.8
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/livecareer/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 502099,
+    "raw_records": 27,
+    "seconds": 1.091
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/calendly/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 97902,
+    "raw_records": 9,
+    "seconds": 0.738
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.411
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 513701,
+    "raw_records": 16,
+    "seconds": 1.059
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.442
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/cobaltio/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 46962,
+    "raw_records": 4,
+    "seconds": 0.674
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/cleargov/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 191504,
+    "raw_records": 12,
+    "seconds": 0.847
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/checkr/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 556307,
+    "raw_records": 45,
+    "seconds": 1.272
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 131411,
+    "raw_records": 5,
+    "seconds": 0.734
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.604
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/code3/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 120228,
+    "raw_records": 7,
+    "seconds": 0.87
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/chime/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1205741,
+    "raw_records": 69,
+    "seconds": 1.974
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/constantcontact/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 214405,
+    "raw_records": 15,
+    "seconds": 1.127
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.812
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/cordance/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 358728,
+    "raw_records": 10,
+    "seconds": 1.187
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 131411,
+    "raw_records": 5,
+    "seconds": 1.682
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.902
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/datagrail/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 74194,
+    "raw_records": 6,
+    "seconds": 1.146
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/cresta/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1036632,
+    "raw_records": 86,
+    "seconds": 1.945
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/crossmediainc/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 301062,
+    "raw_records": 11,
+    "seconds": 1.612
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 5592,
+    "raw_records": 4,
+    "seconds": 0.795
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/cribl/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 599660,
+    "raw_records": 67,
+    "seconds": 1.907
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1497,
+    "raw_records": 1,
+    "seconds": 0.267
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 513701,
+    "raw_records": 16,
+    "seconds": 1.379
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/defenseunicorns/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 782668,
+    "raw_records": 56,
+    "seconds": 1.168
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.558
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/drivewealth/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 350887,
+    "raw_records": 18,
+    "seconds": 1.135
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.624
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.274
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/dropbox/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 722576,
+    "raw_records": 32,
+    "seconds": 1.151
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/earnin/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 194355,
+    "raw_records": 19,
+    "seconds": 0.61
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.372
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.526
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/energyhub/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 175746,
+    "raw_records": 14,
+    "seconds": 0.737
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.576
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/dept/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2282798,
+    "raw_records": 198,
+    "seconds": 2.376
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.674
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/engine/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 839803,
+    "raw_records": 78,
+    "seconds": 1.131
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.555
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/edelmanfinancialenginesllc/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 549407,
+    "raw_records": 41,
+    "seconds": 1.636
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.56
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/eve/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 301335,
+    "raw_records": 22,
+    "seconds": 0.714
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/ethoslife/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 716519,
+    "raw_records": 72,
+    "seconds": 1.056
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.554
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/evolvevacationrental/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 66165,
+    "raw_records": 5,
+    "seconds": 0.731
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/ezcaterinc/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 48905,
+    "raw_records": 4,
+    "seconds": 0.511
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.558
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/fleetio/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 239586,
+    "raw_records": 21,
+    "seconds": 1.047
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/faire/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1045485,
+    "raw_records": 79,
+    "seconds": 1.352
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.97
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/gametimeunited/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 141820,
+    "raw_records": 13,
+    "seconds": 1.148
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 51236,
+    "raw_records": 36,
+    "seconds": 1.371
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/follettsoftware/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 202411,
+    "raw_records": 6,
+    "seconds": 1.369
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.523
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.638
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/gitlab/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 3421761,
+    "raw_records": 217,
+    "seconds": 1.5
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.427
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 55382,
+    "raw_records": 39,
+    "seconds": 1.509
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.544
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/grafanalabs/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1648593,
+    "raw_records": 108,
+    "seconds": 2.316
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 31468,
+    "raw_records": 22,
+    "seconds": 0.958
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/hasbro/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1853403,
+    "raw_records": 109,
+    "seconds": 1.649
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.846
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/gongio/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1074761,
+    "raw_records": 99,
+    "seconds": 3.119
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/hs/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 40336,
+    "raw_records": 3,
+    "seconds": 0.646
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 7055,
+    "raw_records": 5,
+    "seconds": 0.712
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.635
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.371
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/gleanwork/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2574079,
+    "raw_records": 137,
+    "seconds": 4.128
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.56
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.514
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/iterable/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 30,
+    "raw_records": 0,
+    "seconds": 0.36
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/humaninterest/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1169917,
+    "raw_records": 71,
+    "seconds": 1.581
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.488
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 4213,
+    "raw_records": 3,
+    "seconds": 0.54
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/icapitalnetwork/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1933984,
+    "raw_records": 211,
+    "seconds": 1.675
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/intercom/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1345616,
+    "raw_records": 109,
+    "seconds": 1.968
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 4253,
+    "raw_records": 3,
+    "seconds": 0.521
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.611
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/jackmortonworldwide/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1483057,
+    "raw_records": 73,
+    "seconds": 1.029
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.503
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 4353,
+    "raw_records": 3,
+    "seconds": 1.013
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.586
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/keepersecurity/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2371360,
+    "raw_records": 98,
+    "seconds": 1.56
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/employerdirecthealthcare/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 735034,
+    "raw_records": 37,
+    "seconds": 1.484
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.444
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/justworks/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1620301,
+    "raw_records": 93,
+    "seconds": 2.392
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/later/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 633204,
+    "raw_records": 40,
+    "seconds": 1.527
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.505
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 38353,
+    "raw_records": 27,
+    "seconds": 1.092
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/lucidsoftware/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 295891,
+    "raw_records": 31,
+    "seconds": 0.764
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/launch2/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 454152,
+    "raw_records": 36,
+    "seconds": 1.081
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/lumimeds/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 446672,
+    "raw_records": 30,
+    "seconds": 0.931
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.709
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/machinifyinc/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1034169,
+    "raw_records": 51,
+    "seconds": 1.1
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/masterclass/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 56703,
+    "raw_records": 6,
+    "seconds": 0.722
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 18715,
+    "raw_records": 13,
+    "seconds": 0.946
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/mediaalpha/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 90565,
+    "raw_records": 9,
+    "seconds": 0.397
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.472
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/mavenclinic/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 453431,
+    "raw_records": 34,
+    "seconds": 0.99
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/medsien/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 194215,
+    "raw_records": 24,
+    "seconds": 0.576
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.376
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 5715,
+    "raw_records": 4,
+    "seconds": 0.63
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/mergeworld/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 164601,
+    "raw_records": 14,
+    "seconds": 0.658
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/mettel/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 208174,
+    "raw_records": 20,
+    "seconds": 0.503
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/mercury/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 655976,
+    "raw_records": 70,
+    "seconds": 0.96
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/minio/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 199145,
+    "raw_records": 23,
+    "seconds": 0.614
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.576
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.598
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/minitab/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 224130,
+    "raw_records": 17,
+    "seconds": 0.719
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/modernhealth/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 126821,
+    "raw_records": 7,
+    "seconds": 0.547
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/mitratech/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 263790,
+    "raw_records": 15,
+    "seconds": 0.63
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.456
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.593
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/myfitnesspal/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 121977,
+    "raw_records": 9,
+    "seconds": 0.896
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/newsela/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 165612,
+    "raw_records": 12,
+    "seconds": 0.948
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.722
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1463,
+    "raw_records": 1,
+    "seconds": 0.829
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/gomotive/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1727956,
+    "raw_records": 147,
+    "seconds": 1.983
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.611
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.692
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/nutrafol/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 163521,
+    "raw_records": 13,
+    "seconds": 1.048
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/omadahealth/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 298267,
+    "raw_records": 18,
+    "seconds": 1.11
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/mozilla/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1710337,
+    "raw_records": 95,
+    "seconds": 2.153
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.754
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/parsleyhealth/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 87213,
+    "raw_records": 8,
+    "seconds": 0.499
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 8400,
+    "raw_records": 6,
+    "seconds": 1.148
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/pingidentity/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 547167,
+    "raw_records": 50,
+    "seconds": 0.805
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.565
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/oura/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 932331,
+    "raw_records": 77,
+    "seconds": 1.282
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.805
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/opentable/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1326224,
+    "raw_records": 111,
+    "seconds": 2.247
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 16940,
+    "raw_records": 12,
+    "seconds": 1.133
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/podean/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 168929,
+    "raw_records": 19,
+    "seconds": 0.906
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/pinterest/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2106318,
+    "raw_records": 176,
+    "seconds": 1.894
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.673
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1503,
+    "raw_records": 1,
+    "seconds": 0.518
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.564
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 4185,
+    "raw_records": 3,
+    "seconds": 0.634
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.452
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/podium81/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 480858,
+    "raw_records": 58,
+    "seconds": 1.7
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.898
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 1.044
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.832
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/sonyinteractiveentertainmentglobal/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 3960091,
+    "raw_records": 206,
+    "seconds": 4.322
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.55
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2874,
+    "raw_records": 2,
+    "seconds": 0.713
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/recordedfuture/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 595060,
+    "raw_records": 46,
+    "seconds": 1.949
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.965
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 1.058
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/remotecom/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 30,
+    "raw_records": 0,
+    "seconds": 1.321
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.585
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1361,
+    "raw_records": 1,
+    "seconds": 0.839
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/redwoodsoftware/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 380835,
+    "raw_records": 33,
+    "seconds": 1.968
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/powerdigitalmarketing/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 3882646,
+    "raw_records": 303,
+    "seconds": 5.437
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/truebill/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 163528,
+    "raw_records": 17,
+    "seconds": 0.727
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 5766,
+    "raw_records": 4,
+    "seconds": 0.618
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.78
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.458
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1532,
+    "raw_records": 1,
+    "seconds": 0.521
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/precisionmedicinegroup/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2586742,
+    "raw_records": 164,
+    "seconds": 5.861
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/scaleops/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 314496,
+    "raw_records": 58,
+    "seconds": 0.886
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/signifyd95/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 187888,
+    "raw_records": 15,
+    "seconds": 0.885
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.462
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1454,
+    "raw_records": 1,
+    "seconds": 0.533
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/spinnakersupport/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 61640,
+    "raw_records": 7,
+    "seconds": 0.69
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.75
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.681
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/samsara/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 4026348,
+    "raw_records": 236,
+    "seconds": 2.391
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.579
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.708
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/supplyhouse/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1194288,
+    "raw_records": 27,
+    "seconds": 1.704
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1489,
+    "raw_records": 1,
+    "seconds": 0.928
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/sonymusicentertainment/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1936998,
+    "raw_records": 132,
+    "seconds": 2.636
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 38556,
+    "raw_records": 2,
+    "seconds": 1.018
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/smartsheet/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1016970,
+    "raw_records": 97,
+    "seconds": 2.906
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/talkdesk2/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 409550,
+    "raw_records": 34,
+    "seconds": 1.589
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.521
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/tebra/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 167014,
+    "raw_records": 11,
+    "seconds": 0.623
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.616
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2766,
+    "raw_records": 2,
+    "seconds": 0.648
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/tubescience52/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 178198,
+    "raw_records": 20,
+    "seconds": 0.793
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/tpreducationllc/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 260081,
+    "raw_records": 11,
+    "seconds": 1.12
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.708
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/tines/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 315763,
+    "raw_records": 30,
+    "seconds": 1.276
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.417
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/thenewyorktimes/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1803283,
+    "raw_records": 133,
+    "seconds": 1.827
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/tubitv/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 278283,
+    "raw_records": 27,
+    "seconds": 0.949
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 39061,
+    "raw_records": 27,
+    "seconds": 1.2
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.566
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/ultimagenomics/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 134988,
+    "raw_records": 16,
+    "seconds": 0.523
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/twinhealth/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 528981,
+    "raw_records": 43,
+    "seconds": 1.303
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/universalaudio/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 20570,
+    "raw_records": 2,
+    "seconds": 0.558
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.76
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/underscoremarketing/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 364307,
+    "raw_records": 10,
+    "seconds": 0.966
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 24585,
+    "raw_records": 17,
+    "seconds": 1.034
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.522
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1464,
+    "raw_records": 1,
+    "seconds": 0.4
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.431
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/vectranetworks/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 558803,
+    "raw_records": 26,
+    "seconds": 1.392
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.56
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.624
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.844
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/twilio/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2061073,
+    "raw_records": 145,
+    "seconds": 3.771
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/vercel/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 826488,
+    "raw_records": 88,
+    "seconds": 2.249
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.648
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 7296,
+    "raw_records": 5,
+    "seconds": 0.772
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/webflow/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 339739,
+    "raw_records": 23,
+    "seconds": 1.507
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/wellsaidlabs/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 10925,
+    "raw_records": 1,
+    "seconds": 0.54
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/ww/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1132003,
+    "raw_records": 81,
+    "seconds": 0.986
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.673
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.584
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/whogivesacrap/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 64677,
+    "raw_records": 9,
+    "seconds": 0.756
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/wildalaskancompany/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 30,
+    "raw_records": 0,
+    "seconds": 0.565
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.57
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1477,
+    "raw_records": 1,
+    "seconds": 0.85
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/wizinc/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1492001,
+    "raw_records": 122,
+    "seconds": 1.363
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.748
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2945,
+    "raw_records": 2,
+    "seconds": 0.544
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/veeamsoftware/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 4087350,
+    "raw_records": 224,
+    "seconds": 5.151
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1525,
+    "raw_records": 1,
+    "seconds": 0.631
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/zenoti/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 698860,
+    "raw_records": 54,
+    "seconds": 1.79
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.961
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.537
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.295
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.647
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/zetaglobal/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2123154,
+    "raw_records": 138,
+    "seconds": 1.884
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.457
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.609
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.331
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1497,
+    "raw_records": 1,
+    "seconds": 0.349
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.397
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.364
+  },
+  {
+    "endpoint": "https://boards-api.greenhouse.io/v1/boards/xai/jobs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2695107,
+    "raw_records": 307,
+    "seconds": 4.068
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.548
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.524
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.48
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 64288,
+    "raw_records": 45,
+    "seconds": 1.807
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.601
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.611
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 35437,
+    "raw_records": 25,
+    "seconds": 1.377
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.493
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.618
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 14353,
+    "raw_records": 10,
+    "seconds": 0.862
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.569
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 8496,
+    "raw_records": 6,
+    "seconds": 0.541
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.588
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.48
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.606
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.511
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.649
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 4204,
+    "raw_records": 3,
+    "seconds": 0.775
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.769
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.74
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.682
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1523,
+    "raw_records": 1,
+    "seconds": 0.586
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1520,
+    "raw_records": 1,
+    "seconds": 0.483
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.498
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1520,
+    "raw_records": 1,
+    "seconds": 0.526
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.648
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.523
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.553
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.699
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.93
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.588
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.573
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.568
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.465
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.735
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.792
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 12460,
+    "raw_records": 9,
+    "seconds": 1.062
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.93
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 22862,
+    "raw_records": 16,
+    "seconds": 1.019
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 4216,
+    "raw_records": 3,
+    "seconds": 0.506
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.984
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1497,
+    "raw_records": 1,
+    "seconds": 0.643
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.48
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.995
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.786
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.881
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1635,
+    "raw_records": 1,
+    "seconds": 0.587
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.618
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.475
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.523
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.526
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.482
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.585
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.659
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.481
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.652
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.545
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.416
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.558
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.518
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.546
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.493
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.579
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.507
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.776
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.585
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 18173,
+    "raw_records": 13,
+    "seconds": 0.802
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.668
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 11303,
+    "raw_records": 8,
+    "seconds": 0.582
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.567
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2978,
+    "raw_records": 2,
+    "seconds": 0.492
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.554
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2784,
+    "raw_records": 2,
+    "seconds": 0.683
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.512
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.626
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.575
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.576
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.597
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 4209,
+    "raw_records": 3,
+    "seconds": 0.467
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.483
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.633
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.845
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2721,
+    "raw_records": 2,
+    "seconds": 0.934
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.752
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.433
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 8709,
+    "raw_records": 6,
+    "seconds": 0.875
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.405
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.753
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.7
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.747
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.463
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 29444,
+    "raw_records": 2,
+    "seconds": 0.439
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.56
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.49
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.391
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.653
+  },
+  {
+    "endpoint": "https://api.adzuna.com/v1/api/jobs/us/search/1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 78,
+    "raw_records": 0,
+    "seconds": 0.771
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.502
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 1.102
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.573
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.706
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 186,
+    "raw_records": 0,
+    "seconds": 0.857
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 14203,
+    "raw_records": 1,
+    "seconds": 0.623
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.915
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 1.162
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.887
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.922
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.692
+  },
+  {
+    "endpoint": "https://data.usajobs.gov/api/search",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 185,
+    "raw_records": 0,
+    "seconds": 0.711
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/hashtagpaid",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 74463,
+    "raw_records": 5,
+    "seconds": 1.593
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/aircall",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1362898,
+    "raw_records": 77,
+    "seconds": 2.101
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/ampd-energy",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 100509,
+    "raw_records": 8,
+    "seconds": 1.129
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/solidcore",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1929968,
+    "raw_records": 200,
+    "seconds": 3.362
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/analyticpartners",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 280232,
+    "raw_records": 20,
+    "seconds": 1.466
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/anchorage",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 394920,
+    "raw_records": 22,
+    "seconds": 2.918
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/solidcore",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 694025,
+    "raw_records": 64,
+    "seconds": 2.661
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/bamko",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 192778,
+    "raw_records": 7,
+    "seconds": 0.82
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/bounteous",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 624106,
+    "raw_records": 32,
+    "seconds": 1.118
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/articulate",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 25249,
+    "raw_records": 1,
+    "seconds": 3.517
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/canvasww",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 179949,
+    "raw_records": 9,
+    "seconds": 1.445
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/brooksrunning",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 821563,
+    "raw_records": 38,
+    "seconds": 2.783
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/captivateiq",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 293415,
+    "raw_records": 22,
+    "seconds": 1.879
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/cin7",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 81326,
+    "raw_records": 6,
+    "seconds": 1.556
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/caseware",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1248321,
+    "raw_records": 44,
+    "seconds": 2.904
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/colibrigroup",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 404281,
+    "raw_records": 23,
+    "seconds": 2.201
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/airalo",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 348382,
+    "raw_records": 18,
+    "seconds": 11.876
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/decilegroup",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 166529,
+    "raw_records": 16,
+    "seconds": 1.524
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/dijital-team-pty-ltd",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 837278,
+    "raw_records": 26,
+    "seconds": 1.784
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/doola",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 72784,
+    "raw_records": 7,
+    "seconds": 1.443
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/quenchwater",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1794814,
+    "raw_records": 66,
+    "seconds": 3.78
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/elk-marketing",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 23298,
+    "raw_records": 2,
+    "seconds": 1.929
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/ekimetrics",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1228326,
+    "raw_records": 37,
+    "seconds": 2.169
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/employ",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 40597,
+    "raw_records": 2,
+    "seconds": 1.027
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/drivetrain",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 570002,
+    "raw_records": 33,
+    "seconds": 3.499
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/everlywell",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 170817,
+    "raw_records": 14,
+    "seconds": 1.387
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/eqbank",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2078147,
+    "raw_records": 85,
+    "seconds": 3.206
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/chipping-concrete",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1963365,
+    "raw_records": 39,
+    "seconds": 2.582
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/findem",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 37851,
+    "raw_records": 3,
+    "seconds": 0.743
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/filevine",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1589431,
+    "raw_records": 117,
+    "seconds": 3.022
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/Flex",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 602257,
+    "raw_records": 30,
+    "seconds": 1.407
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/enablecomp",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 362509,
+    "raw_records": 20,
+    "seconds": 7.782
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/Acorns",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 142109,
+    "raw_records": 8,
+    "seconds": 0.989
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/absorblms",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 377536,
+    "raw_records": 23,
+    "seconds": 1.373
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/galvanick",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 121670,
+    "raw_records": 5,
+    "seconds": 3.679
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/abridge",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1016735,
+    "raw_records": 46,
+    "seconds": 1.698
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/1password",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2105202,
+    "raw_records": 73,
+    "seconds": 2.463
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/acquisition",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 306575,
+    "raw_records": 16,
+    "seconds": 1.29
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/gr0",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 25820,
+    "raw_records": 2,
+    "seconds": 4.266
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/greenlight",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 189089,
+    "raw_records": 13,
+    "seconds": 1.855
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/angi",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 271808,
+    "raw_records": 19,
+    "seconds": 0.915
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/ambiencehealthcare",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 365438,
+    "raw_records": 18,
+    "seconds": 1.233
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/foodsmart",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 396765,
+    "raw_records": 19,
+    "seconds": 6.018
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/audiohook",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 106971,
+    "raw_records": 11,
+    "seconds": 0.812
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/atomic",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 136256,
+    "raw_records": 11,
+    "seconds": 0.9
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/atlasfin",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 50400,
+    "raw_records": 5,
+    "seconds": 1.107
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/healthcare",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 97597,
+    "raw_records": 6,
+    "seconds": 1.169
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/GurobiOptimization",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 235819,
+    "raw_records": 11,
+    "seconds": 2.359
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/bioptimizers",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 16509,
+    "raw_records": 1,
+    "seconds": 0.424
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/cantina",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 214236,
+    "raw_records": 19,
+    "seconds": 0.585
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/benevity",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 346503,
+    "raw_records": 21,
+    "seconds": 0.942
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/Checkbox%20Technology",
+    "attempt": 1,
+    "status": 404,
+    "error": "Request failed for https://api.ashbyhq.com/posting-api/job-board/Checkbox%20Technology: HTTP Error 404: Not Found",
+    "seconds": 0.493
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/cogent-security",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 428608,
+    "raw_records": 45,
+    "seconds": 1.006
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/ashby",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2140853,
+    "raw_records": 65,
+    "seconds": 2.941
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/constructor",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 605232,
+    "raw_records": 41,
+    "seconds": 1.399
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/dandy",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 966210,
+    "raw_records": 71,
+    "seconds": 1.783
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/dash0",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 489803,
+    "raw_records": 46,
+    "seconds": 1.229
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/incorta",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 50470,
+    "raw_records": 5,
+    "seconds": 2.761
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/deepjudge",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 307481,
+    "raw_records": 23,
+    "seconds": 0.87
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/inkitt",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 163903,
+    "raw_records": 11,
+    "seconds": 3.063
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/Deepgram",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1711506,
+    "raw_records": 90,
+    "seconds": 2.117
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/eightsleep",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 632477,
+    "raw_records": 37,
+    "seconds": 1.339
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/hive",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 878347,
+    "raw_records": 74,
+    "seconds": 4.865
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/duck-duck-go",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 196496,
+    "raw_records": 9,
+    "seconds": 1.734
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/directive",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1268125,
+    "raw_records": 61,
+    "seconds": 2.339
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/equip",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1131761,
+    "raw_records": 50,
+    "seconds": 1.454
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/istaridigital.ai",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 146608,
+    "raw_records": 12,
+    "seconds": 2.475
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/flashpoint.io",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 75170,
+    "raw_records": 4,
+    "seconds": 1.252
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/jamcity",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 272941,
+    "raw_records": 17,
+    "seconds": 1.537
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/found",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 75354,
+    "raw_records": 5,
+    "seconds": 1.259
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/fireworks",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1219123,
+    "raw_records": 83,
+    "seconds": 2.444
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/jobscan-2",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 56619,
+    "raw_records": 4,
+    "seconds": 1.602
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/furtherai",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 121251,
+    "raw_records": 10,
+    "seconds": 1.62
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/goodlord",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 131676,
+    "raw_records": 10,
+    "seconds": 0.903
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/freshpaint",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 73568,
+    "raw_records": 4,
+    "seconds": 2.534
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/g2",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1034547,
+    "raw_records": 52,
+    "seconds": 1.843
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/kobie",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 780182,
+    "raw_records": 29,
+    "seconds": 2.634
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/happl",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 74158,
+    "raw_records": 5,
+    "seconds": 0.934
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/Gray%20Swan%20AI",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 250334,
+    "raw_records": 16,
+    "seconds": 1.679
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/hatch",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 108896,
+    "raw_records": 6,
+    "seconds": 0.886
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/hawk",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 273674,
+    "raw_records": 21,
+    "seconds": 1.151
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/illumio",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1010573,
+    "raw_records": 66,
+    "seconds": 1.743
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/hinge-health",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1597013,
+    "raw_records": 79,
+    "seconds": 2.624
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/Legend",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 421217,
+    "raw_records": 33,
+    "seconds": 5.156
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/kindred",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 125680,
+    "raw_records": 7,
+    "seconds": 0.685
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/harvey",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 4898332,
+    "raw_records": 349,
+    "seconds": 5.292
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/Instrumentl",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 106837,
+    "raw_records": 10,
+    "seconds": 10.772
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/gohighlevel",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2686501,
+    "raw_records": 93,
+    "seconds": 15.03
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/handshake",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1262203,
+    "raw_records": 87,
+    "seconds": 6.231
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/livekit",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 371304,
+    "raw_records": 30,
+    "seconds": 1.284
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/magnetforensics",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1024474,
+    "raw_records": 41,
+    "seconds": 6.143
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/laurel",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 252759,
+    "raw_records": 14,
+    "seconds": 2.761
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/meetingtomorrow",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 161802,
+    "raw_records": 5,
+    "seconds": 1.848
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/morningconsult",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 199835,
+    "raw_records": 12,
+    "seconds": 1.511
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/nimbletalent",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 14028,
+    "raw_records": 2,
+    "seconds": 0.796
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/knox-systems",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 237320,
+    "raw_records": 16,
+    "seconds": 3.334
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/meds",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 869977,
+    "raw_records": 29,
+    "seconds": 3.385
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/nash",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 370004,
+    "raw_records": 22,
+    "seconds": 1.521
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/mendix",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1036655,
+    "raw_records": 42,
+    "seconds": 2.609
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/oxylabs",
+    "attempt": 1,
+    "status": 404,
+    "error": "Request failed for https://api.lever.co/v0/postings/oxylabs: HTTP Error 404: Not Found | {\"ok\": false, \"error\": \"Document not found\"}",
+    "seconds": 1.372
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/ontic",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 288587,
+    "raw_records": 17,
+    "seconds": 1.973
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/openrouter",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 317143,
+    "raw_records": 28,
+    "seconds": 1.294
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/opened",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 226490,
+    "raw_records": 12,
+    "seconds": 2.061
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/oneapp",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 641822,
+    "raw_records": 48,
+    "seconds": 2.629
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/raft",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 28,
+    "raw_records": 0,
+    "seconds": 0.546
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/padsplit",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 126200,
+    "raw_records": 10,
+    "seconds": 2.563
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/pendulum",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 158821,
+    "raw_records": 9,
+    "seconds": 1.52
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/outreach",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 681715,
+    "raw_records": 24,
+    "seconds": 3.186
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/procurify",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 267147,
+    "raw_records": 12,
+    "seconds": 1.524
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/render",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 791978,
+    "raw_records": 39,
+    "seconds": 1.561
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/reprise%20financial",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 125535,
+    "raw_records": 6,
+    "seconds": 0.755
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/range",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 876020,
+    "raw_records": 64,
+    "seconds": 2.066
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/reducto",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 574600,
+    "raw_records": 40,
+    "seconds": 1.91
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/siegemedia",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 128753,
+    "raw_records": 11,
+    "seconds": 2.4
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/semgrep",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 190279,
+    "raw_records": 12,
+    "seconds": 2.705
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/rula",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 543554,
+    "raw_records": 39,
+    "seconds": 3.08
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/sanity",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 530462,
+    "raw_records": 35,
+    "seconds": 3.12
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/solink",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 625071,
+    "raw_records": 25,
+    "seconds": 1.543
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/socure",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1399038,
+    "raw_records": 86,
+    "seconds": 2.405
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/skydio",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2375991,
+    "raw_records": 155,
+    "seconds": 2.832
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/stndrd",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 28,
+    "raw_records": 0,
+    "seconds": 1.11
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/silktide",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 7488,
+    "raw_records": 1,
+    "seconds": 3.175
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/pine-services",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 97872,
+    "raw_records": 11,
+    "seconds": 7.193
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/pattern",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1527450,
+    "raw_records": 95,
+    "seconds": 9.248
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/princeton10",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 195759,
+    "raw_records": 24,
+    "seconds": 8.034
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/prosper",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 249161,
+    "raw_records": 14,
+    "seconds": 8.176
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/stryker-digital",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 121320,
+    "raw_records": 10,
+    "seconds": 2.041
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/rightsideup",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 276672,
+    "raw_records": 29,
+    "seconds": 1.559
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/Ridwell",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 158161,
+    "raw_records": 12,
+    "seconds": 2.342
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/tern",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 158838,
+    "raw_records": 8,
+    "seconds": 0.786
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/swap",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 79535,
+    "raw_records": 8,
+    "seconds": 2.455
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/surveymonkey",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 317436,
+    "raw_records": 17,
+    "seconds": 2.708
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/rover",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 591551,
+    "raw_records": 33,
+    "seconds": 1.87
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/seerinteractive",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 216746,
+    "raw_records": 11,
+    "seconds": 1.093
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/superhuman%20platform%20inc",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1252298,
+    "raw_records": 73,
+    "seconds": 3.504
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/thumbtack",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 837511,
+    "raw_records": 57,
+    "seconds": 2.202
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/titan-ai",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 147665,
+    "raw_records": 13,
+    "seconds": 1.982
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/tin-can",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 233087,
+    "raw_records": 18,
+    "seconds": 2.408
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/snappr",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 170265,
+    "raw_records": 17,
+    "seconds": 2.245
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/true-classic-tees",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 194838,
+    "raw_records": 15,
+    "seconds": 1.193
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/whippy",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 143610,
+    "raw_records": 10,
+    "seconds": 1.313
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/trm-labs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 3589826,
+    "raw_records": 111,
+    "seconds": 3.019
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/xds",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 273630,
+    "raw_records": 25,
+    "seconds": 0.844
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/whoop",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2338473,
+    "raw_records": 168,
+    "seconds": 1.73
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/outschool",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 124882,
+    "raw_records": 6,
+    "seconds": 0.482
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/hightouch-inc",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 833518,
+    "raw_records": 76,
+    "seconds": 1.151
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/xero",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1184396,
+    "raw_records": 115,
+    "seconds": 1.638
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/saviynt",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1057424,
+    "raw_records": 70,
+    "seconds": 7.024
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/silverbackstrategies",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 109727,
+    "raw_records": 6,
+    "seconds": 5.494
+  },
+  {
+    "endpoint": "https://api.ashbyhq.com/posting-api/job-board/vanta",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1382059,
+    "raw_records": 82,
+    "seconds": 3.994
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/starcompliance",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 302006,
+    "raw_records": 9,
+    "seconds": 1.236
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/sonatype",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 268656,
+    "raw_records": 17,
+    "seconds": 1.533
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/sonarsource",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2311508,
+    "raw_records": 119,
+    "seconds": 5.174
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/fours",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 115161,
+    "raw_records": 11,
+    "seconds": 1.445
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/sugarcrm",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 240141,
+    "raw_records": 11,
+    "seconds": 1.758
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/terrahq",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 68678,
+    "raw_records": 8,
+    "seconds": 0.945
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/teikametrics",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2,
+    "raw_records": 0,
+    "seconds": 1.595
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/sysdig",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 332319,
+    "raw_records": 33,
+    "seconds": 2.128
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/tracktik",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 277048,
+    "raw_records": 12,
+    "seconds": 1.581
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/versapay",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 288484,
+    "raw_records": 24,
+    "seconds": 1.043
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/vivenu",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 419403,
+    "raw_records": 31,
+    "seconds": 2.324
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/waveapps",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 95158,
+    "raw_records": 7,
+    "seconds": 1.599
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/vacancies",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 316362,
+    "raw_records": 26,
+    "seconds": 6.722
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/veeva",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2707784,
+    "raw_records": 200,
+    "seconds": 10.004
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/shieldai",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 3171993,
+    "raw_records": 200,
+    "seconds": 21.168
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/weloglobal",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2769120,
+    "raw_records": 200,
+    "seconds": 6.217
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/getwingapp",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2962594,
+    "raw_records": 200,
+    "seconds": 7.113
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/veeva",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2766423,
+    "raw_records": 200,
+    "seconds": 5.095
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/weloglobal",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 3267669,
+    "raw_records": 200,
+    "seconds": 3.428
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/shieldai",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 3409282,
+    "raw_records": 200,
+    "seconds": 9.544
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/getwingapp",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2312436,
+    "raw_records": 175,
+    "seconds": 7.015
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/weloglobal",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2017929,
+    "raw_records": 124,
+    "seconds": 5.483
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/veeva",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2911596,
+    "raw_records": 200,
+    "seconds": 7.242
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/wpromote",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1080055,
+    "raw_records": 49,
+    "seconds": 2.989
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/shieldai",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 3167644,
+    "raw_records": 200,
+    "seconds": 5.009
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/veeva",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2847691,
+    "raw_records": 200,
+    "seconds": 4.08
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/shieldai",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 201603,
+    "raw_records": 14,
+    "seconds": 1.523
+  },
+  {
+    "endpoint": "https://api.lever.co/v0/postings/veeva",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1983645,
+    "raw_records": 142,
+    "seconds": 2.43
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/activtrak",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 15149,
+    "raw_records": 3,
+    "seconds": 1.593
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/ab-marketing",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 11640,
+    "raw_records": 4,
+    "seconds": 1.771
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/akkadianlabs",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 30585,
+    "raw_records": 4,
+    "seconds": 2.116
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/apexwheels",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 817,
+    "raw_records": 0,
+    "seconds": 1.069
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/algaecal",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 549477,
+    "raw_records": 62,
+    "seconds": 2.47
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/autoleap",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 32454,
+    "raw_records": 7,
+    "seconds": 1.118
+  },
+  {
+    "endpoint": "https://weworkremotely.com/categories/remote-sales-and-marketing-jobs.rss",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1009094,
+    "raw_records": 110,
+    "seconds": 1.797
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/bully-pulpit-international-1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 153808,
+    "raw_records": 17,
+    "seconds": 2.12
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/azumo",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 493752,
+    "raw_records": 63,
+    "seconds": 2.55
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/avomind",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1691037,
+    "raw_records": 341,
+    "seconds": 3.487
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/booksy-1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 104601,
+    "raw_records": 16,
+    "seconds": 3.505
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/compound-growth-marketing",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 65,
+    "raw_records": 0,
+    "seconds": 0.943
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/clearstory",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 140023,
+    "raw_records": 19,
+    "seconds": 1.651
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/channel-factory",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 126689,
+    "raw_records": 21,
+    "seconds": 2.586
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/curology",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 15040,
+    "raw_records": 2,
+    "seconds": 0.878
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/crewbloom",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 812019,
+    "raw_records": 148,
+    "seconds": 1.868
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/coursedog-1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 71728,
+    "raw_records": 7,
+    "seconds": 2.602
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/digital-368",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 666258,
+    "raw_records": 224,
+    "seconds": 1.72
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/dodge-construction-network",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 152135,
+    "raw_records": 19,
+    "seconds": 1.147
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/decentralized-masters",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 250013,
+    "raw_records": 39,
+    "seconds": 2.126
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/fmx",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 105672,
+    "raw_records": 13,
+    "seconds": 1.099
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/facetwealth",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 130838,
+    "raw_records": 17,
+    "seconds": 1.862
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/feeldco",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 83015,
+    "raw_records": 8,
+    "seconds": 1.256
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/formassembly",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 4793,
+    "raw_records": 1,
+    "seconds": 0.827
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/funnel-leasing",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 50455,
+    "raw_records": 5,
+    "seconds": 1.027
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/flosum",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 875891,
+    "raw_records": 169,
+    "seconds": 2.414
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/futureplc",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 282566,
+    "raw_records": 48,
+    "seconds": 0.85
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/freebird",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 22247,
+    "raw_records": 2,
+    "seconds": 1.771
+  },
+  {
+    "endpoint": "https://www.workingnomads.com/api/exposed_jobs/",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 231398,
+    "raw_records": 51,
+    "seconds": 1.505
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/gbg",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 165115,
+    "raw_records": 24,
+    "seconds": 0.948
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/hialtitudebrands",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 47000,
+    "raw_records": 6,
+    "seconds": 0.846
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/hirehawk",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1609090,
+    "raw_records": 336,
+    "seconds": 1.355
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/impactplus",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 24189,
+    "raw_records": 3,
+    "seconds": 0.801
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/intellishift",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 39456,
+    "raw_records": 7,
+    "seconds": 1.146
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/jam-4",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 24225,
+    "raw_records": 2,
+    "seconds": 1.044
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/interactivestrategies",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 28894,
+    "raw_records": 4,
+    "seconds": 1.188
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/jenzabar1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 60913,
+    "raw_records": 11,
+    "seconds": 1.157
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/jump450",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 70520,
+    "raw_records": 10,
+    "seconds": 1.09
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/modern-ai",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 28221,
+    "raw_records": 4,
+    "seconds": 0.842
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/icbd-holdings",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 4485981,
+    "raw_records": 638,
+    "seconds": 5.087
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/lawnstarter",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1184210,
+    "raw_records": 102,
+    "seconds": 3.266
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/modern-family-law-1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 619891,
+    "raw_records": 92,
+    "seconds": 2.22
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/keywords-intl1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2252821,
+    "raw_records": 272,
+    "seconds": 4.825
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/nautilus-solar-energy",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 30387,
+    "raw_records": 6,
+    "seconds": 2.279
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/newrich-network",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 50265,
+    "raw_records": 5,
+    "seconds": 2.295
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/paleovalley-wildpastures",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 79970,
+    "raw_records": 8,
+    "seconds": 1.138
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/pairedrecruiting",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 685527,
+    "raw_records": 173,
+    "seconds": 2.663
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/palm-venture-studios",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 10083,
+    "raw_records": 2,
+    "seconds": 2.254
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/pareto-publishing",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 20923,
+    "raw_records": 6,
+    "seconds": 1.267
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/panorama-education",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 61874,
+    "raw_records": 8,
+    "seconds": 1.951
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/partner-one-capital",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 345042,
+    "raw_records": 81,
+    "seconds": 1.309
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/persuit-1",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 43405,
+    "raw_records": 6,
+    "seconds": 1.566
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/planetart",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 131219,
+    "raw_records": 20,
+    "seconds": 1.704
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/practicetek",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 216684,
+    "raw_records": 22,
+    "seconds": 1.618
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/popmenu",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 54151,
+    "raw_records": 10,
+    "seconds": 2.312
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/prosci",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 56826,
+    "raw_records": 8,
+    "seconds": 1.447
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/prime-system",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 412121,
+    "raw_records": 84,
+    "seconds": 2.136
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/qry",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 35432,
+    "raw_records": 4,
+    "seconds": 1.377
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/regexseocareers",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 137651,
+    "raw_records": 20,
+    "seconds": 1.725
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/righthookdigital",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 154623,
+    "raw_records": 25,
+    "seconds": 1.687
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/rocketams",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 45863,
+    "raw_records": 9,
+    "seconds": 1.686
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/rockstar-3",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 794640,
+    "raw_records": 136,
+    "seconds": 2.217
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/sans-2",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 29367,
+    "raw_records": 4,
+    "seconds": 1.618
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/rrdigital",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 28011,
+    "raw_records": 4,
+    "seconds": 1.992
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/savvytalent",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 16358,
+    "raw_records": 4,
+    "seconds": 1.775
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/seeq",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 171296,
+    "raw_records": 25,
+    "seconds": 1.307
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/sidetrade",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 223003,
+    "raw_records": 32,
+    "seconds": 1.414
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/skylight-frame",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 84842,
+    "raw_records": 12,
+    "seconds": 1.344
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/squiz",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 65546,
+    "raw_records": 10,
+    "seconds": 1.33
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/smartfinancial",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 102598,
+    "raw_records": 20,
+    "seconds": 2.038
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/tickpick",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 39875,
+    "raw_records": 5,
+    "seconds": 0.925
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/sweat-pants-agency",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 724919,
+    "raw_records": 109,
+    "seconds": 2.973
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/the-marketing-practice",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 143077,
+    "raw_records": 15,
+    "seconds": 1.991
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/semios",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 209481,
+    "raw_records": 26,
+    "seconds": 3.739
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/tp-link-usa-corp",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 577495,
+    "raw_records": 79,
+    "seconds": 2.127
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/uncommonagency",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 99219,
+    "raw_records": 18,
+    "seconds": 1.44
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/vouched",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 16251,
+    "raw_records": 3,
+    "seconds": 1.321
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/writesonic",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 28642,
+    "raw_records": 7,
+    "seconds": 1.386
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/workana-premium",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 1922913,
+    "raw_records": 374,
+    "seconds": 3.37
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/zicasso",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 120358,
+    "raw_records": 15,
+    "seconds": 1.465
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/uptalent-dot-i-o",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 3554480,
+    "raw_records": 1008,
+    "seconds": 5.978
+  },
+  {
+    "endpoint": "https://www.workable.com/api/accounts/valsoft-corp",
+    "attempt": 1,
+    "status": 200,
+    "bytes": 2194137,
+    "raw_records": 291,
+    "seconds": 5.644
+  }
+]

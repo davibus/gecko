@@ -20,6 +20,7 @@ from typing import Any, Iterable
 from urllib.parse import parse_qs, unquote, urlsplit
 
 from googleapiclient.errors import HttpError
+import resume_naming
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -403,6 +404,10 @@ def _job_number(*values: str) -> str:
         for key in ("jk", "jobId", "job_id", "gh_jid"):
             if query.get(key):
                 return str(query[key][0])
+        path = Path(urlsplit(value).path.lstrip('/'))
+        mapped = resume_naming.identity(path)
+        if mapped:
+            return mapped['job_number']
         filename = urlsplit(value).path.rsplit("/", 1)[-1].removesuffix(".docx")
         suffix = filename.rsplit("+", 1)[-1]
         if re.fullmatch(r"[A-Za-z0-9_-]{6,}", suffix):

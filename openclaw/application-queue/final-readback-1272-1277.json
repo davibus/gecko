@@ -1,0 +1,34 @@
+[
+  {
+    "id": "1272",
+    "outcome": "skipped",
+    "tab": "Job List",
+    "row": 168,
+    "Applied": "",
+    "verified": true
+  },
+  {
+    "id": "1275",
+    "outcome": "submitted",
+    "tab": "Job List",
+    "row": 169,
+    "Applied": "X",
+    "verified": true
+  },
+  {
+    "id": "1276",
+    "outcome": "submitted",
+    "tab": "Job List",
+    "row": 170,
+    "Applied": "X",
+    "verified": true
+  },
+  {
+    "id": "1277",
+    "outcome": "submitted",
+    "tab": "Job List",
+    "row": 171,
+    "Applied": "X",
+    "verified": true
+  }
+]

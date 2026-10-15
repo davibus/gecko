@@ -1,0 +1,67 @@
+{
+  "Daily Tasks": {
+    "rows": 852,
+    "metadata_rows": 852,
+    "non_21_rows": 0,
+    "conditional_rules": 0
+  },
+  "Daily Run": {
+    "rows": 1187,
+    "metadata_rows": 1187,
+    "non_21_rows": 0,
+    "conditional_rules": 0
+  },
+  "Job List": {
+    "rows": 1644,
+    "metadata_rows": 1644,
+    "non_21_rows": 0,
+    "conditional_rules": 3,
+    "formula_cells": 0,
+    "headers": [
+      "ID",
+      "Source",
+      "Company",
+      "Job Title",
+      "Apply?",
+      "Resume Created",
+      "Applied",
+      "Cost",
+      "Notes",
+      "Apply or on Company Website (If Indeed)",
+      "Response",
+      "Location",
+      "Work Arrangement",
+      "Employment Type",
+      "Salary",
+      "Job URL",
+      "Resume Link",
+      "Date Posted",
+      "Date Found",
+      "Last Seen"
+    ]
+  },
+  "Deleted Jobs": {
+    "rows": 1000,
+    "metadata_rows": 1000,
+    "non_21_rows": 0,
+    "conditional_rules": 0
+  },
+  "Scratch": {
+    "rows": 1000,
+    "metadata_rows": 1000,
+    "non_21_rows": 0,
+    "conditional_rules": 0
+  },
+  "Rejected Jobs": {
+    "rows": 1000,
+    "metadata_rows": 1000,
+    "non_21_rows": 0,
+    "conditional_rules": 0
+  },
+  "Cursor Instructions": {
+    "rows": 100,
+    "metadata_rows": 100,
+    "non_21_rows": 0,
+    "conditional_rules": 0
+  }
+}

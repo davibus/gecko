@@ -7,15 +7,17 @@ filters, validation, and sheet structure are never replaced during an upsert.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
+import json
 import os
 from pathlib import Path
 import re
 import sys
 from typing import Any
 from urllib.parse import quote, unquote, urlsplit
+from zoneinfo import ZoneInfo
 
-from normalize import canonicalize_url
+from normalize import canonicalize_url, posting_identity
 from rejected_jobs import (
     REJECTED_HEADERS,
     REJECTED_TAB,
@@ -29,11 +31,12 @@ from tracker_schema import (
     LEGACY_APPLICATION_TAB as APPLICATION_TAB, SCOUT_TAB,
     DAILY_TASKS_TAB, SCOUT_FIELDS,
     PROTECTED_SCOUT_FIELDS, RETIRED_SCOUT_HEADERS, SCOUT_HEADER_ALIASES,
-    CURRENT_SCOUT_HEADERS, INDEED_APPLICATION_HEADER, resolve_headers,
+    CURRENT_SCOUT_HEADERS, INDEED_APPLICATION_HEADER, LAST_RUN_HEADER, resolve_headers,
     header_key as _header_key, INDEED_EXPIRED_TEXTS, STATUS_LABELS, STATUS_RANKS,
     discover_tabs,
 )
 from url_resolution import best_job_url
+import resume_naming
 
 ROOT = Path(__file__).resolve().parents[1]
 RESUME_DIR = (ROOT / "output" / "resumes").resolve()
@@ -107,6 +110,16 @@ def _col(index: int) -> str:
     return result
 
 
+def append_rows_requests(sheet_id: int, start: int, length: int) -> list[dict]:
+    """Append grid rows and explicitly keep the workbook's 21-pixel row rule."""
+    return [
+        {"appendDimension": {"sheetId": sheet_id, "dimension": "ROWS", "length": length}},
+        {"updateDimensionProperties": {"range": {"sheetId": sheet_id,
+            "dimension": "ROWS", "startIndex": start, "endIndex": start + length},
+            "properties": {"pixelSize": 21}, "fields": "pixelSize"}},
+    ]
+
+
 def _normal(value: Any) -> str:
     return ("" if value is None else str(value)).strip().casefold()
 
@@ -173,6 +186,15 @@ def apply_value(location: Any, work_arrangement: Any) -> str:
     return "Yes" if in_utah or is_remote(location_text) or is_remote(arrangement_text) else "No"
 
 
+def application_fee_required(cost: Any) -> bool:
+    """Only a confirmed required application fee excludes a job."""
+    return _normal(cost) == "x"
+
+
+def resume_approval_value(location: Any, work_arrangement: Any, cost: Any) -> str:
+    return "Yes" if apply_value(location, work_arrangement) == "Yes" and not application_fee_required(cost) else "No"
+
+
 def marked(value: Any) -> bool:
     """An unchecked native checkbox is not a completed/manual mark."""
     return value not in (None, "", False) and _normal(value) not in {"false", "no"}
@@ -199,7 +221,7 @@ def job_key(record: dict[str, Any]) -> str:
     raw = record.get("Job Number")
     if isinstance(raw, (int, float)) or (isinstance(raw, str) and "e+" in raw.casefold()):
         link = unquote(urlsplit(str(record.get("Resume Link") or "")).path)
-        suffix = link.rsplit("/", 1)[-1].rsplit("+", 1)[-1].removesuffix(".docx")
+        suffix = resume_naming.job_number(Path(link.lstrip('/')))
         if suffix and suffix.lstrip("-").isdigit():
             return _normal(suffix)
     return _normal(raw)
@@ -221,6 +243,8 @@ class GoogleTracker:
         self.config = config or Config.from_environment()
         self.service = service or build_service(self.config)
         self.api = self.service.spreadsheets()
+        self.skipped_writes=[]
+        self.discovery_writes=False
 
     def tab(self, title: str, *, value_render_option: str = "UNFORMATTED_VALUE") -> Tab:
         try:
@@ -317,7 +341,7 @@ class GoogleTracker:
         return RejectedJobsIndex(RejectedJob.from_mapping(data) for _, data in tab.rows)
 
     def _assert_scout_row_not_rejected(self, data: dict[str, Any]) -> None:
-        if _normal(data.get("Gecko Status")) in REJECT_STATUSES:
+        if _normal(data.get("Apply?")) in REJECT_STATUSES:
             raise PermanentlyRejectedError("Job is marked Reject; no tracker cells were changed")
         if self.rejected_jobs_index().match(
             source=data.get("Source"), url=data.get("Job URL"),
@@ -370,8 +394,8 @@ class GoogleTracker:
         if new_rows:
             if max(new_rows) > tab.grid_rows:
                 self.api.batchUpdate(spreadsheetId=self.config.spreadsheet_id,
-                    body={"requests": [{"appendDimension": {"sheetId": tab.sheet_id,
-                        "dimension": "ROWS", "length": max(new_rows) - tab.grid_rows}}]}).execute()
+                    body={"requests": append_rows_requests(
+                        tab.sheet_id, tab.grid_rows, max(new_rows) - tab.grid_rows)}).execute()
                 tab.grid_rows = max(new_rows)
             data, expected = self._prepare_writes(tab, {
                 (row, header): record.as_mapping()[header]
@@ -419,7 +443,7 @@ class GoogleTracker:
                 row for row in rows
                 if row not in expected_fingerprints
                 or tuple(str(current[row].get(name) or "").strip() for name in (
-                    "Scout ID", "Source", "Company", "Job Title", "Gecko Status", "Job URL",
+                    "Scout ID", "Source", "Company", "Job Title", "Apply?", "Job URL",
                 )) != expected_fingerprints[row]
             ]
             if changed:
@@ -644,8 +668,8 @@ class GoogleTracker:
         try:
             if row > tab.grid_rows:
                 self.api.batchUpdate(spreadsheetId=self.config.spreadsheet_id,
-                    body={"requests": [{"appendDimension": {"sheetId": tab.sheet_id,
-                        "dimension": "ROWS", "length": row - tab.grid_rows}}]}).execute()
+                    body={"requests": append_rows_requests(
+                        tab.sheet_id, tab.grid_rows, row - tab.grid_rows)}).execute()
                 tab.grid_rows = row
             if entries:
                 self.api.values().batchUpdate(spreadsheetId=self.config.spreadsheet_id,
@@ -670,7 +694,7 @@ class GoogleTracker:
             return [], {}
         allowed = (set(APPLICATION_FIELDS) | {"Index", "Resume #", "Applied", "Contacted"}
                    if tab.title == self.config.application_tab else
-                   set(SCOUT_FIELDS) | {"Apply?", "Resume Created", "Notes", "Response"}
+                   set(SCOUT_FIELDS) | {"Apply?", "Resume Created", "Notes", "Response", LAST_RUN_HEADER}
                    if tab.title == self.config.scout_tab else set(REJECTED_HEADERS)
                    if tab.title == REJECTED_TAB else set())
         unexpected = {field for _, field in proposed} - allowed
@@ -688,6 +712,18 @@ class GoogleTracker:
                    and "ARRAYFORMULA" in value.upper()]
         current = dict(live.rows)
         original = dict(tab.rows)
+        self.before_writes=live
+        if self.discovery_writes:
+            effective=dict(self.scout().rows)
+            proposed=dict(proposed)
+            for row,field in list(proposed):
+                if field=='Apply?' and application_fee_required(effective.get(row,{}).get('Cost')):
+                    proposed[(row,field)]='No'
+                elif field in {'Apply?','Notes'} and row in original:
+                    old_value=current.get(row,{}).get(field,'')
+                    if not (isinstance(old_value,str) and old_value.startswith('=')) and old_value!=original[row].get(field,''):
+                        self.skipped_writes.append({'row':row,'field':field,'reason':'manual value changed before write'})
+                        proposed.pop((row,field),None)
         identity_fields = (("Scout ID", "Source", "Job URL")
                            if tab.title == self.config.scout_tab else ("Job Number", "Job Link"))
         for row, _ in proposed:
@@ -719,16 +755,36 @@ class GoogleTracker:
                 continue
             cell = f"{_col(column)}{row} ({field})"
             if isinstance(old, str) and old.startswith("="):
+                self.skipped_writes.append({'row':row,'field':field,'reason':'formula protected'})
                 print(f"Skipped formula cell {tab.title} {cell}", file=sys.stderr)
                 continue
             if any(row >= anchor_row and column >= anchor_col
                    for anchor_row, anchor_col in anchors):
+                self.skipped_writes.append({'row':row,'field':field,'reason':'possible ARRAYFORMULA output'})
                 print(f"Skipped possible ARRAYFORMULA output {tab.title} {cell}; "
                       "the spill range cannot be guaranteed", file=sys.stderr)
                 continue
             entries.append({"range": _a1(tab.title, f"{_col(column)}{row}"),
                             "values": [[value]]})
             expected[(row, field)] = value
+        # A real managed job write records its run separately from research notes.
+        # Read-only pulls and skipped/no-op writes never stamp a job as processed.
+        if tab.title == self.config.scout_tab and expected and LAST_RUN_HEADER in live.headers:
+            column = live.headers[LAST_RUN_HEADER]
+            if tab.headers.get(LAST_RUN_HEADER) != column:
+                raise RuntimeError("Last Updated header changed before writing")
+            stamp = datetime.now(ZoneInfo("America/Denver")).isoformat(timespec="seconds") + " | Gecko"
+            for row in {row for row, _ in expected}:
+                if (row, LAST_RUN_HEADER) in expected:
+                    continue
+                old = current.get(row, {}).get(LAST_RUN_HEADER, "")
+                if (isinstance(old, str) and old.startswith("=")) or any(
+                    row >= anchor_row and column >= anchor_col for anchor_row, anchor_col in anchors
+                ):
+                    print(f"Skipped formula-protected Last Updated at row {row}", file=sys.stderr)
+                    continue
+                entries.append({"range": _a1(tab.title, f"{_col(column)}{row}"), "values": [[stamp]]})
+                expected[(row, LAST_RUN_HEADER)] = stamp
         return entries, expected
 
     def _assert_no_formula_row_movement(self, tab: Tab, operation: str) -> None:
@@ -762,9 +818,10 @@ class GoogleTracker:
             managed[INDEED_APPLICATION_HEADER] = "Expired"
             managed["Apply?"] = "No"
         if {"Location", "Work Arrangement"} & managed.keys():
-            managed["Apply?"] = "No" if is_expired_indeed(status) else apply_value(
+            managed["Apply?"] = "No" if is_expired_indeed(status) else resume_approval_value(
                 managed.get("Location", current.get("Location")),
                 managed.get("Work Arrangement", current.get("Work Arrangement")),
+                current.get("Cost"),
             )
         self._write(tab, row, managed)
 
@@ -772,7 +829,7 @@ class GoogleTracker:
         self, row_number: int, *, company: str, title: str,
     ) -> None:
         """Set Apply? to Yes for a verified Utah/remote Job Scout row."""
-        tab = self.scout(value_render_option="FORMULA")
+        tab = self.scout()
         matches = [(row, data) for row, data in tab.rows if row == row_number]
         if len(matches) != 1:
             raise RuntimeError(f"Cannot locate Job Scout row {row_number}; no cell was changed")
@@ -783,13 +840,31 @@ class GoogleTracker:
         if (_normal(current.get("Company")) != _normal(company)
                 or _normal(current.get("Job Title")) != _normal(title)):
             raise RuntimeError("Manual Indeed row identity changed; Apply? was not updated")
-        if apply_value(
-            current.get("Location"), current.get("Work Arrangement")
+        if resume_approval_value(
+            current.get("Location"), current.get("Work Arrangement"), current.get("Cost")
         ) != "Yes":
-            raise RuntimeError("Job is not in Utah or remote; Apply? was not updated")
+            raise RuntimeError("Utah/remote location and no required application fee are required")
         if _normal(current.get("Apply?")) == "yes":
             return
+        if _normal(current.get("Apply?")):
+            raise RuntimeError("Existing approval decision is explicit; no auto-approval")
         self._write(tab, row_number, {"Apply?": "Yes"})
+
+    def disqualify_required_fee_row(self, row_number: int, *, company: str, title: str) -> None:
+        """Set only Apply? to No when the live row has Cost = x."""
+        tab = self.scout()
+        matches = [(row, data) for row, data in tab.rows if row == row_number]
+        if len(matches) != 1:
+            raise RuntimeError(f"Cannot locate Job List row {row_number}; no cell was changed")
+        _, current = matches[0]
+        if (_normal(current.get("Company")) != _normal(company)
+                or _normal(current.get("Job Title")) != _normal(title)):
+            raise RuntimeError("Job List row identity changed; Apply? was not updated")
+        if not application_fee_required(current.get("Cost")):
+            raise RuntimeError("Required application fee is not confirmed; Apply? was not updated")
+        if _normal(current.get("Apply?")) in REJECT_STATUSES or _normal(current.get("Apply?")) == "no":
+            return
+        self._write(tab, row_number, {"Apply?": "No"})
 
     def assign_manual_scout_id(
         self, row_number: int, scout_id: int, *, company: str, title: str,
@@ -888,19 +963,26 @@ class GoogleTracker:
             raise RuntimeError(f"Duplicate Job Number exists in Google Sheets: {job_number}")
         return matches[0] if matches else None
 
-    def upsert_scout(self, jobs: list, *, append_only: bool = False) -> dict[str, int]:
+    def upsert_scout(self, jobs: list, *, append_only: bool = False,
+                     discovery_notes=None,audit_dir=None) -> dict:
+        self.skipped_writes=[]
+        self.discovery_writes=discovery_notes is not None
         tab = self.scout()
+        if discovery_notes is not None and not {'Notes',LAST_RUN_HEADER}.issubset(tab.headers):
+            raise RuntimeError('Discovery requires unique Notes and Last Updated headers')
         rejected_jobs = self.rejected_jobs_index()
         ids = [str(data.get("Scout ID")) for _, data in tab.rows if data.get("Scout ID") not in (None, "")]
         if len(ids) != len(set(ids)):
             raise RuntimeError("Google Job Scout contains duplicate Scout ID values")
         by_id = {str(data.get("Scout ID")): row for row, data in tab.rows
                  if data.get("Scout ID") not in (None, "")}
-        by_url = {canonicalize_url(str(data.get("Job URL") or "")): row for row, data in tab.rows
+        by_url = {posting_identity(str(data.get("Job URL") or "")): row for row, data in tab.rows
                    if data.get("Job URL")}
         original_rows = {row for row, _ in tab.rows}
         added = updated = excluded = rejected = 0
         planned: dict[int, dict[str, Any]] = {}
+        row_jobs={}
+        identity_skips=[]
         for job in jobs:
             url = best_job_url(job)
             if rejected_jobs.matches_job(job) is not None:
@@ -912,10 +994,26 @@ class GoogleTracker:
             ):
                 excluded += 1
                 continue
-            row = by_id.get(str(job.id)) or by_url.get(canonicalize_url(url))
+            row = by_url.get(posting_identity(url))
+            id_row = by_id.get(str(job.id))
+            if id_row and not row:
+                id_data = next(data for number, data in tab.rows if number == id_row)
+                candidate_urls = {posting_identity(value) for value in (
+                    job.url, job.canonical_url, job.authoritative_url, url,
+                    *(link.get('url', '') for link in job.source_links)) if value}
+                if posting_identity(str(id_data.get('Job URL') or '')) not in candidate_urls:
+                    if discovery_notes is not None:
+                        identity_skips.append({'job_id':job.id,'reason':'numeric ID belongs to another posting'})
+                        continue
+                    raise RuntimeError(f'Scout ID {job.id} belongs to a different posting; no rows written')
+                row = id_row
             if row and append_only:
                 continue
             existing = next((data for number, data in tab.rows if number == row), {})
+            if discovery_notes is not None and _normal(existing.get('Apply?')) in REJECT_STATUSES:
+                rejected += 1
+                identity_skips.append({'job_id':job.id,'row':row,'reason':'live row marked for permanent rejection'})
+                continue
             incoming = STATUS_LABELS.get(job.status, job.status.replace("-", " ").title())
             previous = str(existing.get("Gecko Status") or "New")
             # An unfamiliar status may be a user-maintained lifecycle value.
@@ -928,19 +1026,22 @@ class GoogleTracker:
                 tab.rows.append((row, {}))
                 by_id[str(job.id)] = row
                 if url:
-                    by_url[canonicalize_url(url)] = row
+                    by_url[posting_identity(url)] = row
                 added += 1
             else:
                 updated += 1
             values = {
                 "Scout ID": job.id, "Source": job.source, "Company": job.company,
-                "Job Title": job.title, "Gecko Status": status,
-                "Apply?": apply_value(job.location, job.work_arrangement),
+                "Job Title": job.title,
+                "Apply?": ("Yes" if resume_approval_value(
+                    job.location, job.work_arrangement, existing.get("Cost")) == "Yes" else ""),
                 "Location": job.location, "Work Arrangement": job.work_arrangement,
                 "Employment Type": job.employment_type, "Salary": job.salary,
                 "Date Posted": job.date_posted, "Date Found": job.date_discovered,
                 "Last Seen": job.last_seen or job.date_discovered, "Job URL": url,
             }
+            if "Gecko Status" in tab.headers:
+                values["Gecko Status"] = status
             if _normal(job.source) == "indeed":
                 method = str(job.indeed_application_method or "").strip()
                 current_method = str(existing.get(INDEED_APPLICATION_HEADER) or "").strip()
@@ -951,13 +1052,37 @@ class GoogleTracker:
                     values[INDEED_APPLICATION_HEADER] = normalized_indeed_status(method)
             if is_expired_indeed(values.get(INDEED_APPLICATION_HEADER, existing.get(INDEED_APPLICATION_HEADER))):
                 values["Apply?"] = "No"
+            elif application_fee_required(existing.get("Cost")):
+                values["Apply?"] = "No"
             if existing:
                 for stable in ("Scout ID", "Source", "Company", "Job Title", "Date Posted", "Date Found"):
                     values.pop(stable, None)
-                if values["Apply?"] != "Yes" and not is_expired_indeed(
-                        values.get(INDEED_APPLICATION_HEADER, existing.get(INDEED_APPLICATION_HEADER))):
+                if _normal(existing.get("Apply?")) in REJECT_STATUSES:
+                    values.pop("Apply?", None)
+                elif (not is_expired_indeed(values.get(INDEED_APPLICATION_HEADER,
+                                                    existing.get(INDEED_APPLICATION_HEADER)))
+                        and not application_fee_required(existing.get("Cost"))
+                        and _normal(existing.get("Apply?"))):
+                    # Existing decisions can be manual; the dedicated eligibility
+                    # reconciliation owns correction of prior workflow-written No.
+                    values.pop("Apply?", None)
+                elif values["Apply?"] != "Yes" and not is_expired_indeed(
+                        values.get(INDEED_APPLICATION_HEADER, existing.get(INDEED_APPLICATION_HEADER))) \
+                        and not application_fee_required(existing.get("Cost")):
                     values.pop("Apply?", None)
             managed_fields = set(SCOUT_FIELDS) | {"Apply?"}
+            if discovery_notes is not None:
+                if (marked(existing.get('Applied')) or resume_already_created(existing.get('Resume Created'))
+                        or str(existing.get('Resume Link') or '').strip()):
+                    if not application_fee_required(existing.get('Cost')) and not is_expired_indeed(existing.get(INDEED_APPLICATION_HEADER)):
+                        values.pop('Apply?',None)
+                note=discovery_notes.get(job.id,'')
+                if note:
+                    old_note=str(existing.get('Notes') or '')
+                    values['Notes']=old_note+'\n'+note if old_note else note
+                    managed_fields.add('Notes')
+            row_jobs[row]={'job_id':job.id,'source':job.source,'source_job_id':job.source_job_id,
+                          'url':url,'new':row not in original_rows}
             planned[row] = {key: value for key, value in values.items()
                             if key in managed_fields}
         proposed: dict[tuple[int, str], Any] = {}
@@ -976,16 +1101,38 @@ class GoogleTracker:
                          if row not in original_rows and value not in (None, "")
                          and (row, field) not in expected]
         if protected_new:
-            raise RuntimeError("New Job Scout rows have protected managed cells: "
-                               + ", ".join(protected_new))
+            if discovery_notes is None:
+                raise RuntimeError("New Job Scout rows have protected managed cells: " + ", ".join(protected_new))
+            unsafe={row for (row,field),value in proposed.items() if row not in original_rows
+                    and value not in (None,'') and (row,field) not in expected}
+            expected={key:value for key,value in expected.items() if key[0] not in unsafe}
+            allowed_ranges={_a1(tab.title,f'{_col(tab.headers[field])}{row}') for row,field in expected}
+            entries=[entry for entry in entries if entry['range'] in allowed_ranges]
+            identity_skips.extend({'job_id':row_jobs[row]['job_id'],'row':row,
+                                   'reason':'new row has protected managed cells'} for row in unsafe)
+        if discovery_notes is not None and audit_dir:
+            audit_path=Path(audit_dir);audit_path.mkdir(parents=True,exist_ok=True)
+            before={row:dict(dict(self.before_writes.rows).get(row,{})) for row,_ in expected}
+            payload={'worksheet':tab.title,'sheet_id':tab.sheet_id,
+                'affected_jobs':[{'row':row,**row_jobs[row]} for row in sorted({r for r,_ in expected})],
+                'before':before,'expected':[{'row':r,'field':f,'value':v} for (r,f),v in expected.items()],
+                'skipped':self.skipped_writes+identity_skips}
+            (audit_path/'tracker-before-write.json').write_text(json.dumps(payload,indent=2),encoding='utf-8')
         if entries:
             last_row = max(row for row, _ in expected)
             if last_row > tab.grid_rows:
                 self.api.batchUpdate(spreadsheetId=self.config.spreadsheet_id,
-                    body={"requests": [{"appendDimension": {"sheetId": tab.sheet_id,
-                        "dimension": "ROWS", "length": last_row - tab.grid_rows}}]}).execute()
+                    body={"requests": append_rows_requests(
+                        tab.sheet_id, tab.grid_rows, last_row - tab.grid_rows)}).execute()
             self.api.values().batchUpdate(spreadsheetId=self.config.spreadsheet_id,
                 body={"valueInputOption": "RAW", "data": entries}).execute()
+            if discovery_notes is not None:
+                new_rows=sorted(row for row in {r for r,_ in expected} if row not in original_rows)
+                if new_rows:
+                    self.api.batchUpdate(spreadsheetId=self.config.spreadsheet_id,body={'requests':[
+                        {'updateDimensionProperties':{'range':{'sheetId':tab.sheet_id,'dimension':'ROWS',
+                          'startIndex':row-1,'endIndex':row},'properties':{'pixelSize':21},'fields':'pixelSize'}}
+                        for row in new_rows]}).execute()
             verified = self.scout()
             raw_rows = verified.raw_rows or {}
             for (row, field), value in expected.items():
@@ -997,8 +1144,21 @@ class GoogleTracker:
                         f"Google Sheets readback failed for Job Scout "
                         f"{_col(column)}{row} ({field}); expected {value!r}, got {actual!r}"
                     )
-        return {"rows": len(tab.rows), "added": added, "updated": updated,
+        result={"rows": len(tab.rows), "added": added, "updated": updated,
                 "jooble_excluded": excluded, "rejected_excluded": rejected}
+        if discovery_notes is not None:
+            after=self.scout(value_render_option='FORMULA')
+            written=sorted({row for row,_ in expected})
+            result.update(added=sum(row not in original_rows for row in written),
+                updated=sum(row in original_rows for row in written),written_rows=written,
+                added_ids=[row_jobs[row]['job_id'] for row in written if row not in original_rows],
+                skipped=self.skipped_writes+identity_skips,readback_verified=True,
+                managed_cells_written=len(expected),rows=len(after.rows))
+            if audit_dir:
+                (Path(audit_dir)/'tracker-after-write.json').write_text(json.dumps({
+                    'headers':after.headers,'rows':[(row,data) for row,data in after.rows if row in written],
+                    'result':result},indent=2),encoding='utf-8')
+        return result
 
     def highlight_scout_found_on(self, day: str) -> int:
         """Keep light green on Scout IDs first found today while preserving gray."""
@@ -1104,12 +1264,17 @@ class GoogleTracker:
             raise RuntimeError("Resume Link already has a different value; manual review is required")
         if is_expired_indeed(current.get(INDEED_APPLICATION_HEADER)):
             raise RuntimeError("Expired Indeed job cannot receive a resume link")
+        if marked(current.get("Applied")):
+            raise RuntimeError("Already applied job cannot receive a new resume link")
         if require_approved and _normal(current.get("Apply?")) != "yes":
             raise RuntimeError("Apply? is no longer Yes; no cell was changed")
-        advanced = _normal(current.get("Gecko Status")) in {"applied", "contacted", "interview", "offer"}
+        effective = self.scout()
+        effective_matches = [data for number, data in effective.rows if number == row]
+        if require_approved and (len(effective_matches) != 1 or resume_approval_value(
+                effective_matches[0].get("Location"), effective_matches[0].get("Work Arrangement"),
+                effective_matches[0].get("Cost")) != "Yes"):
+            raise RuntimeError("Utah/remote location and no required application fee are required")
         proposed = {}
-        if not advanced:
-            proposed[(row, "Gecko Status")] = "Resume Created"
         proposed[(row, "Resume Link")] = target
         proposed[(row, "Resume Created")] = marker
         if notes is not None and notes != str(current.get("Notes") or "").strip():

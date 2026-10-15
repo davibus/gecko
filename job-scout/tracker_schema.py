@@ -10,7 +10,7 @@ WORKBOOK_TITLE = "Gecko Job Tracker"
 SCOUT_TAB = "Job List"
 DAILY_TASKS_TAB = "Daily Tasks"
 DAILY_RUN_TAB = "Daily Run"  # New blocks insert at row 3; older history is preserved.
-SCRATCH_TAB = "Scratch"  # Observed empty on 2026-10-10; no assigned writer.
+SCRATCH_TAB = "Scratch"  # User research ideas; mirror docs/scratch-column-ideas.md, no writer.
 DELETED_JOBS_TAB = "Deleted Jobs"
 REJECTED_TAB = "Rejected Jobs"
 REQUIRED_TABS = (SCOUT_TAB, REJECTED_TAB)
@@ -20,25 +20,25 @@ OBSERVED_TABS = (DAILY_TASKS_TAB, DAILY_RUN_TAB, SCOUT_TAB,
 LEGACY_APPLICATION_TAB = "Job Tracker"  # Only for explicitly configured older workbooks.
 
 INDEED_APPLICATION_HEADER = "Apply or on Company Website (If Indeed)"
+LAST_RUN_HEADER = "Last Updated"  # Last actual Firecrawl/Gecko run, America/Denver.
 CURRENT_SCOUT_HEADERS = (
-    "ID", "Source", "Company", "Job Title", "Status", "Apply?",
-    "Resume Created", "Applied", "Cost", "Notes", INDEED_APPLICATION_HEADER,
+    "ID", "Source", "Company", "Job Title", "Apply?",
+    "Resume Created", "Applied", "Cost", LAST_RUN_HEADER, "Notes", INDEED_APPLICATION_HEADER,
     "Response", "Location", "Work Arrangement", "Employment Type", "Salary",
     "Job URL", "Resume Link", "Date Posted", "Date Found", "Last Seen",
 )
 SCOUT_HEADER_ALIASES = {
     "Scout ID": ("ID", "Scout ID"),
-    "Gecko Status": ("Status", "Gecko Status"),
     "Apply?": ("Apply?", "Apply"),
 }
 SCOUT_FIELDS = (
-    "Scout ID", "Source", "Company", "Job Title", "Gecko Status",
+    "Scout ID", "Source", "Company", "Job Title",
     "Location", "Work Arrangement", "Employment Type", "Salary", "Date Posted",
     "Date Found", "Last Seen", "Job URL", "Resume Link",
     INDEED_APPLICATION_HEADER,
 )
 PROTECTED_SCOUT_FIELDS = (
-    "Apply?", "Resume Created", "Applied", "Cost", "Notes", "Contacted", "Response",
+    "Apply?", "Resume Created", "Applied", "Cost", LAST_RUN_HEADER, "Notes", "Contacted", "Response",
 )
 RETIRED_SCOUT_HEADERS = (
     "Website", "Enrichment URL", "URL Status", "Authoritative URL",

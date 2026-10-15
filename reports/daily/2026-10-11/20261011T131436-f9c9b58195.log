@@ -1,0 +1,3 @@
+{"at": "2026-10-11T13:14:45.170992-06:00", "event": "snapshot", "run_id": "20261011T131436-f9c9b58195", "tab_counts": {"Cursor Instructions": 0, "Deleted Jobs": 0, "Job List": 846, "Rejected Jobs": 30, "Scratch": 0}}
+{"at": "2026-10-11T13:14:46.305196-06:00", "event": "safety_verified", "run_id": "20261011T131436-f9c9b58195", "unchanged": true}
+{"at": "2026-10-11T13:14:47.468552-06:00", "error": "RuntimeError: rate limit or quota failure (details redacted)", "event": "failure", "run_id": "20261011T131436-f9c9b58195"}

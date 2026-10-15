@@ -1,0 +1,4839 @@
+{
+  "pipeline": {
+    "raw_retrieved": 446,
+    "rss_retrieved": 0,
+    "rss_unique": 0,
+    "rss_duplicates_removed": 0,
+    "successful_feeds": 0,
+    "failed_feeds": 0,
+    "feed_results": [],
+    "api_retrieved": 0,
+    "source_backend": "",
+    "fetched": 446,
+    "normalized": 446,
+    "added": 0,
+    "updated": 24,
+    "duplicates": 62,
+    "cross_provider_duplicates": 0,
+    "unique_available": 0,
+    "unique_imported": 0,
+    "filtered_by_role": 154,
+    "deterministic_rejects": 332,
+    "deterministic_reject_reasons": {
+      "excluded employment type": 11,
+      "non-remote role outside preferred locations": 161,
+      "unrelated role family": 13,
+      "outside target role families": 137,
+      "generic non-marketing manager/production role": 4,
+      "excluded title/seniority": 6
+    },
+    "jooble_excluded": 0,
+    "rejected_history_excluded": 11,
+    "missing_content_excluded": 0,
+    "dead_url_excluded": 0,
+    "source_results_limited": 0,
+    "url_review_excluded": 41,
+    "url_validated": 62,
+    "new_job_ids": [],
+    "existing_job_ids": [
+      2223,
+      2224,
+      2225,
+      2226,
+      2227,
+      2230,
+      2255,
+      2256,
+      726,
+      57,
+      398,
+      559,
+      2258,
+      564,
+      17,
+      50,
+      2261,
+      2264,
+      39,
+      567,
+      2266,
+      568,
+      2267,
+      2268
+    ],
+    "changed_job_ids": [],
+    "eligibility_includes_usa": 0,
+    "eligibility_worldwide": 0,
+    "example_jobs": [],
+    "backend_qualifying": {},
+    "backend_added": {}
+  },
+  "record_decisions": [
+    {
+      "source": "adzuna",
+      "source_job_id": "5926270509",
+      "url": "https://www.adzuna.com/land/ad/5926270509?se=xBc-9lLH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=75D9725671DF6F2E6755BE97ED60EE5B85FCF4DC",
+      "company": "Thriveworks",
+      "title": "Senior Performance Marketing Manager - Remote",
+      "reason": "excluded employment type"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926269308",
+      "url": "https://www.adzuna.com/land/ad/5926269308?se=Zgs-8lLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=1A5F66B41E51C9C86E0B24B2D4516091A4F53819",
+      "company": "Flowers Foods",
+      "title": "Digital Marketing and Content Manager - REMOTE",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926263373",
+      "url": "https://www.adzuna.com/land/ad/5926263373?se=Zgs-8lLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=DB2A063F5ECC7BC6193424F010F288BACA17D5B9",
+      "company": "Hume AI",
+      "title": "Manager, Digital Marketing *Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926222809",
+      "url": "https://www.adzuna.com/land/ad/5926222809?se=3IyJE1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=96D373B8EDAA5096659B30F34247003D2F409F83",
+      "company": "TEAM VELOCITY MARKETING",
+      "title": "Regional Account Director - Automotive Digital Marketing (Mustang-PA)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926199616",
+      "url": "https://www.adzuna.com/land/ad/5926199616?se=3IyJE1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=03A8676AB43F7836856527739114F1198AF3FF07",
+      "company": "TEAM VELOCITY MARKETING",
+      "title": "Regional Account Director - Automotive Digital Marketing (Papa-KS)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926187801",
+      "url": "https://www.adzuna.com/land/ad/5926187801?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=E2CB4B94B462FBD15D6E7CA1CEC2787770A87626",
+      "company": "Townsquare Interactive",
+      "title": "Outside Sales Account Executive",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926167584",
+      "url": "https://www.adzuna.com/land/ad/5926167584?se=3IyJE1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=B736B9C38EDE309397F84BE942883D45D1D19546",
+      "company": "TEAM VELOCITY MARKETING",
+      "title": "Regional Account Director - Automotive Digital Marketing (Papa-OK)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926167628",
+      "url": "https://www.adzuna.com/land/ad/5926167628?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=1CC8E9D8FC12730E9F6014203B1746BA3D861D62",
+      "company": "CLEAResult",
+      "title": "Growth Marketing Manager - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926166241",
+      "url": "https://www.adzuna.com/land/ad/5926166241?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=46BD4E17B7EF89CE140F1BE872635F6CCBCED2D2",
+      "company": "Townsquare Interactive",
+      "title": "Medical Sales Account Executive",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926138568",
+      "url": "https://www.adzuna.com/land/ad/5926138568?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=0D6C8B8F08FB756F94E7A097E83139D940A76404",
+      "company": "CLEAResult",
+      "title": "Growth Marketing Manager - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926124436",
+      "url": "https://www.adzuna.com/land/ad/5926124436?se=3HSq9lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=57CC7EF72F158E1F3D715E3545A382F501C8B07C",
+      "company": "Simplus",
+      "title": "Marketing Manager",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926100456",
+      "url": "https://www.adzuna.com/land/ad/5926100456?se=3IyJE1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=38DA8FEB38B5F33171D90036DF1CF1C2DC95EA35",
+      "company": "TEAM VELOCITY MARKETING",
+      "title": "Regional Account Director - Automotive Digital Marketing (Papa-KS)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926091870",
+      "url": "https://www.adzuna.com/land/ad/5926091870?se=3IyJE1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=AFB93F4628AE1BD5AE49E2855014F38028FCE5AD",
+      "company": "TEAM VELOCITY MARKETING",
+      "title": "Regional Account Director - Automotive Digital Marketing (Mustang-DC)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926091415",
+      "url": "https://www.adzuna.com/land/ad/5926091415?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=4F4D4259F6BA7172257BEFE3D29EF9D00F6C4011",
+      "company": "CLEAResult",
+      "title": "Growth Marketing Manager - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926088263",
+      "url": "https://www.adzuna.com/land/ad/5926088263?se=3IyJE1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=54E43BC857871B7741EB130D4752578E5B4BEC0B",
+      "company": "TEAM VELOCITY MARKETING",
+      "title": "Regional Account Director - Automotive Digital Marketing (Papa-MO)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5926085535",
+      "url": "https://www.adzuna.com/land/ad/5926085535?se=3IyJE1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=6AE9582A6D5B60A31F9029956FE5957BF46F7464",
+      "company": "TEAM VELOCITY MARKETING",
+      "title": "Regional Account Director - Automotive Digital Marketing (Mustang-DC)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5925630126",
+      "url": "https://www.adzuna.com/land/ad/5925630126?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=B0B5A30CB11E4CB1AEC175B65836B55EDE8D81FE",
+      "company": "DIRECTV",
+      "title": "Lead Product Marketing Manager, Digital Marketing",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5925630126",
+      "url": "https://www.adzuna.com/land/ad/5925630126?se=nPra81LH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=B0B5A30CB11E4CB1AEC175B65836B55EDE8D81FE",
+      "company": "DIRECTV",
+      "title": "Lead Product Marketing Manager, Digital Marketing",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5924859743",
+      "url": "https://www.adzuna.com/land/ad/5924859743?se=Zgs-8lLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=299EA2FB5CFC036EA6AA086B783FEC2FD390BEA4",
+      "company": "MicroVision",
+      "title": "Manager, Digital Marketing *Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5924762663",
+      "url": "https://www.adzuna.com/land/ad/5924762663?se=3HSq9lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=39A98D6B933D848CBCB0203E4DF6E0CEF85E02DA",
+      "company": "HF Sinclair",
+      "title": "Consumer Engagement & Loyalty Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5924762663",
+      "url": "https://www.adzuna.com/land/ad/5924762663?se=cv1i91LH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=39A98D6B933D848CBCB0203E4DF6E0CEF85E02DA",
+      "company": "HF Sinclair",
+      "title": "Consumer Engagement & Loyalty Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5924680496",
+      "url": "https://www.adzuna.com/land/ad/5924680496?se=Jh72B1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=663F61A3F50D1312D8EAF20C8260656BC965AB5E",
+      "company": "Pattern",
+      "title": "Growth Marketing Manager",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5924680496",
+      "url": "https://www.adzuna.com/land/ad/5924680496?se=mk4UCVPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=663F61A3F50D1312D8EAF20C8260656BC965AB5E",
+      "company": "Pattern",
+      "title": "Growth Marketing Manager",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5924679324",
+      "url": "https://www.adzuna.com/land/ad/5924679324?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=CA9CCE2C185118EA5E5AACF898675D74D74027FE",
+      "company": "Aptive Environmental LLC",
+      "title": "Market Chief Marketing Officer - Full Time",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5924679324",
+      "url": "https://www.adzuna.com/land/ad/5924679324?se=-iqDA1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=CA9CCE2C185118EA5E5AACF898675D74D74027FE",
+      "company": "Aptive Environmental LLC",
+      "title": "Market Chief Marketing Officer - Full Time",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5924477520",
+      "url": "https://www.adzuna.com/land/ad/5924477520?se=7rnDDVPH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=902804412BC91C1367D6538DFBB9F667037199D6",
+      "company": "John Deere",
+      "title": "Demand Generation & Integrated Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5924469993",
+      "url": "https://www.adzuna.com/land/ad/5924469993?se=Zgs-8lLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=CE45301073758E25BA999969FDF26D812A7E827C",
+      "company": "Jobscast",
+      "title": "Manager, Digital Marketing *Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5924047737",
+      "url": "https://www.adzuna.com/details/5924047737?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Zions Bancorporation",
+      "title": "Marketing Insights and Analytics ManagerAZ, CA, CO, NV, OR, TX, WA, or UT",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5924047737",
+      "url": "https://www.adzuna.com/details/5924047737?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Zions Bancorporation",
+      "title": "Marketing Insights and Analytics ManagerAZ, CA, CO, NV, OR, TX, WA, or UT",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5923294721",
+      "url": "https://www.adzuna.com/details/5923294721?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "iBase-t",
+      "title": "Senior Manager, Account-Based Marketing",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5923215596",
+      "url": "https://www.adzuna.com/land/ad/5923215596?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=466BDE560F483E0D51A79A43A31A0AE89C334205",
+      "company": "UPS",
+      "title": "UPS Digital Product Marketing Manager | 303 | Flexible Location",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5923215596",
+      "url": "https://www.adzuna.com/land/ad/5923215596?se=nPra81LH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=466BDE560F483E0D51A79A43A31A0AE89C334205",
+      "company": "UPS",
+      "title": "UPS Digital Product Marketing Manager | 303 | Flexible Location",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5923179424",
+      "url": "https://www.adzuna.com/land/ad/5923179424?se=WMk9C1PH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=CAC0C0F520CA73BA33C89B12625B081FE51CC2FE",
+      "company": "Logitech",
+      "title": "Global Partnerships Marketing Specialist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5923179424",
+      "url": "https://www.adzuna.com/land/ad/5923179424?se=sreQC1PH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=CAC0C0F520CA73BA33C89B12625B081FE51CC2FE",
+      "company": "Logitech",
+      "title": "Global Partnerships Marketing Specialist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5923061932",
+      "url": "https://www.adzuna.com/details/5923061932?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "EverCommerce Solutions",
+      "title": "EverPro - Senior Manager, Growth Marketing (Remote, US)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5923061871",
+      "url": "https://www.adzuna.com/land/ad/5923061871?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=41D427A64507DA934514C3D7B4728424897C2745",
+      "company": "The University of Utah",
+      "title": "Social Media Management",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5923061871",
+      "url": "https://www.adzuna.com/land/ad/5923061871?se=nPra81LH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=41D427A64507DA934514C3D7B4728424897C2745",
+      "company": "The University of Utah",
+      "title": "Social Media Management",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5923061871",
+      "url": "https://www.adzuna.com/land/ad/5923061871?se=POPwE1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=41D427A64507DA934514C3D7B4728424897C2745",
+      "company": "The University of Utah",
+      "title": "Social Media Management",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5923061871",
+      "url": "https://www.adzuna.com/land/ad/5923061871?se=KjxFFFPH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=41D427A64507DA934514C3D7B4728424897C2745",
+      "company": "The University of Utah",
+      "title": "Social Media Management",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5922105971",
+      "url": "https://www.adzuna.com/details/5922105971?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Frazil",
+      "title": "Marketing Intern",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5922105971",
+      "url": "https://www.adzuna.com/details/5922105971?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Frazil",
+      "title": "Marketing Intern",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5922045103",
+      "url": "https://www.adzuna.com/land/ad/5922045103?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=4BCBD926421A4B4BC4E1D5EFABF3957D99787177",
+      "company": "Norstella",
+      "title": "Delivery Program Manager",
+      "reason": "generic non-marketing manager/production role"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5922045103",
+      "url": "https://www.adzuna.com/land/ad/5922045103?se=nPra81LH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=4BCBD926421A4B4BC4E1D5EFABF3957D99787177",
+      "company": "Norstella",
+      "title": "Delivery Program Manager",
+      "reason": "generic non-marketing manager/production role"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5922045103",
+      "url": "https://www.adzuna.com/land/ad/5922045103?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=4BCBD926421A4B4BC4E1D5EFABF3957D99787177",
+      "company": "Norstella",
+      "title": "Delivery Program Manager",
+      "reason": "generic non-marketing manager/production role"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5922045103",
+      "url": "https://www.adzuna.com/land/ad/5922045103?se=nCIEAlPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=4BCBD926421A4B4BC4E1D5EFABF3957D99787177",
+      "company": "Norstella",
+      "title": "Delivery Program Manager",
+      "reason": "generic non-marketing manager/production role"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5921802117",
+      "url": "https://www.adzuna.com/details/5921802117?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Carver Road Hospitality",
+      "title": "Marketing Associate - Flanker SLC",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5921802117",
+      "url": "https://www.adzuna.com/details/5921802117?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Carver Road Hospitality",
+      "title": "Marketing Associate - Flanker SLC",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5921791527",
+      "url": "https://www.adzuna.com/details/5921791527?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Alliance Animal Health",
+      "title": "Senior Manager, Paid Media (Remote)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5920508038",
+      "url": "https://www.adzuna.com/land/ad/5920508038?se=HhhYDlPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=AE25486E7D685B2D85F18AE0BD1BF197702E2944",
+      "company": "Siemens",
+      "title": "Product Marketing Lead - ICX",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5920508038",
+      "url": "https://www.adzuna.com/land/ad/5920508038?se=HIXEDlPH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=AE25486E7D685B2D85F18AE0BD1BF197702E2944",
+      "company": "Siemens",
+      "title": "Product Marketing Lead - ICX",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5920153846",
+      "url": "https://www.adzuna.com/land/ad/5920153846?se=3IyJE1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=0798C194621FA0C028AD3DA0B243F2B51948E59C",
+      "company": "Team Velocity",
+      "title": "Regional Account Director \u2013 Automotive Digital Marketing",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5919838984",
+      "url": "https://www.adzuna.com/details/5919838984?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Deseret News",
+      "title": "Digital Marketing Specialist/Account Manager - Hometown Media Services Agency",
+      "reason": "previously known",
+      "matched_id": 2223,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5919838984",
+      "url": "https://www.adzuna.com/details/5919838984?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Deseret News",
+      "title": "Digital Marketing Specialist/Account Manager - Hometown Media Services Agency",
+      "reason": "previously known",
+      "matched_id": 2223,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5919054978",
+      "url": "https://www.adzuna.com/land/ad/5919054978?se=Zgs-8lLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=7D38A680D0C5316CF1976053B0D87D1A6A3FD169",
+      "company": "QuoteIQ",
+      "title": "Digital Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5918962508",
+      "url": "https://www.adzuna.com/details/5918962508?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Thriveworks",
+      "title": "Senior Performance Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5918819552",
+      "url": "https://www.adzuna.com/land/ad/5918819552?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=25AE102ECD9B3A5CCD9A62098FBEE22D57733052",
+      "company": "Cengage Group",
+      "title": "Director Web Experience & Performance (Remote) US",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5918819552",
+      "url": "https://www.adzuna.com/land/ad/5918819552?se=nPra81LH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=25AE102ECD9B3A5CCD9A62098FBEE22D57733052",
+      "company": "Cengage Group",
+      "title": "Director Web Experience & Performance (Remote) US",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5918818799",
+      "url": "https://www.adzuna.com/land/ad/5918818799?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=7BDB8E0C5A63F1BB964EF1FF8100CC029B2E6B4B",
+      "company": "Capital One",
+      "title": "Director, Product Management- Capital One Software (Remote)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5918818799",
+      "url": "https://www.adzuna.com/land/ad/5918818799?se=nCIEAlPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=7BDB8E0C5A63F1BB964EF1FF8100CC029B2E6B4B",
+      "company": "Capital One",
+      "title": "Director, Product Management- Capital One Software (Remote)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5918082246",
+      "url": "https://www.adzuna.com/land/ad/5918082246?se=mnM-51LH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=54277FCC7265B400247A06313AE46446D5601EBC",
+      "company": "DEPT\u00ae",
+      "title": "Account Lead - Retail Search",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5918082246",
+      "url": "https://www.adzuna.com/land/ad/5918082246?se=SJkh6lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=54277FCC7265B400247A06313AE46446D5601EBC",
+      "company": "DEPT\u00ae",
+      "title": "Account Lead - Retail Search",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5917303579",
+      "url": "https://www.adzuna.com/details/5917303579?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "TCWGlobal",
+      "title": "Performance Marketing Manager \u2013 Degrees Program",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5917295958",
+      "url": "https://www.adzuna.com/details/5917295958?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Breeze Aviation Group",
+      "title": "Digital Specialist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5917092229",
+      "url": "https://www.adzuna.com/land/ad/5917092229?se=mnM-51LH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=9DD933AF743BDA3649A5F6BC4DCD75E7AF094180",
+      "company": "DEPT\u00ae",
+      "title": "Associate Director - Retail Search",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5917092229",
+      "url": "https://www.adzuna.com/land/ad/5917092229?se=SJkh6lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=9DD933AF743BDA3649A5F6BC4DCD75E7AF094180",
+      "company": "DEPT\u00ae",
+      "title": "Associate Director - Retail Search",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5917065946",
+      "url": "https://www.adzuna.com/land/ad/5917065946?se=HhhYDlPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=8C90E527DA9667B690FE86752811B85B2E887D28",
+      "company": "Storable",
+      "title": "Director, Payments Services",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5917050852",
+      "url": "https://www.adzuna.com/land/ad/5917050852?se=HhhYDlPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=ECFC1B7FD07431D42C6AD7514A5F9FE01D97FAEE",
+      "company": "Storable",
+      "title": "Head of Services - Support and Managed",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5916861553",
+      "url": "https://www.adzuna.com/land/ad/5916861553?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=2734D6DC68FD5B9851D105F42FBBA245A8C274DF",
+      "company": "Baylor Scott & White Health",
+      "title": "Product Associate - Employee Activation",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5916861553",
+      "url": "https://www.adzuna.com/land/ad/5916861553?se=nPra81LH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=2734D6DC68FD5B9851D105F42FBBA245A8C274DF",
+      "company": "Baylor Scott & White Health",
+      "title": "Product Associate - Employee Activation",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5916861553",
+      "url": "https://www.adzuna.com/land/ad/5916861553?se=Jh72B1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=2734D6DC68FD5B9851D105F42FBBA245A8C274DF",
+      "company": "Baylor Scott & White Health",
+      "title": "Product Associate - Employee Activation",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5916861553",
+      "url": "https://www.adzuna.com/land/ad/5916861553?se=0B-uCFPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=2734D6DC68FD5B9851D105F42FBBA245A8C274DF",
+      "company": "Baylor Scott & White Health",
+      "title": "Product Associate - Employee Activation",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5916731785",
+      "url": "https://www.adzuna.com/land/ad/5916731785?se=kDER7VLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=3416D70D300BFA477E7C2E2D0B1499729F81A16B",
+      "company": "Market My Market",
+      "title": "Senior Director, Client Experience",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5916702547",
+      "url": "https://www.adzuna.com/details/5916702547?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Blackboard",
+      "title": "Growth Marketing Manager - Business & Government",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5916661952",
+      "url": "https://www.adzuna.com/land/ad/5916661952?se=HhhYDlPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=0CE69483F4460AD2D1ED2FF1B3199E42318EEDB2",
+      "company": "Storable",
+      "title": "Enterprise Sales Executive",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5916624743",
+      "url": "https://www.adzuna.com/land/ad/5916624743?se=HhhYDlPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=81F3817338DF91FACB937A55FB9028D84828AE28",
+      "company": "Storable",
+      "title": "Head of Property Services",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5916567934",
+      "url": "https://www.adzuna.com/land/ad/5916567934?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=C71D6D23C75150883E507D9F7A9F54AB4A1ACB57",
+      "company": "Murdoch's Ranch & Home Supply",
+      "title": "Manager of Marketing Intelligence & Analytics",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5916030208",
+      "url": "https://www.adzuna.com/land/ad/5916030208?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=ECC3CA007AD1EBD89336B5D508AF2EECCF42BA40",
+      "company": "MZ Packaging, LLC.",
+      "title": "Sales and Marketing Representatives - Paid Training",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5916030208",
+      "url": "https://www.adzuna.com/land/ad/5916030208?se=nPra81LH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=ECC3CA007AD1EBD89336B5D508AF2EECCF42BA40",
+      "company": "MZ Packaging, LLC.",
+      "title": "Sales and Marketing Representatives - Paid Training",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5915682671",
+      "url": "https://www.adzuna.com/details/5915682671?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "CallTower",
+      "title": "Senior Content Writer",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5915615751",
+      "url": "https://www.adzuna.com/land/ad/5915615751?se=Zgs-8lLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=9CBAC09B00DDE18D7C3F218F4C18FADA235D6D54",
+      "company": "Skyword",
+      "title": "Manager, Digital Marketing *Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5915609922",
+      "url": "https://www.adzuna.com/land/ad/5915609922?se=cuae9VLH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=D5E84BDFCBE0F39CEBDB88584C044D25734ED16B",
+      "company": "Saltech Systems",
+      "title": "Administrative Assistant",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914940143",
+      "url": "https://www.adzuna.com/land/ad/5914940143?se=Zgs-8lLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=0A9EE58A4600912C8ECDA2B8D7F9F32BCF31BFB3",
+      "company": "Arquitectonica",
+      "title": "Manager, Digital Marketing *Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914828929",
+      "url": "https://www.adzuna.com/land/ad/5914828929?se=3HSq9lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=90FD1239A6D44EA534607640EAE0625E0284C1C2",
+      "company": "Cozy Earth",
+      "title": "Audio Partnerships Strategist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914828929",
+      "url": "https://www.adzuna.com/land/ad/5914828929?se=sPvV91LH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=90FD1239A6D44EA534607640EAE0625E0284C1C2",
+      "company": "Cozy Earth",
+      "title": "Audio Partnerships Strategist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914828675",
+      "url": "https://www.adzuna.com/land/ad/5914828675?se=Jh72B1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=B9861813AD73B73BDC6D5111116047DC87AA81D8",
+      "company": "Lifetime Products, Inc.",
+      "title": "Retail Store Sales Assistant Manager -Clearfield",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914821086",
+      "url": "https://www.adzuna.com/land/ad/5914821086?se=Zgs-8lLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=93ACA44963473E91BA6BCA5B8CEF5C1DFA0409A1",
+      "company": "Docutrend Inc.",
+      "title": "Manager, Digital Marketing *Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914791394",
+      "url": "https://www.adzuna.com/land/ad/5914791394?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=830274869A01868C6A883A8539FB1795D901B76B",
+      "company": "PRIME CORPORATE SERVICES LLC",
+      "title": "Senior Director, Revenue Operations",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914791394",
+      "url": "https://www.adzuna.com/land/ad/5914791394?se=nCIEAlPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=830274869A01868C6A883A8539FB1795D901B76B",
+      "company": "PRIME CORPORATE SERVICES LLC",
+      "title": "Senior Director, Revenue Operations",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914707960",
+      "url": "https://www.adzuna.com/land/ad/5914707960?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=82CC595F7A068B09DDD5C3DCB1145ACF9813977C",
+      "company": "eSupplements LLC",
+      "title": "TikTok Shop Marketing Operations Manager",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914707960",
+      "url": "https://www.adzuna.com/land/ad/5914707960?se=-iqDA1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=82CC595F7A068B09DDD5C3DCB1145ACF9813977C",
+      "company": "eSupplements LLC",
+      "title": "TikTok Shop Marketing Operations Manager",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914696822",
+      "url": "https://www.adzuna.com/land/ad/5914696822?se=Zgs-8lLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=C6C743D586D8BC22CEA7DB5159F11B4E363A335D",
+      "company": "CDO Group Incorporated",
+      "title": "Manager, Digital Marketing *Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914629054",
+      "url": "https://www.adzuna.com/land/ad/5914629054?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=E0E101F226B0B567D3E50237F1283181FB9B73C7",
+      "company": "Thrive Ventures",
+      "title": "PROPERTY MANAGER",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914573043",
+      "url": "https://www.adzuna.com/land/ad/5914573043?se=Zgs-8lLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=3C9FD4F1725C73B94FB8DFDD2BC71807311A2B64",
+      "company": "Tuohy Furniture Corporation",
+      "title": "Manager, Digital Marketing *Remote",
+      "reason": "excluded employment type"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914558308",
+      "url": "https://www.adzuna.com/land/ad/5914558308?se=HhhYDlPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=44014D41AC12AD7F51DE2A2A0D30FDCC6D51CC72",
+      "company": "Storable",
+      "title": "Sr Client Success Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914543772",
+      "url": "https://www.adzuna.com/land/ad/5914543772?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=F620020773AE26047B56EA084D6E2A8E0A621863",
+      "company": "Five Star Franchising",
+      "title": "Marketing Manager, Performance Marketing",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914543772",
+      "url": "https://www.adzuna.com/land/ad/5914543772?se=3HSq9lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=F620020773AE26047B56EA084D6E2A8E0A621863",
+      "company": "Five Star Franchising",
+      "title": "Marketing Manager, Performance Marketing",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914543772",
+      "url": "https://www.adzuna.com/land/ad/5914543772?se=mlZh-lLH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=F620020773AE26047B56EA084D6E2A8E0A621863",
+      "company": "Five Star Franchising",
+      "title": "Marketing Manager, Performance Marketing",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914543772",
+      "url": "https://www.adzuna.com/land/ad/5914543772?se=Jh72B1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=F620020773AE26047B56EA084D6E2A8E0A621863",
+      "company": "Five Star Franchising",
+      "title": "Marketing Manager, Performance Marketing",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914543772",
+      "url": "https://www.adzuna.com/land/ad/5914543772?se=Lsb_FlPH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=F620020773AE26047B56EA084D6E2A8E0A621863",
+      "company": "Five Star Franchising",
+      "title": "Marketing Manager, Performance Marketing",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914533342",
+      "url": "https://www.adzuna.com/land/ad/5914533342?se=Zgs-8lLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=F31A01458FBB29212E42224255E922BFAB429C9F",
+      "company": "70 Centennial Olympic Park OZ Employer LLC DBA Hotel Phoenix",
+      "title": "Manager, Digital Marketing *Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914514472",
+      "url": "https://www.adzuna.com/land/ad/5914514472?se=Lsb_FlPH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=21D4F9BA3AACF6861C1C1677F9EEB13701FAAC48",
+      "company": "Five Star Franchising",
+      "title": "Creative Director, Brand Partnerships",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914096918",
+      "url": "https://www.adzuna.com/land/ad/5914096918?se=Zgs-8lLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=58D062FB8112FE4A6D3784624A0D4860E6BCB8AF",
+      "company": "Andromeda Software Inc.",
+      "title": "Digital Marketing Account Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914095168",
+      "url": "https://www.adzuna.com/land/ad/5914095168?se=FrL85lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=FFAF2A89D6BDC9548C1DC2AF4737A3E961F754FE",
+      "company": "adMixt",
+      "title": "Paid Media Manager (Paid Search)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914095168",
+      "url": "https://www.adzuna.com/land/ad/5914095168?se=Cvv3-VLH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=FFAF2A89D6BDC9548C1DC2AF4737A3E961F754FE",
+      "company": "adMixt",
+      "title": "Paid Media Manager (Paid Search)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914079101",
+      "url": "https://www.adzuna.com/land/ad/5914079101?se=kDER7VLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=C03D1E7CD6643C066AB664F7CEF0F22ACDA8B168",
+      "company": "iMatrix",
+      "title": "Sales Development Representative",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914066568",
+      "url": "https://www.adzuna.com/land/ad/5914066568?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=1E8257F843E5971EA99D6F2AAAF4675251B5590B",
+      "company": "Proper Search",
+      "title": "Growth Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914048475",
+      "url": "https://www.adzuna.com/land/ad/5914048475?se=Zgs-8lLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=0D1FDC87A36A803295A63D416FD710695AFF45E0",
+      "company": "SilMan Industries",
+      "title": "Digital Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5914023078",
+      "url": "https://www.adzuna.com/land/ad/5914023078?se=Cvv3-VLH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=669F41892986624DB490F7E913BF469BD983122B",
+      "company": "Tractorbeam",
+      "title": "Paid Media Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5913683983",
+      "url": "https://www.adzuna.com/land/ad/5913683983?se=Zgs-8lLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=E609BCDFC5F26DCF597D4E090733C2DFC304963A",
+      "company": "Alorica",
+      "title": "Digital Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5913509889",
+      "url": "https://www.adzuna.com/details/5913509889?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Carv",
+      "title": "Head of Marketing",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5912421764",
+      "url": "https://www.adzuna.com/land/ad/5912421764?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=5D3334C3F27DA1699727617BF83059D35E10BED5",
+      "company": "Capital One",
+      "title": "Business Director: Capital One Shopping (Remote-Eligible)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5912421764",
+      "url": "https://www.adzuna.com/land/ad/5912421764?se=nCIEAlPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=5D3334C3F27DA1699727617BF83059D35E10BED5",
+      "company": "Capital One",
+      "title": "Business Director: Capital One Shopping (Remote-Eligible)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5911509036",
+      "url": "https://www.adzuna.com/details/5911509036?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Enterprise Account Manager - SaaS / Digital Marketing - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5911497629",
+      "url": "https://www.adzuna.com/details/5911497629?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Enterprise Account Manager - SaaS / Digital Marketing - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5911488473",
+      "url": "https://www.adzuna.com/details/5911488473?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Enterprise Account Manager - SaaS / Digital Marketing - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5910718190",
+      "url": "https://www.adzuna.com/details/5910718190?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "SugarHouse Industries",
+      "title": "Marketing Head",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5910718190",
+      "url": "https://www.adzuna.com/details/5910718190?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "SugarHouse Industries",
+      "title": "Marketing Head",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5910034807",
+      "url": "https://www.adzuna.com/details/5910034807?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Worldwide Golf",
+      "title": "Manager of Growth & E-Commerce - Fore All",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5909609632",
+      "url": "https://www.adzuna.com/details/5909609632?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "EverCommerce Solutions",
+      "title": "EverHealth - Senior Growth Marketing Manager - Acquisition (Remote, US)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5908212936",
+      "url": "https://www.adzuna.com/details/5908212936?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Stagwell Global LLC",
+      "title": "Director of Growth Marketing",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5908026737",
+      "url": "https://www.adzuna.com/details/5908026737?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Grand America Hotels & Resorts",
+      "title": "Digital Marketing Specialist",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5908026737",
+      "url": "https://www.adzuna.com/details/5908026737?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Grand America Hotels & Resorts",
+      "title": "Digital Marketing Specialist",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5908026737",
+      "url": "https://www.adzuna.com/details/5908026737?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Grand America Hotels & Resorts",
+      "title": "Digital Marketing Specialist",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5907967063",
+      "url": "https://www.adzuna.com/details/5907967063?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Quorum Hospitality",
+      "title": "Digital Marketing Manager (Remote)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5907725805",
+      "url": "https://www.adzuna.com/details/5907725805?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "APU Global Careers",
+      "title": "Director of Enrollment",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5907654548",
+      "url": "https://www.adzuna.com/details/5907654548?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Haverkamp Group",
+      "title": "Investor Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5907636011",
+      "url": "https://www.adzuna.com/details/5907636011?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "EverCommerce Solutions",
+      "title": "EverPro - Senior Growth Marketing Manager (US, Remote)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5906638215",
+      "url": "https://www.adzuna.com/details/5906638215?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Lifetime Products, Inc.",
+      "title": "SEO Copywriter / Copy Specialist",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5904359417",
+      "url": "https://www.adzuna.com/details/5904359417?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Deseret Book",
+      "title": "Digital Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2224,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5904359417",
+      "url": "https://www.adzuna.com/details/5904359417?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Deseret Book",
+      "title": "Digital Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2224,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5904359417",
+      "url": "https://www.adzuna.com/details/5904359417?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Deseret Book",
+      "title": "Digital Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2224,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5904359417",
+      "url": "https://www.adzuna.com/details/5904359417?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Deseret Book",
+      "title": "Digital Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2224,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5904350427",
+      "url": "https://www.adzuna.com/details/5904350427?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Cozy Earth",
+      "title": "Audio Partnerships Strategist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5904350427",
+      "url": "https://www.adzuna.com/details/5904350427?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Cozy Earth",
+      "title": "Audio Partnerships Strategist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5904350427",
+      "url": "https://www.adzuna.com/details/5904350427?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Cozy Earth",
+      "title": "Audio Partnerships Strategist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5904313060",
+      "url": "https://www.adzuna.com/land/ad/5904313060?se=Lsb_FlPH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=4A8BB1A5CD9E4E1362B57348CAB4062E80E76237",
+      "company": "Five Star Franchising LLC",
+      "title": "Creative Director",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5904202085",
+      "url": "https://www.adzuna.com/details/5904202085?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Red Carrot",
+      "title": "Paid Media Manager",
+      "reason": "excluded employment type"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5903948730",
+      "url": "https://www.adzuna.com/details/5903948730?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Workshopdigital",
+      "title": "Growth Marketing Manager [Remote]",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5903401169",
+      "url": "https://www.adzuna.com/details/5903401169?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Senior Growth Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2225,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5903401171",
+      "url": "https://www.adzuna.com/details/5903401171?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Senior Growth Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5903401169",
+      "url": "https://www.adzuna.com/details/5903401169?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Senior Growth Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2225,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5903401169",
+      "url": "https://www.adzuna.com/details/5903401169?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Senior Growth Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2225,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5903400930",
+      "url": "https://www.adzuna.com/details/5903400930?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Workshop Digital",
+      "title": "Growth Marketing Manager [Remote]",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5903400935",
+      "url": "https://www.adzuna.com/details/5903400935?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Workshop Digital",
+      "title": "Growth Marketing Manager [Remote]",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5903400922",
+      "url": "https://www.adzuna.com/details/5903400922?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Workshop Digital",
+      "title": "Growth Marketing Manager [Remote]",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5903400927",
+      "url": "https://www.adzuna.com/details/5903400927?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Workshop Digital",
+      "title": "Growth Marketing Manager [Remote]",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5903400936",
+      "url": "https://www.adzuna.com/details/5903400936?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Workshop Digital",
+      "title": "Growth Marketing Manager [Remote]",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5903400928",
+      "url": "https://www.adzuna.com/details/5903400928?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Workshop Digital",
+      "title": "Growth Marketing Manager [Remote]",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5903400924",
+      "url": "https://www.adzuna.com/details/5903400924?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Workshop Digital",
+      "title": "Growth Marketing Manager [Remote]",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5903400934",
+      "url": "https://www.adzuna.com/details/5903400934?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Workshop Digital",
+      "title": "Growth Marketing Manager [Remote]",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5903153387",
+      "url": "https://www.adzuna.com/details/5903153387?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Lifetime Products, Inc.",
+      "title": "Retail Store Sales Assistant Manager -Clearfield",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5901235706",
+      "url": "https://www.adzuna.com/details/5901235706?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Leland",
+      "title": "Performance Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2226,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5901235706",
+      "url": "https://www.adzuna.com/details/5901235706?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Leland",
+      "title": "Performance Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2226,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5900940541",
+      "url": "https://www.adzuna.com/details/5900940541?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Deseret Book",
+      "title": "Influencer & Affiliate Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2227,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5900940541",
+      "url": "https://www.adzuna.com/details/5900940541?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Deseret Book",
+      "title": "Influencer & Affiliate Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2227,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5900940541",
+      "url": "https://www.adzuna.com/details/5900940541?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Deseret Book",
+      "title": "Influencer & Affiliate Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2227,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5900940541",
+      "url": "https://www.adzuna.com/details/5900940541?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Deseret Book",
+      "title": "Influencer & Affiliate Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2227,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5900550987",
+      "url": "https://www.adzuna.com/land/ad/5900550987?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=BC756C1FADDD37CEED6650A1784F76FE44FE109D",
+      "company": "DIRECTV",
+      "title": "Product Marketing & Marketing Intern",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5900550987",
+      "url": "https://www.adzuna.com/land/ad/5900550987?se=nPra81LH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=BC756C1FADDD37CEED6650A1784F76FE44FE109D",
+      "company": "DIRECTV",
+      "title": "Product Marketing & Marketing Intern",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5900550987",
+      "url": "https://www.adzuna.com/land/ad/5900550987?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=BC756C1FADDD37CEED6650A1784F76FE44FE109D",
+      "company": "DIRECTV",
+      "title": "Product Marketing & Marketing Intern",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5900550987",
+      "url": "https://www.adzuna.com/land/ad/5900550987?se=nCIEAlPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=BC756C1FADDD37CEED6650A1784F76FE44FE109D",
+      "company": "DIRECTV",
+      "title": "Product Marketing & Marketing Intern",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5900551005",
+      "url": "https://www.adzuna.com/land/ad/5900551005?se=3HSq9lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=AF1103B32287333FD3FE41BFB0CAD5F7608A87F8",
+      "company": "DIRECTV",
+      "title": "Content Intern",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5900551005",
+      "url": "https://www.adzuna.com/land/ad/5900551005?se=cv1i91LH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=AF1103B32287333FD3FE41BFB0CAD5F7608A87F8",
+      "company": "DIRECTV",
+      "title": "Content Intern",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5900550784",
+      "url": "https://www.adzuna.com/land/ad/5900550784?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=9112CAD3BE56A04F068F2A20210CB2FFE658CA17",
+      "company": "Deloitte",
+      "title": "Global Salesforce Marketing Manager",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5900550784",
+      "url": "https://www.adzuna.com/land/ad/5900550784?se=nPra81LH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=9112CAD3BE56A04F068F2A20210CB2FFE658CA17",
+      "company": "Deloitte",
+      "title": "Global Salesforce Marketing Manager",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5900550784",
+      "url": "https://www.adzuna.com/land/ad/5900550784?se=3HSq9lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=9112CAD3BE56A04F068F2A20210CB2FFE658CA17",
+      "company": "Deloitte",
+      "title": "Global Salesforce Marketing Manager",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5900550784",
+      "url": "https://www.adzuna.com/land/ad/5900550784?se=cv1i91LH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=9112CAD3BE56A04F068F2A20210CB2FFE658CA17",
+      "company": "Deloitte",
+      "title": "Global Salesforce Marketing Manager",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5899779676",
+      "url": "https://www.adzuna.com/details/5899779676?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "CoralTree Hospitality",
+      "title": "Director of Marketing",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5899707116",
+      "url": "https://www.adzuna.com/details/5899707116?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "POWDR",
+      "title": "Senior Manager of Integrated Marketing",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5899617746",
+      "url": "https://www.adzuna.com/land/ad/5899617746?se=Jh72B1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=C06DEC39CC126158AE99BD8385587A7A42245886",
+      "company": "Zoom",
+      "title": "Product Growth Marketing Manager",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5899617746",
+      "url": "https://www.adzuna.com/land/ad/5899617746?se=0B-uCFPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=C06DEC39CC126158AE99BD8385587A7A42245886",
+      "company": "Zoom",
+      "title": "Product Growth Marketing Manager",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898857660",
+      "url": "https://www.adzuna.com/land/ad/5898857660?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=2ABD1B40088127C25195FD5CF7919B7118094471",
+      "company": "DOE Media",
+      "title": "Senior Google PPC Specialist/Paid Search Specialist - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898857592",
+      "url": "https://www.adzuna.com/land/ad/5898857592?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=89CE426EB579BAF267A59C041DDBF1366EAA15E2",
+      "company": "DOE Media",
+      "title": "Senior Google PPC Specialist/Paid Search Specialist - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898857239",
+      "url": "https://www.adzuna.com/land/ad/5898857239?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=6C1B52EDA9F86576F199558D773DA0B93BA33B82",
+      "company": "DOE Media",
+      "title": "Senior Google PPC Specialist/Paid Search Specialist - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898857229",
+      "url": "https://www.adzuna.com/land/ad/5898857229?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=D3DB63E57296FF162620909C81547CF083E0B3A9",
+      "company": "DOE Media",
+      "title": "Senior Google PPC Specialist/Paid Search Specialist - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898857225",
+      "url": "https://www.adzuna.com/land/ad/5898857225?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=278D730353D9F577B80BE4F246F3D9380E28585D",
+      "company": "DOE Media",
+      "title": "Senior Google PPC Specialist/Paid Search Specialist - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898857236",
+      "url": "https://www.adzuna.com/land/ad/5898857236?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=F90C94868846A1EBAA88DFEA20E9054161250D83",
+      "company": "DOE Media",
+      "title": "Senior Google PPC Specialist/Paid Search Specialist - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898857232",
+      "url": "https://www.adzuna.com/land/ad/5898857232?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=38846616C85E3F532E5DCD45A4932BEF5348F6AF",
+      "company": "DOE Media",
+      "title": "Senior Google PPC Specialist/Paid Search Specialist - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898854723",
+      "url": "https://www.adzuna.com/land/ad/5898854723?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=EB80A4A6BCAD1DCE4B41144163ADD594BDA877E6",
+      "company": "DOE Media",
+      "title": "Senior Google PPC Specialist/Paid Search Specialist - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898854689",
+      "url": "https://www.adzuna.com/land/ad/5898854689?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=D482FBF39DFA00949BCD866D3AA993AC91C7083F",
+      "company": "DOE Media",
+      "title": "Senior Google PPC Specialist/Paid Search Specialist - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898854685",
+      "url": "https://www.adzuna.com/land/ad/5898854685?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=262227B999ED4817E524578C2C616E973F5ECF7C",
+      "company": "DOE Media",
+      "title": "Senior Google PPC Specialist/Paid Search Specialist - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898854669",
+      "url": "https://www.adzuna.com/land/ad/5898854669?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=59C240F012EA4F3E0B9DF9F23B83B10478247D32",
+      "company": "DOE Media",
+      "title": "Senior Google PPC Specialist/Paid Search Specialist - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898854671",
+      "url": "https://www.adzuna.com/land/ad/5898854671?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=B07DBB525437D0E12ABE4E586CA4DB5DC8B7C091",
+      "company": "DOE Media",
+      "title": "Senior Google PPC Specialist/Paid Search Specialist - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898854316",
+      "url": "https://www.adzuna.com/land/ad/5898854316?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=C9770CFDAACA9CC3D97970BB7AB087DB6FFB42BF",
+      "company": "DOE Media",
+      "title": "Senior Google PPC Specialist/Paid Search Specialist - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898854307",
+      "url": "https://www.adzuna.com/land/ad/5898854307?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=87B7C1108416713B3850B9A8E382958E5D0D42B0",
+      "company": "DOE Media",
+      "title": "Senior Google PPC Specialist/Paid Search Specialist - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898277087",
+      "url": "https://www.adzuna.com/details/5898277087?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Monks",
+      "title": "Senior Account Manager, SEM (Remote)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898241957",
+      "url": "https://www.adzuna.com/land/ad/5898241957?se=Jh72B1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=DCE3DF16CFB79BB99F380A69E4054FB90C807606",
+      "company": "UnitedHealth Group",
+      "title": "Sr. Software Solutions Executive - Remote",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5898030055",
+      "url": "https://www.adzuna.com/details/5898030055?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Monks",
+      "title": "Senior Account Manager, SEM (Remote)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5896963387",
+      "url": "https://www.adzuna.com/details/5896963387?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Studio McGee",
+      "title": "Digital Performance Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2230,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5896963387",
+      "url": "https://www.adzuna.com/details/5896963387?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Studio McGee",
+      "title": "Digital Performance Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2230,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5896963387",
+      "url": "https://www.adzuna.com/details/5896963387?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Studio McGee",
+      "title": "Digital Performance Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2230,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5896963387",
+      "url": "https://www.adzuna.com/details/5896963387?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Studio McGee",
+      "title": "Digital Performance Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2230,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5896467180",
+      "url": "https://www.adzuna.com/details/5896467180?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "C&F",
+      "title": "Digital Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5895760158",
+      "url": "https://www.adzuna.com/details/5895760158?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "The Grace Company",
+      "title": "Email Marketer & Copywriter",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5895760158",
+      "url": "https://www.adzuna.com/details/5895760158?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "The Grace Company",
+      "title": "Email Marketer & Copywriter",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5895339450",
+      "url": "https://www.adzuna.com/details/5895339450?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Port View Resources",
+      "title": "Director of Digital Marketing",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5895213525",
+      "url": "https://www.adzuna.com/details/5895213525?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "John Gore Organization",
+      "title": "Regional Director of Marketing",
+      "reason": "previously known",
+      "matched_id": 2255,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5895213525",
+      "url": "https://www.adzuna.com/details/5895213525?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "John Gore Organization",
+      "title": "Regional Director of Marketing",
+      "reason": "previously known",
+      "matched_id": 2255,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5895156105",
+      "url": "https://www.adzuna.com/details/5895156105?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "1-800 Contacts",
+      "title": "Paid Media Manager",
+      "reason": "previously known",
+      "matched_id": 2256,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5895156105",
+      "url": "https://www.adzuna.com/details/5895156105?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "1-800 Contacts",
+      "title": "Paid Media Manager",
+      "reason": "previously known",
+      "matched_id": 2256,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5893906998",
+      "url": "https://www.adzuna.com/details/5893906998?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "CAI World-Wide",
+      "title": "Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 726,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5893906998",
+      "url": "https://www.adzuna.com/details/5893906998?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "CAI World-Wide",
+      "title": "Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 726,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5892304330",
+      "url": "https://www.adzuna.com/details/5892304330?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "First Gen Financial",
+      "title": "Growth Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5891504479",
+      "url": "https://www.adzuna.com/details/5891504479?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Young Americans For Liberty",
+      "title": "Digital Marketing Specialist",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5891010873",
+      "url": "https://www.adzuna.com/land/ad/5891010873?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=8EA8009BA74C1C4CEAD517BF4107D4A2C36F6F71",
+      "company": "Yellowstone Local",
+      "title": "Senior Project Manager",
+      "reason": "rejection history"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5891010873",
+      "url": "https://www.adzuna.com/land/ad/5891010873?se=xBlm9FLH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=8EA8009BA74C1C4CEAD517BF4107D4A2C36F6F71",
+      "company": "Yellowstone Local",
+      "title": "Senior Project Manager",
+      "reason": "rejection history"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5891010873",
+      "url": "https://www.adzuna.com/land/ad/5891010873?se=-GRU9VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=8EA8009BA74C1C4CEAD517BF4107D4A2C36F6F71",
+      "company": "Yellowstone Local",
+      "title": "Senior Project Manager",
+      "reason": "rejection history"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5891010873",
+      "url": "https://www.adzuna.com/land/ad/5891010873?se=Jh72B1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=8EA8009BA74C1C4CEAD517BF4107D4A2C36F6F71",
+      "company": "Yellowstone Local",
+      "title": "Senior Project Manager",
+      "reason": "rejection history"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5891010873",
+      "url": "https://www.adzuna.com/land/ad/5891010873?se=mk4UCVPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=8EA8009BA74C1C4CEAD517BF4107D4A2C36F6F71",
+      "company": "Yellowstone Local",
+      "title": "Senior Project Manager",
+      "reason": "rejection history"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5891010873",
+      "url": "https://www.adzuna.com/land/ad/5891010873?se=TgQTClPH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=8EA8009BA74C1C4CEAD517BF4107D4A2C36F6F71",
+      "company": "Yellowstone Local",
+      "title": "Senior Project Manager",
+      "reason": "rejection history"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5891009176",
+      "url": "https://www.adzuna.com/land/ad/5891009176?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=D8049B8A72AA79A5B684975BB1A4339D1D85AB7B",
+      "company": "Yellowstone Local",
+      "title": "Superintendent",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5891009176",
+      "url": "https://www.adzuna.com/land/ad/5891009176?se=xBlm9FLH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=D8049B8A72AA79A5B684975BB1A4339D1D85AB7B",
+      "company": "Yellowstone Local",
+      "title": "Superintendent",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5891009176",
+      "url": "https://www.adzuna.com/land/ad/5891009176?se=-GRU9VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=D8049B8A72AA79A5B684975BB1A4339D1D85AB7B",
+      "company": "Yellowstone Local",
+      "title": "Superintendent",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5890507483",
+      "url": "https://www.adzuna.com/land/ad/5890507483?se=3HSq9lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=A879492A985642E80F3AD33AE49BA69C38389FF8",
+      "company": "Coinbase",
+      "title": "Senior Performance Marketing Manager, Global Paid Social & Mobile UA",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5890507483",
+      "url": "https://www.adzuna.com/land/ad/5890507483?se=cv1i91LH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=A879492A985642E80F3AD33AE49BA69C38389FF8",
+      "company": "Coinbase",
+      "title": "Senior Performance Marketing Manager, Global Paid Social & Mobile UA",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5890506738",
+      "url": "https://www.adzuna.com/land/ad/5890506738?se=3HSq9lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=A25C3F44A19D2675D0F068C14D88333A22F80076",
+      "company": "Capital One",
+      "title": "Senior Manager, Client Development Ad Sales - Capital One Ad Solutions (Remote)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5890506738",
+      "url": "https://www.adzuna.com/land/ad/5890506738?se=cv1i91LH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=A25C3F44A19D2675D0F068C14D88333A22F80076",
+      "company": "Capital One",
+      "title": "Senior Manager, Client Development Ad Sales - Capital One Ad Solutions (Remote)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5890478679",
+      "url": "https://www.adzuna.com/details/5890478679?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "AutoSavvy",
+      "title": "Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5890478679",
+      "url": "https://www.adzuna.com/details/5890478679?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "AutoSavvy",
+      "title": "Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5890478679",
+      "url": "https://www.adzuna.com/details/5890478679?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "AutoSavvy",
+      "title": "Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5890478679",
+      "url": "https://www.adzuna.com/details/5890478679?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "AutoSavvy",
+      "title": "Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5889815001",
+      "url": "https://www.adzuna.com/details/5889815001?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "The Front Climbing Club",
+      "title": "Senior Sales and Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 57,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5889815001",
+      "url": "https://www.adzuna.com/details/5889815001?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "The Front Climbing Club",
+      "title": "Senior Sales and Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 57,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5889409526",
+      "url": "https://www.adzuna.com/details/5889409526?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Rust Automation & Controls",
+      "title": "Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5889409526",
+      "url": "https://www.adzuna.com/details/5889409526?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Rust Automation & Controls",
+      "title": "Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5889266140",
+      "url": "https://www.adzuna.com/details/5889266140?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Blaze Talent",
+      "title": "Marketing Analytics Manager @ Casino Gaming Startup | Series A | $100-130K Base",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5889166411",
+      "url": "https://www.adzuna.com/details/5889166411?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Account Manager - SaaS / Digital Marketing - REMOTE",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5889159169",
+      "url": "https://www.adzuna.com/details/5889159169?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Account Manager - SaaS / Digital Marketing - REMOTE",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5889145074",
+      "url": "https://www.adzuna.com/details/5889145074?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Account Manager - SaaS / Digital Marketing - REMOTE",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5888634537",
+      "url": "https://www.adzuna.com/details/5888634537?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Marketplace Operations Inc.",
+      "title": "SEM Campaign Manager (Remote)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887599532",
+      "url": "https://www.adzuna.com/details/5887599532?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Account Manager - SaaS/Digital Marketing - REMOTE",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887599305",
+      "url": "https://www.adzuna.com/details/5887599305?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Account Manager - SaaS / Digital Marketing - REMOTE",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887598462",
+      "url": "https://www.adzuna.com/details/5887598462?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Account Manager - SaaS / Digital Marketing - REMOTE",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887597512",
+      "url": "https://www.adzuna.com/details/5887597512?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Account Manager - SaaS/Digital Marketing - REMOTE",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887595432",
+      "url": "https://www.adzuna.com/details/5887595432?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Account Manager - SaaS / Digital Marketing - REMOTE",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887594156",
+      "url": "https://www.adzuna.com/details/5887594156?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Account Manager - SaaS/Digital Marketing - REMOTE",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887592008",
+      "url": "https://www.adzuna.com/details/5887592008?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Account Manager - SaaS / Digital Marketing - REMOTE",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887586723",
+      "url": "https://www.adzuna.com/details/5887586723?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Account Manager - SaaS / Digital Marketing - REMOTE",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887586163",
+      "url": "https://www.adzuna.com/details/5887586163?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Michael Page",
+      "title": "Account Manager - SaaS / Digital Marketing - REMOTE",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887543800",
+      "url": "https://www.adzuna.com/land/ad/5887543800?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=24DA270BE4710E866A46A868EFD72653C434CC48",
+      "company": "Capital One",
+      "title": "Director, Agency Partnerships Ad Sales - Capital One Ad Solutions (Remote)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887543800",
+      "url": "https://www.adzuna.com/land/ad/5887543800?se=nCIEAlPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=24DA270BE4710E866A46A868EFD72653C434CC48",
+      "company": "Capital One",
+      "title": "Director, Agency Partnerships Ad Sales - Capital One Ad Solutions (Remote)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887523955",
+      "url": "https://www.adzuna.com/details/5887523955?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Breeze Aviation Group",
+      "title": "Manager Lifecycle Marketing",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887181642",
+      "url": "https://www.adzuna.com/details/5887181642?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Volkert",
+      "title": "Business Development/Marketing Manager (AEC Industry)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887181642",
+      "url": "https://www.adzuna.com/details/5887181642?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Volkert",
+      "title": "Business Development/Marketing Manager (AEC Industry)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887181642",
+      "url": "https://www.adzuna.com/details/5887181642?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Volkert",
+      "title": "Business Development/Marketing Manager (AEC Industry)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5887181642",
+      "url": "https://www.adzuna.com/details/5887181642?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Volkert",
+      "title": "Business Development/Marketing Manager (AEC Industry)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5886129094",
+      "url": "https://www.adzuna.com/details/5886129094?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Westminster University",
+      "title": "Director of Public Relations",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5886129094",
+      "url": "https://www.adzuna.com/details/5886129094?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Westminster University",
+      "title": "Director of Public Relations",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5885654118",
+      "url": "https://www.adzuna.com/details/5885654118?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "EnableComp",
+      "title": "Manager, Demand Generation (REMOTE)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5885559374",
+      "url": "https://www.adzuna.com/details/5885559374?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "EnableComp",
+      "title": "Manager, Growth Marketing (REMOTE)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5885559329",
+      "url": "https://www.adzuna.com/details/5885559329?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "EnableComp",
+      "title": "Manager, Growth Marketing (REMOTE)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5885559365",
+      "url": "https://www.adzuna.com/details/5885559365?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "EnableComp",
+      "title": "Manager, Demand Generation (REMOTE)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5885559366",
+      "url": "https://www.adzuna.com/details/5885559366?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "EnableComp",
+      "title": "Manager, Demand Generation (REMOTE)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5883899237",
+      "url": "https://www.adzuna.com/details/5883899237?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "LMG Staffing Solutions",
+      "title": "Digital Marketing B2B HubSpot Growth Marketing and Automation Manager (Remote)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5882214330",
+      "url": "https://www.adzuna.com/details/5882214330?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Momentous",
+      "title": "Retail Marketing Operations Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5881851905",
+      "url": "https://www.adzuna.com/details/5881851905?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Integrated Engineering",
+      "title": "Digital Content Specialist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5881851905",
+      "url": "https://www.adzuna.com/details/5881851905?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Integrated Engineering",
+      "title": "Digital Content Specialist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5880686078",
+      "url": "https://www.adzuna.com/details/5880686078?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Monks",
+      "title": "Senior Account Manager, SEM (Remote)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5880608936",
+      "url": "https://www.adzuna.com/details/5880608936?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "DataSpring",
+      "title": "Growth Marketing Manager, Provider (Clinician & Profile Manager Administrator Segment)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5880541295",
+      "url": "https://www.adzuna.com/details/5880541295?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "CAQH",
+      "title": "Growth Marketing Manager, Provider (Clinician & Profile Manager Administrator Segment)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879758444",
+      "url": "https://www.adzuna.com/details/5879758444?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "LifeWave Careers",
+      "title": "Global Social Channels Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879664097",
+      "url": "https://www.adzuna.com/details/5879664097?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Rosie's People",
+      "title": "Demand Generation Manager \u2013 Cybersecurity & AI",
+      "reason": "excluded employment type"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879612472",
+      "url": "https://www.adzuna.com/land/ad/5879612472?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=F6E18D7537C4502965EDF4BBFD9EC9E4F48C7331",
+      "company": "Acxiom",
+      "title": "Intern - Marketing Operations",
+      "reason": "excluded title/seniority"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879612472",
+      "url": "https://www.adzuna.com/land/ad/5879612472?se=nPra81LH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=F6E18D7537C4502965EDF4BBFD9EC9E4F48C7331",
+      "company": "Acxiom",
+      "title": "Intern - Marketing Operations",
+      "reason": "excluded title/seniority"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879577646",
+      "url": "https://www.adzuna.com/land/ad/5879577646?se=3HSq9lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=80FD2529E6BBC007340F477DE4CFC3EE8DC069A7",
+      "company": "Capital One",
+      "title": "Manager, Client Development Ad Sales, Capital One Ad Solutions (Remote)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879577646",
+      "url": "https://www.adzuna.com/land/ad/5879577646?se=cv1i91LH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=80FD2529E6BBC007340F477DE4CFC3EE8DC069A7",
+      "company": "Capital One",
+      "title": "Manager, Client Development Ad Sales, Capital One Ad Solutions (Remote)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879563055",
+      "url": "https://www.adzuna.com/land/ad/5879563055?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=9A2A9635B8A6B3B63C32A4E320285EE8693665F9",
+      "company": "Duckduckgo",
+      "title": "Senior Growth Marketing Manager (Subscriptions) - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879563032",
+      "url": "https://www.adzuna.com/land/ad/5879563032?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=4C872B1D493F3C7C4E3C9E0B6FB90D3D522148B2",
+      "company": "Duckduckgo",
+      "title": "Senior Growth Marketing Manager (Subscriptions) - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879563027",
+      "url": "https://www.adzuna.com/land/ad/5879563027?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=3847882A7BB242877688FDCFA883637CFA1DF0E4",
+      "company": "Duckduckgo",
+      "title": "Senior Growth Marketing Manager (Subscriptions) - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879563012",
+      "url": "https://www.adzuna.com/land/ad/5879563012?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=A1F920C19326D963F31FB556CF3D78543AC81426",
+      "company": "Duckduckgo",
+      "title": "Senior Growth Marketing Manager (Subscriptions) - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879563026",
+      "url": "https://www.adzuna.com/land/ad/5879563026?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=1CDD2012D200FE99D1D06FB896C7A1DA93F653FC",
+      "company": "Duckduckgo",
+      "title": "Senior Growth Marketing Manager (Subscriptions) - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879562566",
+      "url": "https://www.adzuna.com/land/ad/5879562566?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=8B4C88F9839BA0D175ABAA91F20D5EB2FCE4CC3D",
+      "company": "Duckduckgo",
+      "title": "Senior Growth Marketing Manager (Subscriptions) - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879562617",
+      "url": "https://www.adzuna.com/land/ad/5879562617?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=7320E30CFDBBBA73C91B50FEAA1580A93C55D448",
+      "company": "Duckduckgo",
+      "title": "Senior Growth Marketing Manager (Subscriptions) - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879557681",
+      "url": "https://www.adzuna.com/land/ad/5879557681?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=259808EC1F95084BBFC7088E76E5F18CF9FD2866",
+      "company": "Duckduckgo",
+      "title": "Senior Growth Marketing Manager (Subscriptions) - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879557621",
+      "url": "https://www.adzuna.com/land/ad/5879557621?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=EB466445C1B4E1624B58077FE14324316B1448F1",
+      "company": "Duckduckgo",
+      "title": "Senior Growth Marketing Manager (Subscriptions) - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879557665",
+      "url": "https://www.adzuna.com/land/ad/5879557665?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=A200B4DF06E08B63D1FF390E0C5B7D711BB7EFE3",
+      "company": "Duckduckgo",
+      "title": "Senior Growth Marketing Manager (Subscriptions) - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879557599",
+      "url": "https://www.adzuna.com/land/ad/5879557599?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=8D6842863445B223B23239F751FA05C269FBF7D5",
+      "company": "Duckduckgo",
+      "title": "Senior Growth Marketing Manager (Subscriptions) - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879556655",
+      "url": "https://www.adzuna.com/land/ad/5879556655?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=267F919E7256F532A823008380BEA6E1AAC8989C",
+      "company": "Duckduckgo",
+      "title": "Senior Growth Marketing Manager (Subscriptions) - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879556624",
+      "url": "https://www.adzuna.com/land/ad/5879556624?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=1832F3B35EC3B99CDBA2A354952E6E4AF42A610A",
+      "company": "Duckduckgo",
+      "title": "Senior Growth Marketing Manager (Subscriptions) - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879556612",
+      "url": "https://www.adzuna.com/land/ad/5879556612?se=nqwJB1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=6A20EC9167ED848AE3DCD67FE869AC1C3B6571AE",
+      "company": "Duckduckgo",
+      "title": "Senior Growth Marketing Manager (Subscriptions) - Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221542",
+      "url": "https://www.adzuna.com/details/5879221542?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Web Operations Manager",
+      "reason": "rejection history"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221542",
+      "url": "https://www.adzuna.com/details/5879221542?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Web Operations Manager",
+      "reason": "rejection history"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221542",
+      "url": "https://www.adzuna.com/details/5879221542?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Web Operations Manager",
+      "reason": "rejection history"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221520",
+      "url": "https://www.adzuna.com/details/5879221520?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Web Operations Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221520",
+      "url": "https://www.adzuna.com/details/5879221520?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Web Operations Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221520",
+      "url": "https://www.adzuna.com/details/5879221520?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Web Operations Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221520",
+      "url": "https://www.adzuna.com/details/5879221520?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Web Operations Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221520",
+      "url": "https://www.adzuna.com/details/5879221520?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Web Operations Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221520",
+      "url": "https://www.adzuna.com/details/5879221520?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Web Operations Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221520",
+      "url": "https://www.adzuna.com/details/5879221520?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Web Operations Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221520",
+      "url": "https://www.adzuna.com/details/5879221520?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Web Operations Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221520",
+      "url": "https://www.adzuna.com/details/5879221520?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Web Operations Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221524",
+      "url": "https://www.adzuna.com/details/5879221524?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Head of Search & AI Visibility",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221508",
+      "url": "https://www.adzuna.com/details/5879221508?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Head of Search & AI Visibility",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221508",
+      "url": "https://www.adzuna.com/details/5879221508?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Head of Search & AI Visibility",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879221508",
+      "url": "https://www.adzuna.com/details/5879221508?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Vasion, Inc.",
+      "title": "Head of Search & AI Visibility",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879220541",
+      "url": "https://www.adzuna.com/details/5879220541?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pattern",
+      "title": "Senior Director, Demand Generation & ABM",
+      "reason": "previously known",
+      "matched_id": 398,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879220541",
+      "url": "https://www.adzuna.com/details/5879220541?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pattern",
+      "title": "Senior Director, Demand Generation & ABM",
+      "reason": "previously known",
+      "matched_id": 398,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879220541",
+      "url": "https://www.adzuna.com/details/5879220541?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pattern",
+      "title": "Senior Director, Demand Generation & ABM",
+      "reason": "previously known",
+      "matched_id": 398,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879220541",
+      "url": "https://www.adzuna.com/details/5879220541?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pattern",
+      "title": "Senior Director, Demand Generation & ABM",
+      "reason": "previously known",
+      "matched_id": 398,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879220541",
+      "url": "https://www.adzuna.com/details/5879220541?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pattern",
+      "title": "Senior Director, Demand Generation & ABM",
+      "reason": "previously known",
+      "matched_id": 398,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5879220541",
+      "url": "https://www.adzuna.com/details/5879220541?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pattern",
+      "title": "Senior Director, Demand Generation & ABM",
+      "reason": "previously known",
+      "matched_id": 398,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5878096203",
+      "url": "https://www.adzuna.com/details/5878096203?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pattern",
+      "title": "Senior Paid Media Manager",
+      "reason": "previously known",
+      "matched_id": 559,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5878096203",
+      "url": "https://www.adzuna.com/details/5878096203?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pattern",
+      "title": "Senior Paid Media Manager",
+      "reason": "previously known",
+      "matched_id": 559,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5872886103",
+      "url": "https://www.adzuna.com/details/5872886103?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Brex",
+      "title": "Senior Growth Marketing Manager, Paid Social",
+      "reason": "previously known",
+      "matched_id": 2258,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5872886103",
+      "url": "https://www.adzuna.com/details/5872886103?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Brex",
+      "title": "Senior Growth Marketing Manager, Paid Social",
+      "reason": "previously known",
+      "matched_id": 2258,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5871606032",
+      "url": "https://www.adzuna.com/details/5871606032?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Cambia Health Solutions",
+      "title": "Manager Clinical Pharmacy Services",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5871606032",
+      "url": "https://www.adzuna.com/details/5871606032?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Cambia Health Solutions",
+      "title": "Manager Clinical Pharmacy Services",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5870464703",
+      "url": "https://www.adzuna.com/land/ad/5870464703?se=3HSq9lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=6444FC0847A37FB87B772BEB8118033323553480",
+      "company": "Akamai Technologies, Inc.",
+      "title": "Manager Growth Marketing (Public Sector)",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5870464703",
+      "url": "https://www.adzuna.com/land/ad/5870464703?se=cv1i91LH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=6444FC0847A37FB87B772BEB8118033323553480",
+      "company": "Akamai Technologies, Inc.",
+      "title": "Manager Growth Marketing (Public Sector)",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5870464703",
+      "url": "https://www.adzuna.com/land/ad/5870464703?se=Jh72B1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=6444FC0847A37FB87B772BEB8118033323553480",
+      "company": "Akamai Technologies, Inc.",
+      "title": "Manager Growth Marketing (Public Sector)",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5870464703",
+      "url": "https://www.adzuna.com/land/ad/5870464703?se=0B-uCFPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=6444FC0847A37FB87B772BEB8118033323553480",
+      "company": "Akamai Technologies, Inc.",
+      "title": "Manager Growth Marketing (Public Sector)",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5870159330",
+      "url": "https://www.adzuna.com/land/ad/5870159330?se=HhhYDlPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=349FB48136177369D050510D9A8F49A39CA6D77D",
+      "company": "Siemens",
+      "title": "Strategic Student Program: Marketing & Field Execution Internship (Spring 2027, CMMK)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5870159304",
+      "url": "https://www.adzuna.com/land/ad/5870159304?se=HhhYDlPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=B2C972A736698A8B0FB7C77A60C307314C825F6A",
+      "company": "Siemens",
+      "title": "Strategic Student Program: Marketing & Field Execution Internship (Spring 2027, CMMK)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5870159304",
+      "url": "https://www.adzuna.com/land/ad/5870159304?se=4LZFEFPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=B2C972A736698A8B0FB7C77A60C307314C825F6A",
+      "company": "Siemens",
+      "title": "Strategic Student Program: Marketing & Field Execution Internship (Spring 2027, CMMK)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5870141015",
+      "url": "https://www.adzuna.com/land/ad/5870141015?se=HhhYDlPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=BDFF5A225179768ADD276AF7AB7604E49DA987FA",
+      "company": "Siemens",
+      "title": "Strategic Student Program: Marketing & Field Execution Internship (Spring 2027, CMMK)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5870000964",
+      "url": "https://www.adzuna.com/details/5870000964?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "RainFocus",
+      "title": "Sr. Product Marketing Manager - Events (Remote)",
+      "reason": "previously known",
+      "matched_id": 564,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5870000964",
+      "url": "https://www.adzuna.com/details/5870000964?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "RainFocus",
+      "title": "Sr. Product Marketing Manager - Events (Remote)",
+      "reason": "previously known",
+      "matched_id": 564,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5869919714",
+      "url": "https://www.adzuna.com/details/5869919714?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Tecnica Group",
+      "title": "Nordica - Digital Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 17,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5869919714",
+      "url": "https://www.adzuna.com/details/5869919714?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Tecnica Group",
+      "title": "Nordica - Digital Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 17,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5869919714",
+      "url": "https://www.adzuna.com/details/5869919714?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Tecnica Group",
+      "title": "Nordica - Digital Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 17,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5869919714",
+      "url": "https://www.adzuna.com/details/5869919714?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Tecnica Group",
+      "title": "Nordica - Digital Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 17,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5868900842",
+      "url": "https://www.adzuna.com/details/5868900842?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pattern",
+      "title": "Creator Success Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5868900842",
+      "url": "https://www.adzuna.com/details/5868900842?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pattern",
+      "title": "Creator Success Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5868745883",
+      "url": "https://www.adzuna.com/land/ad/5868745883?se=kDER7VLH8RGghcfl051iWw&utm_medium=api&utm_source=b4f3e3f8&v=4F59E92C19FF4FA8E200723A7682E4733995BC59",
+      "company": "EY",
+      "title": "Americas Area AV Design Consultant Assistant Director",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5868745883",
+      "url": "https://www.adzuna.com/land/ad/5868745883?se=jh2G7VLH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=4F59E92C19FF4FA8E200723A7682E4733995BC59",
+      "company": "EY",
+      "title": "Americas Area AV Design Consultant Assistant Director",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5866599300",
+      "url": "https://www.adzuna.com/land/ad/5866599300?se=Jh72B1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=B1DAECC8ECEF86893DE83BC1BC13DAED42E2095A",
+      "company": "Grant Thornton",
+      "title": "Industry Marketing Manager",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5866599300",
+      "url": "https://www.adzuna.com/land/ad/5866599300?se=0B-uCFPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=B1DAECC8ECEF86893DE83BC1BC13DAED42E2095A",
+      "company": "Grant Thornton",
+      "title": "Industry Marketing Manager",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5866032734",
+      "url": "https://www.adzuna.com/details/5866032734?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Avenue5 Residential, LLC",
+      "title": "Affordable Regional Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5866032734",
+      "url": "https://www.adzuna.com/details/5866032734?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Avenue5 Residential, LLC",
+      "title": "Affordable Regional Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5863092494",
+      "url": "https://www.adzuna.com/land/ad/5863092494?se=BFWJ7FLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=1BAB7902D15D89073AC934F146DD331A64EE5A48",
+      "company": "Acadia",
+      "title": "Retail Media Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5862029507",
+      "url": "https://www.adzuna.com/details/5862029507?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "AgCertain Industries",
+      "title": "Coordinator, Marketing & Communications",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5861180334",
+      "url": "https://www.adzuna.com/details/5861180334?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Hyland",
+      "title": "Demand Generation Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5857943231",
+      "url": "https://www.adzuna.com/land/ad/5857943231?se=HhhYDlPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=3A4C17B29D60F4D64A6AA536BFE3EEE6B8615468",
+      "company": "Grant Thornton",
+      "title": "Manager, Demand Operations",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5857943231",
+      "url": "https://www.adzuna.com/land/ad/5857943231?se=HIXEDlPH8RGbgYCAhP1dOA&utm_medium=api&utm_source=b4f3e3f8&v=3A4C17B29D60F4D64A6AA536BFE3EEE6B8615468",
+      "company": "Grant Thornton",
+      "title": "Manager, Demand Operations",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5855069956",
+      "url": "https://www.adzuna.com/details/5855069956?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "AI SwapFace",
+      "title": "Growth Marketing Manager (Remote) \u2014 SEO & Content",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5854700204",
+      "url": "https://www.adzuna.com/land/ad/5854700204?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=27F6420A964A960F3CBE70A4520C53247515E564",
+      "company": "World Wide Technology",
+      "title": "GES Sales/Sales Operations and Business Development Intern -2027",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5854700204",
+      "url": "https://www.adzuna.com/land/ad/5854700204?se=nCIEAlPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=27F6420A964A960F3CBE70A4520C53247515E564",
+      "company": "World Wide Technology",
+      "title": "GES Sales/Sales Operations and Business Development Intern -2027",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5854700183",
+      "url": "https://www.adzuna.com/land/ad/5854700183?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=4D7951374F07AA4BB6E30F8B3CFBBAC12FBB529E",
+      "company": "World Wide Technology",
+      "title": "GES Sales/Sales Operations and Business Development Intern -2027",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5854700145",
+      "url": "https://www.adzuna.com/land/ad/5854700145?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=73ABC9CBB0DD49AC48662B9A03E2EA7097FED066",
+      "company": "World Wide Technology",
+      "title": "GES Sales/Sales Operations and Business Development Intern -2027",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5854700167",
+      "url": "https://www.adzuna.com/land/ad/5854700167?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=3F002346AE5E9436D15CBC16A8047E2BC7EC9787",
+      "company": "World Wide Technology",
+      "title": "GES Sales/Sales Operations and Business Development Intern -2027",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5854700183",
+      "url": "https://www.adzuna.com/land/ad/5854700183?se=-iqDA1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=4D7951374F07AA4BB6E30F8B3CFBBAC12FBB529E",
+      "company": "World Wide Technology",
+      "title": "GES Sales/Sales Operations and Business Development Intern -2027",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5853490551",
+      "url": "https://www.adzuna.com/land/ad/5853490551?se=2qab6VLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=87C2F6F9CD3F0AF98D43E7CE3C094CCA48EF2EB5",
+      "company": "Rula",
+      "title": "Sr. Paid Search Specialist (Remote)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5853290185",
+      "url": "https://www.adzuna.com/details/5853290185?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Directive",
+      "title": "PPC Manager (Remote US) - Future Opening",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5852135183",
+      "url": "https://www.adzuna.com/details/5852135183?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "NetDocuments",
+      "title": "Director, Product & Segment Marketing Manager",
+      "reason": "rejection history"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5852135183",
+      "url": "https://www.adzuna.com/details/5852135183?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "NetDocuments",
+      "title": "Director, Product & Segment Marketing Manager",
+      "reason": "rejection history"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5852108018",
+      "url": "https://www.adzuna.com/details/5852108018?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Aptive Pest Control",
+      "title": "Sr. Manager, Marketing Analytics",
+      "reason": "previously known",
+      "matched_id": 50,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5852108018",
+      "url": "https://www.adzuna.com/details/5852108018?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Aptive Pest Control",
+      "title": "Sr. Manager, Marketing Analytics",
+      "reason": "previously known",
+      "matched_id": 50,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5852101614",
+      "url": "https://www.adzuna.com/details/5852101614?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Mile6",
+      "title": "Growth Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5850689878",
+      "url": "https://www.adzuna.com/land/ad/5850689878?se=Jh72B1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=9240EE82E31170E6292FD60CA1C461135D11430E",
+      "company": "Compass",
+      "title": "Account Executive",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5850689878",
+      "url": "https://www.adzuna.com/land/ad/5850689878?se=0B-uCFPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=9240EE82E31170E6292FD60CA1C461135D11430E",
+      "company": "Compass",
+      "title": "Account Executive",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5850611814",
+      "url": "https://www.adzuna.com/details/5850611814?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Accuris",
+      "title": "Senior Manager, Customer Growth Marketing (Remote)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5848031372",
+      "url": "https://www.adzuna.com/details/5848031372?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Acadia.io",
+      "title": "Retail Media Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5847927165",
+      "url": "https://www.adzuna.com/details/5847927165?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "CAI World-Wide",
+      "title": "VP, Revenue Operations",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5847927165",
+      "url": "https://www.adzuna.com/details/5847927165?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "CAI World-Wide",
+      "title": "VP, Revenue Operations",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5847768748",
+      "url": "https://www.adzuna.com/details/5847768748?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Marrina Decisions",
+      "title": "REMOTE: Senior Marketing Operations Lead (Lifecycle & Automation)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5846630123",
+      "url": "https://www.adzuna.com/details/5846630123?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Salt Lake Community College",
+      "title": "Coordinator, Healthcare Sciences Pathways",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5846630123",
+      "url": "https://www.adzuna.com/details/5846630123?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Salt Lake Community College",
+      "title": "Coordinator, Healthcare Sciences Pathways",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5846006026",
+      "url": "https://www.adzuna.com/details/5846006026?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "CHG Healthcare",
+      "title": "Growth Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2261,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5845996885",
+      "url": "https://www.adzuna.com/details/5845996885?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Wasatch Academy",
+      "title": "Media & Content Specialist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5843850154",
+      "url": "https://www.adzuna.com/details/5843850154?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "TE Connectivity",
+      "title": "ANALYST DIGITAL MARKETING IV (Remote) IV",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5839608597",
+      "url": "https://www.adzuna.com/land/ad/5839608597?se=Jh72B1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=5C1DF9E370C3372E90951646C62F41A63E8EFA80",
+      "company": "Coinbase",
+      "title": "Senior Product Marketing Manager, Trading",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5839608597",
+      "url": "https://www.adzuna.com/land/ad/5839608597?se=0B-uCFPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=5C1DF9E370C3372E90951646C62F41A63E8EFA80",
+      "company": "Coinbase",
+      "title": "Senior Product Marketing Manager, Trading",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5833220798",
+      "url": "https://www.adzuna.com/details/5833220798?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Blizzard Entertainment",
+      "title": "Paid Media Operations Manager (Contractor) | Irvine, CA or Remote (US)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5832943308",
+      "url": "https://www.adzuna.com/details/5832943308?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Optimum7",
+      "title": "Performance Marketing Specialist(Google Ads & Meta Ads)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5832646185",
+      "url": "https://www.adzuna.com/details/5832646185?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Nello",
+      "title": "Director of Performance Marketing",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5831843276",
+      "url": "https://www.adzuna.com/details/5831843276?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Nutrition that Works",
+      "title": "E Commerce Designer and Marketing Manager - REMOTE",
+      "reason": "excluded employment type"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5830372710",
+      "url": "https://www.adzuna.com/details/5830372710?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Extra Space Storage",
+      "title": "Paid Search Specialist",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5830372710",
+      "url": "https://www.adzuna.com/details/5830372710?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Extra Space Storage",
+      "title": "Paid Search Specialist",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5830372710",
+      "url": "https://www.adzuna.com/details/5830372710?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Extra Space Storage",
+      "title": "Paid Search Specialist",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5830372710",
+      "url": "https://www.adzuna.com/details/5830372710?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Extra Space Storage",
+      "title": "Paid Search Specialist",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5829142887",
+      "url": "https://www.adzuna.com/details/5829142887?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Amer Sports Company",
+      "title": "Digital Experience Manager, North America",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5828549154",
+      "url": "https://www.adzuna.com/details/5828549154?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Avenue5 Residential, LLC",
+      "title": "Regional Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5828549154",
+      "url": "https://www.adzuna.com/details/5828549154?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Avenue5 Residential, LLC",
+      "title": "Regional Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5825304044",
+      "url": "https://www.adzuna.com/land/ad/5825304044?se=Jh72B1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=9BB420B979E6CF9CE8E50573F8A4BE2A859B070A",
+      "company": "Compass",
+      "title": "Strategic Growth Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5825304044",
+      "url": "https://www.adzuna.com/land/ad/5825304044?se=0B-uCFPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=9BB420B979E6CF9CE8E50573F8A4BE2A859B070A",
+      "company": "Compass",
+      "title": "Strategic Growth Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5825292573",
+      "url": "https://www.adzuna.com/details/5825292573?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "MarketStar",
+      "title": "Account Executive Strategist - Reddit",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5822070882",
+      "url": "https://www.adzuna.com/land/ad/5822070882?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=C62D54EB682F53AA59CA540F344125CBD7815762",
+      "company": "Zions Bancorporation",
+      "title": "Marketing Insights and Analytics ManagerAZ, CA, CO, NV, OR, TX, WA, or UT",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5822070882",
+      "url": "https://www.adzuna.com/land/ad/5822070882?se=nCIEAlPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=C62D54EB682F53AA59CA540F344125CBD7815762",
+      "company": "Zions Bancorporation",
+      "title": "Marketing Insights and Analytics ManagerAZ, CA, CO, NV, OR, TX, WA, or UT",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5820856931",
+      "url": "https://www.adzuna.com/details/5820856931?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Europe & America",
+      "title": "Demand Generation Lead",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5815003316",
+      "url": "https://www.adzuna.com/land/ad/5815003316?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=A4E5A32E8A71691E2220D5C1B5C7101901F7A95E",
+      "company": "Under Armour, Inc.",
+      "title": "Sr. Product Manager - Analytics and Data Governance",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5815003316",
+      "url": "https://www.adzuna.com/land/ad/5815003316?se=nCIEAlPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=A4E5A32E8A71691E2220D5C1B5C7101901F7A95E",
+      "company": "Under Armour, Inc.",
+      "title": "Sr. Product Manager - Analytics and Data Governance",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5810322540",
+      "url": "https://www.adzuna.com/details/5810322540?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Alma Lasers",
+      "title": "Digital Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5808819771",
+      "url": "https://www.adzuna.com/details/5808819771?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Incpg",
+      "title": "Digital Marketing Manager, Amazon (Fully Remote)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5806998742",
+      "url": "https://www.adzuna.com/details/5806998742?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "RainFocus",
+      "title": "Sr. Product Marketing Manager - Audience Engagement (Remote)",
+      "reason": "previously known",
+      "matched_id": 2264,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5806998742",
+      "url": "https://www.adzuna.com/details/5806998742?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "RainFocus",
+      "title": "Sr. Product Marketing Manager - Audience Engagement (Remote)",
+      "reason": "previously known",
+      "matched_id": 2264,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5805144692",
+      "url": "https://www.adzuna.com/details/5805144692?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "The Recovery Village",
+      "title": "Sr Digital Marketing Manager SEO (Remote)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5804514581",
+      "url": "https://www.adzuna.com/details/5804514581?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Grafana Labs",
+      "title": "Demand Generation Program Manager | United States | Remote",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5802801630",
+      "url": "https://www.adzuna.com/details/5802801630?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Five Star Franchising",
+      "title": "Director of Performance Marketing",
+      "reason": "previously known",
+      "matched_id": 39,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5802801630",
+      "url": "https://www.adzuna.com/details/5802801630?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Five Star Franchising",
+      "title": "Director of Performance Marketing",
+      "reason": "previously known",
+      "matched_id": 39,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5802801630",
+      "url": "https://www.adzuna.com/details/5802801630?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Five Star Franchising",
+      "title": "Director of Performance Marketing",
+      "reason": "previously known",
+      "matched_id": 39,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5802801630",
+      "url": "https://www.adzuna.com/details/5802801630?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Five Star Franchising",
+      "title": "Director of Performance Marketing",
+      "reason": "previously known",
+      "matched_id": 39,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5802801630",
+      "url": "https://www.adzuna.com/details/5802801630?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Five Star Franchising",
+      "title": "Director of Performance Marketing",
+      "reason": "previously known",
+      "matched_id": 39,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5786421527",
+      "url": "https://www.adzuna.com/details/5786421527?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Audiohook",
+      "title": "Demand Generation Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5786421527",
+      "url": "https://www.adzuna.com/details/5786421527?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Audiohook",
+      "title": "Demand Generation Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5769141599",
+      "url": "https://www.adzuna.com/details/5769141599?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Cyncly",
+      "title": "Performance Marketing Director",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5759591223",
+      "url": "https://www.adzuna.com/land/ad/5759591223?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=17BD354D89CCF70F35990D8114B3E6773FA9CFCC",
+      "company": "Highmark Health",
+      "title": "Marketing Technologist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5759591223",
+      "url": "https://www.adzuna.com/land/ad/5759591223?se=nPra81LH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=17BD354D89CCF70F35990D8114B3E6773FA9CFCC",
+      "company": "Highmark Health",
+      "title": "Marketing Technologist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5758728886",
+      "url": "https://www.adzuna.com/details/5758728886?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pavago",
+      "title": "Marketing Account Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5757061585",
+      "url": "https://www.adzuna.com/details/5757061585?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "United Aesthetics Alliance",
+      "title": "Manager of Growth and Lifecycle Marketing",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5750452983",
+      "url": "https://www.adzuna.com/details/5750452983?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Audiohook",
+      "title": "Client Success Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5750452983",
+      "url": "https://www.adzuna.com/details/5750452983?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Audiohook",
+      "title": "Client Success Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5737302468",
+      "url": "https://www.adzuna.com/land/ad/5737302468?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=ECA4D8E85511D1FA3D331A83ACCA88633488C2D3",
+      "company": "Oracle",
+      "title": "CEGIU Demo Data Strategy Intern - OVIP",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5737302468",
+      "url": "https://www.adzuna.com/land/ad/5737302468?se=nCIEAlPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=ECA4D8E85511D1FA3D331A83ACCA88633488C2D3",
+      "company": "Oracle",
+      "title": "CEGIU Demo Data Strategy Intern - OVIP",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5732696310",
+      "url": "https://www.adzuna.com/details/5732696310?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pavago",
+      "title": "Digital Marketing Manager",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5731180926",
+      "url": "https://www.adzuna.com/details/5731180926?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Directive",
+      "title": "Demand Generation Manager (Remote US) -Future Opening",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5726527745",
+      "url": "https://www.adzuna.com/details/5726527745?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "St. George, City of",
+      "title": "Public Relations & Marketing (INTERNSHIP)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5726512962",
+      "url": "https://www.adzuna.com/land/ad/5726512962?se=aG388lLH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=4243FFB7FCF97E3BCEE689856D26928AFEB313CB",
+      "company": "Professional Recruiters",
+      "title": "VP Experience Marketing - 1070",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5726512962",
+      "url": "https://www.adzuna.com/land/ad/5726512962?se=xBlm9FLH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=4243FFB7FCF97E3BCEE689856D26928AFEB313CB",
+      "company": "Professional Recruiters",
+      "title": "VP Experience Marketing - 1070",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5726512962",
+      "url": "https://www.adzuna.com/land/ad/5726512962?se=Jh72B1PH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=4243FFB7FCF97E3BCEE689856D26928AFEB313CB",
+      "company": "Professional Recruiters",
+      "title": "VP Experience Marketing - 1070",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5726512962",
+      "url": "https://www.adzuna.com/land/ad/5726512962?se=mk4UCVPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=4243FFB7FCF97E3BCEE689856D26928AFEB313CB",
+      "company": "Professional Recruiters",
+      "title": "VP Experience Marketing - 1070",
+      "reason": "URL requires review",
+      "verification": "HTTP 403"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5717626470",
+      "url": "https://www.adzuna.com/land/ad/5717626470?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=0CA5A1ED9AA79AAE282023437D2FD6ACD249322D",
+      "company": "Capital One",
+      "title": "Senior Business Analysis Manager, Capital One Shopping (Remote-Eligible)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5717626470",
+      "url": "https://www.adzuna.com/land/ad/5717626470?se=nCIEAlPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=0CA5A1ED9AA79AAE282023437D2FD6ACD249322D",
+      "company": "Capital One",
+      "title": "Senior Business Analysis Manager, Capital One Shopping (Remote-Eligible)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5717626453",
+      "url": "https://www.adzuna.com/land/ad/5717626453?se=kBRHAVPH8RGU-cdu1G5hPQ&utm_medium=api&utm_source=b4f3e3f8&v=35E34C8EE044607951643E040A6E87CD3BA86042",
+      "company": "Capital One",
+      "title": "Business Analysis Manager, Capital One Shopping (Remote-Eligible",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5717626453",
+      "url": "https://www.adzuna.com/land/ad/5717626453?se=nCIEAlPH8RGgLOK4tK8EzQ&utm_medium=api&utm_source=b4f3e3f8&v=35E34C8EE044607951643E040A6E87CD3BA86042",
+      "company": "Capital One",
+      "title": "Business Analysis Manager, Capital One Shopping (Remote-Eligible",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5706973176",
+      "url": "https://www.adzuna.com/details/5706973176?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Directive",
+      "title": "Paid Media Manager (Remote US) - Future Opening",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5696836601",
+      "url": "https://www.adzuna.com/details/5696836601?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "&Barr",
+      "title": "Paid Search Specialist (Remote)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5655079564",
+      "url": "https://www.adzuna.com/details/5655079564?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Client Accelerators",
+      "title": "Growth Marketing Manager (Remote)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5624455715",
+      "url": "https://www.adzuna.com/details/5624455715?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Brave",
+      "title": "Product Marketing Manager - Brave Search APIs",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5616080731",
+      "url": "https://www.adzuna.com/details/5616080731?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Husqvarna Group",
+      "title": "Head of Marketing North America (Brand Leadership, Insights & Activation)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5616080731",
+      "url": "https://www.adzuna.com/details/5616080731?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Husqvarna Group",
+      "title": "Head of Marketing North America (Brand Leadership, Insights & Activation)",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5605345214",
+      "url": "https://www.adzuna.com/details/5605345214?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Chamber Media",
+      "title": "Senior Account Executive (Paid Media, Strategy & Creative Sales)",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5605345214",
+      "url": "https://www.adzuna.com/details/5605345214?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Chamber Media",
+      "title": "Senior Account Executive (Paid Media, Strategy & Creative Sales)",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5559932433",
+      "url": "https://www.adzuna.com/details/5559932433?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Hire Resolve.com",
+      "title": "Mid-Senior Sales & Marketing Professionals",
+      "reason": "previously known",
+      "matched_id": 567,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5469360816",
+      "url": "https://www.adzuna.com/details/5469360816?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Feufo",
+      "title": "Growth Marketing Manager (Short-Term Rental)- Remote Anywhere",
+      "reason": "excluded employment type"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5441215791",
+      "url": "https://www.adzuna.com/details/5441215791?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Chamber Media",
+      "title": "Business Growth Strategist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5441215791",
+      "url": "https://www.adzuna.com/details/5441215791?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Chamber Media",
+      "title": "Business Growth Strategist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5353208657",
+      "url": "https://www.adzuna.com/details/5353208657?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pattern",
+      "title": "Digital Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2266,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5353208657",
+      "url": "https://www.adzuna.com/details/5353208657?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pattern",
+      "title": "Digital Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2266,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5330850510",
+      "url": "https://www.adzuna.com/details/5330850510?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Digital Marketing",
+      "title": "SEO Digital Marketing Senior Analyst - Freelance",
+      "reason": "excluded employment type"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5330850510",
+      "url": "https://www.adzuna.com/details/5330850510?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Digital Marketing",
+      "title": "SEO Digital Marketing Senior Analyst - Freelance",
+      "reason": "excluded employment type"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5330810874",
+      "url": "https://www.adzuna.com/details/5330810874?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Digital Marketing",
+      "title": "Director of Business Development/Sales For Fast Growing National SEO / Digital Marketing Firm",
+      "reason": "previously known",
+      "matched_id": 568,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5330810874",
+      "url": "https://www.adzuna.com/details/5330810874?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Digital Marketing",
+      "title": "Director of Business Development/Sales For Fast Growing National SEO / Digital Marketing Firm",
+      "reason": "previously known",
+      "matched_id": 568,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5330810602",
+      "url": "https://www.adzuna.com/details/5330810602?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Digital Marketing",
+      "title": "Paid Search Specialist - SEM/PPC - Internet Paid Search Professional",
+      "reason": "excluded title/seniority"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5330810602",
+      "url": "https://www.adzuna.com/details/5330810602?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Digital Marketing",
+      "title": "Paid Search Specialist - SEM/PPC - Internet Paid Search Professional",
+      "reason": "excluded title/seniority"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5330810602",
+      "url": "https://www.adzuna.com/details/5330810602?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Digital Marketing",
+      "title": "Paid Search Specialist - SEM/PPC - Internet Paid Search Professional",
+      "reason": "excluded title/seniority"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5330810602",
+      "url": "https://www.adzuna.com/details/5330810602?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Digital Marketing",
+      "title": "Paid Search Specialist - SEM/PPC - Internet Paid Search Professional",
+      "reason": "excluded title/seniority"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5330785039",
+      "url": "https://www.adzuna.com/details/5330785039?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Digital Marketing",
+      "title": "SEO Digital Marketing Senior Analyst - Freelance",
+      "reason": "excluded employment type"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5330785039",
+      "url": "https://www.adzuna.com/details/5330785039?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Digital Marketing",
+      "title": "SEO Digital Marketing Senior Analyst - Freelance",
+      "reason": "excluded employment type"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5330345164",
+      "url": "https://www.adzuna.com/details/5330345164?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Digital Marketing",
+      "title": "Director of Business Development/Sales For Fast Growing National SEO / Digital Marketing Firm",
+      "reason": "previously known",
+      "matched_id": 2267,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5330345164",
+      "url": "https://www.adzuna.com/details/5330345164?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Digital Marketing",
+      "title": "Director of Business Development/Sales For Fast Growing National SEO / Digital Marketing Firm",
+      "reason": "previously known",
+      "matched_id": 2267,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5319185940",
+      "url": "https://www.adzuna.com/details/5319185940?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pattern",
+      "title": "Growth Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2268,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5319185940",
+      "url": "https://www.adzuna.com/details/5319185940?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Pattern",
+      "title": "Growth Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2268,
+      "cross_source": false
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "5288653962",
+      "url": "https://www.adzuna.com/details/5288653962?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "LEVO",
+      "title": "Digital Marketing Director",
+      "reason": "excluded employment type"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "4950713940",
+      "url": "https://www.adzuna.com/details/4950713940?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "WindFarm Marketing",
+      "title": "Digital Marketing Account Director",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "source": "adzuna",
+      "source_job_id": "4809957614",
+      "url": "https://www.adzuna.com/details/4809957614?utm_medium=api&utm_source=b4f3e3f8",
+      "company": "Oma Robotics",
+      "title": "Sr. Manager, Growth Marketing",
+      "reason": "non-remote role outside preferred locations"
+    }
+  ],
+  "queries_pages": [
+    {
+      "query": "Paid Search Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "Paid Search Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 4
+    },
+    {
+      "query": "Paid Search Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 2
+    },
+    {
+      "query": "Paid Search Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 17
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 5
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 2
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "PPC Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 3
+    },
+    {
+      "query": "PPC Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 3
+    },
+    {
+      "query": "PPC Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "PPC Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "PPC Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "PPC Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "PPC Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "PPC Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "SEM Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 4
+    },
+    {
+      "query": "SEM Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "SEM Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "SEM Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "SEM Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "SEM Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "SEM Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "SEM Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 36
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 39
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 22
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 5
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 3
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 3
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 3
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 27
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 13
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 4
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 6
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 12
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 3
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 2
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 4
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 2
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 27
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 17
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 5
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 2
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 45
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 25
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 10
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 6
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 3
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 9
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 16
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 3
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 13
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 8
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 2
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 2
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 3
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 2
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 6
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    }
+  ],
+  "board_errors": [],
+  "errors": "",
+  "health": {
+    "status": "success",
+    "found": 446,
+    "detail": ""
+  }
+}

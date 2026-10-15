@@ -1,0 +1,5 @@
+from current_batch_ui import UI
+from native_browser import call
+from pathlib import Path
+import json,time
+Q=Path('/mnt/c/gecko_main/openclaw/application-queue');j='2231';row=next(r for n,r in json.loads((Q/'batch-rows2-100-20261014-snapshot.json').read_text())['rows'] if str(r['Scout ID'])==j);tabs=call(['tabs']).get('tabs',[]);hits=[t for t in tabs if t['url']==row['Job URL']];t=hits[0]['targetId'] if hits else call(['open',row['Job URL'],'--label','route20261014-'+j])['targetId'];u=UI(t);u.call(['evaluate','--fn','() => ({title:document.title,text:document.body.innerText})']);s=u.snap();print('\n'.join(x for x in s['snapshot'].splitlines() if 'Apply' in x or 'Continue' in x));(Q/j/'route-snapshot-20261014.json').write_text(json.dumps({'targetId':t,'snapshot':s},indent=2));r=u.call(['evaluate','--fn','() => Array.from(document.querySelectorAll("a,button")).filter(e=>/apply now|continue on the employer/i.test(e.innerText)).map(e=>({tag:e.tagName,text:e.innerText,href:e.getAttribute("href"),data:Array.from(e.attributes).filter(a=>a.name.startsWith("data-")).map(a=>({name:a.name,value:a.value}))}))']);print(json.dumps(r['result']))

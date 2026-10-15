@@ -1,0 +1,16 @@
+# Growth Marketing Strategist
+
+- **Company:** Right Side Up
+- **Job Number:** d2ba56c6-bcf3-4de3-b968-782a6b6c3439
+- **Scout ID:** 1705
+- **URL:** https://jobs.lever.co/rightsideup/d2ba56c6-bcf3-4de3-b968-782a6b6c3439
+- **Original Source URL:** https://jobs.lever.co/rightsideup/d2ba56c6-bcf3-4de3-b968-782a6b6c3439
+- **Authoritative URL:** https://jobs.lever.co/rightsideup/d2ba56c6-bcf3-4de3-b968-782a6b6c3439
+- **Description Source URL:** https://jobs.lever.co/rightsideup/d2ba56c6-bcf3-4de3-b968-782a6b6c3439
+- **Source:** lever
+- **Salary:** 
+- **Date Discovered:** 2026-09-27
+
+## Job description
+
+About Right Side Up Right Side Up is a collective of premium marketing talent—with all of the marketing chops, and none of the agency fluff. We’re trusted by the most respected early-stage ventures, the fastest-growing tech companies, and well-established Fortune 500 teams to do one thing better: Growth. We have over 250+ clients including Stitch Fix, Sephora, Yelp, Sun Basket, Crunchbase, DoorDash, Calm, and more. About the Role The Growth Marketing Strategist works on the Marketing Strategy team where we advise clients (you can see some of our clients on our website, including DoorDash, Stitch Fix, Uber, Tabasco and Stripe) on growth marketing strategy, identify resource gaps on their teams and determine together if Right Side Up can deploy the right marketing talent to help achieve their goals. Sometimes clients know exactly what they need, and sometimes they look to us to tell them what to do. Strategize with clients to develop full-funnel growth marketing strategies and scope out the work Assemble individuals or teams of folks from Right Side Up to help the client achieve their objectives Shepherd opportunities from initial exploratory conversation through to the kick-off of new engagements Have a front row seat (and be a key contributor to) the inner-workings of some of the most impressive marketing programs across a range of industries, business models and stages of maturity Build an incredible network with other marketing leaders, and hone your talent interviewing/evaluating skills across disciplines 7-10 years of experience in in-house marketing roles, and/or agency experience, focusing on growth. A proven track record of scaling campaigns and managing complex growth organizations. Our greatest successes in this role have t-shaped backgrounds -- depth in performance marketing with strong marketing chops in channels like paid social and search, and breadth across other functional areas such as e-mail marketing or SEO. Additional management experience, or exposure to, more nascent functional areas is a big plus - marketing analytics, offline campaigns, ecommerce marketplaces. Strong project management skills with an ability to juggle many constantly-shifting priorities Proven experience managing a team. Ability to communicate effectively with and relate to clients A flexible mindset and are willing to work across multiple verticals and industries- our clients range from SAAS to CPG to D2C and beyond. A desire and willingness to step outside of a traditional growth marketing path and accelerate your career, even if you ultimately intend to return to an in-house role after your time at Right Side Up

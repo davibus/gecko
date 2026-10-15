@@ -1,0 +1,18 @@
+Rejected Jobs maintenance:
+{
+  "marked": 0,
+  "archived": 0,
+  "removed": 0,
+  "support_rows": [],
+  "removed_rows": []
+}
+{
+  "job_scout_worksheet": {
+    "rows": 558,
+    "added": 524,
+    "updated": 34
+  },
+  "google_sheets": {
+    "spreadsheet_id": "1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I"
+  }
+}

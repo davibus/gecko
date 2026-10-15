@@ -1,0 +1,3 @@
+import json
+from pathlib import Path
+p=Path('/home/dcall/.openclaw/openclaw.json');c=json.loads(p.read_text());a=c.get('agents',{});target=[x for x in a.get('list',[]) if x.get('id')=='gecko-resume-application-assistant'];providers=c.get('models',{}).get('providers',{});print(json.dumps({'default_model':a.get('defaults',{}).get('model'),'application_agent_models':[{'id':x['id'],'model':x.get('model')} for x in target],'configured_providers':[{ 'provider':name,'model_ids':[m.get('id') for m in data.get('models',[])],'credential_configured':bool(data.get('apiKey'))} for name,data in providers.items()]},indent=2))

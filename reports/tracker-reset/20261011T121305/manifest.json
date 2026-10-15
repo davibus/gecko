@@ -1,0 +1,269 @@
+{
+  "workbook_id": "1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I",
+  "metadata": {
+    "spreadsheetId": "1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I",
+    "properties": {
+      "title": "Gecko Job Tracker"
+    },
+    "sheets": [
+      {
+        "properties": {
+          "sheetId": 1035087580,
+          "title": "Daily Tasks",
+          "index": 0,
+          "sheetType": "GRID",
+          "gridProperties": {
+            "rowCount": 852,
+            "columnCount": 46,
+            "frozenRowCount": 1
+          }
+        }
+      },
+      {
+        "properties": {
+          "sheetId": 2104308869,
+          "title": "Daily Run",
+          "index": 1,
+          "sheetType": "GRID",
+          "gridProperties": {
+            "rowCount": 1139,
+            "columnCount": 26
+          }
+        }
+      },
+      {
+        "properties": {
+          "sheetId": 1274044170,
+          "title": "Job List",
+          "index": 2,
+          "sheetType": "GRID",
+          "gridProperties": {
+            "rowCount": 1644,
+            "columnCount": 20,
+            "frozenRowCount": 1,
+            "frozenColumnCount": 10
+          },
+          "tabColor": {
+            "red": 0.35686275,
+            "green": 0.60784316,
+            "blue": 0.8352941
+          },
+          "tabColorStyle": {
+            "rgbColor": {
+              "red": 0.35686275,
+              "green": 0.60784316,
+              "blue": 0.8352941
+            }
+          }
+        },
+        "conditionalFormats": [
+          {
+            "ranges": [
+              {
+                "sheetId": 1274044170,
+                "startRowIndex": 1,
+                "endRowIndex": 1644,
+                "startColumnIndex": 0,
+                "endColumnIndex": 5
+              }
+            ],
+            "booleanRule": {
+              "condition": {
+                "type": "CUSTOM_FORMULA",
+                "values": [
+                  {
+                    "userEnteredValue": "=AND($E2=\"No\",OR(LOWER(TRIM($H2))=\"x\",AND(LEN(TRIM($J2))>0,LOWER(TRIM($J2))<>\"apply now\"),REGEXMATCH($I2,\"Invalid Link\")))"
+                  }
+                ]
+              },
+              "format": {
+                "backgroundColor": {
+                  "red": 0.9882353,
+                  "green": 0.9098039,
+                  "blue": 0.9019608
+                },
+                "backgroundColorStyle": {
+                  "rgbColor": {
+                    "red": 0.9882353,
+                    "green": 0.9098039,
+                    "blue": 0.9019608
+                  }
+                }
+              }
+            }
+          },
+          {
+            "ranges": [
+              {
+                "sheetId": 1274044170,
+                "startRowIndex": 1,
+                "endRowIndex": 518,
+                "startColumnIndex": 17,
+                "endColumnIndex": 18
+              }
+            ],
+            "booleanRule": {
+              "condition": {
+                "type": "DATE_BEFORE",
+                "values": [
+                  {
+                    "relativeDate": "PAST_MONTH"
+                  }
+                ]
+              },
+              "format": {
+                "backgroundColor": {
+                  "red": 0.7176471,
+                  "green": 0.88235295,
+                  "blue": 0.8039216
+                },
+                "backgroundColorStyle": {
+                  "rgbColor": {
+                    "red": 0.7176471,
+                    "green": 0.88235295,
+                    "blue": 0.8039216
+                  }
+                }
+              }
+            }
+          },
+          {
+            "ranges": [
+              {
+                "sheetId": 1274044170,
+                "startRowIndex": 1,
+                "endRowIndex": 1644,
+                "startColumnIndex": 0,
+                "endColumnIndex": 6
+              },
+              {
+                "sheetId": 1274044170,
+                "startRowIndex": 1,
+                "endRowIndex": 372,
+                "startColumnIndex": 6,
+                "endColumnIndex": 7
+              },
+              {
+                "sheetId": 1274044170,
+                "startRowIndex": 373,
+                "endRowIndex": 1644,
+                "startColumnIndex": 6,
+                "endColumnIndex": 7
+              }
+            ],
+            "booleanRule": {
+              "condition": {
+                "type": "CUSTOM_FORMULA",
+                "values": [
+                  {
+                    "userEnteredValue": "=$G2=\"x\""
+                  }
+                ]
+              },
+              "format": {
+                "backgroundColor": {
+                  "red": 0.7176471,
+                  "green": 0.88235295,
+                  "blue": 0.8039216
+                },
+                "backgroundColorStyle": {
+                  "rgbColor": {
+                    "red": 0.7176471,
+                    "green": 0.88235295,
+                    "blue": 0.8039216
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "properties": {
+          "sheetId": 1798362999,
+          "title": "Deleted Jobs",
+          "index": 3,
+          "sheetType": "GRID",
+          "gridProperties": {
+            "rowCount": 1000,
+            "columnCount": 26
+          }
+        }
+      },
+      {
+        "properties": {
+          "sheetId": 1775950516,
+          "title": "Scratch",
+          "index": 4,
+          "sheetType": "GRID",
+          "gridProperties": {
+            "rowCount": 1000,
+            "columnCount": 26
+          }
+        }
+      },
+      {
+        "properties": {
+          "sheetId": 1868015582,
+          "title": "Rejected Jobs",
+          "index": 5,
+          "sheetType": "GRID",
+          "gridProperties": {
+            "rowCount": 1000,
+            "columnCount": 8,
+            "frozenRowCount": 1
+          },
+          "hidden": true
+        }
+      },
+      {
+        "properties": {
+          "sheetId": 2074656464,
+          "title": "Cursor Instructions",
+          "index": 6,
+          "sheetType": "GRID",
+          "gridProperties": {
+            "rowCount": 100,
+            "columnCount": 2
+          }
+        }
+      }
+    ]
+  },
+  "ranges": {
+    "Daily Tasks": "A3:F134",
+    "Daily Run": "A3:F140",
+    "Job List": "A2:T34"
+  },
+  "backups": {
+    "Daily Tasks": {
+      "file": "reports\\tracker-reset\\20261011T121305\\daily-tasks.json",
+      "sha256": "1bea7577c65f515647a35bf42b3851edae18a4ffe6b50d3b5d89ce36daf85c54",
+      "bytes": 985262
+    },
+    "Daily Run": {
+      "file": "reports\\tracker-reset\\20261011T121305\\daily-run.json",
+      "sha256": "4c28b0b116553f681da1c2187eef4a99d414ef382a288d7fe3c3fe935d1f4b8f",
+      "bytes": 93833
+    },
+    "Job List": {
+      "file": "reports\\tracker-reset\\20261011T121305\\job-list.json",
+      "sha256": "7f24e261825626f41bf559f5d0972ff02556a69fd1fcaed2a1ca94458396724c",
+      "bytes": 302126
+    }
+  },
+  "cleared": [
+    "Daily Tasks",
+    "Daily Run",
+    "Job List"
+  ],
+  "row_heights_verified": {
+    "Daily Tasks": 852,
+    "Daily Run": 1139,
+    "Job List": 1644,
+    "Deleted Jobs": 1000,
+    "Scratch": 1000,
+    "Rejected Jobs": 1000,
+    "Cursor Instructions": 100
+  }
+}

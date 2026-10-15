@@ -14,7 +14,12 @@ The request authorizes only its necessary in-scope writes, including resume gene
 
 ## Resume rules
 
-- **Permanent content and format authorities:** Every tailored resume must use `input/master-resume/Dave-Call-Resume.txt` as its only factual content source and `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as its required visual formatting and layout model. These repository-relative paths are the defaults for every manual, queued, and Job Scout generation run.
+- The three-page AI sample under `output/examples/` is experiment-only and must not guide future resume layout or section structure. Continue using the standard two-page format without a separate AI & Automation Projects section unless explicitly requested again. Tailor relevant master-supported AI experience within the existing sections.
+
+- Tailor the Professional Summary using job-relevant, source-checked facts from the current master, including newer AI, CRM, automation, and e-commerce experience when relevant. Select different substantive evidence across repeated postings rather than reusing a fixed paragraph. Check normalized summary and full visible document content against saved resumes before publication; reject duplicates. Saved resumes supply no facts. Existing Resume Created = X rows remain protected.
+
+- **Permanent content and format authorities:** Every tailored resume must use `input/master-resume/master-resume-v2.txt` as its only factual content source and `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as its required visual formatting and layout model. These repository-relative paths are the defaults for every manual, queued, and Job Scout generation run.
+- In this checkout, the factual authority resolves to `C:\gecko_main\input\master-resume\master-resume-v2.txt`. Resolve it from the current project root and read it for each new generation. A matching filename outside this path, compact screening profile, prior DOCX, or PDF is not an alternate content source. Stop with a clear error if the TXT is missing, unreadable, or empty.
 - Re-read the master TXT for every generation or customization. Do not use a previously generated resume, project note, older DOCX/PDF, or job-specific generator as a source of claims, wording, accomplishments, metrics, skills, tools, education, or certifications. User-supplied facts may be used only when the user explicitly provides them for that specific resume.
 - Follow the model PDF as closely as practical for its two-page US Letter layout, centered header structure, EB Garamond typography, font sizing, compact margins, olive section headings and rules, section spacing, section hierarchy, bullet treatment, alignment, density, and overall professional appearance. Content may be tailored and reordered, but the model PDF remains the visual authority.
 - The required section hierarchy is: Professional Summary; Core Strengths; Selected Results; Professional Experience; Tools & Platforms; Education & Certifications. **Core Strengths and Tools & Platforms are mandatory and may never be omitted.** Another section may be omitted only when the authoritative master has no supported content for it or two-page pagination requires a conservative reduction.
@@ -48,6 +53,8 @@ The request authorizes only its necessary in-scope writes, including resume gene
 
 ## Tailoring rules
 
+- Exact duplicate checks alone are insufficient. A small summary edit must not hide an otherwise identical resume. Use a distinct, source-supported summary opening and business focus, select accomplishments that support that focus, and reject near-identical visible document content. Keep verified work history and the required visual layout consistent.
+
 - Prioritize experience and tools that map to the target role.
 - Reorder or tighten bullets when necessary.
 - Do not copy the job description verbatim.
@@ -59,7 +66,7 @@ The request authorizes only its necessary in-scope writes, including resume gene
 
 ## Factual source
 
-`input/master-resume/Dave-Call-Resume.txt` is the single source of truth for work history, accomplishments, metrics, skills, tools, education, certifications, AI tools, and leadership. It is a comprehensive career archive, not a page-limited resume; tailor from it down to exactly two pages. The required formatting authority is `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf`; its content is never evidence unless independently supported by the master TXT.
+`input/master-resume/master-resume-v2.txt` is the single source of truth for work history, accomplishments, metrics, skills, tools, education, certifications, AI tools, and leadership. It is a comprehensive career archive, not a page-limited resume; tailor from it down to exactly two pages. The required formatting authority is `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf`; its content is never evidence unless independently supported by the master TXT.
 
 ## Job tracker
 
@@ -79,31 +86,31 @@ Google Sheets is the canonical job tracker. Do not create or update a local Exce
 
 - Add the tracker row only after the final DOCX exists and has passed its required validation.
 - Pass the final resume and archived job description to the script's `add` command.
-- In the current workbook, match exactly one existing `Job Scout` row by `ID`, canonical `Job URL`, or Indeed `jk`. Stop without writing if the row cannot be identified uniquely. The legacy Resume #/Index path applies only if its separate application tab exists.
+- In the current workbook, match exactly one existing `Job List` row by `ID`, canonical `Job URL`, or Indeed `jk`. Stop without writing if the row cannot be identified uniquely. The legacy Resume #/Index path applies only if its separate application tab exists.
 - Preserve all existing rows and the user's manual `Applied` and `Contacted` values.
 - Leave compensation or other unavailable listing fields blank; never infer or invent them.
 - Treat the tracker update as required for completion. If it fails, report the failure and do not claim the Gecko job is fully complete.
 - If Google Sheets is unavailable, report the error without falling back to a local tracker; keep the generated resume.
 - Job Scout searches, daily runs, selections, and completed-resume updates use the same Google Sheets integration.
 - Preserve user formatting and manual fields. Update only specific managed cell values; never recreate tabs, reorder rows, clear populated ranges, reset filters or conditional formatting, or overwrite Applied/Contacted.
-- After the resume queue, Daily Job Scout uses the separate reusable Gmail checker with only `gmail.readonly` access. It may write only conservative employer-response summaries to the matching `Job Scout` `Response` cell. Gmail failures are reported and logged without failing discovery or resume creation.
+- After the resume queue, Daily Job Scout uses the separate reusable Gmail checker with only `gmail.readonly` access. It may write only conservative employer-response summaries to the matching `Job List` `Response` cell. Gmail failures are reported and logged without failing discovery or resume creation.
 - The hidden `Rejected Jobs` support tab is the durable permanent-rejection authority and survives visible-row deletion. Every Job Scout and Indeed Scout insertion or resume-queue path checks it as an additional guard. A source-qualified stable Job ID is the primary key (Indeed uses `jk`); normalized canonical job URL is the fallback. Company + Job Title alone is never a permanent-rejection key.
-- Permanently remove a job by setting `Gecko Status`/`Status` to `Reject` (or `Delete / Reject`) and running `python job-scout/scout.py reject-jobs`. Daily and Sheet-sync operations also process these markers. Gecko archives and reads back Source, Job ID when available, original and normalized URLs, Company, Job Title, Date Rejected, and Reason or Status before deleting the visible row. A support-write or verification failure leaves the visible row untouched. Ordinary row disappearance is never treated as rejection without a durable prior record.
+- Permanently remove a job by setting `Apply?` to `Reject` (or `Delete / Reject`) and running `python job-scout/scout.py reject-jobs`. Daily and Sheet-sync operations also process these markers. Gecko archives and reads back Source, Job ID when available, original and normalized URLs, Company, Job Title, Date Rejected, and Reason or Status before deleting the visible row. A support-write or verification failure leaves the visible row untouched. Ordinary row disappearance is never treated as rejection without a durable prior record.
 
 ### Daily all-source apply and resume behavior
 
-`python job-scout/scout.py daily` is the complete workflow and automatically invokes the canonical queue implementation after discovery and Sheet synchronization. It evaluates all existing `Job Scout` rows across every source. Based only on `Location` and `Work Arrangement`, `Apply?` is set to `Yes` for every Utah job (on-site, hybrid, or remote) and every job that explicitly allows remote work. Blank or unspecified work arrangements are not remote. Apply? values on all other jobs remain unchanged.
+`python job-scout/scout.py daily` is the complete workflow and automatically invokes the canonical queue implementation after discovery and Sheet synchronization. It evaluates all existing `Job List` rows across every source. `Apply?` is set to `Yes` when `Location`/`Work Arrangement` proves Utah or explicit remote work and all other eligibility safeguards pass. Blank or unknown Cost does not block approval; `Cost = x` means a confirmed required application fee, forces `Apply? = No`, and excludes resume generation. Unknown location never grants approval. Resolve Cost and approval by their current headers; there is no `Status` column.
 
 The queue resolves exact, unambiguous headers on the configured intake worksheet. Before creating or queuing a resume from any scout, read the existing tracker row by stable identity. If `Resume Created` is `X` after trimming and case normalization, skip generation, preserve the marker and existing link exactly, even when the link is blank, and report a missing link for manual review. A nonblank link with a blank marker also stops generation for manual review. Rediscovery must not reset either state. Cost `x`, including an effective `x` from a protected formula, excludes creation. A qualifying `Apply? = yes` row may create a resume only when both completion fields are blank.
 
-After the exact DOCX under `output/resumes` passes structural and Word-native two-page validation, write `Resume Created = X`, a clickable absolute file-URI link to that DOCX in Resume Link, and the normal `Resume Created` Gecko Status without downgrading later application statuses. The shared writer must verify the saved DOCX, create the URL with `Path.resolve().as_uri()`, and store the complete `file:///` URL directly as the `Resume Link` cell value; `HYPERLINK` formulas and `Open Resume` display text are prohibited. If generation, validation, or link creation fails, a new row remains unmarked and the retryable failure is written to `Notes` rather than `Cost`. Never upload resumes to Google Drive, mark Applied, or submit an application.
+After the exact DOCX under `output/resumes` passes structural and Word-native two-page validation, write `Resume Created = X` and a clickable absolute file-URI link to that DOCX in Resume Link. The shared writer must verify the saved DOCX, create the URL with `Path.resolve().as_uri()`, and store the complete `file:///` URL directly as the `Resume Link` cell value; `HYPERLINK` formulas and `Open Resume` display text are prohibited. If generation, validation, or link creation fails, a new row remains unmarked and the retryable failure is written to `Notes` rather than `Cost`. Never upload resumes to Google Drive, mark Applied, or submit an application.
 
 
 
 ## Filename rules
 
 Resume:
-`Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx`
+`Dave-Call+<Company-Name>+<Job-Title>+<Resume-ID>.docx`
 
 Archived job description:
 `<Company-Name>+<job-number>.md`
@@ -112,7 +119,7 @@ Indeed:
 Use the job listing's `jk` value as `<job-number>`.
 
 Sanitize `<Company-Name>` for Windows filenames by replacing spaces with hyphens and removing invalid characters (`\ / : * ? " < > |`).
-Sanitize `<Job-Title>` the same way. Keep `<job-number>` last so tracker matching remains stable.
+Sanitize `<Job-Title>` the same way. Keep the short numeric `<Resume-ID>` last; resolve the full posting ID from the registry or embedded DOCX metadata for tracker matching.
 
 ## Scratch directory rules
 
@@ -138,4 +145,19 @@ All reusable generation, layout optimization, and pagination verification script
 
 ## Source integrity
 
-Use the current master archive (`input/master-resume/Dave-Call-Resume.txt`) as the sole factual source and the required model PDF (`input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf`) as the sole default visual authority. The model's content is never evidence unless confirmed in the master archive. No older or generated resume may substitute for either required file.
+Use the current master archive (`input/master-resume/master-resume-v2.txt`) as the sole factual source and the required model PDF (`input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf`) as the sole default visual authority. The model's content is never evidence unless confirmed in the master archive. No older or generated resume may substitute for either required file.
+# Tracker column update — 2026-10-13
+
+In the live Job List, column I is `Last Updated`, the last actual Firecrawl
+or Gecko run for that job; column J is `Notes`. Resolve fields by current
+unique headers. Preserve existing research and manual notes. Record actual
+run date/time in America/Denver with the tool name; never stamp a local pull
+or instruction sync as a job run. See AGENTS.md and docs/tracker-schema.md.
+The user's Scratch proposals are synced in docs/scratch-column-ideas.md.
+
+
+## Permanent short resume filename rule
+
+Resume filenames must use `Dave-Call+<Company-Name>+<Job-Title>+<Resume-ID>.docx`, ending in a unique numeric identifier of at most five digits (Gecko uses five zero-padded digits). Never put a full posting ID, Indeed jk, UUID, hash, or long numeric job number in a resume filename. Keep filenames at most 150 characters, sanitizing Windows-invalid characters and shortening an excessively long title at a word boundary. Reserve identifiers through `job-scout/resume_naming.py`; do not truncate a source ID or guess uniqueness. Full posting IDs remain in the identity registry and DOCX metadata for job matching. Use the same rule for explicitly requested renames, verify tracker links after any rename, and preserve the existing Resume Created = X guard. Archived job descriptions and scratch folders continue to use full posting IDs.
+
+Example: `Dave-Call+Array+Digital-Marketing-Manager+00001.docx`.

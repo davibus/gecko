@@ -35,12 +35,12 @@ def load_source_config(path: str | Path | None = None) -> dict:
         "JOB_SCOUT_SOURCE_CONCURRENCY", payload.get("max_workers", 6)
     ))
     payload["max_results_per_source"] = int(os.getenv(
-        "JOB_SCOUT_MAX_RESULTS_PER_SOURCE", payload.get("max_results_per_source", 50)
+        "JOB_SCOUT_MAX_RESULTS_PER_SOURCE", payload.get("max_results_per_source", 0)
     ))
     if not 1 <= payload["max_workers"] <= 16:
         raise ValueError("Job source concurrency must be between 1 and 16")
-    if payload["max_results_per_source"] < 1:
-        raise ValueError("Job source result limit must be at least 1")
+    if payload["max_results_per_source"] < 0:
+        raise ValueError("Job source result limit must be nonnegative (0 is unlimited)")
     for name, settings in providers.items():
         if not isinstance(settings, dict):
             raise ValueError(f"Provider {name!r} configuration must be an object")

@@ -396,6 +396,7 @@ class IndeedProvider(JobSource):
         })
         payload = get_json(url, {"Authorization": f"Bearer {self.token}"})
         items = payload.get("results") or payload.get("jobs") or []
+        self.has_more = bool(payload.get('hasMore', payload.get('has_more', False)))
         for item in items:
             job_id = str(item.get("jobKey") or item.get("jk") or item.get("id") or "")
             yield RawListing(

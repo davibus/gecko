@@ -62,28 +62,28 @@ $settings = New-ScheduledTaskSettingsSet `
     -RestartCount 999 `
     -RestartInterval (New-TimeSpan -Minutes 1)
 
-# Reinstalling is safe: replace the definitions in place, then restart both
-# hidden tasks so script upgrades take effect immediately.
-Stop-ScheduledTask -TaskName $script:GeckoWordBridgeWatchdogTaskName -ErrorAction SilentlyContinue
-Stop-ScheduledTask -TaskName $script:GeckoWordBridgeTaskName -ErrorAction SilentlyContinue
+function Ensure-GeckoBridgeTask {
+    param([string]$Name, [object]$Action, [string]$Description)
+    $existing = Get-ScheduledTask -TaskName $Name -ErrorAction SilentlyContinue
+    if ($existing) {
+        if ($existing.Actions.Count -ne 1) { throw "Unexpected action count for $Name" }
+        $current = $existing.Actions[0]
+        if ($current.Execute -ne $Action.Execute -or $current.Arguments -ne $Action.Arguments -or $current.WorkingDirectory -ne $projectRoot) {
+            $backupDir = Join-Path $projectRoot 'scratch\task-backups'
+            New-Item -ItemType Directory -Path $backupDir -Force | Out-Null
+            $backupName = ($Name -replace '[^A-Za-z0-9_-]', '_') + '-' + (Get-Date -Format 'yyyyMMdd-HHmmss') + '.xml'
+            $backup = Join-Path $backupDir $backupName
+            Export-ScheduledTask -TaskName $Name -TaskPath $existing.TaskPath | Set-Content -LiteralPath $backup -Encoding UTF8
+            Set-ScheduledTask -TaskName $Name -Action $Action | Out-Null
+            Write-Output "Updated action for $Name (backup: $backup)"
+        }
+    } else {
+        Register-ScheduledTask -TaskName $Name -Action $Action -Trigger $trigger -Principal $principal -Settings $settings -Description $Description | Out-Null
+    }
+}
 
-Register-ScheduledTask `
-    -TaskName $script:GeckoWordBridgeTaskName `
-    -Action $bridgeAction `
-    -Trigger $trigger `
-    -Principal $principal `
-    -Settings $settings `
-    -Description 'Hidden Gecko worker that processes Microsoft Word pagination requests in the logged-in user session.' `
-    -Force | Out-Null
-
-Register-ScheduledTask `
-    -TaskName $script:GeckoWordBridgeWatchdogTaskName `
-    -Action $watchdogAction `
-    -Trigger $trigger `
-    -Principal $principal `
-    -Settings $settings `
-    -Description 'Hidden self-healing supervisor for the Gecko Word Validation Bridge.' `
-    -Force | Out-Null
+Ensure-GeckoBridgeTask -Name $script:GeckoWordBridgeTaskName -Action $bridgeAction -Description 'Hidden Gecko worker that processes Microsoft Word pagination requests in the logged-in user session.'
+Ensure-GeckoBridgeTask -Name $script:GeckoWordBridgeWatchdogTaskName -Action $watchdogAction -Description 'Hidden self-healing supervisor for the Gecko Word Validation Bridge.'
 
 Write-GeckoJsonAtomic -Value ([ordered]@{
     installed_at = (Get-Date).ToString('o')
@@ -96,9 +96,12 @@ Write-GeckoJsonAtomic -Value ([ordered]@{
     hidden = $true
 }) -Path $installationPath
 
-Remove-Item -LiteralPath $heartbeatPath -Force -ErrorAction SilentlyContinue
-Start-ScheduledTask -TaskName $script:GeckoWordBridgeTaskName
-Start-ScheduledTask -TaskName $script:GeckoWordBridgeWatchdogTaskName
+if ((Get-ScheduledTask -TaskName $script:GeckoWordBridgeTaskName).State -ne 'Running') {
+    Start-ScheduledTask -TaskName $script:GeckoWordBridgeTaskName
+}
+if ((Get-ScheduledTask -TaskName $script:GeckoWordBridgeWatchdogTaskName).State -ne 'Running') {
+    Start-ScheduledTask -TaskName $script:GeckoWordBridgeWatchdogTaskName
+}
 
 $deadline = (Get-Date).AddSeconds(30)
 do {

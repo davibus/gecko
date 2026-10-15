@@ -1,0 +1,3 @@
+{"at": "2026-10-11T04:32:39.101218-06:00", "event": "snapshot", "run_id": "20261011T043224-c58388614a", "tab_counts": {"Cursor Instructions": 0, "Deleted Jobs": 0, "Job List": 1460, "Rejected Jobs": 30, "Scratch": 0}}
+{"at": "2026-10-11T04:32:40.363852-06:00", "event": "safety_verified", "run_id": "20261011T043224-c58388614a", "unchanged": true}
+{"at": "2026-10-11T04:32:42.381647-06:00", "error": "RuntimeError: reporting operation failed (details redacted)", "event": "failure", "run_id": "20261011T043224-c58388614a"}

@@ -1,0 +1,21 @@
+Gecko daily 20261011T130723-df932952eb: FAIL
+Jobs Discovered: 483
+New Jobs Added: 0
+Duplicates Skipped: 39
+Manual Indeed Rows Processed: 0
+Manual Indeed Duplicates Flagged: 0
+Manual Indeed Retrieval Failures: 0
+Declined Rows Preserved: 844
+Resumes Reused: 0
+Resumes Created: 2
+Resume Failures: 0
+Workflow Failures: 5
+Gmail Emails Checked: Unavailable
+Employer Responses Matched: Unavailable
+Response Rows Updated: Unavailable
+Provider Failures: 4
+Indeed Jobs Found: 0
+Daily Run: row 3
+Audit: reports/daily/2026-10-11/20261011T130723-df932952eb.json
+Error: Daily workflow reported 5 failure(s)
+Error: Gmail response tracking failed

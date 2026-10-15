@@ -6,7 +6,7 @@ Execute this workflow live by default. Generate the real resume, make the necess
 
 Read the listing, identify the job number, archive it, and create the V2 tailoring plan with `scripts/gecko_v2.py plan` before modifying the resume. Review its evidence and gaps, then generate the DOCX and run Word-native QA with `scripts/gecko_v2.py generate`. Generate:
 Before generation, read the matching live Job Scout row by stable identity. A normalized `Resume Created = X` stops generation and preserves its marker and link, even when the link is blank; report a blank link for manual review.
-1. The exactly two-page DOCX resume under `output/resumes/Dave-Call+<Company-Name>+<Job-Title>+<job-number>.docx` using `scripts/`.
+1. The exactly two-page DOCX resume under `output/resumes/Dave-Call+<Company-Name>+<Job-Title>+<Resume-ID>.docx` using `scripts/`.
 2. The archived listing under `input/job-descriptions/<Company-Name>+<job-number>.md`.
 3. After items 1-2 are successfully created and `v2-qa.json` reports a native Word QA pass, upsert the job in the canonical Google Sheet with `scripts/manage_job_tracker.py add` and validate the tracker. Do not create or update a local Excel tracker.
 
@@ -14,3 +14,10 @@ Ensure a dedicated scratch subfolder `scratch/{Company-Name}+{JobNumber}/` is cr
 
 Follow all rules in `GECKO_SYSTEM.md` and `AGENTS.md`.
 This includes the permanent minimum of 8 professionally capitalized Core Strengths, 8 officially capitalized Tools & Platforms, and a complete one-physical-line `Job Title - Company Name - City, ST` heading for every Professional Experience entry. Verified employment dates must align flush right on that same physical line; Gecko V2 Word QA rejects wrapped or overlapping fields.
+
+
+## Permanent short resume filename rule
+
+Resume filenames must use `Dave-Call+<Company-Name>+<Job-Title>+<Resume-ID>.docx`, ending in a unique numeric identifier of at most five digits (Gecko uses five zero-padded digits). Never put a full posting ID, Indeed jk, UUID, hash, or long numeric job number in a resume filename. Keep filenames at most 150 characters, sanitizing Windows-invalid characters and shortening an excessively long title at a word boundary. Reserve identifiers through `job-scout/resume_naming.py`; do not truncate a source ID or guess uniqueness. Full posting IDs remain in the identity registry and DOCX metadata for job matching. Use the same rule for explicitly requested renames, verify tracker links after any rename, and preserve the existing Resume Created = X guard. Archived job descriptions and scratch folders continue to use full posting IDs.
+
+Example: `Dave-Call+Array+Digital-Marketing-Manager+00001.docx`.

@@ -1,0 +1,79 @@
+{
+  "Daily Tasks": {
+    "rows": 852,
+    "metadata_rows": 852,
+    "wrong_height_count": 0,
+    "wrong_height_sample": [],
+    "conditional_rules_before": 0,
+    "conditional_rules_after": 0,
+    "conditional_rules_same": true,
+    "frozen_before": 1,
+    "frozen_after": 1
+  },
+  "Daily Run": {
+    "rows": 1187,
+    "metadata_rows": 1187,
+    "wrong_height_count": 0,
+    "wrong_height_sample": [],
+    "conditional_rules_before": 0,
+    "conditional_rules_after": 0,
+    "conditional_rules_same": true,
+    "frozen_before": 0,
+    "frozen_after": 0
+  },
+  "Job List": {
+    "rows": 1644,
+    "metadata_rows": 1644,
+    "wrong_height_count": 0,
+    "wrong_height_sample": [],
+    "conditional_rules_before": 3,
+    "conditional_rules_after": 3,
+    "conditional_rules_same": true,
+    "frozen_before": 1,
+    "frozen_after": 1
+  },
+  "Deleted Jobs": {
+    "rows": 1000,
+    "metadata_rows": 1000,
+    "wrong_height_count": 0,
+    "wrong_height_sample": [],
+    "conditional_rules_before": 0,
+    "conditional_rules_after": 0,
+    "conditional_rules_same": true,
+    "frozen_before": 0,
+    "frozen_after": 0
+  },
+  "Scratch": {
+    "rows": 1000,
+    "metadata_rows": 1000,
+    "wrong_height_count": 0,
+    "wrong_height_sample": [],
+    "conditional_rules_before": 0,
+    "conditional_rules_after": 0,
+    "conditional_rules_same": true,
+    "frozen_before": 0,
+    "frozen_after": 0
+  },
+  "Rejected Jobs": {
+    "rows": 1000,
+    "metadata_rows": 1000,
+    "wrong_height_count": 0,
+    "wrong_height_sample": [],
+    "conditional_rules_before": 0,
+    "conditional_rules_after": 0,
+    "conditional_rules_same": true,
+    "frozen_before": 1,
+    "frozen_after": 1
+  },
+  "Cursor Instructions": {
+    "rows": 100,
+    "metadata_rows": 100,
+    "wrong_height_count": 0,
+    "wrong_height_sample": [],
+    "conditional_rules_before": 0,
+    "conditional_rules_after": 0,
+    "conditional_rules_same": true,
+    "frozen_before": 0,
+    "frozen_after": 0
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "node_id": "90e588b69b7814d451cb03604ef693f4ec79632a46e18939e356ded8412d7c3f",
+  "display_name": "Gecko Main Windows Chrome",
+  "browser_profile": "windows-chrome",
+  "relay_port": 18899,
+  "transport": "extension"
+}

@@ -1,0 +1,6 @@
+{
+  "root": "C:\\gecko_main",
+  "database": "C:\\gecko_main\\job-scout\\data\\jobs.sqlite3",
+  "source_config": "sources.config",
+  "ledger": "Job List"
+}

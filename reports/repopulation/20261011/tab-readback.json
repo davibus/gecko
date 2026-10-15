@@ -1,0 +1,80 @@
+{
+  "ranges": {
+    "'Daily Tasks'!A1:F67": {
+      "nonempty_rows": 58,
+      "row_count_read": 67
+    },
+    "'Daily Run'!A1:F50": {
+      "nonempty_rows": 46,
+      "row_count_read": 49
+    },
+    "'Deleted Jobs'!A1:H5": {
+      "nonempty_rows": 0,
+      "row_count_read": 0
+    },
+    "Scratch!A1:H5": {
+      "nonempty_rows": 0,
+      "row_count_read": 0
+    },
+    "'Rejected Jobs'!A1:H35": {
+      "nonempty_rows": 31,
+      "row_count_read": 31
+    },
+    "'Job List'!A1:T1": {
+      "nonempty_rows": 1,
+      "row_count_read": 1
+    }
+  },
+  "daily_run_key_rows": [
+    [
+      3,
+      [
+        "Daily Run",
+        "2026-10-11"
+      ]
+    ],
+    [
+      4,
+      [
+        "Run ID",
+        "20261011T130723-df932952eb"
+      ]
+    ],
+    [
+      28,
+      [
+        "Daily Run",
+        "2026-10-11"
+      ]
+    ],
+    [
+      29,
+      [
+        "Run ID",
+        "20261011T130331-b1fe2de2e6"
+      ]
+    ]
+  ],
+  "job_list_headers": [
+    "ID",
+    "Source",
+    "Company",
+    "Job Title",
+    "Apply?",
+    "Resume Created",
+    "Applied",
+    "Cost",
+    "Notes",
+    "Apply or on Company Website (If Indeed)",
+    "Response",
+    "Location",
+    "Work Arrangement",
+    "Employment Type",
+    "Salary",
+    "Job URL",
+    "Resume Link",
+    "Date Posted",
+    "Date Found",
+    "Last Seen"
+  ]
+}

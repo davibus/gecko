@@ -1,0 +1,3707 @@
+{
+  "title": "Daily Run",
+  "sheet_id": 2104308869,
+  "formula_values": [
+    [],
+    [],
+    [
+      "Daily Run",
+      "2026-10-11"
+    ],
+    [
+      "Run ID",
+      "20261011T113650-b4bca2749c"
+    ],
+    [
+      "Mode",
+      "Apply"
+    ],
+    [
+      "Overall Status",
+      "FAIL"
+    ],
+    [
+      "Jobs Discovered",
+      483
+    ],
+    [
+      "New Jobs Added",
+      0
+    ],
+    [
+      "Duplicates Skipped",
+      40,
+      "",
+      "",
+      "Jobs by Source"
+    ],
+    [
+      "Manual Indeed Rows Processed",
+      0,
+      "",
+      "",
+      "adzuna",
+      9
+    ],
+    [
+      "Manual Indeed Duplicates Flagged",
+      0,
+      "",
+      "",
+      "greenhouse",
+      1
+    ],
+    [
+      "Manual Indeed Retrieval Failures",
+      0,
+      "",
+      "",
+      "jobicy",
+      9
+    ],
+    [
+      "Declined Rows Preserved",
+      6,
+      "",
+      "",
+      "lever",
+      3
+    ],
+    [
+      "Resumes Reused",
+      0,
+      "",
+      "",
+      "weworkremotely",
+      7
+    ],
+    [
+      "Resumes Created",
+      0,
+      "",
+      "",
+      "workable",
+      2
+    ],
+    [
+      "Resume Failures",
+      27,
+      "",
+      "",
+      "workingnomads",
+      2
+    ],
+    [
+      "Workflow Failures",
+      32
+    ],
+    [
+      "Gmail Emails Checked",
+      "Unavailable"
+    ],
+    [
+      "Employer Responses Matched",
+      "Unavailable"
+    ],
+    [
+      "Response Rows Updated",
+      "Unavailable"
+    ],
+    [
+      "Provider Failures",
+      4
+    ],
+    [
+      "Indeed Jobs Found",
+      0
+    ],
+    [
+      "Errors",
+      1
+    ],
+    [
+      "Error Details",
+      "Daily workflow exited with code 1; Daily workflow reported 32 failure(s); Gmail response tracking failed"
+    ],
+    [
+      "Attention Items",
+      "Resume generation failures; Gmail check unavailable or failed; Workflow or provider failures; Provider failures; Declined rows retained to protect formulas; Daily workflow failed; inspect the local audit"
+    ],
+    [
+      "Applications Submitted",
+      0
+    ],
+    [],
+    [
+      "Daily Run",
+      "2026-10-11"
+    ],
+    [
+      "Run ID",
+      "20261011T113300-8be7ce7cef"
+    ],
+    [
+      "Started At",
+      "2026-10-11T11:33:18.986303-06:00"
+    ],
+    [
+      "Completed At",
+      "2026-10-11T11:33:27.411080-06:00"
+    ],
+    [
+      "Mode",
+      "Dry Run"
+    ],
+    [
+      "Overall Status",
+      "WARNING"
+    ],
+    [
+      "Job Scout Found",
+      0,
+      "",
+      "",
+      "Jobs by Source"
+    ],
+    [
+      "Indeed Found",
+      0,
+      "",
+      "",
+      "adzuna",
+      9
+    ],
+    [
+      "Total Found",
+      0,
+      "",
+      "",
+      "greenhouse",
+      1
+    ],
+    [
+      "New Unique Jobs",
+      0,
+      "",
+      "",
+      "jobicy",
+      9
+    ],
+    [
+      "Existing Jobs",
+      0,
+      "",
+      "",
+      "lever",
+      3
+    ],
+    [
+      "Duplicate Discoveries",
+      0,
+      "",
+      "",
+      "weworkremotely",
+      7
+    ],
+    [
+      "Cross-Source Duplicates",
+      0,
+      "",
+      "",
+      "workable",
+      2
+    ],
+    [
+      "Qualified Jobs",
+      0,
+      "",
+      "",
+      "workingnomads",
+      2
+    ],
+    [
+      "Rejected Jobs",
+      0
+    ],
+    [
+      "Rediscovered Deleted Jobs",
+      0
+    ],
+    [
+      "Job Scout Actual Before",
+      33
+    ],
+    [
+      "Job Scout Actual After",
+      33
+    ],
+    [
+      "Job Scout Projected After",
+      0
+    ],
+    [
+      "Indeed Actual Before",
+      0
+    ],
+    [
+      "Indeed Actual After",
+      0
+    ],
+    [
+      "Indeed Projected After",
+      0
+    ],
+    [
+      "Deleted Actual Before",
+      0
+    ],
+    [
+      "Deleted Actual After",
+      0
+    ],
+    [
+      "Deleted Projected After",
+      0
+    ],
+    [
+      "Projected Adds",
+      0
+    ],
+    [
+      "Projected Updates",
+      0
+    ],
+    [
+      "Projected Moves",
+      0
+    ],
+    [
+      "Indeed Rows Evaluated",
+      0
+    ],
+    [
+      "Indeed Blank Status Before",
+      0
+    ],
+    [
+      "Indeed Blank Status Projected After",
+      0
+    ],
+    [
+      "Indeed Blank Status Actual After",
+      0
+    ],
+    [
+      "Resumes Needed",
+      27
+    ],
+    [
+      "Existing Resumes",
+      0
+    ],
+    [
+      "Invalid Resume Links",
+      0
+    ],
+    [
+      "Resumes Reused",
+      0
+    ],
+    [
+      "Duplicate Resumes Prevented",
+      0
+    ],
+    [
+      "Jobs Ready to Apply",
+      0
+    ],
+    [
+      "Jobs Already Applied",
+      0
+    ],
+    [
+      "Jobs Needing Review",
+      0
+    ],
+    [
+      "Errors",
+      0
+    ],
+    [
+      "Warnings",
+      3
+    ],
+    [
+      "Execution Seconds",
+      8.425
+    ],
+    [
+      "Audit Log Location",
+      "file:///C:/gecko_main/reports/daily/2026-10-11/20261011T113300-8be7ce7cef.json"
+    ],
+    [],
+    [
+      "Daily Run",
+      "2026-10-11"
+    ],
+    [
+      "Run ID",
+      "20261011T052528-d1041e8e42"
+    ],
+    [
+      "Mode",
+      "Apply"
+    ],
+    [
+      "Overall Status",
+      "FAIL"
+    ],
+    [
+      "Jobs Discovered",
+      "Unavailable"
+    ],
+    [
+      "New Jobs Added",
+      "Unavailable"
+    ],
+    [
+      "Duplicates Skipped",
+      "Unavailable",
+      "",
+      "",
+      "Jobs by Source"
+    ],
+    [
+      "Manual Indeed Rows Processed",
+      "Unavailable",
+      "",
+      "",
+      "(blank)",
+      6
+    ],
+    [
+      "Manual Indeed Duplicates Flagged",
+      "Unavailable",
+      "",
+      "",
+      "adzuna",
+      125
+    ],
+    [
+      "Manual Indeed Retrieval Failures",
+      "Unavailable",
+      "",
+      "",
+      "ashby",
+      126
+    ],
+    [
+      "Resumes Reused",
+      0,
+      "",
+      "",
+      "greenhouse",
+      365
+    ],
+    [
+      "Resumes Created",
+      "Unavailable",
+      "",
+      "",
+      "indeed",
+      123
+    ],
+    [
+      "Resume Failures",
+      "Unavailable",
+      "",
+      "",
+      "Indeed",
+      15
+    ],
+    [
+      "Workflow Failures",
+      "Unavailable",
+      "",
+      "",
+      "jobicy",
+      35
+    ],
+    [
+      "Gmail Emails Checked",
+      "Unavailable",
+      "",
+      "",
+      "Jooble",
+      396
+    ],
+    [
+      "Employer Responses Matched",
+      "Unavailable",
+      "",
+      "",
+      "lever",
+      146
+    ],
+    [
+      "Response Rows Updated",
+      "Unavailable",
+      "",
+      "",
+      "linkedin",
+      3
+    ],
+    [
+      "Errors",
+      1,
+      "",
+      "",
+      "remoteok",
+      1
+    ],
+    [
+      "Attention Items",
+      "Gmail check unavailable or failed; 266 completed rows lack a resume link; 6 queue rows lack a stable identity; Daily workflow failed; inspect the local audit",
+      "",
+      "",
+      "remotive",
+      14
+    ],
+    [
+      "Applications Submitted",
+      0,
+      "",
+      "",
+      "web-careers",
+      56
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "weworkremotely",
+      21
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "workable",
+      27
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "workingnomads",
+      2
+    ],
+    [],
+    [
+      "Daily Run",
+      "2026-10-11"
+    ],
+    [
+      "Run ID",
+      "20261011T050647-772d311add"
+    ],
+    [
+      "Started At",
+      "2026-10-11T05:06:56.174924-06:00"
+    ],
+    [
+      "Completed At",
+      "2026-10-11T05:07:08.849627-06:00"
+    ],
+    [
+      "Mode",
+      "Dry Run"
+    ],
+    [
+      "Overall Status",
+      "WARNING"
+    ],
+    [
+      "Job Scout Found",
+      0,
+      "",
+      "",
+      "Jobs by Source"
+    ],
+    [
+      "Indeed Found",
+      0,
+      "",
+      "",
+      "(blank)",
+      6
+    ],
+    [
+      "Total Found",
+      0,
+      "",
+      "",
+      "adzuna",
+      125
+    ],
+    [
+      "New Unique Jobs",
+      0,
+      "",
+      "",
+      "ashby",
+      126
+    ],
+    [
+      "Existing Jobs",
+      0,
+      "",
+      "",
+      "greenhouse",
+      365
+    ],
+    [
+      "Duplicate Discoveries",
+      0,
+      "",
+      "",
+      "indeed",
+      138
+    ],
+    [
+      "Cross-Source Duplicates",
+      0,
+      "",
+      "",
+      "jobicy",
+      34
+    ],
+    [
+      "Qualified Jobs",
+      0,
+      "",
+      "",
+      "jooble",
+      396
+    ],
+    [
+      "Rejected Jobs",
+      0,
+      "",
+      "",
+      "lever",
+      146
+    ],
+    [
+      "Rediscovered Deleted Jobs",
+      0,
+      "",
+      "",
+      "linkedin",
+      3
+    ],
+    [
+      "Job Scout Actual Before",
+      1460,
+      "",
+      "",
+      "remoteok",
+      1
+    ],
+    [
+      "Job Scout Actual After",
+      1460,
+      "",
+      "",
+      "remotive",
+      14
+    ],
+    [
+      "Job Scout Projected After",
+      0,
+      "",
+      "",
+      "web-careers",
+      56
+    ],
+    [
+      "Indeed Actual Before",
+      138,
+      "",
+      "",
+      "weworkremotely",
+      21
+    ],
+    [
+      "Indeed Actual After",
+      138,
+      "",
+      "",
+      "workable",
+      27
+    ],
+    [
+      "Indeed Projected After",
+      0,
+      "",
+      "",
+      "workingnomads",
+      2
+    ],
+    [
+      "Deleted Actual Before",
+      0
+    ],
+    [
+      "Deleted Actual After",
+      0
+    ],
+    [
+      "Deleted Projected After",
+      0
+    ],
+    [
+      "Projected Adds",
+      0
+    ],
+    [
+      "Projected Updates",
+      0
+    ],
+    [
+      "Projected Moves",
+      0
+    ],
+    [
+      "Indeed Rows Evaluated",
+      138
+    ],
+    [
+      "Indeed Blank Status Before",
+      93
+    ],
+    [
+      "Indeed Blank Status Projected After",
+      93
+    ],
+    [
+      "Indeed Blank Status Actual After",
+      93
+    ],
+    [
+      "Resumes Needed",
+      475
+    ],
+    [
+      "Existing Resumes",
+      666
+    ],
+    [
+      "Invalid Resume Links",
+      0
+    ],
+    [
+      "Resumes Reused",
+      0
+    ],
+    [
+      "Duplicate Resumes Prevented",
+      269
+    ],
+    [
+      "Jobs Ready to Apply",
+      3
+    ],
+    [
+      "Jobs Already Applied",
+      69
+    ],
+    [
+      "Jobs Needing Review",
+      663
+    ],
+    [
+      "Errors",
+      0
+    ],
+    [
+      "Warnings",
+      3
+    ],
+    [
+      "Execution Seconds",
+      12.675
+    ],
+    [
+      "Audit Log Location",
+      "file:///G:/My%20Drive/projects/gecko/gecko_main/reports/daily/2026-10-11/20261011T050647-772d311add.json"
+    ]
+  ],
+  "grid_snapshot": {
+    "sheets": [
+      {
+        "properties": {
+          "sheetId": 2104308869,
+          "title": "Daily Run",
+          "index": 1,
+          "sheetType": "GRID",
+          "gridProperties": {
+            "rowCount": 1139,
+            "columnCount": 26
+          }
+        },
+        "data": [
+          {
+            "rowData": [
+              {},
+              {},
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Daily Run"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "2026-10-11"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Run ID"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "20261011T113650-b4bca2749c"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Mode"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Apply"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Overall Status"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "FAIL"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Jobs Discovered"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 483
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "New Jobs Added"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Duplicates Skipped"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 40
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Jobs by Source"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Manual Indeed Rows Processed"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "adzuna"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 9
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Manual Indeed Duplicates Flagged"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "greenhouse"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Manual Indeed Retrieval Failures"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "jobicy"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 9
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Declined Rows Preserved"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 6
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "lever"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Resumes Reused"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "weworkremotely"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 7
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Resumes Created"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "workable"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Resume Failures"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 27
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "workingnomads"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Workflow Failures"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 32
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Gmail Emails Checked"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Employer Responses Matched"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Response Rows Updated"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Provider Failures"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 4
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Jobs Found"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Errors"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Error Details"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Daily workflow exited with code 1; Daily workflow reported 32 failure(s); Gmail response tracking failed"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Attention Items"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Resume generation failures; Gmail check unavailable or failed; Workflow or provider failures; Provider failures; Declined rows retained to protect formulas; Daily workflow failed; inspect the local audit"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Applications Submitted"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {},
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Daily Run"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "2026-10-11"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Run ID"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "20261011T113300-8be7ce7cef"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Started At"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "2026-10-11T11:33:18.986303-06:00"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Completed At"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "2026-10-11T11:33:27.411080-06:00"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Mode"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Dry Run"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Overall Status"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "WARNING"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Job Scout Found"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Jobs by Source"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Found"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "adzuna"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 9
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Total Found"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "greenhouse"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "New Unique Jobs"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "jobicy"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 9
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Existing Jobs"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "lever"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Duplicate Discoveries"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "weworkremotely"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 7
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Cross-Source Duplicates"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "workable"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Qualified Jobs"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "workingnomads"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Rejected Jobs"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Rediscovered Deleted Jobs"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Job Scout Actual Before"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 33
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Job Scout Actual After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 33
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Job Scout Projected After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Actual Before"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Actual After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Projected After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Deleted Actual Before"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Deleted Actual After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Deleted Projected After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Projected Adds"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Projected Updates"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Projected Moves"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Rows Evaluated"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Blank Status Before"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Blank Status Projected After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Blank Status Actual After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Resumes Needed"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 27
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Existing Resumes"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Invalid Resume Links"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Resumes Reused"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Duplicate Resumes Prevented"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Jobs Ready to Apply"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Jobs Already Applied"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Jobs Needing Review"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Errors"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Warnings"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Execution Seconds"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 8.425
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Audit Log Location"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "file:///C:/gecko_main/reports/daily/2026-10-11/20261011T113300-8be7ce7cef.json"
+                    }
+                  }
+                ]
+              },
+              {},
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Daily Run"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "2026-10-11"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Run ID"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "20261011T052528-d1041e8e42"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Mode"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Apply"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Overall Status"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "FAIL"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Jobs Discovered"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "New Jobs Added"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Duplicates Skipped"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Jobs by Source"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Manual Indeed Rows Processed"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "(blank)"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 6
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Manual Indeed Duplicates Flagged"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "adzuna"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 125
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Manual Indeed Retrieval Failures"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "ashby"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 126
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Resumes Reused"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "greenhouse"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 365
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Resumes Created"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "indeed"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 123
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Resume Failures"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 15
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Workflow Failures"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "jobicy"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 35
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Gmail Emails Checked"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Jooble"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 396
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Employer Responses Matched"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "lever"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 146
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Response Rows Updated"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Unavailable"
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "linkedin"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Errors"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 1
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "remoteok"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Attention Items"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Gmail check unavailable or failed; 266 completed rows lack a resume link; 6 queue rows lack a stable identity; Daily workflow failed; inspect the local audit"
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "remotive"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 14
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Applications Submitted"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "web-careers"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 56
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "weworkremotely"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 21
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "workable"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 27
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "workingnomads"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 2
+                    }
+                  }
+                ]
+              },
+              {},
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Daily Run"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "2026-10-11"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Run ID"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "20261011T050647-772d311add"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Started At"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "2026-10-11T05:06:56.174924-06:00"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Completed At"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "2026-10-11T05:07:08.849627-06:00"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Mode"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Dry Run"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Overall Status"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "WARNING"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Job Scout Found"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Jobs by Source"
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Found"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "(blank)"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 6
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Total Found"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "adzuna"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 125
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "New Unique Jobs"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "ashby"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 126
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Existing Jobs"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "greenhouse"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 365
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Duplicate Discoveries"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "indeed"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 138
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Cross-Source Duplicates"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "jobicy"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 34
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Qualified Jobs"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "jooble"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 396
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Rejected Jobs"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "lever"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 146
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Rediscovered Deleted Jobs"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "linkedin"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Job Scout Actual Before"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 1460
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "remoteok"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Job Scout Actual After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 1460
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "remotive"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 14
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Job Scout Projected After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "web-careers"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 56
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Actual Before"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 138
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "weworkremotely"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 21
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Actual After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 138
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "workable"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 27
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Projected After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  },
+                  {},
+                  {},
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "workingnomads"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Deleted Actual Before"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Deleted Actual After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Deleted Projected After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Projected Adds"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Projected Updates"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Projected Moves"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Rows Evaluated"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 138
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Blank Status Before"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 93
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Blank Status Projected After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 93
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Indeed Blank Status Actual After"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 93
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Resumes Needed"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 475
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Existing Resumes"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 666
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Invalid Resume Links"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Resumes Reused"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Duplicate Resumes Prevented"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 269
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Jobs Ready to Apply"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Jobs Already Applied"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 69
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Jobs Needing Review"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 663
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Errors"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Warnings"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 3
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Execution Seconds"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "numberValue": 12.675
+                    }
+                  }
+                ]
+              },
+              {
+                "values": [
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "Audit Log Location"
+                    }
+                  },
+                  {
+                    "userEnteredValue": {
+                      "stringValue": "file:///G:/My%20Drive/projects/gecko/gecko_main/reports/daily/2026-10-11/20261011T050647-772d311add.json"
+                    }
+                  }
+                ]
+              }
+            ],
+            "rowMetadata": [
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              },
+              {
+                "pixelSize": 21
+              }
+            ],
+            "columnMetadata": [
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              },
+              {
+                "pixelSize": 100
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "captured_at": "2026-10-11T12:13:06.259628-06:00"
+}

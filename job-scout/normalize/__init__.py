@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import html
 import re
-from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
+from urllib.parse import parse_qsl, parse_qs, urlencode, urlsplit, urlunsplit
 
 from models import JobListing, RawListing
 
@@ -34,6 +34,19 @@ def canonicalize_url(url: str) -> str:
     )
     return urlunsplit((parts.scheme.lower(), parts.netloc.lower(), parts.path.rstrip("/"), urlencode(query), ""))
 
+def posting_identity(url: str):
+    """Match supported posting aliases without using numeric tracker IDs."""
+    parts=urlsplit(canonicalize_url(str(url or '')))
+    host=(parts.hostname or '').casefold().removeprefix('www.')
+    pieces=parts.path.strip('/').split('/')
+    if host.endswith('indeed.com') and parse_qs(parts.query).get('jk'):
+        return ('indeed',parse_qs(parts.query)['jk'][0])
+    if host=='apply.workable.com' and 'j' in pieces and pieces.index('j')+1<len(pieces):
+        return ('workable',pieces[pieces.index('j')+1])
+    if host in {'boards.greenhouse.io','job-boards.greenhouse.io'}:
+        host='job-boards.greenhouse.io'
+    return ('url',host,parts.path,parts.query)
+
 
 def infer_work_arrangement(raw: RawListing) -> str:
     # Keep this field structured: descriptive text may mention remote work without
@@ -48,6 +61,8 @@ def infer_work_arrangement(raw: RawListing) -> str:
 
 def normalize(raw: RawListing, discovered: str | None = None) -> JobListing:
     employment_type = clean_text(raw.employment_type).lower().replace("_", "-")
+    employment_type = {'fulltime': 'full-time', 'parttime': 'part-time'}.get(
+        employment_type, employment_type)
     discovered_date = discovered or JobListing.today()
     return JobListing(
         company=clean_text(raw.company) or "Unknown company",

@@ -1,0 +1,599 @@
+{
+  "run_id": "20261011T113300-8be7ce7cef",
+  "run_date": "2026-10-11",
+  "started_at": "2026-10-11T11:33:18.986303-06:00",
+  "mode": "dry-run report",
+  "configuration": {
+    "scout_tab": "Job List",
+    "spreadsheet_id_tail": "zq8t8I",
+    "enabled_sources": [
+      "adzuna",
+      "ashby",
+      "glassdoor",
+      "greenhouse",
+      "indeed",
+      "jobicy",
+      "lever",
+      "linkedin",
+      "remoteok",
+      "remotive",
+      "themuse",
+      "usajobs",
+      "web-careers",
+      "weworkremotely",
+      "workable",
+      "workingnomads",
+      "ziprecruiter"
+    ]
+  },
+  "metrics": {
+    "tabs": {
+      "Job List": {
+        "actual_before": 33,
+        "actual_after": 33,
+        "projected_after": null,
+        "would_add": null,
+        "would_update": null,
+        "would_move": null,
+        "would_exclude": null,
+        "unchanged": null
+      },
+      "Rejected Jobs": {
+        "actual_before": 30,
+        "actual_after": 30,
+        "projected_after": null,
+        "would_add": null,
+        "would_update": null,
+        "would_move": null,
+        "would_exclude": null,
+        "unchanged": null
+      },
+      "Deleted Jobs": {
+        "actual_before": 0,
+        "actual_after": 0,
+        "projected_after": null,
+        "would_add": null,
+        "would_update": null,
+        "would_move": null,
+        "would_exclude": null,
+        "unchanged": null
+      },
+      "Scratch": {
+        "actual_before": 0,
+        "actual_after": 0,
+        "projected_after": null,
+        "would_add": null,
+        "would_update": null,
+        "would_move": null,
+        "would_exclude": null,
+        "unchanged": null
+      },
+      "Cursor Instructions": {
+        "actual_before": 0,
+        "actual_after": 0,
+        "projected_after": null,
+        "would_add": null,
+        "would_update": null,
+        "would_move": null,
+        "would_exclude": null,
+        "unchanged": null
+      }
+    },
+    "jobs_by_source_in_ledger": {
+      "adzuna": 9,
+      "greenhouse": 1,
+      "jobicy": 9,
+      "lever": 3,
+      "weworkremotely": 7,
+      "workable": 2,
+      "workingnomads": 2
+    },
+    "discovery": {
+      "job_scout_found": null,
+      "indeed_found": null,
+      "total_found": null,
+      "new_unique_jobs": null,
+      "existing_jobs": null,
+      "duplicate_discoveries": null,
+      "cross_source_duplicates": null,
+      "qualified_jobs": null,
+      "rejected_jobs": null,
+      "rediscovered_deleted_jobs": null
+    },
+    "resume": {
+      "blank": 33,
+      "marked_x": 0,
+      "existing": 0,
+      "x_missing_or_invalid_link": 0,
+      "manual_review": 0,
+      "needed": 27,
+      "duplicate_prevented": 0,
+      "canonical_blockers": {
+        "cost_x": 0,
+        "rejected": 0,
+        "missing_identity": 0,
+        "duplicates": 0,
+        "not_approved": 6
+      }
+    },
+    "application": {
+      "already_applied": 0,
+      "qualified_active": 27,
+      "waiting_resume": 27,
+      "excluded_apply": 6,
+      "started_incomplete": null,
+      "awaiting_final_user_review": null,
+      "new_employer_responses": null,
+      "blocked_by_errors": null
+    },
+    "indeed": {
+      "rows_evaluated": 0,
+      "blank_before": 0,
+      "blank_projected_after": 0,
+      "projected_after": null,
+      "status_breakdown": {},
+      "expired_from_existing_text": 0,
+      "blank_actual_after": 0,
+      "projected_status_updates": 0,
+      "verified_live_page_status_updates": null,
+      "actual_after": 0
+    },
+    "deleted": {
+      "current": 0,
+      "duplicate_entries": 0,
+      "active_conflicts": 0,
+      "proposed_moves": [],
+      "rediscovered": null
+    },
+    "proposed_actions": {
+      "additions": [],
+      "updates": [],
+      "moves": [],
+      "resume_decisions": [
+        {
+          "row": 2,
+          "job_id": "2222",
+          "source": "adzuna",
+          "reason": "ELIGIBLE | existing Scout ID 2222 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 3,
+          "job_id": "2223",
+          "source": "adzuna",
+          "reason": "SKIP: Apply? explicitly No"
+        },
+        {
+          "row": 4,
+          "job_id": "2224",
+          "source": "adzuna",
+          "reason": "SKIP: Apply? explicitly No"
+        },
+        {
+          "row": 5,
+          "job_id": "2225",
+          "source": "adzuna",
+          "reason": "ELIGIBLE | existing Scout ID 2225 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 6,
+          "job_id": "2226",
+          "source": "adzuna",
+          "reason": "ELIGIBLE | existing Scout ID 2226 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 7,
+          "job_id": "2227",
+          "source": "adzuna",
+          "reason": "SKIP: Apply? explicitly No"
+        },
+        {
+          "row": 8,
+          "job_id": "2228",
+          "source": "adzuna",
+          "reason": "ELIGIBLE | existing Scout ID 2228 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 9,
+          "job_id": "2229",
+          "source": "adzuna",
+          "reason": "ELIGIBLE | existing Scout ID 2229 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 10,
+          "job_id": "2230",
+          "source": "adzuna",
+          "reason": "SKIP: Apply? explicitly No"
+        },
+        {
+          "row": 11,
+          "job_id": "2231",
+          "source": "jobicy",
+          "reason": "ELIGIBLE | existing Scout ID 2231 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 12,
+          "job_id": "2232",
+          "source": "jobicy",
+          "reason": "ELIGIBLE | existing Scout ID 2232 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 13,
+          "job_id": "2233",
+          "source": "jobicy",
+          "reason": "ELIGIBLE | existing Scout ID 2233 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 14,
+          "job_id": "2234",
+          "source": "jobicy",
+          "reason": "ELIGIBLE | existing Scout ID 2234 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 15,
+          "job_id": "2235",
+          "source": "jobicy",
+          "reason": "ELIGIBLE | existing Scout ID 2235 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 16,
+          "job_id": "2236",
+          "source": "jobicy",
+          "reason": "ELIGIBLE | existing Scout ID 2236 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 17,
+          "job_id": "2237",
+          "source": "jobicy",
+          "reason": "ELIGIBLE | existing Scout ID 2237 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 18,
+          "job_id": "2238",
+          "source": "jobicy",
+          "reason": "ELIGIBLE | existing Scout ID 2238 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 19,
+          "job_id": "2239",
+          "source": "jobicy",
+          "reason": "ELIGIBLE | existing Scout ID 2239 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 20,
+          "job_id": "2240",
+          "source": "greenhouse",
+          "reason": "ELIGIBLE | existing Scout ID 2240 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 21,
+          "job_id": "2241",
+          "source": "lever",
+          "reason": "ELIGIBLE | existing Scout ID 2241 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 22,
+          "job_id": "2242",
+          "source": "lever",
+          "reason": "ELIGIBLE | existing Scout ID 2242 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 23,
+          "job_id": "2243",
+          "source": "lever",
+          "reason": "ELIGIBLE | existing Scout ID 2243 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 24,
+          "job_id": "2244",
+          "source": "workable",
+          "reason": "SKIP: Apply? explicitly No"
+        },
+        {
+          "row": 25,
+          "job_id": "2245",
+          "source": "workable",
+          "reason": "SKIP: Apply? explicitly No"
+        },
+        {
+          "row": 26,
+          "job_id": "2246",
+          "source": "weworkremotely",
+          "reason": "ELIGIBLE | existing Scout ID 2246 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 27,
+          "job_id": "2247",
+          "source": "weworkremotely",
+          "reason": "ELIGIBLE | existing Scout ID 2247 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 28,
+          "job_id": "2248",
+          "source": "weworkremotely",
+          "reason": "ELIGIBLE | existing Scout ID 2248 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 29,
+          "job_id": "2249",
+          "source": "weworkremotely",
+          "reason": "ELIGIBLE | existing Scout ID 2249 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 30,
+          "job_id": "2250",
+          "source": "weworkremotely",
+          "reason": "ELIGIBLE | existing Scout ID 2250 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 31,
+          "job_id": "2251",
+          "source": "weworkremotely",
+          "reason": "ELIGIBLE | existing Scout ID 2251 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 32,
+          "job_id": "2252",
+          "source": "weworkremotely",
+          "reason": "ELIGIBLE | existing Scout ID 2252 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 33,
+          "job_id": "2253",
+          "source": "workingnomads",
+          "reason": "ELIGIBLE | existing Scout ID 2253 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        },
+        {
+          "row": 34,
+          "job_id": "2254",
+          "source": "workingnomads",
+          "reason": "ELIGIBLE | existing Scout ID 2254 | Job URL; description retrieval would run | WOULD RUN Gecko resume generation | WOULD SAVE LOCAL output/resumes"
+        }
+      ]
+    },
+    "warnings": [
+      "Discovery not run: no safe current-run event stream was inspected",
+      "Indeed pages not verified: status projections use only existing expiry text",
+      "Gmail response checker not run because it writes Response and state"
+    ],
+    "errors": [],
+    "rejected_index_count": 30,
+    "queue_validation": {
+      "eligible": 27,
+      "classified": 33
+    },
+    "formula_skips": []
+  },
+  "script_health": {
+    "Job Scout": {
+      "status": "Not Run",
+      "read_only_simulation": "tracker snapshot only",
+      "started_at": "2026-10-11T11:33:18.986303-06:00",
+      "ended_at": "2026-10-11T11:33:26.228141-06:00",
+      "execution_seconds": 0,
+      "records_evaluated": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    },
+    "Indeed discovery": {
+      "status": "Unavailable",
+      "blocker": "authorized provider request not made",
+      "started_at": "2026-10-11T11:33:18.986303-06:00",
+      "ended_at": "2026-10-11T11:33:26.228170-06:00",
+      "execution_seconds": 0,
+      "records_evaluated": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    },
+    "Indeed status evaluation": {
+      "status": "Partial",
+      "records_evaluated": 0,
+      "blocker": "visible page controls not observed",
+      "started_at": "2026-10-11T11:33:18.986303-06:00",
+      "ended_at": "2026-10-11T11:33:26.228227-06:00",
+      "execution_seconds": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    },
+    "Resume generation readiness": {
+      "status": "Partial",
+      "blocker": "listing retrieval and Word validation not run",
+      "started_at": "2026-10-11T11:33:18.986303-06:00",
+      "ended_at": "2026-10-11T11:33:26.228257-06:00",
+      "execution_seconds": 0,
+      "records_evaluated": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    },
+    "Deleted Jobs processing": {
+      "status": "Partial",
+      "blocker": "move safety requires formula inspection",
+      "started_at": "2026-10-11T11:33:18.986303-06:00",
+      "ended_at": "2026-10-11T11:33:26.228278-06:00",
+      "execution_seconds": 0,
+      "records_evaluated": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    },
+    "Gmail response tracking": {
+      "status": "Not Run",
+      "blocker": "canonical checker writes Response and local state",
+      "started_at": "2026-10-11T11:33:18.986303-06:00",
+      "ended_at": "2026-10-11T11:33:26.228299-06:00",
+      "execution_seconds": 0,
+      "records_evaluated": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    },
+    "Google Sheets integration": {
+      "status": "Success",
+      "started_at": "2026-10-11T11:33:18.986303-06:00",
+      "ended_at": "2026-10-11T11:33:26.228319-06:00",
+      "execution_seconds": 0,
+      "records_evaluated": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    },
+    "Daily reporting": {
+      "status": "Partial",
+      "started_at": "2026-10-11T11:33:18.986303-06:00",
+      "ended_at": "2026-10-11T11:33:26.228345-06:00",
+      "execution_seconds": 0,
+      "records_evaluated": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    }
+  },
+  "warnings": [
+    "Discovery not run: no safe current-run event stream was inspected",
+    "Indeed pages not verified: status projections use only existing expiry text",
+    "Gmail response checker not run because it writes Response and state"
+  ],
+  "errors": [],
+  "validation": {
+    "job_data_unchanged": true,
+    "before_hash": "8aff40793ac92a9216c1657d052a66b8e9bb955f110de81d49989a2a0e4dbb32",
+    "after_hash": "8aff40793ac92a9216c1657d052a66b8e9bb955f110de81d49989a2a0e4dbb32",
+    "daily_tasks_unrelated_unchanged": true,
+    "after_report_hash": "8aff40793ac92a9216c1657d052a66b8e9bb955f110de81d49989a2a0e4dbb32"
+  },
+  "sheet_updated": true,
+  "overall_status": "WARNING",
+  "completed_at": "2026-10-11T11:33:32.442873-06:00",
+  "execution_seconds": 13.457,
+  "tab_results": {
+    "Daily Tasks": {
+      "state": "verified",
+      "row": 3
+    },
+    "Daily Run": {
+      "state": "inserted",
+      "row": 3
+    }
+  },
+  "daily_run_row": 3,
+  "daily_run_rows_inserted": 45,
+  "report_row": 3,
+  "retained_dates": [
+    "2026-10-11",
+    "2026-10-10"
+  ],
+  "updated_rows": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    26,
+    27,
+    29,
+    30,
+    43,
+    44,
+    45,
+    46,
+    49,
+    50,
+    53,
+    56,
+    57,
+    58,
+    63,
+    66
+  ],
+  "sheet_skipped_due_retention": false,
+  "changed_cells": [
+    "B8",
+    "B9",
+    "B10",
+    "E10",
+    "F10",
+    "E11",
+    "F11",
+    "E12",
+    "F12",
+    "E13",
+    "F13",
+    "E14",
+    "F14",
+    "E15",
+    "F15",
+    "E16",
+    "F16",
+    "E17",
+    "F17",
+    "E18",
+    "F18",
+    "E19",
+    "F19",
+    "E20",
+    "F20",
+    "E21",
+    "F21",
+    "E22",
+    "F22",
+    "E23",
+    "F23",
+    "E24",
+    "F24",
+    "B26",
+    "B27",
+    "B29",
+    "B30",
+    "B43",
+    "B44",
+    "B45",
+    "B46",
+    "B49",
+    "B50",
+    "B53",
+    "B56",
+    "B57",
+    "B58",
+    "B63",
+    "B66"
+  ]
+}

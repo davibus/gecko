@@ -1,5 +1,53 @@
 # Gecko Job Tracker live schema
 
+## Current update: 2026-10-14
+
+Live Job List ID `1274044170` has 21 columns: A ID; B Source; C Company; D Job Title; E Apply?; F Resume Created; G Applied; H Cost; I Notes; J Apply or on Company Website (If Indeed); K Response; L Location; M Work Arrangement; N Employment Type; O Salary; P Job URL; Q Resume Link; R Last Updated; S Date Posted; T Date Found; U Last Seen.
+This supersedes older layouts below.
+Resolve fields by unique live header name; inserted/reordered columns must
+not redirect writes. `Last Updated` is the user's last-run field for actual
+Firecrawl or Gecko processing, with evidence-backed America/Denver date/time
+and tool name. Detailed findings belong in Notes. A tracker pull never
+changes the historical run date. Preserve manual content and formulas.
+
+Scratch ID `1775950516` now contains research-column ideas; its synced local
+reference is `docs/scratch-column-ideas.md`. Proposed fields are not current
+headers and must not be added automatically.
+
+The one-time local pull retains the entire current row and formulas in
+`google_tracker_rows` in `job-scout/data/jobs.sqlite3` plus a JSON snapshot.
+Compatible discovery fields are imported by stable ID and source; source
+conflicts retain the discovery record and the exact Sheet row in the mirror.
+
+On 2026-10-11 the generated areas `Daily Tasks!A3:F134`,
+`Daily Run!A3:F140`, and `Job List!A2:T34` were value-cleared after recoverable
+backups under `reports/tracker-reset/20261011T121305/`. Headers, instructions,
+formulas, formats, validation, frozen rows, widths, rejection history, and
+other tab contents were retained. Every existing row on all seven tabs was
+explicitly sized to 21 pixels and verified by row metadata readback. New
+inserted rows must also be set to 21 pixels.
+
+Read-only verification on **2026-10-11** for the new Job List validation task
+found 1,455 job rows with IDs plus six non-job rows containing only `Apply? = No`,
+and these live columns: A `ID`, B `Source`,
+C `Company`, D `Job Title`, E `Apply?`, F `Resume Created`, G `Applied`,
+H `Cost`, I `Notes`, J `Apply or on Company Website (If Indeed)`,
+K `Response`, L `Location`, M `Work Arrangement`, N `Employment Type`,
+O `Salary`, P `Job URL`, Q `Resume Link`, R `Date Posted`, S `Date Found`,
+T `Last Seen`. There is no `Status` header. The schema inspector accepts this
+layout and resolves `Apply?` by its unique name. `scripts/validate_job_list.py` reads the tab directly through Gecko's
+Sheets client, requires the fields it manages, and verifies the current A:Q
+layout before writing. `Cost` contains 518 formulas; two conditional-format
+rules existed before this validator. See `docs/job-list-validation.md`.
+
+Read-only and post-write verification on **2026-10-11** found the original
+`Daily Tasks` sheet ID `1035087580` temporarily named `Daily`. Its October 11
+and October 10 report cells and formatting had survived. The original sheet
+name was restored, and the report-only write verified the two-date dashboard
+with the newest source table beginning at E9:F9. The current `Daily Run` tab
+has sheet ID `2104308869`; one October 11 history block was verified there.
+These live identifiers must still be reread before future writes.
+
 Read-only verification on **2026-10-11** found that the ledger tab was renamed
 from `Job Scout` to `Job List`. Its sheet ID remains `1274044170`, all 21
 headers match the prior snapshot, and it has 1,460 job rows. Gecko's configured
@@ -32,11 +80,11 @@ must reread headers and formula state immediately before writing.
 
 ## Exact physical headers
 
-`Job Scout`, row 1, current order: A `ID`; B `Source`; C `Company`; D `Job Title`; E `Status`; F `Apply?`; G `Resume Created`; H `Applied`; I `Cost`; J `Notes`; K `Apply or on Company Website (If Indeed)`; L `Response`; M `Location`; N `Work Arrangement`; O `Employment Type`; P `Salary`; Q `Job URL`; R `Resume Link`; S `Date Posted`; T `Date Found`; U `Last Seen`. Positions are diagnostic only.
+`Job List`, row 1, current order: A `ID`; B `Source`; C `Company`; D `Job Title`; E `Apply?`; F `Resume Created`; G `Applied`; H `Cost`; I `Notes`; J `Apply or on Company Website (If Indeed)`; K `Response`; L `Location`; M `Work Arrangement`; N `Employment Type`; O `Salary`; P `Job URL`; Q `Resume Link`; R `Last Updated`; S `Date Posted`; T `Date Found`; U `Last Seen`. There is no `Status` column. Resolve unique headers at runtime.
 
 `Rejected Jobs`, row 1: A `Source`; B `Job ID`; C `Original Job URL`; D `Normalized Job URL`; E `Company`; F `Job Title`; G `Date Rejected`; H `Reason or Status`.
 
-`Daily Tasks` has no named header row for job data. Its owned reporting area is A:F, with `DAILY TASKS` at A1, followed by at most five variable-height vertical blocks in descending reporting-date order. Metric labels and values use A/B. Existing tracker source counts use E/F within each Job Discovery section. The report checks for unrelated content before expanding. `Daily Run` blocks use A/B for metrics and E9:F for source counts in the newest block; the report inserts at row 3.
+`Daily Tasks` has no named header row for job data. Its owned reporting area is A:F, with `DAILY TASKS` at A1, followed by at most five vertical blocks in descending reporting-date order. Metric labels and values use A/B. The newest block begins at row 3 and its existing tracker source table begins at E9:F9, with counts below. The report checks for unrelated content before writing. `Daily Run` blocks use A/B for metrics and E9:F for source counts in the newest block; the report inserts at row 3.
 
 `Deleted Jobs` and `Scratch` have no populated cells or established schema.
 
@@ -49,11 +97,11 @@ and skip protected cells. Never encode today's formula letters in code.
 
 ## Runtime mapping and write boundaries
 
-`ID` is the current physical header for logical `Scout ID`; `Status` for
-`Gecko Status`; `Apply?` can be `Apply` in an older verified sheet. These are
-the only approved aliases. Missing, duplicate, or ambiguous required headers
+`ID` is the current physical header for logical `Scout ID`; `Apply?` can be
+`Apply` in an older verified sheet. The removed `Status` header has no alias
+or required writer field. Missing, duplicate, or ambiguous required headers
 stop writes. Reordered and extra user columns are safe when named fields stay
-unique. `Job Scout` and `Rejected Jobs` are required for job processing;
+unique. `Job List` and `Rejected Jobs` are required for job processing;
 `Daily Tasks`, `Daily Run`, and `Deleted Jobs` are additionally required for the reporting
 command. No command creates or renames tabs implicitly. A missing required
 tab is an explicit blocker.
@@ -74,18 +122,20 @@ Gmail response checker may update `Response`.
 - An existing `Resume Created = X`, ignoring case/spaces, always stops
   generation and preserves its link, even if blank. Blank link means manual
   review. A nonblank link with blank marker also stops generation for review.
-  Effective `Cost = x` excludes creation. Only qualified `Apply? = Yes` rows
-  with both completion fields blank enter the resume queue.
+  Effective `Cost = x` excludes creation. Only `Apply? = Yes` rows with
+  verified Utah or explicit remote eligibility, `Cost` other than `x`,
+  and both completion fields blank enter the resume queue.
 - Utah jobs (including on-site/hybrid) and explicitly remote jobs can get
-  `Apply? = Yes` from `Location` and `Work Arrangement` only. Blank arrangement
-  is not remote. Other values are preserved. Expired Indeed jobs get `No`.
+  `Apply? = Yes` when all remaining eligibility safeguards pass. Unknown Cost
+  stays blank and does not block approval. Only a confirmed required application
+  fee is recorded as `Cost = x`; it forces `Apply? = No` and blocks resumes.
+  Unknown location does not grant approval. Expired Indeed jobs get `No`.
 - The Indeed application/status field stores exact verified visible text.
   Preserve manual and unverifiable states. Only `This job has expired on Indeed`
   or `Expired`, ignoring case/spaces, normalize to `Expired` and set `Apply?`
   to `No` in unprotected cells.
-- After validated DOCX creation, a new completion may write `X`, a raw
-  `file:///` URI from `Path.resolve().as_uri()`, and an appropriate status.
-  It never overwrites an existing resume or downgrades a later status.
+- After validated DOCX creation, a new completion may write `X` and a raw
+  `file:///` URI from `Path.resolve().as_uri()`.
 
 ## Verified commands and effects
 

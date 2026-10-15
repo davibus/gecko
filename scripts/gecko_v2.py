@@ -9,6 +9,7 @@ import os
 import re
 import subprocess
 import sys
+from urllib.parse import urlsplit
 from collections import Counter
 from pathlib import Path
 
@@ -21,9 +22,12 @@ from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 
 from silent_subprocess import windows_creationflags
+import resume_summary
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'job-scout'))
+import resume_naming
 
 ROOT = Path(__file__).resolve().parents[1]
-MASTER = ROOT / "input" / "master-resume" / "Dave-Call-Resume.txt"
+MASTER = ROOT / "input" / "master-resume" / "master-resume-v2.txt"
 FORMAT_MODEL = ROOT / "input" / "master-resume" / "MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf"
 SECTIONS = (
     "Professional Summary", "Core Strengths", "Selected Results",
@@ -284,7 +288,13 @@ def document_format_issues(plan: dict, doc: Document) -> list[str]:
 
 def master_lines() -> list[str]:
     """Read the current master archive on every call."""
-    return MASTER.read_text(encoding="utf-8-sig").splitlines()
+    try:
+        content = MASTER.read_text(encoding="utf-8-sig")
+    except (OSError, UnicodeError) as error:
+        raise OSError(f"Required Gecko master resume is missing or unreadable: {MASTER}") from error
+    if not content.strip():
+        raise ValueError(f"Required Gecko master resume is empty: {MASTER}")
+    return content.splitlines()
 
 
 def source_text() -> str:
@@ -293,7 +303,13 @@ def source_text() -> str:
 
 
 def source_hashes() -> dict[str, str]:
-    return {str(MASTER.relative_to(ROOT)): hashlib.sha256(MASTER.read_bytes()).hexdigest()}
+    try:
+        content = MASTER.read_bytes()
+    except OSError as error:
+        raise OSError(f"Required Gecko master resume is missing or unreadable: {MASTER}") from error
+    if not content.strip():
+        raise ValueError(f"Required Gecko master resume is empty: {MASTER}")
+    return {str(MASTER.relative_to(ROOT)): hashlib.sha256(content).hexdigest()}
 
 
 def _is_bullet(line: str) -> bool:
@@ -301,7 +317,7 @@ def _is_bullet(line: str) -> bool:
 
 
 def _bullet_text(line: str) -> str:
-    return normalized(re.sub(r"^[\u2022\ufffd*-]\s+", "", line.strip()))
+    return normalized(re.sub(r"^(?:[\u2022\ufffd*-]\s*)+", "", line.strip()))
 
 
 def _is_job_header(line: str) -> bool:
@@ -312,6 +328,8 @@ def _is_job_header(line: str) -> bool:
 def parsed_jobs() -> list[dict]:
     """Employment roles from PROFESSIONAL EXPERIENCE; consulting remains in source_text()."""
     lines = [line.strip() for line in master_lines()]
+    if "PROFESSIONAL EXPERIENCE" not in lines:
+        return _mixed_archive_jobs(lines)
     start = lines.index("PROFESSIONAL EXPERIENCE") + 1
     end = next(i for i, line in enumerate(lines)
                if line in {"CONSULTING, CONTRACT & CLIENT PROJECTS",
@@ -338,6 +356,76 @@ def parsed_jobs() -> list[dict]:
         raise ValueError("Master archive job history could not be parsed.")
     if any(not job["location"] or not job["dates"] for job in jobs):
         raise ValueError("A master archive job is missing verified location or employment dates.")
+    return jobs
+
+
+def _mixed_archive_jobs(lines: list[str]) -> list[dict]:
+    """Read V2's dated narrative roles and repeated pipe-delimited role blocks.
+
+    Repeated blocks are merged by employer; their bullets retain their own role
+    attribution. Contradictory locations or date ranges stop generation instead
+    of silently choosing one of the archive's duplicated versions.
+    """
+    months = "|".join(MONTH_ABBREVIATIONS)
+    dated = re.compile(r"^(.*?)\s+((?:" + months + r") \d{4}\s*(?:to|[-–—])\s*"
+                       r"(?:(?:" + months + r") \d{4}|Present)(?: \(Contract\))?)$")
+    jobs = []
+    current = None
+    conflicts = []
+
+    def select_role(title, company, location, dates):
+        dates = re.sub(r"\s+(?:to|[–—])\s+", " - ", dates)
+        employment_dates({"dates": dates})
+        # Employer variants within this archive include Inc. and slash aliases.
+        employer = key(company.split("/")[0]).removesuffix(" inc")
+        existing = next((job for job in jobs
+                         if key(job["company"].split("/")[0]).removesuffix(" inc") == employer), None)
+        if existing:
+            if (existing["location"] != location or
+                    employment_dates(existing) != employment_dates({"dates": dates})):
+                conflicts.append(f"{company}: {existing['location']} | {existing['dates']}"
+                                 f" versus {location} | {dates}")
+            return existing
+        job = {"title": title, "company": company, "location": location,
+               "dates": dates, "bullets": []}
+        jobs.append(job)
+        return job
+
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if line == "EDUCATION, ENTREPRENEURSHIP & RECOGNITION":
+            break
+        following = next((j for j in range(i + 1, len(lines)) if lines[j]), None)
+        text = _bullet_text(line) if _is_bullet(line) else normalized(line)
+        next_text = (_bullet_text(lines[following]) if following is not None else "")
+        if " | " in text and re.match(r"^.+,\s*[A-Z]{2}\s*\|\s*(?:" + months + r") \d{4}", next_text):
+            title, company = text.split(" | ", 1)
+            location, dates = (part.strip() for part in next_text.split("|", 1))
+            current = select_role(title, company, location, dates)
+            i = following + 1
+            continue
+        match = dated.fullmatch(text) if not _is_bullet(line) else None
+        if match:
+            heading, dates = match.groups()
+            if re.search(r" - .+, [A-Z]{2}$", heading):
+                title, company, location = heading.rsplit(" - ", 2)
+            elif re.fullmatch(r".+ - .+, [A-Z]{2}", next_text):
+                title = heading
+                company, location = next_text.rsplit(" - ", 1)
+                i = following
+            else:
+                raise ValueError(f"Master archive job is missing verified company or location: {heading}")
+            current = select_role(title, company, location, dates)
+        elif current and _is_bullet(line) and len(text) >= 35:
+            if text not in current["bullets"]:
+                current["bullets"].append(text)
+        i += 1
+    if conflicts:
+        raise ValueError("Conflicting employment facts in canonical master resume; resolve before generation: "
+                         + "; ".join(dict.fromkeys(conflicts)))
+    if not jobs:
+        raise ValueError("Master archive job history could not be parsed.")
     return jobs
 
 
@@ -374,7 +462,11 @@ def extract_evidence(source: str) -> list[dict]:
         for quote in job["bullets"]:
             evidence.append({"id": f"E{len(evidence)+1:03d}", "job": job_index, "source": rel, "quote": quote})
     lines = [line.strip() for line in master_lines()]
-    for line in lines[lines.index("CAREER HIGHLIGHTS & SELECTED RESULTS") + 1:lines.index("PROFESSIONAL EXPERIENCE")]:
+    highlight_start = lines.index("CAREER HIGHLIGHTS & SELECTED RESULTS") + 1
+    highlight_end = (lines.index("PROFESSIONAL EXPERIENCE") if "PROFESSIONAL EXPERIENCE" in lines
+                     else next((i for i in range(highlight_start, len(lines))
+                                if not lines[i] or not _is_bullet(lines[i])), len(lines)))
+    for line in lines[highlight_start:highlight_end]:
         if not _is_bullet(line):
             continue
         quote = _bullet_text(line)
@@ -401,21 +493,9 @@ def listing_metadata(listing: str, path: Path) -> dict[str, str]:
     return {"company": company, "safe_company": safe_company, "title": title, "job_number": job_number}
 
 
-def resume_filename(company: str, title: str, job_number: str) -> str:
-    """Build a Word-safe name while retaining the job number as the final field."""
-    def safe_part(value: str) -> str:
-        value = re.sub(r'[\\/:*?"<>|+]+', "-", normalized(value))
-        value = re.sub(r"\s+", "-", value)
-        return re.sub(r"-{2,}", "-", value).strip(" .-")
-
-    company_part, title_part, number_part = map(safe_part, (company, title, job_number))
-    if not all((company_part, title_part, number_part)):
-        raise ValueError("Resume filename needs a company, job title, and job number")
-    # Keep the complete path comfortable for Word on Windows; only long titles are shortened.
-    available = 180 - len(f"Dave-Call+{company_part}++{number_part}.docx")
-    if available < 20:
-        raise ValueError("Company and job number leave too little room for the job title")
-    return f"Dave-Call+{company_part}+{title_part[:available].rstrip(' .-')}+{number_part}.docx"
+def resume_filename(company: str, title: str, job_number: str, *, reserve: bool = False, revision: bool = False, folder: Path | None = None) -> str:
+    """Use a short unique suffix; retain full job identity in the registry."""
+    return resume_naming.filename(company, title, job_number, folder or ROOT / 'output/resumes', reserve=reserve, revision=revision)
 
 
 REQUIREMENT_STARTERS = (
@@ -542,9 +622,11 @@ def master_identity() -> dict[str, str]:
         certs.append(_bullet_text(line))
     return {
         "name": next(line for line in lines if line.casefold() == "dave call"),
-        "headline": lines[lines.index("MASTER RESUME / CAREER ARCHIVE") + 1],
+        "headline": lines[(lines.index("MASTER RESUME / CAREER ARCHIVE")
+                           if "MASTER RESUME / CAREER ARCHIVE" in lines
+                           else next(i for i, line in enumerate(lines) if line.casefold() == "dave call")) + 1],
         "contact": normalized(next(line for line in lines if "linkedin.com/in/mdavidcall" in line)),
-        "summary": lines[lines.index("PROFESSIONAL PROFILE") + 1],
+        "summary": _bullet_text(lines[lines.index("PROFESSIONAL PROFILE") + 1]),
         "education": education,
         "certifications": "Certifications: " + "; ".join(certs),
     }
@@ -610,12 +692,14 @@ def create_plan(listing_path: Path) -> dict:
             selected_results.append(item["id"])
         if len(selected_results) == 4:
             break
-    return {"version": 3, "job": meta, "listing": str(listing_path.resolve()),
+    summary, summary_selection = resume_summary.choose(listing, source, ROOT / "output/resumes", meta["title"])
+    plan = {"version": 3, "job": meta, "listing": str(listing_path.resolve()),
             "listing_sha256": hashlib.sha256(listing_path.read_bytes()).hexdigest(),
             "source_sha256": source_hashes(), "format_model_sha256": formatting_model_hash(),
             "format_model": FORMAT_MODEL.relative_to(ROOT).as_posix(),
             "requirements": reqs, "evidence": evidence,
-            "resume": {**master_identity(), "jobs": jobs,
+            "resume": {**master_identity(), "summary": summary,
+                       "summary_selection": summary_selection, "jobs": jobs,
                        "core_strengths": core_strengths, "tools_platforms": tools_platforms,
                        "selected_evidence_ids": selected,
                        "selected_results_ids": selected_results,
@@ -623,6 +707,55 @@ def create_plan(listing_path: Path) -> dict:
             "review_notes": ["Review requirement classifications and evidence links before generation.",
                              "All factual content comes from the required master TXT.",
                              "Visual formatting is governed by the required model PDF; no fallback resume or template is allowed."]}
+    select_summary_focus_evidence(plan)
+    return plan
+
+
+def select_summary_focus_evidence(plan: dict) -> None:
+    """Select distinct accomplishments that support the summary's business focus."""
+    selection = plan["resume"].get("summary_selection", [])
+    if not selection or selection[0] not in {"tailored", "focused"}:
+        return
+    focus = words(resume_summary.TAILORED[selection[1]][3])
+    if selection[0] == "focused":
+        for support in selection[2:]:
+            focus.update(words(resume_summary.UNITS[support][2]))
+    listing = words(Path(plan["listing"]).read_text(encoding="utf-8-sig"))
+    mandatory = set(plan["resume"]["relevant_metric_ids"])
+    selected = []
+    evidence = plan["evidence"]
+    for index in range(len(plan["resume"]["jobs"])):
+        pool = [item for item in evidence if item["job"] == index
+                and len(item["quote"].split()) <= 55
+                and not re.search(r"\b(?:I|my|we|our)\b", item["quote"])
+                and not re.search(r"marketing environment|B2C e,|Digital Marketing Manager$|web-scraping priorities", item["quote"])]
+        ranked = sorted(pool, key=lambda item: (
+            item["id"] in mandatory,
+            5 * len(words(item["quote"]) & focus) + len(words(item["quote"]) & listing),
+            -len(item["quote"].split()),
+        ), reverse=True)
+        chosen = []
+        for item in ranked:
+            if any(_near_duplicate(item["quote"], prior["quote"]) for prior in chosen):
+                continue
+            chosen.append(item)
+            if len(chosen) == 3:
+                break
+        if len(chosen) < 2:
+            raise ValueError("Insufficient distinct source-backed accomplishments for job history")
+        selected.extend(item["id"] for item in chosen)
+    # Source-required anchors stay in the document even if concision filters
+    # excluded a long source bullet from experience.
+    results = [item["id"] for item in evidence if item["id"] in mandatory and item["id"] not in selected]
+    metrics = sorted((item for item in evidence if re.search(r"\$[\d,]+|\b\d+(?:\.\d+)?[%+]", item["quote"])),
+                     key=lambda item: (len(words(item["quote"]) & focus), -len(item["quote"].split())), reverse=True)
+    for item in metrics:
+        if item["id"] not in results and not any(_near_duplicate(item["quote"], next(e["quote"] for e in evidence if e["id"] == eid)) for eid in results):
+            results.append(item["id"])
+        if len(results) >= 4:
+            break
+    plan["resume"]["selected_evidence_ids"] = selected
+    plan["resume"]["selected_results_ids"] = results
 
 
 def verify_plan(plan: dict) -> None:
@@ -660,7 +793,10 @@ def verify_plan(plan: dict) -> None:
         plan["resume"]["core_strengths"], plan["resume"]["tools_platforms"])
     if format_issues:
         raise ValueError(" ".join(format_issues))
-    if any(plan["resume"].get(field) != value for field, value in master_identity().items()):
+    identity = master_identity()
+    if "summary_selection" in plan["resume"]:
+        identity["summary"] = resume_summary.render(plan["resume"]["summary_selection"], source)
+    if any(plan["resume"].get(field) != value for field, value in identity.items()):
         raise ValueError("Identity, summary, education, or certifications differ from the current master archive.")
     if plan["resume"].get("jobs") != master_jobs():
         raise ValueError("Job history differs from the current master archive.")
@@ -670,6 +806,7 @@ def make_resume(plan: dict, path: Path) -> None:
     normalize_resume_format(plan)
     verify_plan(plan)
     doc = Document()
+    doc.core_properties.identifier = 'gecko-job:' + plan['job']['job_number']
     for section in doc.sections:
         section.top_margin = section.bottom_margin = Inches(.48)
         section.left_margin = section.right_margin = Inches(.5)
@@ -953,7 +1090,8 @@ def generate_two_page_resume(plan: dict, path: Path, scratch: Path) -> dict:
 def _assert_no_existing_tracker_resume(plan: dict) -> None:
     """Check the live intake row before manual V2 resume generation or publication."""
     sys.path.insert(0, str(ROOT / "job-scout"))
-    from google_tracker import GoogleTracker, resume_already_created
+    from google_tracker import (GoogleTracker, resume_already_created,
+                                resume_approval_value, is_expired_indeed, marked)
     from normalize import canonicalize_url
     from sources.indeed import extract_indeed_job_key
 
@@ -968,7 +1106,8 @@ def _assert_no_existing_tracker_resume(plan: dict) -> None:
     indeed_key = extract_indeed_job_key(url) if url else ""
     if not indeed_key and job_number and not job_number.casefold().startswith("scout-"):
         indeed_key = job_number
-    tab = GoogleTracker().scout(value_render_option="FORMULA")
+    tracker = GoogleTracker()
+    tab = tracker.scout()
     if "Resume Created" not in tab.headers:
         raise RuntimeError("Job Scout is missing Resume Created; generation was stopped")
     matches = [data for _, data in tab.rows if (
@@ -978,8 +1117,26 @@ def _assert_no_existing_tracker_resume(plan: dict) -> None:
     )]
     if len(matches) > 1:
         raise RuntimeError("Multiple Job Scout rows match the manual resume plan")
-    if matches and resume_already_created(matches[0].get("Resume Created")):
+    if len(matches) != 1:
+        raise RuntimeError("Manual resume generation requires one existing approved Job List row")
+    row = matches[0]
+    if resume_already_created(row.get("Resume Created")):
         raise RuntimeError("SKIP RESUME: existing tracker row already has Resume Created = X")
+    if str(row.get("Resume Link") or "").strip():
+        raise RuntimeError("Existing Resume Link requires manual review")
+    parsed_url = urlsplit(str(row.get("Job URL") or "").strip())
+    if parsed_url.scheme.casefold() not in {"http", "https"} or not parsed_url.hostname or (
+            parsed_url.username or parsed_url.password):
+        raise RuntimeError("Job List row has a missing or invalid Job URL")
+    if (str(row.get("Apply?") or "").strip().casefold() != "yes"
+            or resume_approval_value(row.get("Location"), row.get("Work Arrangement"),
+                                     row.get("Cost")) != "Yes"):
+        raise RuntimeError("Job List approval or Utah/remote location is unverified, or an application fee is required")
+    if marked(row.get("Applied")) or is_expired_indeed(row.get("Apply or on Company Website (If Indeed)")):
+        raise RuntimeError("Applied or expired job cannot generate a resume")
+    if tracker.rejected_jobs_index().match(source=row.get("Source"),
+            job_id=indeed_key, url=row.get("Job URL")):
+        raise RuntimeError("Permanently rejected job cannot generate a resume")
 
 
 def main() -> int:
@@ -1011,6 +1168,10 @@ def main() -> int:
         if output.exists():
             raise FileExistsError(f"Resume already exists: {output}")
         _assert_no_existing_tracker_resume(plan)
+        output = ROOT / 'output/resumes' / resume_filename(
+            plan['job']['company'], plan['job']['title'], plan['job']['job_number'], reserve=True)
+        if output.exists():
+            raise FileExistsError(f"Resume already exists: {output}")
         scratch.mkdir(parents=True, exist_ok=True)
         candidate = scratch / "manual-candidate.docx"
         report = generate_two_page_resume(plan, candidate, scratch)
@@ -1019,6 +1180,7 @@ def main() -> int:
             _assert_no_existing_tracker_resume(plan)
             if output.exists():
                 raise FileExistsError(f"Resume already exists: {output}")
+            resume_summary.assert_unique(candidate, output.parent)
             output.parent.mkdir(parents=True, exist_ok=True)
             os.rename(candidate, output)
         print(json.dumps({"docx": str(output) if report["status"] == "pass" else None,

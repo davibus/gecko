@@ -1,0 +1,42 @@
+{
+  "snapshot": "C:\\gecko_main\\reports\\tracker-pull\\20261014T112140193726Z\\snapshot.json",
+  "sheet_jobs": 1010,
+  "discovery_jobs_changed": 0,
+  "source_conflicts": [
+    {
+      "id": 2236,
+      "row": 16,
+      "reason": "Source differs"
+    },
+    {
+      "id": 2237,
+      "row": 17,
+      "reason": "Source differs"
+    },
+    {
+      "id": 2252,
+      "row": 32,
+      "reason": "Source differs"
+    },
+    {
+      "id": 1197,
+      "row": 115,
+      "reason": "Source differs"
+    },
+    {
+      "id": 2177,
+      "row": 543,
+      "reason": "Source differs"
+    },
+    {
+      "id": 2554,
+      "row": 858,
+      "reason": "Source differs"
+    }
+  ],
+  "sheet_only_ids": [],
+  "applied": true,
+  "verified": true,
+  "database_backup": "C:\\gecko_main\\reports\\tracker-pull\\20261014T112140193726Z\\jobs-before-pull-20261014T112300297167Z.sqlite3",
+  "snapshot_sha256": "07fd881ed21c381b7380880d951c156f584d8c6164be916ac8c398f36aa3d90a"
+}

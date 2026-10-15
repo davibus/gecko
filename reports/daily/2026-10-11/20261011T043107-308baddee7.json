@@ -1,0 +1,15 @@
+{
+  "run_id": "20261011T043107-308baddee7",
+  "run_date": "2026-10-11",
+  "mode": "apply",
+  "started_at": "2026-10-11T04:31:07.484799-06:00",
+  "preflight": {},
+  "counts": {},
+  "errors": [
+    "Daily Run tab is missing; no live workflow was started"
+  ],
+  "attention": [],
+  "daily_run_written": false,
+  "daily_run_row": null,
+  "completed_at": "2026-10-11T04:31:25.211411-06:00"
+}

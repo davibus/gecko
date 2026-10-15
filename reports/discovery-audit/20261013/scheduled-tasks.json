@@ -1,0 +1,46 @@
+[
+  {
+    "TaskName": "Gecko Cursor Instructions Sync",
+    "State": "Running",
+    "Actions": [
+      {
+        "Execute": "C:\\Users\\DCALL\\AppData\\Local\\Programs\\Python\\Python313\\pythonw.exe",
+        "Arguments": "\"C:\\gecko_main\\scripts\\sync_cursor_instructions.py\" watch --file AGENTS.md --tab \"Cursor Instructions\" --sheet-id 2074656464 --cell A1 --interval-seconds 60",
+        "WorkingDirectory": "C:\\gecko_main"
+      }
+    ]
+  },
+  {
+    "TaskName": "Gecko Main Codex Usage Collector",
+    "State": "Ready",
+    "Actions": [
+      {
+        "Execute": "wscript.exe",
+        "Arguments": "//B //Nologo \"C:\\gecko_main\\usage\\launch_collector.vbs\"",
+        "WorkingDirectory": "C:\\gecko_main"
+      }
+    ]
+  },
+  {
+    "TaskName": "Gecko Word Validation Bridge",
+    "State": "Ready",
+    "Actions": [
+      {
+        "Execute": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "Arguments": "-NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File \"C:\\gecko_main\\scripts\\word_validation_bridge.ps1\"",
+        "WorkingDirectory": "C:\\gecko_main"
+      }
+    ]
+  },
+  {
+    "TaskName": "Gecko Word Validation Bridge Watchdog",
+    "State": "Ready",
+    "Actions": [
+      {
+        "Execute": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "Arguments": "-NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File \"C:\\gecko_main\\scripts\\word_validation_bridge_watchdog.ps1\"",
+        "WorkingDirectory": "C:\\gecko_main"
+      }
+    ]
+  }
+]

@@ -1,0 +1,5 @@
+import sys,json
+from pathlib import Path
+R=Path('C:/gecko_main');sys.path.insert(0,str(R/'job-scout'))
+from google_tracker import GoogleTracker
+t=GoogleTracker();t.discover_workbook(required=(t.config.scout_tab,));tab=t.tab(t.config.scout_tab);assert tab.title=='Job List';selected=[(n,r) for n,r in tab.rows if 2<=n<=100 and str(r.get('Apply?','')).strip().lower()=='yes'];q=R/'openclaw/application-queue';data={'tab':tab.title,'sheet_id':tab.sheet_id,'headers':tab.headers,'physical_range':[2,100],'rows':selected};(q/'batch-rows2-100-20261014-snapshot.json').write_text(json.dumps(data,indent=2),encoding='utf-8');ids=[str(r['Scout ID']) for n,r in selected];assert len(ids)==len(set(ids));(q/'batch-rows2-100-20261014-approved-ids.json').write_text(json.dumps(ids,indent=2));print(json.dumps({'headers':tab.headers,'selected_count':len(selected),'jobs':[{'row':n,'id':r['Scout ID'],'company':r['Company'],'title':r['Job Title'],'applied':r.get('Applied'),'resume_created':r.get('Resume Created'),'resume_link_present':bool(r.get('Resume Link')),'url':r.get('Job URL')} for n,r in selected]},indent=2))

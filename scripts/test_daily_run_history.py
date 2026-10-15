@@ -97,8 +97,7 @@ class DailyRunHistoryTests(unittest.TestCase):
                   "Jobs by Source": {"Indeed": 5}, "Job Scout Found": None,
                   "Report Details": "omit", "Errors": 0}
         fake.fail_history_after_commit = True
-        with self.assertRaisesRegex(OSError, "lost history response"):
-            write_history(tracker, fields)
+        self.assertEqual(write_history(tracker, fields)[0], 3)
         committed = [list(row) for row in fake.data["Daily Run"]]
         self.assertEqual(write_history(tracker, fields), (None, 0))
         self.assertEqual(fake.data["Daily Run"], committed)

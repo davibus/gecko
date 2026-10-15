@@ -1,0 +1,135 @@
+{
+  "before": {
+    "2241": {
+      "row": 21,
+      "values": {
+        "ID": 2241,
+        "Source": "lever",
+        "Company": "Filevine",
+        "Job Title": "VP, Performance Marketing",
+        "Apply?": "Yes",
+        "Resume Created": "X",
+        "Applied": "",
+        "Cost": "",
+        "Notes": "Application pending: Application completed with its matching tailored resume and confirmed screening answers. Human hCaptcha verification is required before submission can be confirmed.\nApplication link: https://jobs.lever.co/filevine/6a3a9f5b-c380-4c03-b6a8-eab125f176c2/apply",
+        "Apply or on Company Website (If Indeed)": "",
+        "Response": "",
+        "Location": "Salt Lake City, Utah",
+        "Work Arrangement": "on-site",
+        "Employment Type": "full-time\nSource: Full-time",
+        "Salary": "Not stated",
+        "Job URL": "https://jobs.lever.co/filevine/6a3a9f5b-c380-4c03-b6a8-eab125f176c2",
+        "Resume Link": "file:///C:/gecko_main/output/resumes/Dave-Call%2BFilevine%2BVP%2C-Performance-Marketing%2B6a3a9f5b-c380-4c03-b6a8-eab125f176c2.docx",
+        "Last Updated": "2026-10-14T07:00:51.492884-06:00 | Gecko / OpenClaw application",
+        "Date Posted": "",
+        "Date Found": "2026-10-11",
+        "Last Seen": "2026-10-13",
+        "Scout ID": 2241
+      }
+    },
+    "2242": {
+      "row": 22,
+      "values": {
+        "ID": 2242,
+        "Source": "lever",
+        "Company": "HealthCare",
+        "Job Title": "VP, Performance Marketing",
+        "Apply?": "Yes",
+        "Resume Created": "X",
+        "Applied": "",
+        "Cost": "",
+        "Notes": "Application pending: The completed application and matching tailored resume are visible in the in-chat browser. A human hCaptcha challenge is displayed and must be completed before submission can be confirmed.\nApplication link: https://jobs.lever.co/healthcare/a5f95cac-d51f-4d9d-811f-70948bfcdc0b/apply",
+        "Apply or on Company Website (If Indeed)": "",
+        "Response": "",
+        "Location": "Remote, US",
+        "Work Arrangement": "remote",
+        "Employment Type": "full-time\nSource: Full Time",
+        "Salary": "Not stated",
+        "Job URL": "https://jobs.lever.co/healthcare/a5f95cac-d51f-4d9d-811f-70948bfcdc0b",
+        "Resume Link": "file:///C:/gecko_main/output/resumes/Dave-Call%2BHealthCare%2BVP%2C-Performance-Marketing%2Bv3%2Ba5f95cac-d51f-4d9d-811f-70948bfcdc0b.docx",
+        "Last Updated": "2026-10-14T06:23:47.284333-06:00 | Gecko / OpenClaw application",
+        "Date Posted": "",
+        "Date Found": "2026-10-11",
+        "Last Seen": "2026-10-13",
+        "Scout ID": 2242
+      }
+    },
+    "2252": {
+      "row": 32,
+      "values": {
+        "ID": 2252,
+        "Source": "weworkremotely",
+        "Company": "Tines",
+        "Job Title": "Field Marketing Manager - West",
+        "Apply?": "Yes",
+        "Resume Created": "X",
+        "Applied": "",
+        "Cost": "",
+        "Notes": "Application pending: Human security verification blocks the job listing. Open the listing in your browser, complete verification, then provide the employer application link so OpenClaw can continue.\nApplication link: https://weworkremotely.com/remote-jobs/tines-field-marketing-manager-west",
+        "Apply or on Company Website (If Indeed)": "Apply on Company Website",
+        "Response": "",
+        "Location": "United States - West (Remote)",
+        "Work Arrangement": "remote",
+        "Employment Type": "",
+        "Salary": "USD 135000 - 150000 per yearly",
+        "Job URL": "https://weworkremotely.com/remote-jobs/tines-field-marketing-manager-west",
+        "Resume Link": "file:///C:/gecko_main/output/resumes/Dave-Call%2BTines%2BField-Marketing-Manager-West%2Bv2%2B9a3ff9f86e90bcf746521128.docx",
+        "Last Updated": "2026-10-14T06:23:47.286401-06:00 | Gecko / OpenClaw application",
+        "Date Posted": "2026-10-05",
+        "Date Found": "2026-10-11",
+        "Last Seen": "2026-10-13",
+        "Scout ID": 2252
+      }
+    }
+  },
+  "updates": [
+    {
+      "range": "'Job List'!I21",
+      "values": [
+        [
+          "Application pending: All required fields are completed, including five-day Salt Lake City commute consent, and the matching tailored resume is uploaded. A loaded hCaptcha challenge in the in-chat Filevine tab requires Dave to complete human verification; submission is not confirmed.\nApplication link: https://jobs.lever.co/filevine/6a3a9f5b-c380-4c03-b6a8-eab125f176c2/apply"
+        ]
+      ]
+    },
+    {
+      "range": "'Job List'!R21",
+      "values": [
+        [
+          "2026-10-14T07:16:25.0253841-06:00 | Gecko / OpenClaw application"
+        ]
+      ]
+    },
+    {
+      "range": "'Job List'!I22",
+      "values": [
+        [
+          "Application pending: The completed application and matching tailored resume are visible in the in-chat browser. A human hCaptcha challenge is displayed and must be completed before submission can be confirmed.\nApplication link: https://jobs.lever.co/healthcare/a5f95cac-d51f-4d9d-811f-70948bfcdc0b/apply"
+        ]
+      ]
+    },
+    {
+      "range": "'Job List'!R22",
+      "values": [
+        [
+          "2026-10-14T06:23:47.284333-06:00 | Gecko / OpenClaw application"
+        ]
+      ]
+    },
+    {
+      "range": "'Job List'!I32",
+      "values": [
+        [
+          "Application pending: Human security verification blocks the job listing. Open the listing in your browser, complete verification, then provide the employer application link so OpenClaw can continue.\nApplication link: https://weworkremotely.com/remote-jobs/tines-field-marketing-manager-west"
+        ]
+      ]
+    },
+    {
+      "range": "'Job List'!R32",
+      "values": [
+        [
+          "2026-10-14T06:23:47.286401-06:00 | Gecko / OpenClaw application"
+        ]
+      ]
+    }
+  ]
+}

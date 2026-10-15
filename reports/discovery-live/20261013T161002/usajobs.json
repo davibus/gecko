@@ -1,0 +1,1765 @@
+{
+  "pipeline": {
+    "raw_retrieved": 86,
+    "rss_retrieved": 0,
+    "rss_unique": 0,
+    "rss_duplicates_removed": 0,
+    "successful_feeds": 0,
+    "failed_feeds": 0,
+    "feed_results": [],
+    "api_retrieved": 0,
+    "source_backend": "",
+    "fetched": 86,
+    "normalized": 86,
+    "added": 0,
+    "updated": 0,
+    "duplicates": 0,
+    "cross_provider_duplicates": 0,
+    "unique_available": 0,
+    "unique_imported": 0,
+    "filtered_by_role": 86,
+    "deterministic_rejects": 86,
+    "deterministic_reject_reasons": {
+      "generic non-marketing manager/production role": 4,
+      "outside target role families": 82
+    },
+    "jooble_excluded": 0,
+    "rejected_history_excluded": 0,
+    "missing_content_excluded": 0,
+    "dead_url_excluded": 0,
+    "source_results_limited": 0,
+    "url_review_excluded": 0,
+    "url_validated": 0,
+    "new_job_ids": [],
+    "existing_job_ids": [],
+    "changed_job_ids": [],
+    "eligibility_includes_usa": 0,
+    "eligibility_worldwide": 0,
+    "example_jobs": [],
+    "backend_qualifying": {},
+    "backend_added": {}
+  },
+  "record_decisions": [
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13088842-27-AS",
+      "url": "https://www.usajobs.gov:443/job/888559100",
+      "company": "Veterans Health Administration",
+      "title": "Pharmacist - Facility Program Manager - Formulary - ADPAC",
+      "reason": "generic non-marketing manager/production role"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13088842-27-AS",
+      "url": "https://www.usajobs.gov:443/job/888559100",
+      "company": "Veterans Health Administration",
+      "title": "Pharmacist - Facility Program Manager - Formulary - ADPAC",
+      "reason": "generic non-marketing manager/production role"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13088842-27-AS",
+      "url": "https://www.usajobs.gov:443/job/888559100",
+      "company": "Veterans Health Administration",
+      "title": "Pharmacist - Facility Program Manager - Formulary - ADPAC",
+      "reason": "generic non-marketing manager/production role"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13088842-27-AS",
+      "url": "https://www.usajobs.gov:443/job/888559100",
+      "company": "Veterans Health Administration",
+      "title": "Pharmacist - Facility Program Manager - Formulary - ADPAC",
+      "reason": "generic non-marketing manager/production role"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13084685-27-BJ",
+      "url": "https://www.usajobs.gov:443/job/888548100",
+      "company": "Veterans Health Administration",
+      "title": "Physician Assistant- Palliative Care",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13084685-27-BJ",
+      "url": "https://www.usajobs.gov:443/job/888548100",
+      "company": "Veterans Health Administration",
+      "title": "Physician Assistant- Palliative Care",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13084685-27-BJ",
+      "url": "https://www.usajobs.gov:443/job/888548100",
+      "company": "Veterans Health Administration",
+      "title": "Physician Assistant- Palliative Care",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13084685-27-BJ",
+      "url": "https://www.usajobs.gov:443/job/888548100",
+      "company": "Veterans Health Administration",
+      "title": "Physician Assistant- Palliative Care",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13088079-27-AS",
+      "url": "https://www.usajobs.gov:443/job/888554300",
+      "company": "Veterans Health Administration",
+      "title": "Staff Psychologist - Home Based Primary Care",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13088079-27-AS",
+      "url": "https://www.usajobs.gov:443/job/888554300",
+      "company": "Veterans Health Administration",
+      "title": "Staff Psychologist - Home Based Primary Care",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13088079-27-AS",
+      "url": "https://www.usajobs.gov:443/job/888554300",
+      "company": "Veterans Health Administration",
+      "title": "Staff Psychologist - Home Based Primary Care",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13088079-27-AS",
+      "url": "https://www.usajobs.gov:443/job/888554300",
+      "company": "Veterans Health Administration",
+      "title": "Staff Psychologist - Home Based Primary Care",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBTG-13088718-27-ML",
+      "url": "https://www.usajobs.gov:443/job/888552600",
+      "company": "Veterans Health Administration",
+      "title": "Registered Nurse-Informaticist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBTG-13088718-27-ML",
+      "url": "https://www.usajobs.gov:443/job/888552600",
+      "company": "Veterans Health Administration",
+      "title": "Registered Nurse-Informaticist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBTG-13088718-27-ML",
+      "url": "https://www.usajobs.gov:443/job/888552600",
+      "company": "Veterans Health Administration",
+      "title": "Registered Nurse-Informaticist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBTG-13088718-27-ML",
+      "url": "https://www.usajobs.gov:443/job/888552600",
+      "company": "Veterans Health Administration",
+      "title": "Registered Nurse-Informaticist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBTG-13088718-27-ML",
+      "url": "https://www.usajobs.gov:443/job/888552600",
+      "company": "Veterans Health Administration",
+      "title": "Registered Nurse-Informaticist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBTG-13088718-27-ML",
+      "url": "https://www.usajobs.gov:443/job/888552600",
+      "company": "Veterans Health Administration",
+      "title": "Registered Nurse-Informaticist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBTG-13088718-27-ML",
+      "url": "https://www.usajobs.gov:443/job/888552600",
+      "company": "Veterans Health Administration",
+      "title": "Registered Nurse-Informaticist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13084686-27-CAD",
+      "url": "https://www.usajobs.gov:443/job/888537700",
+      "company": "Veterans Health Administration",
+      "title": "Palliative Care Provider-Advance Practice Nurse",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13084686-27-CAD",
+      "url": "https://www.usajobs.gov:443/job/888537700",
+      "company": "Veterans Health Administration",
+      "title": "Palliative Care Provider-Advance Practice Nurse",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13084686-27-CAD",
+      "url": "https://www.usajobs.gov:443/job/888537700",
+      "company": "Veterans Health Administration",
+      "title": "Palliative Care Provider-Advance Practice Nurse",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13084686-27-CAD",
+      "url": "https://www.usajobs.gov:443/job/888537700",
+      "company": "Veterans Health Administration",
+      "title": "Palliative Care Provider-Advance Practice Nurse",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSS-13086467-27-PN",
+      "url": "https://www.usajobs.gov:443/job/888469600",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Outpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSS-13086467-27-PN",
+      "url": "https://www.usajobs.gov:443/job/888469600",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Outpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSS-13086467-27-PN",
+      "url": "https://www.usajobs.gov:443/job/888469600",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Outpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSS-13086467-27-PN",
+      "url": "https://www.usajobs.gov:443/job/888469600",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Outpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSS-13086467-27-PN",
+      "url": "https://www.usajobs.gov:443/job/888469600",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Outpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSS-13086467-27-PN",
+      "url": "https://www.usajobs.gov:443/job/888469600",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Outpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSS-13086467-27-PN",
+      "url": "https://www.usajobs.gov:443/job/888469600",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Outpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13087790-27-MD",
+      "url": "https://www.usajobs.gov:443/job/888442200",
+      "company": "Veterans Health Administration",
+      "title": "Diagnostic Radiologic Technologist -Lead Mammography Technologist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13087790-27-MD",
+      "url": "https://www.usajobs.gov:443/job/888442200",
+      "company": "Veterans Health Administration",
+      "title": "Diagnostic Radiologic Technologist -Lead Mammography Technologist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13087790-27-MD",
+      "url": "https://www.usajobs.gov:443/job/888442200",
+      "company": "Veterans Health Administration",
+      "title": "Diagnostic Radiologic Technologist -Lead Mammography Technologist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13087790-27-MD",
+      "url": "https://www.usajobs.gov:443/job/888442200",
+      "company": "Veterans Health Administration",
+      "title": "Diagnostic Radiologic Technologist -Lead Mammography Technologist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBST-13087902-27-AB",
+      "url": "https://www.usajobs.gov:443/job/888405600",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (CDIS - Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBST-13087902-27-AB",
+      "url": "https://www.usajobs.gov:443/job/888405600",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (CDIS - Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBST-13087902-27-AB",
+      "url": "https://www.usajobs.gov:443/job/888405600",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (CDIS - Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBST-13087902-27-AB",
+      "url": "https://www.usajobs.gov:443/job/888405600",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (CDIS - Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBST-13087902-27-AB",
+      "url": "https://www.usajobs.gov:443/job/888405600",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (CDIS - Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBST-13087902-27-AB",
+      "url": "https://www.usajobs.gov:443/job/888405600",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (CDIS - Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBST-13087902-27-AB",
+      "url": "https://www.usajobs.gov:443/job/888405600",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (CDIS - Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13083806-27-GH",
+      "url": "https://www.usajobs.gov:443/job/888208200",
+      "company": "Veterans Health Administration",
+      "title": "Clinical Pharmacist Practitioner - Patient Aligned Care Team",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "26-8L-FSK-405403",
+      "url": "https://www.usajobs.gov:443/job/887983800",
+      "company": "Air Force Materiel Command",
+      "title": "VISUAL INFORMATION SPECIALIST",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "26-8L-FSK-405400",
+      "url": "https://www.usajobs.gov:443/job/887969000",
+      "company": "Air Force Materiel Command",
+      "title": "SOCIAL MEDIA SPECIALIST",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "26-8L-FSK-405400",
+      "url": "https://www.usajobs.gov:443/job/887969000",
+      "company": "Air Force Materiel Command",
+      "title": "SOCIAL MEDIA SPECIALIST",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBTB-13081911-27-TJ",
+      "url": "https://www.usajobs.gov:443/job/887863200",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBTB-13081911-27-TJ",
+      "url": "https://www.usajobs.gov:443/job/887863200",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBTB-13081911-27-TJ",
+      "url": "https://www.usajobs.gov:443/job/887863200",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBTB-13081911-27-TJ",
+      "url": "https://www.usajobs.gov:443/job/887863200",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBTB-13081911-27-TJ",
+      "url": "https://www.usajobs.gov:443/job/887863200",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBTB-13081911-27-TJ",
+      "url": "https://www.usajobs.gov:443/job/887863200",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBTB-13081911-27-TJ",
+      "url": "https://www.usajobs.gov:443/job/887863200",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13076349-26-CJS",
+      "url": "https://www.usajobs.gov:443/job/887429000",
+      "company": "Veterans Health Administration",
+      "title": "Physician Assistant (Associate Chief of Staff, Primary Care)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13076349-26-CJS",
+      "url": "https://www.usajobs.gov:443/job/887429000",
+      "company": "Veterans Health Administration",
+      "title": "Physician Assistant (Associate Chief of Staff, Primary Care)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13076349-26-CJS",
+      "url": "https://www.usajobs.gov:443/job/887429000",
+      "company": "Veterans Health Administration",
+      "title": "Physician Assistant (Associate Chief of Staff, Primary Care)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13076349-26-CJS",
+      "url": "https://www.usajobs.gov:443/job/887429000",
+      "company": "Veterans Health Administration",
+      "title": "Physician Assistant (Associate Chief of Staff, Primary Care)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13076350-26-AM",
+      "url": "https://www.usajobs.gov:443/job/887439000",
+      "company": "Veterans Health Administration",
+      "title": "Nurse Practitioner - Chief of Staff (Primary Care)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13076350-26-AM",
+      "url": "https://www.usajobs.gov:443/job/887439000",
+      "company": "Veterans Health Administration",
+      "title": "Nurse Practitioner - Chief of Staff (Primary Care)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13076350-26-AM",
+      "url": "https://www.usajobs.gov:443/job/887439000",
+      "company": "Veterans Health Administration",
+      "title": "Nurse Practitioner - Chief of Staff (Primary Care)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13076350-26-AM",
+      "url": "https://www.usajobs.gov:443/job/887439000",
+      "company": "Veterans Health Administration",
+      "title": "Nurse Practitioner - Chief of Staff (Primary Care)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBST-13069382-26-HC",
+      "url": "https://www.usajobs.gov:443/job/887490200",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Outpatient and Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBST-13069382-26-HC",
+      "url": "https://www.usajobs.gov:443/job/887490200",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Outpatient and Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBST-13069382-26-HC",
+      "url": "https://www.usajobs.gov:443/job/887490200",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Outpatient and Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBST-13069382-26-HC",
+      "url": "https://www.usajobs.gov:443/job/887490200",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Outpatient and Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBST-13069382-26-HC",
+      "url": "https://www.usajobs.gov:443/job/887490200",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Outpatient and Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBST-13069382-26-HC",
+      "url": "https://www.usajobs.gov:443/job/887490200",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Outpatient and Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBST-13069382-26-HC",
+      "url": "https://www.usajobs.gov:443/job/887490200",
+      "company": "Veterans Health Administration",
+      "title": "Medical Records Technician (Coder-Outpatient and Inpatient)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "AFMC-221013-13078908-BMR",
+      "url": "https://www.usajobs.gov:443/job/886930900",
+      "company": "Air Force Materiel Command",
+      "title": "INFORMATION SYSTEMS SECURITY MANAGER-ALTERNATE HIRING AUTHORITY",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "AFMC-039102-02-13044884-LL",
+      "url": "https://www.usajobs.gov:443/job/885340100",
+      "company": "Air Force Materiel Command",
+      "title": "Telecommunications Specialist- Direct Hire Authority",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13034739-26-MV",
+      "url": "https://www.usajobs.gov:443/job/880543700",
+      "company": "Veterans Health Administration",
+      "title": "Nursing Assistant",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13034739-26-MV",
+      "url": "https://www.usajobs.gov:443/job/880543700",
+      "company": "Veterans Health Administration",
+      "title": "Nursing Assistant",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13034739-26-MV",
+      "url": "https://www.usajobs.gov:443/job/880543700",
+      "company": "Veterans Health Administration",
+      "title": "Nursing Assistant",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13034739-26-MV",
+      "url": "https://www.usajobs.gov:443/job/880543700",
+      "company": "Veterans Health Administration",
+      "title": "Nursing Assistant",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBSU-13026610-26-MC",
+      "url": "https://www.usajobs.gov:443/job/879220300",
+      "company": "Veterans Health Administration",
+      "title": "Licensed Practical Nurse",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBFF-12968933-26-JMJ-OCA",
+      "url": "https://www.usajobs.gov:443/job/870448900",
+      "company": "Veterans Health Administration",
+      "title": "Social Worker",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBFF-12968933-26-JMJ-OCA",
+      "url": "https://www.usajobs.gov:443/job/870448900",
+      "company": "Veterans Health Administration",
+      "title": "Social Worker",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBFF-12968933-26-JMJ-OCA",
+      "url": "https://www.usajobs.gov:443/job/870448900",
+      "company": "Veterans Health Administration",
+      "title": "Social Worker",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBFF-12968933-26-JMJ-OCA",
+      "url": "https://www.usajobs.gov:443/job/870448900",
+      "company": "Veterans Health Administration",
+      "title": "Social Worker",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBFF-12969189-26-JAA-OCA",
+      "url": "https://www.usajobs.gov:443/job/870448500",
+      "company": "Veterans Health Administration",
+      "title": "Registered Nurse",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBFF-12969189-26-JAA-OCA",
+      "url": "https://www.usajobs.gov:443/job/870448500",
+      "company": "Veterans Health Administration",
+      "title": "Registered Nurse",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBFF-12969189-26-JAA-OCA",
+      "url": "https://www.usajobs.gov:443/job/870448500",
+      "company": "Veterans Health Administration",
+      "title": "Registered Nurse",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBFF-12969189-26-JAA-OCA",
+      "url": "https://www.usajobs.gov:443/job/870448500",
+      "company": "Veterans Health Administration",
+      "title": "Registered Nurse",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBFF-12969573-26-AMC-OCA",
+      "url": "https://www.usajobs.gov:443/job/870448700",
+      "company": "Veterans Health Administration",
+      "title": "Medical Support Assistant",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBFF-12969573-26-AMC-OCA",
+      "url": "https://www.usajobs.gov:443/job/870448700",
+      "company": "Veterans Health Administration",
+      "title": "Medical Support Assistant",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBFF-12969573-26-AMC-OCA",
+      "url": "https://www.usajobs.gov:443/job/870448700",
+      "company": "Veterans Health Administration",
+      "title": "Medical Support Assistant",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "usajobs",
+      "source_job_id": "CBFF-12969573-26-AMC-OCA",
+      "url": "https://www.usajobs.gov:443/job/870448700",
+      "company": "Veterans Health Administration",
+      "title": "Medical Support Assistant",
+      "reason": "outside target role families"
+    }
+  ],
+  "queries_pages": [
+    {
+      "query": "Paid Search Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 5
+    },
+    {
+      "query": "Paid Search Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 13
+    },
+    {
+      "query": "Paid Search Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 16
+    },
+    {
+      "query": "Paid Search Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 5
+    },
+    {
+      "query": "Paid Search Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 16
+    },
+    {
+      "query": "Paid Search Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 5
+    },
+    {
+      "query": "Paid Search Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 5
+    },
+    {
+      "query": "Paid Search Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 16
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Search Specialist",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "PPC Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "PPC Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "PPC Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "PPC Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "PPC Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "PPC Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "PPC Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "PPC Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "SEM Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "SEM Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "SEM Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "SEM Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "SEM Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "SEM Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "SEM Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "SEM Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Performance Marketing Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 2
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Paid Media Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Search Marketing Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Marketing Analytics Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Digital Marketing Analyst",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Growth Marketing Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "E-Commerce Marketing Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Demand Generation Manager",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Senior Paid Search Strategist",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 2
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Digital Marketing",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "remote",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "utah",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 1
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "salt lake city",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "lehi",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "draper",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "provo",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "orem",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    },
+    {
+      "query": "Director of Performance Marketing",
+      "location": "midvale",
+      "page": 1,
+      "page_size": 50,
+      "status": "completed",
+      "parsed": 0
+    }
+  ],
+  "board_errors": [],
+  "errors": "",
+  "health": {
+    "status": "success",
+    "found": 86,
+    "detail": ""
+  }
+}

@@ -35,10 +35,11 @@ class TrackerSchemaReportTests(unittest.TestCase):
     def test_reordered_headers_and_documented_aliases(self):
         moved = list(reversed(CURRENT_SCOUT_HEADERS))
         moved[moved.index("ID")] = "Scout ID"
-        moved[moved.index("Status")] = "Gecko Status"
-        fields = resolve_headers(moved, required=("Scout ID", "Gecko Status", "Resume Link"))
+        fields = resolve_headers(moved, required=("Scout ID", "Apply?", "Resume Link"))
         self.assertEqual(fields["Resume Link"], moved.index("Resume Link") + 1)
         self.assertEqual(fields["Scout ID"], moved.index("Scout ID") + 1)
+        self.assertEqual(fields["Apply?"], moved.index("Apply?") + 1)
+        self.assertNotIn("Status", fields)
 
     def test_unapproved_rename_missing_and_duplicate_alias_fail(self):
         with self.assertRaisesRegex(RuntimeError, "missing required"):

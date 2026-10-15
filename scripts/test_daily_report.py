@@ -3,6 +3,7 @@ from __future__ import annotations
 from contextlib import redirect_stdout
 from datetime import datetime
 from io import StringIO
+import json
 from pathlib import Path
 import re
 import sys
@@ -30,11 +31,14 @@ class FakeSheets:
         self.writes=[]
         self.formats=[]
         self.fail_partial=False
+        self.fail_dashboard_after_commit=False
         self.fail_history_after_commit=False
         self.fail_history_before_commit=False
+        self.fail_append_after_commit=False
         self.width=46
+        self.row_count=1000
     def _sheet_properties(self):
-        return [{'title':n,'sheetId':i+10,'gridProperties':{'rowCount':1000,'columnCount':self.width}}
+        return [{'title':n,'sheetId':i+10,'gridProperties':{'rowCount':self.row_count,'columnCount':self.width}}
                 for i,n in enumerate(self.data)]
     def values(self): return self
     def _set(self, range_, rows):
@@ -60,7 +64,14 @@ class FakeSheets:
                                          for p in self._sheet_properties()]})
         title=kwargs['range'].split('!')[0].strip("'")
         return Call(lambda:{'values':[list(row) for row in self.data[title]]})
-    def update(self,**kwargs): return Call(lambda:self._set(kwargs['range'],kwargs['body']['values']) or {})
+    def update(self,**kwargs):
+        def apply():
+            self._set(kwargs['range'],kwargs['body']['values'])
+            if self.fail_dashboard_after_commit:
+                self.fail_dashboard_after_commit=False
+                raise OSError('simulated lost dashboard response after commit')
+            return {}
+        return Call(apply)
     def batchUpdate(self,**kwargs):
         def apply():
             if 'requests' in kwargs['body']:
@@ -68,6 +79,13 @@ class FakeSheets:
                     self.fail_history_before_commit=False
                     raise OSError('simulated history request failure before commit')
                 for request in kwargs['body']['requests']:
+                    if 'addSheet' in request:
+                        self.data[request['addSheet']['properties']['title']]=[]
+                    if 'appendDimension' in request:
+                        self.row_count+=request['appendDimension']['length']
+                        if self.fail_append_after_commit:
+                            self.fail_append_after_commit=False
+                            raise OSError('simulated lost row expansion response')
                     if 'insertDimension' in request:
                         target=request['insertDimension']['range']
                         name=next(p['title'] for p in self._sheet_properties()
@@ -128,10 +146,12 @@ class DailyReportTests(unittest.TestCase):
         rows=fake.data['Daily Tasks']
         self.assertEqual(rows[0][0],'DAILY TASKS')
         self.assertEqual(rows[2][0],TITLE)
+        self.assertEqual(rows[8][4:6],['Existing Tracker Jobs by Source','Jobs in Tracker'])
         self.assertIn(['Job Scout Actual Before',1441], [row[:2] for row in rows])
         self.assertIn(['Indeed Rows Evaluated',138], [row[:2] for row in rows])
         self.assertIn(['Existing Tracker Jobs by Source','Jobs in Tracker'],[row[4:6] for row in rows])
         self.assertIn(['Jooble',396],[row[4:6] for row in rows])
+        self.assertEqual(_parse(rows)[0]['2026-10-10']['Run ID'],'one')
         self.assertTrue(fake.formats)
         self.assertTrue(all(request['repeatCell']['range']['endColumnIndex']<=6
                             for request in fake.formats if 'repeatCell' in request))
@@ -155,8 +175,9 @@ class DailyReportTests(unittest.TestCase):
         report.write_report(tracker(fake),fields('one',sources={'A':5,'B':4,'C':3,'D':2,'E':1,
             'F':1,'G':1,'H':1,'I':1,'J':1,'K':1,'L':1,'M':1,'N':1,'O':1,'P':1}))
         rows=fake.data['Daily Tasks']
-        self.assertLess(next(i for i,r in enumerate(rows) if r[4]=='P'),
-                        next(i for i,r in enumerate(rows) if r[0]=='TRACKER CHANGES'))
+        self.assertEqual(rows[8][4:6],['Existing Tracker Jobs by Source','Jobs in Tracker'])
+        self.assertEqual(rows[24][4:6],['P',1])
+        self.assertEqual(rows[24][0],'TRACKER CHANGES')
         self.assertIn('DELETED JOBS PROTECTION',[r[0] for r in rows])
         report.write_report(tracker(fake),fields('two','2026-10-11',{'A':1}))
         self.assertEqual(len(_parse(fake.data['Daily Tasks'])[0]),2)
@@ -237,14 +258,117 @@ class DailyReportTests(unittest.TestCase):
         fake.fail_history_after_commit=True
         with TemporaryDirectory() as folder, patch.object(report,'snapshot',return_value=state),\
              patch.object(report,'add_canonical_queue'), patch.object(report,'annotate_formula_protection'):
-            failed,_=report.run(tracker(fake),'same-id','2026-10-11',Path(folder))
-            self.assertEqual(failed['overall_status'],'FAIL')
+            first,_=report.run(tracker(fake),'same-id','2026-10-11',Path(folder))
+            self.assertEqual(first['overall_status'],'WARNING',first['errors'])
             self.assertEqual(sum(row[:1]==['Run ID'] for row in fake.data['Daily Run']),1)
             retried,row=report.run(tracker(fake),'same-id','2026-10-11',Path(folder))
             self.assertEqual(retried['overall_status'],'WARNING',retried['errors'])
             self.assertEqual(row,3)
             self.assertEqual(retried['daily_run_rows_inserted'],0)
             self.assertEqual(sum(row[:1]==['Run ID'] for row in fake.data['Daily Run']),1)
+    def test_dashboard_header_only_and_lost_response(self):
+        fake=FakeSheets()
+        fake.data['Daily Tasks']=[['DAILY TASKS']]
+        fake.fail_dashboard_after_commit=True
+        with TemporaryDirectory() as folder:
+            pending=Path(folder)/'pending.json'
+            row,dates,_,_=report.write_report(tracker(fake),fields('same-id'),pending_path=pending)
+            self.assertEqual(row,3)
+            self.assertEqual(dates,['2026-10-10'])
+            self.assertFalse(pending.exists())
+            self.assertEqual(_parse(fake.data['Daily Tasks'])[0]['2026-10-10']['Run ID'],'same-id')
+    def test_deleted_physical_rows_are_rebuilt_after_lost_expand_response(self):
+        fake=FakeSheets()
+        fake.data['Daily Tasks']=[]
+        fake.row_count=1
+        fake.fail_append_after_commit=True
+        row,dates,_,_=report.write_report(tracker(fake),fields('same-id'))
+        self.assertEqual(row,3)
+        self.assertGreater(fake.row_count,1)
+        self.assertEqual(_parse(fake.data['Daily Tasks'])[0]['2026-10-10']['Run ID'],'same-id')
+    def test_existing_daily_run_can_rebuild_deleted_dashboard_rows(self):
+        fake=FakeSheets()
+        state=tab_fixture()
+        with TemporaryDirectory() as folder, patch.object(report,'snapshot',return_value=state),\
+             patch.object(report,'add_canonical_queue'), patch.object(report,'annotate_formula_protection'):
+            first,_=report.run(tracker(fake),'same-id','2026-10-11',Path(folder))
+            self.assertEqual(first['overall_status'],'WARNING',first['errors'])
+            history=[list(row) for row in fake.data['Daily Run']]
+            fake.data['Daily Tasks']=[['DAILY TASKS']]
+            retry,row=report.run(tracker(fake),'same-id','2026-10-11',Path(folder))
+            self.assertEqual(retry['overall_status'],'WARNING',retry['errors'])
+            self.assertEqual(row,3)
+            self.assertEqual(retry['daily_run_rows_inserted'],0)
+            self.assertEqual(fake.data['Daily Run'],history)
+            self.assertEqual(_parse(fake.data['Daily Tasks'])[0]['2026-10-11']['Run ID'],'same-id')
+    def test_missing_daily_run_preflight_preserves_daily_tasks(self):
+        fake=FakeSheets()
+        fake.data['Daily Tasks']=[['DAILY TASKS']]
+        del fake.data['Daily Run']
+        state=tab_fixture()
+        with TemporaryDirectory() as folder, patch.object(report,'snapshot',return_value=state),\
+             patch.object(report,'add_canonical_queue'), patch.object(report,'annotate_formula_protection'):
+            result,row=report.run(tracker(fake),'missing-run','2026-10-11',Path(folder))
+        self.assertEqual(result['overall_status'],'FAIL')
+        self.assertIsNone(row)
+        self.assertEqual(fake.data['Daily Tasks'],[['DAILY TASKS']])
+        self.assertFalse(fake.writes)
+        self.assertIn('Daily Run tab was not found',result['errors'][0])
+    def test_reconcile_failed_audit_restores_history_and_is_idempotent(self):
+        from reconcile_daily_report import reconcile
+        fake=FakeSheets()
+        state=tab_fixture()
+        with TemporaryDirectory() as folder, patch.object(report,'snapshot',return_value=state),\
+             patch.object(report,'add_canonical_queue'), patch.object(report,'annotate_formula_protection'):
+            root=Path(folder)
+            prior,_=report.run(tracker(fake),'prior','2026-10-10',root)
+            self.assertEqual(prior['overall_status'],'WARNING')
+            fake.data['Daily Tasks']=[['DAILY TASKS']]
+            del fake.data['Daily Run']
+            failed,_=report.run(tracker(fake),'failed','2026-10-11',root)
+            self.assertEqual(failed['overall_status'],'FAIL')
+            target=root/'2026-10-11'/'failed.json'
+            historical=root/'2026-10-10'/'prior.json'
+            fixed=reconcile(tracker(fake),target,restore_missing_daily_run=True,
+                            historical_audit=historical)
+            self.assertEqual(fixed['overall_status'],'WARNING',fixed['errors'])
+            self.assertEqual(fixed['restored_historical_dates'],['2026-10-10'])
+            self.assertEqual(list(_parse(fake.data['Daily Tasks'])[0]),['2026-10-11','2026-10-10'])
+            self.assertEqual(sum(row[:1]==['Run ID'] for row in fake.data['Daily Run']),1)
+            again=reconcile(tracker(fake),target,restore_missing_daily_run=True,
+                            historical_audit=historical)
+            self.assertEqual(again['overall_status'],'WARNING',again['errors'])
+            self.assertEqual(again['tab_results']['Daily Run']['state'],'already present and verified')
+            self.assertEqual(sum(row[:1]==['Run ID'] for row in fake.data['Daily Run']),1)
+            self.assertEqual(json.loads(target.read_text())['overall_status'],'FAIL')
+    def test_restore_tasks_after_deleted_rows_preserves_existing_daily_run(self):
+        from reconcile_daily_report import restore_tasks
+        fake=FakeSheets()
+        state=tab_fixture()
+        with TemporaryDirectory() as folder, patch.object(report,'snapshot',return_value=state),\
+             patch.object(report,'add_canonical_queue'), patch.object(report,'annotate_formula_protection'):
+            root=Path(folder)
+            prior,_=report.run(tracker(fake),'prior','2026-10-10',root)
+            current,_=report.run(tracker(fake),'current','2026-10-11',root)
+            self.assertEqual(prior['overall_status'],'WARNING')
+            self.assertEqual(current['overall_status'],'WARNING')
+            history=[list(row) for row in fake.data['Daily Run']]
+            fake.data['Daily Tasks']=[]
+            fake.row_count=1
+            fake.fail_dashboard_after_commit=True
+            target=root/'2026-10-11'/'current.json'
+            historical=root/'2026-10-10'/'prior.json'
+            restored=restore_tasks(tracker(fake),target,historical_audit=historical)
+            self.assertEqual(restored['status'],'VERIFIED',restored['errors'])
+            self.assertEqual(restored['action'],'restored')
+            self.assertEqual(list(_parse(fake.data['Daily Tasks'])[0]),['2026-10-11','2026-10-10'])
+            self.assertEqual(fake.data['Daily Run'],history)
+            writes=len(fake.writes)
+            again=restore_tasks(tracker(fake),target,historical_audit=historical)
+            self.assertEqual(again['status'],'VERIFIED',again['errors'])
+            self.assertEqual(again['action'],'already populated and verified')
+            self.assertEqual(len(fake.writes),writes)
+            self.assertEqual(fake.data['Daily Run'],history)
     def test_failed_cli_does_not_claim_daily_run_already_recorded(self):
         output=StringIO()
         failure={'overall_status':'FAIL','sheet_updated':False,'metrics':{},

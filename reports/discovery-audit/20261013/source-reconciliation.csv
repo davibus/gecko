@@ -1,0 +1,19 @@
+duplicates within source,eligible new unique,enabled,evidence,excluded employment type,excluded title/seniority,generic non-marketing manager/production role,missing title,new unique,non-marketing data science,non-remote role outside preferred locations,outside target role families,previously known in live tracker,previously rejected,queries,raw_parsed,reconciled,source,source_errors,status,subset: cross-source previously known,tracker_written,unrelated role family
+48,10,True,reports\discovery-audit\20261013\retry\adzuna.json,2,2,1,,11,,16,74,33,3,32,200,True,adzuna,0,success,,0,10
+,,True,reports\discovery-audit\20261013\remotive.json,,,,,,,,2,,1,1,3,True,remotive,0,success,,0,
+,,True,reports\discovery-audit\20261013\web-careers.json,,,,,,,,,,,32,0,True,web-careers,32,failure,,0,
+,,True,reports\discovery-audit\20261013\jobicy.json,,1,,,,,,64,20,,1,123,True,jobicy,0,success,,0,38
+,,True,reports\discovery-audit\20261013\remoteok.json,,,1,,,,,78,1,,1,99,True,remoteok,0,success,,0,19
+64,,True,reports\discovery-audit\20261013\retry\usajobs.json,,,1,,,,,21,,,128,86,True,usajobs,0,success,,0,
+,1,True,reports\discovery-audit\20261013\retry\greenhouse.json,,40,131,,1,54,130,4843,201,,1,6992,True,greenhouse,2,partial failure,,0,1592
+,,True,reports\discovery-audit\20261013\retry\lever.json,15,12,34,,,10,49,2338,109,,2,3070,True,lever,2,partial failure,,0,503
+,114,True,reports\discovery-audit\20261013\retry\ashby.json,1,5,51,,114,32,32,2072,46,,2,3062,True,ashby,2,partial failure,2,0,709
+2303,,True,reports\discovery-audit\20261013\retry\workable.json,16,2,36,1,,5,,2426,137,1,1,5464,True,workable,0,success,,0,537
+,,True,reports\discovery-audit\20261013\retry\weworkremotely.json,3,,,,,,,35,18,,1,110,True,weworkremotely,0,success,2,0,54
+,,True,reports\discovery-audit\20261013\retry\workingnomads.json,,,,,,1,,35,,,1,51,True,workingnomads,0,success,,0,15
+,,True,reports\discovery-audit\20261013\themuse.json,,,,,,,,,,,0,0,True,themuse,0,missing credentials / no employers,,0,
+,,True,reports\discovery-audit\20261013\indeed.json,,,,,,,,,,,1,0,True,indeed,1,failure,,0,
+,,True,reports\discovery-audit\20261013\linkedin.json,,,,,,,,,,,1,0,True,linkedin,1,failure,,0,
+,,True,reports\discovery-audit\20261013\glassdoor.json,,,,,,,,,,,2,0,True,glassdoor,2,failure,,0,
+,,True,reports\discovery-audit\20261013\ziprecruiter.json,,,,,,,,,,,1,0,True,ziprecruiter,1,failure,,0,
+,,False,,,,,,,,,,,,0,0,,jooble,,"intentionally disabled, not executed",,0,

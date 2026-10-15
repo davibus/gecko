@@ -1,0 +1,22 @@
+{
+  "source": "linkedin",
+  "configured": true,
+  "queries": [
+    {
+      "query": "digital marketing",
+      "location": "Utah",
+      "page": 1,
+      "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Alinkedin.com%2Fjobs%2Fview+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required"
+    }
+  ],
+  "errors": [
+    "Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Alinkedin.com%2Fjobs%2Fview+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required"
+  ],
+  "tracker_written": 0,
+  "raw": [],
+  "status": "error",
+  "board_errors": [],
+  "detail_errors": [],
+  "feed_results": [],
+  "observed_date_windows": {}
+}

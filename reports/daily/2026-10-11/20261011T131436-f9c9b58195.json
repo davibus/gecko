@@ -1,0 +1,5390 @@
+{
+  "run_id": "20261011T131436-f9c9b58195",
+  "run_date": "2026-10-11",
+  "started_at": "2026-10-11T13:14:40.832848-06:00",
+  "mode": "daily-tasks refresh",
+  "configuration": {
+    "scout_tab": "Job List",
+    "spreadsheet_id_tail": "zq8t8I",
+    "enabled_sources": [
+      "adzuna",
+      "ashby",
+      "glassdoor",
+      "greenhouse",
+      "indeed",
+      "jobicy",
+      "lever",
+      "linkedin",
+      "remoteok",
+      "remotive",
+      "themuse",
+      "usajobs",
+      "web-careers",
+      "weworkremotely",
+      "workable",
+      "workingnomads",
+      "ziprecruiter"
+    ]
+  },
+  "metrics": {
+    "tabs": {
+      "Job List": {
+        "actual_before": 846,
+        "actual_after": 846,
+        "projected_after": null,
+        "would_add": null,
+        "would_update": null,
+        "would_move": null,
+        "would_exclude": null,
+        "unchanged": null
+      },
+      "Rejected Jobs": {
+        "actual_before": 30,
+        "actual_after": 30,
+        "projected_after": null,
+        "would_add": null,
+        "would_update": null,
+        "would_move": null,
+        "would_exclude": null,
+        "unchanged": null
+      },
+      "Deleted Jobs": {
+        "actual_before": 0,
+        "actual_after": 0,
+        "projected_after": null,
+        "would_add": null,
+        "would_update": null,
+        "would_move": null,
+        "would_exclude": null,
+        "unchanged": null
+      },
+      "Scratch": {
+        "actual_before": 0,
+        "actual_after": 0,
+        "projected_after": null,
+        "would_add": null,
+        "would_update": null,
+        "would_move": null,
+        "would_exclude": null,
+        "unchanged": null
+      },
+      "Cursor Instructions": {
+        "actual_before": 0,
+        "actual_after": 0,
+        "projected_after": null,
+        "would_add": null,
+        "would_update": null,
+        "would_move": null,
+        "would_exclude": null,
+        "unchanged": null
+      }
+    },
+    "jobs_by_source_in_ledger": {
+      "(blank)": 20,
+      "adzuna": 54,
+      "ashby": 85,
+      "greenhouse": 280,
+      "jobicy": 35,
+      "lever": 154,
+      "linkedin": 3,
+      "remoteok": 1,
+      "remotive": 12,
+      "web-careers": 39,
+      "weworkremotely": 22,
+      "workable": 141
+    },
+    "discovery": {
+      "job_scout_found": null,
+      "indeed_found": null,
+      "total_found": null,
+      "new_unique_jobs": null,
+      "existing_jobs": null,
+      "duplicate_discoveries": null,
+      "cross_source_duplicates": null,
+      "qualified_jobs": null,
+      "rejected_jobs": null,
+      "rediscovered_deleted_jobs": null
+    },
+    "resume": {
+      "blank": 844,
+      "marked_x": 2,
+      "existing": 2,
+      "x_missing_or_invalid_link": 0,
+      "manual_review": 0,
+      "valid_local": 2,
+      "duplicate_prevented": 2,
+      "needed": 0,
+      "canonical_blockers": {
+        "cost_x": 0,
+        "rejected": 0,
+        "missing_identity": 0,
+        "duplicates": 0,
+        "not_approved": 844
+      }
+    },
+    "application": {
+      "already_applied": 0,
+      "excluded_apply": 844,
+      "qualified_active": 2,
+      "ready_to_apply": 2,
+      "started_incomplete": null,
+      "awaiting_final_user_review": null,
+      "new_employer_responses": null,
+      "blocked_by_errors": null,
+      "waiting_resume": 0
+    },
+    "indeed": {
+      "rows_evaluated": 0,
+      "blank_before": 0,
+      "blank_projected_after": 0,
+      "projected_after": null,
+      "status_breakdown": {},
+      "expired_from_existing_text": 0,
+      "blank_actual_after": 0,
+      "projected_status_updates": 0,
+      "verified_live_page_status_updates": null,
+      "actual_after": 0
+    },
+    "deleted": {
+      "current": 0,
+      "duplicate_entries": 0,
+      "active_conflicts": 0,
+      "proposed_moves": [],
+      "rediscovered": null
+    },
+    "proposed_actions": {
+      "additions": [],
+      "updates": [],
+      "moves": [],
+      "resume_decisions": [
+        {
+          "row": 2,
+          "job_id": "2222",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 3,
+          "job_id": "2223",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 4,
+          "job_id": "2224",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 5,
+          "job_id": "2225",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 6,
+          "job_id": "2226",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 7,
+          "job_id": "2227",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 8,
+          "job_id": "2228",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 9,
+          "job_id": "2229",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 10,
+          "job_id": "2230",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 11,
+          "job_id": "2231",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 12,
+          "job_id": "2232",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 13,
+          "job_id": "2233",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 14,
+          "job_id": "2234",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 15,
+          "job_id": "2235",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 16,
+          "job_id": "2236",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 17,
+          "job_id": "2237",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 18,
+          "job_id": "2238",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 19,
+          "job_id": "2239",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 20,
+          "job_id": "2240",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 21,
+          "job_id": "2241",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 22,
+          "job_id": "2242",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 23,
+          "job_id": "2243",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 24,
+          "job_id": "2244",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 25,
+          "job_id": "2245",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 26,
+          "job_id": "2246",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 27,
+          "job_id": "2247",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 28,
+          "job_id": "2248",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 29,
+          "job_id": "2249",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 30,
+          "job_id": "2250",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 31,
+          "job_id": "2251",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 32,
+          "job_id": "2252",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 33,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 34,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 35,
+          "job_id": "2255",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 36,
+          "job_id": "4",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 37,
+          "job_id": "7",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 38,
+          "job_id": "11",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 39,
+          "job_id": "12",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 40,
+          "job_id": "13",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 41,
+          "job_id": "17",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 42,
+          "job_id": "22",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 43,
+          "job_id": "24",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 44,
+          "job_id": "32",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 45,
+          "job_id": "36",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 46,
+          "job_id": "39",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 47,
+          "job_id": "40",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 48,
+          "job_id": "47",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 49,
+          "job_id": "50",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 50,
+          "job_id": "57",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 51,
+          "job_id": "58",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 52,
+          "job_id": "59",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 53,
+          "job_id": "398",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 54,
+          "job_id": "467",
+          "source": "remotive",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 55,
+          "job_id": "469",
+          "source": "remotive",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 56,
+          "job_id": "470",
+          "source": "remotive",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 57,
+          "job_id": "472",
+          "source": "remotive",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 58,
+          "job_id": "473",
+          "source": "remotive",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 59,
+          "job_id": "474",
+          "source": "remotive",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 60,
+          "job_id": "475",
+          "source": "remotive",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 61,
+          "job_id": "476",
+          "source": "remotive",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 62,
+          "job_id": "477",
+          "source": "remotive",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 63,
+          "job_id": "478",
+          "source": "remotive",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 64,
+          "job_id": "480",
+          "source": "remotive",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 65,
+          "job_id": "484",
+          "source": "remotive",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 66,
+          "job_id": "558",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 67,
+          "job_id": "559",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 68,
+          "job_id": "560",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 69,
+          "job_id": "563",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 70,
+          "job_id": "564",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 71,
+          "job_id": "567",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 72,
+          "job_id": "568",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 73,
+          "job_id": "688",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 74,
+          "job_id": "689",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 75,
+          "job_id": "692",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 76,
+          "job_id": "693",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 77,
+          "job_id": "694",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 78,
+          "job_id": "696",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 79,
+          "job_id": "697",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 80,
+          "job_id": "698",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 81,
+          "job_id": "699",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 82,
+          "job_id": "702",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 83,
+          "job_id": "703",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 84,
+          "job_id": "704",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 85,
+          "job_id": "707",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 86,
+          "job_id": "708",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 87,
+          "job_id": "709",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 88,
+          "job_id": "710",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 89,
+          "job_id": "711",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 90,
+          "job_id": "712",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 91,
+          "job_id": "713",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 92,
+          "job_id": "714",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 93,
+          "job_id": "716",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 94,
+          "job_id": "718",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 95,
+          "job_id": "720",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 96,
+          "job_id": "721",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 97,
+          "job_id": "722",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 98,
+          "job_id": "725",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 99,
+          "job_id": "726",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 100,
+          "job_id": "847",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 101,
+          "job_id": "967",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 102,
+          "job_id": "1020",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 103,
+          "job_id": "1021",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 104,
+          "job_id": "1167",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 105,
+          "job_id": "1168",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 106,
+          "job_id": "1169",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 107,
+          "job_id": "1170",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 108,
+          "job_id": "1177",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 109,
+          "job_id": "1182",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 110,
+          "job_id": "1185",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 111,
+          "job_id": "1186",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 112,
+          "job_id": "1192",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 113,
+          "job_id": "1194",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 114,
+          "job_id": "1196",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 115,
+          "job_id": "1197",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 116,
+          "job_id": "1200",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 117,
+          "job_id": "1201",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 118,
+          "job_id": "1202",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 119,
+          "job_id": "1203",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 120,
+          "job_id": "1205",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 121,
+          "job_id": "1206",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 122,
+          "job_id": "1210",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 123,
+          "job_id": "1211",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 124,
+          "job_id": "1212",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 125,
+          "job_id": "1214",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 126,
+          "job_id": "1215",
+          "source": "remoteok",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 127,
+          "job_id": "1216",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 128,
+          "job_id": "1217",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 129,
+          "job_id": "1218",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 130,
+          "job_id": "1219",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 131,
+          "job_id": "1222",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 132,
+          "job_id": "1223",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 133,
+          "job_id": "1227",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 134,
+          "job_id": "1229",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 135,
+          "job_id": "1230",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 136,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 137,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 138,
+          "job_id": "1233",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 139,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 140,
+          "job_id": "1235",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 141,
+          "job_id": "1236",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 142,
+          "job_id": "1237",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 143,
+          "job_id": "1238",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 144,
+          "job_id": "1239",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 145,
+          "job_id": "1240",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 146,
+          "job_id": "1241",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 147,
+          "job_id": "1244",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 148,
+          "job_id": "1245",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 149,
+          "job_id": "1246",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 150,
+          "job_id": "1247",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 151,
+          "job_id": "1248",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 152,
+          "job_id": "1250",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 153,
+          "job_id": "1252",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 154,
+          "job_id": "1254",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 155,
+          "job_id": "1256",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 156,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 157,
+          "job_id": "1258",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 158,
+          "job_id": "1259",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 159,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 160,
+          "job_id": "1261",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 161,
+          "job_id": "1262",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 162,
+          "job_id": "1263",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 163,
+          "job_id": "1265",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 164,
+          "job_id": "1266",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 165,
+          "job_id": "1267",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 166,
+          "job_id": "1268",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 167,
+          "job_id": "1269",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 168,
+          "job_id": "1272",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 169,
+          "job_id": "1275",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 170,
+          "job_id": "1276",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 171,
+          "job_id": "1277",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 172,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 173,
+          "job_id": "1280",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 174,
+          "job_id": "1281",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 175,
+          "job_id": "1282",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 176,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 177,
+          "job_id": "1285",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 178,
+          "job_id": "1286",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 179,
+          "job_id": "1287",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 180,
+          "job_id": "1292",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 181,
+          "job_id": "1293",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 182,
+          "job_id": "1294",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 183,
+          "job_id": "1295",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 184,
+          "job_id": "1296",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 185,
+          "job_id": "1297",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 186,
+          "job_id": "1298",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 187,
+          "job_id": "1299",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 188,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 189,
+          "job_id": "1301",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 190,
+          "job_id": "1302",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 191,
+          "job_id": "1303",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 192,
+          "job_id": "1304",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 193,
+          "job_id": "1305",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 194,
+          "job_id": "1306",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 195,
+          "job_id": "1307",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 196,
+          "job_id": "1308",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 197,
+          "job_id": "1309",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 198,
+          "job_id": "1310",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 199,
+          "job_id": "1311",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 200,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 201,
+          "job_id": "1313",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 202,
+          "job_id": "1314",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 203,
+          "job_id": "1315",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 204,
+          "job_id": "1316",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 205,
+          "job_id": "1318",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 206,
+          "job_id": "1320",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 207,
+          "job_id": "1321",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 208,
+          "job_id": "1323",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 209,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 210,
+          "job_id": "1325",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 211,
+          "job_id": "1326",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 212,
+          "job_id": "1327",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 213,
+          "job_id": "1330",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 214,
+          "job_id": "1333",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 215,
+          "job_id": "1334",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 216,
+          "job_id": "1336",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 217,
+          "job_id": "1338",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 218,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 219,
+          "job_id": "1344",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 220,
+          "job_id": "1345",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 221,
+          "job_id": "1346",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 222,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 223,
+          "job_id": "1348",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 224,
+          "job_id": "1349",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 225,
+          "job_id": "1350",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 226,
+          "job_id": "1351",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 227,
+          "job_id": "1353",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 228,
+          "job_id": "1355",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 229,
+          "job_id": "1356",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 230,
+          "job_id": "1357",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 231,
+          "job_id": "1358",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 232,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 233,
+          "job_id": "1360",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 234,
+          "job_id": "1362",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 235,
+          "job_id": "1363",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 236,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 237,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 238,
+          "job_id": "1376",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 239,
+          "job_id": "1378",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 240,
+          "job_id": "1379",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 241,
+          "job_id": "1380",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 242,
+          "job_id": "1381",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 243,
+          "job_id": "1383",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 244,
+          "job_id": "1384",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 245,
+          "job_id": "1387",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 246,
+          "job_id": "1391",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 247,
+          "job_id": "1392",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 248,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 249,
+          "job_id": "1396",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 250,
+          "job_id": "1399",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 251,
+          "job_id": "1400",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 252,
+          "job_id": "1402",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 253,
+          "job_id": "1403",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 254,
+          "job_id": "1404",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 255,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 256,
+          "job_id": "1407",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 257,
+          "job_id": "1408",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 258,
+          "job_id": "1411",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 259,
+          "job_id": "1412",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 260,
+          "job_id": "1413",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 261,
+          "job_id": "1415",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 262,
+          "job_id": "1418",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 263,
+          "job_id": "1431",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 264,
+          "job_id": "1441",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 265,
+          "job_id": "1447",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 266,
+          "job_id": "1448",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 267,
+          "job_id": "1472",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 268,
+          "job_id": "1477",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 269,
+          "job_id": "1478",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 270,
+          "job_id": "1480",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 271,
+          "job_id": "1490",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 272,
+          "job_id": "1495",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 273,
+          "job_id": "1499",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 274,
+          "job_id": "1500",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 275,
+          "job_id": "1501",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 276,
+          "job_id": "1503",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 277,
+          "job_id": "",
+          "source": "",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 278,
+          "job_id": "1506",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 279,
+          "job_id": "1507",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 280,
+          "job_id": "1508",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 281,
+          "job_id": "1509",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 282,
+          "job_id": "1512",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 283,
+          "job_id": "1514",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 284,
+          "job_id": "1515",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 285,
+          "job_id": "1516",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 286,
+          "job_id": "1517",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 287,
+          "job_id": "1518",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 288,
+          "job_id": "1519",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 289,
+          "job_id": "1520",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 290,
+          "job_id": "1521",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 291,
+          "job_id": "1524",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 292,
+          "job_id": "1582",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 293,
+          "job_id": "1583",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 294,
+          "job_id": "1585",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 295,
+          "job_id": "1586",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 296,
+          "job_id": "1589",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 297,
+          "job_id": "1594",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 298,
+          "job_id": "1596",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 299,
+          "job_id": "1597",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 300,
+          "job_id": "1598",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 301,
+          "job_id": "1603",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 302,
+          "job_id": "1617",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 303,
+          "job_id": "1618",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 304,
+          "job_id": "1619",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 305,
+          "job_id": "1620",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 306,
+          "job_id": "1621",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 307,
+          "job_id": "1624",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 308,
+          "job_id": "1626",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 309,
+          "job_id": "1627",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 310,
+          "job_id": "1628",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 311,
+          "job_id": "1629",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 312,
+          "job_id": "1631",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 313,
+          "job_id": "1632",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 314,
+          "job_id": "1633",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 315,
+          "job_id": "1634",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 316,
+          "job_id": "1635",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 317,
+          "job_id": "1636",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 318,
+          "job_id": "1637",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 319,
+          "job_id": "1638",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 320,
+          "job_id": "1639",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 321,
+          "job_id": "1640",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 322,
+          "job_id": "1641",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 323,
+          "job_id": "1644",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 324,
+          "job_id": "1647",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 325,
+          "job_id": "1649",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 326,
+          "job_id": "1651",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 327,
+          "job_id": "1652",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 328,
+          "job_id": "1653",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 329,
+          "job_id": "1654",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 330,
+          "job_id": "1657",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 331,
+          "job_id": "1658",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 332,
+          "job_id": "1659",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 333,
+          "job_id": "1660",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 334,
+          "job_id": "1661",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 335,
+          "job_id": "1662",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 336,
+          "job_id": "1663",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 337,
+          "job_id": "1664",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 338,
+          "job_id": "1667",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 339,
+          "job_id": "1669",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 340,
+          "job_id": "1671",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 341,
+          "job_id": "1672",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 342,
+          "job_id": "1673",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 343,
+          "job_id": "1675",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 344,
+          "job_id": "1676",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 345,
+          "job_id": "1677",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 346,
+          "job_id": "1678",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 347,
+          "job_id": "1679",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 348,
+          "job_id": "1680",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 349,
+          "job_id": "1681",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 350,
+          "job_id": "1682",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 351,
+          "job_id": "1683",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 352,
+          "job_id": "1685",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 353,
+          "job_id": "1686",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 354,
+          "job_id": "1687",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 355,
+          "job_id": "1688",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 356,
+          "job_id": "1689",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 357,
+          "job_id": "1690",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 358,
+          "job_id": "1691",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 359,
+          "job_id": "1692",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 360,
+          "job_id": "1693",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 361,
+          "job_id": "1694",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 362,
+          "job_id": "1695",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 363,
+          "job_id": "1696",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 364,
+          "job_id": "1698",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 365,
+          "job_id": "1700",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 366,
+          "job_id": "1701",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 367,
+          "job_id": "1703",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 368,
+          "job_id": "1704",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 369,
+          "job_id": "1705",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 370,
+          "job_id": "1706",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 371,
+          "job_id": "1707",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 372,
+          "job_id": "1708",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 373,
+          "job_id": "1710",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 374,
+          "job_id": "1711",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 375,
+          "job_id": "1712",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 376,
+          "job_id": "1714",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 377,
+          "job_id": "1715",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 378,
+          "job_id": "1716",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 379,
+          "job_id": "1717",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 380,
+          "job_id": "1720",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 381,
+          "job_id": "1721",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 382,
+          "job_id": "1722",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 383,
+          "job_id": "1723",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 384,
+          "job_id": "1724",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 385,
+          "job_id": "1725",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 386,
+          "job_id": "1726",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 387,
+          "job_id": "1727",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 388,
+          "job_id": "1728",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 389,
+          "job_id": "1729",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 390,
+          "job_id": "1730",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 391,
+          "job_id": "1731",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 392,
+          "job_id": "1732",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 393,
+          "job_id": "1739",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 394,
+          "job_id": "1745",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 395,
+          "job_id": "1746",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 396,
+          "job_id": "1747",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 397,
+          "job_id": "1748",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 398,
+          "job_id": "1750",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 399,
+          "job_id": "1751",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 400,
+          "job_id": "1754",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 401,
+          "job_id": "1755",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 402,
+          "job_id": "1756",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 403,
+          "job_id": "1757",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 404,
+          "job_id": "1758",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 405,
+          "job_id": "1759",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 406,
+          "job_id": "1761",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 407,
+          "job_id": "1774",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 408,
+          "job_id": "1775",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 409,
+          "job_id": "1777",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 410,
+          "job_id": "1787",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 411,
+          "job_id": "1789",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 412,
+          "job_id": "1793",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 413,
+          "job_id": "1794",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 414,
+          "job_id": "1797",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 415,
+          "job_id": "1798",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 416,
+          "job_id": "1799",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 417,
+          "job_id": "1800",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 418,
+          "job_id": "1801",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 419,
+          "job_id": "1802",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 420,
+          "job_id": "1803",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 421,
+          "job_id": "1804",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 422,
+          "job_id": "1806",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 423,
+          "job_id": "1807",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 424,
+          "job_id": "1808",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 425,
+          "job_id": "1809",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 426,
+          "job_id": "1810",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 427,
+          "job_id": "1812",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 428,
+          "job_id": "1813",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 429,
+          "job_id": "1817",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 430,
+          "job_id": "1818",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 431,
+          "job_id": "1820",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 432,
+          "job_id": "1823",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 433,
+          "job_id": "1829",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 434,
+          "job_id": "1830",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 435,
+          "job_id": "1832",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 436,
+          "job_id": "1833",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 437,
+          "job_id": "1842",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 438,
+          "job_id": "1843",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 439,
+          "job_id": "1846",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 440,
+          "job_id": "1847",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 441,
+          "job_id": "1848",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 442,
+          "job_id": "1849",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 443,
+          "job_id": "1850",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 444,
+          "job_id": "1851",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 445,
+          "job_id": "1852",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 446,
+          "job_id": "1853",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 447,
+          "job_id": "1854",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 448,
+          "job_id": "1855",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 449,
+          "job_id": "1856",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 450,
+          "job_id": "1857",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 451,
+          "job_id": "1858",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 452,
+          "job_id": "1859",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 453,
+          "job_id": "1860",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 454,
+          "job_id": "1861",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 455,
+          "job_id": "1862",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 456,
+          "job_id": "1863",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 457,
+          "job_id": "1864",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 458,
+          "job_id": "1865",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 459,
+          "job_id": "1866",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 460,
+          "job_id": "1867",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 461,
+          "job_id": "1869",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 462,
+          "job_id": "1871",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 463,
+          "job_id": "1877",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 464,
+          "job_id": "1881",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 465,
+          "job_id": "1882",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 466,
+          "job_id": "1884",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 467,
+          "job_id": "1885",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 468,
+          "job_id": "1886",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 469,
+          "job_id": "1887",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 470,
+          "job_id": "1888",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 471,
+          "job_id": "1889",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 472,
+          "job_id": "1891",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 473,
+          "job_id": "1892",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 474,
+          "job_id": "1893",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 475,
+          "job_id": "1894",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 476,
+          "job_id": "1895",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 477,
+          "job_id": "1896",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 478,
+          "job_id": "1897",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 479,
+          "job_id": "1898",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 480,
+          "job_id": "1899",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 481,
+          "job_id": "1900",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 482,
+          "job_id": "1901",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 483,
+          "job_id": "1902",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 484,
+          "job_id": "1903",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 485,
+          "job_id": "1905",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 486,
+          "job_id": "1906",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 487,
+          "job_id": "1907",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 488,
+          "job_id": "1908",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 489,
+          "job_id": "1909",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 490,
+          "job_id": "1910",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 491,
+          "job_id": "1911",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 492,
+          "job_id": "1912",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 493,
+          "job_id": "1913",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 494,
+          "job_id": "1914",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 495,
+          "job_id": "1915",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 496,
+          "job_id": "1916",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 497,
+          "job_id": "1919",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 498,
+          "job_id": "1921",
+          "source": "ashby",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 499,
+          "job_id": "1923",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 500,
+          "job_id": "1924",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 501,
+          "job_id": "1925",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 502,
+          "job_id": "1926",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 503,
+          "job_id": "1927",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 504,
+          "job_id": "1928",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 505,
+          "job_id": "1929",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 506,
+          "job_id": "1930",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 507,
+          "job_id": "1931",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 508,
+          "job_id": "1932",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 509,
+          "job_id": "1933",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 510,
+          "job_id": "1934",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 511,
+          "job_id": "1935",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 512,
+          "job_id": "1936",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 513,
+          "job_id": "1937",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 514,
+          "job_id": "1938",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 515,
+          "job_id": "1939",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 516,
+          "job_id": "1940",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 517,
+          "job_id": "1941",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 518,
+          "job_id": "1942",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 519,
+          "job_id": "1943",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 520,
+          "job_id": "1944",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 521,
+          "job_id": "1945",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 522,
+          "job_id": "1946",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 523,
+          "job_id": "1947",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 524,
+          "job_id": "1948",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 525,
+          "job_id": "1949",
+          "source": "weworkremotely",
+          "reason": "SKIP RESUME: existing tracker row already has Resume Created = X"
+        },
+        {
+          "row": 526,
+          "job_id": "1950",
+          "source": "weworkremotely",
+          "reason": "SKIP RESUME: existing tracker row already has Resume Created = X"
+        },
+        {
+          "row": 527,
+          "job_id": "1951",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 528,
+          "job_id": "1952",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 529,
+          "job_id": "1953",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 530,
+          "job_id": "1954",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 531,
+          "job_id": "1955",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 532,
+          "job_id": "1956",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 533,
+          "job_id": "1962",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 534,
+          "job_id": "1965",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 535,
+          "job_id": "1968",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 536,
+          "job_id": "1986",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 537,
+          "job_id": "1988",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 538,
+          "job_id": "1993",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 539,
+          "job_id": "2169",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 540,
+          "job_id": "2170",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 541,
+          "job_id": "2171",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 542,
+          "job_id": "2174",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 543,
+          "job_id": "2177",
+          "source": "linkedin",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 544,
+          "job_id": "2178",
+          "source": "linkedin",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 545,
+          "job_id": "2180",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 546,
+          "job_id": "2189",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 547,
+          "job_id": "2190",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 548,
+          "job_id": "2191",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 549,
+          "job_id": "2192",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 550,
+          "job_id": "2193",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 551,
+          "job_id": "2194",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 552,
+          "job_id": "2195",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 553,
+          "job_id": "2196",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 554,
+          "job_id": "2197",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 555,
+          "job_id": "2198",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 556,
+          "job_id": "2199",
+          "source": "linkedin",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 557,
+          "job_id": "2200",
+          "source": "web-careers",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 558,
+          "job_id": "2209",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 559,
+          "job_id": "2210",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 560,
+          "job_id": "2256",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 561,
+          "job_id": "2257",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 562,
+          "job_id": "2258",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 563,
+          "job_id": "2259",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 564,
+          "job_id": "2260",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 565,
+          "job_id": "2261",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 566,
+          "job_id": "2262",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 567,
+          "job_id": "2263",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 568,
+          "job_id": "2264",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 569,
+          "job_id": "2265",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 570,
+          "job_id": "2266",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 571,
+          "job_id": "2267",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 572,
+          "job_id": "2268",
+          "source": "adzuna",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 573,
+          "job_id": "2269",
+          "source": "jobicy",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 574,
+          "job_id": "2270",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 575,
+          "job_id": "2271",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 576,
+          "job_id": "2272",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 577,
+          "job_id": "2273",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 578,
+          "job_id": "2274",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 579,
+          "job_id": "2275",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 580,
+          "job_id": "2276",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 581,
+          "job_id": "2277",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 582,
+          "job_id": "2278",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 583,
+          "job_id": "2279",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 584,
+          "job_id": "2280",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 585,
+          "job_id": "2281",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 586,
+          "job_id": "2282",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 587,
+          "job_id": "2283",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 588,
+          "job_id": "2284",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 589,
+          "job_id": "2285",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 590,
+          "job_id": "2286",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 591,
+          "job_id": "2287",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 592,
+          "job_id": "2288",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 593,
+          "job_id": "2289",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 594,
+          "job_id": "2290",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 595,
+          "job_id": "2291",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 596,
+          "job_id": "2292",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 597,
+          "job_id": "2293",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 598,
+          "job_id": "2294",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 599,
+          "job_id": "2295",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 600,
+          "job_id": "2296",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 601,
+          "job_id": "2297",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 602,
+          "job_id": "2298",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 603,
+          "job_id": "2299",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 604,
+          "job_id": "2300",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 605,
+          "job_id": "2301",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 606,
+          "job_id": "2302",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 607,
+          "job_id": "2303",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 608,
+          "job_id": "2304",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 609,
+          "job_id": "2305",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 610,
+          "job_id": "2306",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 611,
+          "job_id": "2307",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 612,
+          "job_id": "2308",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 613,
+          "job_id": "2309",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 614,
+          "job_id": "2310",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 615,
+          "job_id": "2311",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 616,
+          "job_id": "2312",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 617,
+          "job_id": "2313",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 618,
+          "job_id": "2314",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 619,
+          "job_id": "2315",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 620,
+          "job_id": "2316",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 621,
+          "job_id": "2317",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 622,
+          "job_id": "2318",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 623,
+          "job_id": "2319",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 624,
+          "job_id": "2320",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 625,
+          "job_id": "2321",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 626,
+          "job_id": "2322",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 627,
+          "job_id": "2323",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 628,
+          "job_id": "2324",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 629,
+          "job_id": "2325",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 630,
+          "job_id": "2326",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 631,
+          "job_id": "2327",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 632,
+          "job_id": "2328",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 633,
+          "job_id": "2329",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 634,
+          "job_id": "2330",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 635,
+          "job_id": "2331",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 636,
+          "job_id": "2332",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 637,
+          "job_id": "2333",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 638,
+          "job_id": "2334",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 639,
+          "job_id": "2335",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 640,
+          "job_id": "2336",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 641,
+          "job_id": "2337",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 642,
+          "job_id": "2338",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 643,
+          "job_id": "2339",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 644,
+          "job_id": "2340",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 645,
+          "job_id": "2341",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 646,
+          "job_id": "2342",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 647,
+          "job_id": "2343",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 648,
+          "job_id": "2344",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 649,
+          "job_id": "2345",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 650,
+          "job_id": "2346",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 651,
+          "job_id": "2347",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 652,
+          "job_id": "2348",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 653,
+          "job_id": "2349",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 654,
+          "job_id": "2350",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 655,
+          "job_id": "2351",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 656,
+          "job_id": "2352",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 657,
+          "job_id": "2353",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 658,
+          "job_id": "2354",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 659,
+          "job_id": "2355",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 660,
+          "job_id": "2356",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 661,
+          "job_id": "2357",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 662,
+          "job_id": "2358",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 663,
+          "job_id": "2359",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 664,
+          "job_id": "2360",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 665,
+          "job_id": "2361",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 666,
+          "job_id": "2362",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 667,
+          "job_id": "2363",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 668,
+          "job_id": "2364",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 669,
+          "job_id": "2365",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 670,
+          "job_id": "2366",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 671,
+          "job_id": "2367",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 672,
+          "job_id": "2368",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 673,
+          "job_id": "2369",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 674,
+          "job_id": "2370",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 675,
+          "job_id": "2371",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 676,
+          "job_id": "2372",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 677,
+          "job_id": "2373",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 678,
+          "job_id": "2374",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 679,
+          "job_id": "2375",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 680,
+          "job_id": "2376",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 681,
+          "job_id": "2377",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 682,
+          "job_id": "2378",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 683,
+          "job_id": "2379",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 684,
+          "job_id": "2380",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 685,
+          "job_id": "2381",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 686,
+          "job_id": "2382",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 687,
+          "job_id": "2383",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 688,
+          "job_id": "2384",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 689,
+          "job_id": "2385",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 690,
+          "job_id": "2386",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 691,
+          "job_id": "2387",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 692,
+          "job_id": "2388",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 693,
+          "job_id": "2389",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 694,
+          "job_id": "2390",
+          "source": "greenhouse",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 695,
+          "job_id": "2391",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 696,
+          "job_id": "2392",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 697,
+          "job_id": "2393",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 698,
+          "job_id": "2394",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 699,
+          "job_id": "2395",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 700,
+          "job_id": "2396",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 701,
+          "job_id": "2397",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 702,
+          "job_id": "2398",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 703,
+          "job_id": "2399",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 704,
+          "job_id": "2400",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 705,
+          "job_id": "2401",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 706,
+          "job_id": "2402",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 707,
+          "job_id": "2403",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 708,
+          "job_id": "2404",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 709,
+          "job_id": "2405",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 710,
+          "job_id": "2406",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 711,
+          "job_id": "2407",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 712,
+          "job_id": "2408",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 713,
+          "job_id": "2409",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 714,
+          "job_id": "2410",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 715,
+          "job_id": "2411",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 716,
+          "job_id": "2412",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 717,
+          "job_id": "2413",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 718,
+          "job_id": "2414",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 719,
+          "job_id": "2415",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 720,
+          "job_id": "2416",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 721,
+          "job_id": "2417",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 722,
+          "job_id": "2418",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 723,
+          "job_id": "2419",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 724,
+          "job_id": "2420",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 725,
+          "job_id": "2421",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 726,
+          "job_id": "2422",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 727,
+          "job_id": "2423",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 728,
+          "job_id": "2424",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 729,
+          "job_id": "2425",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 730,
+          "job_id": "2426",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 731,
+          "job_id": "2427",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 732,
+          "job_id": "2428",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 733,
+          "job_id": "2429",
+          "source": "lever",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 734,
+          "job_id": "2430",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 735,
+          "job_id": "2431",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 736,
+          "job_id": "2432",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 737,
+          "job_id": "2433",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 738,
+          "job_id": "2434",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 739,
+          "job_id": "2435",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 740,
+          "job_id": "2436",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 741,
+          "job_id": "2437",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 742,
+          "job_id": "2438",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 743,
+          "job_id": "2439",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 744,
+          "job_id": "2440",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 745,
+          "job_id": "2441",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 746,
+          "job_id": "2442",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 747,
+          "job_id": "2443",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 748,
+          "job_id": "2444",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 749,
+          "job_id": "2445",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 750,
+          "job_id": "2446",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 751,
+          "job_id": "2447",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 752,
+          "job_id": "2448",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 753,
+          "job_id": "2449",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 754,
+          "job_id": "2450",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 755,
+          "job_id": "2451",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 756,
+          "job_id": "2452",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 757,
+          "job_id": "2453",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 758,
+          "job_id": "2454",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 759,
+          "job_id": "2455",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 760,
+          "job_id": "2456",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 761,
+          "job_id": "2457",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 762,
+          "job_id": "2458",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 763,
+          "job_id": "2459",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 764,
+          "job_id": "2460",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 765,
+          "job_id": "2461",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 766,
+          "job_id": "2462",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 767,
+          "job_id": "2463",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 768,
+          "job_id": "2464",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 769,
+          "job_id": "2465",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 770,
+          "job_id": "2466",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 771,
+          "job_id": "2467",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 772,
+          "job_id": "2468",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 773,
+          "job_id": "2469",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 774,
+          "job_id": "2470",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 775,
+          "job_id": "2471",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 776,
+          "job_id": "2472",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 777,
+          "job_id": "2473",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 778,
+          "job_id": "2474",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 779,
+          "job_id": "2475",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 780,
+          "job_id": "2476",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 781,
+          "job_id": "2477",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 782,
+          "job_id": "2478",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 783,
+          "job_id": "2479",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 784,
+          "job_id": "2480",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 785,
+          "job_id": "2481",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 786,
+          "job_id": "2482",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 787,
+          "job_id": "2483",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 788,
+          "job_id": "2484",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 789,
+          "job_id": "2485",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 790,
+          "job_id": "2486",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 791,
+          "job_id": "2487",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 792,
+          "job_id": "2488",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 793,
+          "job_id": "2489",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 794,
+          "job_id": "2490",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 795,
+          "job_id": "2491",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 796,
+          "job_id": "2492",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 797,
+          "job_id": "2493",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 798,
+          "job_id": "2494",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 799,
+          "job_id": "2495",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 800,
+          "job_id": "2496",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 801,
+          "job_id": "2497",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 802,
+          "job_id": "2498",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 803,
+          "job_id": "2499",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 804,
+          "job_id": "2500",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 805,
+          "job_id": "2501",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 806,
+          "job_id": "2502",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 807,
+          "job_id": "2503",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 808,
+          "job_id": "2504",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 809,
+          "job_id": "2505",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 810,
+          "job_id": "2506",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 811,
+          "job_id": "2507",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 812,
+          "job_id": "2508",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 813,
+          "job_id": "2509",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 814,
+          "job_id": "2510",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 815,
+          "job_id": "2511",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 816,
+          "job_id": "2512",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 817,
+          "job_id": "2513",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 818,
+          "job_id": "2514",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 819,
+          "job_id": "2515",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 820,
+          "job_id": "2516",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 821,
+          "job_id": "2517",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 822,
+          "job_id": "2518",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 823,
+          "job_id": "2519",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 824,
+          "job_id": "2520",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 825,
+          "job_id": "2521",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 826,
+          "job_id": "2522",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 827,
+          "job_id": "2523",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 828,
+          "job_id": "2524",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 829,
+          "job_id": "2525",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 830,
+          "job_id": "2526",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 831,
+          "job_id": "2527",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 832,
+          "job_id": "2528",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 833,
+          "job_id": "2529",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 834,
+          "job_id": "2530",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 835,
+          "job_id": "2531",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 836,
+          "job_id": "2532",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 837,
+          "job_id": "2533",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 838,
+          "job_id": "2534",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 839,
+          "job_id": "2535",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 840,
+          "job_id": "2536",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 841,
+          "job_id": "2537",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 842,
+          "job_id": "2538",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 843,
+          "job_id": "2539",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 844,
+          "job_id": "2540",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 845,
+          "job_id": "2541",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 846,
+          "job_id": "2542",
+          "source": "workable",
+          "reason": "SKIP: application cost is not verified free"
+        },
+        {
+          "row": 847,
+          "job_id": "2543",
+          "source": "weworkremotely",
+          "reason": "SKIP: application cost is not verified free"
+        }
+      ]
+    },
+    "warnings": [
+      "Discovery not run: no safe current-run event stream was inspected",
+      "Indeed pages not verified: status projections use only existing expiry text",
+      "Gmail response checker not run because it writes Response and state"
+    ],
+    "errors": [],
+    "rejected_index_count": 30,
+    "queue_validation": {
+      "eligible": 0,
+      "classified": 846
+    },
+    "formula_skips": []
+  },
+  "script_health": {
+    "Job Scout": {
+      "status": "Not Run",
+      "read_only_simulation": "tracker snapshot only",
+      "started_at": "2026-10-11T13:14:40.832848-06:00",
+      "ended_at": "2026-10-11T13:14:45.171015-06:00",
+      "execution_seconds": 0,
+      "records_evaluated": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    },
+    "Indeed discovery": {
+      "status": "Unavailable",
+      "blocker": "authorized provider request not made",
+      "started_at": "2026-10-11T13:14:40.832848-06:00",
+      "ended_at": "2026-10-11T13:14:45.171022-06:00",
+      "execution_seconds": 0,
+      "records_evaluated": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    },
+    "Indeed status evaluation": {
+      "status": "Partial",
+      "records_evaluated": 0,
+      "blocker": "visible page controls not observed",
+      "started_at": "2026-10-11T13:14:40.832848-06:00",
+      "ended_at": "2026-10-11T13:14:45.171027-06:00",
+      "execution_seconds": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    },
+    "Resume generation readiness": {
+      "status": "Partial",
+      "blocker": "listing retrieval and Word validation not run",
+      "started_at": "2026-10-11T13:14:40.832848-06:00",
+      "ended_at": "2026-10-11T13:14:45.171033-06:00",
+      "execution_seconds": 0,
+      "records_evaluated": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    },
+    "Deleted Jobs processing": {
+      "status": "Partial",
+      "blocker": "move safety requires formula inspection",
+      "started_at": "2026-10-11T13:14:40.832848-06:00",
+      "ended_at": "2026-10-11T13:14:45.171037-06:00",
+      "execution_seconds": 0,
+      "records_evaluated": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    },
+    "Gmail response tracking": {
+      "status": "Not Run",
+      "blocker": "canonical checker writes Response and local state",
+      "started_at": "2026-10-11T13:14:40.832848-06:00",
+      "ended_at": "2026-10-11T13:14:45.171042-06:00",
+      "execution_seconds": 0,
+      "records_evaluated": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    },
+    "Google Sheets integration": {
+      "status": "Success",
+      "started_at": "2026-10-11T13:14:40.832848-06:00",
+      "ended_at": "2026-10-11T13:14:45.171047-06:00",
+      "execution_seconds": 0,
+      "records_evaluated": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    },
+    "Daily reporting": {
+      "status": "Failed",
+      "started_at": "2026-10-11T13:14:40.832848-06:00",
+      "ended_at": "2026-10-11T13:14:45.171052-06:00",
+      "execution_seconds": 0,
+      "records_evaluated": 0,
+      "records_skipped": 0,
+      "error_count": 0,
+      "warning_count": 0,
+      "rate_limit_issue": false,
+      "authentication_problem": false,
+      "missing_configuration": false
+    }
+  },
+  "warnings": [
+    "Discovery not run: no safe current-run event stream was inspected",
+    "Indeed pages not verified: status projections use only existing expiry text",
+    "Gmail response checker not run because it writes Response and state"
+  ],
+  "errors": [
+    "RuntimeError: rate limit or quota failure (details redacted)"
+  ],
+  "validation": {
+    "job_data_unchanged": true,
+    "before_hash": "40aa94c10c67a6626374db3a8041b296c298b406fb328182251a762475775438",
+    "after_hash": "40aa94c10c67a6626374db3a8041b296c298b406fb328182251a762475775438"
+  },
+  "sheet_updated": false,
+  "overall_status": "FAIL",
+  "completed_at": "2026-10-11T13:14:47.468582-06:00",
+  "execution_seconds": 6.636,
+  "tab_results": {
+    "Daily Tasks": {
+      "state": "write failed",
+      "reason": "RuntimeError: rate limit or quota failure (details redacted)"
+    },
+    "Daily Run": {
+      "state": "untouched",
+      "reason": null
+    }
+  }
+}

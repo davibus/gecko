@@ -1,0 +1,15 @@
+{
+  "source": "workingnomads",
+  "configured": true,
+  "queries": [],
+  "errors": [
+    "Request failed for https://www.workingnomads.com/api/exposed_jobs/: <urlopen error [Errno 11001] getaddrinfo failed>"
+  ],
+  "tracker_written": 0,
+  "raw": [],
+  "status": "error",
+  "board_errors": [],
+  "detail_errors": [],
+  "feed_results": [],
+  "observed_date_windows": {}
+}

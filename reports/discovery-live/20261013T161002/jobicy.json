@@ -1,0 +1,1104 @@
+{
+  "pipeline": {
+    "raw_retrieved": 123,
+    "rss_retrieved": 0,
+    "rss_unique": 0,
+    "rss_duplicates_removed": 0,
+    "successful_feeds": 0,
+    "failed_feeds": 0,
+    "feed_results": [],
+    "api_retrieved": 0,
+    "source_backend": "",
+    "fetched": 123,
+    "normalized": 123,
+    "added": 0,
+    "updated": 20,
+    "duplicates": 20,
+    "cross_provider_duplicates": 0,
+    "unique_available": 0,
+    "unique_imported": 0,
+    "filtered_by_role": 102,
+    "deterministic_rejects": 103,
+    "deterministic_reject_reasons": {
+      "unrelated role family": 38,
+      "outside target role families": 64,
+      "excluded title/seniority": 1
+    },
+    "jooble_excluded": 0,
+    "rejected_history_excluded": 0,
+    "missing_content_excluded": 0,
+    "dead_url_excluded": 0,
+    "source_results_limited": 0,
+    "url_review_excluded": 0,
+    "url_validated": 20,
+    "new_job_ids": [],
+    "existing_job_ids": [
+      2544,
+      2545,
+      2231,
+      2232,
+      2233,
+      2234,
+      2235,
+      2236,
+      2237,
+      2238,
+      2239,
+      2209,
+      2210,
+      1266,
+      2269,
+      722,
+      2191,
+      2192,
+      2193,
+      2194
+    ],
+    "changed_job_ids": [],
+    "eligibility_includes_usa": 0,
+    "eligibility_worldwide": 0,
+    "example_jobs": [],
+    "backend_qualifying": {},
+    "backend_added": {}
+  },
+  "record_decisions": [
+    {
+      "source": "jobicy",
+      "source_job_id": "155197",
+      "url": "https://jobicy.com/jobs/155197-strategic-account-executive-13",
+      "company": "CoderPad",
+      "title": "Strategic Account Executive",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155204",
+      "url": "https://jobicy.com/jobs/155204-performance-creative-manager",
+      "company": "Solace",
+      "title": "Performance Creative Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155190",
+      "url": "https://jobicy.com/jobs/155190-principal-specialist-sales-engineer-zero-trust-branch-majors-west",
+      "company": "Zscaler",
+      "title": "Principal Specialist Sales Engineer, Zero Trust Branch - Majors, West",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153133",
+      "url": "https://jobicy.com/jobs/153133-account-executive-chicago-il",
+      "company": "PadSplit",
+      "title": "Account Executive - Chicago, IL",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153137",
+      "url": "https://jobicy.com/jobs/153137-account-executive-denver-co",
+      "company": "PadSplit",
+      "title": "Account Executive - Denver, CO",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153128",
+      "url": "https://jobicy.com/jobs/153128-account-executive-boston-ma",
+      "company": "PadSplit",
+      "title": "Account Executive - Boston, MA",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153126",
+      "url": "https://jobicy.com/jobs/153126-digital-insurance-agent",
+      "company": "Insurify",
+      "title": "Digital Insurance Agent",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153119",
+      "url": "https://jobicy.com/jobs/153119-enterprise-sales-director-kansas-missouri",
+      "company": "Semperis",
+      "title": "Enterprise Sales Director, Kansas & Missouri",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153107",
+      "url": "https://jobicy.com/jobs/153107-senior-manager-corporate-sales-west",
+      "company": "Webflow",
+      "title": "Senior Manager, Corporate Sales - West",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153086",
+      "url": "https://jobicy.com/jobs/153086-brand-events-lead",
+      "company": "Teachable",
+      "title": "Brand & Events Lead",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150478",
+      "url": "https://jobicy.com/jobs/150478-senior-customer-activation-manager-partnerships",
+      "company": "Ramp",
+      "title": "Senior Customer Activation Manager | Partnerships",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153085",
+      "url": "https://jobicy.com/jobs/153085-corporate-account-executive-west",
+      "company": "Webflow",
+      "title": "Corporate Account Executive - West",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "149104",
+      "url": "https://jobicy.com/jobs/149104-manager-ad-operations",
+      "company": "StackAdapt",
+      "title": "Manager, Ad Operations",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153092",
+      "url": "https://jobicy.com/jobs/153092-account-executive-mid-market-3",
+      "company": "Zapier",
+      "title": "Account Executive, Mid Market",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155152",
+      "url": "https://jobicy.com/jobs/155152-strategic-enterprise-sales-director",
+      "company": "Rockbot",
+      "title": "Strategic Enterprise Sales Director",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155151",
+      "url": "https://jobicy.com/jobs/155151-director-of-digital-marketing",
+      "company": "Cloudinary",
+      "title": "Director of Digital Marketing",
+      "reason": "previously known",
+      "matched_id": 2544,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155143",
+      "url": "https://jobicy.com/jobs/155143-marketing-technology-engineer-2",
+      "company": "TRM Labs",
+      "title": "Marketing Technology Engineer",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155127",
+      "url": "https://jobicy.com/jobs/155127-enterprise-account-executive-namer",
+      "company": "Legion",
+      "title": "Enterprise Account Executive - NAMER",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155124",
+      "url": "https://jobicy.com/jobs/155124-product-marketing-lead-2",
+      "company": "Bayesian Health",
+      "title": "Product Marketing Lead",
+      "reason": "previously known",
+      "matched_id": 2545,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155117",
+      "url": "https://jobicy.com/jobs/155117-enterprise-account-executive-americas-west",
+      "company": "Ashby",
+      "title": "Enterprise Account Executive - Americas (West)",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155114",
+      "url": "https://jobicy.com/jobs/155114-enterprise-account-executive-americas-east",
+      "company": "Ashby",
+      "title": "Enterprise Account Executive - Americas (East)",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155107",
+      "url": "https://jobicy.com/jobs/155107-corporate-account-executive-east-2",
+      "company": "Webflow",
+      "title": "Corporate Account Executive - East",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153078",
+      "url": "https://jobicy.com/jobs/153078-sales-development-representative-10",
+      "company": "dscout",
+      "title": "Sales Development Representative",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153077",
+      "url": "https://jobicy.com/jobs/153077-sr-sales-development-representative",
+      "company": "Ceros",
+      "title": "Sr. Sales Development Representative",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153045",
+      "url": "https://jobicy.com/jobs/153045-field-cto",
+      "company": "Sigma Computing",
+      "title": "Field CTO",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153040",
+      "url": "https://jobicy.com/jobs/153040-mid-market-account-executive-full-cycle",
+      "company": "Tread",
+      "title": "Mid-Market Account Executive (Full-Cycle)",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153080",
+      "url": "https://jobicy.com/jobs/153080-strategic-account-executive-new-business",
+      "company": "Ceros",
+      "title": "Strategic Account Executive, New Business",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153057",
+      "url": "https://jobicy.com/jobs/153057-account-executive-enterprise-grower",
+      "company": "Stripe",
+      "title": "Account Executive - Enterprise, Grower",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153010",
+      "url": "https://jobicy.com/jobs/153010-analytics-ai-account-executive-sales",
+      "company": "EDB",
+      "title": "Analytics & AI Account Executive, Sales",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153006",
+      "url": "https://jobicy.com/jobs/153006-analytics-ai-account-executive-public-sector-sales",
+      "company": "EDB",
+      "title": "Analytics & AI Account Executive, Public Sector Sales",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155014",
+      "url": "https://jobicy.com/jobs/155014-global-alliance-lead-capgemini",
+      "company": "Fivetran",
+      "title": "Global Alliance Lead, Capgemini",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155012",
+      "url": "https://jobicy.com/jobs/155012-enterprise-sales-director-3",
+      "company": "Fivetran",
+      "title": "Enterprise Sales Director",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155004",
+      "url": "https://jobicy.com/jobs/155004-sales-development-lead-united-states",
+      "company": "Elevenlabs",
+      "title": "Sales Development Lead - United States",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150404",
+      "url": "https://jobicy.com/jobs/150404-senior-sales-engineer-majors-florida",
+      "company": "Zscaler",
+      "title": "Senior Sales Engineer - Majors, Florida",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150403",
+      "url": "https://jobicy.com/jobs/150403-senior-sales-engineer-majors-georgia",
+      "company": "Zscaler",
+      "title": "Senior Sales Engineer - Majors, Georgia",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150401",
+      "url": "https://jobicy.com/jobs/150401-senior-sales-engineer-majors-tola",
+      "company": "Zscaler",
+      "title": "Senior Sales Engineer - Majors, TOLA",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150398",
+      "url": "https://jobicy.com/jobs/150398-enterprise-sales-vp-public-sector",
+      "company": "Garner Health",
+      "title": "Enterprise Sales VP, Public Sector",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150397",
+      "url": "https://jobicy.com/jobs/150397-enterprise-sales-vp-labor-and-trust",
+      "company": "Garner Health",
+      "title": "Enterprise Sales VP, Labor and Trust",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150367",
+      "url": "https://jobicy.com/jobs/150367-partner-sales-manager-dell",
+      "company": "Canonical",
+      "title": "Partner Sales Manager - Dell",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154980",
+      "url": "https://jobicy.com/jobs/154980-strategic-account-executive-12",
+      "company": "Roboflow",
+      "title": "Strategic Account Executive",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154975",
+      "url": "https://jobicy.com/jobs/154975-sales-director-enterprise-sales",
+      "company": "Roboflow",
+      "title": "Sales Director, Enterprise Sales",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154963",
+      "url": "https://jobicy.com/jobs/154963-senior-product-marketing-manager-risk-advisory",
+      "company": "Fieldguide",
+      "title": "Senior Product Marketing Manager, Risk Advisory",
+      "reason": "previously known",
+      "matched_id": 2231,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154961",
+      "url": "https://jobicy.com/jobs/154961-appsec-sales-engineer",
+      "company": "Harness",
+      "title": "AppSec Sales Engineer",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154964",
+      "url": "https://jobicy.com/jobs/154964-account-executive-law-firms",
+      "company": "Proof",
+      "title": "Account Executive, Law Firms",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152921",
+      "url": "https://jobicy.com/jobs/152921-enterprise-account-executive-fsi",
+      "company": "Qualtrics",
+      "title": "Enterprise Account Executive - FSI",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152957",
+      "url": "https://jobicy.com/jobs/152957-principal-partner-manager-channels-gsi",
+      "company": "Datadog",
+      "title": "Principal Partner Manager - Channels (GSI)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152922",
+      "url": "https://jobicy.com/jobs/152922-sdr-sales-development-representative",
+      "company": "Double",
+      "title": "SDR (Sales Development Representative)",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152937",
+      "url": "https://jobicy.com/jobs/152937-enterprise-sales-executive-fed",
+      "company": "Datadog",
+      "title": "Enterprise Sales Executive (FED)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152945",
+      "url": "https://jobicy.com/jobs/152945-enterprise-security-sales-specialist",
+      "company": "Datadog",
+      "title": "Enterprise Security Sales Specialist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152941",
+      "url": "https://jobicy.com/jobs/152941-enterprise-sales-executive-sled",
+      "company": "Datadog",
+      "title": "Enterprise Sales Executive (SLED)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152939",
+      "url": "https://jobicy.com/jobs/152939-senior-demand-generation-manager-2",
+      "company": "NetBox Labs",
+      "title": "Senior Demand Generation Manager",
+      "reason": "previously known",
+      "matched_id": 2232,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152911",
+      "url": "https://jobicy.com/jobs/152911-senior-strategist-strategy-lead-contract",
+      "company": "Instrument",
+      "title": "Senior Strategist / Strategy Lead (contract)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152906",
+      "url": "https://jobicy.com/jobs/152906-head-of-product-marketing-2",
+      "company": "Veriff",
+      "title": "Head of Product Marketing",
+      "reason": "previously known",
+      "matched_id": 2233,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152861",
+      "url": "https://jobicy.com/jobs/152861-sales-development-representative-outbound",
+      "company": "Tremendous",
+      "title": "Sales Development Representative, Outbound",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154956",
+      "url": "https://jobicy.com/jobs/154956-account-executive-private-equity",
+      "company": "Juniper Square",
+      "title": "Account Executive, Private Equity",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154951",
+      "url": "https://jobicy.com/jobs/154951-principal-solutions-engineer-emerging-technologies",
+      "company": "1Password",
+      "title": "Principal Solutions Engineer, Emerging Technologies",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154955",
+      "url": "https://jobicy.com/jobs/154955-enterprise-sales-vp",
+      "company": "Garner Health",
+      "title": "Enterprise Sales VP",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154949",
+      "url": "https://jobicy.com/jobs/154949-account-executive-private-equity-real-estate",
+      "company": "Juniper Square",
+      "title": "Account Executive, Private Equity Real Estate",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154952",
+      "url": "https://jobicy.com/jobs/154952-consultant-relations-vp",
+      "company": "Garner Health",
+      "title": "Consultant Relations VP",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154947",
+      "url": "https://jobicy.com/jobs/154947-territory-manager-south-dakota",
+      "company": "Halter",
+      "title": "Territory Manager (South Dakota)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154939",
+      "url": "https://jobicy.com/jobs/154939-senior-performance-marketing-specialist",
+      "company": "GOAT Group",
+      "title": "Senior Performance Marketing Specialist",
+      "reason": "previously known",
+      "matched_id": 2234,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154945",
+      "url": "https://jobicy.com/jobs/154945-staff-product-manager-seo-and-ai-visibility-us",
+      "company": "Luxury Presence",
+      "title": "Staff Product Manager, SEO and AI Visibility - US",
+      "reason": "previously known",
+      "matched_id": 2235,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154938",
+      "url": "https://jobicy.com/jobs/154938-sr-social-media-manager",
+      "company": "Luxury Presence",
+      "title": "Sr. Social Media Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154925",
+      "url": "https://jobicy.com/jobs/154925-director-of-self-serve",
+      "company": "Paddle",
+      "title": "Director of Self Serve",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154890",
+      "url": "https://jobicy.com/jobs/154890-senior-account-executive-ii-2",
+      "company": "Collibra",
+      "title": "Senior Account Executive II",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152748",
+      "url": "https://jobicy.com/jobs/152748-regional-sales-manager-minnesota",
+      "company": "BigID",
+      "title": "Regional Sales Manager - Minnesota",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152753",
+      "url": "https://jobicy.com/jobs/152753-regional-sales-manager-ohio",
+      "company": "BigID",
+      "title": "Regional Sales Manager - Ohio",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152836",
+      "url": "https://jobicy.com/jobs/152836-senior-director-of-public-charging",
+      "company": "ChargePoint",
+      "title": "Senior Director of Public Charging",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152832",
+      "url": "https://jobicy.com/jobs/152832-senior-director-of-fleet-charging",
+      "company": "ChargePoint",
+      "title": "Senior Director of Fleet Charging",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152834",
+      "url": "https://jobicy.com/jobs/152834-principal-technical-product-marketing-manager",
+      "company": "6sense",
+      "title": "Principal Technical Product Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2236,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152796",
+      "url": "https://jobicy.com/jobs/152796-vice-president-banking-financial-services-industry-leader",
+      "company": "Quantum Metric",
+      "title": "Vice President, Banking & Financial Services Industry Leader",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152828",
+      "url": "https://jobicy.com/jobs/152828-senior-growth-marketing-manager-subscriptions",
+      "company": "DuckDuckGo",
+      "title": "Senior Growth Marketing Manager (Subscriptions)",
+      "reason": "previously known",
+      "matched_id": 2237,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152825",
+      "url": "https://jobicy.com/jobs/152825-strategic-account-executive-west-coast",
+      "company": "Zip",
+      "title": "Strategic Account Executive - West Coast",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152820",
+      "url": "https://jobicy.com/jobs/152820-solution-engineer-pre-sales",
+      "company": "Zip",
+      "title": "Solution Engineer (Pre-Sales)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152812",
+      "url": "https://jobicy.com/jobs/152812-events-marketing-manager",
+      "company": "Chili Piper",
+      "title": "Events Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2238,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152788",
+      "url": "https://jobicy.com/jobs/152788-strategic-account-executive-bfsi",
+      "company": "Quantum Metric",
+      "title": "Strategic Account Executive, BFSI",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152782",
+      "url": "https://jobicy.com/jobs/152782-licensed-insurance-agent-remote",
+      "company": "Matic",
+      "title": "Licensed Insurance Agent, Remote",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152781",
+      "url": "https://jobicy.com/jobs/152781-enterprise-account-executive-21",
+      "company": "Sigma Computing",
+      "title": "Enterprise Account Executive",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152775",
+      "url": "https://jobicy.com/jobs/152775-inside-sales-representative-2",
+      "company": "Beyond Finance",
+      "title": "Inside Sales Representative",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "148814",
+      "url": "https://jobicy.com/jobs/148814-marketing-manager",
+      "company": "Canonical",
+      "title": "Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2239,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152791",
+      "url": "https://jobicy.com/jobs/152791-director-revenue-enablement-2",
+      "company": "Ironclad",
+      "title": "Director, Revenue Enablement",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154861",
+      "url": "https://jobicy.com/jobs/154861-growth-manager-paid-media",
+      "company": "GiveDirectly",
+      "title": "Growth Manager, Paid Media",
+      "reason": "previously known",
+      "matched_id": 2209,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154867",
+      "url": "https://jobicy.com/jobs/154867-mid-market-account-executive-americas-west",
+      "company": "Ashby",
+      "title": "Mid Market Account Executive - Americas (West)",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154850",
+      "url": "https://jobicy.com/jobs/154850-account-executive-ii-mid-market",
+      "company": "Huntress",
+      "title": "Account Executive II, Mid-Market",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154853",
+      "url": "https://jobicy.com/jobs/154853-advertising-campaign-strategist",
+      "company": "Demandbase, Inc.",
+      "title": "Advertising Campaign Strategist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154840",
+      "url": "https://jobicy.com/jobs/154840-oncology-specialist-northwest-tx-dfw",
+      "company": "Ataraxis AI",
+      "title": "Oncology Specialist - Northwest TX / DFW",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154848",
+      "url": "https://jobicy.com/jobs/154848-vp-of-revenue-marketing",
+      "company": "Veriff",
+      "title": "VP of Revenue Marketing",
+      "reason": "previously known",
+      "matched_id": 2210,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154847",
+      "url": "https://jobicy.com/jobs/154847-vice-president-partnership-sales",
+      "company": "HackerOne",
+      "title": "Vice President, Partnership Sales",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154815",
+      "url": "https://jobicy.com/jobs/154815-data-validation-analyst",
+      "company": "YipitData",
+      "title": "Data Validation Analyst",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154811",
+      "url": "https://jobicy.com/jobs/154811-business-development-associate",
+      "company": "YipitData",
+      "title": "Business Development Associate",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152415",
+      "url": "https://jobicy.com/jobs/152415-account-manager-smb-sales",
+      "company": "WorkWave",
+      "title": "Account Manager - SMB Sales",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152758",
+      "url": "https://jobicy.com/jobs/152758-account-executive-16",
+      "company": "Appen",
+      "title": "Account Executive",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152728",
+      "url": "https://jobicy.com/jobs/152728-partner-development-manager",
+      "company": "Fleetio",
+      "title": "Partner Development Manager",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152720",
+      "url": "https://jobicy.com/jobs/152720-enterprise-sales-engineer-fed",
+      "company": "Datadog",
+      "title": "Enterprise Sales Engineer - FED",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152715",
+      "url": "https://jobicy.com/jobs/152715-director-security-channels-north-america",
+      "company": "Datadog",
+      "title": "Director, Security Channels (North America)",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152730",
+      "url": "https://jobicy.com/jobs/152730-enterprise-sales-executive",
+      "company": "Datadog",
+      "title": "Enterprise Sales Executive",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "148714",
+      "url": "https://jobicy.com/jobs/148714-alliances-channels-leader",
+      "company": "Canonical",
+      "title": "Alliances & Channels Leader",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "148709",
+      "url": "https://jobicy.com/jobs/148709-global-alliance-lead",
+      "company": "Fivetran",
+      "title": "Global Alliance Lead",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152710",
+      "url": "https://jobicy.com/jobs/152710-director-enterprise-sales-engineering-us-central",
+      "company": "Datadog",
+      "title": "Director, Enterprise Sales Engineering - US Central",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152704",
+      "url": "https://jobicy.com/jobs/152704-senior-demand-generation-manager",
+      "company": "DataGrail",
+      "title": "Senior Demand Generation Manager",
+      "reason": "previously known",
+      "matched_id": 1266,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154796",
+      "url": "https://jobicy.com/jobs/154796-acquisitions-director",
+      "company": "Unison Infrastructure",
+      "title": "Acquisitions Director",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154791",
+      "url": "https://jobicy.com/jobs/154791-director-amazon-retail-media",
+      "company": "Wpromote",
+      "title": "Director, Amazon + Retail Media",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154782",
+      "url": "https://jobicy.com/jobs/154782-associate-director-paid-search-b2b",
+      "company": "Wpromote",
+      "title": "Associate Director, Paid Search B2B",
+      "reason": "excluded title/seniority"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154783",
+      "url": "https://jobicy.com/jobs/154783-sr-product-marketing-manager-content-cloud",
+      "company": "Contentstack",
+      "title": "Sr. Product Marketing Manager, Content Cloud",
+      "reason": "previously known",
+      "matched_id": 2269,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154786",
+      "url": "https://jobicy.com/jobs/154786-audience-connections-strategist",
+      "company": "Wpromote",
+      "title": "Audience & Connections Strategist",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154781",
+      "url": "https://jobicy.com/jobs/154781-account-director-ii",
+      "company": "Cision",
+      "title": "Account Director II",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154775",
+      "url": "https://jobicy.com/jobs/154775-account-director-i",
+      "company": "Cision",
+      "title": "Account Director I",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154761",
+      "url": "https://jobicy.com/jobs/154761-analyst-corporate-development-strategic-partnerships-for-portfolio-company-of-k1-investment-management",
+      "company": "PerfectServe",
+      "title": "Analyst, Corporate Development & Strategic Partnerships for portfolio company of K1 Investment Management",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154767",
+      "url": "https://jobicy.com/jobs/154767-senior-manager-strategic-partnerships",
+      "company": "Flex",
+      "title": "Senior Manager, Strategic Partnerships",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154765",
+      "url": "https://jobicy.com/jobs/154765-collibra-public-sector-senior-account-executive-federal-civilian-agencies",
+      "company": "Collibra",
+      "title": "Collibra Public Sector Senior Account Executive, Federal Civilian Agencies",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "154763",
+      "url": "https://jobicy.com/jobs/154763-director-strategic-partnerships",
+      "company": "Flex",
+      "title": "Director, Strategic Partnerships",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152671",
+      "url": "https://jobicy.com/jobs/152671-head-of-growth-marketing-2",
+      "company": "Flex",
+      "title": "Head of Growth Marketing",
+      "reason": "previously known",
+      "matched_id": 722,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152663",
+      "url": "https://jobicy.com/jobs/152663-senior-strategic-account-executive",
+      "company": "Upside",
+      "title": "Senior Strategic Account Executive",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152686",
+      "url": "https://jobicy.com/jobs/152686-account-cto",
+      "company": "Lambda",
+      "title": "Account CTO",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152661",
+      "url": "https://jobicy.com/jobs/152661-business-development-representative-bdr-manager",
+      "company": "Flex",
+      "title": "Business Development Representative (BDR) Manager",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152658",
+      "url": "https://jobicy.com/jobs/152658-business-development-representative-13",
+      "company": "Flex",
+      "title": "Business Development Representative",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152656",
+      "url": "https://jobicy.com/jobs/152656-director-of-product-marketing-cloud-ot-security",
+      "company": "Tenable",
+      "title": "Director of Product Marketing - Cloud & OT Security",
+      "reason": "previously known",
+      "matched_id": 2191,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152626",
+      "url": "https://jobicy.com/jobs/152626-senior-product-marketing-manager-4",
+      "company": "UpBound",
+      "title": "Senior Product Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2192,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152622",
+      "url": "https://jobicy.com/jobs/152622-head-of-growth-marketing",
+      "company": "UpBound",
+      "title": "Head of Growth Marketing",
+      "reason": "previously known",
+      "matched_id": 2193,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152654",
+      "url": "https://jobicy.com/jobs/152654-principal-product-marketing-manager",
+      "company": "Upside",
+      "title": "Principal Product Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2194,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "148328",
+      "url": "https://jobicy.com/jobs/148328-senior-manager-deal-desk",
+      "company": "Eightfold",
+      "title": "Senior Manager, Deal Desk",
+      "reason": "outside target role families"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "152633",
+      "url": "https://jobicy.com/jobs/152633-strategic-account-executive-n-a",
+      "company": "UpBound",
+      "title": "Strategic Account Executive - N.A.",
+      "reason": "unrelated role family"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "148335",
+      "url": "https://jobicy.com/jobs/148335-sales-development-representative-2",
+      "company": "SMB Team",
+      "title": "Sales Development Representative",
+      "reason": "unrelated role family"
+    }
+  ],
+  "queries_pages": [
+    {
+      "kind": "full feed",
+      "status": "completed",
+      "parsed": 123
+    }
+  ],
+  "board_errors": [],
+  "errors": "",
+  "health": {
+    "status": "success",
+    "found": 123,
+    "detail": ""
+  }
+}

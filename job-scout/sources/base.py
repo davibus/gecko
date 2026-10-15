@@ -19,6 +19,7 @@ class SearchRequest:
     location: str = ""
     page: int = 1
     results_per_page: int = 20
+    days: int | None = None
 
 
 class JobSource(ABC):

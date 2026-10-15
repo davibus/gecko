@@ -53,12 +53,15 @@ class SearchDiscoveryProvider(JobSource):
         url = "https://api.search.brave.com/res/v1/web/search?" + urlencode({
             "q": query, "count": min(request.results_per_page, 20),
             "offset": min(max(request.page - 1, 0), 9), "country": "US",
-            "search_lang": "en", "freshness": "pm",
+            "search_lang": "en", **({'freshness': {1:'pd',7:'pw',30:'pm'}[request.days]}
+                                      if request.days in {1,7,30} else {}),
         })
         payload = get_json(url, {"X-Subscription-Token": self.api_key})
         results = payload.get("web", {}).get("results", [])
         if not isinstance(results, list):
             raise ProviderError(f"Brave returned an unexpected {self.name} discovery payload")
+        self.has_more = bool(payload.get('query', {}).get('more_results_available')) and request.page < 10
+        self.search_results_returned = getattr(self, 'search_results_returned', 0) + len(results)
         for result in results:
             target = str(result.get("url") or "")
             if not target:

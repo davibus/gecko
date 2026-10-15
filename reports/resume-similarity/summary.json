@@ -1,0 +1,17 @@
+{
+  "source_folder": "C:\\gecko_main\\output\\resumes",
+  "resume_count": 412,
+  "unreadable": [],
+  "pair_count": 84666,
+  "exact_text_duplicate_pairs": 111,
+  "duplicate_groups": 26,
+  "resumes_in_duplicate_groups": 79,
+  "min_difference_pct": 0.0,
+  "median_difference_pct": 43.58,
+  "max_difference_pct": 67.85,
+  "resume_dates": {
+    "2026-10-11": 281,
+    "2026-10-12": 130,
+    "2026-10-10": 1
+  }
+}

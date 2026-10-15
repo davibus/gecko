@@ -1,0 +1,139 @@
+{
+  "workbook": "Gecko Job Tracker",
+  "job_list": {
+    "before_active_ids": 0,
+    "after_active_ids": 826,
+    "rows_with_content": 846,
+    "restored_initial": 524,
+    "restored_retained": 506,
+    "backup_excluded": 1408,
+    "dead_after_restoration": 18,
+    "new_unique": 289,
+    "historical_comparison": 1441
+  },
+  "discovery": {
+    "initial_fetched": 490,
+    "initial_new_unique": 1,
+    "expanded_fetched": 19247,
+    "expanded_new_unique": 288,
+    "daily_refresh_fetched": 483,
+    "daily_refresh_new_unique": 0,
+    "expanded_duplicates": 427,
+    "expanded_role_filtered": 17977,
+    "expanded_deterministic_rejects": 18525,
+    "expanded_rejection_history_excluded": 7,
+    "expanded_source_limited": 0,
+    "page2_adzuna_fetched": 0,
+    "page2_usajobs_fetched": 0,
+    "sources": {
+      "adzuna": {
+        "fetched_expanded_pass": 151,
+        "new_unique_all_passes": 14
+      },
+      "remotive": {
+        "fetched_expanded_pass": 3,
+        "new_unique_all_passes": 0
+      },
+      "web-careers": {
+        "fetched_expanded_pass": 0,
+        "new_unique_all_passes": 0
+      },
+      "jobicy": {
+        "fetched_expanded_pass": 140,
+        "new_unique_all_passes": 1
+      },
+      "remoteok": {
+        "fetched_expanded_pass": 99,
+        "new_unique_all_passes": 0
+      },
+      "usajobs": {
+        "fetched_expanded_pass": 37,
+        "new_unique_all_passes": 0
+      },
+      "greenhouse": {
+        "fetched_expanded_pass": 7058,
+        "new_unique_all_passes": 121
+      },
+      "lever": {
+        "fetched_expanded_pass": 3068,
+        "new_unique_all_passes": 39
+      },
+      "ashby": {
+        "fetched_expanded_pass": 3094,
+        "new_unique_all_passes": 0
+      },
+      "workable": {
+        "fetched_expanded_pass": 5444,
+        "new_unique_all_passes": 113
+      },
+      "weworkremotely": {
+        "fetched_expanded_pass": 100,
+        "new_unique_all_passes": 1
+      },
+      "workingnomads": {
+        "fetched_expanded_pass": 53,
+        "new_unique_all_passes": 0
+      },
+      "themuse": {
+        "fetched_expanded_pass": 0,
+        "new_unique_all_passes": 0
+      },
+      "indeed": {
+        "fetched_expanded_pass": 0,
+        "new_unique_all_passes": 0
+      },
+      "linkedin": {
+        "fetched_expanded_pass": 0,
+        "new_unique_all_passes": 0
+      },
+      "glassdoor": {
+        "fetched_expanded_pass": 0,
+        "new_unique_all_passes": 0
+      },
+      "ziprecruiter": {
+        "fetched_expanded_pass": 0,
+        "new_unique_all_passes": 0
+      }
+    }
+  },
+  "validation": {
+    "job_rows_scanned": 846,
+    "valid_urls": 491,
+    "invalid_urls_cleared": 2,
+    "urls_needing_review": 353,
+    "confirmed_paid": 0,
+    "apply_no_changed": 844
+  },
+  "resumes": {
+    "created": 2,
+    "reused": 0,
+    "failed": 0,
+    "not_eligible_or_unapproved": 844
+  },
+  "gmail": {
+    "status": "completed_after_reauthorization",
+    "emails_checked": 0,
+    "emails_matched": 0,
+    "responses_updated": 0,
+    "token_backup": ".secrets/gmail-oauth-token.revoked-20261011.json",
+    "previous_error": "OAuth invalid_grant: token expired or revoked"
+  },
+  "format": {
+    "all_existing_rows_21px": true,
+    "existing_rows_checked": 6783,
+    "conditional_rules_unchanged": true,
+    "job_list_widths_restored": [
+      "F",
+      "M",
+      "O"
+    ]
+  },
+  "audits": {
+    "restoration": "reports\\repopulation\\20261011\\backup-restoration-audit.json",
+    "validation": "reports/job-list-validation/20261011T125507-summary.json",
+    "daily": "reports/daily/2026-10-11/20261011T130723-df932952eb.json",
+    "tasks": "reports/daily/2026-10-11/20261011T131540-cddbc6fc3e.json",
+    "format": "reports\\repopulation\\20261011\\workbook-format-readback.json",
+    "followup_readback": "reports\\repopulation\\20261011\\followup-readback.json"
+  }
+}

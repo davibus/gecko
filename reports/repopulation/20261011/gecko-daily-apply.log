@@ -1,0 +1,19 @@
+Gecko daily 20261011T130331-b1fe2de2e6: FAIL
+Jobs Discovered: Unavailable
+New Jobs Added: Unavailable
+Duplicates Skipped: Unavailable
+Manual Indeed Rows Processed: Unavailable
+Manual Indeed Duplicates Flagged: Unavailable
+Manual Indeed Retrieval Failures: Unavailable
+Declined Rows Preserved: Unavailable
+Resumes Reused: Unavailable
+Resumes Created: Unavailable
+Resume Failures: Unavailable
+Workflow Failures: Unavailable
+Gmail Emails Checked: Unavailable
+Employer Responses Matched: Unavailable
+Response Rows Updated: Unavailable
+Daily Run: row 3
+Audit: reports/daily/2026-10-11/20261011T130331-b1fe2de2e6.json
+Error: Daily workflow exited with code 1
+Error: Daily workflow stopped before its final summary

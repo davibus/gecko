@@ -1,0 +1,11 @@
+[
+  "python",
+  "job-scout/scout.py",
+  "search",
+  "--source",
+  "all",
+  "--results",
+  "50",
+  "--audit-dir",
+  "C:\\gecko_main\\reports\\discovery-live\\20261013T161002"
+]

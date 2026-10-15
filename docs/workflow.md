@@ -1,4 +1,4 @@
-See [tracker-schema.md](tracker-schema.md) for the live workbook tabs, verified `Job Scout` headers, aliases, write rules, and read-only daily report command. Runtime mapping lives in `job-scout/tracker_schema.py` and always resolves live headers by name.
+See [tracker-schema.md](tracker-schema.md) for the live workbook tabs, verified `Job List` headers, aliases, write rules, and daily report command. Runtime mapping lives in `job-scout/tracker_schema.py` and always resolves live headers by name.
 
 For Source = Indeed, the 'Apply or on Company Website (If Indeed)' field stores the exact visible text of the primary application/status control on the Indeed job page. Examples include 'Apply Now', 'Apply on Company Website', 'Already applied', and 'Job no longer available'. Do not normalize the text. If it cannot be reliably resolved, leave the current value unchanged and continue.
 
@@ -38,13 +38,13 @@ To proceed with a listing, explicitly run `python job-scout/scout.py select <ID>
    - Sanitize the company name for Windows filenames by replacing spaces with hyphens and removing invalid filename characters (`\ / : * ? " < > |`).
    - All job-specific temporary files must live inside this subfolder (preview PNGs, test PDFs, layout verification images, intermediate files).
    - Do not place new job-specific temporary files directly in the root `scratch/` folder.
-4. Verify all claims against the current master archive (`input/master-resume/Dave-Call-Resume.txt`) and use `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as the required visual formatting/layout model. Stop if either authority is missing; do not fall back to an older or tailored resume.
-5. Tailor the resume subtly and generate the two-page DOCX resume under `output/resumes/Dave-Call+{Company-Name}+{Job-Title}+{JobNumber}.docx` using the reusable generator in `scripts/`.
+4. Verify all claims against the current master archive (`input/master-resume/master-resume-v2.txt`) and use `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as the required visual formatting/layout model. Stop if either authority is missing; do not fall back to an older or tailored resume.
+5. Tailor the resume subtly and generate the two-page DOCX resume under `output/resumes/Dave-Call+{Company-Name}+{Job-Title}+{Resume-ID}.docx` using the reusable generator in `scripts/`.
 6. Verify page count and layout with `scripts/validate_word_native.ps1`, the only authoritative Word-pagination entry point. A sandboxed agent submits its request to the permanently running interactive-user bridge; it never automates Word directly and never asks the user to validate manually. Install the hidden bridge and watchdog once from the IDE terminal with `scripts\Install-Gecko-Word-Bridge.cmd`; both Scheduled Tasks start at user logon and self-recover. Keep Word/PDF validation artifacts inside the job's scratch subfolder (`scratch/{Company-Name}+{JobNumber}/`).
    Standard invocation: `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate_word_native.ps1 -DocxPath "output\resumes\<resume-file>.docx" -PdfPath "scratch\<Company-Name>+<JobNumber>\word-validation.pdf" -ResultPath "scratch\<Company-Name>+<JobNumber>\validation-status.json"`
    Health check: `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-Gecko-Word-Bridge.ps1`. Exceptional user-side restart: `scripts\Restart-Gecko-Word-Bridge.cmd`. If validation fails, report these diagnostics once instead of retrying sandbox Word COM.
 7. Only after the final resume has been created and validated, upsert the job in the canonical Google Sheet:
-   `python scripts/manage_job_tracker.py add --resume "output/resumes/Dave-Call+{Company-Name}+{Job-Title}+{JobNumber}.docx" --job-description "input/job-descriptions/{Company-Name}+{JobNumber}.md"`
+   `python scripts/manage_job_tracker.py add --resume "output/resumes/Dave-Call+{Company-Name}+{Job-Title}+{Resume-ID}.docx" --job-description "input/job-descriptions/{Company-Name}+{JobNumber}.md"`
 8. Run `python scripts/manage_job_tracker.py validate`. A Gecko job is not complete until the tracker update and validation succeed.
 
 ## V2 tailoring and QA
@@ -53,7 +53,7 @@ To process the configured intake worksheet, run `python scripts/generate_apply_q
 
 There is no description-length gate. If reliable listing and structured Sheet context are both unavailable, Gecko creates no resume and leaves completion unchanged. After Word-native QA passes, the canonical recorder verifies the DOCX is directly under `output/resumes`, creates the URL with `Path.resolve().as_uri()`, and writes that complete `file:///` URL directly as the visible Resume Link value. It never writes a `HYPERLINK` formula or `Open Resume` label. It updates only Resume Created, Resume Link, lifecycle status, and Gecko failure text in Notes. It re-finds the destination by stable ID before writing, so row movement cannot attach a resume to another job. Applied, Cost, formatting, formulas, and row order remain unchanged.
 
-The complete command is `python job-scout/scout.py daily`. It evaluates existing rows across every source and uses only Location and Work Arrangement to set Apply? for Utah or explicitly remote jobs. It then applies the shared Cost exclusion and creation rules. After the exact DOCX passes Word-native validation, it writes `Resume Created` = X and `Resume Link` = the clickable local file URI. It never submits an application or marks Applied.
+The complete command is `python job-scout/scout.py daily`. It evaluates existing rows across every source and sets the named Apply? field to Yes for Utah or explicitly remote jobs that pass the other safeguards. Blank or unknown Cost does not block approval; a confirmed required application fee is `Cost = x` and forces No. Unknown location does not approve a job. It then applies the shared exclusion and creation rules. After the exact DOCX passes Word-native validation, it writes `Resume Created` = X and `Resume Link` = the clickable local file URI. It never submits an application or marks Applied.
 
 The resume workflow starts with a source-backed tailoring plan bound to the current master archive and required formatting-model hashes. Job Scout's discovery and selection workflow remains separate; its evidence reader uses the same current master archive. For an archived listing, run:
 
@@ -65,13 +65,22 @@ python scripts/gecko_v2.py plan "input/job-descriptions/Company+JobNumber.md"
 
 This creates `scratch/Company+JobNumber/tailoring-plan.json` before any resume is changed. Review its required and preferred skills, responsibilities, tools, seniority signals, industry terminology, ATS keywords, evidence links, and gaps. `supported` means a listed term and related master-resume passage were found; `review` is a possible connection that needs human judgment; `gap` means Gecko found no credible passage. The plan's selected bullet IDs can be reordered or removed, but evidence quotes and source hashes cannot be altered. Resume bullets use current master-archive passages with only fixed grammar cleanup. If the master changes, rebuild the plan; generation rejects stale source hashes. Do not promote a `review` or `gap` item into a resume claim without a master-archive update.
 
+The canonical TXT is `C:\gecko_main\input\master-resume\master-resume-v2.txt`.
+The V2 reader accepts its mixed narrative and pipe-delimited employment blocks,
+merges repeated employer blocks, and keeps each accomplishment with its stated
+employer. Conflicting employment dates or locations stop planning and generation
+with the conflicting source facts listed. Resolve them with Dave; never guess,
+silently choose a version, or fall back to an older master. Existing plans naming
+the previous source must be rebuilt. The compact AI screening profile must also
+be reviewed against this TXT before its raw-byte fingerprint is refreshed.
+
 Generate and run the automatic QA gate:
 
 ```powershell
 python scripts/gecko_v2.py generate "scratch/Company+JobNumber/tailoring-plan.json"
 ```
 
-The generator first checks the matching live Job Scout row and refuses generation when normalized Resume Created is X. It also refuses to overwrite an existing output DOCX. For a new resume, it writes `output/resumes/Dave-Call+Company+Job-Title+JobNumber.docx`. It calls `scripts/validate_word_native.ps1` and writes `scratch/Company+JobNumber/v2-qa.json`, `validation-status.json`, and a Word-exported PDF. QA fails when native Word and PDF counts do not both equal two, when text reaches page edges, when source-backed bullets or Gecko layout have changed, or when likely keyword repetition is excessive. It lists remaining unsupported or uncertain requirements. Automated text matching is deliberately conservative and does not replace reviewing the plan and rendered pages for natural language and semantic accuracy. The bridge is expected to be permanently available after its one-time installation. If it is unhealthy, capture `Test-Gecko-Word-Bridge.ps1` diagnostics, leave QA failed, and do not update the tracker; do not retry Word COM from the sandbox. After layout edits, rerun `python scripts/gecko_v2.py qa "scratch/Company+JobNumber/tailoring-plan.json"`.
+The generator first checks the matching live Job List row and refuses generation when normalized Resume Created is X. It also refuses to overwrite an existing output DOCX. For a new resume, it writes `output/resumes/Dave-Call+Company+Job-Title+00001.docx`. It calls `scripts/validate_word_native.ps1` and writes `scratch/Company+JobNumber/v2-qa.json`, `validation-status.json`, and a Word-exported PDF. QA fails when native Word and PDF counts do not both equal two, when text reaches page edges, when source-backed bullets or Gecko layout have changed, or when likely keyword repetition is excessive. It lists remaining unsupported or uncertain requirements. Automated text matching is deliberately conservative and does not replace reviewing the plan and rendered pages for natural language and semantic accuracy. The bridge is expected to be permanently available after its one-time installation. If it is unhealthy, capture `Test-Gecko-Word-Bridge.ps1` diagnostics, leave QA failed, and do not update the tracker; do not retry Word COM from the sandbox. After layout edits, rerun `python scripts/gecko_v2.py qa "scratch/Company+JobNumber/tailoring-plan.json"`.
 
 Only after the final resume exists and V2 QA passes, run the tracker command in step 7. The V2 CLI never updates the tracker itself. Tests: `python -m unittest discover -s scripts -p test_gecko_v2.py -v`.
 
@@ -82,7 +91,7 @@ Only after the final resume exists and V2 QA passes, run the tracker command in 
 - Natural wording
 - Strong job-specific emphasis
 - Appropriate ATS terms
-- Correct filename: `Dave-Call+{Company-Name}+{Job-Title}+{JobNumber}.docx`
+- Correct filename: `Dave-Call+{Company-Name}+{Job-Title}+{Resume-ID}.docx`
 - Archived listing saved as `input/job-descriptions/{Company-Name}+{JobNumber}.md`
 - Verified job dates flush right on the same physical line as every job heading
 - No page overflow or excessive empty blocks
@@ -90,3 +99,10 @@ Only after the final resume exists and V2 QA passes, run the tracker command in 
 - All reusable scripts maintained in `scripts/`
 - Job recorded once in the canonical Google Sheet, after the final resume was successfully created and validated
 - Existing tracker rows and manual `Applied` / `Contacted` entries preserved
+
+
+## Permanent short resume filename rule
+
+Resume filenames must use `Dave-Call+<Company-Name>+<Job-Title>+<Resume-ID>.docx`, ending in a unique numeric identifier of at most five digits (Gecko uses five zero-padded digits). Never put a full posting ID, Indeed jk, UUID, hash, or long numeric job number in a resume filename. Keep filenames at most 150 characters, sanitizing Windows-invalid characters and shortening an excessively long title at a word boundary. Reserve identifiers through `job-scout/resume_naming.py`; do not truncate a source ID or guess uniqueness. Full posting IDs remain in the identity registry and DOCX metadata for job matching. Use the same rule for explicitly requested renames, verify tracker links after any rename, and preserve the existing Resume Created = X guard. Archived job descriptions and scratch folders continue to use full posting IDs.
+
+Example: `Dave-Call+Array+Digital-Marketing-Manager+00001.docx`.

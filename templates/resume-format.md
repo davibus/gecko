@@ -24,4 +24,11 @@ Follow it as closely as practical for:
 - Before final save, auto-correct and validate mandatory section counts/capitalization, complete single-line job headings with source dates, and absence of lowercase placeholder entries. Confirm each rendered heading and its date share one physical line.
 - Page 2 should be well-filled without crowding; an underfilled second page is safer than a third page
 
-The model PDF supplies layout only. Its content is not evidence unless independently present in `input/master-resume/Dave-Call-Resume.txt`. Do not substitute another PDF, DOCX, or tailored resume unless the user explicitly requests a one-resume exception.
+The model PDF supplies layout only. Its content is not evidence unless independently present in `input/master-resume/master-resume-v2.txt`. Do not substitute another PDF, DOCX, or tailored resume unless the user explicitly requests a one-resume exception.
+
+
+## Permanent short resume filename rule
+
+Resume filenames must use `Dave-Call+<Company-Name>+<Job-Title>+<Resume-ID>.docx`, ending in a unique numeric identifier of at most five digits (Gecko uses five zero-padded digits). Never put a full posting ID, Indeed jk, UUID, hash, or long numeric job number in a resume filename. Keep filenames at most 150 characters, sanitizing Windows-invalid characters and shortening an excessively long title at a word boundary. Reserve identifiers through `job-scout/resume_naming.py`; do not truncate a source ID or guess uniqueness. Full posting IDs remain in the identity registry and DOCX metadata for job matching. Use the same rule for explicitly requested renames, verify tracker links after any rename, and preserve the existing Resume Created = X guard. Archived job descriptions and scratch folders continue to use full posting IDs.
+
+Example: `Dave-Call+Array+Digital-Marketing-Manager+00001.docx`.

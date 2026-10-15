@@ -1,0 +1,4 @@
+from native_browser import call
+from pathlib import Path
+import json
+Q=Path('/mnt/c/gecko_main/openclaw/application-queue');j='1477';p=json.loads((Q/j/'application-package.json').read_text());e=json.loads((Q/j/'submission-result.json').read_text());assert e['outcome']=='verification_pending';r=call(['evaluate','--target-id','retry-'+j,'--fn','() => ({url:location.href,title:document.title,text:document.body.innerText})']);f=r['result'];assert f['url']==p['company_application_url']+'/confirmation' and f['title']=='Thank you for applying' and ('We have received your application' in f['text'] or 'Your application has been received' in f['text']);(Q/j/'confirmation.json').write_text(json.dumps(r,indent=2));e.update(outcome='submitted',confirmation_url=f['url'],confirmation_text=f['text']);(Q/j/'submission-result.json').write_text(json.dumps(e,indent=2));print('1477 receipt confirmed')

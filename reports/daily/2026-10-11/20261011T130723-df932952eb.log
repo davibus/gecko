@@ -1,0 +1,901 @@
+{
+  "job_scout_worksheet": {
+    "rows": 846,
+    "added": 0,
+    "updated": 0
+  },
+  "google_sheets": {
+    "spreadsheet_id": "1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I"
+  }
+}
+{
+  "raw_retrieved": 3,
+  "rss_retrieved": 3,
+  "rss_unique": 3,
+  "rss_duplicates_removed": 0,
+  "successful_feeds": 9,
+  "failed_feeds": 0,
+  "api_retrieved": 0,
+  "fetched": 483,
+  "normalized": 480,
+  "added": 0,
+  "updated": 0,
+  "duplicates": 39,
+  "cross_provider_duplicates": 0,
+  "filtered_by_role": 432,
+  "deterministic_rejects": 442,
+  "jooble_excluded": 0,
+  "rejected_history_excluded": 0,
+  "source_results_limited": 18737,
+  "newly_discovered": 0,
+  "already_existed": 32,
+  "new_job_ids": [],
+  "existing_job_ids": [
+    2222,
+    2223,
+    2224,
+    2225,
+    2226,
+    2227,
+    2228,
+    2229,
+    2230,
+    2255,
+    2231,
+    2232,
+    2233,
+    2234,
+    2235,
+    2236,
+    2237,
+    2238,
+    2239,
+    2240,
+    2241,
+    2242,
+    2243,
+    2244,
+    2245,
+    2246,
+    2247,
+    2248,
+    2249,
+    2250,
+    2251,
+    2252
+  ],
+  "changed_job_ids": [
+    2236
+  ],
+  "unique_remotive_jobs_available": 0,
+  "unique_jobs_imported": 0,
+  "eligibility_includes_usa": 0,
+  "eligibility_worldwide": 0,
+  "example_jobs": [],
+  "source_counts": {
+    "adzuna": 50,
+    "remotive": 3,
+    "web-careers": 0,
+    "jobicy": 50,
+    "remoteok": 50,
+    "usajobs": 30,
+    "greenhouse": 50,
+    "lever": 50,
+    "ashby": 50,
+    "workable": 50,
+    "weworkremotely": 50,
+    "workingnomads": 50,
+    "themuse": 0,
+    "indeed": 0,
+    "linkedin": 0,
+    "glassdoor": 0,
+    "ziprecruiter": 0
+  },
+  "source_backends": {
+    "remotive": "category-rss",
+    "web-careers": "brave"
+  },
+  "source_diagnostics": {
+    "remotive": {
+      "api_endpoint": "https://remotive.com/api/remote-jobs",
+      "rss_error": "",
+      "discovery_location": "Remote",
+      "feeds_attempted": 9,
+      "category_feeds": [
+        {
+          "category": "Marketing",
+          "url": "https://remotive.com/remote-jobs/feed/marketing",
+          "success": true,
+          "jobs": 1,
+          "error": ""
+        },
+        {
+          "category": "Data and Analytics",
+          "url": "https://remotive.com/remote-jobs/feed/data",
+          "success": true,
+          "jobs": 1,
+          "error": ""
+        },
+        {
+          "category": "Product Management",
+          "url": "https://remotive.com/remote-jobs/feed/product",
+          "success": true,
+          "jobs": 0,
+          "error": ""
+        },
+        {
+          "category": "Business Development",
+          "url": "https://remotive.com/remote-jobs/feed/business-development",
+          "success": true,
+          "jobs": 0,
+          "error": ""
+        },
+        {
+          "category": "Strategy",
+          "url": "https://remotive.com/remote-jobs/feed/strategy",
+          "success": true,
+          "jobs": 0,
+          "error": ""
+        },
+        {
+          "category": "Communications",
+          "url": "https://remotive.com/remote-jobs/feed/communications",
+          "success": true,
+          "jobs": 0,
+          "error": ""
+        },
+        {
+          "category": "Account Management",
+          "url": "https://remotive.com/remote-jobs/feed/account-management",
+          "success": true,
+          "jobs": 0,
+          "error": ""
+        },
+        {
+          "category": "Operations",
+          "url": "https://remotive.com/remote-jobs/feed/operations",
+          "success": true,
+          "jobs": 0,
+          "error": ""
+        },
+        {
+          "category": "All Others",
+          "url": "https://remotive.com/remote-jobs/feed/all-others",
+          "success": true,
+          "jobs": 1,
+          "error": ""
+        }
+      ]
+    },
+    "web-careers": {
+      "configured": true,
+      "backend": "brave",
+      "backends": [
+        "brave"
+      ],
+      "brave_used": true,
+      "google_cse_configured": false,
+      "google_cse_enabled": false,
+      "google_cse_used": false,
+      "search_results_returned": 0,
+      "brave_search_results_returned": 0,
+      "google_cse_search_results_returned": 0,
+      "pages_fetched": 0,
+      "valid_job_postings_extracted": 0,
+      "jobs_added": 0,
+      "google_cse": {
+        "configured": false,
+        "enabled": false,
+        "active": false,
+        "used": false,
+        "results_fetched": 0,
+        "pages_fetched": 0,
+        "valid_job_postings_extracted": 0,
+        "skipped": true,
+        "skip_reason": "disabled",
+        "qualifying": 0,
+        "added": 0,
+        "errors": []
+      },
+      "search_queries": [
+        {
+          "query": "Paid Search Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "Paid Search Manager",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Paid Search Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "Paid Search Manager",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Paid Search Specialist jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "Paid Search Specialist",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Paid Search Specialist jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "Paid Search Specialist",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "PPC Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "PPC Manager",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "PPC Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "PPC Manager",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "SEM Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "SEM Manager",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "SEM Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "SEM Manager",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Digital Marketing Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "Digital Marketing Manager",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Digital Marketing Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "Digital Marketing Manager",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Performance Marketing Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "Performance Marketing Manager",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Performance Marketing Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "Performance Marketing Manager",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Paid Media Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "Paid Media Manager",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Paid Media Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "Paid Media Manager",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Search Marketing Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "Search Marketing Manager",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Search Marketing Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "Search Marketing Manager",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Marketing Analytics Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "Marketing Analytics Manager",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Marketing Analytics Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "Marketing Analytics Manager",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Digital Marketing Analyst jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "Digital Marketing Analyst",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Digital Marketing Analyst jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "Digital Marketing Analyst",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Growth Marketing Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "Growth Marketing Manager",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Growth Marketing Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "Growth Marketing Manager",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "E-Commerce Marketing Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "E-Commerce Marketing Manager",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "E-Commerce Marketing Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "E-Commerce Marketing Manager",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Demand Generation Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "Demand Generation Manager",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Demand Generation Manager jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "Demand Generation Manager",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Senior Paid Search Strategist jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "Senior Paid Search Strategist",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Senior Paid Search Strategist jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "Senior Paid Search Strategist",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Director of Digital Marketing jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "Director of Digital Marketing",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Director of Digital Marketing jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "Director of Digital Marketing",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Director of Performance Marketing jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Utah",
+          "role": "Director of Performance Marketing",
+          "location": "Utah",
+          "backends": [
+            "brave"
+          ]
+        },
+        {
+          "query": "Director of Performance Marketing jobs (site:jobs.lever.co OR site:boards.greenhouse.io OR inurl:careers) Remote",
+          "role": "Director of Performance Marketing",
+          "location": "Remote",
+          "backends": [
+            "brave"
+          ]
+        }
+      ],
+      "errors": [
+        {
+          "stage": "brave-api",
+          "query": "Paid Search Manager",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Paid+Search+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Paid Search Manager",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Paid+Search+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Paid Search Specialist",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Paid+Search+Specialist+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Paid Search Specialist",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Paid+Search+Specialist+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "PPC Manager",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=PPC+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "PPC Manager",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=PPC+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "SEM Manager",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=SEM+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "SEM Manager",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=SEM+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Digital Marketing Manager",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Digital+Marketing+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Digital Marketing Manager",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Digital+Marketing+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Performance Marketing Manager",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Performance+Marketing+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Performance Marketing Manager",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Performance+Marketing+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Paid Media Manager",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Paid+Media+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Paid Media Manager",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Paid+Media+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Search Marketing Manager",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Search+Marketing+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Search Marketing Manager",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Search+Marketing+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Marketing Analytics Manager",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Marketing+Analytics+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Marketing Analytics Manager",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Marketing+Analytics+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Digital Marketing Analyst",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Digital+Marketing+Analyst+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Digital Marketing Analyst",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Digital+Marketing+Analyst+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Growth Marketing Manager",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Growth+Marketing+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Growth Marketing Manager",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Growth+Marketing+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "E-Commerce Marketing Manager",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=E-Commerce+Marketing+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "E-Commerce Marketing Manager",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=E-Commerce+Marketing+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Demand Generation Manager",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Demand+Generation+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Demand Generation Manager",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Demand+Generation+Manager+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Senior Paid Search Strategist",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Senior+Paid+Search+Strategist+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Senior Paid Search Strategist",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Senior+Paid+Search+Strategist+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Director of Digital Marketing",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Director+of+Digital+Marketing+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Director of Digital Marketing",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Director+of+Digital+Marketing+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Director of Performance Marketing",
+          "location": "Utah",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Director+of+Performance+Marketing+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Utah&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        },
+        {
+          "stage": "brave-api",
+          "query": "Director of Performance Marketing",
+          "location": "Remote",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=Director+of+Performance+Marketing+jobs+%28site%3Ajobs.lever.co+OR+site%3Aboards.greenhouse.io+OR+inurl%3Acareers%29+Remote&count=20&offset=0&country=US&search_lang=en: HTTP Error 402: Payment Required"
+        }
+      ]
+    }
+  },
+  "google_cse": {
+    "configured": false,
+    "enabled": false,
+    "active": false,
+    "used": false,
+    "results_fetched": 0,
+    "pages_fetched": 0,
+    "valid_job_postings_extracted": 0,
+    "skipped": true,
+    "skip_reason": "disabled",
+    "qualifying": 0,
+    "added": 0,
+    "errors": []
+  },
+  "skipped_sources": [
+    "themuse"
+  ],
+  "source_errors": {
+    "indeed": "Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aindeed.com%2Fviewjob+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required",
+    "linkedin": "Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Alinkedin.com%2Fjobs%2Fview+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required",
+    "glassdoor": "Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aglassdoor.com%2Fjob-listing+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required",
+    "ziprecruiter": "Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aziprecruiter.com%2Fjobs+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required"
+  },
+  "source_health": {
+    "adzuna": {
+      "status": "success",
+      "found": 50,
+      "detail": ""
+    },
+    "remotive": {
+      "status": "success",
+      "found": 3,
+      "detail": ""
+    },
+    "web-careers": {
+      "status": "no results",
+      "found": 0,
+      "detail": ""
+    },
+    "jobicy": {
+      "status": "success",
+      "found": 50,
+      "detail": ""
+    },
+    "remoteok": {
+      "status": "success",
+      "found": 50,
+      "detail": ""
+    },
+    "usajobs": {
+      "status": "success",
+      "found": 30,
+      "detail": ""
+    },
+    "greenhouse": {
+      "status": "success",
+      "found": 50,
+      "detail": ""
+    },
+    "lever": {
+      "status": "success",
+      "found": 50,
+      "detail": ""
+    },
+    "ashby": {
+      "status": "success",
+      "found": 50,
+      "detail": ""
+    },
+    "workable": {
+      "status": "success",
+      "found": 50,
+      "detail": ""
+    },
+    "weworkremotely": {
+      "status": "success",
+      "found": 50,
+      "detail": ""
+    },
+    "workingnomads": {
+      "status": "success",
+      "found": 50,
+      "detail": ""
+    },
+    "themuse": {
+      "status": "missing credentials",
+      "found": 0,
+      "detail": "Not configured"
+    },
+    "indeed": {
+      "status": "api error",
+      "found": 0,
+      "detail": "Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aindeed.com%2Fviewjob+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required"
+    },
+    "linkedin": {
+      "status": "api error",
+      "found": 0,
+      "detail": "Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Alinkedin.com%2Fjobs%2Fview+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required"
+    },
+    "glassdoor": {
+      "status": "api error",
+      "found": 0,
+      "detail": "Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aglassdoor.com%2Fjob-listing+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required"
+    },
+    "ziprecruiter": {
+      "status": "api error",
+      "found": 0,
+      "detail": "Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aziprecruiter.com%2Fjobs+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required"
+    }
+  },
+  "sources_searched": 16
+}
+{
+  "job_scout_worksheet": {
+    "rows": 846,
+    "added": 0,
+    "updated": 0,
+    "highlighted_scout_ids": 320
+  },
+  "google_sheets": {
+    "spreadsheet_id": "1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I"
+  }
+}
+Declined Job Scout rows preserved: 844
+Manual Indeed intake:
+{
+  "scanned": 0,
+  "processed": 0,
+  "duplicates": 0,
+  "failures": 0,
+  "skipped": 0,
+  "removed": 0,
+  "declined_preserved": 844,
+  "rejected": 0,
+  "removed_rows": [],
+  "new_job_ids": []
+}
+Link validation:
+  checked: 887
+  valid: 603
+  removed_dead: 22
+  temporary_failure: 262
+  protected_dead: 0
+  removed: Bobbie | Integrated Marketing Manager | https://boards-api.greenhouse.io/v1/boards/bobbie/jobs/6207549004 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Bobbie | Lifecycle Marketing Lead | https://boards-api.greenhouse.io/v1/boards/bobbie/jobs/6147613004 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: AlphaSense | Marketing Operations Specialist | https://boards-api.greenhouse.io/v1/boards/alphasense/jobs/8742424002 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Code3 | Lead, Paid Search | https://boards-api.greenhouse.io/v1/boards/code3/jobs/8028420 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Cordance | Marketing Operations Manager | https://boards-api.greenhouse.io/v1/boards/cordance/jobs/5392784008 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: DEPT | Associate Director, SEO - Remote US | https://boards-api.greenhouse.io/v1/boards/dept/jobs/8175525 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: DEPT | Manager, SEO Strategy | https://boards-api.greenhouse.io/v1/boards/dept/jobs/8195797 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Eve | Director of Social & Organic Marketing | https://boards-api.greenhouse.io/v1/boards/eve/jobs/4356315009 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Fleetio | Senior Lifecycle Marketing Manager | https://boards-api.greenhouse.io/v1/boards/fleetio/jobs/5186559007 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Gong.io | Sr. Director, Growth Marketing | https://boards-api.greenhouse.io/v1/boards/gongio/jobs/4691977006 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Hasbro | Associate Marketing Lifecycle Manager (Contract) | https://boards-api.greenhouse.io/v1/boards/hasbro/jobs/4322322009 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Iterable | Principal Product Marketing Manager - AI Innovation | https://boards-api.greenhouse.io/v1/boards/iterable/jobs/8204274 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Keeper Security | Senior Event Marketing Specialist | https://boards-api.greenhouse.io/v1/boards/keepersecurity/jobs/4397773009 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Launch Potato | Business Intelligence Lead, Performance Marketing | https://boards-api.greenhouse.io/v1/boards/launch2/jobs/6206254004 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Launch Potato | Lead Data Analyst, Marketing | https://boards-api.greenhouse.io/v1/boards/launch2/jobs/6207350004 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Motive | Senior Partner Marketing Manager | https://boards-api.greenhouse.io/v1/boards/gomotive/jobs/8678095002 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Oura | Paid Search Specialist (US) | https://boards-api.greenhouse.io/v1/boards/oura/jobs/4324959009 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Precision Medicine Group | Senior Manager, Marketing Operations | https://boards-api.greenhouse.io/v1/boards/precisionmedicinegroup/jobs/6134098004 | Official ATS API confirms posting absent | HTTP/status 404
+  removed: Powered by search | Senior Performance Marketing Strategist | https://powered-by-search.breezy.hr/p/24d21ee8a5de-senior-performance-marketing-strategist | Page explicitly says the job is closed or unavailable | HTTP/status 200
+  removed: Powered by search | Senior SEO & Organic Growth Strategist | https://powered-by-search.breezy.hr/p/4fe2ffd42411-senior-seo-growth-strategist | Page explicitly says the job is closed or unavailable | HTTP/status 200
+  removed: Powered by search | Senior SEO & Organic Growth Strategist | https://powered-by-search.breezy.hr/p/4fe2ffd42411-senior-seo-growth-strategist | Page explicitly says the job is closed or unavailable | HTTP/status 200
+  removed: Powered by search | Senior Performance Marketing Strategist | https://powered-by-search.breezy.hr/p/24d21ee8a5de-senior-performance-marketing-strategist | Page explicitly says the job is closed or unavailable | HTTP/status 200
+DAILY REVIEW: No new qualifying jobs were discovered in this run.
+Found 2 jobs requiring resumes.
+Tracker rows checked: 846
+Skipped with completion marker or existing Resume Link: 0
+Row | Scout ID | Company | Job title
+525 | 1949 | SimpleTiger | B2B SaaS PPC Manager
+526 | 1950 | OnTheGoSystems | Head of Marketing
+Processing eligible jobs now.
+[1/2] Creating Gecko resume: SimpleTiger  B2B SaaS PPC Manager
+Resume created: C:\gecko_main\output\resumes\Dave-Call+SimpleTiger+B2B-SaaS-PPC-Manager+ed7197aeda25d8d81b7c1920.docx
+Updated Gecko Job Tracker row 525: Resume Created = X
+[2/2] Creating Gecko resume: OnTheGoSystems  Head of Marketing
+Resume created: C:\gecko_main\output\resumes\Dave-Call+OnTheGoSystems+Head-of-Marketing+b6ceba2f8f007f7072bcaf9e.docx
+Updated Gecko Job Tracker row 526: Resume Created = X
+
+Daily Job Scout complete
+Sources searched: 16
+Jobs discovered: 483
+Jooble jobs excluded: 0
+Duplicates skipped: 39
+New jobs added: 0
+Manual Indeed rows processed: 0
+Manual Indeed duplicates flagged: 0
+Manual Indeed retrieval failures: 0
+Job Scout declined rows removed: 0
+Declined rows preserved: 844
+Jobs marked Apply = Yes: 2
+Resumes already existing: 0
+New Gecko resumes created: 2
+Resume failures: 0
+AI triage calls: 0
+Full score calls: 0
+Unchanged descriptions served from cache: 0
+Elapsed time: 401.59s
+Daily run metrics:
+  fetched: 483
+  deterministic_rejects: 442
+  duplicates: 39
+  cached_unchanged: 0
+  AI_triage_calls: 0
+  full_score_calls: 0
+  Apply_Yes: 2
+  resumes_generated: 2
+  failures: 5
+  elapsed_time: 401.59s
+Gmail response tracking: failed without stopping Daily Job Scout (('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'}))
+
+Created resumes:
+1. SimpleTiger | B2B SaaS PPC Manager | C:\gecko_main\output\resumes\Dave-Call+SimpleTiger+B2B-SaaS-PPC-Manager+ed7197aeda25d8d81b7c1920.docx
+2. OnTheGoSystems | Head of Marketing | C:\gecko_main\output\resumes\Dave-Call+OnTheGoSystems+Head-of-Marketing+b6ceba2f8f007f7072bcaf9e.docx
+
+Failures:
+None
+
+Warning: indeed provider failed: Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aindeed.com%2Fviewjob+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required
+Warning: linkedin provider failed: Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Alinkedin.com%2Fjobs%2Fview+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required
+Warning: glassdoor provider failed: Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aglassdoor.com%2Fjob-listing+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required
+Warning: ziprecruiter provider failed: Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aziprecruiter.com%2Fjobs+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required
+
+Job Scout source summary
+adzuna: success (50 found)
+remotive: success (3 found)
+web-careers: no results (0 found)
+jobicy: success (50 found)
+remoteok: success (50 found)
+usajobs: success (30 found)
+greenhouse: success (50 found)
+lever: success (50 found)
+ashby: success (50 found)
+workable: success (50 found)
+weworkremotely: success (50 found)
+workingnomads: success (50 found)
+themuse: missing credentials (0 found) - Not configured
+indeed: api error (0 found) - Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aindeed.com%2Fviewjob+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required
+linkedin: api error (0 found) - Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Alinkedin.com%2Fjobs%2Fview+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required
+glassdoor: api error (0 found) - Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aglassdoor.com%2Fjob-listing+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required
+ziprecruiter: api error (0 found) - Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aziprecruiter.com%2Fjobs+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required
+brave: brave backend for web-careers
+Duplicates removed: 39
+Previously seen: 32
+Rejected by Gecko filters: 432
+New qualified jobs written: 0
+Gmail response tracking warning: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})

@@ -1,0 +1,651 @@
+[
+  {
+    "id": "2222",
+    "row": 2,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Siemens+scout-2222+sheet-20261014.md",
+        "key": "scout-2222",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "2225",
+    "row": 5,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Vasion,-Inc+scout-2225+sheet-20261014.md",
+        "key": "scout-2225",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "2226",
+    "row": 6,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Leland+5901235706.md",
+        "key": "5901235706",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "2228",
+    "row": 8,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Deloitte+5900550784.md",
+        "key": "5900550784",
+        "authoritative_url": "https://applyglobal.deloitte.com/job/Birmingham-Global-Salesforce-Marketing-Manager-AL-35201/1364643855"
+      }
+    ]
+  },
+  {
+    "id": "2229",
+    "row": 9,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Zoom+5899617746.md",
+        "key": "5899617746",
+        "authoritative_url": "https://careers.zoom.us/jobs/product-growth-marketing-manager-san-jose-california-united-states-seattle-washington-remote"
+      }
+    ]
+  },
+  {
+    "id": "2231",
+    "row": 11,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Fieldguide+154963.md",
+        "key": "154963",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "2232",
+    "row": 12,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\NetBox-Labs+152939.md",
+        "key": "152939",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "2233",
+    "row": 13,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Veriff+152906.md",
+        "key": "152906",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "2234",
+    "row": 14,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\GOAT-Group+154939.md",
+        "key": "154939",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "2235",
+    "row": 15,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Luxury-Presence+154945.md",
+        "key": "154945",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "2236",
+    "row": 16,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\6sense+152834.md",
+        "key": "152834",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "2237",
+    "row": 17,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\DuckDuckGo+152828.md",
+        "key": "152828",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "2238",
+    "row": 18,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Chili-Piper+152812.md",
+        "key": "152812",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "2239",
+    "row": 19,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Canonical+148814.md",
+        "key": "148814",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "2240",
+    "row": 20,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Podium+8194446.md",
+        "key": "8194446",
+        "authoritative_url": "http://job-boards.greenhouse.io/podium81/jobs/8194446"
+      }
+    ]
+  },
+  {
+    "id": "2241",
+    "row": 21,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Filevine+6a3a9f5b-c380-4c03-b6a8-eab125f176c2.md",
+        "key": "6a3a9f5b-c380-4c03-b6a8-eab125f176c2",
+        "authoritative_url": "https://jobs.lever.co/filevine/6a3a9f5b-c380-4c03-b6a8-eab125f176c2"
+      }
+    ]
+  },
+  {
+    "id": "2242",
+    "row": 22,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\HealthCare+a5f95cac-d51f-4d9d-811f-70948bfcdc0b.md",
+        "key": "a5f95cac-d51f-4d9d-811f-70948bfcdc0b",
+        "authoritative_url": "https://jobs.lever.co/healthcare/a5f95cac-d51f-4d9d-811f-70948bfcdc0b"
+      }
+    ]
+  },
+  {
+    "id": "2243",
+    "row": 23,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Prosper+be2de9d8-63db-445b-962d-79ee01b64548.md",
+        "key": "be2de9d8-63db-445b-962d-79ee01b64548",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "2252",
+    "row": 32,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Tines+9a3ff9f86e90bcf746521128.md",
+        "key": "9a3ff9f86e90bcf746521128",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "2255",
+    "row": 35,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\John-Gore-Organization+scout-2255+sheet-20261014.md",
+        "key": "scout-2255",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "row": 36,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Digital-Marketing+scout-4+sheet-20261014.md",
+        "key": "scout-4",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "36",
+    "row": 45,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Marrina-Decisions+scout-36+sheet-20261014.md",
+        "key": "scout-36",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "39",
+    "row": 46,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Five-Star-Franchising+scout-39+sheet-20261014.md",
+        "key": "scout-39",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "47",
+    "row": 48,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Cambia-Health-Solutions+scout-47+sheet-20261014.md",
+        "key": "scout-47",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "50",
+    "row": 49,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Aptive-Pest-Control+scout-50+sheet-20261014.md",
+        "key": "scout-50",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "57",
+    "row": 50,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\The-Front-Climbing-Club+scout-57+sheet-20261014.md",
+        "key": "scout-57",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "467",
+    "row": 54,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Sanctuary-Computer-Inc+2091140.md",
+        "key": "2091140",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "469",
+    "row": 55,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Lemon.io+2091131.md",
+        "key": "2091131",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "470",
+    "row": 56,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Lemon.io+2091130.md",
+        "key": "2091130",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "472",
+    "row": 57,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\A.Team+1919265.md",
+        "key": "1919265",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "473",
+    "row": 58,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\A.Team+1919266.md",
+        "key": "1919266",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "474",
+    "row": 59,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Mitre-Media+2069746.md",
+        "key": "2069746",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "475",
+    "row": 60,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Coalition-Technologies+1680495.md",
+        "key": "1680495",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "476",
+    "row": 61,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\iMerit-Technology+2091126.md",
+        "key": "2091126",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "477",
+    "row": 62,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Credit-Wellness,-LLC+2086540.md",
+        "key": "2086540",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "478",
+    "row": 63,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Unio-Digital+2091045.md",
+        "key": "2091045",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "480",
+    "row": 64,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Coalition-Technologies+1749306.md",
+        "key": "1749306",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "484",
+    "row": 65,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\TELUS-Digital+2091144.md",
+        "key": "2091144",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "559",
+    "row": 67,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Pattern+scout-559+sheet-20261014.md",
+        "key": "scout-559",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "564",
+    "row": 70,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\RainFocus+scout-564+sheet-20261014.md",
+        "key": "scout-564",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "567",
+    "row": 71,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Hire-Resolve.com+scout-567+sheet-20261014.md",
+        "key": "scout-567",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "568",
+    "row": 72,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Digital-Marketing+scout-568+sheet-20261014.md",
+        "key": "scout-568",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "688",
+    "row": 73,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Wpromote+af0f35a1-d0e7-42bb-a90d-38042d803f7d.md",
+        "key": "af0f35a1-d0e7-42bb-a90d-38042d803f7d",
+        "authoritative_url": "https://jobs.lever.co/wpromote/af0f35a1-d0e7-42bb-a90d-38042d803f7d?lever-source=Otta"
+      }
+    ]
+  },
+  {
+    "id": "692",
+    "row": 75,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Pattern+scout-692+sheet-20261014.md",
+        "key": "scout-692",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "694",
+    "row": 77,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Protective+f086ae37-2468-433d-8862-9379c024811c.md",
+        "key": "f086ae37-2468-433d-8862-9379c024811c",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "696",
+    "row": 78,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Instrumentl+a2c6c454-00a1-4ab0-9c02-cddfffec17b5.md",
+        "key": "a2c6c454-00a1-4ab0-9c02-cddfffec17b5",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "698",
+    "row": 80,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Smart-Working-Solutions+0c605546-9908-4d2e-9f44-197273172f82.md",
+        "key": "0c605546-9908-4d2e-9f44-197273172f82",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "703",
+    "row": 83,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Lumin-Digital+d96affe1-9ce7-4c3b-b40e-223e6c82a537.md",
+        "key": "d96affe1-9ce7-4c3b-b40e-223e6c82a537",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "704",
+    "row": 84,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\TeamSnap+14124f03-3002-4ac5-96e2-dac3a39610a2.md",
+        "key": "14124f03-3002-4ac5-96e2-dac3a39610a2",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "707",
+    "row": 85,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Wpromote+b9c1c122-14bb-4c94-a34f-d53f2ceac9ad.md",
+        "key": "b9c1c122-14bb-4c94-a34f-d53f2ceac9ad",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "708",
+    "row": 86,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Jobscan+scout-708+sheet-20261014.md",
+        "key": "scout-708",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "709",
+    "row": 87,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Stripe+8142770.md",
+        "key": "8142770",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "710",
+    "row": 88,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Saviynt+3fb45888-3ba9-4b70-9988-61255c93409b.md",
+        "key": "3fb45888-3ba9-4b70-9988-61255c93409b",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "714",
+    "row": 92,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\RainFocus+3aaf4676-cec2-4e54-a77e-02075e283ba7.md",
+        "key": "3aaf4676-cec2-4e54-a77e-02075e283ba7",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "716",
+    "row": 93,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Pattern+1b7ad516-a6b5-4d3f-82a2-6d412977a32d.md",
+        "key": "1b7ad516-a6b5-4d3f-82a2-6d412977a32d",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "721",
+    "row": 96,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Decile-Group+b8d5a786-5a7e-4a89-8108-5ec50bde48e8.md",
+        "key": "b8d5a786-5a7e-4a89-8108-5ec50bde48e8",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "722",
+    "row": 97,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\Flex+111d1443-ce65-40fd-98f5-bd701825e910.md",
+        "key": "111d1443-ce65-40fd-98f5-bd701825e910",
+        "authoritative_url": "https://jobs.lever.co/Flex/111d1443-ce65-40fd-98f5-bd701825e910"
+      }
+    ]
+  },
+  {
+    "id": "726",
+    "row": 99,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\CAI-World-Wide+scout-726+sheet-20261014.md",
+        "key": "scout-726",
+        "authoritative_url": null
+      }
+    ]
+  },
+  {
+    "id": "847",
+    "row": 100,
+    "matching_descriptions": [
+      {
+        "path": "C:\\gecko_main\\input\\job-descriptions\\HealthCare+f3febd60-0083-4bee-9856-c6d779a72177.md",
+        "key": "f3febd60-0083-4bee-9856-c6d779a72177",
+        "authoritative_url": "https://jobs.lever.co/healthcare/f3febd60-0083-4bee-9856-c6d779a72177"
+      }
+    ]
+  }
+]

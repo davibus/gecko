@@ -1,0 +1,2 @@
+{"at": "2026-10-14T04:57:31.552455-06:00", "event": "snapshot", "run_id": "20261014T045659-18d3df9c78", "tab_counts": {"Cursor Instructions": 0, "Deleted Jobs": 0, "Job List": 1030, "Rejected Jobs": 30, "Scratch": 23}}
+{"at": "2026-10-14T04:57:36.628132-06:00", "error": "RuntimeError: Job-tracking data changed during report", "event": "failure", "run_id": "20261014T045659-18d3df9c78"}

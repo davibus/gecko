@@ -1,0 +1,29 @@
+[
+  {
+    "source": "adzuna",
+    "days": 1,
+    "query": "Paid Search Manager",
+    "location": "Remote",
+    "parsed_results": 0,
+    "status": "zero results",
+    "tracker_writes": 0
+  },
+  {
+    "source": "adzuna",
+    "days": 7,
+    "query": "Paid Search Manager",
+    "location": "Remote",
+    "parsed_results": 1,
+    "status": "success",
+    "tracker_writes": 0
+  },
+  {
+    "source": "adzuna",
+    "days": 30,
+    "query": "Paid Search Manager",
+    "location": "Remote",
+    "parsed_results": 1,
+    "status": "success",
+    "tracker_writes": 0
+  }
+]

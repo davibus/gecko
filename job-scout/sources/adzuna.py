@@ -28,13 +28,20 @@ class AdzunaProvider(JobSource):
             "app_id": self.app_id,
             "app_key": self.app_key,
             "results_per_page": request.results_per_page,
-            "what": request.query,
-            "where": request.location,
+            "what": (request.query + ' remote' if request.location.casefold() == 'remote'
+                     else request.query),
+            "where": '' if request.location.casefold() == 'remote' else request.location,
             "sort_by": "date",
             "content-type": "application/json",
         })
+        if request.days is not None:
+            params += '&' + urlencode({'max_days_old': request.days})
         url = f"https://api.adzuna.com/v1/api/jobs/{self.country}/search/{request.page}?{params}"
-        for item in get_json(url).get("results", []):
+        payload = get_json(url)
+        items = payload.get('results', [])
+        self.has_more = bool(items) and (request.page * request.results_per_page <
+            int(payload.get('count', request.page * request.results_per_page)))
+        for item in items:
             salary_min, salary_max = item.get("salary_min"), item.get("salary_max")
             salary = ""
             if salary_min or salary_max:

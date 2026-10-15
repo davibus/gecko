@@ -1,0 +1,30 @@
+
+Gecko: Daily report
+Daily report 20261014T052040-c15a11cc20: WARNING | Daily Tasks row 3 | Daily Run row 3
+Retained dates: 2026-10-14, 2026-10-13, 2026-10-11
+Updated rows: 8, 9, 10, 49, 50, 53, 56, 63, 66
+Job Scout rows: 1030; Indeed rows: 4; resume candidates: 250
+Audit: reports/daily/2026-10-14/20261014T052040-c15a11cc20.json
+
+Gecko: Daily discovery, tracker sync, and tailored resumes
+Gecko daily 20261014T052249-cb6dba7942: FAIL
+Jobs Discovered: 21257
+New Jobs Added: 14
+Duplicates Skipped: 977
+Manual Indeed Rows Processed: Unavailable
+Manual Indeed Duplicates Flagged: Unavailable
+Manual Indeed Retrieval Failures: Unavailable
+Declined Rows Preserved: Unavailable
+Resumes Reused: Unavailable
+Resumes Created: Unavailable
+Resume Failures: Unavailable
+Workflow Failures: Unavailable
+Gmail Emails Checked: Unavailable
+Employer Responses Matched: Unavailable
+Response Rows Updated: Unavailable
+Provider Failures: 7
+Indeed Jobs Found: 0
+Daily Run: row 3
+Error: Daily workflow exited with code 1
+Error: Daily workflow stopped before its final summary
+Audit: reports/daily/2026-10-14/20261014T052249-cb6dba7942.json

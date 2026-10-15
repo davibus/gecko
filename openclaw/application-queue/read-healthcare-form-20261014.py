@@ -1,0 +1,4 @@
+from native_browser import call
+from pathlib import Path
+import json,time
+Q=Path('/mnt/c/gecko_main/openclaw/application-queue');j='2242';f=json.loads((Q/j/'initial-browser-20261014.json').read_text())['page']['result'];url=next(x['url'] for x in f['links'] if x['text']=='APPLY FOR THIS JOB');t=call(['open',url,'--label','app20261014-'+j])['targetId'];time.sleep(1);s=call(['snapshot','--target-id',t,'--format','ai','--interactive','--compact']);r=call(['evaluate','--target-id',t,'--fn','() => ({url:location.href,title:document.title,text:document.body.innerText,files:Array.from(document.querySelectorAll("input[type=file]")).map(e=>({id:e.id,name:e.name}))})']);(Q/j/'application-form-20261014.json').write_text(json.dumps({'targetId':t,'snapshot':s,'page':r},indent=2));print(s['snapshot']);print(json.dumps(r['result']))

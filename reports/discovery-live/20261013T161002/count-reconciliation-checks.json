@@ -1,0 +1,202 @@
+[
+  {
+    "source": "adzuna",
+    "parsed": 446,
+    "decisions": 446,
+    "exclusive_reasons": {
+      "excluded employment type": 11,
+      "non-remote role outside preferred locations": 161,
+      "unrelated role family": 13,
+      "URL requires review": 41,
+      "outside target role families": 137,
+      "generic non-marketing manager/production role": 4,
+      "previously known": 62,
+      "rejection history": 11,
+      "excluded title/seniority": 6
+    },
+    "reconciled": true
+  },
+  {
+    "source": "remotive",
+    "parsed": 3,
+    "decisions": 3,
+    "exclusive_reasons": {
+      "outside target role families": 2,
+      "rejection history": 1
+    },
+    "reconciled": true
+  },
+  {
+    "source": "web-careers",
+    "parsed": 0,
+    "decisions": 0,
+    "exclusive_reasons": {},
+    "reconciled": true
+  },
+  {
+    "source": "jobicy",
+    "parsed": 123,
+    "decisions": 123,
+    "exclusive_reasons": {
+      "unrelated role family": 38,
+      "outside target role families": 64,
+      "previously known": 20,
+      "excluded title/seniority": 1
+    },
+    "reconciled": true
+  },
+  {
+    "source": "remoteok",
+    "parsed": 99,
+    "decisions": 99,
+    "exclusive_reasons": {
+      "unrelated role family": 19,
+      "outside target role families": 78,
+      "generic non-marketing manager/production role": 1,
+      "previously known": 1
+    },
+    "reconciled": true
+  },
+  {
+    "source": "usajobs",
+    "parsed": 86,
+    "decisions": 86,
+    "exclusive_reasons": {
+      "generic non-marketing manager/production role": 4,
+      "outside target role families": 82
+    },
+    "reconciled": true
+  },
+  {
+    "source": "greenhouse",
+    "parsed": 6996,
+    "decisions": 6996,
+    "exclusive_reasons": {
+      "outside target role families": 4842,
+      "new unique": 3,
+      "unrelated role family": 1593,
+      "non-remote role outside preferred locations": 131,
+      "non-marketing data science": 55,
+      "generic non-marketing manager/production role": 131,
+      "previously known": 201,
+      "excluded title/seniority": 40
+    },
+    "reconciled": true
+  },
+  {
+    "source": "lever",
+    "parsed": 4733,
+    "decisions": 4733,
+    "exclusive_reasons": {
+      "outside target role families": 3697,
+      "unrelated role family": 664,
+      "previously known": 109,
+      "non-remote role outside preferred locations": 56,
+      "generic non-marketing manager/production role": 84,
+      "non-marketing data science": 12,
+      "excluded employment type": 32,
+      "new unique": 52,
+      "excluded title/seniority": 27
+    },
+    "reconciled": true
+  },
+  {
+    "source": "ashby",
+    "parsed": 3149,
+    "decisions": 3149,
+    "exclusive_reasons": {
+      "outside target role families": 2131,
+      "unrelated role family": 734,
+      "new unique": 116,
+      "generic non-marketing manager/production role": 51,
+      "non-marketing data science": 32,
+      "non-remote role outside preferred locations": 33,
+      "excluded employment type": 1,
+      "excluded title/seniority": 5,
+      "previously known": 46
+    },
+    "reconciled": true
+  },
+  {
+    "source": "workable",
+    "parsed": 5464,
+    "decisions": 5464,
+    "exclusive_reasons": {
+      "outside target role families": 4160,
+      "previously known": 320,
+      "unrelated role family": 816,
+      "generic non-marketing manager/production role": 85,
+      "rejection history": 1,
+      "excluded employment type": 65,
+      "non-marketing data science": 14,
+      "excluded title/seniority": 2,
+      "missing title": 1
+    },
+    "reconciled": true
+  },
+  {
+    "source": "weworkremotely",
+    "parsed": 110,
+    "decisions": 110,
+    "exclusive_reasons": {
+      "unrelated role family": 54,
+      "outside target role families": 35,
+      "previously known": 18,
+      "excluded employment type": 3
+    },
+    "reconciled": true
+  },
+  {
+    "source": "workingnomads",
+    "parsed": 51,
+    "decisions": 51,
+    "exclusive_reasons": {
+      "outside target role families": 35,
+      "unrelated role family": 15,
+      "non-marketing data science": 1
+    },
+    "reconciled": true
+  },
+  {
+    "source": "themuse",
+    "parsed": 0,
+    "decisions": 0,
+    "exclusive_reasons": {},
+    "reconciled": true
+  },
+  {
+    "source": "indeed",
+    "parsed": 0,
+    "decisions": 0,
+    "exclusive_reasons": {},
+    "reconciled": true
+  },
+  {
+    "source": "linkedin",
+    "parsed": 0,
+    "decisions": 0,
+    "exclusive_reasons": {},
+    "reconciled": true
+  },
+  {
+    "source": "glassdoor",
+    "parsed": 0,
+    "decisions": 0,
+    "exclusive_reasons": {},
+    "reconciled": true
+  },
+  {
+    "source": "ziprecruiter",
+    "parsed": 0,
+    "decisions": 0,
+    "exclusive_reasons": {},
+    "reconciled": true
+  },
+  {
+    "source": "jooble",
+    "parsed": 0,
+    "decisions": 0,
+    "exclusive_reasons": {},
+    "reconciled": true
+  }
+]

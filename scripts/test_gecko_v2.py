@@ -14,6 +14,26 @@ class GeckoV2Tests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.listing = v2.ROOT / "input/job-descriptions/Vitality-Medical+b1e13fda0b6ba9cb.md"
+        # Exercise the current canonical archive in an isolated checkout fixture
+        # without changing its source facts or touching existing resumes.
+        import sys
+        sys.path.insert(0, str(v2.ROOT / "job-scout"))
+        temp = tempfile.TemporaryDirectory()
+        cls.addClassCleanup(temp.cleanup)
+        root = Path(temp.name)
+        master = root / "input/master-resume/master-resume-v2.txt"
+        master.parent.mkdir(parents=True)
+        content = v2.MASTER.read_text(encoding="utf-8-sig")
+        master.write_text(content, encoding="utf-8")
+        model = master.parent / v2.FORMAT_MODEL.name
+        model.write_bytes(v2.FORMAT_MODEL.read_bytes())
+        fixture_listing = root / "input/job-descriptions/Pattern+3245845963235237630.md"
+        fixture_listing.parent.mkdir(parents=True)
+        fixture_listing.write_bytes((v2.ROOT / fixture_listing.relative_to(root)).read_bytes())
+        for name, value in (("ROOT", root), ("MASTER", master), ("FORMAT_MODEL", model)):
+            patcher = patch.object(v2, name, value)
+            patcher.start()
+            cls.addClassCleanup(patcher.stop)
         cls.plan = v2.create_plan(cls.listing)
 
     def test_plan_precedes_generation_and_classifies_requirements(self):
@@ -29,12 +49,28 @@ class GeckoV2Tests(unittest.TestCase):
         self.assertTrue(any(r["status"] == "gap" for r in plan["requirements"]["responsibilities"]))
         v2.verify_plan(plan)
 
-    def test_resume_filename_includes_safe_title_and_keeps_number_last(self):
+    def test_tailored_summary_rejects_unsupported_edit(self):
+        import copy
+        plan = copy.deepcopy(self.plan)
+        plan["resume"]["summary"] += " Expert in cloud security."
+        with self.assertRaisesRegex(ValueError, "summary"):
+            v2.verify_plan(plan)
+
+    def test_previous_fixed_summary_plan_remains_verifiable(self):
+        import copy
+        plan = copy.deepcopy(self.plan)
+        plan["resume"].pop("summary_selection")
+        plan["resume"]["summary"] = v2.master_identity()["summary"]
+        v2.verify_plan(plan)
+
+    def test_resume_filename_includes_safe_title_and_short_identifier(self):
         self.assertEqual(
             v2.resume_filename("Acme / West", "Director, SEO / Growth: US?", "abc123"),
-            "Dave-Call+Acme-West+Director,-SEO-Growth-US+abc123.docx",
+            "Dave-Call+Acme-West+Director,-SEO-Growth-US+00001.docx",
         )
-        self.assertTrue(v2.resume_filename("Acme", "Very Long Title " * 20, "abc123").endswith("+abc123.docx"))
+        name = v2.resume_filename("Acme", "Very Long Title " * 20, "abc123")
+        self.assertTrue(name.endswith("+00001.docx"))
+        self.assertLessEqual(len(name), 150)
 
     def test_manual_generator_checks_live_x_before_writing(self):
         import sys
@@ -45,10 +81,12 @@ class GeckoV2Tests(unittest.TestCase):
             tab = SimpleNamespace(
                 headers={"Resume Created": 7},
                 rows=[(2, {"Scout ID": "123", "Resume Created": " x ",
-                           "Job URL": "https://example.test/job"})],
+                           "Job URL": "https://example.test/job", "Apply?": "Yes",
+                           "Location": "Salt Lake City, UT", "Cost": ""})],
             )
             with patch("google_tracker.GoogleTracker") as tracker:
                 tracker.return_value.scout.return_value = tab
+                tracker.return_value.rejected_jobs_index.return_value.match.return_value = False
                 with self.assertRaisesRegex(RuntimeError, "SKIP RESUME"):
                     v2._assert_no_existing_tracker_resume({"listing": str(listing)})
                 tab.rows[0][1]["Resume Created"] = ""
@@ -112,7 +150,7 @@ class GeckoV2Tests(unittest.TestCase):
 
     def test_reads_updated_master_archive_instead_of_cached_content(self):
         with tempfile.TemporaryDirectory() as tmp:
-            master = Path(tmp) / "Dave-Call-Resume.txt"
+            master = Path(tmp) / "master-resume-v2.txt"
             master.write_text("First master version\n", encoding="utf-8")
             with patch.object(v2, "ROOT", Path(tmp)), patch.object(v2, "MASTER", master):
                 first = v2.source_text()
@@ -122,22 +160,32 @@ class GeckoV2Tests(unittest.TestCase):
                 self.assertNotEqual(first, v2.source_text())
                 self.assertNotEqual(first_hash, v2.source_hashes())
 
+    def test_unreadable_or_empty_master_fails_clearly(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            master = Path(tmp) / "master-resume-v2.txt"
+            with patch.object(v2, "ROOT", Path(tmp)), patch.object(v2, "MASTER", master):
+                with self.assertRaisesRegex(OSError, "missing or unreadable"):
+                    v2.source_text()
+                master.write_text(" \n", encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "is empty"):
+                    v2.source_text()
+
     def test_old_files_and_format_reference_are_not_evidence(self):
-        self.assertEqual(v2.MASTER.name, "Dave-Call-Resume.txt")
+        self.assertEqual(v2.MASTER.name, "master-resume-v2.txt")
         self.assertEqual(v2.FORMAT_MODEL.name, "MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf")
         self.assertEqual({Path(path).as_posix() for path in self.plan["source_sha256"]},
-                         {"input/master-resume/Dave-Call-Resume.txt"})
+                         {"input/master-resume/master-resume-v2.txt"})
         self.assertEqual(self.plan["format_model"],
                          "input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf")
         self.assertEqual(self.plan["format_model_sha256"], v2.formatting_model_hash())
-        self.assertTrue(all(e["source"].endswith("Dave-Call-Resume.txt")
+        self.assertTrue(all(e["source"].endswith("master-resume-v2.txt")
                             for e in self.plan["evidence"]))
         self.assertNotIn("Spanish", self.plan["resume"]["contact"])
         self.assertNotIn("Spanish", self.plan["resume"]["certifications"])
 
     def test_missing_required_authorities_fail_without_fallback(self):
         with tempfile.TemporaryDirectory() as tmp:
-            missing_master = Path(tmp) / "Dave-Call-Resume.txt"
+            missing_master = Path(tmp) / "master-resume-v2.txt"
             missing_model = Path(tmp) / "MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf"
             with patch.object(v2, "MASTER", missing_master), patch.object(v2, "FORMAT_MODEL", v2.FORMAT_MODEL):
                 with self.assertRaisesRegex(FileNotFoundError, "Required Gecko master resume could not be found"):

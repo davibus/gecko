@@ -1,0 +1,63 @@
+
+Job Scout source summary
+adzuna: no results (0 found)
+Duplicates removed: 0
+Previously seen: 0
+Rejected by Gecko filters: 0
+New qualified jobs written: 0
+{
+  "raw_retrieved": 0,
+  "rss_retrieved": 0,
+  "rss_unique": 0,
+  "rss_duplicates_removed": 0,
+  "successful_feeds": 0,
+  "failed_feeds": 0,
+  "api_retrieved": 0,
+  "fetched": 0,
+  "normalized": 0,
+  "added": 0,
+  "updated": 0,
+  "duplicates": 0,
+  "cross_provider_duplicates": 0,
+  "filtered_by_role": 0,
+  "deterministic_rejects": 0,
+  "jooble_excluded": 0,
+  "rejected_history_excluded": 0,
+  "source_results_limited": 0,
+  "newly_discovered": 0,
+  "already_existed": 0,
+  "new_job_ids": [],
+  "existing_job_ids": [],
+  "changed_job_ids": [],
+  "unique_remotive_jobs_available": 0,
+  "unique_jobs_imported": 0,
+  "eligibility_includes_usa": 0,
+  "eligibility_worldwide": 0,
+  "example_jobs": [],
+  "source_counts": {
+    "adzuna": 0
+  },
+  "source_backends": {},
+  "source_diagnostics": {},
+  "google_cse": {},
+  "skipped_sources": [],
+  "source_errors": {},
+  "source_health": {
+    "adzuna": {
+      "status": "no results",
+      "found": 0,
+      "detail": ""
+    }
+  },
+  "sources_searched": 1
+}
+{
+  "job_scout_worksheet": {
+    "rows": 846,
+    "added": 0,
+    "updated": 846
+  },
+  "google_sheets": {
+    "spreadsheet_id": "1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I"
+  }
+}

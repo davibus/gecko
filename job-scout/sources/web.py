@@ -172,6 +172,8 @@ class WebCareerProvider(JobSource):
                 "offset": min(max(request.page - 1, 0), 9), "country": "US", "search_lang": "en",
             })
             payload = get_json(url, {"X-Subscription-Token": self.brave_key})
+            self.has_more = getattr(self,'has_more',False) or (
+                request.page<10 and bool(payload.get('query',{}).get('more_results_available')))
             return [SearchHit(
                 url=str(item.get("url") or ""),
                 title=str(item.get("title") or ""),
@@ -183,12 +185,15 @@ class WebCareerProvider(JobSource):
                 "key": self.google_key, "cx": self.google_cx, "q": query,
                 "num": min(request.results_per_page, 10), "start": (request.page - 1) * 10 + 1,
             })
+            payload = get_json(url)
+            self.has_more = getattr(self,'has_more',False) or (
+                request.page<10 and bool(payload.get('queries',{}).get('nextPage')))
             return [SearchHit(
                 url=str(item.get("link") or ""),
                 title=str(item.get("title") or ""),
                 description=str(item.get("snippet") or ""),
                 backend=backend,
-            ) for item in get_json(url).get("items", []) if item.get("link")]
+            ) for item in payload.get("items", []) if item.get("link")]
         raise ProviderError(f"Unsupported web-search backend: {backend}")
 
     def search_hits(self, query: str, *, maximum: int = 8) -> tuple[list[SearchHit], list[str]]:
@@ -212,6 +217,7 @@ class WebCareerProvider(JobSource):
         return hits, errors
 
     def search(self, request: SearchRequest):
+        self.has_more = False
         query = self._query(request)
         self.search_queries.append({
             "query": query, "role": request.query, "location": request.location,

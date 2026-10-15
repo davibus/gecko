@@ -1,0 +1,336 @@
+{
+  "source": "workable",
+  "configured": true,
+  "queries": [],
+  "errors": [
+    "Every configured workable employer failed: AB Marketing LLC: Request failed for https://www.workable.com/api/accounts/ab-marketing?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; ActivTrak: Request failed for https://www.workable.com/api/accounts/activtrak?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Apex Wheels: Request failed for https://www.workable.com/api/accounts/apexwheels?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Akkadian Labs: Request failed for https://www.workable.com/api/accounts/akkadianlabs?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; AutoLeap: Request failed for https://www.workable.com/api/accounts/autoleap?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; AlgaeCal: Request failed for https://www.workable.com/api/accounts/algaecal?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Bully Pulpit International: Request failed for https://www.workable.com/api/accounts/bully-pulpit-international-1?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Avomind: Request failed for https://www.workable.com/api/accounts/avomind?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Azumo: Request failed for https://www.workable.com/api/accounts/azumo?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Booksy: Request failed for https://www.workable.com/api/accounts/booksy-1?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Compound Growth Marketing: Request failed for https://www.workable.com/api/accounts/compound-growth-marketing?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Coursedog: Request failed for https://www.workable.com/api/accounts/coursedog-1?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Channel Factory: Request failed for https://www.workable.com/api/accounts/channel-factory?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Clearstory: Request failed for https://www.workable.com/api/accounts/clearstory?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; CrewBloom: Request failed for https://www.workable.com/api/accounts/crewbloom?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Decentralized Masters: Request failed for https://www.workable.com/api/accounts/decentralized-masters?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Curology: Request failed for https://www.workable.com/api/accounts/curology?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Digital: Request failed for https://www.workable.com/api/accounts/digital-368?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Dodge Construction Network: Request failed for https://www.workable.com/api/accounts/dodge-construction-network?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Facilities Management Express: Request failed for https://www.workable.com/api/accounts/fmx?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Feeld: Request failed for https://www.workable.com/api/accounts/feeldco?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Facet: Request failed for https://www.workable.com/api/accounts/facetwealth?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Flosum: Request failed for https://www.workable.com/api/accounts/flosum?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; FormAssembly Inc.: Request failed for https://www.workable.com/api/accounts/formassembly?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Freebird: Request failed for https://www.workable.com/api/accounts/freebird?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Funnel Leasing: Request failed for https://www.workable.com/api/accounts/funnel-leasing?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Future Publishing: Request failed for https://www.workable.com/api/accounts/futureplc?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; GBG: Request failed for https://www.workable.com/api/accounts/gbg?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; ICBD: Request failed for https://www.workable.com/api/accounts/icbd-holdings?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; HireHawk: Request failed for https://www.workable.com/api/accounts/hirehawk?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Hi-Altitude Brands: Request failed for https://www.workable.com/api/accounts/hialtitudebrands?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; IMPACT: Request failed for https://www.workable.com/api/accounts/impactplus?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; IntelliShift: Request failed for https://www.workable.com/api/accounts/intellishift?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Interactive Strategies: Request failed for https://www.workable.com/api/accounts/interactivestrategies?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Jam+: Request failed for https://www.workable.com/api/accounts/jam-4?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Jenzabar: Request failed for https://www.workable.com/api/accounts/jenzabar1?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Jump 450 Media: Request failed for https://www.workable.com/api/accounts/jump450?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Modern Family Law: Request failed for https://www.workable.com/api/accounts/modern-family-law-1?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Keywords Studios: Request failed for https://www.workable.com/api/accounts/keywords-intl1?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Modern AI: Request failed for https://www.workable.com/api/accounts/modern-ai?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; LawnStarter: Request failed for https://www.workable.com/api/accounts/lawnstarter?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Newrich Network: Request failed for https://www.workable.com/api/accounts/newrich-network?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Nautilus Solar Energy: Request failed for https://www.workable.com/api/accounts/nautilus-solar-energy?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Paired: Request failed for https://www.workable.com/api/accounts/pairedrecruiting?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Palm Venture Studios: Request failed for https://www.workable.com/api/accounts/palm-venture-studios?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Paleovalley & Wild Pastures: Request failed for https://www.workable.com/api/accounts/paleovalley-wildpastures?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Panorama Education: Request failed for https://www.workable.com/api/accounts/panorama-education?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Pareto Publishing: Request failed for https://www.workable.com/api/accounts/pareto-publishing?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; PlanetArt: Request failed for https://www.workable.com/api/accounts/planetart?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Popmenu: Request failed for https://www.workable.com/api/accounts/popmenu?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Partner One Software Inc: Request failed for https://www.workable.com/api/accounts/partner-one-capital?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; PERSUIT: Request failed for https://www.workable.com/api/accounts/persuit-1?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Prime System Solutions: Request failed for https://www.workable.com/api/accounts/prime-system?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; PracticeTek: Request failed for https://www.workable.com/api/accounts/practicetek?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; QRY: Request failed for https://www.workable.com/api/accounts/qry?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; REGEX SEO: Request failed for https://www.workable.com/api/accounts/regexseocareers?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Right Hook Digital: Request failed for https://www.workable.com/api/accounts/righthookdigital?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Prosci: Request failed for https://www.workable.com/api/accounts/prosci?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Rockstar: Request failed for https://www.workable.com/api/accounts/rockstar-3?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; RR Digital: Request failed for https://www.workable.com/api/accounts/rrdigital?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; RocketAMS: Request failed for https://www.workable.com/api/accounts/rocketams?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Sans: Request failed for https://www.workable.com/api/accounts/sans-2?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Seeq: Request failed for https://www.workable.com/api/accounts/seeq?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Sidetrade: Request failed for https://www.workable.com/api/accounts/sidetrade?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Savvy Talent: Request failed for https://www.workable.com/api/accounts/savvytalent?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; SmartFinancial: Request failed for https://www.workable.com/api/accounts/smartfinancial?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Skylight: Request failed for https://www.workable.com/api/accounts/skylight-frame?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Squiz: Request failed for https://www.workable.com/api/accounts/squiz?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Sweat Pants Agency: Request failed for https://www.workable.com/api/accounts/sweat-pants-agency?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; TickPick: Request failed for https://www.workable.com/api/accounts/tickpick?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; The Semios Group: Request failed for https://www.workable.com/api/accounts/semios?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; TP-Link Systems Inc.: Request failed for https://www.workable.com/api/accounts/tp-link-usa-corp?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Uptalent.io: Request failed for https://www.workable.com/api/accounts/uptalent-dot-i-o?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; tmp: Request failed for https://www.workable.com/api/accounts/the-marketing-practice?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; UN/COMMON: Request failed for https://www.workable.com/api/accounts/uncommonagency?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Vouched: Request failed for https://www.workable.com/api/accounts/vouched?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Valsoft Corporation: Request failed for https://www.workable.com/api/accounts/valsoft-corp?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Workana: Request failed for https://www.workable.com/api/accounts/workana-premium?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Writesonic: Request failed for https://www.workable.com/api/accounts/writesonic?details=true: <urlopen error [Errno 11001] getaddrinfo failed>; Zicasso: Request failed for https://www.workable.com/api/accounts/zicasso?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+  ],
+  "tracker_written": 0,
+  "raw": [],
+  "status": "error",
+  "board_errors": [
+    {
+      "company": "AB Marketing LLC",
+      "error": "Request failed for https://www.workable.com/api/accounts/ab-marketing?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "ActivTrak",
+      "error": "Request failed for https://www.workable.com/api/accounts/activtrak?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Apex Wheels",
+      "error": "Request failed for https://www.workable.com/api/accounts/apexwheels?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Akkadian Labs",
+      "error": "Request failed for https://www.workable.com/api/accounts/akkadianlabs?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "AutoLeap",
+      "error": "Request failed for https://www.workable.com/api/accounts/autoleap?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "AlgaeCal",
+      "error": "Request failed for https://www.workable.com/api/accounts/algaecal?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Bully Pulpit International",
+      "error": "Request failed for https://www.workable.com/api/accounts/bully-pulpit-international-1?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Avomind",
+      "error": "Request failed for https://www.workable.com/api/accounts/avomind?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Azumo",
+      "error": "Request failed for https://www.workable.com/api/accounts/azumo?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Booksy",
+      "error": "Request failed for https://www.workable.com/api/accounts/booksy-1?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Compound Growth Marketing",
+      "error": "Request failed for https://www.workable.com/api/accounts/compound-growth-marketing?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Coursedog",
+      "error": "Request failed for https://www.workable.com/api/accounts/coursedog-1?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Channel Factory",
+      "error": "Request failed for https://www.workable.com/api/accounts/channel-factory?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Clearstory",
+      "error": "Request failed for https://www.workable.com/api/accounts/clearstory?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "CrewBloom",
+      "error": "Request failed for https://www.workable.com/api/accounts/crewbloom?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Decentralized Masters",
+      "error": "Request failed for https://www.workable.com/api/accounts/decentralized-masters?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Curology",
+      "error": "Request failed for https://www.workable.com/api/accounts/curology?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Digital",
+      "error": "Request failed for https://www.workable.com/api/accounts/digital-368?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Dodge Construction Network",
+      "error": "Request failed for https://www.workable.com/api/accounts/dodge-construction-network?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Facilities Management Express",
+      "error": "Request failed for https://www.workable.com/api/accounts/fmx?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Feeld",
+      "error": "Request failed for https://www.workable.com/api/accounts/feeldco?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Facet",
+      "error": "Request failed for https://www.workable.com/api/accounts/facetwealth?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Flosum",
+      "error": "Request failed for https://www.workable.com/api/accounts/flosum?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "FormAssembly Inc.",
+      "error": "Request failed for https://www.workable.com/api/accounts/formassembly?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Freebird",
+      "error": "Request failed for https://www.workable.com/api/accounts/freebird?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Funnel Leasing",
+      "error": "Request failed for https://www.workable.com/api/accounts/funnel-leasing?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Future Publishing",
+      "error": "Request failed for https://www.workable.com/api/accounts/futureplc?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "GBG",
+      "error": "Request failed for https://www.workable.com/api/accounts/gbg?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "ICBD",
+      "error": "Request failed for https://www.workable.com/api/accounts/icbd-holdings?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "HireHawk",
+      "error": "Request failed for https://www.workable.com/api/accounts/hirehawk?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Hi-Altitude Brands",
+      "error": "Request failed for https://www.workable.com/api/accounts/hialtitudebrands?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "IMPACT",
+      "error": "Request failed for https://www.workable.com/api/accounts/impactplus?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "IntelliShift",
+      "error": "Request failed for https://www.workable.com/api/accounts/intellishift?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Interactive Strategies",
+      "error": "Request failed for https://www.workable.com/api/accounts/interactivestrategies?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Jam+",
+      "error": "Request failed for https://www.workable.com/api/accounts/jam-4?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Jenzabar",
+      "error": "Request failed for https://www.workable.com/api/accounts/jenzabar1?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Jump 450 Media",
+      "error": "Request failed for https://www.workable.com/api/accounts/jump450?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Modern Family Law",
+      "error": "Request failed for https://www.workable.com/api/accounts/modern-family-law-1?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Keywords Studios",
+      "error": "Request failed for https://www.workable.com/api/accounts/keywords-intl1?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Modern AI",
+      "error": "Request failed for https://www.workable.com/api/accounts/modern-ai?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "LawnStarter",
+      "error": "Request failed for https://www.workable.com/api/accounts/lawnstarter?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Newrich Network",
+      "error": "Request failed for https://www.workable.com/api/accounts/newrich-network?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Nautilus Solar Energy",
+      "error": "Request failed for https://www.workable.com/api/accounts/nautilus-solar-energy?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Paired",
+      "error": "Request failed for https://www.workable.com/api/accounts/pairedrecruiting?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Palm Venture Studios",
+      "error": "Request failed for https://www.workable.com/api/accounts/palm-venture-studios?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Paleovalley & Wild Pastures",
+      "error": "Request failed for https://www.workable.com/api/accounts/paleovalley-wildpastures?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Panorama Education",
+      "error": "Request failed for https://www.workable.com/api/accounts/panorama-education?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Pareto Publishing",
+      "error": "Request failed for https://www.workable.com/api/accounts/pareto-publishing?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "PlanetArt",
+      "error": "Request failed for https://www.workable.com/api/accounts/planetart?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Popmenu",
+      "error": "Request failed for https://www.workable.com/api/accounts/popmenu?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Partner One Software Inc",
+      "error": "Request failed for https://www.workable.com/api/accounts/partner-one-capital?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "PERSUIT",
+      "error": "Request failed for https://www.workable.com/api/accounts/persuit-1?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Prime System Solutions",
+      "error": "Request failed for https://www.workable.com/api/accounts/prime-system?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "PracticeTek",
+      "error": "Request failed for https://www.workable.com/api/accounts/practicetek?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "QRY",
+      "error": "Request failed for https://www.workable.com/api/accounts/qry?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "REGEX SEO",
+      "error": "Request failed for https://www.workable.com/api/accounts/regexseocareers?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Right Hook Digital",
+      "error": "Request failed for https://www.workable.com/api/accounts/righthookdigital?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Prosci",
+      "error": "Request failed for https://www.workable.com/api/accounts/prosci?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Rockstar",
+      "error": "Request failed for https://www.workable.com/api/accounts/rockstar-3?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "RR Digital",
+      "error": "Request failed for https://www.workable.com/api/accounts/rrdigital?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "RocketAMS",
+      "error": "Request failed for https://www.workable.com/api/accounts/rocketams?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Sans",
+      "error": "Request failed for https://www.workable.com/api/accounts/sans-2?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Seeq",
+      "error": "Request failed for https://www.workable.com/api/accounts/seeq?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Sidetrade",
+      "error": "Request failed for https://www.workable.com/api/accounts/sidetrade?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Savvy Talent",
+      "error": "Request failed for https://www.workable.com/api/accounts/savvytalent?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "SmartFinancial",
+      "error": "Request failed for https://www.workable.com/api/accounts/smartfinancial?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Skylight",
+      "error": "Request failed for https://www.workable.com/api/accounts/skylight-frame?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Squiz",
+      "error": "Request failed for https://www.workable.com/api/accounts/squiz?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Sweat Pants Agency",
+      "error": "Request failed for https://www.workable.com/api/accounts/sweat-pants-agency?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "TickPick",
+      "error": "Request failed for https://www.workable.com/api/accounts/tickpick?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "The Semios Group",
+      "error": "Request failed for https://www.workable.com/api/accounts/semios?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "TP-Link Systems Inc.",
+      "error": "Request failed for https://www.workable.com/api/accounts/tp-link-usa-corp?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Uptalent.io",
+      "error": "Request failed for https://www.workable.com/api/accounts/uptalent-dot-i-o?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "tmp",
+      "error": "Request failed for https://www.workable.com/api/accounts/the-marketing-practice?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "UN/COMMON",
+      "error": "Request failed for https://www.workable.com/api/accounts/uncommonagency?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Vouched",
+      "error": "Request failed for https://www.workable.com/api/accounts/vouched?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Valsoft Corporation",
+      "error": "Request failed for https://www.workable.com/api/accounts/valsoft-corp?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Workana",
+      "error": "Request failed for https://www.workable.com/api/accounts/workana-premium?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Writesonic",
+      "error": "Request failed for https://www.workable.com/api/accounts/writesonic?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "company": "Zicasso",
+      "error": "Request failed for https://www.workable.com/api/accounts/zicasso?details=true: <urlopen error [Errno 11001] getaddrinfo failed>"
+    }
+  ],
+  "detail_errors": [],
+  "feed_results": [],
+  "observed_date_windows": {}
+}

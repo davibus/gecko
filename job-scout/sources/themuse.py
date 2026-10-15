@@ -23,15 +23,16 @@ class TheMuseProvider(JobSource):
     def search(self, request: SearchRequest):
         if not self.configured():
             raise ProviderError("The Muse is not configured; set THE_MUSE_API_KEY")
-        params = {"api_key": self.api_key, "page": request.page, "descending": "true"}
+        params = {"api_key": self.api_key, "page": request.page - 1, "descending": "true"}
         if request.location:
             params["location"] = request.location
         payload = get_json(self.endpoint + "?" + urlencode(params))
         items = payload.get("results", []) if isinstance(payload, dict) else None
         if not isinstance(items, list):
             raise ProviderError("The Muse returned an unexpected jobs payload")
+        self.has_more = request.page < int(payload.get('page_count', request.page))
         words = {word.casefold() for word in request.query.split() if len(word) > 2}
-        for item in items[:request.results_per_page]:
+        for item in items:
             title = str(item.get("name") or "")
             description = str(item.get("contents") or "")
             if words and not any(word in f"{title} {description}".casefold() for word in words):

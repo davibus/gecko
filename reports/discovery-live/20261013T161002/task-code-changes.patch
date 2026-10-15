@@ -1,0 +1,833 @@
+--- before/job-scout\google_tracker.py
++++ after/job-scout\google_tracker.py
+@@ -8,6 +8,7 @@
+ 
+ from dataclasses import dataclass
+ from datetime import date, datetime
++import json
+ import os
+ from pathlib import Path
+ import re
+@@ -16,7 +17,7 @@
+ from urllib.parse import quote, unquote, urlsplit
+ from zoneinfo import ZoneInfo
+ 
+-from normalize import canonicalize_url
++from normalize import canonicalize_url, posting_identity
+ from rejected_jobs import (
+     REJECTED_HEADERS,
+     REJECTED_TAB,
+@@ -241,6 +242,8 @@
+         self.config = config or Config.from_environment()
+         self.service = service or build_service(self.config)
+         self.api = self.service.spreadsheets()
++        self.skipped_writes=[]
++        self.discovery_writes=False
+ 
+     def tab(self, title: str, *, value_render_option: str = "UNFORMATTED_VALUE") -> Tab:
+         try:
+@@ -708,6 +711,18 @@
+                    and "ARRAYFORMULA" in value.upper()]
+         current = dict(live.rows)
+         original = dict(tab.rows)
++        self.before_writes=live
++        if self.discovery_writes:
++            effective=dict(self.scout().rows)
++            proposed=dict(proposed)
++            for row,field in list(proposed):
++                if field=='Apply?' and application_fee_required(effective.get(row,{}).get('Cost')):
++                    proposed[(row,field)]='No'
++                elif field in {'Apply?','Notes'} and row in original:
++                    old_value=current.get(row,{}).get(field,'')
++                    if not (isinstance(old_value,str) and old_value.startswith('=')) and old_value!=original[row].get(field,''):
++                        self.skipped_writes.append({'row':row,'field':field,'reason':'manual value changed before write'})
++                        proposed.pop((row,field),None)
+         identity_fields = (("Scout ID", "Source", "Job URL")
+                            if tab.title == self.config.scout_tab else ("Job Number", "Job Link"))
+         for row, _ in proposed:
+@@ -739,10 +754,12 @@
+                 continue
+             cell = f"{_col(column)}{row} ({field})"
+             if isinstance(old, str) and old.startswith("="):
++                self.skipped_writes.append({'row':row,'field':field,'reason':'formula protected'})
+                 print(f"Skipped formula cell {tab.title} {cell}", file=sys.stderr)
+                 continue
+             if any(row >= anchor_row and column >= anchor_col
+                    for anchor_row, anchor_col in anchors):
++                self.skipped_writes.append({'row':row,'field':field,'reason':'possible ARRAYFORMULA output'})
+                 print(f"Skipped possible ARRAYFORMULA output {tab.title} {cell}; "
+                       "the spill range cannot be guaranteed", file=sys.stderr)
+                 continue
+@@ -945,19 +962,26 @@
+             raise RuntimeError(f"Duplicate Job Number exists in Google Sheets: {job_number}")
+         return matches[0] if matches else None
+ 
+-    def upsert_scout(self, jobs: list, *, append_only: bool = False) -> dict[str, int]:
++    def upsert_scout(self, jobs: list, *, append_only: bool = False,
++                     discovery_notes=None,audit_dir=None) -> dict:
++        self.skipped_writes=[]
++        self.discovery_writes=discovery_notes is not None
+         tab = self.scout()
++        if discovery_notes is not None and not {'Notes',LAST_RUN_HEADER}.issubset(tab.headers):
++            raise RuntimeError('Discovery requires unique Notes and Last Updated headers')
+         rejected_jobs = self.rejected_jobs_index()
+         ids = [str(data.get("Scout ID")) for _, data in tab.rows if data.get("Scout ID") not in (None, "")]
+         if len(ids) != len(set(ids)):
+             raise RuntimeError("Google Job Scout contains duplicate Scout ID values")
+         by_id = {str(data.get("Scout ID")): row for row, data in tab.rows
+                  if data.get("Scout ID") not in (None, "")}
+-        by_url = {canonicalize_url(str(data.get("Job URL") or "")): row for row, data in tab.rows
++        by_url = {posting_identity(str(data.get("Job URL") or "")): row for row, data in tab.rows
+                    if data.get("Job URL")}
+         original_rows = {row for row, _ in tab.rows}
+         added = updated = excluded = rejected = 0
+         planned: dict[int, dict[str, Any]] = {}
++        row_jobs={}
++        identity_skips=[]
+         for job in jobs:
+             url = best_job_url(job)
+             if rejected_jobs.matches_job(job) is not None:
+@@ -969,19 +993,26 @@
+             ):
+                 excluded += 1
+                 continue
+-            row = by_url.get(canonicalize_url(url))
++            row = by_url.get(posting_identity(url))
+             id_row = by_id.get(str(job.id))
+             if id_row and not row:
+                 id_data = next(data for number, data in tab.rows if number == id_row)
+-                candidate_urls = {canonicalize_url(value) for value in (
++                candidate_urls = {posting_identity(value) for value in (
+                     job.url, job.canonical_url, job.authoritative_url, url,
+                     *(link.get('url', '') for link in job.source_links)) if value}
+-                if canonicalize_url(str(id_data.get('Job URL') or '')) not in candidate_urls:
++                if posting_identity(str(id_data.get('Job URL') or '')) not in candidate_urls:
++                    if discovery_notes is not None:
++                        identity_skips.append({'job_id':job.id,'reason':'numeric ID belongs to another posting'})
++                        continue
+                     raise RuntimeError(f'Scout ID {job.id} belongs to a different posting; no rows written')
+                 row = id_row
+             if row and append_only:
+                 continue
+             existing = next((data for number, data in tab.rows if number == row), {})
++            if discovery_notes is not None and _normal(existing.get('Apply?')) in REJECT_STATUSES:
++                rejected += 1
++                identity_skips.append({'job_id':job.id,'row':row,'reason':'live row marked for permanent rejection'})
++                continue
+             incoming = STATUS_LABELS.get(job.status, job.status.replace("-", " ").title())
+             previous = str(existing.get("Gecko Status") or "New")
+             # An unfamiliar status may be a user-maintained lifecycle value.
+@@ -994,7 +1025,7 @@
+                 tab.rows.append((row, {}))
+                 by_id[str(job.id)] = row
+                 if url:
+-                    by_url[canonicalize_url(url)] = row
++                    by_url[posting_identity(url)] = row
+                 added += 1
+             else:
+                 updated += 1
+@@ -1039,6 +1070,18 @@
+                         and not application_fee_required(existing.get("Cost")):
+                     values.pop("Apply?", None)
+             managed_fields = set(SCOUT_FIELDS) | {"Apply?"}
++            if discovery_notes is not None:
++                if (marked(existing.get('Applied')) or resume_already_created(existing.get('Resume Created'))
++                        or str(existing.get('Resume Link') or '').strip()):
++                    if not application_fee_required(existing.get('Cost')) and not is_expired_indeed(existing.get(INDEED_APPLICATION_HEADER)):
++                        values.pop('Apply?',None)
++                note=discovery_notes.get(job.id,'')
++                if note:
++                    old_note=str(existing.get('Notes') or '')
++                    values['Notes']=old_note+'\n'+note if old_note else note
++                    managed_fields.add('Notes')
++            row_jobs[row]={'job_id':job.id,'source':job.source,'source_job_id':job.source_job_id,
++                          'url':url,'new':row not in original_rows}
+             planned[row] = {key: value for key, value in values.items()
+                             if key in managed_fields}
+         proposed: dict[tuple[int, str], Any] = {}
+@@ -1057,8 +1100,23 @@
+                          if row not in original_rows and value not in (None, "")
+                          and (row, field) not in expected]
+         if protected_new:
+-            raise RuntimeError("New Job Scout rows have protected managed cells: "
+-                               + ", ".join(protected_new))
++            if discovery_notes is None:
++                raise RuntimeError("New Job Scout rows have protected managed cells: " + ", ".join(protected_new))
++            unsafe={row for (row,field),value in proposed.items() if row not in original_rows
++                    and value not in (None,'') and (row,field) not in expected}
++            expected={key:value for key,value in expected.items() if key[0] not in unsafe}
++            allowed_ranges={_a1(tab.title,f'{_col(tab.headers[field])}{row}') for row,field in expected}
++            entries=[entry for entry in entries if entry['range'] in allowed_ranges]
++            identity_skips.extend({'job_id':row_jobs[row]['job_id'],'row':row,
++                                   'reason':'new row has protected managed cells'} for row in unsafe)
++        if discovery_notes is not None and audit_dir:
++            audit_path=Path(audit_dir);audit_path.mkdir(parents=True,exist_ok=True)
++            before={row:dict(dict(self.before_writes.rows).get(row,{})) for row,_ in expected}
++            payload={'worksheet':tab.title,'sheet_id':tab.sheet_id,
++                'affected_jobs':[{'row':row,**row_jobs[row]} for row in sorted({r for r,_ in expected})],
++                'before':before,'expected':[{'row':r,'field':f,'value':v} for (r,f),v in expected.items()],
++                'skipped':self.skipped_writes+identity_skips}
++            (audit_path/'tracker-before-write.json').write_text(json.dumps(payload,indent=2),encoding='utf-8')
+         if entries:
+             last_row = max(row for row, _ in expected)
+             if last_row > tab.grid_rows:
+@@ -1067,6 +1125,13 @@
+                         tab.sheet_id, tab.grid_rows, last_row - tab.grid_rows)}).execute()
+             self.api.values().batchUpdate(spreadsheetId=self.config.spreadsheet_id,
+                 body={"valueInputOption": "RAW", "data": entries}).execute()
++            if discovery_notes is not None:
++                new_rows=sorted(row for row in {r for r,_ in expected} if row not in original_rows)
++                if new_rows:
++                    self.api.batchUpdate(spreadsheetId=self.config.spreadsheet_id,body={'requests':[
++                        {'updateDimensionProperties':{'range':{'sheetId':tab.sheet_id,'dimension':'ROWS',
++                          'startIndex':row-1,'endIndex':row},'properties':{'pixelSize':21},'fields':'pixelSize'}}
++                        for row in new_rows]}).execute()
+             verified = self.scout()
+             raw_rows = verified.raw_rows or {}
+             for (row, field), value in expected.items():
+@@ -1078,8 +1143,21 @@
+                         f"Google Sheets readback failed for Job Scout "
+                         f"{_col(column)}{row} ({field}); expected {value!r}, got {actual!r}"
+                     )
+-        return {"rows": len(tab.rows), "added": added, "updated": updated,
++        result={"rows": len(tab.rows), "added": added, "updated": updated,
+                 "jooble_excluded": excluded, "rejected_excluded": rejected}
++        if discovery_notes is not None:
++            after=self.scout(value_render_option='FORMULA')
++            written=sorted({row for row,_ in expected})
++            result.update(added=sum(row not in original_rows for row in written),
++                updated=sum(row in original_rows for row in written),written_rows=written,
++                added_ids=[row_jobs[row]['job_id'] for row in written if row not in original_rows],
++                skipped=self.skipped_writes+identity_skips,readback_verified=True,
++                managed_cells_written=len(expected),rows=len(after.rows))
++            if audit_dir:
++                (Path(audit_dir)/'tracker-after-write.json').write_text(json.dumps({
++                    'headers':after.headers,'rows':[(row,data) for row,data in after.rows if row in written],
++                    'result':result},indent=2),encoding='utf-8')
++        return result
+ 
+     def highlight_scout_found_on(self, day: str) -> int:
+         """Keep light green on Scout IDs first found today while preserving gray."""
+--- before/job-scout\scout.py
++++ after/job-scout\scout.py
+@@ -11,7 +11,8 @@
+ import sys
+ import tempfile
+ import time
+-from datetime import date
++from datetime import date, datetime
++from zoneinfo import ZoneInfo
+ from pathlib import Path
+ 
+ from enrichment import enrich_and_store
+@@ -24,7 +25,7 @@
+ from link_validation import DailyLinkValidator
+ from manual_indeed import ManualIndeedSummary, process_manual_indeed_rows
+ from models import RawListing
+-from normalize import normalize
++from normalize import normalize, posting_identity
+ from normalize import canonicalize_url
+ from rejected_jobs import RejectedJobsIndex
+ from rejection_workflow import process_rejected_rows
+@@ -41,6 +42,8 @@
+ from sources.base import SearchRequest
+ from sources.config import load_source_config
+ from sources.acquisition import acquire as acquire_source
++from sources.http import REQUEST_EVENTS, safe_error
++from hard_filters import deterministic_filter
+ from storage import DEFAULT_DB, JobStore
+ from tracker_schema import STATUS_LABELS
+ from url_resolution import resolve_and_store, url_status_label
+@@ -126,11 +129,14 @@
+     append_only: bool = False,
+     remove_scout_ids: set[int] | None = None,
+     highlight_found_on: str | None = None,
++    discovery_notes=None,
++    audit_dir=None,
+ ):
+     tracker = GoogleTracker()
+     if remove_scout_ids:
+         tracker.remove_dead_scout(remove_scout_ids)
+-    summary = tracker.upsert_scout(store.all() if jobs is None else jobs, append_only=append_only)
++    extra = {} if discovery_notes is None else {'discovery_notes':discovery_notes,'audit_dir':audit_dir}
++    summary = tracker.upsert_scout(store.all() if jobs is None else jobs, append_only=append_only,**extra)
+     if highlight_found_on:
+         summary["highlighted_scout_ids"] = tracker.highlight_scout_found_on(highlight_found_on)
+     result = {
+@@ -225,16 +231,27 @@
+ 
+ def search(args, store, preferences):
+     daily_mode = bool(getattr(args, "daily_mode", False))
++    safe_discovery = bool(getattr(args,'safe_discovery',False)) and not daily_mode
++    audit_dir = Path(args.audit_dir).resolve() if getattr(args,'audit_dir',None) else None
++    if audit_dir: audit_dir.mkdir(parents=True,exist_ok=True)
+     link_validator = getattr(args, "link_validator", None) if daily_mode else None
++    if safe_discovery:
++        link_validator=DailyLinkValidator()
++        link_validator.require_verified=True
+     rejected_jobs = RejectedJobsIndex()
+     if isinstance(store, JobStore):
+         rejection_tracker = GoogleTracker()
+-        if not getattr(args, "dry_run", False):
++        if daily_mode and not getattr(args, "dry_run", False):
+             rejection_summary = process_rejected_rows(rejection_tracker, store)
+             if rejection_summary.marked:
+                 print("Rejected Jobs maintenance:")
+                 print(json.dumps(rejection_summary.to_dict(), indent=2))
+         rejected_jobs = rejection_tracker.rejected_jobs_index()
++        if safe_discovery:
++            live=rejection_tracker.scout()
++            if live.title!='Job List': raise RuntimeError('Discovery requires the existing Job List worksheet')
++            live_ids=[int(row.get('Scout ID')) for _,row in live.rows if str(row.get('Scout ID') or '').isdigit()]
++            if live_ids: store.observe_scout_id(max(live_ids))
+     preexisting_ids = {job.id for job in store.all()}
+     source_config = load_source_config(getattr(args, "sources_config", None))
+     available = providers(getattr(args, "sources_config", None))
+@@ -263,6 +280,7 @@
+         "rejected_history_excluded": 0,
+         "missing_content_excluded": 0, "dead_url_excluded": 0,
+         "deterministic_reject_reasons": {},
++        "url_review_excluded":0,"url_validated":0,
+         "source_results_limited": 0,
+         "newly_discovered": 0, "already_existed": 0,
+         "new_job_ids": [], "existing_job_ids": [], "changed_job_ids": [],
+@@ -277,7 +295,7 @@
+     successful_sources = 0
+     configured = {
+         name: available[name] for name in selected
+-        if name != "remotive" and available[name].configured()
++        if (name != "remotive" or safe_discovery) and available[name].configured()
+         and (callable(getattr(type(available[name]), "full_feed", None))
+              or callable(getattr(type(available[name]), "search", None)))
+     }
+@@ -299,6 +317,14 @@
+         if limit < 0:
+             raise ValueError(f"Source result limit for {name} must be nonnegative")
+         selected_listings = listings[:limit] if limit else listings
++        if safe_discovery:
++            candidates={}
++            for raw in selected_listings:
++                job=normalize(raw)
++                if deterministic_filter(job,preferences)[0] and not rejected_jobs.matches_job(job):
++                    candidates.setdefault(job.canonical_url or job.url,job)
++            print(f'{name}: collected {raw_count}; checking {len(candidates)} candidate URLs',file=sys.stderr,flush=True)
++            link_validator.check_existing(list(candidates.values()),workers=4)
+         return selected_listings, require_content, raw_count - len(selected_listings), errors, raw_count
+ 
+     workers = min(max(int(source_config.get("max_workers", 6)), 1), 16, max(len(configured), 1))
+@@ -327,7 +353,7 @@
+                 }
+                 continue
+             try:
+-                if name == "remotive":
++                if name == "remotive" and not safe_discovery:
+                     source_limit = int(source_config["providers"].get(name, {}).get(
+                         "max_results_per_run", source_config.get("max_results_per_source", 0)
+                     ))
+@@ -361,7 +387,7 @@
+                         rejected_jobs=rejected_jobs,
+                     )
+             except (ProviderError, OSError, ValueError) as error:
+-                aggregate["source_errors"][name] = str(error)
++                aggregate["source_errors"][name] = safe_error(error)
+                 error_status = "rate limited" if "429" in str(error) else "api error"
+                 aggregate["source_health"][name] = {
+                     "status": error_status, "found": 0, "detail": str(error),
+@@ -379,7 +405,17 @@
+                 "found": aggregate["source_counts"][name],
+                 "detail": aggregate['source_errors'].get(name, ''),
+             }
+-            aggregate.setdefault('source_pipeline', {})[name] = asdict(summary)
++            pipeline=asdict(summary)
++            decisions=pipeline.pop('decisions',[])
++            aggregate.setdefault('source_pipeline', {})[name] = pipeline
++            if audit_dir:
++                evidence={'pipeline':pipeline,'record_decisions':decisions,
++                    'queries_pages':getattr(provider,'acquisition_events',[]),
++                    'board_errors':getattr(provider,'board_errors',[]),
++                    'errors':aggregate['source_errors'].get(name,''),
++                    'health':aggregate['source_health'][name]}
++                (audit_dir/f'{name}.json').write_text(json.dumps(evidence,indent=2),encoding='utf-8')
++            print(f'{name}: processed {summary.fetched}; new={summary.added}; existing={len(summary.existing_job_ids)}; review={summary.url_review_excluded}; dead={summary.dead_url_excluded}',file=sys.stderr,flush=True)
+             if name == 'remotive' and summary.failed_feeds:
+                 aggregate['source_errors'][name] = getattr(provider, 'rss_error', 'RSS feed failure')
+                 aggregate['source_health'][name]['status'] = 'partial failure'
+@@ -416,6 +452,7 @@
+                 "filtered_by_role", "deterministic_rejects", "jooble_excluded",
+                 "rejected_history_excluded",
+                 "missing_content_excluded", "dead_url_excluded",
++                "url_review_excluded","url_validated",
+             ):
+                 aggregate[key] += getattr(summary, key)
+             for reason, count in summary.deterministic_reject_reasons.items():
+@@ -434,6 +471,9 @@
+     aggregate["already_existed"] = len(aggregate["existing_job_ids"])
+     aggregate["sources_searched"] = len(selected) - len(aggregate['skipped_sources'])
+     args.run_result = aggregate
++    if audit_dir:
++        (audit_dir/'discovery-reconciliation.json').write_text(json.dumps(aggregate,indent=2),encoding='utf-8')
++        (audit_dir/'http-requests.json').write_text(json.dumps(REQUEST_EVENTS,indent=2),encoding='utf-8')
+     print(json.dumps(aggregate, indent=2))
+     print("\nJob Scout source summary", file=sys.stderr)
+     for name in selected:
+@@ -447,7 +487,7 @@
+     print(f"Duplicates removed: {aggregate['duplicates']}", file=sys.stderr)
+     print(f"Previously seen: {aggregate['already_existed']}", file=sys.stderr)
+     print(f"Rejected by Gecko filters: {aggregate['filtered_by_role']}", file=sys.stderr)
+-    print(f"New qualified jobs written: {aggregate['newly_discovered']}", file=sys.stderr)
++    print(f"New unique jobs saved locally: {aggregate['newly_discovered']}", file=sys.stderr)
+     if len(aggregate["skipped_sources"]) == len(selected):
+         print("No selected source is configured. See job-scout/README.md.", file=sys.stderr)
+         return 2
+@@ -463,8 +503,49 @@
+             )
+     else:
+         if not getattr(args, 'dry_run', False):
+-            sync_tracker(store)
++            if safe_discovery:
++                ids=list(dict.fromkeys(aggregate['new_job_ids']+aggregate['existing_job_ids']))
++                jobs=[store.get(job_id) for job_id in ids]
++                jobs=[job for job in jobs if job]
++                stamp=datetime.now(ZoneInfo('America/Denver')).isoformat(timespec='seconds')
++                notes={job.id:f'Gecko discovery {stamp} | Source: {job.source} | current listing URL verified' for job in jobs}
++                summary=sync_tracker(store,jobs=jobs,discovery_notes=notes,audit_dir=audit_dir)
++                args.tracker_summary=summary
++                print(f"Job List readback verified: added={summary['added']}; updated={summary['updated']}",
++                      file=sys.stderr)
++                if audit_dir:
++                    (audit_dir/'tracker-result.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
++            else:
++                sync_tracker(store)
+     return 1 if aggregate['source_errors'] and not daily_mode else 0
++
++
++def sync_discovery(args, store, preferences):
++    """Resume this run's verified candidates through the canonical cell writer."""
++    folder=Path(args.audit_dir).resolve()
++    if (folder/'tracker-after-write.json').exists():
++        raise RuntimeError('This discovery has already completed tracker writes; do not replay it')
++    aggregate=json.loads((folder/'discovery-reconciliation.json').read_text(encoding='utf-8'))
++    accepted={}
++    for name in aggregate['source_pipeline']:
++        evidence=json.loads((folder/f'{name}.json').read_text(encoding='utf-8'))
++        for record in evidence['record_decisions']:
++            if record['reason'] in {'new unique','previously known','duplicate within run'}:
++                job_id=record.get('job_id',record.get('matched_id'))
++                accepted.setdefault(job_id,set()).add(posting_identity(record['url']))
++    ids=list(dict.fromkeys(aggregate['new_job_ids']+aggregate['existing_job_ids']))
++    jobs=[]
++    for job_id in ids:
++        job=store.get(job_id)
++        if not job or job.url_verification_status!='verified' or posting_identity(job.authoritative_url or job.url) not in accepted.get(job_id,set()):
++            raise RuntimeError(f'Discovery evidence no longer matches verified job {job_id}; no write')
++        jobs.append(job)
++    stamp=datetime.now(ZoneInfo('America/Denver')).isoformat(timespec='seconds')
++    notes={job.id:f'Gecko discovery {stamp} | Source: {job.source} | current listing URL verified' for job in jobs}
++    result=sync_tracker(store,jobs=jobs,discovery_notes=notes,audit_dir=folder)
++    (folder/'tracker-result.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
++    print(json.dumps(result,indent=2))
++    return 0
+ 
+ 
+ def diagnose_remotive(args, store, preferences):
+@@ -975,11 +1056,15 @@
+     find.add_argument("--results", type=int, default=20)
+     find.add_argument('--dry-run', action='store_true',
+                       help='Discover using a temporary database copy; no tracker writes or resumes')
++    find.add_argument('--audit-dir',type=Path,help='Save discovery and canonical tracker readback evidence locally')
+     find.add_argument(
+         "--limit", type=int, default=100,
+         help="Legacy review setting; discovery is not capped by this option",
+     )
+-    find.set_defaults(function=search)
++    find.set_defaults(function=search,safe_discovery=True)
++    recovery=sub.add_parser('sync-discovery',help='Resume only a saved run\'s verified discovery candidates; no cleanup or resumes')
++    recovery.add_argument('--audit-dir',type=Path,required=True)
++    recovery.set_defaults(function=sync_discovery)
+     diagnostic = sub.add_parser(
+         "diagnose-remotive",
+         help="Run a read-only Remotive-only API, filter, and deduplication diagnostic",
+--- before/job-scout\service.py
++++ after/job-scout\service.py
+@@ -48,6 +48,9 @@
+     missing_content_excluded: int = 0
+     dead_url_excluded: int = 0
+     source_results_limited: int = 0
++    url_review_excluded: int = 0
++    url_validated: int = 0
++    decisions: list[dict] = field(default_factory=list)
+     new_job_ids: list[int] = field(default_factory=list)
+     existing_job_ids: list[int] = field(default_factory=list)
+     changed_job_ids: list[int] = field(default_factory=list)
+@@ -129,19 +132,26 @@
+     existing_ids = {job.id for job in known} if preexisting_ids is None else set(preexisting_ids)
+     updated_ids: set[int] = set()
+     existing_seen_ids: set[int] = set()
++    def record(raw, reason, **details):
++        if getattr(link_validator,'require_verified',False):
++            summary.decisions.append({'source':raw.source,'source_job_id':raw.source_job_id,
++                'url':raw.url,'company':raw.company,'title':raw.title,'reason':reason,**details})
+     for raw in listings:
+         summary.fetched += 1
+         if is_jooble_candidate(source=raw.source, urls=(raw.url,), metadata=raw.metadata):
+             summary.jooble_excluded += 1
++            record(raw,'disabled Jooble provenance')
+             continue
+         if require_content and (not raw.title or not raw.description):
+             summary.missing_content_excluded += 1
++            record(raw,'missing content')
+             continue
+         discovery_backends = raw.metadata.get("_web_search_backends", [])
+         job = normalize(raw)
+         summary.normalized += 1
+         if rejected_jobs is not None and rejected_jobs.matches_job(job) is not None:
+             summary.rejected_history_excluded += 1
++            record(raw,'rejection history')
+             continue
+         accepted, filter_reason = deterministic_filter(job, preferences or {})
+         if not accepted:
+@@ -151,6 +161,7 @@
+             )
+             if not is_relevant_role(raw.title):
+                 summary.filtered_by_role += 1
++            record(raw,filter_reason)
+             continue
+         for backend in discovery_backends:
+             summary.backend_qualifying[backend] = summary.backend_qualifying.get(backend, 0) + 1
+@@ -158,8 +169,14 @@
+             link_result = link_validator.check(job)
+             if link_result.status == "dead":
+                 summary.dead_url_excluded += 1
++                record(raw,'confirmed dead URL',verification=link_result.reason)
+                 link_validator.record_removed(job, link_result)
+                 continue
++            if getattr(link_validator,'require_verified',False) and link_result.status!='valid':
++                summary.url_review_excluded += 1
++                record(raw,'URL requires review',verification=link_result.reason)
++                continue
++            summary.url_validated += int(link_result.status=='valid')
+         duplicate = find_duplicate(
+             job, [item for item in known if not _same_source_identity_conflicts(job, item)]
+         )
+@@ -181,7 +198,17 @@
+                 was_existing and job.description
+                 and meaningful_description_change(current_description, job.description)
+             )
+-            if not (preserve_existing and was_existing):
++            if getattr(link_validator,'require_verified',False):
++                store.merge(duplicate.id,job)
++                merged=store.get(duplicate.id)
++                if merged:
++                    # Only the freshly checked listing URL may reach this discovery sync.
++                    merged.authoritative_url=job.url
++                    merged.url_verification_status='verified'
++                    merged.url_destination_type=classify_url(job.url)
++                    store.save_url_resolution(merged)
++                    known=[merged if item.id==duplicate.id else item for item in known]
++            elif not (preserve_existing and was_existing):
+                 store.merge(duplicate.id, job)
+                 merged = store.get(duplicate.id)
+                 if merged and should_resolve and merged.url_verification_status == "not_attempted":
+@@ -208,17 +235,25 @@
+                 if not preserve_existing and duplicate.id not in updated_ids:
+                     updated_ids.add(duplicate.id)
+                     summary.updated += 1
++            record(raw,'previously known' if was_existing else 'duplicate within run',
++                   matched_id=duplicate.id,cross_source=raw.source.casefold() not in duplicate_sources)
+             continue
+         job_id = store.save(job)
+         job.id = job_id
+         known.append(job)
+         summary.added += 1
+         summary.new_job_ids.append(job_id)
++        record(raw,'new unique',job_id=job_id)
+         for backend in discovery_backends:
+             summary.backend_added[backend] = summary.backend_added.get(backend, 0) + 1
+-        if should_resolve:
++        if getattr(link_validator,'require_verified',False):
++            job.authoritative_url=job.url
++            job.url_verification_status='verified'
++            job.url_destination_type=classify_url(job.url)
++            store.save_url_resolution(job)
++        elif should_resolve:
+             job = resolve_and_store(job, store)
+-        if job.source.lower() == "adzuna" or not description_is_sufficient(job.description):
++        if not getattr(link_validator,'require_verified',False) and (job.source.lower() == "adzuna" or not description_is_sufficient(job.description)):
+             _capture_full_description(job, store)
+     return summary
+ 
+--- before/job-scout\preferences\job-sources.json
++++ after/job-scout\preferences\job-sources.json
+@@ -1,5 +1,5 @@
+ {
+-  "max_workers": 6,
++  "max_workers": 3,
+   "max_results_per_source": 0,
+   "providers": {
+     "adzuna": {
+@@ -216,10 +216,6 @@
+           "token": "hs"
+         },
+         {
+-          "name": "Hightouch",
+-          "token": "hightouch"
+-        },
+-        {
+           "name": "Human Interest",
+           "token": "humaninterest"
+         },
+@@ -346,10 +342,6 @@
+         {
+           "name": "Oura",
+           "token": "oura"
+-        },
+-        {
+-          "name": "Outschool",
+-          "token": "outschool"
+         },
+         {
+           "name": "Parsley Health",
+@@ -818,7 +810,7 @@
+         },
+         {
+           "name": "Suger.io",
+-          "site": "suger"
++          "site": "fours"
+         },
+         {
+           "name": "Sysdig",
+@@ -1192,6 +1184,14 @@
+         {
+           "name": "Xero",
+           "board": "xero"
++        },
++        {
++          "name": "Hightouch",
++          "board": "hightouch-inc"
++        },
++        {
++          "name": "Outschool",
++          "board": "outschool"
+         }
+       ]
+     },
+--- before/job-scout\sources\acquisition.py
++++ after/job-scout\sources\acquisition.py
+@@ -8,7 +8,25 @@
+     page = request.page
+     seen = set()
+     while True:
+-        rows = list(provider.search(replace(request, page=page)))
++        event = {'query': request.query, 'location': request.location, 'page':page,
++                 'page_size':request.results_per_page, 'status':'attempted'}
++        if not hasattr(provider,'acquisition_events'): provider.acquisition_events=[]
++        provider.acquisition_events.append(event)
++        rows=[]
++        prior_errors=len(getattr(provider,'errors',[]))
++        try:
++            for row in provider.search(replace(request,page=page)):
++                rows.append(row)
++        except (ProviderError,OSError,ValueError) as error:
++            event.update(status='failed', parsed=len(rows), error=str(error))
++            yield from rows
++            raise
++        reported_errors=getattr(provider,'errors',[])[prior_errors:]
++        if reported_errors:
++            event.update(status='failed',parsed=len(rows),error=str(reported_errors))
++            yield from rows
++            raise ProviderError(str(reported_errors))
++        event.update(status='completed',parsed=len(rows))
+         signature = tuple(sorted((r.source_job_id, r.url) for r in rows))
+         if rows and signature in seen:
+             raise ProviderError(f'{provider.name}: pagination repeated page {page}')
+@@ -23,7 +41,13 @@
+     """Keep successful requests when another query fails; retain partial rows."""
+     rows, errors = [], []
+     if callable(getattr(type(provider), 'full_feed', None)):
+-        rows.extend(provider.full_feed())
++        provider.acquisition_events=[{'kind':'full feed','status':'attempted'}]
++        try:
++            rows.extend(provider.full_feed())
++            provider.acquisition_events[0].update(status='completed',parsed=len(rows))
++        except (ProviderError,OSError,ValueError) as exc:
++            provider.acquisition_events[0].update(status='failed',parsed=len(rows),error=str(exc))
++            errors.append({'error':str(exc)})
+     else:
+         for request in requests:
+             try:
+@@ -33,8 +57,11 @@
+                                'error': str(exc)})
+                 # A source-wide auth, payment or rate failure cannot be repaired by another query.
+                 if any(code in str(exc) for code in ('HTTP Error 401', 'HTTP Error 402',
+-                                                    'HTTP Error 403', 'HTTP Error 429')):
++                                                    'HTTP Error 403', 'HTTP Error 429', 'cached billing failure')):
+                     break
++            latest_errors=getattr(provider,'errors',[])
++            if latest_errors and '402' in str(latest_errors[-1]):
++                break
+     errors.extend(getattr(provider, 'board_errors', []))
+     errors.extend(getattr(provider, 'errors', []))
+     errors.extend({'category': r['category'], 'error': r['error']}
+--- before/job-scout\sources\http.py
++++ after/job-scout\sources\http.py
+@@ -4,6 +4,11 @@
+ 
+ import json
+ import ipaddress
++import os
++import re
++import time
++import xml.etree.ElementTree as ET
++from threading import Lock
+ from dataclasses import dataclass
+ from urllib.error import HTTPError, URLError
+ from urllib.parse import urlsplit
+@@ -13,6 +18,16 @@
+ 
+ 
+ USER_AGENT = "GeckoJobScout/1.0 (+local personal job search)"
++REQUEST_EVENTS = []
++_EVENT_LOCK = Lock()
++_BILLING_FAILURES = {}
++
++def safe_error(value):
++    message = re.sub(r'(https?://[^\s?]+)\?[^\s]+', r'\1', str(value))
++    for name, secret in os.environ.items():
++        if secret and len(secret) > 6 and any(word in name for word in ('KEY', 'TOKEN', 'SECRET')):
++            message = message.replace(secret, '[redacted]')
++    return message
+ 
+ 
+ @dataclass
+@@ -47,16 +62,66 @@
+     """Fetch a bounded public document and retain its post-redirect URL."""
+     _validate_public_url(url)
+     request = Request(url, headers={"User-Agent": USER_AGENT, **(headers or {})})
+-    try:
+-        with build_opener(_PublicRedirectHandler()).open(request, timeout=25) as response:
+-            _validate_public_url(response.geturl())
+-            return FetchedDocument(
+-                body=response.read(limit),
+-                final_url=response.geturl(),
+-                content_type=response.headers.get_content_type(),
+-            )
+-    except (HTTPError, URLError, TimeoutError) as error:
+-        raise ProviderError(f"Request failed for {url}: {error}") from error
++    endpoint = urlsplit(url)._replace(query='', fragment='').geturl()
++    billing_key = (urlsplit(url).hostname, (headers or {}).get('X-Subscription-Token', ''))
++    with _EVENT_LOCK:
++        blocked = _BILLING_FAILURES.get(billing_key)
++    if blocked:
++        raise ProviderError(blocked + ' (cached billing failure; no repeated request)')
++    for attempt in range(2):
++        started = time.monotonic()
++        event = {'endpoint':endpoint, 'attempt':attempt+1}
++        try:
++            with build_opener(_PublicRedirectHandler()).open(request, timeout=25) as response:
++                _validate_public_url(response.geturl())
++                body = response.read(limit+1)
++                if len(body)>limit:
++                    raise ProviderError(f'Response exceeds {limit} byte limit: {endpoint}')
++                event.update(status=response.status, bytes=len(body))
++                try:
++                    if body.lstrip().startswith((b'{',b'[')):
++                        payload=json.loads(body)
++                        records=payload if isinstance(payload,list) else next(
++                            (payload[key] for key in ('jobs','results') if isinstance(payload.get(key),list)),None)
++                        if records is None and isinstance(payload,dict):
++                            records=payload.get('SearchResult',{}).get('SearchResultItems')
++                        if isinstance(records,list):event['raw_records']=len(records)
++                    elif b'<rss' in body[:300] or b'<feed' in body[:300]:
++                        root=ET.fromstring(body)
++                        event['raw_records']=sum(node.tag.rsplit('}',1)[-1] in {'item','entry'} for node in root.iter())
++                except (ValueError,ET.ParseError,AttributeError):
++                    pass
++                return FetchedDocument(body, response.geturl(), response.headers.get_content_type())
++        except (HTTPError, URLError, TimeoutError, ConnectionError) as error:
++            status = getattr(error, 'code', None)
++            event['status'] = status
++            detail = safe_error(error)
++            if isinstance(error, HTTPError):
++                try:
++                    payload = json.loads(error.read(8192))
++                    if isinstance(payload,dict):
++                        detail += ' | ' + safe_error(json.dumps(payload))
++                except (ValueError, OSError):
++                    pass
++            message = f'Request failed for {endpoint}: {detail}'
++            event['error'] = message
++            if status == 402:
++                with _EVENT_LOCK:
++                    _BILLING_FAILURES[billing_key] = message
++            transient = status in {429,500,502,503,504} or status is None
++            delay = 1.0
++            if status==429:
++                retry_after = error.headers.get('Retry-After','')
++                try: delay = max(float(retry_after), 1.0)
++                except ValueError: delay = 2.0
++            if attempt==0 and transient and delay<=60:
++                time.sleep(delay)
++                continue
++            raise ProviderError(message) from error
++        finally:
++            event['seconds'] = round(time.monotonic()-started,3)
++            with _EVENT_LOCK:
++                REQUEST_EVENTS.append(event)
+ 
+ 
+ def get_bytes(url: str, headers: dict[str, str] | None = None, limit: int = 5_000_000) -> bytes:
+@@ -65,15 +130,15 @@
+ 
+ def get_json(url: str, headers: dict[str, str] | None = None) -> dict:
+     try:
+-        return json.loads(get_bytes(url, headers).decode("utf-8", errors="replace"))
++        return json.loads(get_bytes(url, headers, limit=32_000_000).decode("utf-8", errors="replace"))
+     except json.JSONDecodeError as error:
+-        raise ProviderError(f"Source returned invalid JSON: {url}") from error
++        raise ProviderError(f"Source returned invalid JSON: {safe_error(url)}") from error
+ 
+ 
+ def get_json_value(url: str, headers: dict[str, str] | None = None):
+     """Return a JSON object or array for public feeds whose root is not an object."""
+     try:
+-        return json.loads(get_bytes(url, headers).decode("utf-8", errors="replace"))
++        return json.loads(get_bytes(url, headers, limit=32_000_000).decode("utf-8", errors="replace"))
+     except json.JSONDecodeError as error:
+         raise ProviderError(f"Source returned invalid JSON: {url}") from error
+ 
+--- before/job-scout\sources\web.py
++++ after/job-scout\sources\web.py
+@@ -172,6 +172,8 @@
+                 "offset": min(max(request.page - 1, 0), 9), "country": "US", "search_lang": "en",
+             })
+             payload = get_json(url, {"X-Subscription-Token": self.brave_key})
++            self.has_more = getattr(self,'has_more',False) or (
++                request.page<10 and bool(payload.get('query',{}).get('more_results_available')))
+             return [SearchHit(
+                 url=str(item.get("url") or ""),
+                 title=str(item.get("title") or ""),
+@@ -183,12 +185,15 @@
+                 "key": self.google_key, "cx": self.google_cx, "q": query,
+                 "num": min(request.results_per_page, 10), "start": (request.page - 1) * 10 + 1,
+             })
++            payload = get_json(url)
++            self.has_more = getattr(self,'has_more',False) or (
++                request.page<10 and bool(payload.get('queries',{}).get('nextPage')))
+             return [SearchHit(
+                 url=str(item.get("link") or ""),
+                 title=str(item.get("title") or ""),
+                 description=str(item.get("snippet") or ""),
+                 backend=backend,
+-            ) for item in get_json(url).get("items", []) if item.get("link")]
++            ) for item in payload.get("items", []) if item.get("link")]
+         raise ProviderError(f"Unsupported web-search backend: {backend}")
+ 
+     def search_hits(self, query: str, *, maximum: int = 8) -> tuple[list[SearchHit], list[str]]:
+@@ -212,6 +217,7 @@
+         return hits, errors
+ 
+     def search(self, request: SearchRequest):
++        self.has_more = False
+         query = self._query(request)
+         self.search_queries.append({
+             "query": query, "role": request.query, "location": request.location,

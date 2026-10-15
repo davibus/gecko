@@ -1,6 +1,6 @@
 {
-  "max_workers": 6,
-  "max_results_per_source": 50,
+  "max_workers": 3,
+  "max_results_per_source": 0,
   "providers": {
     "adzuna": {
       "enabled": true
@@ -216,10 +216,6 @@
           "token": "hs"
         },
         {
-          "name": "Hightouch",
-          "token": "hightouch"
-        },
-        {
           "name": "Human Interest",
           "token": "humaninterest"
         },
@@ -346,10 +342,6 @@
         {
           "name": "Oura",
           "token": "oura"
-        },
-        {
-          "name": "Outschool",
-          "token": "outschool"
         },
         {
           "name": "Parsley Health",
@@ -818,7 +810,7 @@
         },
         {
           "name": "Suger.io",
-          "site": "suger"
+          "site": "fours"
         },
         {
           "name": "Sysdig",
@@ -1192,6 +1184,14 @@
         {
           "name": "Xero",
           "board": "xero"
+        },
+        {
+          "name": "Hightouch",
+          "board": "hightouch-inc"
+        },
+        {
+          "name": "Outschool",
+          "board": "outschool"
         }
       ]
     },

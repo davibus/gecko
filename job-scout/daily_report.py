@@ -65,11 +65,14 @@ def build_snapshot(rows: list[tuple[int, dict[str, Any]]], *, deleted_count: int
             warnings.append(f"Row {number}: Resume Link exists without Resume Created; manual review")
         if marker or link or _key(row.get("Cost")) == COST_EXCLUSION_MARKER:
             continue
-        if _key(row.get("Gecko Status") or row.get("Status")) in REJECT_STATUSES | {"ignored", "expired"}:
+        if _key(row.get("Apply?")) in REJECT_STATUSES:
             continue
         if is_indeed and _key(row.get(INDEED_APPLICATION_HEADER)) in INDEED_EXPIRED_TEXTS:
             continue
-        if _key(row.get("Apply?")) == "yes" and _value(row, "Company") and _value(row, "Job Title"):
+        from google_tracker import resume_approval_value
+        if (_key(row.get("Apply?")) == "yes" and resume_approval_value(
+                row.get("Location"), row.get("Work Arrangement"), row.get("Cost")) == "Yes"
+                and _value(row, "Company") and _value(row, "Job Title")):
             eligible += 1
     if report_tab_empty:
         warnings.append("Legacy console report does not write a persistent daily summary")

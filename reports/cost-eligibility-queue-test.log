@@ -1,0 +1,452 @@
+Found 0 jobs requiring resumes.
+Tracker rows checked: 4
+Skipped with completion marker or existing Resume Link: 4
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 0 jobs requiring resumes.
+Tracker rows checked: 4
+Skipped with completion marker or existing Resume Link: 0
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 0 jobs requiring resumes.
+SKIP RESUME: row 7 already has Resume Created = X; Resume Link is blank; manual review needed
+Tracker rows checked: 1
+Skipped with completion marker or existing Resume Link: 1
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 0 jobs requiring resumes.
+SKIP RESUME: row 7 already has Resume Created = X; Resume Link is blank; manual review needed
+Tracker rows checked: 1
+Skipped with completion marker or existing Resume Link: 1
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 0 jobs requiring resumes.
+Tracker rows checked: 4
+Skipped with completion marker or existing Resume Link: 0
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 1 jobs requiring resumes.
+Tracker rows checked: 3
+Skipped with completion marker or existing Resume Link: 1
+Row | Scout ID | Company | Job title
+5 | 45 | Another | Role
+Processing eligible jobs now.
+[1/1] Creating Gecko resume: Another  Role
+Resume created: C:\Users\DCALL\AppData\Local\Temp\tmp4y51hosu\resume.docx
+Updated Gecko Job Tracker row 5: Resume Created = X
+
+Gecko Resume Queue Complete
+Tracker rows checked: 3
+Eligible jobs: 1
+New resumes eligible: 1
+Completed rows requiring regeneration: 0
+Completed rows skipped: 1
+Cost-excluded rows: 0
+Permanently rejected rows skipped: 0
+Skipped: 2
+Resumes created: 1
+Existing valid resumes discovered and marked: 0
+Processed: 1
+Apply? values auto-set: 0
+Scout IDs assigned: 0
+Resume Links written: 1
+Rows marked Resume Created: 1
+Failed: 0
+Google Sheet rows updated: 1
+Rows marked X: 5
+Remaining eligible rows: 0; unexpected: 0
+Found 0 jobs requiring resumes.
+Tracker rows checked: 1
+Skipped with completion marker or existing Resume Link: 0
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 3 jobs requiring resumes.
+Tracker rows checked: 5
+Skipped with completion marker or existing Resume Link: 1
+Row | Scout ID | Company | Job title
+2 | 42 | Existing | Role
+5 | 45 | Another | Role
+6 | 46 | Retry | Role
+Processing eligible jobs now.
+[1/3] Creating Gecko resume: Existing  Role
+...FF.FF.....F.FFAILED: Existing  Role
+Reason: No source produced a complete description.
+[2/3] Creating Gecko resume: Another  Role
+FAILED: Another  Role
+Reason: second simulated failure
+[3/3] Creating Gecko resume: Retry  Role
+FAILED: Retry  Role
+Reason: second simulated failure
+
+Gecko Resume Queue Complete
+Tracker rows checked: 5
+Eligible jobs: 3
+New resumes eligible: 3
+Completed rows requiring regeneration: 0
+Completed rows skipped: 1
+Cost-excluded rows: 0
+Permanently rejected rows skipped: 0
+Skipped: 2
+Resumes created: 0
+Existing valid resumes discovered and marked: 0
+Processed: 3
+Apply? values auto-set: 0
+Scout IDs assigned: 0
+Resume Links written: 0
+Rows marked Resume Created: 0
+Failed: 3
+Google Sheet rows updated: 0
+Rows marked X: none
+Remaining eligible rows: 3; unexpected: 0
+Found 1 jobs requiring resumes.
+Tracker rows checked: 1
+Skipped with completion marker or existing Resume Link: 0
+Row | Scout ID | Company | Job title
+7 | 904 | Recovery Company | Growth Marketing Manager
+Processing eligible jobs now.
+[1/1] Creating Gecko resume: Recovery Company  Growth Marketing Manager
+Resume created: C:\Users\DCALL\AppData\Local\Temp\tmpgrulx2dj\output\resumes\Dave-Call+Recovery-Company+Growth-Marketing-Manager+recovery-904.docx
+Updated Gecko Job Tracker row 7: Resume Created = X
+Found 0 jobs requiring resumes.
+Tracker rows checked: 1
+Skipped with completion marker or existing Resume Link: 0
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 0 jobs requiring resumes.
+Tracker rows checked: 1
+Skipped with completion marker or existing Resume Link: 0
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 0 jobs requiring resumes.
+Tracker rows checked: 1
+Skipped with completion marker or existing Resume Link: 0
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 0 jobs requiring resumes.
+Tracker rows checked: 4
+Skipped with completion marker or existing Resume Link: 0
+Dry-run row diagnostics:
+Row 7 | Source Match | Role | SKIP: missing or invalid Job URL
+Row 8 | URL Match | Role | SKIP: Apply? explicit value 'New' prevents automatic approval
+Row 9 | Complete | Role | SKIP: job already applied
+Row 10 | No Apply | Role | SKIP: missing or invalid Job URL
+Row | Scout ID | Company | Job title
+Found 0 jobs requiring resumes.
+Tracker rows checked: 1
+Skipped with completion marker or existing Resume Link: 1
+Dry-run row diagnostics:
+Row 7 | Legacy Company | Marketing Director | SKIP: legacy resume completion marker
+Row | Scout ID | Company | Job title
+Found 0 jobs requiring resumes.
+Tracker rows checked: 1
+Skipped with completion marker or existing Resume Link: 0
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 0 jobs requiring resumes.
+Tracker rows checked: 3
+Skipped with completion marker or existing Resume Link: 0
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 3 jobs requiring resumes.
+Tracker rows checked: 5
+Skipped with completion marker or existing Resume Link: 1
+Row | Scout ID | Company | Job title
+2 | 42 | Existing | Role
+5 | 45 | Another | Role
+6 | 46 | Retry | Role
+Processing eligible jobs now.
+[1/3] Creating Gecko resume: Existing  Role
+Resume created: C:\Users\DCALL\AppData\Local\Temp\tmp4_jzm8p9\resume.docx
+Updated Gecko Job Tracker row 2: Resume Created = X
+[2/3] Creating Gecko resume: Another  Role
+Resume created: C:\Users\DCALL\AppData\Local\Temp\tmp4_jzm8p9\resume.docx
+Updated Gecko Job Tracker row 5: Resume Created = X
+[3/3] Creating Gecko resume: Retry  Role
+Resume created: C:\Users\DCALL\AppData\Local\Temp\tmp4_jzm8p9\resume.docx
+Updated Gecko Job Tracker row 6: Resume Created = X
+Found 0 jobs requiring resumes.
+Tracker rows checked: 5
+Skipped with completion marker or existing Resume Link: 4
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 0 jobs requiring resumes.
+Tracker rows checked: 1
+Skipped with completion marker or existing Resume Link: 0
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 0 jobs requiring resumes.
+Tracker rows checked: 1
+Skipped with completion marker or existing Resume Link: 0
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 0 jobs requiring resumes.
+Tracker rows checked: 0
+Skipped with completion marker or existing Resume Link: 0
+Row | Scout ID | Company | Job title
+Processing eligible jobs now.
+Found 3 jobs requiring resumes.
+Tracker rows checked: 5
+Skipped with completion marker or existing Resume Link: 1
+Row | Scout ID | Company | Job title
+2 | 42 | Existing | Role
+5 | 45 | Another | Role
+6 | 46 | Retry | Role
+Processing eligible jobs now.
+[1/3] Creating Gecko resume: Existing  Role
+...F....EF.....E.FFF.F..F....FEF.E....F.F..F....FAILED: Existing  Role
+Reason: simulated Word QA failure
+[2/3] Creating Gecko resume: Another  Role
+Resume created: C:\Users\DCALL\AppData\Local\Temp\tmpslojo92n\resume.docx
+Updated Gecko Job Tracker row 5: Resume Created = X
+[3/3] Creating Gecko resume: Retry  Role
+Resume created: C:\Users\DCALL\AppData\Local\Temp\tmpslojo92n\resume.docx
+Updated Gecko Job Tracker row 6: Resume Created = X
+.
+======================================================================
+ERROR: test_existing_scout_id_is_preserved_by_preparation (scripts.test_generate_apply_queue.QueueTests.test_existing_scout_id_is_preserved_by_preparation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 656, in test_existing_scout_id_is_preserved_by_preparation
+    item = next(item for item in queue.read_queue(
+        self.tracker, source="indeed").pending if item.row == row)
+StopIteration
+
+======================================================================
+ERROR: test_final_step_updates_managed_cells_and_preserves_apply (scripts.test_generate_apply_queue.QueueTests.test_final_step_updates_managed_cells_and_preserves_apply)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 260, in test_final_step_updates_managed_cells_and_preserves_apply
+    queue.record_success(item, queue.Artifacts(resume, listing), self.tracker)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\gecko_main\scripts\generate_apply_queue.py", line 984, in record_success
+    raise RuntimeError("Apply? or Resume Created changed before tracker update")
+RuntimeError: Apply? or Resume Created changed before tracker update
+
+======================================================================
+ERROR: test_qualifying_blank_id_gets_unique_persistent_scout_id (scripts.test_generate_apply_queue.QueueTests.test_qualifying_blank_id_gets_unique_persistent_scout_id)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 641, in test_qualifying_blank_id_gets_unique_persistent_scout_id
+    item = next(item for item in queue.read_queue(
+        self.tracker, source="indeed").pending if item.row == row)
+StopIteration
+
+======================================================================
+ERROR: test_reject_marked_row_is_never_queued_before_maintenance (scripts.test_generate_apply_queue.QueueTests.test_reject_marked_row_is_never_queued_before_maintenance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 481, in test_reject_marked_row_is_never_queued_before_maintenance
+    self.fake.data["Job Scout"][row - 1][SCOUT.index("Status")] = "Reject"
+                                         ~~~~~~~~~~~^^^^^^^^^^
+ValueError: 'Status' is not in list
+
+======================================================================
+FAIL: test_batch_prepares_all_blank_apply_and_ids_before_generation (scripts.test_generate_apply_queue.QueueTests.test_batch_prepares_all_blank_apply_and_ids_before_generation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 725, in test_batch_prepares_all_blank_apply_and_ids_before_generation
+    self.assertEqual(run.scout_ids_assigned, 4)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 4
+
+======================================================================
+FAIL: test_blank_apply_california_onsite_does_not_qualify (scripts.test_generate_apply_queue.QueueTests.test_blank_apply_california_onsite_does_not_qualify)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 543, in test_blank_apply_california_onsite_does_not_qualify
+    self.assertIn("outside Utah and not remote",
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                  dict((item.row, reason) for item, reason in snapshot.decisions)[row])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'outside Utah and not remote' not found in 'SKIP: missing or invalid Job URL'
+
+======================================================================
+FAIL: test_blank_apply_remote_would_auto_approve_case_insensitively (scripts.test_generate_apply_queue.QueueTests.test_blank_apply_remote_would_auto_approve_case_insensitively)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 521, in test_blank_apply_remote_would_auto_approve_case_insensitively
+    self.assertIn("WOULD SET APPLY? = Yes | Remote", decision)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'WOULD SET APPLY? = Yes | Remote' not found in 'SKIP: missing or invalid Job URL'
+
+======================================================================
+FAIL: test_blank_apply_utah_location_would_auto_approve (scripts.test_generate_apply_queue.QueueTests.test_blank_apply_utah_location_would_auto_approve)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 511, in test_blank_apply_utah_location_would_auto_approve
+    self.assertIn(row, [item.row for item in snapshot.pending])
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 7 not found in []
+
+======================================================================
+FAIL: test_daily_all_source_geographic_approval_matrix (scripts.test_generate_apply_queue.QueueTests.test_daily_all_source_geographic_approval_matrix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 635, in test_daily_all_source_geographic_approval_matrix
+    self.assertEqual(len(result.failures), 2)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_default_indeed_success_records_clickable_absolute_file_uri (scripts.test_generate_apply_queue.QueueTests.test_default_indeed_success_records_clickable_absolute_file_uri)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 844, in test_default_indeed_success_records_clickable_absolute_file_uri
+    self.assertEqual(len(run.successes), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_dry_run_has_zero_writes_generation_or_upload_and_reports_plans (scripts.test_generate_apply_queue.QueueTests.test_dry_run_has_zero_writes_generation_or_upload_and_reports_plans)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 1125, in test_dry_run_has_zero_writes_generation_or_upload_and_reports_plans
+    self.assertIn("WOULD SET APPLY? = Yes", output.getvalue())
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'WOULD SET APPLY? = Yes' not found in 'Found 0 jobs requiring resumes.\nTracker rows checked: 1\nSkipped with completion marker or existing Resume Link: 0\nDry-run row diagnostics:\nRow 7 | Manual Company | Marketing Director | SKIP: missing or invalid Job URL\nRow | Scout ID | Company | Job title\n\nGecko Resume Queue Complete\nTracker rows checked: 1\nEligible jobs: 0\nNew resumes eligible: 0\nCompleted rows requiring regeneration: 0\nCompleted rows skipped: 0\nCost-excluded rows: 0\nPermanently rejected rows skipped: 0\nSkipped: 1\nResumes created: 0\nExisting valid resumes discovered and marked: 0\nProcessed: 0\nApply? values auto-set: 0\nScout IDs assigned: 0\nResume Links written: 0\nRows marked Resume Created: 0\nFailed: 0\nGoogle Sheet rows updated: 0\nRows marked X: none\nRemaining eligible rows: 0; unexpected: 0\nWould process: 0\n\nIndeed workflow totals\nIndeed rows checked: 1\nUtah qualifying: 1\nRemote qualifying: 0\nWould set Apply? = Yes: 0\nAlready approved: 0\nExplicitly declined: 0\nOther explicit Apply? values: 0\nOutside Utah/non-remote: 0\nWould assign Scout ID: 0\nEligible for Gecko resume: 0\nAlready completed: 0\nRepair eligible: 0\nCost-excluded: 0\nMissing usable Job URL/listing: 0\nDuplicate exclusions: 0\nRejected-history exclusions: 0\nWould process: 0\n'
+
+======================================================================
+FAIL: test_existing_yes_is_eligible_even_outside_utah (scripts.test_generate_apply_queue.QueueTests.test_existing_yes_is_eligible_even_outside_utah)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 573, in test_existing_yes_is_eligible_even_outside_utah
+    self.assertIn(row, [item.row for item in snapshot.pending])
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 7 not found in []
+
+======================================================================
+FAIL: test_generation_failure_keeps_row_retryable_without_x (scripts.test_generate_apply_queue.QueueTests.test_generation_failure_keeps_row_retryable_without_x)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 1106, in test_generation_failure_keeps_row_retryable_without_x
+    self.assertIn("generation failed", stored["Notes"])
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'generation failed' not found in ''
+
+======================================================================
+FAIL: test_indeed_rerun_skips_x_with_persistent_link (scripts.test_generate_apply_queue.QueueTests.test_indeed_rerun_skips_x_with_persistent_link)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 1265, in test_indeed_rerun_skips_x_with_persistent_link
+    self.assertEqual(len(first.successes), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_indeed_source_filter_uses_source_or_job_url (scripts.test_generate_apply_queue.QueueTests.test_indeed_source_filter_uses_source_or_job_url)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 360, in test_indeed_source_filter_uses_source_or_job_url
+    self.assertEqual([item.scout_id for item in snapshot.pending], [50, 51])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != [50, 51]
+
+Second list contains 2 additional elements.
+First extra element 0:
+50
+
+- []
++ [50, 51]
+
+======================================================================
+FAIL: test_jooble_row_is_eligible_when_user_marks_yes (scripts.test_generate_apply_queue.QueueTests.test_jooble_row_is_eligible_when_user_marks_yes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 1207, in test_jooble_row_is_eligible_when_user_marks_yes
+    self.assertEqual([item.scout_id for item in snapshot.pending], [47])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != [47]
+
+Second list contains 1 additional elements.
+First extra element 0:
+47
+
+- []
++ [47]
+
+======================================================================
+FAIL: test_local_record_rejects_empty_artifact_without_marking_completion (scripts.test_generate_apply_queue.QueueTests.test_local_record_rejects_empty_artifact_without_marking_completion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 879, in test_local_record_rejects_empty_artifact_without_marking_completion
+    self.assertEqual(len(run.failures), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_one_manual_generation_failure_does_not_block_later_rows (scripts.test_generate_apply_queue.QueueTests.test_one_manual_generation_failure_does_not_block_later_rows)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 771, in test_one_manual_generation_failure_does_not_block_later_rows
+    self.assertEqual(generated_rows, rows)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != [7, 8, 9]
+
+Second list contains 3 additional elements.
+First extra element 0:
+7
+
+- []
++ [7, 8, 9]
+
+======================================================================
+FAIL: test_qualifying_utah_row_is_set_to_yes_even_when_previously_no (scripts.test_generate_apply_queue.QueueTests.test_qualifying_utah_row_is_set_to_yes_even_when_previously_no)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 580, in test_qualifying_utah_row_is_set_to_yes_even_when_previously_no
+    self.assertIn(row, [item.row for item in snapshot.pending])
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 7 not found in []
+
+======================================================================
+FAIL: test_retry_after_prior_storage_failure_uses_existing_local_artifact (scripts.test_generate_apply_queue.QueueTests.test_retry_after_prior_storage_failure_uses_existing_local_artifact)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 915, in test_retry_after_prior_storage_failure_uses_existing_local_artifact
+    self.assertEqual(run.recovered, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_successful_manual_run_sets_x_and_real_link_after_generation (scripts.test_generate_apply_queue.QueueTests.test_successful_manual_run_sets_x_and_real_link_after_generation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 813, in test_successful_manual_run_sets_x_and_real_link_after_generation
+    self.assertEqual(len(run.successes), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_two_manual_rows_receive_different_scout_ids (scripts.test_generate_apply_queue.QueueTests.test_two_manual_rows_receive_different_scout_ids)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\test_generate_apply_queue.py", line 674, in test_two_manual_rows_receive_different_scout_ids
+    self.assertEqual(len({item.scout_id for item in prepared}), 2)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 2
+
+----------------------------------------------------------------------
+Ran 65 tests in 1.032s
+
+FAILED (failures=18, errors=4)
+
+Gecko Resume Queue Complete
+Tracker rows checked: 5
+Eligible jobs: 3
+New resumes eligible: 3
+Completed rows requiring regeneration: 0
+Completed rows skipped: 1
+Cost-excluded rows: 0
+Permanently rejected rows skipped: 0
+Skipped: 2
+Resumes created: 2
+Existing valid resumes discovered and marked: 0
+Processed: 3
+Apply? values auto-set: 0
+Scout IDs assigned: 0
+Resume Links written: 2
+Rows marked Resume Created: 2
+Failed: 1
+Google Sheet rows updated: 2
+Rows marked X: 5, 6
+Remaining eligible rows: 1; unexpected: 0

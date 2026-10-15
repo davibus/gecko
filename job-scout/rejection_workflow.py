@@ -35,7 +35,7 @@ def _scout_id(value: object) -> int | None:
 
 def _fingerprint(data: dict[str, object]) -> tuple[str, ...]:
     return tuple(str(data.get(name) or "").strip() for name in (
-        "Scout ID", "Source", "Company", "Job Title", "Gecko Status", "Job URL",
+        "Scout ID", "Source", "Company", "Job Title", "Apply?", "Job URL",
     ))
 
 
@@ -50,7 +50,7 @@ def process_rejected_rows(
     tab = tracker.scout(value_render_option="FORMULA")
     targets = [
         (row, data) for row, data in tab.rows
-        if _normal(data.get("Gecko Status")) in REJECT_STATUSES
+        if _normal(data.get("Apply?")) in REJECT_STATUSES
     ]
     summary = RejectionSummary(marked=len(targets))
     if not targets:
@@ -64,7 +64,7 @@ def process_rejected_rows(
         source = job.source if job else data.get("Source")
         job_id = job.source_job_id if job else ""
         url = data.get("Job URL") or (job.url if job else "")
-        reason = data.get("Notes") or data.get("Gecko Status") or "Reject"
+        reason = data.get("Notes") or data.get("Apply?") or "Reject"
         record = rejection_record(
             source=source,
             job_id=job_id,

@@ -12,6 +12,7 @@ from urllib.parse import parse_qs, unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "job-scout"))
+import resume_naming
 
 from google_tracker import (  # noqa: E402
     Config,
@@ -98,7 +99,7 @@ def _resolve_from_metadata(
     identifiers = _job_identifiers(data, formula_target)
     by_id = [
         path for path in resumes
-        if path.stem.rsplit("+", 1)[-1].casefold().lstrip("-") in identifiers
+        if resume_naming.job_number(path).casefold().lstrip("-") in identifiers
     ]
     if len(by_id) == 1:
         return by_id[0], "job-identifier"

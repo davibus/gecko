@@ -44,6 +44,15 @@ class CandidateProfileValidationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "candidate profile is stale"):
             candidate_profile.load_candidate_profile(self.profile_path)
 
+    def test_empty_or_invalid_master_cannot_be_stamped_valid(self):
+        for raw in (b" \n", b"\xef\xbb\xbf", b"\xff"):
+            with self.subTest(raw=raw):
+                self.master.write_bytes(raw)
+                self.profile["master_resume_sha256"] = hashlib.sha256(raw).hexdigest()
+                self.write_profile()
+                with self.assertRaises((ValueError, OSError)):
+                    candidate_profile.load_candidate_profile(self.profile_path)
+
     def test_line_endings_and_bom_are_part_of_fingerprint(self):
         for raw in (b"Reviewed source\r\n", b"\xef\xbb\xbfReviewed source\n"):
             with self.subTest(raw=raw):

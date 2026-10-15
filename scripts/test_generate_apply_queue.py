@@ -28,7 +28,9 @@ class QueueTests(unittest.TestCase):
             row = [""] * len(SCOUT)
             for field, value in {
                 "ID": scout_id, "Source": "test", "Company": company,
-                "Job Title": "Role", "Status": "New", "Apply?": apply,
+                "Job Title": "Role", "Apply?": apply, "Cost": "Free",
+                "Location": "Utah", "Work Arrangement": "on-site",
+                "Job URL": f"https://example.test/job/{scout_id}",
                 "Resume Created": created, "Resume Link": link,
             }.items():
                 row[SCOUT.index(field)] = value
@@ -43,16 +45,36 @@ class QueueTests(unittest.TestCase):
 
     def add_scout_row(self, *, scout_id="", source="Indeed", company="Manual Company",
                       title="Marketing Director", apply="Yes", created="", url="",
-                      location="", arrangement="", employment="", salary="", listing=""):
-        row = [scout_id, source, company, title, "New", apply, created, "", ""]
-        row.extend([""] * (len(SCOUT) - len(row)))
+                      location="Utah", arrangement="on-site", employment="", salary="", listing="", cost="Free"):
+        row = [""] * len(SCOUT)
+        for field, value in {"ID": scout_id, "Source": source, "Company": company,
+                             "Job Title": title, "Apply?": apply,
+                             "Resume Created": created, "Cost": cost}.items():
+            row[SCOUT.index(field)] = value
         row[SCOUT.index("Location")] = location
         row[SCOUT.index("Work Arrangement")] = arrangement
         row[SCOUT.index("Employment Type")] = employment
         row[SCOUT.index("Salary")] = salary
-        row[SCOUT.index("Job URL")] = listing or url
+        row[SCOUT.index("Job URL")] = listing or url or f"https://example.test/job/{scout_id or len(self.fake.data['Job Scout'])}"
         self.fake.data["Job Scout"].append(row)
         return len(self.fake.data["Job Scout"])
+
+    def test_explicit_id_scope_excludes_every_unlisted_row(self):
+        rows = queue.validate_requested_ids(self.tracker, {44, 45})
+        self.assertEqual(len(rows), 2)
+        snapshot = queue.read_queue(self.tracker, eligible_scout_ids={44, 45})
+        self.assertEqual([item.scout_id for item in snapshot.pending], [45])
+        self.assertEqual([item.scout_id for item in snapshot.not_approved], [44])
+        self.assertEqual(snapshot.already_created, [])
+        self.assertEqual(snapshot.cost_excluded, [])
+
+    def test_explicit_id_scope_rejects_missing_or_duplicate_ids(self):
+        with self.assertRaisesRegex(RuntimeError, "missing or duplicated"):
+            queue.validate_requested_ids(self.tracker, {99999})
+        row = list(self.fake.data["Job Scout"][2])
+        self.fake.data["Job Scout"].append(row)
+        with self.assertRaisesRegex(RuntimeError, "missing or duplicated"):
+            queue.validate_requested_ids(self.tracker, {43})
 
     def test_yes_queue_skips_x_and_continues_after_failure(self):
         snapshot = queue.read_queue(self.tracker)

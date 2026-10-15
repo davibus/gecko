@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "entries": {
+    "Dave-Call+Sample+AI-Marketing-Technology+00001.docx": {
+      "id": "00001",
+      "key": "daec8bf20e59cb5bac4c2edfd4cf2b7c6d51dd6f4619fcab7e40b91a1e01fdce",
+      "primary": true,
+      "company": "Sample",
+      "title": "AI Marketing Technology",
+      "job_number": "ai-review-20261014"
+    },
+    "Dave-Call+Siemens+Product-Marketing-Lead-ICX+00002.docx": {
+      "id": "00002",
+      "key": "314e4be13b6b762c1c70959710bf08160ad204eb6bc6405370dab546ce8ac785",
+      "primary": true,
+      "company": "Siemens",
+      "title": "Product Marketing Lead - ICX",
+      "job_number": "scout-2222"
+    },
+    "Dave-Call+Vasion,-Inc+Senior-Growth-Marketing-Manager+00003.docx": {
+      "id": "00003",
+      "key": "f3276dee574eb05b2ca5917333ed61bc5faf08b01c35ccda1200c1e48b46da2d",
+      "primary": true,
+      "company": "Vasion, Inc.",
+      "title": "Senior Growth Marketing Manager",
+      "job_number": "scout-2225"
+    },
+    "Dave-Call+John-Gore-Organization+Regional-Director-of-Marketing+00004.docx": {
+      "id": "00004",
+      "key": "4a4058c1bd149af11ef809c2e43ba77ce8daeecb75a5e02ad6d8d6cdf205725b",
+      "primary": true,
+      "company": "John Gore Organization",
+      "title": "Regional Director of Marketing",
+      "job_number": "scout-2255"
+    },
+    "Dave-Call+Digital-Marketing+Paid-Search-Specialist-SEM-PPC-Internet-Paid-Search-Professional+00005.docx": {
+      "id": "00005",
+      "key": "9b22e00c4d6930ccc075c4335de9d0c7bdc00d6925de5495f975b8d333a4225e",
+      "primary": true,
+      "company": "Digital Marketing",
+      "title": "Paid Search Specialist - SEM/PPC - Internet Paid Search Professional",
+      "job_number": "scout-4"
+    },
+    "Dave-Call+Marrina-Decisions+REMOTE-Senior-Marketing-Operations-Lead-(Lifecycle-&-Automation)+00006.docx": {
+      "id": "00006",
+      "key": "ca61e32d2fe5b7a7e5e62e8461eca9b51a65c493319535514188e2c82508c0bb",
+      "primary": true,
+      "company": "Marrina Decisions",
+      "title": "REMOTE: Senior Marketing Operations Lead (Lifecycle & Automation)",
+      "job_number": "scout-36"
+    },
+    "Dave-Call+Five-Star-Franchising+Director-of-Performance-Marketing+00007.docx": {
+      "id": "00007",
+      "key": "78b79c2eb4b029972328581f31c48fee3d907d3f56cff1181a6d1397b520b283",
+      "primary": true,
+      "company": "Five Star Franchising",
+      "title": "Director of Performance Marketing",
+      "job_number": "scout-39"
+    },
+    "Dave-Call+Cambia-Health-Solutions+Manager-Clinical-Pharmacy-Services+00008.docx": {
+      "id": "00008",
+      "key": "ab9a63b5444a344cafbb997398b80cc181e8356812d30760b0c72fdd23a2aed4",
+      "primary": true,
+      "company": "Cambia Health Solutions",
+      "title": "Manager Clinical Pharmacy Services",
+      "job_number": "scout-47"
+    },
+    "Dave-Call+Cambia-Health-Solutions+Manager-Clinical-Pharmacy-Services+00009.docx": {
+      "id": "00009",
+      "key": "ab9a63b5444a344cafbb997398b80cc181e8356812d30760b0c72fdd23a2aed4",
+      "primary": false,
+      "company": "Cambia Health Solutions",
+      "title": "Manager Clinical Pharmacy Services",
+      "job_number": "scout-47"
+    },
+    "Dave-Call+Aptive-Pest-Control+Sr.-Manager,-Marketing-Analytics+00010.docx": {
+      "id": "00010",
+      "key": "2cca6dc8919c8dce081731f6e52a89946c8d2e9c403efac51a27581e288ecf8d",
+      "primary": true,
+      "company": "Aptive Pest Control",
+      "title": "Sr. Manager, Marketing Analytics",
+      "job_number": "scout-50"
+    },
+    "Dave-Call+The-Front-Climbing-Club+Senior-Sales-and-Marketing-Manager+00011.docx": {
+      "id": "00011",
+      "key": "ff3f90409eacb5079a9550c2af9630a851ab16b19811a4b77745e5634bb51ade",
+      "primary": true,
+      "company": "The Front Climbing Club",
+      "title": "Senior Sales and Marketing Manager",
+      "job_number": "scout-57"
+    },
+    "Dave-Call+Pattern+Paid-Media-Manager+00012.docx": {
+      "id": "00012",
+      "key": "013e1d10643092831dbd27ab2e6b6b8a2149cda9eab0c53799fe7d4eff9c3886",
+      "primary": true,
+      "company": "Pattern",
+      "title": "Paid Media Manager",
+      "job_number": "scout-559"
+    },
+    "Dave-Call+RainFocus+Sr.-Product-Marketing-Manager-Events-(Remote)+00013.docx": {
+      "id": "00013",
+      "key": "b81fa3a1a138a14d3750a45d6964e8b536cbd141697d359d526179efd3057717",
+      "primary": true,
+      "company": "RainFocus",
+      "title": "Sr. Product Marketing Manager - Events (Remote)",
+      "job_number": "scout-564"
+    },
+    "Dave-Call+Hire-Resolve.com+Mid-Senior-Sales-&-Marketing-Professionals+00014.docx": {
+      "id": "00014",
+      "key": "9d5f69f0b9f6e981a8b0ad9101b8db2eb9ed652b240aa1e116d3f280e770a329",
+      "primary": true,
+      "company": "Hire Resolve.com",
+      "title": "Mid-Senior Sales & Marketing Professionals",
+      "job_number": "scout-567"
+    },
+    "Dave-Call+Digital-Marketing+Director-of-Business-Development-Sales-For-Fast-Growing-National-SEO-Digital-Marketing-Firm+00015.docx": {
+      "id": "00015",
+      "key": "fe73e5c776928f26673cc68d0b5c9b6f3b0c4bc57f1c86fa7028dc190703602e",
+      "primary": true,
+      "company": "Digital Marketing",
+      "title": "Director of Business Development/Sales For Fast Growing National SEO / Digital Marketing Firm",
+      "job_number": "scout-568"
+    },
+    "Dave-Call+Pattern+Digital-Marketing-Manager+00016.docx": {
+      "id": "00016",
+      "key": "1fb37f643491a89d582c6406faa59b043bb94e318453e568f391b4cc9d0c5e32",
+      "primary": true,
+      "company": "Pattern",
+      "title": "Digital Marketing Manager",
+      "job_number": "scout-692"
+    },
+    "Dave-Call+Jobscan+Senior-Growth-Marketing-Manager,-Content-&-Lifecycle+00017.docx": {
+      "id": "00017",
+      "key": "cb9868fee919ad35474cfec6b1a3125731bf966bb53b76b5593da9eb9af5c9c3",
+      "primary": true,
+      "company": "Jobscan",
+      "title": "Senior Growth Marketing Manager, Content & Lifecycle",
+      "job_number": "scout-708"
+    },
+    "Dave-Call+CAI-World-Wide+Marketing-Manager+00018.docx": {
+      "id": "00018",
+      "key": "4a09e6dbea408f5457919bfc1fa82d1e52afb98d50de1aedde9b5a56c341b251",
+      "primary": true,
+      "company": "CAI World-Wide",
+      "title": "Marketing Manager",
+      "job_number": "scout-726"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "file": "job-scout/preferences/default.json",
+    "same_at_audit_start": true
+  },
+  {
+    "file": "job-scout/preferences/job-sources.json",
+    "same_at_audit_start": false
+  },
+  {
+    "file": "job-scout/sources/ats.py",
+    "same_at_audit_start": true
+  },
+  {
+    "file": "job-scout/scout.py",
+    "same_at_audit_start": false
+  }
+]

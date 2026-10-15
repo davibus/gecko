@@ -45,6 +45,12 @@ class SearchSummary:
     deterministic_reject_reasons: dict[str, int] = field(default_factory=dict)
     jooble_excluded: int = 0
     rejected_history_excluded: int = 0
+    missing_content_excluded: int = 0
+    dead_url_excluded: int = 0
+    source_results_limited: int = 0
+    url_review_excluded: int = 0
+    url_validated: int = 0
+    decisions: list[dict] = field(default_factory=list)
     new_job_ids: list[int] = field(default_factory=list)
     existing_job_ids: list[int] = field(default_factory=list)
     changed_job_ids: list[int] = field(default_factory=list)
@@ -126,18 +132,26 @@ def _discover_listings(
     existing_ids = {job.id for job in known} if preexisting_ids is None else set(preexisting_ids)
     updated_ids: set[int] = set()
     existing_seen_ids: set[int] = set()
+    def record(raw, reason, **details):
+        if getattr(link_validator,'require_verified',False):
+            summary.decisions.append({'source':raw.source,'source_job_id':raw.source_job_id,
+                'url':raw.url,'company':raw.company,'title':raw.title,'reason':reason,**details})
     for raw in listings:
         summary.fetched += 1
         if is_jooble_candidate(source=raw.source, urls=(raw.url,), metadata=raw.metadata):
             summary.jooble_excluded += 1
+            record(raw,'disabled Jooble provenance')
             continue
         if require_content and (not raw.title or not raw.description):
+            summary.missing_content_excluded += 1
+            record(raw,'missing content')
             continue
         discovery_backends = raw.metadata.get("_web_search_backends", [])
         job = normalize(raw)
         summary.normalized += 1
         if rejected_jobs is not None and rejected_jobs.matches_job(job) is not None:
             summary.rejected_history_excluded += 1
+            record(raw,'rejection history')
             continue
         accepted, filter_reason = deterministic_filter(job, preferences or {})
         if not accepted:
@@ -147,14 +161,22 @@ def _discover_listings(
             )
             if not is_relevant_role(raw.title):
                 summary.filtered_by_role += 1
+            record(raw,filter_reason)
             continue
         for backend in discovery_backends:
             summary.backend_qualifying[backend] = summary.backend_qualifying.get(backend, 0) + 1
         if link_validator is not None:
             link_result = link_validator.check(job)
             if link_result.status == "dead":
+                summary.dead_url_excluded += 1
+                record(raw,'confirmed dead URL',verification=link_result.reason)
                 link_validator.record_removed(job, link_result)
                 continue
+            if getattr(link_validator,'require_verified',False) and link_result.status!='valid':
+                summary.url_review_excluded += 1
+                record(raw,'URL requires review',verification=link_result.reason)
+                continue
+            summary.url_validated += int(link_result.status=='valid')
         duplicate = find_duplicate(
             job, [item for item in known if not _same_source_identity_conflicts(job, item)]
         )
@@ -176,7 +198,17 @@ def _discover_listings(
                 was_existing and job.description
                 and meaningful_description_change(current_description, job.description)
             )
-            if not (preserve_existing and was_existing):
+            if getattr(link_validator,'require_verified',False):
+                store.merge(duplicate.id,job)
+                merged=store.get(duplicate.id)
+                if merged:
+                    # Only the freshly checked listing URL may reach this discovery sync.
+                    merged.authoritative_url=job.url
+                    merged.url_verification_status='verified'
+                    merged.url_destination_type=classify_url(job.url)
+                    store.save_url_resolution(merged)
+                    known=[merged if item.id==duplicate.id else item for item in known]
+            elif not (preserve_existing and was_existing):
                 store.merge(duplicate.id, job)
                 merged = store.get(duplicate.id)
                 if merged and should_resolve and merged.url_verification_status == "not_attempted":
@@ -203,17 +235,25 @@ def _discover_listings(
                 if not preserve_existing and duplicate.id not in updated_ids:
                     updated_ids.add(duplicate.id)
                     summary.updated += 1
+            record(raw,'previously known' if was_existing else 'duplicate within run',
+                   matched_id=duplicate.id,cross_source=raw.source.casefold() not in duplicate_sources)
             continue
         job_id = store.save(job)
         job.id = job_id
         known.append(job)
         summary.added += 1
         summary.new_job_ids.append(job_id)
+        record(raw,'new unique',job_id=job_id)
         for backend in discovery_backends:
             summary.backend_added[backend] = summary.backend_added.get(backend, 0) + 1
-        if should_resolve:
+        if getattr(link_validator,'require_verified',False):
+            job.authoritative_url=job.url
+            job.url_verification_status='verified'
+            job.url_destination_type=classify_url(job.url)
+            store.save_url_resolution(job)
+        elif should_resolve:
             job = resolve_and_store(job, store)
-        if job.source.lower() == "adzuna" or not description_is_sufficient(job.description):
+        if not getattr(link_validator,'require_verified',False) and (job.source.lower() == "adzuna" or not description_is_sufficient(job.description)):
             _capture_full_description(job, store)
     return summary
 
@@ -278,7 +318,7 @@ def discover_listings(
 def discover_remotive_full_feed(
     provider: RemotiveProvider,
     store: JobStore,
-    limit: int = 100,
+    limit: int | None = None,
     *,
     preserve_existing: bool = False,
     preexisting_ids: set[int] | None = None,
@@ -287,10 +327,18 @@ def discover_remotive_full_feed(
     rejected_jobs: RejectedJobsIndex | None = None,
 ) -> SearchSummary:
     """Persist a bounded, role-filtered Remotive feed in newest-first order."""
-    if limit < 1:
+    if limit is not None and limit < 1:
         raise ValueError("Remotive limit must be at least 1")
     all_rows = list(provider.full_feed())
-    pool = [raw for raw in all_rows if deterministic_filter(normalize(raw), preferences or {})[0]]
+    pool = []
+    reject_reasons = {}
+    for raw in all_rows:
+        accepted, reason = deterministic_filter(normalize(raw), preferences or {})
+        if accepted:
+            pool.append(raw)
+        else:
+            reject_reasons[reason] = reject_reasons.get(reason, 0) + 1
+    dead_count = 0
     if link_validator is not None:
         normalized = [(raw, normalize(raw)) for raw in pool]
         checked = link_validator.check_existing([job for _, job in normalized])
@@ -298,15 +346,19 @@ def discover_remotive_full_feed(
         for raw, job in normalized:
             result = results[id(job)]
             if result.status == "dead":
+                dead_count += 1
                 link_validator.record_removed(job, result)
         pool = [raw for raw, job in normalized if results[id(job)].status != "dead"]
     pool.sort(key=lambda raw: (raw.date_posted or "", raw.title.casefold()), reverse=True)
-    selected = pool[:limit]
+    selected = pool[:limit] if limit is not None else pool
     summary = _discover_listings(
         selected, store, require_content=False, preserve_existing=preserve_existing,
         preexisting_ids=preexisting_ids, preferences=preferences, rejected_jobs=rejected_jobs,
     )
-    summary.deterministic_rejects = max(len(all_rows) - len(pool), 0)
+    summary.deterministic_rejects = sum(reject_reasons.values())
+    summary.deterministic_reject_reasons = reject_reasons
+    summary.dead_url_excluded = dead_count
+    summary.source_results_limited = len(pool) - len(selected)
     summary.filtered_by_role = sum(not is_relevant_role(raw.title) for raw in all_rows)
     summary.fetched = len(all_rows)
     summary.normalized = len(pool)

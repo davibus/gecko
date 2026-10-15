@@ -45,6 +45,7 @@ class ManualIndeedSummary:
     failures: int = 0
     skipped: int = 0
     removed: int = 0
+    declined_preserved: int = 0
     rejected: int = 0
     removed_rows: list[int] = field(default_factory=list)
     new_job_ids: list[int] = field(default_factory=list)
@@ -57,6 +58,7 @@ class ManualIndeedSummary:
             "failures": self.failures,
             "skipped": self.skipped,
             "removed": self.removed,
+            "declined_preserved": self.declined_preserved,
             "rejected": self.rejected,
             "removed_rows": list(self.removed_rows),
             "new_job_ids": list(self.new_job_ids),
@@ -193,8 +195,10 @@ def _direct_failure_detail(error: Exception) -> str:
 
 
 def _status_update(tab: Tab, message: str) -> dict[str, str]:
-    """Prefer Notes, with the existing Gecko Status column as a minimal fallback."""
-    return {"Notes": message} if "Notes" in tab.headers else {"Gecko Status": message}
+    """Keep retry information in the owned Notes column."""
+    if "Notes" not in tab.headers:
+        raise RuntimeError("Job List has no Notes header for retry information")
+    return {"Notes": message}
 
 
 def process_manual_indeed_rows(
@@ -205,6 +209,7 @@ def process_manual_indeed_rows(
     fallback: ManualIndeedFallbackRetriever | None = None,
     today: str | None = None,
     rejected_jobs: RejectedJobsIndex | None = None,
+    cleanup_declined: bool = True,
 ) -> ManualIndeedSummary:
     """Process unassigned Indeed URLs already pasted into the Job URL column."""
     provider = provider or ManualIndeedProvider()
@@ -212,33 +217,44 @@ def process_manual_indeed_rows(
     found_on = today or date.today().isoformat()
     summary = ManualIndeedSummary()
     rejected_jobs = rejected_jobs or tracker.rejected_jobs_index()
-    summary.removed_rows = tracker.delete_declined_scout_rows()
-    summary.removed = len(summary.removed_rows)
-    removed_label = ", ".join(map(str, summary.removed_rows)) or "none"
-    print(
-        f"Job Scout cleanup removed {summary.removed} row(s); "
-        f"original spreadsheet rows: {removed_label}"
-    )
+    if cleanup_declined:
+        summary.removed_rows = tracker.delete_declined_scout_rows()
+        summary.removed = len(summary.removed_rows)
+        removed_label = ", ".join(map(str, summary.removed_rows)) or "none"
+        print(
+            f"Job Scout cleanup removed {summary.removed} row(s); "
+            f"original spreadsheet rows: {removed_label}"
+        )
     tab = tracker.scout()
+    if not cleanup_declined:
+        summary.declined_preserved = sum(
+            not resume_already_created(data.get("Resume Created"))
+            and (str(data.get("Apply?") or "").strip().casefold() == "no"
+                 or str(data.get("Notes") or "").strip().casefold() == "no")
+            for _, data in tab.rows
+        )
+        print(f"Declined Job Scout rows preserved: {summary.declined_preserved}")
 
     for row, data in tab.rows:
         pasted_url = str(data.get("Job URL") or "").strip()
         if not is_indeed_url(pasted_url):
             continue
         summary.scanned += 1
+        if (str(data.get("Apply?") or "").strip().casefold() == "no"
+                or str(data.get("Notes") or "").strip().casefold() == "no"):
+            summary.skipped += 1
+            continue
         if resume_already_created(data.get("Resume Created")):
             summary.skipped += 1
             print(f"SKIP RESUME: existing tracker row {row} already has Resume Created = X")
             continue
         if (_scout_id(data.get("Scout ID")) is not None
-                or _terminal_note(data.get("Notes"))
-                or _terminal_note(data.get("Gecko Status"))):
+                or _terminal_note(data.get("Notes"))):
             summary.skipped += 1
             continue
 
         retrying_failure = (
             _retrieval_failure_note(data.get("Notes"))
-            or _retrieval_failure_note(data.get("Gecko Status"))
         )
 
         jk = extract_indeed_job_key(pasted_url)
@@ -330,7 +346,6 @@ def process_manual_indeed_rows(
             "Source": "indeed",
             "Company": job.company,
             "Job Title": job.title,
-            "Gecko Status": "New",
             "Location": job.location,
             "Work Arrangement": job.work_arrangement,
             "Employment Type": job.employment_type,

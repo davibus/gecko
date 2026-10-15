@@ -5,6 +5,14 @@ Thumbs.db
 ~$*.xlsx
 __pycache__/
 *.py[cod]
+/usage/*.sqlite3
+/usage/*.sqlite3-*
+/usage/*.xlsx
+/usage/*.snapshot.json
+/usage/*.inspect.ndjson
+/usage/*.tmp.xlsx*
+/usage/node_modules/
+/reports/resume-similarity/node_modules/
 .tools/
 
 # Google Drive native-document pointer files are not portable file contents.
@@ -36,3 +44,9 @@ gmail-oauth-client*.json
 gmail-oauth-token*.json
 gmail-response-state.json
 job-scout/data/gmail-response-state.json
+
+# Per-job local OpenClaw handoffs contain resume paths and application URLs.
+/openclaw/application-queue/*/
+
+# Editable personal applicant answers remain local.
+/openclaw/application-answers.md

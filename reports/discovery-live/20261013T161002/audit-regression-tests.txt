@@ -1,0 +1,37 @@
+..test: processed 0; new=0; existing=0; review=0; dead=0
+
+Job Scout source summary
+test: no results (0 found)
+Duplicates removed: 0
+Previously seen: 0
+Rejected by Gecko filters: 0
+New unique jobs saved locally: 0
+.....test: processed 301; new=0; existing=0; review=0; dead=0
+
+Job Scout source summary
+test: success (301 found)
+Duplicates removed: 0
+Previously seen: 0
+Rejected by Gecko filters: 0
+New unique jobs saved locally: 0
+.....test: processed 1; new=0; existing=0; review=0; dead=0
+
+Job Scout source summary
+test: partial failure (1 found) - [{"company": "bad", "error": "404"}]
+Duplicates removed: 0
+Previously seen: 0
+Rejected by Gecko filters: 0
+New unique jobs saved locally: 0
+.remotive: processed 7; new=0; existing=0; review=0; dead=0
+
+Job Scout source summary
+remotive: success (7 found)
+Duplicates removed: 0
+Previously seen: 0
+Rejected by Gecko filters: 0
+New unique jobs saved locally: 0
+...
+----------------------------------------------------------------------
+Ran 16 tests in 0.239s
+
+OK

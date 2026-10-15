@@ -1,0 +1,743 @@
+Dave Call
+Marketing Technology/AI | Paid Media | E-Commerce | Analytics | Digital Marketing
+American Fork, UT | (530) 507-8269 | mdavidcall@gmail.com | http://www.linkedin.com/in/mdavidcall
+
+Cover Letter
+My greatest strengths are centered around technology and marketing. I’ve always loved technology. I have a broad understanding of most technologies, and an exceptionally in-depth knowledge, and years of formal training and experience in many computer and online technologies. I’ve been involved in some type of technology/marketing position for more than 14 years. I am equally passionate and experienced in marketing. I’ve managed the online marketing departments at several different companies, and successfully marketed a unique company I founded in college. I was on a team that won the Entrepreneur of the Year Award while in college with the combined use of the aforementioned strengths and passions. I was also the leader of a team that won the Regional Business Plan Competition the following two years in a row. 
+Most importantly, I am a quick learner. In the marketing and technology industries that is crucial because things change every day. I am constantly teaching myself new things and always look for different opportunities. 
+Upon examining the resume I’ve sent, I’m confident you will see that I not only meet the requirements for this position, but that I can provide additional value as well. My resume is very detailed and job-specific which will show proven successes in the past. I can send you a portfolio containing some of the sample work I’ve done, if needed. This will demonstrate the quality and breadth of skills and abilities I can currently provide your company. 
+
+Sincerely, 
+Dave Call 530.507.8269
+mdavidcall@gmail.com
+LinkedIn: www.linkedin.com/in/mdavidcall 
+
+Professional Summary
+•	Performance-focused paid search leader with 14+ years of experience managing complex Google Ads and Microsoft Ads programs across agency, e-commerce, and multi-channel environments. Experienced owning campaign activation, daily optimization, budget pacing, conversion tracking, attribution, keyword and audience strategy, competitive research, and client-facing performance recommendations. Known for combining rigorous analysis with practical communication, reliable quality control, and a consultative approach that turns business goals into measurable search, shopping, display, video, and remarketing results.
+
+PROFESSIONAL PROFILE
+•	Digital marketing, paid media, e-commerce, analytics, and marketing-technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce, professional services, and high-volume performance marketing environments. Experience spans Google Ads and Microsoft Ads, multi-channel media, SEO/SEM, e-commerce operations, conversion tracking, attribution, forecasting, statistical modeling, automation, database/reporting systems, website development, and cross-functional leadership. Combines marketing strategy with strong technical capability in Python, SQL, JavaScript, VBA, APIs, data visualization, and modern AI-assisted workflows. Known for learning quickly, building scalable systems, translating complex analysis into practical business recommendations, and improving both marketing performance and operational efficiency. Extremely proficient in using Cursor, Claude Code, Codex, Gemini, Perplexity, ChatGPT, Claude, and many other supplemental AI systems. I use all of this AI to enhance my foundational knowledge and amplify output.
+
+
+Selected Results
+•	Managed up to $30 million per month in paid media with a four-person team, supporting high-volume account operations and disciplined budget oversight.
+•	Managed 75+ Google Ads accounts with more than $276K in combined monthly spend while advising clients on channel allocation, campaign structure, and growth priorities.
+•	Scaled monthly marketing volume from approximately $200K to $800K while improving ROAS from 1.5 to 3.5 through budget, bidding, audience, and conversion optimization
+•	Managed 150+ campaigns and approximately $400K in monthly spend, generating more than $9 million in revenue and 35% of company sales.
+
+
+Artificial Intelligence Work
+ChatGPT, Claude
+
+******this was a sample of what it created - do not use *********
+Dave Call
+Marketing Technology/AI | Paid Media | E-Commerce | Analytics | Digital Marketing
+American Fork, UT | (530) 507-8269 | mdavidcall@gmail.com | http://www.linkedin.com/in/mdavidcall
+PROFESSIONAL SUMMARY
+Marketing technology and digital marketing leader with 14+ years of experience combining paid media, analytics, e-commerce,
+and hands-on systems development. Uses ChatGPT, Cursor, Claude, Codex, and Gemini to support content production,
+website development, and marketing workflows. Brings technical capability in Python, SQL, JavaScript, APIs, and reporting
+systems, with experience across agency, B2B, B2C, and in-house environments.
+CORE STRENGTHS
+• Marketing Analytics • Marketing Automation
+• Marketing Technology • E-Commerce Strategy
+• Budget Forecasting • Cross-Functional Leadership
+• Digital Marketing Strategy • Performance Marketing
+• Data Visualization • Team Development
+• B2B & B2C Marketing
+
+
+******this was a sample that was created - do not use
+AI & AUTOMATION PROJECTS
+Product Content and Catalog Automation — R1 Industries
+
+• Used ChatGPT within Google Sheets to rewrite Shopify product descriptions for SEO and remove duplicate content.
+Combined the content workflow with GraphQL inventory retrieval, Excel data preparation, and bulk Shopify uploads to
+replace manual catalog entry.
+AI Assisted Website Development — Utah MMC
+
+• Used Cursor and Claude to create SEO-friendly websites across an eight-company group. Configured Google Ads, GA4, and
+Google Search Console, and developed a ServiceTitan CRM program, bringing website delivery, marketing measurement,
+and customer-management systems into the same project scope.
+AI Assisted Headless Commerce Development — Vortex
+
+• Developed a headless React and Next.js e-commerce website with assistance from Cursor, Codex, Claude, and Gemini.
+Connected Shopify to manufacturer databases and automated order and shipping updates through GraphQL integrations.
+Designed the operational system for roughly 10 minutes of weekly oversight once running.
+Construction Site Prospecting System — Utah MMC
+
+• Developed a construction-site prospecting system with Cursor and Claude, using government satellite imagery to identify
+work sites, equipment in use, and potential service or equipment-rental opportunities. Applied the observations to determine
+which services and rental equipment the company could offer.
+AI Assisted Promotion and Performance Analysis — 1-800 Contacts
+
+• Analyzed AI-assisted promotion performance using Namogoo alongside paid-media bidding, audience, attribution,
+incremental CPA, and customer lifetime-value analyses. Evaluated these areas as part of a broader marketing-analysis program
+that included Performance Max and Google Shopping performance, affiliate commissions, and predictive projections.
+
+**********************
+
+
+CAREER HIGHLIGHTS & SELECTED RESULTS
+•	• Managed up to $30 million per month in paid media with a four-person team at TravelPass Group, supporting high-volume account operations and disciplined budget oversight.
+•	• Managed 12 accounts, 32 campaigns, approximately 110,000 ad groups, and 1.6 million keywords with approximately $3.6 million in monthly spend for a single brand.
+•	• Managed 75+ Google Ads accounts with more than $276,000 in combined monthly spend while advising clients on channel allocation, campaign structure, and growth priorities.
+•	• Scaled monthly marketing volume from approximately $200,000 to $800,000 while improving ROAS from 1.5 to 3.5 through bidding, audience, budget, campaign, and conversion optimization.
+•	• Managed 150+ campaigns with approximately $400,000 in monthly spend, generating more than $9 million in revenue and approximately 35% of company sales.
+•	• Helped modernize a traditional B2B distributor and add multiple B2C e-commerce channels while protecting relationships with 650+ existing retail partners.
+•	• Used market research and business planning to help establish tax and finance departments that together contributed more than 25% of firm revenue.
+•	• Built automated reporting across 10+ marketing channels using Python, Databricks, SQL, Excel, and Funnel.io.
+•	• Built an in-house PPC structure for a company group spanning 32 businesses, including MCC consolidation, a scalable operating system, team buildout/training, and API integration with the company ERP.
+Computer & Technology Skills
+•	Exceptional understanding and several years of formal training and experience in Excel, Databases, VSCode, DBeaver, Tableau, LucidChart, Project, Photoshop, InDesign, Illustrator, QuickBooks, SalesForce, all communication software (e.g. Slack, MS Office), Wrike/Jira, Moz, Alexa, SimilarWeb, multiple ERP systems, and many other applications
+•	Exceptional understanding and several years of formal training and experience in Excel, Access, Visio, Project, Photoshop, InDesign, Illustrator, QuickBooks, SalesForce, Slack, Wrike, Moz, Alexa, Google Drive, Dropbox Business, multiple ERP systems, and many other applications. Proficient in HTML5, CSS3, JavaScript, XML, PHP, SQL, VBA, and similar technologies 
+•	Proficient in Python, HTML5, CSS3, JavaScript, Git, XML, PHP, SQL, VBA, and similar technologies
+•	Years of experience with Google Ads, Facebook (Meta) Ads, Instagram, LinkedIn, TikTok, Pinterest, SnapChat, etc
+•	Google Analytics (GA4 and UA), GTM (Google Tag Manager), Google Keyword Planner, Search Console, Google Trends, Triple Whale, Zapier, HubSpot, SalesForce Shopify, Magento, WordPress, Tableau, Adobe Analytics, Google Ads API, Moz, Alexa, SEMrush, DataBricks
+•	Statistical modeling, process automation, machine learning, data visualization, ChatGPT input engineering, AI marketing tools
+
+Paid Search Leadership & Client Partnership
+•	Paid search experience spans account activation, campaign builds, structures, keyword and negative-keyword strategy, ad copy, audience segmentation, bid testing, budget pacing, daily optimization, QA, and performance reporting.
+•	Multi-channel expertise includes Microsoft Ads, Shopping, Display, YouTube, remarketing, Amazon, SEO, affiliate marketing, mobile, landing pages, feeds-related e-commerce data, and attribution analysis.
+•	Financial and analytical work includes ROI, ROAS, CPA, revenue, LTV, regression modeling, forecasting, incremental testing, budget scenarios, and recommendations grounded in business economics.
+•	Client and team leadership includes consultative strategy, presenting results, challenging assumptions respectfully, owning setbacks, documenting learnings, resolving issues, and identifying opportunities for account growth.
+
+
+Skills by Category
+Digital Marketing Strategy & Campaigns
+•	Digital Marketing, Marketing, B2B marketing, B2B, B2C, Demand generation marketing, Performance marketing, Product marketing strategy, Digital campaign management, Digital marketing campaign setup, Mobile marketing campaigns, Lead generation, Lead generation campaigns, Lead generation tracking, Customer retention campaigns, Marketing operations, Digital marketing experience (16-20 years)
+Paid Advertising & Media
+•	Google Ads, Google AdWords, Bing Ads, Meta Ads, Facebook Advertising, Facebook Ads Manager, Twitter Ads, Pay-per-click (PPC) advertising, PPC Campaign Management, Paid search marketing, Paid search advertising campaigns, Search Engine Marketing (SEM), SEM, SEM campaigns, Display advertising, Native advertising, Video advertising, Media buying, social media advertising, social media advertising campaigns, Affiliate marketing, Affiliate marketing campaigns
+SEO & Search
+•	Search Engine Optimization (SEO), SEO, SEO audits, SEO competitor analysis, SEO schema markup, Technical SEO, On-page SEO, Off-page SEO, Local SEO, Mobile SEO, Keyword Research, Link building, Search engines, Metadata
+Email Marketing
+•	Email marketing, Email marketing campaigns, Email campaign management, Email automation, Email A/B testing, Email conversion tracking, Email list building, Email marketing deliverability, Email marketing segmentation, Email newsletters, Mailchimp, Constant Contact, Klaviyo
+Social Media
+•	Social media marketing, social media management, social media campaigns, social media content, social media engagement tracking, social media activity analysis, social listening, Community management, Facebook, Instagram, TikTok, Buffer, Hootsuite
+Content & Creative
+•	Content creation, Content development, Content management, Content marketing, Content promotion, Content strategy, Taxonomy, Blogging, Copywriting, Writing skills, Editing, Proofreading, Video marketing, Infographics, Photography, Branding, Digital brand management, Adobe Creative Suite, Canva
+Analytics, Data & Reporting
+•	Analytics, Marketing analytics, Web analytics, Web analytics reporting, Website activity analysis, Website traffic metrics analysis, Media performance analytics, Product usage analysis, Data analytics, Data analysis skills, Data-driven decision making, Data-driven problem-solving, Business intelligence, Statistical Analysis, Regression analysis, ROI, Sales revenue tracking, Pivot tables, A/B testing, Conversion rate optimization (CRO), Conversion rate tracking
+Customer & Audience Insights
+•	Market Research, Research, Customer segmentation, Customer feedback analysis, Customer retention rate, Customer acquisition cost tracking, Customer lifetime value analysis, Customer lifetime value tracking, Brand awareness metrics, Brand loyalty analysis, Demographic segmentation analysis, Psychographic analysis, Geographic analysis
+Analytics & Research Platforms
+•	Google Analytics, Google Tag Manager, Adobe Analytics, Omniture, Power BI, Tableau, Nielsen, SimilarWeb
+Marketing Automation & CRM Platforms
+•	HubSpot, HubSpot CRM, Salesforce, Salesforce Marketing Cloud, Marketo, Pardot, Adobe Campaigns, Zoho CRM, CRM software, CRM system proficiency, Marketing automation
+Sales & Customer Service
+•	B2B sales, Inside sales, Sales support, Account management, Relationship management, Customer service, Phone etiquette
+Data, Programming & Technical
+•	SQL, Python, R, Pandas, JavaScript, VBA, OOP, Algorithms, Machine learning, Data modeling, Databases, Relational databases, Snowflake, Microsoft Access, Computer networking, Technical Proficiency, GitHub, Visual Studio
+Web Development & Ecommerce
+•	Web Development, HTML5, CSS, UX, WordPress, Website management, Website maintenance, E-Commerce
+AI Tools
+•	AI, ChatGPT, Claude, Claude Code, Gemini, Perplexity, Codex, Cursor, Antigravity
+Leadership & Management
+•	Leadership, Team management, managing digital marketing teams, Largest digital marketing team managed (11-20 team members), Project management, Project management software, Operations management, Vendor management, Budgeting, Digital marketing budget management, Marketing campaign budget management
+Productivity & Professional Skills
+•	Communication skills, Organizational skills, Time management, Calendar management, Attention to detail, Google Suite, Microsoft Word, Microsoft PowerPoint
+Industry Experience
+•	Financial services, home health, legal services, e-commerce, construction, product sales, technology development
+
+
+CONSULTING, CONTRACT & CLIENT PROJECTS
+Director of PPC / In-House PPC Transformation | Any Hour Services
+• Directed PPC strategy for a company group that owned 32 additional companies across the western United States.
+• Consolidated work that had been divided among five agencies into a comprehensive, scalable in-house PPC strategy.
+• Used advanced Excel formulas and VS Code to create upload-ready XLSX files for Google Ads Editor.
+• Created an MCC structure and moved PPC operations in-house.
+• Built the PPC team and trained team members on the scalable system created for the organization (QoQ).
+• Set up API connectivity to interact with the company's ERP system.
+ 
+PAID SEARCH, PERFORMANCE MARKETING & CLIENT PARTNERSHIP SCOPE
+• Paid search: account activation, campaign builds, account structures, keyword and negative-keyword strategy, ad copy, audiences, bid testing, budget pacing, daily optimization, QA, and performance reporting.
+• Multi-channel: Microsoft Ads, Shopping, Display, YouTube, remarketing, Amazon, SEO, affiliate marketing, mobile, landing pages, social media, e-commerce feeds/data, and attribution analysis.
+• Analytics and finance: ROI, ROAS, CPA, revenue, LTV, regression modeling, forecasting, incremental testing, holdouts, geo testing, budget scenarios, and recommendations grounded in business economics.
+• Conversion and experimentation: CRO, landing-page optimization, attribution models, funnel analysis, conversion-path analysis, A/B testing, multivariate testing, bid experiments, micro-conversion analysis, and click-to-call assessment.
+• Client/team leadership: consultative strategy, presentations, account-growth recommendations, documenting learnings, issue resolution, respectful challenge of assumptions, cross-functional communication, and team development.
+
+
+
+Core Strengths
+•	Google Ads & Microsoft Ads	
+•	Multi-Account Agency Management
+•	Campaign Activation, QA & Optimization	
+•	Budget Pacing & KPI Improvement
+•	Search, Shopping, Display & YouTube	
+•	Keyword, Audience & Competitor Research
+•	GA4, GTM & Conversion Tracking	
+•	Attribution, Testing & Reporting
+•	Client Strategy & Presentations	
+•	Performance Marketing & Financial Analysis
+
+
+Tools & Platforms
+•	Paid Search & Advertising: Google Ads, Microsoft Ads, Google Ads Editor, Search, Shopping, Display Network, Gmail, YouTube, remarketing, mobile, Amazon, keyword research, audiences, bid strategy and budget pacing
+•	Measurement & Optimization: GA4, Google Tag Manager, conversion tracking, data-driven attribution, Funnel.io, Looker Studio, Tableau, Excel, SQL, Python, Databricks, forecasting, A/B testing and multivariate testing
+•	E-Commerce & Client Growth: Shopify, Magento, Amazon Marketing Services, SEO, affiliate marketing, landing pages, competitive analysis, financial reporting, client presentations and cross-functional collaboration
+
+TECHNOLOGY, PLATFORMS & SKILLS INVENTORY
+Paid Media & Advertising | Google Ads / AdWords, Microsoft Ads / Bing Ads, Google Ads Editor, Bing Ads Editor, Meta/Facebook Ads, Instagram, TikTok, Pinterest, Snapchat, Amazon Marketing Services, Yahoo Gemini, Search, Shopping, Display, YouTube, remarketing, mobile, local, audiences, keyword research, bid strategy, budget pacing.
+
+Analytics & Measurement | Google Analytics 4 (GA4), Universal Analytics, Google Tag Manager, Google Search Console, Google Keyword Planner, Google Trends, Adobe Analytics, Triple Whale, Funnel.io, Looker Studio / Google Data Studio, Tableau, Power BI, conversion tracking, data-driven attribution, forecasting, statistical analysis, regression modeling, KPI design, A/B testing, multivariate testing.
+
+Data, Automation & Development | Python, SQL, JavaScript, VBA, HTML5, CSS3, Git, XML, PHP, JSON, GraphQL, Google Ads API, web scraping, process automation, machine learning, data visualization, database development, API integrations.
+
+Modern AI & Coding Tools | ChatGPT, Codex, Claude, Gemini, Perplexity, Cursor, Antigravity; AI-assisted analysis, marketing workflows, input/prompt engineering, and code-assisted automation/troubleshooting.
+
+E-Commerce & CRM | Shopify, Magento, Amazon Vendor Central, Amazon Seller Central, FBA, FBM, Amazon Premium Analytics, ACCTivate, Salesforce, HubSpot, QuickBooks, ERP systems, e-commerce marketplaces and consignment channels.
+
+Technical & Productivity | Excel, Access, Databases, VS Code, DBeaver, LucidChart, Visio, Microsoft Project, Slack, Microsoft Office, Wrike, Jira, Google Drive, Dropbox Business.
+
+Creative & Content | Adobe Photoshop, InDesign, Illustrator, Acrobat, LiveCycle; ad copy, content strategy, email marketing, web content, graphic design and animation concepts.
+
+SEO & Research | SEO, SEM, on-page optimization, Moz, Alexa, SimilarWeb, SEMrush, competitive analysis, market research, SERP analysis, keyword research, trend analysis.
+
+Marketing & Business | Digital marketing, e-commerce, PPC campaign management, performance marketing, financial analysis, cost/benefit analysis, customer acquisition, lead generation, affiliate marketing, CRO, project management, business planning, cross-functional leadership.
+
+
+
+Contracts
+Any Hour Services
+R1 Industries
+Utah MMC
+•	Worked with 8 different construction companies
+
+Vortex
+ILT Marketing
+Western Truck
+Trilogy
+Elite Health Care
+Water Wise Solar
+Action Tax Refund
+Aspen Electrical
+Marketing Command Center
+J Thomas Homes
+Ice.com
+RMT Equipment
+Amazon Company
+
+
+CAREER HIGHLIGHTS & SELECTED RESULTS
+• Managed up to $30 million per month in paid media with a four-person team at TravelPass Group, supporting high-volume account operations and disciplined budget oversight.
+• Managed 12 accounts, 32 campaigns, approximately 110,000 ad groups, and 1.6 million keywords with approximately $3.6 million in monthly spend for a single brand.
+• Managed 75+ Google Ads accounts with more than $276,000 in combined monthly spend while advising clients on channel allocation, campaign structure, and growth priorities.
+• Scaled monthly marketing volume from approximately $200,000 to $800,000 while improving ROAS from 1.5 to 3.5 through bidding, audience, budget, campaign, and conversion optimization.
+• Managed 150+ campaigns with approximately $400,000 in monthly spend, generating more than $9 million in revenue and approximately 35% of company sales.
+• Helped modernize a traditional B2B distributor and add multiple B2C e-commerce channels while protecting relationships with 650+ existing retail partners.
+• Used market research and business planning to help establish tax and finance departments that together contributed more than 25% of firm revenue.
+• Built automated reporting across 10+ marketing channels using Python, Databricks, SQL, Excel, and Funnel.io.
+• Built an in-house PPC structure for a company group spanning 32 businesses, including MCC consolidation, a scalable operating system, team buildout/training, and API integration with the company ERP.
+
+
+
+
+
+ 
+R1 Industries
+•	Downloaded entire inventory sets from supplies using GraphQL. Manipulated the data using Excel and then uploaded the content into Shopify instead of doing it manually. Used ChatGPT inside google sheet to rewrite product descriptions to make them SEO friendly and to make sure there wasn't duplicate content.
+•	Installed a human assisted Chat Bot that sped up the process of complex questions and increased the conversion rates using promotions with the Chat
+•	Created Marketing materials for promotions
+ 
+
+
+
+Utah MMC
+•	Recreated the company structure so that all eight companies fell under Utah MMC, the holdings company so that it was extremely organized. I used Google Suite/Workspace. Created SEO friendly websites (using Cursor and Claude) for all companies, created all Google Ads, GA4, Google Search Console, and developed there CRM program Service Titan.
+•	Create a productivity report that showed how much employees billed customers vs. how much we paid them.
+•	Using a highly sophisticated system build with Cursor and Claude, I was able to tap into government satellites to find construction sites, view what equipment was being used and what type of work they were doing, and determined what services we could offer them and what equipment we could rent them.
+ 
+Vortex
+•	Create a UTV parts website using Cursor and Codex/Claude/Gemini and connected that website to Shopify.
+•	Marketing/Technology Manager | Vortex (vortexutv.com)
+•	• Built a headless e-commerce third-party retail website using React and Next.js.
+•	• Connected the Shopify back end directly to manufacturer databases.
+•	• Automated order and shipping updates through GraphQL integrations.
+•	• Designed the system so ongoing oversight required roughly 10 minutes per week once operational.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Any Hour Services - Director of PPC and Data Analysis
+•	Installed Go High Level and trained employees on how to use it correctly. Made sure that it integrated with all current system including Power BI for reporting purposes.
+•	Created a PPC system under an MMC account for 32 different companies that Any Hour Group owned. The system was meant to be customed to the store providing the highest quality level. It was also standardized for reporting purposes and for ease of navigation and adjustments.   
+•	Worked closely with the Web Dev team and the content team to create custom landing pages and custom content for PMAX campaigns.
+•	Installed Go High Level. I then connected this to Service Titan, Power BI, and all the internal system that were using working closely with the Director of Marketing.
+•	I setup APIs to connect other system to the company's internal ERP system.
+•	I worked as the Director of PPC. The company owns 32 other companies across the west coast. We had 5 different agencies dividing up those companies. I create a comprehensive strategy for PPC along with a scalable system to accommodate all companies’ needs. I used highly advanced Excel formulas and VS Code to create uploading xlsx’s into Google Ads Editor. I also created an MCC account and moved them all over to in-house PPC. I built out the PPC team and trained them on the system I created (QoQ). Then I set up the API to interact with the company’s ERP system.
+
+
+
+
+
+
+
+
+Marketing Strategist/Analyst - 1-800-Contacts - Draper, UT 			                                November 2022 – June 2023
+•	Examples of analysis projects: analyzed max CPC vs smart-bidding, omni-channel brand-holdouts, CPC optimization for Brand, non-brand target CPA, AI-assisted promotion analysis using Namogoo, incremental CPA analysis on scale-up/down, audience analysis in Google Ads to test and apply to other platforms, Data-Driven Attribution analysis (DDA), Lifetime Value of Customer (LTV) analysis, affiliate commission analysis and discount negotiation, Performance Max/Google Shopping mixture analysis, 5year projections using predictive, statistical models, etc
+•	Funnel testing for reach, comparison, conversion (micro-included), and then internal LTV testing, Click-to-Call systems assessment, iSpot Analysis for TV/OTT (reach) campaigns
+•	Built complex Tableau dashboards for Paid Search (Google Ads, Bing Ads, etc). I helped convert their Power BI dashboards to Tableau. We switched for a very specific reason
+•	Used Python, DataBricks, SQL, Excel (blended data), and Funnel.io to create a customized reporting system that automated and ensured accuracy to all of the marketing channels we have. It collected data automatically from 10+ channels (platforms) on a weekly basis
+•	After success with optimization, the question was posed by management, "If we were to give you an additional $10 million dollars, where would we invest it, and why"? Using regression models based on previous year and previous periods, we were able to very accurately predict the outcome of the types of tests we used: hold-out, geo-promotional offers, scale-ups, scale-downs, reallocation of funds to different channels, etc.
+•	Helped facilitate the transition of 4-5 agencies in-house for several reasons: they overcharged both the percent of total sales plus retainers, they didn't put us as priority (naturally with all agencies), they developed a rule-based program using Google's API that was inefficient and outdated (Google's new machine-learning tech made this program obsolete), and used more automation than normal making many of our channels less effective
+•	Analyzed max CPC versus smart bidding, brand and non-brand target CPA, Performance Max and Shopping mix, audience performance, data-driven attribution, and incremental CPA.
+•	Evaluated customer journeys from reach and micro-conversions through purchase, click-to-call, and lifetime value to identify scalable search and budget opportunities.
+•	Built Tableau dashboards and automated weekly reporting across 10+ channels using Python, Databricks, SQL, Excel, and Funnel.io, improving accuracy and decision speed.
+•	Used regression models, holdouts, geo tests, scale-up/down analysis, and budget reallocation scenarios to forecast outcomes and present credible investment recommendations.
+•	Marketing Strategist / Analyst | 1-800 Contacts
+•	Draper, UT | November 2022 - June 2023 (Contract)
+•	• Analyzed max CPC versus smart bidding, brand CPC optimization, non-brand target CPA, Performance Max and Google Shopping mix, audience performance, data-driven attribution, incremental CPA, lifetime value, affiliate commissions, and AI-assisted promotion performance using Namogoo.
+•	• Designed and interpreted reach, comparison, conversion, micro-conversion, and internal lifetime-value funnel testing, including click-to-call systems assessment and iSpot analysis for TV/OTT reach campaigns.
+•	• Built complex Tableau dashboards for paid search and helped convert existing Power BI reporting to Tableau.
+•	• Built automated weekly reporting across 10+ channels using Python, Databricks, SQL, blended Excel data, and Funnel.io to improve accuracy and decision speed.
+•	• Used regression models, prior-year/prior-period data, holdouts, geo-promotional tests, scale-up/down analysis, and budget reallocation scenarios to forecast investment outcomes and support recommendations involving substantial incremental media budgets.
+•	• Helped facilitate the transition of four to five agency relationships in-house, evaluating agency cost structures, prioritization, automation approaches, and the impact of newer Google machine-learning capabilities on legacy rule-based systems.
+
+
+
+
+Director of Digital Marketing 								May 2022 to January 2023
+GRIP6 - Midvale, UT
+•	Managed all marketing platforms: Google Ads, Bing Ads, Amazon, Facebook, Instagram, and TikTok with a 400k/month budget
+•	Successfully achieved goals which were to get 4 times the volume (800k/month) at a 3.5 ROAS (return on ad spend). Our marketing campaigns before I started were at 200k/month at a 1.5 ROAS
+•	Setup KPI's in Google Looker Studio for different departments to provide transparency. This helped with inventory planning, engineering processes based on reviews, management decisions, website development, email efficacy, and cross-platform budget management
+•	Consulted the Webmaster on SEO best practices and on-page optimization
+•	Setup custom reporting in GA4 using custom Google Tag Manager configurations
+•	Created an inventory planning methodology with a custom robust spreadsheet used by the multiple departments
+•	Managed all marketing platforms: Google Ads, Bing Ads, Amazon, Facebook, Instagram, and TikTok with a 400k/month budget
+•	Successfully achieved goals which were to get 4 times the volume (800k/month) at a 3.5 ROAS (return on ad spend). Our marketing campaigns before I started were at 200k/month at a 1.5 ROAS
+•	Setup KPI's in Google Looker Studio for different departments to provide transparency. This helped with inventory planning, engineering processes based on reviews, management decisions, website development, email efficacy, and cross-platform budget management
+•	Consulted the Webmaster on SEO best practices and on-page optimization
+•	Setup custom reporting in GA4 using custom Google Tag Manager configurations
+•	Created an inventory planning methodology with a custom robust spreadsheet used by the multiple departments
+•	Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget.
+•	Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review.
+•	Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions.
+•	Coordinated search and broader channel strategy with website, SEO, operations, and creative Digital Marketing Manager
+•	Director of Digital Marketing | GRIP6
+•	Midvale, UT | May 2022 - January 2023 (Contract)
+•	• Managed Google Ads, Microsoft/Bing Ads, Amazon, Meta/Facebook, Instagram, and TikTok across an approximately $400,000 monthly advertising budget.
+•	• Increased monthly marketing volume from approximately $200,000 to $800,000 while improving ROAS from 1.5 to 3.5.
+•	• Built Looker Studio KPI reporting for multiple departments, improving transparency for inventory planning, engineering decisions based on reviews, management decisions, website development, email performance, and cross-platform budget management.
+•	• Configured GA4 and custom Google Tag Manager measurement/reporting.
+•	• Consulted on SEO best practices and on-page optimization and coordinated marketing priorities with web, operations, creative, and other stakeholders.
+•	• Created a robust spreadsheet-based inventory planning methodology used across multiple departments.
+
+
+Digital Marketing Manager 								August 2021 to April 2022
+TravelPass Group - South Jordan, UT
+•	Managed PPC efforts on Google Ads and Bing
+•	12 accounts, 32 campaigns, 110k Ad Groups, 1.6 million keywords, with a $3.6 million/month spend in one brand
+•	Automated keyword creation with different permutations for thousands of Ad Groups using VBA in Excel
+•	Automated SERP analysis with Python and used Machine Learning Models for budgets, bids, ad copy, keywords, etc with Google API
+•	Converted and interpreted JSON results to data-mine SERP
+•	Competitor research using Python web-scraping priorities to maintain efficient delivery and support profitable growth
+•	Marketing Strategist / Analyst | 1-800 Contacts
+•	Draper, UT | November 2022 - June 2023 (Contract)
+•	• Analyzed max CPC versus smart bidding, brand CPC optimization, non-brand target CPA, Performance Max and Google Shopping mix, audience performance, data-driven attribution, incremental CPA, lifetime value, affiliate commissions, and AI-assisted promotion performance using Namogoo.
+•	• Designed and interpreted reach, comparison, conversion, micro-conversion, and internal lifetime-value funnel testing, including click-to-call systems assessment and iSpot analysis for TV/OTT reach campaigns.
+•	• Built complex Tableau dashboards for paid search and helped convert existing Power BI reporting to Tableau.
+•	• Built automated weekly reporting across 10+ channels using Python, Databricks, SQL, blended Excel data, and Funnel.io to improve accuracy and decision speed.
+•	• Used regression models, prior-year/prior-period data, holdouts, geo-promotional tests, scale-up/down analysis, and budget reallocation scenarios to forecast investment outcomes and support recommendations involving substantial incremental media budgets.
+•	• Helped facilitate the transition of four to five agency relationships in-house, evaluating agency cost structures, prioritization, automation approaches, and the impact of newer Google machine-learning capabilities on legacy rule-based systems.
+•	Digital Marketing Manager | TravelPass Group / Reservation Counter
+•	South Jordan, UT | August 2021 - April 2022
+•	• Managed PPC efforts across Google Ads and Microsoft/Bing Ads.
+•	• Managed 12 accounts, 32 campaigns, approximately 110,000 ad groups, 1.6 million keywords, and approximately $3.6 million in monthly spend for one brand.
+•	• Automated keyword creation and permutations for thousands of ad groups using VBA in Excel.
+•	• Automated SERP analysis with Python and used machine-learning models and the Google Ads API to support budgets, bids, ad copy, keyword decisions, and other optimizations.
+•	• Converted and interpreted JSON results for SERP data mining.
+•	• Conducted competitor research using Python web scraping.
+
+
+
+
+Director of E-Commerce/Marketing 						February 2018 to February 2020
+Intercon Inc - Salt Lake City, UT
+•	Managed all aspects of e-commerce and marketing at a very large distributor (B2B)
+•	Technology, marketing, cultural change, team, and thought leader
+•	Setup the company's informational architecture (ERP systems flow)
+•	Innovated and implemented new systems to increase productivity and efficiency
+•	Created systems to allow for transparency and collaboration
+•	Oversaw project management in an ever-changing environment
+•	Worked with all heads of department (IT, Operations, Finance, Product Dev, HR, Sales, etc)
+•	Lifted the company up from a very non-digital, traditional B2B distributor to a functional digital environment
+•	Expanded their business by adding a new B2C element (multiple e-comm platforms) while not encroaching upon our 650+ retailers (B2B)
+•	Developed e-comm specific products with our manufacturers and developed better supply chain processes
+•	Worked extensively with Amazon Vendor and Seller Central (FBA and FBM) leading to other consignment initiatives (CastleGate, Target.com, Costco.com etc.)
+•	Conducted financial analysis on a daily basis to find niches and develop products
+•	Managed a virtually unlimited budget based on a project-by-project cost/benefits analysis
+•	Developed and maintained the company's multiple databases to ensure consistency among departments, and used them to create proper and accurate financial and marketing reports
+•	Directed digital marketing and e-commerce for a large B2B distributor, coordinating execution and reporting across marketing, sales, operations, finance, IT, and product teams.
+•	Modernized the company's digital environment and launched multiple B2C channels while protecting relationships with more than 650 B2B retail partners.
+•	Maintained marketing databases, financial reporting, and cross-channel systems that improved budget visibility, data consistency, collaboration, and decision-making.
+•	Applied project-by-project cost-benefit analysis to prioritize growth initiatives, marketplace opportunities, product investments, and operational improvements.
+•	Director of E-Commerce / Marketing | Intercon Inc.
+•	Salt Lake City, UT | February 2018 - February 2020
+•	• Managed all aspects of e-commerce and marketing for a large B2B distributor.
+•	• Served as a technology, marketing, cultural-change, team, and thought leader while coordinating with IT, Operations, Finance, Product Development, HR, Sales, and other department heads.
+•	• Designed the company's information architecture and ERP-system flow and implemented systems to increase productivity, efficiency, transparency, and collaboration.
+•	• Oversaw project management in a fast-changing e-commerce channels while protecting relationships with more than 650 B2B retailers.
+•	• Developed e-commerce-specific products with manufacturers and improved supply-chain processes.
+•	• Worked extensively with Amazon Vendor and Seller Central using both FBA and FBM, leading to additional marketplace/consignment initiatives including CastleGate, Target.com, and Costco.com.
+•	• Conducted daily financial analysis to identify niches and product opportunities.
+•	• Managed budget decisions through project-by-project cost/benefit analysis.
+•	• Developed and maintained multiple company databases to improve consistency across departments and support accurate financial and marketing reporting.
+•	• Coordinated execution and reporting across marketing environment and helped move the organization from a largely traditional, non-digital B2B model to a functional digital environment.
+•	• Expanded the business by adding multiple B2C e, sales, operations, finance, IT, product, and e-commerce functions.
+
+
+
+SEM Manager/Project Manager 							September 2016 to February 2018
+The Infinite Agency - Dallas, TX
+•	Setup and managed more than 75 AdWords accounts with a total spend of more than $276,000 per month
+•	Strategized directly with clients on how to best distribute their marketing funds based on their business needs into different channels including: website development, SEO, email campaigns, Google Ads search, display, mobile, re-marketing, and YouTube campaigns, and all social media platforms
+•	Studied each client's account using industry leading analytical software to make data-driven recommendations
+•	Created reports using Funnel.io to consolidate data sources and presented that data with Google Data (Looker) Studio
+•	Created custom scripts to allow automatic and constant monitoring of all clients marketing efforts
+•	Developed a custom AdWords system providing quality on quantity, ensuring the same quality of service for all clients, no matter what the clients spend. This system was adopted by the entire company
+•	Created conversion and attribution models and created multivariate tests on all levels
+•	Managed 75+ Google Ads accounts and more than $276K in monthly spend across search, display, mobile, remarketing, YouTube, lead generation, and multi-channel client programs.
+•	Consulted directly with clients on business goals, pain points, budget allocation, campaign structure, SEO, website, email, social, and paid media opportunities.
+•	Conducted keyword and competitive research, developed targeting and messaging recommendations, and created conversion, attribution, A/B, and multivariate testing frameworks.
+•	Built Funnel.io and Looker Studio reporting, created automated monitoring scripts, and developed a repeatable account-management system adopted across the agency.
+•	Set up and managed more than 75 Google Ads/AdWords accounts with more than $276,000 in combined monthly spend.
+•	Advised clients directly on business goals and how to allocate marketing funds across website development, SEO, email, paid search, display, mobile, remarketing, YouTube, and social media.
+•	Used industry-leading analytical tools to study account performance and make data-driven recommendations.
+•	Built Funnel.io reporting pipelines and presented consolidated performance data in Google Data/Looker Studio.
+•	Created custom scripts for continuous monitoring of client marketing efforts.
+•	Developed a repeatable Google Ads account-management system designed to maintain service quality across clients regardless of spend; the system was adopted by the company.
+•	Built conversion and attribution models and designed A/B and multivariate tests across multiple levels of the marketing funnel.
+•	Conducted keyword, audience, competitive, targeting, and messaging research to support campaign and growth recommendations.
+
+
+E-Commerce Manager 								July 2014 to September 2016
+LifeSpan Fitness - Salt Lake City, UT
+•	Managed the E-Commerce department comprised of 8 best-in-class employees
+•	Managed all paid search campaigns, outreach, lead generation, and customer acquisition for a large E-Commerce company in the United States, Canada, and the UK
+•	Managed large AdWords, Bing Ads, Gemini, and Amazon Marketing Services accounts consisting of more than 150 campaigns with a $400,000 budget resulting in more than $9,000,000 in revenue (35% of total revenue)
+•	Conducted advanced keyword research, channel analysis, monitored trends, created custom attribution models, acquisition analysis, conversion path and funnel analysis, landing page optimization, A/B multivariate testing, conversion rate optimization (CRO), created advanced bid strategies and testing, setup bid experiments, created an affiliate program strategy, and created ad copy for search and display ads using Adobe design software
+•	Setup human assisted automation with JavaScript on certain campaigns based on promotions and business goals
+•	Created business goals, yearly projections, and KPI's with senior management and reported large quantities of data from Magento, Google Analytics, ACCTivate, and QuickBooks
+•	Conducted competitive analysis to improve and position our campaign performance
+•	Managed display, mobile, re-marketing, search, video, email, shopping, and social, local, and CRE campaigns
+•	Performed advanced analysis using Excel, AdWords Editor, Bing Editor, and Amazon Premium Analytics
+•	Worked with the web development team and monitored SEO/SEM using a variety of software tools
+•	Led an eight-person e-commerce team responsible for paid search, customer acquisition, campaign delivery, website performance, and growth across the U.S., Canada, and U.K.
+•	Managed 150+ campaigns across Google Ads, Microsoft Ads, Amazon, search, shopping, display, video, remarketing, mobile, social, local, and email with approximately $400K in monthly spend.
+•	Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing.
+•	Created annual projections and KPI reporting with senior leadership and used platform, analytics, Magento, accounting, and competitive data to guide budget and campaign decisions.
+•	Managed an eight-person e-commerce department and led paid search, outreach, lead generation, customer acquisition, website performance, and growth across the United States, Canada, and the United Kingdom.
+•	Managed more than 150 campaigns across Google Ads/AdWords, Microsoft/Bing Ads, Yahoo Gemini, Amazon Marketing Services, search, shopping, display, video, remarketing, mobile, social, local, email, and related campaign types.
+•	Managed approximately $400,000 in media budget that generated more than $9 million in revenue, representing approximately 35% of total company revenue.
+•	Conducted advanced keyword research, channel analysis, trend monitoring, acquisition analysis, conversion-path and funnel analysis, landing-page optimization, and conversion-rate optimization.
+•	Created custom attribution models, advanced bid strategies, bid tests/experiments, A/B tests, and multivariate testing frameworks.
+•	Developed affiliate-program strategy and created search/display ad copy using Adobe design software.
+•	Implemented human-assisted campaign automation with JavaScript based on promotions and business goals.
+•	Created business goals, annual projections, and KPIs with senior management and reported data from Magento, Google Analytics, ACCTivate, QuickBooks, and advertising platforms.
+•	Conducted competitive analysis and used Excel, Google Ads Editor, Bing Ads Editor, and Amazon Premium Analytics for advanced performance analysis.
+•	Worked with the web development team and monitored SEO/SEM using multiple software tools.
+
+
+Director, Marketing Strategy & Development 						January 2009 to June 2013
+Bowen Law Professional Group - Salt Lake City, UT
+•	Worked at a wealth management firm with more than 20 attorneys, financial planners, and CPAs. Worked directly with firm executives, and consulted them on key business decisions related to the overall marketing strategy of the firm. Worked closely with high net-worth clients and owners of medium to large-sized businesses across the country.
+•	Designed and introduced new marketing concepts using graphic design and animation software applications
+•	Oversaw the development and implementation of additional services. After conducting a comprehensive marketing plan and analyzing the results, persuaded firm management to add additional services. Based on this market research, worked with management to create the firm's tax and finance departments which together contributed more than 25% of the firm's revenue
+•	Developed the firm's overall marketing plan and developed new strategies. Coordinated with firm management
+•	Routinely conducted cost/benefit evaluations on all marketing efforts
+•	Managed all online marketing efforts using multiple SEO/SEM tools
+•	Designed and built the law firm's website using HTML5, CSS3, and JavaScript
+•	Developed and managed the firm's content management strategy. The aspects of this strategy included content timing, content type, placement (blogs, mail, e-mail, website), content focus, content personalization, etc
+•	Managed weekly marketing meetings and attended weekly firm management meetings
+•	Generated and tracked prospective clients and business associates using a marketing-oriented database
+•	Converted all paper forms into an electronic, interactive format using Acrobat and LiveCycle. This increased all market data and increased the speed of data acquisition
+•	Director, Marketing Strategy & Development | Bowen Law Professional Group
+•	Salt Lake City, UT | January 2009 - June 2013
+•	Worked within a wealth-management/professional-services firm with more than 20 attorneys, financial planners, and CPAs. Worked directly with firm executives and with high-net-worth clients and owners of medium- to large-sized businesses across the country.
+•	Designed and introduced new marketing concepts using graphic-design and animation software.
+•	Conducted comprehensive market research and helped persuade management to add new services; worked with leadership to create tax and finance departments that together contributed more than 25% of firm revenue.
+•	Developed the firm's overall marketing plan and new strategies in coordination with firm management.
+•	Routinely conducted cost/benefit evaluations of marketing initiatives.
+•	Managed online marketing efforts using multiple SEO/SEM tools.
+•	Designed and built the firm's website using HTML5, CSS3, and JavaScript.
+•	Developed and managed content strategy covering timing, content type, placement across blogs/mail/email/web, content focus, and personalization.
+•	Managed weekly marketing meetings and participated in weekly firm management meetings.
+•	Generated and tracked prospective clients and business associates using a marketing-oriented database.
+•	Converted paper forms into electronic, interactive formats using Adobe Acrobat and LiveCycle, increasing the speed and quantity of market-data acquisition.
+
+EDUCATION, ENTREPRENEURSHIP & RECOGNITION
+• Brigham Young University - Business Management degree - Marketing emphasis, 2008.
+• Entrepreneur of the Year Award (2006) - Co-Strategist
+• Business Plan Competition (2007) - Team Leader; Finalist
+• Developed a comprehensive marketing plan involving five universities and more than 100,000 students
+• Presented a winning and subsequently funded business plan to venture capitalists
+• Successfully marketed a unique company founded while in college
+
+CERTIFICATIONS
+• Google Ads / Google AdWords
+• Google Analytics
+• Microsoft Ads / Bing Ads
+• Facebook Blueprint
+• Amazon Marketing Services (AMS)
+
+ADDITIONAL PROFESSIONAL INFORMATION
+• Spanish - Fluent
+• Authorized to work in the United States for any employer
+• Longstanding personal interest in technology dating to early personal computing; built and programmed computers with his father and later combined that technical interest with marketing
+• Spent part of his career working as a contractor to broaden experience across industries
+• Portfolio/sample work available when relevant
+
+
+
+Vortex UTV - Nationwide 									January 2004 to Present
+•	I created this website two years ago.  built it on a headless system using REACT and Next.js. The site is a 3rd party retailer. I found a great manufacturer. The magic behind this is that I connected the backend of the Shopify Store directly to their databases. It updated orders and shipping all through GraphQL. Out of the 50 major companies, I haven’t seen anyone do it. They hire out a handful of people and all they do is submit orders. So now everything is automated. I don’t spend more than 10 minutes a week just to make sure it’s running.
+
+
+
+									
+
+
+
+
+
+
+
+
+Education
+•	Bachelor’s Degree in Business Management – Marketing Emphasis
+•	Brigham Young University 01-04-2004 to 06-26-2008, Provo Utah
+•	Business Plan Competition finalist (2007) - Team leader Entrepreneur of the Year Award (2006) - Co-Strategist 
+•	Developed a comprehensive marketing plan involving 5 universities totaling more than 100,000 students Presented a winning, and subsequently funded business plan in front of several venture capitalists
+
+Certifications
+•	Google Adwords
+•	Google Analytics
+•	Amazon Marketing Services (AMS)
+•	Microsoft/Bing Ads
+•	Facebook Blueprint
+
+Skills
+A/B testing
+Account management
+Adobe Analytics
+Adobe Campaigns
+Adobe Creative Suite
+Affiliate marketing
+Affiliate marketing campaigns
+AI
+Algorithms
+Analytics
+Antigravity
+Attention to detail
+B2B
+B2B marketing
+B2C
+Bing Ads
+Blogging
+Brand awareness metrics
+Brand loyalty analysis
+Branding
+Budgeting
+Buffer
+Business intelligence
+Calendar management
+Canva
+ChatGPT
+Claude
+Codex
+Communication skills
+Community management
+Computer networking
+Constant Contact
+Content creation
+Content development
+Content management
+Content marketing
+Content promotion
+Content strategy
+Conversion rate optimization (CRO)
+Conversion rate tracking
+Copywriting
+CRM software
+CRM system proficiency
+CSS
+Cursor
+Customer acquisition cost tracking
+Customer feedback analysis
+Customer lifetime value analysis
+Customer retention campaigns
+Customer segmentation
+Customer service
+Data analytics
+Data modeling
+Databases
+Data-driven decision making
+Data-driven problem-solving
+Demand generation marketing
+Demographic segmentation analysis
+Digital brand management
+Digital campaign management
+Digital Marketing
+Digital marketing budget management
+Digital marketing campaign setup
+Digital marketing experience (16-20 years)
+Display advertising
+E-Commerce
+Editing
+Email A/B testing
+Email automation
+Email campaign management
+Email conversion tracking
+Email list building
+Email marketing
+Email marketing campaigns
+Email marketing deliverability
+Email marketing segmentation
+Email newsletters
+Facebook
+Facebook Ads Manager
+Facebook Advertising
+Financial services
+Gemini
+Geographic analysis
+GitHub
+Google Ads
+Google AdWords
+Google Analytics
+Google Suite
+Google Tag Manager
+Home health
+Hootsuite
+HTML5
+HubSpot
+HubSpot CRM
+Infographics
+Inside sales
+Instagram
+JavaScript
+Keyword Research
+Klaviyo
+Largest digital marketing team managed (11-20 team members)
+Lead generation
+Lead generation campaigns
+Lead generation tracking
+Leadership
+Link building
+Local SEO
+Machine learning
+Mailchimp
+Managing digital marketing teams
+Market Research
+Marketing
+Marketing analytics
+Marketing automation
+Marketing campaign budget management
+Marketing operations
+Marketo
+Media buying
+Media performance analytics
+Medical terminology
+Meta Ads
+Metadata
+Microsoft Access
+Microsoft PowerPoint
+Microsoft Word
+Mobile marketing campaigns
+Mobile SEO
+Native advertising
+Nielsen
+Off-page SEO
+Omniture
+On-page SEO
+OOP
+Operations management
+Organizational skills
+Paid search advertising campaigns
+Paid search marketing
+Pandas
+Pardot
+Pay-per-click (PPC) advertising
+Performance marketing
+Perplexity
+Phone etiquette
+Photography
+Pivot tables
+Power BI
+PPC Campaign Management
+Product marketing strategy
+Product usage analysis
+Project management
+Project management software
+Proofreading
+Psychographic analysis
+Python
+Regression analysis
+Relational databases
+Relationship management
+Research
+ROI
+Sales revenue tracking
+Sales support
+Salesforce
+Salesforce Marketing Cloud
+Search Engine Marketing (SEM)
+Search Engine Optimization (SEO)
+Search engines
+SEM
+SEM campaigns
+SEO
+SEO audits
+SEO competitor analysis
+SEO schema markup
+SimilarWeb
+Social listening
+Social media activity analysis
+Social media advertising
+Social media campaigns
+Social media content
+Social media engagement tracking
+Social media management
+Social media marketing
+SQL
+Statistical Analysis
+Tableau
+Taxonomy
+Team management
+Technical Proficiency
+Technical SEO
+TikTok
+Time management
+Twitter Ads
+UX
+VBA
+Vendor management
+Video advertising
+Video marketing
+Visual Studio
+Web analytics
+Web analytics reporting
+Web Development
+Website activity analysis
+Website maintenance
+Website management
+Website traffic metrics analysis
+WordPress
+Writing skills
+Zoho CRM

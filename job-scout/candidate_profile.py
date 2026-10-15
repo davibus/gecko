@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MASTER_RESUME = ROOT / "input" / "master-resume" / "Dave-Call-Resume.txt"
+MASTER_RESUME = ROOT / "input" / "master-resume" / "master-resume-v2.txt"
 DEFAULT_PROFILE = Path(__file__).resolve().parent / "preferences" / "candidate-profile.json"
 
 
@@ -20,7 +20,14 @@ def load_candidate_profile(path: str | Path | None = None) -> dict:
     if not target.is_file():
         raise FileNotFoundError(f"Job Scout candidate profile could not be found: {target}")
     profile = json.loads(target.read_text(encoding="utf-8-sig"))
-    actual = hashlib.sha256(MASTER_RESUME.read_bytes()).hexdigest()
+    try:
+        source_bytes = MASTER_RESUME.read_bytes()
+        source_text = source_bytes.decode("utf-8-sig")
+    except (OSError, UnicodeError) as error:
+        raise OSError(f"Required Gecko master resume is unreadable: {MASTER_RESUME}") from error
+    if not source_text.strip():
+        raise ValueError(f"Required Gecko master resume is empty: {MASTER_RESUME}")
+    actual = hashlib.sha256(source_bytes).hexdigest()
     if profile.get("master_resume_sha256") != actual:
         raise ValueError(
             "The compact Job Scout candidate profile is stale; update it from the current "

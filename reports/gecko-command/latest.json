@@ -1,0 +1,17 @@
+{
+  "run_id": "20261014T052040-10332",
+  "started_at": "2026-10-14T05:20:40.127671-06:00",
+  "status": "failed",
+  "steps": [
+    {
+      "name": "Daily report",
+      "exit_code": 0
+    },
+    {
+      "name": "Daily discovery, tracker sync, and tailored resumes",
+      "exit_code": 1
+    }
+  ],
+  "current_step": "Daily discovery, tracker sync, and tailored resumes",
+  "updated_at": "2026-10-14T05:52:55.254122-06:00"
+}

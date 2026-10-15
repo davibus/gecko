@@ -105,7 +105,7 @@ I inspected the CLI parsers and entry points in job-scout/scout.py:925, the runn
                                                                                                                                                                                                        
    Exact command       Purpose and available arguments                                                                Changes tracker or files?                                                        
   ━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   python scripts/     Check live Job Scout URLs and append confirmed removal findings to Notes. Flags: --database    Sheet unless --dry-run; database is read for employer-domain context.            
+   python scripts/     Check live Job List URLs and append confirmed removal findings to Notes. Flags: --database    Sheet unless --dry-run; database is read for employer-domain context.
    check_job_links.    PATH, --limit N, --start-row N, --timeout SECONDS, --delay SECONDS, --retries N, --dry-run.                                                                                     
    py                                                                                                                                                                                                  
   ──────────────────  ─────────────────────────────────────────────────────────────────────────────────────────────  ──────────────────────────────────────────────────────────────────────────────────
@@ -151,4 +151,4 @@ I inspected the CLI parsers and entry points in job-scout/scout.py:925, the runn
                                                                                                          
 2026-10-10 addition: python scripts/daily_report.py --dry-run [--verbose] [--json] [--date YYYY-MM-DD] [--run-id RUN_ID] writes only the five-date vertical Daily Tasks dashboard plus reports/daily audit files; Daily Run remains historical; it does not run job discovery, resume generation, Indeed page checks, or Gmail tracking.
 
-2026-10-10 tracker resync: python scripts/inspect_tracker_schema.py [--json] reads live workbook metadata and named headers; no Sheet or local data writes. The verified tabs are Daily Run, Daily Tasks, Job Scout, Deleted Jobs, and Rejected Jobs.
+2026-10-10 tracker resync: python scripts/inspect_tracker_schema.py [--json] reads live workbook metadata and named headers; no Sheet or local data writes. The tabs observed on 2026-10-10 were Daily Run, Daily Tasks, Job Scout, Deleted Jobs, and Rejected Jobs; this is a historical snapshot. The current ledger is Job List. See docs/tracker-schema.md.

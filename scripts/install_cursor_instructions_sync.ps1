@@ -36,15 +36,30 @@ $settings = New-ScheduledTaskSettingsSet `
     -RestartCount 999 `
     -RestartInterval (New-TimeSpan -Minutes 1)
 
-Register-ScheduledTask `
-    -TaskName $taskName `
-    -Action $action `
-    -Trigger $trigger `
-    -Principal $principal `
-    -Settings $settings `
-    -Description 'Hidden Gecko AGENTS.md and Cursor Instructions Sheet cell sync watcher.' `
-    -Force | Out-Null
+$existing = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+if ($existing) {
+    $current = $existing.Actions | Select-Object -First 1
+    if ($existing.Actions.Count -ne 1) { throw "Unexpected action count for $taskName" }
+    if ($current.Execute -ne $action.Execute -or $current.Arguments -ne $action.Arguments -or $current.WorkingDirectory -ne $projectRoot) {
+        $backupDir = Join-Path $projectRoot 'scratch\task-backups'
+        New-Item -ItemType Directory -Path $backupDir -Force | Out-Null
+        $backup = Join-Path $backupDir ("Gecko_Cursor_Instructions_Sync-" + (Get-Date -Format 'yyyyMMdd-HHmmss') + '.xml')
+        Export-ScheduledTask -TaskName $taskName -TaskPath $existing.TaskPath | Set-Content -LiteralPath $backup -Encoding UTF8
+        Set-ScheduledTask -TaskName $taskName -Action $action | Out-Null
+        Write-Output "Updated action for $taskName (backup: $backup)"
+    }
+} else {
+    Register-ScheduledTask `
+        -TaskName $taskName `
+        -Action $action `
+        -Trigger $trigger `
+        -Principal $principal `
+        -Settings $settings `
+        -Description 'Hidden Gecko AGENTS.md and Cursor Instructions Sheet cell sync watcher.' | Out-Null
+}
 
-Start-ScheduledTask -TaskName $taskName
-Write-Output "Installed and started scheduled task: $taskName"
+if ((Get-ScheduledTask -TaskName $taskName).State -ne 'Running') {
+    Start-ScheduledTask -TaskName $taskName
+}
+Write-Output "Installed and running scheduled task: $taskName"
 Write-Output "Watcher status: $(Join-Path $projectRoot 'scratch\cursor-sheet-sync\watch-status.json')"

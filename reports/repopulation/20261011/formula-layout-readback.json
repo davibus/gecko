@@ -1,0 +1,40 @@
+{
+  "Daily Tasks": {
+    "formulas_before": 0,
+    "formulas_after": 0,
+    "formulas_preserved": true,
+    "validations_before": 0,
+    "validations_after": 0,
+    "validations_preserved": true,
+    "column_widths_before": 46,
+    "column_widths_after": 46,
+    "column_widths_preserved": true
+  },
+  "Daily Run": {
+    "formulas_before": 0,
+    "formulas_after": 0,
+    "formulas_preserved": true,
+    "validations_before": 0,
+    "validations_after": 0,
+    "validations_preserved": true,
+    "column_widths_before": 26,
+    "column_widths_after": 26,
+    "column_widths_preserved": true
+  },
+  "Job List": {
+    "formulas_before": 0,
+    "formulas_after": 0,
+    "formulas_preserved": true,
+    "validations_before": 0,
+    "validations_after": 0,
+    "validations_preserved": true,
+    "column_widths_before": 20,
+    "column_widths_after": 20,
+    "column_widths_preserved": true,
+    "column_widths_restored_from_reset_backup": [
+      "F",
+      "M",
+      "O"
+    ]
+  }
+}

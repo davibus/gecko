@@ -4,13 +4,15 @@
 from __future__ import annotations
 
 import argparse
+from dataclasses import asdict
 from concurrent.futures import ThreadPoolExecutor
 import json
 import os
 import sys
 import tempfile
 import time
-from datetime import date
+from datetime import date, datetime
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 from enrichment import enrich_and_store
@@ -23,7 +25,7 @@ from indeed_application_backfill import backfill as backfill_indeed_buttons, loa
 from link_validation import DailyLinkValidator
 from manual_indeed import ManualIndeedSummary, process_manual_indeed_rows
 from models import RawListing
-from normalize import normalize
+from normalize import normalize, posting_identity
 from normalize import canonicalize_url
 from rejected_jobs import RejectedJobsIndex
 from rejection_workflow import process_rejected_rows
@@ -39,13 +41,16 @@ from sources import (
 )
 from sources.base import SearchRequest
 from sources.config import load_source_config
+from sources.acquisition import acquire as acquire_source
+from sources.http import REQUEST_EVENTS, safe_error
+from hard_filters import deterministic_filter
 from storage import DEFAULT_DB, JobStore
 from tracker_schema import STATUS_LABELS
 from url_resolution import resolve_and_store, url_status_label
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-MASTER_RESUME = PROJECT_ROOT / "input" / "master-resume" / "Dave-Call-Resume.txt"
+MASTER_RESUME = PROJECT_ROOT / "input" / "master-resume" / "master-resume-v2.txt"
 DEFAULT_SOURCE = "adzuna"
 CORE_PROVIDERS = (
     "adzuna", "remotive", "web-careers", "jobicy", "remoteok", "usajobs",
@@ -124,11 +129,14 @@ def sync_tracker(
     append_only: bool = False,
     remove_scout_ids: set[int] | None = None,
     highlight_found_on: str | None = None,
+    discovery_notes=None,
+    audit_dir=None,
 ):
     tracker = GoogleTracker()
     if remove_scout_ids:
         tracker.remove_dead_scout(remove_scout_ids)
-    summary = tracker.upsert_scout(store.all() if jobs is None else jobs, append_only=append_only)
+    extra = {} if discovery_notes is None else {'discovery_notes':discovery_notes,'audit_dir':audit_dir}
+    summary = tracker.upsert_scout(store.all() if jobs is None else jobs, append_only=append_only,**extra)
     if highlight_found_on:
         summary["highlighted_scout_ids"] = tracker.highlight_scout_found_on(highlight_found_on)
     result = {
@@ -169,7 +177,7 @@ def protected_job_ids(jobs, tracker_path=None) -> set[int]:
             scout_id = int(row.get("Scout ID"))
         except (TypeError, ValueError):
             continue
-        if any(marked(row.get(field)) for field in ("Apply?", "Applied", "Contacted", "Resume Created", "Response")) or str(row.get("Gecko Status") or "").lower() not in {"", "new", "reviewing"}:
+        if any(marked(row.get(field)) for field in ("Apply?", "Applied", "Contacted", "Resume Created", "Response")):
             protected.add(scout_id)
     try:
         application_rows = tracker.application().rows
@@ -208,8 +216,8 @@ def sheet_only_active_jobs(tracker_path, known_ids: set[int]):
                 continue
             if scout_id in known_ids:
                 continue
-            status = str(value("Gecko Status") or "new").strip().lower().replace(" ", "-")
-            if status in {"ignored", "rejected"}:
+            status = "new"
+            if str(value("Apply?") or "").strip().casefold() in {"reject", "delete / reject", "delete/reject"}:
                 continue
             url = str(value("Job URL") or "")
             item = normalize(RawListing(source="worksheet", source_job_id=str(scout_id), url=url,
@@ -223,16 +231,27 @@ def sheet_only_active_jobs(tracker_path, known_ids: set[int]):
 
 def search(args, store, preferences):
     daily_mode = bool(getattr(args, "daily_mode", False))
+    safe_discovery = bool(getattr(args,'safe_discovery',False)) and not daily_mode
+    audit_dir = Path(args.audit_dir).resolve() if getattr(args,'audit_dir',None) else None
+    if audit_dir: audit_dir.mkdir(parents=True,exist_ok=True)
     link_validator = getattr(args, "link_validator", None) if daily_mode else None
+    if safe_discovery:
+        link_validator=DailyLinkValidator()
+        link_validator.require_verified=True
     rejected_jobs = RejectedJobsIndex()
     if isinstance(store, JobStore):
         rejection_tracker = GoogleTracker()
-        if not getattr(args, "dry_run", False):
+        if daily_mode and not getattr(args, "dry_run", False):
             rejection_summary = process_rejected_rows(rejection_tracker, store)
             if rejection_summary.marked:
                 print("Rejected Jobs maintenance:")
                 print(json.dumps(rejection_summary.to_dict(), indent=2))
         rejected_jobs = rejection_tracker.rejected_jobs_index()
+        if safe_discovery:
+            live=rejection_tracker.scout()
+            if live.title!='Job List': raise RuntimeError('Discovery requires the existing Job List worksheet')
+            live_ids=[int(row.get('Scout ID')) for _,row in live.rows if str(row.get('Scout ID') or '').isdigit()]
+            if live_ids: store.observe_scout_id(max(live_ids))
     preexisting_ids = {job.id for job in store.all()}
     source_config = load_source_config(getattr(args, "sources_config", None))
     available = providers(getattr(args, "sources_config", None))
@@ -243,7 +262,7 @@ def search(args, store, preferences):
     else:
         selected = [args.source]
     queries = args.query or preferences["target_roles"]
-    locations = args.location or ["Utah", "Remote"]
+    locations = args.location or preferences.get('preferred_locations') or ["Utah", "Remote"]
     # Remotive is globally remote and uses category RSS, never Utah/title discovery.
     requests = (
         [SearchRequest(query, location, args.page, args.results)
@@ -259,6 +278,9 @@ def search(args, store, preferences):
         "duplicates": 0, "cross_provider_duplicates": 0,
         "filtered_by_role": 0, "deterministic_rejects": 0, "jooble_excluded": 0,
         "rejected_history_excluded": 0,
+        "missing_content_excluded": 0, "dead_url_excluded": 0,
+        "deterministic_reject_reasons": {},
+        "url_review_excluded":0,"url_validated":0,
         "source_results_limited": 0,
         "newly_discovered": 0, "already_existed": 0,
         "new_job_ids": [], "existing_job_ids": [], "changed_job_ids": [],
@@ -273,34 +295,37 @@ def search(args, store, preferences):
     successful_sources = 0
     configured = {
         name: available[name] for name in selected
-        if name != "remotive" and available[name].configured()
+        if (name != "remotive" or safe_discovery) and available[name].configured()
         and (callable(getattr(type(available[name]), "full_feed", None))
              or callable(getattr(type(available[name]), "search", None)))
     }
 
     def acquire(name_provider):
         name, provider = name_provider
-        if callable(getattr(type(provider), "full_feed", None)):
-            listings = list(provider.full_feed())
-            require_content = False
-        else:
-            provider_queries = getattr(provider, "broad_queries", queries)
-            provider_requests = [
-                SearchRequest(query, location, args.page, args.results)
-                for query in provider_queries for location in locations
-            ]
-            listings = [raw for request in provider_requests for raw in provider.search(request)]
-            require_content = True
+        provider_requests = [SearchRequest(query, location, args.page, args.results)
+                             for query in queries for location in locations]
+        listings, errors = acquire_source(provider, provider_requests)
+        require_content = not callable(getattr(type(provider), "full_feed", None))
+        raw_count = len(listings)
         listings.sort(
             key=lambda raw: (raw.date_posted or "", raw.title.casefold()), reverse=True
         )
         provider_settings = source_config["providers"].get(name, {})
         limit = int(provider_settings.get(
-            "max_results_per_run", source_config.get("max_results_per_source", 50)
+            "max_results_per_run", source_config.get("max_results_per_source", 0)
         ))
-        if limit < 1:
-            raise ValueError(f"Source result limit for {name} must be at least 1")
-        return listings[:limit], require_content, max(len(listings) - limit, 0)
+        if limit < 0:
+            raise ValueError(f"Source result limit for {name} must be nonnegative")
+        selected_listings = listings[:limit] if limit else listings
+        if safe_discovery:
+            candidates={}
+            for raw in selected_listings:
+                job=normalize(raw)
+                if deterministic_filter(job,preferences)[0] and not rejected_jobs.matches_job(job):
+                    candidates.setdefault(job.canonical_url or job.url,job)
+            print(f'{name}: collected {raw_count}; checking {len(candidates)} candidate URLs',file=sys.stderr,flush=True)
+            link_validator.check_existing(list(candidates.values()),workers=4)
+        return selected_listings, require_content, raw_count - len(selected_listings), errors, raw_count
 
     workers = min(max(int(source_config.get("max_workers", 6)), 1), 16, max(len(configured), 1))
     with ThreadPoolExecutor(max_workers=workers, thread_name_prefix="job-source") as executor:
@@ -328,18 +353,24 @@ def search(args, store, preferences):
                 }
                 continue
             try:
-                if name == "remotive":
+                if name == "remotive" and not safe_discovery:
                     source_limit = int(source_config["providers"].get(name, {}).get(
-                        "max_results_per_run", source_config.get("max_results_per_source", 50)
+                        "max_results_per_run", source_config.get("max_results_per_source", 0)
                     ))
                     summary = discover_remotive_full_feed(
-                        provider, store, limit=min(getattr(args, "limit", 100), source_limit),
+                        provider, store, limit=source_limit or None,
                         preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
                         link_validator=link_validator, preferences=preferences,
                         rejected_jobs=rejected_jobs,
                     )
                 elif name in futures:
-                    listings, require_content, limited = futures[name].result()
+                    listings, require_content, limited, acquisition_errors, raw_count = futures[name].result()
+                    aggregate['source_diagnostics'][name] = {
+                        'raw_parsed_results': raw_count, 'limited_before_filter': limited,
+                        'errors': acquisition_errors,
+                    }
+                    if acquisition_errors:
+                        aggregate['source_errors'][name] = json.dumps(acquisition_errors)
                     aggregate["source_results_limited"] += limited
                     summary = discover_listings(
                         listings, store, require_content=require_content,
@@ -347,6 +378,7 @@ def search(args, store, preferences):
                         link_validator=link_validator, preferences=preferences,
                         rejected_jobs=rejected_jobs,
                     )
+                    summary.raw_retrieved = raw_count
                 else:
                     summary = discover(
                         provider, requests, store,
@@ -355,27 +387,40 @@ def search(args, store, preferences):
                         rejected_jobs=rejected_jobs,
                     )
             except (ProviderError, OSError, ValueError) as error:
-                aggregate["source_errors"][name] = str(error)
+                aggregate["source_errors"][name] = safe_error(error)
                 error_status = "rate limited" if "429" in str(error) else "api error"
                 aggregate["source_health"][name] = {
                     "status": error_status, "found": 0, "detail": str(error),
                 }
                 print(f"Warning: {name} provider failed: {error}", file=sys.stderr)
                 continue
-            successful_sources += 1
-            aggregate["source_counts"][name] = (
-                (summary.unique_imported or summary.fetched)
-                if name == "remotive" else summary.fetched
-            )
+            successful_sources += int(name not in aggregate['source_errors'] or bool(summary.fetched))
+            aggregate["source_counts"][name] = summary.fetched
             discovery_mode = getattr(provider, "discovery_mode", "")
             if not isinstance(discovery_mode, str):
                 discovery_mode = ""
             aggregate["source_health"][name] = {
-                "status": (discovery_mode or
+                "status": ('partial failure' if name in aggregate['source_errors'] else discovery_mode or
                            ("success" if aggregate["source_counts"][name] else "no results")),
                 "found": aggregate["source_counts"][name],
-                "detail": "",
+                "detail": aggregate['source_errors'].get(name, ''),
             }
+            pipeline=asdict(summary)
+            decisions=pipeline.pop('decisions',[])
+            aggregate.setdefault('source_pipeline', {})[name] = pipeline
+            if audit_dir:
+                evidence={'pipeline':pipeline,'record_decisions':decisions,
+                    'queries_pages':getattr(provider,'acquisition_events',[]),
+                    'board_errors':getattr(provider,'board_errors',[]),
+                    'errors':aggregate['source_errors'].get(name,''),
+                    'health':aggregate['source_health'][name]}
+                (audit_dir/f'{name}.json').write_text(json.dumps(evidence,indent=2),encoding='utf-8')
+            print(f'{name}: processed {summary.fetched}; new={summary.added}; existing={len(summary.existing_job_ids)}; review={summary.url_review_excluded}; dead={summary.dead_url_excluded}',file=sys.stderr,flush=True)
+            if name == 'remotive' and summary.failed_feeds:
+                aggregate['source_errors'][name] = getattr(provider, 'rss_error', 'RSS feed failure')
+                aggregate['source_health'][name]['status'] = 'partial failure'
+            if name == 'remotive':
+                aggregate['source_results_limited'] += summary.source_results_limited
             if summary.source_backend:
                 aggregate["source_backends"][name] = summary.source_backend
             if name == "web-careers" and callable(getattr(provider, "diagnostics", None)):
@@ -406,8 +451,13 @@ def search(args, store, preferences):
                 "normalized", "added", "updated", "duplicates", "cross_provider_duplicates",
                 "filtered_by_role", "deterministic_rejects", "jooble_excluded",
                 "rejected_history_excluded",
+                "missing_content_excluded", "dead_url_excluded",
+                "url_review_excluded","url_validated",
             ):
                 aggregate[key] += getattr(summary, key)
+            for reason, count in summary.deterministic_reject_reasons.items():
+                aggregate['deterministic_reject_reasons'][reason] = (
+                    aggregate['deterministic_reject_reasons'].get(reason, 0) + count)
             for job_id in summary.new_job_ids:
                 if job_id not in aggregate["new_job_ids"]:
                     aggregate["new_job_ids"].append(job_id)
@@ -419,8 +469,11 @@ def search(args, store, preferences):
                     aggregate["changed_job_ids"].append(job_id)
     aggregate["newly_discovered"] = len(aggregate["new_job_ids"])
     aggregate["already_existed"] = len(aggregate["existing_job_ids"])
-    aggregate["sources_searched"] = successful_sources + len(aggregate["source_errors"])
+    aggregate["sources_searched"] = len(selected) - len(aggregate['skipped_sources'])
     args.run_result = aggregate
+    if audit_dir:
+        (audit_dir/'discovery-reconciliation.json').write_text(json.dumps(aggregate,indent=2),encoding='utf-8')
+        (audit_dir/'http-requests.json').write_text(json.dumps(REQUEST_EVENTS,indent=2),encoding='utf-8')
     print(json.dumps(aggregate, indent=2))
     print("\nJob Scout source summary", file=sys.stderr)
     for name in selected:
@@ -434,7 +487,7 @@ def search(args, store, preferences):
     print(f"Duplicates removed: {aggregate['duplicates']}", file=sys.stderr)
     print(f"Previously seen: {aggregate['already_existed']}", file=sys.stderr)
     print(f"Rejected by Gecko filters: {aggregate['filtered_by_role']}", file=sys.stderr)
-    print(f"New qualified jobs written: {aggregate['newly_discovered']}", file=sys.stderr)
+    print(f"New unique jobs saved locally: {aggregate['newly_discovered']}", file=sys.stderr)
     if len(aggregate["skipped_sources"]) == len(selected):
         print("No selected source is configured. See job-scout/README.md.", file=sys.stderr)
         return 2
@@ -449,7 +502,49 @@ def search(args, store, preferences):
                 highlight_found_on=date.today().isoformat(),
             )
     else:
-        sync_tracker(store)
+        if not getattr(args, 'dry_run', False):
+            if safe_discovery:
+                ids=list(dict.fromkeys(aggregate['new_job_ids']+aggregate['existing_job_ids']))
+                jobs=[store.get(job_id) for job_id in ids]
+                jobs=[job for job in jobs if job]
+                stamp=datetime.now(ZoneInfo('America/Denver')).isoformat(timespec='seconds')
+                notes={job.id:f'Gecko discovery {stamp} | Source: {job.source} | current listing URL verified' for job in jobs}
+                summary=sync_tracker(store,jobs=jobs,discovery_notes=notes,audit_dir=audit_dir)
+                args.tracker_summary=summary
+                print(f"Job List readback verified: added={summary['added']}; updated={summary['updated']}",
+                      file=sys.stderr)
+                if audit_dir:
+                    (audit_dir/'tracker-result.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
+            else:
+                sync_tracker(store)
+    return 1 if aggregate['source_errors'] and not daily_mode else 0
+
+
+def sync_discovery(args, store, preferences):
+    """Resume this run's verified candidates through the canonical cell writer."""
+    folder=Path(args.audit_dir).resolve()
+    if (folder/'tracker-after-write.json').exists():
+        raise RuntimeError('This discovery has already completed tracker writes; do not replay it')
+    aggregate=json.loads((folder/'discovery-reconciliation.json').read_text(encoding='utf-8'))
+    accepted={}
+    for name in aggregate['source_pipeline']:
+        evidence=json.loads((folder/f'{name}.json').read_text(encoding='utf-8'))
+        for record in evidence['record_decisions']:
+            if record['reason'] in {'new unique','previously known','duplicate within run'}:
+                job_id=record.get('job_id',record.get('matched_id'))
+                accepted.setdefault(job_id,set()).add(posting_identity(record['url']))
+    ids=list(dict.fromkeys(aggregate['new_job_ids']+aggregate['existing_job_ids']))
+    jobs=[]
+    for job_id in ids:
+        job=store.get(job_id)
+        if not job or job.url_verification_status!='verified' or posting_identity(job.authoritative_url or job.url) not in accepted.get(job_id,set()):
+            raise RuntimeError(f'Discovery evidence no longer matches verified job {job_id}; no write')
+        jobs.append(job)
+    stamp=datetime.now(ZoneInfo('America/Denver')).isoformat(timespec='seconds')
+    notes={job.id:f'Gecko discovery {stamp} | Source: {job.source} | current listing URL verified' for job in jobs}
+    result=sync_tracker(store,jobs=jobs,discovery_notes=notes,audit_dir=folder)
+    (folder/'tracker-result.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
+    print(json.dumps(result,indent=2))
     return 0
 
 
@@ -672,7 +767,7 @@ def resolve_urls(args, store, _preferences):
     return 0
 
 
-def _daily_resume_runner(new_job_ids, store, *, dry_run=False):
+def _daily_resume_runner(new_job_ids, store, *, dry_run=False, resume_ids=None):
     """Run the canonical Gecko queue with daily all-source geographic approval."""
     new_job_ids = tuple(new_job_ids)
     scripts = PROJECT_ROOT / "scripts"
@@ -683,8 +778,10 @@ def _daily_resume_runner(new_job_ids, store, *, dry_run=False):
     generate_apply_queue._append_run_log(
         f"DAILY RESUME START dry_run={dry_run} new_job_ids={','.join(map(str, new_job_ids)) or 'none'}"
     )
+    scoped = {"eligible_scout_ids": set(resume_ids)} if resume_ids is not None else {}
     result = generate_apply_queue.run_queue(
         GoogleTracker(), store.path.resolve(), dry_run=dry_run,
+        **scoped,
         auto_approve_geographic=True,
         print_summary=False,
         logger=generate_apply_queue._append_run_log,
@@ -730,6 +827,7 @@ def _print_daily_summary(run_result, queue_result, tracker_summary, *, dry_run=F
     print(f"Manual Indeed duplicates flagged: {manual_indeed.duplicates}")
     print(f"Manual Indeed retrieval failures: {manual_indeed.failures}")
     print(f"Job Scout declined rows removed: {manual_indeed.removed}")
+    print(f"Declined rows preserved: {manual_indeed.declined_preserved}")
     print(f"Jobs marked Apply = Yes: {len(queue_result.snapshot.pending) + len(queue_result.snapshot.already_created)}")
     print(f"Resumes already existing: {len(queue_result.snapshot.already_created) + queue_result.recovered}")
     print(f"New Gecko resumes created: {queue_result.created}")
@@ -828,7 +926,8 @@ def daily(args, store, preferences):
     result = search(search_args, store, preferences)
     manual_indeed = ManualIndeedSummary()
     if not args.dry_run:
-        manual_indeed = process_manual_indeed_rows(GoogleTracker(), store)
+        manual_indeed = process_manual_indeed_rows(
+            GoogleTracker(), store, cleanup_declined=False)
         print("Manual Indeed intake:")
         print(json.dumps(manual_indeed.to_dict(), indent=2))
         run_result = getattr(search_args, "run_result", {})
@@ -885,7 +984,8 @@ def daily(args, store, preferences):
         print(f"DAILY REVIEW: {qualifying} new qualifying job(s) discovered in this run.")
         print(format_review_queue(queue))
     if args.dry_run:
-        queue_result = _daily_resume_runner([], store, dry_run=True)
+        queue_result = _daily_resume_runner(
+            [], store, dry_run=True, resume_ids=getattr(args, "resume_ids", None))
         run_result["resumes_generated"] = 0
         run_result["elapsed_time"] = time.monotonic() - started
         _print_daily_summary(run_result, queue_result, {"added": 0}, dry_run=True,
@@ -896,7 +996,13 @@ def daily(args, store, preferences):
         eligible_ids = [job_id for job_id in eligible_ids
                         if (evaluation := evaluations.get(job_id)) is not None
                         if evaluation.apply_decision == "Yes"]
-    queue_result = _daily_resume_runner(eligible_ids, store)
+    if getattr(args, "sync_local", False):
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+        from sync_gecko_local import sync_local
+        print("Local tracker synchronization:", flush=True)
+        print(json.dumps(sync_local(), indent=2), flush=True)
+    queue_result = _daily_resume_runner(
+        eligible_ids, store, resume_ids=getattr(args, "resume_ids", None))
     if not evaluator.enabled:
         run_result["Apply_Yes"] = (
             len(queue_result.snapshot.pending) + len(queue_result.snapshot.already_created)
@@ -949,15 +1055,21 @@ def build_parser():
     find.add_argument("--query", action="append", help="Repeat for multiple role queries; defaults to all target roles")
     find.add_argument(
         "--location", action="append",
-        help="Repeat for non-Remotive providers; defaults to Utah and Remote. Remotive is always Remote.",
+        help="Repeat for non-Remotive providers; defaults to all preferred locations, including Utah and Remote.",
     )
     find.add_argument("--page", type=int, default=1)
     find.add_argument("--results", type=int, default=20)
+    find.add_argument('--dry-run', action='store_true',
+                      help='Discover using a temporary database copy; no tracker writes or resumes')
+    find.add_argument('--audit-dir',type=Path,help='Save discovery and canonical tracker readback evidence locally')
     find.add_argument(
         "--limit", type=int, default=100,
-        help="Unique Remotive jobs to import after within-provider deduplication (default: 100)",
+        help="Legacy review setting; discovery is not capped by this option",
     )
-    find.set_defaults(function=search)
+    find.set_defaults(function=search,safe_discovery=True)
+    recovery=sub.add_parser('sync-discovery',help='Resume only a saved run\'s verified discovery candidates; no cleanup or resumes')
+    recovery.add_argument('--audit-dir',type=Path,required=True)
+    recovery.set_defaults(function=sync_discovery)
     diagnostic = sub.add_parser(
         "diagnose-remotive",
         help="Run a read-only Remotive-only API, filter, and deduplication diagnostic",
@@ -1026,7 +1138,12 @@ def build_parser():
         "--dry-run", action="store_true",
         help="Run discovery against a temporary database without tracker or resume writes",
     )
+    daily_parser.add_argument(
+        "--resume-ids", type=int, nargs="+", metavar="ID",
+        help="Limit resume generation to these live Column A IDs during this daily run",
+    )
     daily_parser.set_defaults(function=daily)
+    daily_parser.add_argument("--sync-local", action="store_true", help="Sync live tracker into local state before resumes")
     report_parser = sub.add_parser(
         "daily-report", help="Read-only live tracker snapshot with proposed resume counts"
     )
@@ -1063,6 +1180,15 @@ def main():
             validate_candidate_profile_for_ai(preferences)
         if not getattr(args, "requires_store", True):
             return args.function(args, None, preferences)
+        if args.function is search and getattr(args, 'dry_run', False):
+            import sqlite3
+            with tempfile.TemporaryDirectory() as directory:
+                with JobStore(Path(directory) / 'discovery.sqlite3') as store:
+                    source = Path(args.db).resolve()
+                    if source.exists():
+                        with sqlite3.connect(source.as_uri() + '?mode=ro', uri=True) as original:
+                            original.backup(store.connection)
+                    return args.function(args, store, preferences)
         with JobStore(args.db) as store:
             return args.function(args, store, preferences)
     except (OSError, RuntimeError, ValueError, ProviderError) as error:

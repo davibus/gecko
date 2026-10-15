@@ -1,0 +1,29 @@
+{
+  "source": "glassdoor",
+  "configured": true,
+  "queries": [
+    {
+      "query": "digital marketing",
+      "location": "Utah",
+      "page": 1,
+      "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aglassdoor.com%2Fjob-listing+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: <urlopen error _ssl.c:1011: The handshake operation timed out>"
+    },
+    {
+      "query": "digital marketing",
+      "location": "Remote",
+      "page": 1,
+      "error": "Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aglassdoor.com%2Fjob-listing+digital+marketing+Remote&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required"
+    }
+  ],
+  "errors": [
+    "Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aglassdoor.com%2Fjob-listing+digital+marketing+Utah&count=20&offset=0&country=US&search_lang=en&freshness=pm: <urlopen error _ssl.c:1011: The handshake operation timed out>",
+    "Request failed for https://api.search.brave.com/res/v1/web/search?q=site%3Aglassdoor.com%2Fjob-listing+digital+marketing+Remote&count=20&offset=0&country=US&search_lang=en&freshness=pm: HTTP Error 402: Payment Required"
+  ],
+  "tracker_written": 0,
+  "raw": [],
+  "status": "error",
+  "board_errors": [],
+  "detail_errors": [],
+  "feed_results": [],
+  "observed_date_windows": {}
+}

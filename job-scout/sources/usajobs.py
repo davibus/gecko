@@ -71,10 +71,11 @@ class UsaJobsProvider(JobSource):
             "Keyword": request.query,
             "Page": request.page,
             "ResultsPerPage": min(request.results_per_page, 100),
-            "DatePosted": 30,
             "WhoMayApply": "Public",
             "Fields": "Full",
         }
+        if request.days is not None:
+            params['DatePosted'] = request.days
         location = request.location.casefold()
         if location and location != "remote":
             params["LocationName"] = request.location
@@ -86,6 +87,8 @@ class UsaJobsProvider(JobSource):
             "Authorization-Key": self.api_key,
         })
         result = payload.get("SearchResult", {}) if isinstance(payload, dict) else {}
+        self.has_more = request.page * min(request.results_per_page, 100) < int(
+            result.get('SearchResultCountAll', 0) or 0)
         items = result.get("SearchResultItems", [])
         if not isinstance(items, list):
             raise ProviderError("USAJOBS returned an unexpected search payload")

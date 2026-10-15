@@ -159,15 +159,32 @@ def write_history(tracker: GoogleTracker, fields: dict) -> tuple[int | None, int
     block = build_block(fields)
     if read_history(tracker) != before:
         raise RuntimeError("Daily Run changed before insertion")
-    tracker.api.batchUpdate(spreadsheetId=tracker.config.spreadsheet_id, body={"requests": [
+    try:
+        tracker.api.batchUpdate(spreadsheetId=tracker.config.spreadsheet_id, body={"requests": [
         {"insertDimension": {"range": {"sheetId": sheet["sheetId"], "dimension": "ROWS",
                                       "startIndex": FIRST_ROW - 1, "endIndex": FIRST_ROW - 1 + len(block)},
                              "inheritFromBefore": False}},
+        {"updateDimensionProperties": {"range": {"sheetId": sheet["sheetId"],
+            "dimension": "ROWS", "startIndex": FIRST_ROW - 1,
+            "endIndex": FIRST_ROW - 1 + len(block)},
+            "properties": {"pixelSize": 21}, "fields": "pixelSize"}},
         {"updateCells": {"start": {"sheetId": sheet["sheetId"],
                                    "rowIndex": FIRST_ROW - 1, "columnIndex": 0},
                          "rows": [{"values": [_cell_data(value) for value in row]} for row in block],
                          "fields": "userEnteredValue"}}
-    ]}).execute()
+        ]}).execute()
+    except Exception:
+        # A lost response can follow a committed insert. Never insert again until
+        # the server state has been reread and the complete block verified.
+        current = read_history(tracker)
+        if not inspect_history(current, str(fields["Run ID"])):
+            raise
+        _verify_existing(current, fields)
+        for offset, line in enumerate(block):
+            for column, value in enumerate(line, 1):
+                actual = _cell(current, FIRST_ROW + offset, column)
+                if ("" if actual is None else actual) != ("" if value is None else value):
+                    raise RuntimeError("Daily Run ambiguous write differs from intended report")
     after = read_history(tracker)
     for offset, expected in enumerate(block):
         for column, value in enumerate(expected, 1):

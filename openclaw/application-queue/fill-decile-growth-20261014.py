@@ -1,0 +1,6 @@
+from current_batch_ui import UI
+from pathlib import Path
+import json
+Q=Path('/mnt/c/gecko_main/openclaw/application-queue');e=json.loads((Q/'721/submission-result.json').read_text());u=UI(e['targetId']);s=u.snap();k=[k for k,v in s['refs'].items() if v['role']=='textbox' and not v.get('name')];assert len(k)==1
+value='At GRIP6, I led digital marketing across Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok with an approximately $400,000 monthly advertising budget. I combined bidding and audience analysis, campaign testing, budget allocation, and conversion review to improve performance across the acquisition funnel. Monthly marketing volume increased from approximately $200,000 to $800,000, while ROAS improved from 1.5 to 3.5.\n\nI also configured GA4 and Google Tag Manager measurement and built Looker Studio dashboards to make campaign performance visible to leadership and other departments. Connecting campaign, website, inventory, and creative decisions helped the team scale volume while improving advertising efficiency.'
+u.call(['fill','--fields',json.dumps([{'ref':k[0],'value':value}])]);r=u.form();(Q/'721/growth-response-filled-20261014.json').write_text(json.dumps(r,indent=2));print(json.dumps({'id':'721','growth_response_filled':True,'invalid':r['result']['invalid']}))
