@@ -12,6 +12,10 @@ from pull_job_tracker import import_snapshot
 
 
 def sync_local():
+    from tracker_backend import sqlite_enabled
+    if sqlite_enabled():
+        from sqlite_daily_report import backup_workspace
+        return backup_workspace()
     tracker = GoogleTracker()
     schema = inventory(tracker)
     tab = next(t for t in schema["tabs"] if t["title"] == "Job List")

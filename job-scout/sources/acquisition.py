@@ -57,7 +57,8 @@ def acquire(provider, requests):
                                'error': str(exc)})
                 # A source-wide auth, payment or rate failure cannot be repaired by another query.
                 if any(code in str(exc) for code in ('HTTP Error 401', 'HTTP Error 402',
-                                                    'HTTP Error 403', 'HTTP Error 429', 'cached billing failure')):
+                                                    'HTTP Error 403', 'HTTP Error 429', 'cached billing failure',
+                                                    'HTTP 401', 'HTTP 402', 'HTTP 403', 'HTTP 429')):
                     break
             latest_errors=getattr(provider,'errors',[])
             if latest_errors and '402' in str(latest_errors[-1]):

@@ -161,3 +161,13 @@ The user's Scratch proposals are synced in docs/scratch-column-ideas.md.
 Resume filenames must use `Dave-Call+<Company-Name>+<Job-Title>+<Resume-ID>.docx`, ending in a unique numeric identifier of at most five digits (Gecko uses five zero-padded digits). Never put a full posting ID, Indeed jk, UUID, hash, or long numeric job number in a resume filename. Keep filenames at most 150 characters, sanitizing Windows-invalid characters and shortening an excessively long title at a word boundary. Reserve identifiers through `job-scout/resume_naming.py`; do not truncate a source ID or guess uniqueness. Full posting IDs remain in the identity registry and DOCX metadata for job matching. Use the same rule for explicitly requested renames, verify tracker links after any rename, and preserve the existing Resume Created = X guard. Archived job descriptions and scratch folders continue to use full posting IDs.
 
 Example: `Dave-Call+Array+Digital-Marketing-Manager+00001.docx`.
+# Tracker authority update — October 16, 2026
+
+The user has requested SQLite authority for the local dashboard. When
+`job-scout/preferences/tracker-backend.json` selects `sqlite`, all ordinary
+tracker, queue, resume-completion, and daily-report work uses
+`job-scout/data/jobs.sqlite3`. Do not sync the preserved Google Sheet over the
+local database. This overrides older Google-Sheets-authoritative statements
+in this file. All resume factual, approval, identity, existing-X, and native
+Word validation safeguards remain in effect. See `docs/sqlite-workspace.md`.
+

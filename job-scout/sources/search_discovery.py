@@ -11,6 +11,7 @@ from urllib.parse import urlencode, urljoin, urlsplit
 from models import RawListing
 from .base import JobSource, ProviderError, SearchRequest
 from .http import get_document, get_json
+from .firecrawl import FirecrawlClient
 from .web import SCRIPT_RE, _job_nodes, _text
 
 
@@ -38,6 +39,9 @@ class SearchDiscoveryProvider(JobSource):
         self.site_domain = match.group(1).casefold().rstrip(".") if match else ""
         self.api_key = api_key or os.getenv("BRAVE_SEARCH_API_KEY", "")
         self.errors: list[dict[str, str]] = []
+        self.exclusions = []
+        self.firecrawl = FirecrawlClient()
+        self._documents = {}
         self.discovery_mode = "search-discovery fallback"
         self.broad_queries = (
             "digital marketing", "paid search", "performance marketing", "marketing analytics",
@@ -71,42 +75,60 @@ class SearchDiscoveryProvider(JobSource):
                 self.errors.append({"url": target, "error": "off-domain discovery result skipped"})
                 continue
             try:
-                document = get_document(target)
+                document = self.document(target)
             except ProviderError as error:
-                self.errors.append({"url": target, "error": str(error)})
+                destination = self.exclusions if re.search(r"HTTP(?: Error)? (404|410)\b", str(error)) else self.errors
+                destination.append({"url": target, "error": str(error)})
                 continue
-            page = document.body.decode("utf-8", errors="replace")
-            yielded = False
-            for block in SCRIPT_RE.findall(page):
-                try:
-                    data = json.loads(html.unescape(block).strip())
-                except json.JSONDecodeError:
-                    continue
-                for item in _job_nodes(data):
-                    organization = item.get("hiringOrganization") or {}
-                    identifier = item.get("identifier") or {}
-                    source_id = _text(identifier) or _text(item.get("url")) or target
-                    location = _location(
-                        item.get("jobLocation") or item.get("applicantLocationRequirements")
-                    )
-                    listing = RawListing(
-                        source=self.name, source_job_id=source_id,
-                        url=urljoin(document.final_url, item.get("url") or document.final_url),
-                        title=_text(item.get("title")), company=_text(organization),
-                        location=location, description=_text(item.get("description")),
-                        employment_type=_text(item.get("employmentType")),
-                        salary=_text(item.get("baseSalary")),
-                        date_posted=_text(item.get("datePosted")),
-                        remote_type="remote" if item.get("jobLocationType") == "TELECOMMUTE" else "",
-                        metadata={**item, "_discovered_via": "brave"},
-                    )
-                    if self.name.casefold() == "indeed":
-                        from .indeed import application_method_from_page
-                        method = application_method_from_page(page)
-                        if method:
-                            listing.metadata["_indeed_application_method"] = method
-                    if listing.title and listing.company and listing.description:
-                        yielded = True
-                        yield listing
-            if not yielded:
-                self.errors.append({"url": target, "error": "no structured public JobPosting data"})
+            yield from self.extract(document, target)
+
+    def document(self, target):
+        if target not in self._documents:
+            try:
+                self._documents[target] = (
+                    self.firecrawl.document(target) if self.firecrawl.configured()
+                    else get_document(target))
+            except ProviderError as exc:
+                self._documents[target] = exc
+        result = self._documents[target]
+        if isinstance(result, ProviderError):
+            raise result
+        return result
+
+    def extract(self, document, target):
+        page = document.body.decode("utf-8", errors="replace")
+        yielded = False
+        for block in SCRIPT_RE.findall(page):
+            try:
+                data = json.loads(html.unescape(block).strip())
+            except json.JSONDecodeError:
+                continue
+            for item in _job_nodes(data):
+                organization = item.get("hiringOrganization") or {}
+                identifier = item.get("identifier") or {}
+                source_id = _text(identifier) or _text(item.get("url")) or target
+                location = _location(
+                    item.get("jobLocation") or item.get("applicantLocationRequirements")
+                )
+                listing = RawListing(
+                    source=self.name, source_job_id=source_id,
+                    url=urljoin(document.final_url, item.get("url") or document.final_url),
+                    title=_text(item.get("title")), company=_text(organization),
+                    location=location, description=_text(item.get("description")),
+                    employment_type=_text(item.get("employmentType")),
+                    salary=_text(item.get("baseSalary")),
+                    date_posted=_text(item.get("datePosted")),
+                    remote_type="remote" if item.get("jobLocationType") == "TELECOMMUTE" else "",
+                    metadata={**item, "_discovered_via": "brave",
+                              "_retrieved_via": "firecrawl" if self.firecrawl.configured() else "direct"},
+                )
+                if self.name.casefold() == "indeed":
+                    from .indeed import application_method_from_page
+                    method = application_method_from_page(page)
+                    if method:
+                        listing.metadata["_indeed_application_method"] = method
+                if listing.title and listing.company and listing.description:
+                    yielded = True
+                    yield listing
+        if not yielded:
+            self.errors.append({"url": target, "error": "no structured public JobPosting data"})

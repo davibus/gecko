@@ -41,6 +41,8 @@ from sources import (
 )
 from sources.base import SearchRequest
 from sources.config import load_source_config
+from sources.remote_careers import RemoteCareersProvider
+from sources.indeed_search import IndeedSearchProvider, seed_verified_links
 from sources.acquisition import acquire as acquire_source
 from sources.http import REQUEST_EVENTS, safe_error
 from hard_filters import deterministic_filter
@@ -53,7 +55,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MASTER_RESUME = PROJECT_ROOT / "input" / "master-resume" / "master-resume-v2.txt"
 DEFAULT_SOURCE = "adzuna"
 CORE_PROVIDERS = (
-    "adzuna", "remotive", "web-careers", "jobicy", "remoteok", "usajobs",
+    "adzuna", "remotive", "web-careers", "remote-careers", "jobicy", "remoteok", "usajobs",
     "greenhouse", "lever", "ashby", "workable", "weworkremotely",
     "workingnomads", "themuse", "indeed", "linkedin", "glassdoor",
     "ziprecruiter",
@@ -90,6 +92,7 @@ def providers(config_path=None):
         "adzuna": AdzunaProvider(),
         "remotive": RemotiveProvider(),
         "web-careers": WebCareerProvider(),
+        "remote-careers": RemoteCareersProvider(),
         "jobicy": JobicyProvider(),
         "remoteok": RemoteOkProvider(),
         "usajobs": UsaJobsProvider(),
@@ -100,7 +103,12 @@ def providers(config_path=None):
         "weworkremotely": WeWorkRemotelyProvider(),
         "workingnomads": WorkingNomadsProvider(),
         "themuse": TheMuseProvider(),
-        "indeed": (indeed_api if indeed_api.configured() else SearchDiscoveryProvider(
+        "indeed": (IndeedSearchProvider(
+            max_pages=settings['indeed'].get('max_pages',5),
+            max_jobs=settings['indeed'].get('max_jobs',150),
+            queries=settings['indeed'].get('queries'),
+            locations=settings['indeed'].get('locations'),
+        ) if settings.get('indeed',{}).get('mode') == 'public-search' else indeed_api if indeed_api.configured() else SearchDiscoveryProvider(
             "indeed", "site:indeed.com/viewjob",
         )),
         "linkedin": SearchDiscoveryProvider("linkedin", "site:linkedin.com/jobs/view"),
@@ -317,6 +325,7 @@ def search(args, store, preferences):
         if limit < 0:
             raise ValueError(f"Source result limit for {name} must be nonnegative")
         selected_listings = listings[:limit] if limit else listings
+        seed_verified_links(link_validator,provider,selected_listings)
         if safe_discovery:
             candidates={}
             for raw in selected_listings:
@@ -405,6 +414,12 @@ def search(args, store, preferences):
                 "found": aggregate["source_counts"][name],
                 "detail": aggregate['source_errors'].get(name, ''),
             }
+            limits=getattr(provider,'limits',[])
+            if limits:
+                aggregate['source_results_limited'] += 1
+                aggregate['source_health'][name]['detail'] += ' Collection limits reached; coverage is partial: '+json.dumps(limits)
+                if name not in aggregate['source_errors']:
+                    aggregate['source_health'][name]['status']='partial coverage'
             pipeline=asdict(summary)
             decisions=pipeline.pop('decisions',[])
             aggregate.setdefault('source_pipeline', {})[name] = pipeline
@@ -412,6 +427,9 @@ def search(args, store, preferences):
                 evidence={'pipeline':pipeline,'record_decisions':decisions,
                     'queries_pages':getattr(provider,'acquisition_events',[]),
                     'board_errors':getattr(provider,'board_errors',[]),
+                    'page_exclusions':getattr(provider,'exclusions',[]),
+                    'collection_limits':limits,
+                    'firecrawl_requests':getattr(getattr(provider,'firecrawl',None),'requests',0),
                     'errors':aggregate['source_errors'].get(name,''),
                     'health':aggregate['source_health'][name]}
                 (audit_dir/f'{name}.json').write_text(json.dumps(evidence,indent=2),encoding='utf-8')

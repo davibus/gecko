@@ -267,6 +267,7 @@ class FeedAndDiscoveryTests(unittest.TestCase):
         self.assertEqual((job.source, job.company, job.title),
                          ("weworkremotely", "Acme", "PPC Manager"))
 
+    @patch.dict(os.environ, {"FIRECRAWL_API_KEY": ""})
     @patch("sources.search_discovery.get_document")
     @patch("sources.search_discovery.get_json")
     def test_search_discovery_preserves_specific_source_label(self, search, fetch):

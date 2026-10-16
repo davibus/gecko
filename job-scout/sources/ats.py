@@ -123,6 +123,8 @@ class LeverProvider(ConfiguredAtsProvider):
         result = []
         for item in payload:
             categories = item.get("categories") or {}
+            if company.get("team") and categories.get("team") != company["team"]:
+                continue
             location = _text(categories.get("location"))
             lists = item.get("lists") or []
             description = " ".join(filter(None, (

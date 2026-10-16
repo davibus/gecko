@@ -54,6 +54,10 @@ class WebCareerProvider(JobSource):
     name = "web-careers"
 
     def __init__(self):
+        from .firecrawl import FirecrawlClient
+        self.firecrawl = FirecrawlClient()
+        self._pages = {}
+        self.exclusions = []
         self.google_key = os.getenv("GOOGLE_CSE_API_KEY", "")
         self.google_cx = os.getenv("GOOGLE_CSE_ID", "")
         self.google_cse_enabled = os.getenv("GOOGLE_CSE_ENABLED", "false").strip().casefold() in {
@@ -147,6 +151,8 @@ class WebCareerProvider(JobSource):
             "google_cse": google_cse,
             "search_queries": list(self.search_queries),
             "errors": list(self.errors),
+            "expired_page_exclusions": list(self.exclusions),
+            "firecrawl_requests": self.firecrawl.requests,
         }
 
     def _safe_error(self, error: ProviderError) -> str:
@@ -251,12 +257,23 @@ class WebCareerProvider(JobSource):
             if not url:
                 continue
             try:
-                page = get_bytes(url).decode("utf-8", errors="replace")
+                if url not in self._pages:
+                    try:
+                        self._pages[url] = get_bytes(url).decode("utf-8", errors="replace")
+                    except ProviderError as exc:
+                        self._pages[url] = exc
+                page = self._pages[url]
+                if isinstance(page, ProviderError):
+                    raise page
+                if not SCRIPT_RE.search(page) and self.firecrawl.configured():
+                    page = self.firecrawl.document(url).body.decode("utf-8", errors="replace")
+                    self._pages[url] = page
                 self.pages_fetched += 1
                 for backend in discovery_backends:
                     self.backend_stats[backend]["pages_fetched"] += 1
             except ProviderError as error:
-                self.errors.append({
+                destination = self.exclusions if re.search(r"HTTP(?: Error)? (404|410)\b", str(error)) else self.errors
+                destination.append({
                     "stage": "page-fetch",
                     "url": url,
                     "backends": sorted(discovery_backends),

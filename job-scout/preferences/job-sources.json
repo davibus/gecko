@@ -384,10 +384,6 @@
           "token": "redwoodsoftware"
         },
         {
-          "name": "Remote",
-          "token": "remotecom"
-        },
-        {
           "name": "Rocket Money",
           "token": "truebill"
         },
@@ -734,7 +730,8 @@
         },
         {
           "name": "Oxylabs",
-          "site": "oxylabs"
+          "site": "source.ai",
+          "team": "Oxylabs"
         },
         {
           "name": "PadSplit",
@@ -923,7 +920,7 @@
         },
         {
           "name": "Checkbox Technology",
-          "board": "Checkbox Technology"
+          "board": "Checkbox-AI"
         },
         {
           "name": "Cogent Security",
@@ -1531,7 +1528,9 @@
     },
     "indeed": {
       "enabled": true,
-      "mode": "search-discovery"
+      "mode": "public-search",
+      "max_pages": 5,
+      "max_jobs": 150
     },
     "linkedin": {
       "enabled": true,
@@ -1547,6 +1546,9 @@
     },
     "jooble": {
       "enabled": false
+    },
+    "remote-careers": {
+      "enabled": true
     }
   }
 }

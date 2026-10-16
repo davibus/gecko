@@ -1,0 +1,17 @@
+const assert=require('node:assert/strict');
+const {annualSalary,matches}=require('../static/filters.js');
+const filters=()=>({opportunity:'',location:'',minimum:'',maximum:'',unknown:true,hiddenStages:[],hideApplied:false,hiddenActions:[]});
+const job={fields:{Company:'Example',Source:'Indeed','Job Title':'Marketing',Salary:'USD 75000 - 110000 per yearly',Location:'Utah'},stage:'Interview',applied:true};
+assert.deepEqual(annualSalary('$75,000 - $110,000'),{min:75000,max:110000});
+assert.deepEqual(annualSalary('$80k–$100k'),{min:80000,max:100000});
+for(const text of ['$50/hour','CAD 120000','€100000','Not stated','$5000 monthly','120000','USD 100000 plus 20% and 5%'])assert.equal(annualSalary(text),null);
+assert.equal(matches(job,filters(),'Follow-up'),true);
+assert.equal(matches(job,{...filters(),hideApplied:true},'Follow-up'),false);
+assert.equal(matches(job,{...filters(),hiddenStages:['Interview']},'Follow-up'),false);
+assert.equal(matches(job,{...filters(),minimum:'100000',maximum:'150000'},'Follow-up'),true);
+assert.equal(matches(job,{...filters(),minimum:'120000'},'Follow-up'),false);
+assert.equal(matches({...job,fields:{Salary:''}},{...filters(),minimum:'120000'},'Follow-up'),true);
+assert.equal(matches({...job,fields:{Salary:''}},{...filters(),unknown:false},'Follow-up'),false);
+assert.equal(matches(job,{...filters(),hiddenActions:['Follow-up']},'Follow-up'),false);
+assert.equal(matches(job,{...filters(),opportunity:'indeed',location:'utah'},'Follow-up'),true);
+console.log('Column filter checks passed.');

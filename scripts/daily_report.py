@@ -646,6 +646,13 @@ def main(argv=None) -> int:
     parser.add_argument("--restore-history-audit", metavar="PATH",
                         help="With --reconcile-audit, restore an earlier verified Daily Tasks date if empty")
     args = parser.parse_args(argv)
+    from tracker_backend import sqlite_enabled
+    if sqlite_enabled():
+        if args.reconcile_audit or args.restore_daily_tasks_audit or args.restore_missing_daily_run:
+            parser.error('Historical Sheets repairs are unavailable after the SQLite cutover')
+        from sqlite_daily_report import report
+        report()
+        return 0
     if args.restore_daily_tasks_audit:
         if args.reconcile_audit or args.refresh_today or args.date or args.run_id or args.restore_missing_daily_run:
             parser.error("--restore-daily-tasks-audit cannot be combined with a new run or history write")

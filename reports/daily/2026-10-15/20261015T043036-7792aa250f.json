@@ -1,0 +1,35 @@
+{
+  "run_id": "20261015T043036-7792aa250f",
+  "run_date": "2026-10-15",
+  "started_at": "2026-10-15T04:30:56.357699-06:00",
+  "mode": "dry-run report",
+  "configuration": {
+    "scout_tab": "Job List",
+    "spreadsheet_id_tail": "zq8t8I"
+  },
+  "metrics": {},
+  "script_health": {
+    "Daily reporting": {
+      "status": "Failed"
+    }
+  },
+  "warnings": [],
+  "errors": [
+    "RuntimeError: authentication or permission failure (details redacted)"
+  ],
+  "validation": {},
+  "sheet_updated": false,
+  "overall_status": "FAIL",
+  "tab_results": {
+    "Daily Tasks": {
+      "state": "write failed",
+      "reason": "RuntimeError: authentication or permission failure (details redacted)"
+    },
+    "Daily Run": {
+      "state": "not verified",
+      "reason": "RuntimeError: authentication or permission failure (details redacted)"
+    }
+  },
+  "completed_at": "2026-10-15T04:30:58.498258-06:00",
+  "execution_seconds": 2.141
+}

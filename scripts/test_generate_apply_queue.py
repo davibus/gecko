@@ -16,14 +16,23 @@ sys.path.insert(0, str(ROOT / "scripts"))
 sys.path.insert(0, str(ROOT / "job-scout"))
 sys.path.insert(0, str(ROOT / "job-scout/tests"))
 import generate_apply_queue as queue
-from google_tracker import Config, GoogleTracker
+from google_tracker import Config, GoogleTracker, _col
 from test_google_tracker import FakeSheets, SCOUT
 from rejected_jobs import rejection_record
+
+
+FULL_DESCRIPTION = ("Responsibilities include planning paid search campaigns, managing marketing budgets, "
+                    "analyzing conversion performance, and coordinating creative teams. "
+                    "Candidates need hands-on campaign management, analytical reporting, and clear communication. "
+                    "The manager partners with sales and product teams to improve qualified pipeline, "
+                    "build lifecycle programs, review attribution, and present results to leadership. ") * 3
 
 
 class QueueTests(unittest.TestCase):
     def setUp(self):
         self.fake = FakeSheets()
+        # Keep a valid URL separate from optional copied listing text.
+        self.fake.data["Job Scout"][0].append("Job Description")
         def scout_row(scout_id, company, apply, created, *, link=""):
             row = [""] * len(SCOUT)
             for field, value in {
@@ -55,9 +64,35 @@ class QueueTests(unittest.TestCase):
         row[SCOUT.index("Work Arrangement")] = arrangement
         row[SCOUT.index("Employment Type")] = employment
         row[SCOUT.index("Salary")] = salary
-        row[SCOUT.index("Job URL")] = listing or url or f"https://example.test/job/{scout_id or len(self.fake.data['Job Scout'])}"
+        row[SCOUT.index("Job URL")] = url or f"https://example.test/job/{scout_id or len(self.fake.data['Job Scout'])}"
+        row.append(listing)
         self.fake.data["Job Scout"].append(row)
         return len(self.fake.data["Job Scout"])
+
+    def test_pasted_description_cannot_replace_a_valid_job_url(self):
+        row = self.add_scout_row(scout_id=1901, url="Lead marketing programs and manage a team.", listing=FULL_DESCRIPTION)
+        snapshot = queue.read_queue(self.tracker, eligible_scout_ids={1901})
+        self.assertEqual(snapshot.pending, [])
+        self.assertIn("invalid Job URL", dict((item.row, reason) for item, reason in snapshot.decisions)[row])
+
+    def test_short_description_stops_before_planning_or_word(self):
+        with TemporaryDirectory() as temp:
+            listing = Path(temp)/"short.md"
+            listing.write_text("# Role\n\n## Job description\n\nLead marketing.", encoding="utf-8")
+            with patch.object(queue.gecko_v2, "create_plan") as plan:
+                with self.assertRaisesRegex(ValueError, "insufficient"):
+                    queue._finish_generation(queue.QueueRow(2,42,"Existing","Role"),listing,())
+                plan.assert_not_called()
+
+    def test_application_recorded_during_generation_blocks_completion_write(self):
+        self.fake.data["Job Scout"][1][SCOUT.index("Applied")] = "X"
+        with TemporaryDirectory() as temp:
+            resume = Path(temp)/"resume.docx"
+            resume.write_bytes(b"candidate")
+            with self.assertRaisesRegex(RuntimeError, "changed"):
+                queue.record_success(queue.QueueRow(2,42,"Existing","Role"),
+                                     queue.Artifacts(resume,Path(temp)/"listing.md"),self.tracker)
+        self.assertEqual(self.fake.writes, [])
 
     def test_explicit_id_scope_excludes_every_unlisted_row(self):
         rows = queue.validate_requested_ids(self.tracker, {44, 45})
@@ -243,7 +278,7 @@ class QueueTests(unittest.TestCase):
             self.assertEqual(expected.read_bytes(), b"old resume")
 
     def test_final_step_updates_managed_cells_and_preserves_apply(self):
-        self.fake.data["Job Scout"][1][SCOUT.index("Applied")] = "TRUE"
+        self.fake.data["Job Scout"][1][SCOUT.index("Applied")] = "FALSE"
         self.fake.data["Job Scout"][1][SCOUT.index("Notes")] = (
             "Recruiter contacted\nResume not created: prior temporary failure"
         )
@@ -258,18 +293,19 @@ class QueueTests(unittest.TestCase):
             with patch.object(queue.manage_job_tracker, "publish_resume",
                               return_value="https://drive.google.test/queue-42"):
                 queue.record_success(item, queue.Artifacts(resume, listing), self.tracker)
-        self.assertEqual([(tab, col) for tab, _, col in self.fake.writes if tab == "Job Scout"],
-                    [("Job Scout", "E"), ("Job Scout", "R"),
-                          ("Job Scout", "G"), ("Job Scout", "J")])
+        written = {col for tab, _, col in self.fake.writes if tab == "Job Scout"}
+        expected_columns = {_col(SCOUT.index(field) + 1)
+                            for field in ("Resume Created", "Resume Link", "Notes", "Last Updated")}
+        self.assertEqual(written, expected_columns)
         scout = next(data for _, data in self.tracker.scout().rows if str(data.get("Scout ID")) == "42")
         self.assertEqual(scout["Resume Created"], "X")
         self.assertEqual(scout["Apply?"], "Yes")
-        self.assertEqual(scout["Gecko Status"], "Resume Created")
+        self.assertNotIn("Gecko Status", scout)
         self.assertEqual(
             scout["Resume Link"],
             "https://drive.google.test/queue-42",
         )
-        self.assertEqual(scout["Applied"], "TRUE")
+        self.assertEqual(scout["Applied"], "FALSE")
         self.assertEqual(scout["Notes"], "Recruiter contacted")
         applications = [data for _, data in self.tracker.application().rows
                         if str(data.get("Job Number")) == "queue-42"]
@@ -324,30 +360,25 @@ class QueueTests(unittest.TestCase):
         )
         self.assertEqual(scout["Resume Created"], "")
 
-    def test_sparse_row_context_has_no_description_length_floor(self):
+    def test_sparse_row_context_archives_identity_without_invoking_tailoring(self):
         with TemporaryDirectory() as temp, patch.object(queue, "ROOT", Path(temp)):
-            item = queue.QueueRow(
-                2, 42, "Existing", "Paid Search Manager", "https://example.test/job",
-                "test", {"Location": "Remote"},
-            )
+            item = queue.QueueRow(2, 42, "Existing", "Paid Search Manager", "https://example.test/job",
+                                  "test", {"Location": "Remote"})
             listing = queue._archive_row_context(item)
-            with patch.object(queue.gecko_v2, "master_identity", return_value={"headline": "Digital Marketing | Growth"}):
-                plan = queue.gecko_v2.create_plan(listing)
-        self.assertEqual(plan["job"]["company"], "Existing")
-        self.assertEqual(plan["job"]["title"], "Paid Search Manager")
+            text = listing.read_text(encoding="utf-8")
+            meta = queue.gecko_v2.listing_metadata(text, listing)
+            self.assertEqual(meta["company"], "Existing")
+            self.assertEqual(meta["title"], "Paid Search Manager")
+            self.assertIn("Location: Remote", text)
 
     def test_indeed_source_filter_uses_source_or_job_url(self):
-        rows = self.fake.data["Job Scout"]
-        source_row = [50, "Indeed", "Source Match", "Role", "New", "Yes", "", "", ""]
-        url_row = [51, "Manual", "URL Match", "Role", "New", "Yes", "", "", ""]
-        completed = [52, "Indeed", "Complete", "Role", "Resume Created", "Yes", "X", "", ""]
-        not_approved = [53, "Indeed", "No Apply", "Role", "New", "No", "", "", ""]
-        unrelated = [54, "Manual", "Other", "Role", "New", "Yes", "", "", ""]
-        for row in (source_row, url_row, completed, not_approved, unrelated):
-            row.extend([""] * (len(SCOUT) - len(row)))
-            rows.append(row)
-        url_row[SCOUT.index("Job URL")] = "https://www.indeed.com/viewjob?jk=url-match-51"
-        unrelated[SCOUT.index("Job URL")] = "https://example.test/viewjob?jk=not-indeed"
+        self.add_scout_row(scout_id=50, source="Indeed", company="Source Match")
+        self.add_scout_row(scout_id=51, source="Manual", company="URL Match",
+                           url="https://www.indeed.com/viewjob?jk=url-match-51")
+        self.add_scout_row(scout_id=52, source="Indeed", company="Complete", created="X")
+        self.add_scout_row(scout_id=53, source="Indeed", company="No Apply", apply="No")
+        self.add_scout_row(scout_id=54, source="Manual", company="Other",
+                           url="https://example.test/viewjob?jk=not-indeed")
 
         run = queue.run_queue(
             self.tracker, Path("unused.sqlite3"), source="indeed", dry_run=True,
@@ -388,7 +419,7 @@ class QueueTests(unittest.TestCase):
             )
             expected = queue.Artifacts(root / "resume.docx", root / "listing.md")
             retrieval = queue.DescriptionRetrievalResult(
-                "succeeded", description="Retrieved Indeed job duties and requirements.",
+                "succeeded", description="Retrieved Indeed job duties and requirements. " + FULL_DESCRIPTION,
                 source_url=item.job_url, attempts=[],
             )
             with patch.object(queue, "ROOT", root), patch.object(
@@ -478,7 +509,7 @@ class QueueTests(unittest.TestCase):
             apply="Yes",
             url="https://www.indeed.com/viewjob?jk=marked-reject",
         )
-        self.fake.data["Job Scout"][row - 1][SCOUT.index("Status")] = "Reject"
+        self.fake.data["Job Scout"][row - 1][SCOUT.index("Apply?")] = "Reject"
 
         snapshot = queue.read_queue(self.tracker, source="indeed")
 
@@ -564,28 +595,23 @@ class QueueTests(unittest.TestCase):
             item = queue.QueueRow(2, None, "Company", "Role", fields={"Location": location})
             self.assertEqual(queue._geographic_qualification(item), "Utah")
 
-    def test_existing_yes_is_eligible_even_outside_utah(self):
-        row = self.add_scout_row(
-            apply="YES ", location="San Diego, CA", arrangement="Onsite",
-            listing="Manage demand generation campaigns.",
-        )
+    def test_existing_yes_still_requires_utah_or_explicit_remote(self):
+        row = self.add_scout_row(apply="YES ", location="San Diego, CA", arrangement="Onsite",
+                                 listing="Manage demand generation campaigns.")
         snapshot = queue.read_queue(self.tracker, source="indeed")
-        self.assertIn(row, [item.row for item in snapshot.pending])
+        self.assertNotIn(row, [item.row for item in snapshot.pending])
+        self.assertIn("Yes lacks Utah", dict((item.row, reason) for item, reason in snapshot.decisions)[row])
 
-    def test_qualifying_utah_row_is_set_to_yes_even_when_previously_no(self):
-        row = self.add_scout_row(
-            apply="No", location="Provo, UT", listing="Manage paid media programs."
-        )
-        snapshot = queue.read_queue(self.tracker, source="indeed")
-        self.assertIn(row, [item.row for item in snapshot.pending])
+    def test_qualifying_utah_row_preserves_explicit_no(self):
+        row = self.add_scout_row(apply="No", location="Provo, UT", listing="Manage paid media programs.")
+        generator = Mock(side_effect=AssertionError("A declined job must not generate"))
         with TemporaryDirectory() as temp:
-            queue.run_queue(
-                self.tracker, Path(temp) / "empty.sqlite3", source="indeed",
-                generator=lambda *_: (_ for _ in ()).throw(RuntimeError("stop after approval")),
-                print_summary=False,
-            )
-        stored = next(data for number, data in self.tracker.scout().rows if number == row)
-        self.assertEqual(stored["Apply?"], "Yes")
+            result = queue.run_queue(self.tracker, Path(temp)/"empty.sqlite3", source="indeed",
+                                     generator=generator, print_summary=False)
+        generator.assert_not_called()
+        stored = dict(self.tracker.scout().rows)[row]
+        self.assertEqual(stored["Apply?"], "No")
+        self.assertEqual(result.successes, [])
 
     def test_unspecified_location_and_arrangement_are_left_unchanged(self):
         row = self.add_scout_row(
@@ -683,7 +709,7 @@ class QueueTests(unittest.TestCase):
             apply="", location="Lehi, UT",
             listing="Lead measurable growth marketing programs.",
         ) for number in range(4)]
-        self.fake.data["Job Scout"][rows[0] - 1][SCOUT.index("Applied")] = "x"
+        self.fake.data["Job Scout"][rows[0] - 1][SCOUT.index("Applied")] = "FALSE"
         generated = []
 
         with TemporaryDirectory() as temp:
@@ -728,7 +754,7 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(generated, assigned)
         self.assertTrue(all(live[row]["Resume Created"] == "X" for row in rows))
         self.assertTrue(all("https://drive.google.test/" in live[row]["Resume Link"] for row in rows))
-        self.assertEqual(live[rows[0]]["Applied"], "x")
+        self.assertEqual(live[rows[0]]["Applied"], "FALSE")
 
     def test_one_manual_generation_failure_does_not_block_later_rows(self):
         rows = [self.add_scout_row(
@@ -930,10 +956,14 @@ class QueueTests(unittest.TestCase):
             root = Path(temp)
             resume_dir = root / "output" / "resumes"
             resume_dir.mkdir(parents=True)
-            listing = root / "Recovery-Company+recovery-904.md"
+            archive = root / "input/job-descriptions"
+            archive.mkdir(parents=True)
+            listing = archive / "Recovery-Company+recovery-904.md"
             listing.write_text(
                 "# Growth Marketing Manager\n\n- **Company:** Recovery Company\n"
-                "- **Job Number:** recovery-904\n- **Scout ID:** 904\n",
+                "- **Job Number:** recovery-904\n- **Scout ID:** 904\n"
+                "- **URL:** https://www.indeed.com/viewjob?jk=recovery-904\n\n"
+                "## Job description\n\n" + FULL_DESCRIPTION,
                 encoding="utf-8",
             )
             plan = {
@@ -943,7 +973,7 @@ class QueueTests(unittest.TestCase):
                 }
             }
             resume = resume_dir / queue.gecko_v2.resume_filename(
-                "Recovery Company", "Growth Marketing Manager", "recovery-904",
+                "Recovery Company", "Growth Marketing Manager", "recovery-904", folder=resume_dir, reserve=True,
             )
             resume.write_bytes(b"existing validated docx")
             with patch.object(queue, "ROOT", root), \
@@ -1055,12 +1085,14 @@ class QueueTests(unittest.TestCase):
             listing.write_text(
                 "# Performance Creative Manager – Bilingual Social Media Advertising\n\n"
                 "- **Company:** Tinoco Enterprises LLC\n"
-                "- **Job Number:** scout-1969\n- **Scout ID:** 1969\n",
+                "- **Job Number:** scout-1969\n- **Scout ID:** 1969\n"
+                "- **URL:** https://example.test/jobs/1969\n\n## Job description\n\n" + FULL_DESCRIPTION,
                 encoding="utf-8",
             )
             item = queue.QueueRow(
                 1140, 1969, "Tinoco Enterprises LLC",
                 "Performance Creative Manager � Bilingual Social Media Advertising",
+                "https://example.test/jobs/1969",
             )
             output = root / "output" / "resumes"
             output.mkdir(parents=True)
@@ -1132,6 +1164,7 @@ class QueueTests(unittest.TestCase):
                 2, 812, "Manual Company", "Growth Marketing Director",
                 "https://www.indeed.com/viewjob?jk=manual-812", "Indeed",
                 {"Location": "Remote", "Work Arrangement": "Remote"},
+                listing_content=FULL_DESCRIPTION,
             )
             expected = queue.Artifacts(root / "resume.docx", root / "listing.md")
             with patch.object(queue, "ROOT", root), patch.object(
@@ -1198,11 +1231,8 @@ class QueueTests(unittest.TestCase):
         self.assertEqual([item.scout_id for item in run.snapshot.not_approved], [44])
 
     def test_jooble_row_is_eligible_when_user_marks_yes(self):
-        row = [47, "Jooble", "Blocked", "Paid Search Manager", "New", "Yes", "", "", ""]
-        while len(row) < len(SCOUT):
-            row.append("")
-        row[SCOUT.index("Job URL")] = "https://www.jooble.org/jobs/123"
-        self.fake.data["Job Scout"].append(row)
+        self.add_scout_row(scout_id=47, source="Jooble", company="Eligible", title="Paid Search Manager",
+                           apply="Yes", location="Remote", url="https://www.jooble.org/jobs/123")
         snapshot = queue.read_queue(self.tracker, {47})
         self.assertEqual([item.scout_id for item in snapshot.pending], [47])
         self.assertEqual(snapshot.jooble_excluded, [])

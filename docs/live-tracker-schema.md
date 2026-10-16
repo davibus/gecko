@@ -1,7 +1,7 @@
 # Current live Gecko tracker
 
 Google Sheets remains authoritative.
-Read at 2026-10-14T11:21:40.193726+00:00; workbook 1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I.
+Read at 2026-10-16T11:16:19.465149+00:00; workbook 1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I.
 
 Resolve headers by name; preserve formulas and manual fields.
 A local pull must preserve Last Updated. Existing Resume Created = X blocks generation.
@@ -33,6 +33,17 @@ Source, Job ID, Original Job URL, Normalized Job URL, Company, Job Title, Date R
 ## Cursor Instructions (ID 2074656464)
 
 ## Canonical project name
+
+## Run Gecko command
+
+When the user says **run Gecko**, start the on-demand Windows task named
+`Gecko` with `scripts/Start-Gecko.ps1` (terminal command: `Gecko`).
+Use `Gecko --status` for progress. Follow `docs/gecko-command.md` for the
+ordered daily report, discovery, local tracker/Cursor sync, tailored approved
+resume workflow, and final refresh. Do not start a second run while it is
+active. No clock-based schedule has been requested.
+
+## Canonical project identity
 
 The canonical project name is **Gecko Main** and its canonical directory is `gecko_main`. The former directory/name `gecko_website` is deprecated. All new scripts, documentation, commands, paths, and configuration must use Gecko Main and `gecko_main`. Do not rename the current project root or any external resource as part of this naming rule.
 

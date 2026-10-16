@@ -1,0 +1,211 @@
+{
+  "mode": "Indeed public search pages via Firecrawl",
+  "queried": [
+    "digital marketing"
+  ],
+  "locations": [
+    "Utah"
+  ],
+  "unique_postings_attempted": 36,
+  "retrieved": 8,
+  "pages": [
+    {
+      "query": "digital marketing",
+      "location": "Utah",
+      "page": 1,
+      "url": "https://www.indeed.com/jobs?q=digital+marketing&l=Utah",
+      "status": "completed",
+      "cards": 36,
+      "new_keys": 36,
+      "retrieved": 8
+    },
+    {
+      "query": "digital marketing",
+      "location": "Utah",
+      "page": 2,
+      "url": "https://www.indeed.com/jobs?q=digital+marketing&l=Utah&radius=25&start=10",
+      "status": "failed",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    }
+  ],
+  "errors": [
+    {
+      "key": "abcdef0123456789",
+      "url": "https://www.indeed.com/viewjob?jk=abcdef0123456789",
+      "error": "Firecrawl page returned HTTP 404"
+    },
+    {
+      "key": "7e54e8e1cf448005",
+      "url": "https://www.indeed.com/viewjob?jk=7e54e8e1cf448005",
+      "error": "Request failed for Firecrawl scrape: HTTP 429"
+    },
+    {
+      "key": "73960d4c5ca8090d",
+      "url": "https://www.indeed.com/viewjob?jk=73960d4c5ca8090d",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "899cc64ab449af0d",
+      "url": "https://www.indeed.com/viewjob?jk=899cc64ab449af0d",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "18f55176acb557a8",
+      "url": "https://www.indeed.com/viewjob?jk=18f55176acb557a8",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "b1e13fda0b6ba9cb",
+      "url": "https://www.indeed.com/viewjob?jk=b1e13fda0b6ba9cb",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "4f69918de2fc6860",
+      "url": "https://www.indeed.com/viewjob?jk=4f69918de2fc6860",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "40484057aa7d85df",
+      "url": "https://www.indeed.com/viewjob?jk=40484057aa7d85df",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "3f1cddf50cb9dda6",
+      "url": "https://www.indeed.com/viewjob?jk=3f1cddf50cb9dda6",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "0fb83c33e1403938",
+      "url": "https://www.indeed.com/viewjob?jk=0fb83c33e1403938",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "ec0109f7f23ba564",
+      "url": "https://www.indeed.com/viewjob?jk=ec0109f7f23ba564",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "8f5136ead34a2de1",
+      "url": "https://www.indeed.com/viewjob?jk=8f5136ead34a2de1",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "d4fb8de3322fe412",
+      "url": "https://www.indeed.com/viewjob?jk=d4fb8de3322fe412",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "d4c56c42c6eba3c7",
+      "url": "https://www.indeed.com/viewjob?jk=d4c56c42c6eba3c7",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "9823dce9627c9919",
+      "url": "https://www.indeed.com/viewjob?jk=9823dce9627c9919",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "1a3a97b83e6b6fbb",
+      "url": "https://www.indeed.com/viewjob?jk=1a3a97b83e6b6fbb",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "dbaa892853e178d7",
+      "url": "https://www.indeed.com/viewjob?jk=dbaa892853e178d7",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "41f0efdb34caeece",
+      "url": "https://www.indeed.com/viewjob?jk=41f0efdb34caeece",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "4757fc5b88cadfc8",
+      "url": "https://www.indeed.com/viewjob?jk=4757fc5b88cadfc8",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "b0a754de5b8f5028",
+      "url": "https://www.indeed.com/viewjob?jk=b0a754de5b8f5028",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "cb1a4ecab1103dec",
+      "url": "https://www.indeed.com/viewjob?jk=cb1a4ecab1103dec",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "ac801238d4de6c99",
+      "url": "https://www.indeed.com/viewjob?jk=ac801238d4de6c99",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "45eacf676fdc9616",
+      "url": "https://www.indeed.com/viewjob?jk=45eacf676fdc9616",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "d9f88b538f5bb7bd",
+      "url": "https://www.indeed.com/viewjob?jk=d9f88b538f5bb7bd",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "2c379085000b4741",
+      "url": "https://www.indeed.com/viewjob?jk=2c379085000b4741",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "f53011a7b5f81b19",
+      "url": "https://www.indeed.com/viewjob?jk=f53011a7b5f81b19",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "f0e9871f633a76b5",
+      "url": "https://www.indeed.com/viewjob?jk=f0e9871f633a76b5",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "key": "569267fed8fc6332",
+      "url": "https://www.indeed.com/viewjob?jk=569267fed8fc6332",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    },
+    {
+      "url": "https://www.indeed.com/jobs?q=digital+marketing&l=Utah&radius=25&start=10",
+      "error": "Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)"
+    }
+  ],
+  "exclusions": [],
+  "limits": [],
+  "coverage": "partial",
+  "import": {
+    "added_ids": [
+      2770,
+      2771,
+      2772,
+      2773
+    ],
+    "existing": [
+      {
+        "key": "146bbed84905ac6d",
+        "id": 692,
+        "reason": "duplicate posting"
+      }
+    ],
+    "excluded": [
+      {
+        "key": "53e030b575778b3c",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "65795803d1c8b4bb",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "175cd35f542059b8",
+        "reason": "outside target role families"
+      }
+    ],
+    "readback_verified": true
+  },
+  "report_directory": "C:\\gecko_main\\reports\\indeed-search\\20261016T054024841091"
+}

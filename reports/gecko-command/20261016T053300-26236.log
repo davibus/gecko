@@ -1,0 +1,34 @@
+
+Gecko: Daily report
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+Daily report 20261016T053301-31d6c15036: WARNING | Daily Tasks row 3 | Daily Run row 3
+Retained dates: 2026-10-16, 2026-10-14, 2026-10-13, 2026-10-11
+Updated rows: 8, 9, 10, 11, 63, 66
+Job Scout rows: 1072; Indeed rows: 4; resume candidates: 279
+Audit: reports/daily/2026-10-16/20261016T053301-31d6c15036.json
+
+Gecko: Daily discovery, tracker sync, and tailored resumes
+Gecko daily 20261016T053330-b511677f9a: FAIL
+Daily Run: not written
+Error: HttpError: daily operation failed; inspect the configured services
+Audit: reports/daily/2026-10-16/20261016T053330-b511677f9a.json
+
+Gecko: Final tracker and Cursor sync
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\sync_gecko_local.py", line 68, in <module>
+    print(json.dumps(sync_local(), indent=2))
+                     ~~~~~~~~~~^^
+  File "C:\gecko_main\scripts\sync_gecko_local.py", line 16, in sync_local
+    schema = inventory(tracker)
+  File "C:\gecko_main\scripts\inspect_tracker_schema.py", line 18, in inventory
+    fields="properties(title)").execute()
+                                ~~~~~~~^^
+  File "C:\gecko_main\.tools\dashboard-python\Lib\site-packages\googleapiclient\_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "C:\gecko_main\.tools\dashboard-python\Lib\site-packages\googleapiclient\http.py", line 1018, in execute
+    raise HttpError(resp, content, uri=self.uri)
+googleapiclient.errors.HttpError: <HttpError 429 when requesting https://sheets.googleapis.com/v4/spreadsheets/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I?fields=properties%28title%29&alt=json returned "Quota exceeded for quota metric 'Read requests' and limit 'Read requests per minute per user' of service 'sheets.googleapis.com' for consumer 'project_number:443572745502'.". Details: "[{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'RATE_LIMIT_EXCEEDED', 'domain': 'googleapis.com', 'metadata': {'quota_limit_value': '60', 'window_start_time': '1792146772', 'quota_limit': 'ReadRequestsPerMinutePerUser', 'quota_metric': 'sheets.googleapis.com/read_requests', 'consumer': 'projects/443572745502', 'quota_unit': '1/min/{project}/{user}', 'quota_location': 'global', 'service': 'sheets.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Request a higher quota limit.', 'url': 'https://cloud.google.com/docs/quotas/help/request_increase'}]}]">
+
+Gecko: Refresh Daily Tasks
+Daily Tasks refresh 20261016T053341-561636fc9e: FAIL | not written | no entry changed
+Audit: reports/daily/2026-10-16/20261016T053341-561636fc9e.json

@@ -32,3 +32,19 @@ starts, and the pipeline also holds a lock. A failed stage stops subsequent
 stages and records its exit code. Logs and status are saved in
 `reports/gecko-command/`. To add stages later, edit the ordered `STEPS` in
 `scripts/run_gecko.py`.
+
+## Run Gecko button — SQLite daily workflow
+
+The dashboard runs scripts/run_gecko.py without a resume-ID limit. The ordered
+steps are daily report, full daily discovery and eligible resume queue, local
+backup, final daily report, then a verified Google Sheets export. SQLite remains
+authoritative. Each export creates a new dated tab in the configured workbook,
+including custom fields and resume links, without overwriting historical tabs.
+The latest automatic export link and verification state appear in Activity.
+
+Apply? = Yes resumes use the canonical generator, current master TXT, approved
+PDF formatting model, and native Word two-page checks. Existing completion
+markers or resume links block regeneration; eligibility, fee, rejection, and
+already-applied guards remain active. A failed daily phase still runs the final
+backup/report/export; any failed phase keeps the overall run marked failed.
+A failed initial report stops the run before discovery or generation.

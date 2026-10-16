@@ -1,0 +1,431 @@
+{
+  "worksheet": "Job List",
+  "sheet_id": 1274044170,
+  "affected_jobs": [
+    {
+      "row": 1078,
+      "job_id": 2774,
+      "source": "indeed",
+      "source_job_id": "40484057aa7d85df",
+      "url": "https://www.indeed.com/viewjob?jk=40484057aa7d85df",
+      "new": true
+    },
+    {
+      "row": 1079,
+      "job_id": 2775,
+      "source": "indeed",
+      "source_job_id": "b1e13fda0b6ba9cb",
+      "url": "https://www.indeed.com/viewjob?jk=b1e13fda0b6ba9cb",
+      "new": true
+    },
+    {
+      "row": 1080,
+      "job_id": 2776,
+      "source": "indeed",
+      "source_job_id": "3f1cddf50cb9dda6",
+      "url": "https://www.indeed.com/viewjob?jk=3f1cddf50cb9dda6",
+      "new": true
+    },
+    {
+      "row": 1081,
+      "job_id": 2777,
+      "source": "indeed",
+      "source_job_id": "f53011a7b5f81b19",
+      "url": "https://www.indeed.com/viewjob?jk=f53011a7b5f81b19",
+      "new": true
+    },
+    {
+      "row": 1082,
+      "job_id": 2778,
+      "source": "indeed",
+      "source_job_id": "f0e9871f633a76b5",
+      "url": "https://www.indeed.com/viewjob?jk=f0e9871f633a76b5",
+      "new": true
+    }
+  ],
+  "before": {
+    "1078": {},
+    "1079": {},
+    "1080": {},
+    "1081": {},
+    "1082": {}
+  },
+  "expected": [
+    {
+      "row": 1078,
+      "field": "Scout ID",
+      "value": 2774
+    },
+    {
+      "row": 1078,
+      "field": "Source",
+      "value": "indeed"
+    },
+    {
+      "row": 1078,
+      "field": "Company",
+      "value": "BambooHR"
+    },
+    {
+      "row": 1078,
+      "field": "Job Title",
+      "value": "Marketing Manager"
+    },
+    {
+      "row": 1078,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1078,
+      "field": "Location",
+      "value": "Draper, UT, US"
+    },
+    {
+      "row": 1078,
+      "field": "Work Arrangement",
+      "value": "on-site"
+    },
+    {
+      "row": 1078,
+      "field": "Employment Type",
+      "value": "['full-time']"
+    },
+    {
+      "row": 1078,
+      "field": "Date Posted",
+      "value": "2026-06-29"
+    },
+    {
+      "row": 1078,
+      "field": "Date Found",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1078,
+      "field": "Last Seen",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1078,
+      "field": "Job URL",
+      "value": "https://www.indeed.com/viewjob?jk=40484057aa7d85df"
+    },
+    {
+      "row": 1078,
+      "field": "Apply or on Company Website (If Indeed)",
+      "value": "Apply with Indeed"
+    },
+    {
+      "row": 1078,
+      "field": "Notes",
+      "value": "Indeed direct search verified 2026-10-16T06:49:10-06:00 | Firecrawl | Full posting retrieved; no application submitted."
+    },
+    {
+      "row": 1079,
+      "field": "Scout ID",
+      "value": 2775
+    },
+    {
+      "row": 1079,
+      "field": "Source",
+      "value": "indeed"
+    },
+    {
+      "row": 1079,
+      "field": "Company",
+      "value": "Vitality Medical"
+    },
+    {
+      "row": 1079,
+      "field": "Job Title",
+      "value": "E-Commerce SEO Manager"
+    },
+    {
+      "row": 1079,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1079,
+      "field": "Location",
+      "value": "Salt Lake City, UT, US"
+    },
+    {
+      "row": 1079,
+      "field": "Work Arrangement",
+      "value": "on-site"
+    },
+    {
+      "row": 1079,
+      "field": "Employment Type",
+      "value": "['full-time']"
+    },
+    {
+      "row": 1079,
+      "field": "Salary",
+      "value": "USD 70000-100000 per YEAR"
+    },
+    {
+      "row": 1079,
+      "field": "Date Posted",
+      "value": "2026-08-11"
+    },
+    {
+      "row": 1079,
+      "field": "Date Found",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1079,
+      "field": "Last Seen",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1079,
+      "field": "Job URL",
+      "value": "https://www.indeed.com/viewjob?jk=b1e13fda0b6ba9cb"
+    },
+    {
+      "row": 1079,
+      "field": "Apply or on Company Website (If Indeed)",
+      "value": "Apply with Indeed"
+    },
+    {
+      "row": 1079,
+      "field": "Notes",
+      "value": "Indeed direct search verified 2026-10-16T06:49:10-06:00 | Firecrawl | Full posting retrieved; no application submitted."
+    },
+    {
+      "row": 1080,
+      "field": "Scout ID",
+      "value": 2776
+    },
+    {
+      "row": 1080,
+      "field": "Source",
+      "value": "indeed"
+    },
+    {
+      "row": 1080,
+      "field": "Company",
+      "value": "Anrok"
+    },
+    {
+      "row": 1080,
+      "field": "Job Title",
+      "value": "Paid Marketing Manager"
+    },
+    {
+      "row": 1080,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1080,
+      "field": "Location",
+      "value": "Salt Lake City, UT, US"
+    },
+    {
+      "row": 1080,
+      "field": "Work Arrangement",
+      "value": "on-site"
+    },
+    {
+      "row": 1080,
+      "field": "Employment Type",
+      "value": "['full-time']"
+    },
+    {
+      "row": 1080,
+      "field": "Salary",
+      "value": "USD 99450-149500 per YEAR"
+    },
+    {
+      "row": 1080,
+      "field": "Date Posted",
+      "value": "2026-08-29"
+    },
+    {
+      "row": 1080,
+      "field": "Date Found",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1080,
+      "field": "Last Seen",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1080,
+      "field": "Job URL",
+      "value": "https://www.indeed.com/viewjob?jk=3f1cddf50cb9dda6"
+    },
+    {
+      "row": 1080,
+      "field": "Notes",
+      "value": "Indeed direct search verified 2026-10-16T06:49:10-06:00 | Firecrawl | Full posting retrieved; no application submitted."
+    },
+    {
+      "row": 1081,
+      "field": "Scout ID",
+      "value": 2777
+    },
+    {
+      "row": 1081,
+      "field": "Source",
+      "value": "indeed"
+    },
+    {
+      "row": 1081,
+      "field": "Company",
+      "value": "Bed Bath & Beyond"
+    },
+    {
+      "row": 1081,
+      "field": "Job Title",
+      "value": "Digital Marketing Specialist"
+    },
+    {
+      "row": 1081,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1081,
+      "field": "Location",
+      "value": "Salt Lake City, UT, US"
+    },
+    {
+      "row": 1081,
+      "field": "Work Arrangement",
+      "value": "on-site"
+    },
+    {
+      "row": 1081,
+      "field": "Employment Type",
+      "value": "['full-time']"
+    },
+    {
+      "row": 1081,
+      "field": "Date Posted",
+      "value": "2026-10-08"
+    },
+    {
+      "row": 1081,
+      "field": "Date Found",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1081,
+      "field": "Last Seen",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1081,
+      "field": "Job URL",
+      "value": "https://www.indeed.com/viewjob?jk=f53011a7b5f81b19"
+    },
+    {
+      "row": 1081,
+      "field": "Notes",
+      "value": "Indeed direct search verified 2026-10-16T06:49:10-06:00 | Firecrawl | Full posting retrieved; no application submitted."
+    },
+    {
+      "row": 1082,
+      "field": "Scout ID",
+      "value": 2778
+    },
+    {
+      "row": 1082,
+      "field": "Source",
+      "value": "indeed"
+    },
+    {
+      "row": 1082,
+      "field": "Company",
+      "value": "Squire & Company PC-"
+    },
+    {
+      "row": 1082,
+      "field": "Job Title",
+      "value": "Director of Digital Marketing Operations"
+    },
+    {
+      "row": 1082,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1082,
+      "field": "Location",
+      "value": "Richfield, UT, US"
+    },
+    {
+      "row": 1082,
+      "field": "Work Arrangement",
+      "value": "remote"
+    },
+    {
+      "row": 1082,
+      "field": "Employment Type",
+      "value": "['full-time']"
+    },
+    {
+      "row": 1082,
+      "field": "Date Posted",
+      "value": "2026-10-09"
+    },
+    {
+      "row": 1082,
+      "field": "Date Found",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1082,
+      "field": "Last Seen",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1082,
+      "field": "Job URL",
+      "value": "https://www.indeed.com/viewjob?jk=f0e9871f633a76b5"
+    },
+    {
+      "row": 1082,
+      "field": "Apply or on Company Website (If Indeed)",
+      "value": "Apply now"
+    },
+    {
+      "row": 1082,
+      "field": "Notes",
+      "value": "Indeed direct search verified 2026-10-16T06:49:10-06:00 | Firecrawl | Full posting retrieved; no application submitted."
+    },
+    {
+      "row": 1078,
+      "field": "Last Updated",
+      "value": "2026-10-16T06:49:11-06:00 | Gecko"
+    },
+    {
+      "row": 1079,
+      "field": "Last Updated",
+      "value": "2026-10-16T06:49:11-06:00 | Gecko"
+    },
+    {
+      "row": 1080,
+      "field": "Last Updated",
+      "value": "2026-10-16T06:49:11-06:00 | Gecko"
+    },
+    {
+      "row": 1081,
+      "field": "Last Updated",
+      "value": "2026-10-16T06:49:11-06:00 | Gecko"
+    },
+    {
+      "row": 1082,
+      "field": "Last Updated",
+      "value": "2026-10-16T06:49:11-06:00 | Gecko"
+    }
+  ],
+  "skipped": []
+}

@@ -1,0 +1,347 @@
+{
+  "worksheet": "Job List",
+  "sheet_id": 1274044170,
+  "affected_jobs": [
+    {
+      "row": 1074,
+      "job_id": 2770,
+      "source": "indeed",
+      "source_job_id": "b2cdb4f8f9e41477",
+      "url": "https://www.indeed.com/viewjob?jk=b2cdb4f8f9e41477",
+      "new": true
+    },
+    {
+      "row": 1075,
+      "job_id": 2771,
+      "source": "indeed",
+      "source_job_id": "73ca983458b5794d",
+      "url": "https://www.indeed.com/viewjob?jk=73ca983458b5794d",
+      "new": true
+    },
+    {
+      "row": 1076,
+      "job_id": 2772,
+      "source": "indeed",
+      "source_job_id": "6fd12fe4fb1998f7",
+      "url": "https://www.indeed.com/viewjob?jk=6fd12fe4fb1998f7",
+      "new": true
+    },
+    {
+      "row": 1077,
+      "job_id": 2773,
+      "source": "indeed",
+      "source_job_id": "4ead51309acecc1f",
+      "url": "https://www.indeed.com/viewjob?jk=4ead51309acecc1f",
+      "new": true
+    }
+  ],
+  "before": {
+    "1074": {},
+    "1075": {},
+    "1076": {},
+    "1077": {}
+  },
+  "expected": [
+    {
+      "row": 1074,
+      "field": "Scout ID",
+      "value": 2770
+    },
+    {
+      "row": 1074,
+      "field": "Source",
+      "value": "indeed"
+    },
+    {
+      "row": 1074,
+      "field": "Company",
+      "value": "Studio McGee"
+    },
+    {
+      "row": 1074,
+      "field": "Job Title",
+      "value": "Influencer Marketing Manager"
+    },
+    {
+      "row": 1074,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1074,
+      "field": "Location",
+      "value": "Draper, UT, US"
+    },
+    {
+      "row": 1074,
+      "field": "Work Arrangement",
+      "value": "on-site"
+    },
+    {
+      "row": 1074,
+      "field": "Employment Type",
+      "value": "['full-time']"
+    },
+    {
+      "row": 1074,
+      "field": "Date Posted",
+      "value": "2026-09-30"
+    },
+    {
+      "row": 1074,
+      "field": "Date Found",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1074,
+      "field": "Last Seen",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1074,
+      "field": "Job URL",
+      "value": "https://www.indeed.com/viewjob?jk=b2cdb4f8f9e41477"
+    },
+    {
+      "row": 1074,
+      "field": "Apply or on Company Website (If Indeed)",
+      "value": "Apply now"
+    },
+    {
+      "row": 1074,
+      "field": "Notes",
+      "value": "Indeed direct search verified 2026-10-16T06:41:26-06:00 | Firecrawl | Full posting retrieved; no application submitted."
+    },
+    {
+      "row": 1075,
+      "field": "Scout ID",
+      "value": 2771
+    },
+    {
+      "row": 1075,
+      "field": "Source",
+      "value": "indeed"
+    },
+    {
+      "row": 1075,
+      "field": "Company",
+      "value": "Egnyte"
+    },
+    {
+      "row": 1075,
+      "field": "Job Title",
+      "value": "Web Marketing Manager"
+    },
+    {
+      "row": 1075,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1075,
+      "field": "Location",
+      "value": "Draper, UT, US"
+    },
+    {
+      "row": 1075,
+      "field": "Work Arrangement",
+      "value": "on-site"
+    },
+    {
+      "row": 1075,
+      "field": "Employment Type",
+      "value": "['full-time']"
+    },
+    {
+      "row": 1075,
+      "field": "Salary",
+      "value": "USD 120000-140000 per YEAR"
+    },
+    {
+      "row": 1075,
+      "field": "Date Posted",
+      "value": "2026-10-10"
+    },
+    {
+      "row": 1075,
+      "field": "Date Found",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1075,
+      "field": "Last Seen",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1075,
+      "field": "Job URL",
+      "value": "https://www.indeed.com/viewjob?jk=73ca983458b5794d"
+    },
+    {
+      "row": 1075,
+      "field": "Notes",
+      "value": "Indeed direct search verified 2026-10-16T06:41:26-06:00 | Firecrawl | Full posting retrieved; no application submitted."
+    },
+    {
+      "row": 1076,
+      "field": "Scout ID",
+      "value": 2772
+    },
+    {
+      "row": 1076,
+      "field": "Source",
+      "value": "indeed"
+    },
+    {
+      "row": 1076,
+      "field": "Company",
+      "value": "Indigo Innovations, Inc"
+    },
+    {
+      "row": 1076,
+      "field": "Job Title",
+      "value": "Marketing Manager"
+    },
+    {
+      "row": 1076,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1076,
+      "field": "Location",
+      "value": "Provo, UT, US"
+    },
+    {
+      "row": 1076,
+      "field": "Work Arrangement",
+      "value": "on-site"
+    },
+    {
+      "row": 1076,
+      "field": "Employment Type",
+      "value": "['full-time']"
+    },
+    {
+      "row": 1076,
+      "field": "Salary",
+      "value": "USD 28-34 per HOUR"
+    },
+    {
+      "row": 1076,
+      "field": "Date Posted",
+      "value": "2026-09-29"
+    },
+    {
+      "row": 1076,
+      "field": "Date Found",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1076,
+      "field": "Last Seen",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1076,
+      "field": "Job URL",
+      "value": "https://www.indeed.com/viewjob?jk=6fd12fe4fb1998f7"
+    },
+    {
+      "row": 1076,
+      "field": "Notes",
+      "value": "Indeed direct search verified 2026-10-16T06:41:26-06:00 | Firecrawl | Full posting retrieved; no application submitted."
+    },
+    {
+      "row": 1077,
+      "field": "Scout ID",
+      "value": 2773
+    },
+    {
+      "row": 1077,
+      "field": "Source",
+      "value": "indeed"
+    },
+    {
+      "row": 1077,
+      "field": "Company",
+      "value": "Studio McGee"
+    },
+    {
+      "row": 1077,
+      "field": "Job Title",
+      "value": "Digital Performance Marketing Manager"
+    },
+    {
+      "row": 1077,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1077,
+      "field": "Location",
+      "value": "Draper, UT, US"
+    },
+    {
+      "row": 1077,
+      "field": "Work Arrangement",
+      "value": "on-site"
+    },
+    {
+      "row": 1077,
+      "field": "Employment Type",
+      "value": "['full-time']"
+    },
+    {
+      "row": 1077,
+      "field": "Date Posted",
+      "value": "2026-09-23"
+    },
+    {
+      "row": 1077,
+      "field": "Date Found",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1077,
+      "field": "Last Seen",
+      "value": "2026-10-16"
+    },
+    {
+      "row": 1077,
+      "field": "Job URL",
+      "value": "https://www.indeed.com/viewjob?jk=4ead51309acecc1f"
+    },
+    {
+      "row": 1077,
+      "field": "Apply or on Company Website (If Indeed)",
+      "value": "Apply now"
+    },
+    {
+      "row": 1077,
+      "field": "Notes",
+      "value": "Indeed direct search verified 2026-10-16T06:41:26-06:00 | Firecrawl | Full posting retrieved; no application submitted."
+    },
+    {
+      "row": 1074,
+      "field": "Last Updated",
+      "value": "2026-10-16T06:41:26-06:00 | Gecko"
+    },
+    {
+      "row": 1075,
+      "field": "Last Updated",
+      "value": "2026-10-16T06:41:26-06:00 | Gecko"
+    },
+    {
+      "row": 1076,
+      "field": "Last Updated",
+      "value": "2026-10-16T06:41:26-06:00 | Gecko"
+    },
+    {
+      "row": 1077,
+      "field": "Last Updated",
+      "value": "2026-10-16T06:41:26-06:00 | Gecko"
+    }
+  ],
+  "skipped": []
+}

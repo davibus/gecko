@@ -1,0 +1,188 @@
+{
+  "mode": "Indeed public search pages via Firecrawl",
+  "queried": [
+    "digital marketing"
+  ],
+  "locations": [
+    "Utah"
+  ],
+  "unique_postings_attempted": 37,
+  "retrieved": 33,
+  "pages": [
+    {
+      "query": "digital marketing",
+      "location": "Utah",
+      "page": 1,
+      "url": "https://www.indeed.com/jobs?q=digital+marketing&l=Utah",
+      "status": "completed",
+      "cards": 37,
+      "new_keys": 37,
+      "retrieved": 33
+    },
+    {
+      "query": "digital marketing",
+      "location": "Utah",
+      "page": 2,
+      "url": "https://www.indeed.com/jobs?q=digital+marketing&l=Utah&radius=25&start=10",
+      "status": "failed",
+      "error": "Firecrawl page returned HTTP 403"
+    }
+  ],
+  "errors": [
+    {
+      "key": "73ca983458b5794d",
+      "url": "https://www.indeed.com/viewjob?jk=73ca983458b5794d",
+      "error": "Firecrawl page returned HTTP 400"
+    },
+    {
+      "key": "789abcdef0123456",
+      "url": "https://www.indeed.com/viewjob?jk=789abcdef0123456",
+      "error": "Firecrawl page returned HTTP 404"
+    },
+    {
+      "key": "dbaa892853e178d7",
+      "url": "https://www.indeed.com/viewjob?jk=dbaa892853e178d7",
+      "error": "Firecrawl page returned HTTP 403"
+    },
+    {
+      "key": "569267fed8fc6332",
+      "url": "https://www.indeed.com/viewjob?jk=569267fed8fc6332",
+      "error": "Firecrawl page returned HTTP 403"
+    },
+    {
+      "url": "https://www.indeed.com/jobs?q=digital+marketing&l=Utah&radius=25&start=10",
+      "error": "Firecrawl page returned HTTP 403"
+    }
+  ],
+  "exclusions": [],
+  "limits": [],
+  "coverage": "partial",
+  "import": {
+    "added_ids": [
+      2774,
+      2775,
+      2776,
+      2777,
+      2778
+    ],
+    "existing": [
+      {
+        "key": "146bbed84905ac6d",
+        "id": 692,
+        "reason": "duplicate posting"
+      },
+      {
+        "key": "b2cdb4f8f9e41477",
+        "reason": "already in tracker"
+      },
+      {
+        "key": "6fd12fe4fb1998f7",
+        "reason": "already in tracker"
+      },
+      {
+        "key": "4ead51309acecc1f",
+        "reason": "already in tracker"
+      }
+    ],
+    "excluded": [
+      {
+        "key": "65795803d1c8b4bb",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "175cd35f542059b8",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "7e54e8e1cf448005",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "c007810960d2cf87",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "73960d4c5ca8090d",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "899cc64ab449af0d",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "18f55176acb557a8",
+        "reason": "non-remote role outside preferred locations"
+      },
+      {
+        "key": "b5bf45933027bae3",
+        "reason": "non-remote role outside preferred locations"
+      },
+      {
+        "key": "4f69918de2fc6860",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "1a3a97b83e6b6fbb",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "0fb83c33e1403938",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "ec0109f7f23ba564",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "8f5136ead34a2de1",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "d4fb8de3322fe412",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "d4c56c42c6eba3c7",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "4757fc5b88cadfc8",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "b0a754de5b8f5028",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "cb1a4ecab1103dec",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "ac801238d4de6c99",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "45eacf676fdc9616",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "d9f88b538f5bb7bd",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "2c379085000b4741",
+        "reason": "outside target role families"
+      },
+      {
+        "key": "495f8102b007999b",
+        "reason": "unrelated role family"
+      },
+      {
+        "key": "74f8906087d15861",
+        "reason": "outside target role families"
+      }
+    ],
+    "readback_verified": true
+  },
+  "report_directory": "C:\\gecko_main\\reports\\indeed-search\\20261016T054240838283"
+}

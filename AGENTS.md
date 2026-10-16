@@ -1,3 +1,26 @@
+## SQLite tracker authority — October 16, 2026
+
+The user explicitly requested the local dashboard use SQLite as its primary
+tracker. `job-scout/preferences/tracker-backend.json` selects the active backend.
+After the verified cutover, `job-scout/data/jobs.sqlite3` owns job tracking,
+approvals, notes, application state, resume completion, rejection history, and
+run reports. `workspace_jobs` exposes current tracker records; `jobs` and its
+related tables retain discovery details. Both are in the same database.
+
+This supersedes the Google-Sheets-authoritative instructions below for normal
+dashboard, daily, and resume work. Those sections describe the preserved legacy
+workflow. Do not pull or sync Sheets over SQLite, revert the backend, or change
+the preserved Google Sheet unless explicitly requested. Keep stable IDs,
+existing-X protection, exact native Word QA, truthful master-supported content,
+transactional edits, and verified completion. Imported formulas are retained as
+protected historical definitions with their evaluated values; SQLite does not
+recalculate spreadsheet formulas. Local run summaries and backups replace daily
+Sheet report writes. See `docs/sqlite-workspace.md`.
+
+Dashboard custom columns and row edits are authorized. Google Sheets is an
+export-only destination: create a new timestamped export tab, preserve existing
+tabs, and verify values by readback. Never import Sheet edits into SQLite.
+
 ## Canonical project name
 
 ## Run Gecko command

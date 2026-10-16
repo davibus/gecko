@@ -1,0 +1,13 @@
+
+Gecko: Daily report
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+Daily report 20261016T053447-165b8fd13a: WARNING | Daily Tasks row 3 | Daily Run row 3
+Retained dates: 2026-10-16, 2026-10-14, 2026-10-13, 2026-10-11
+Updated rows: 8, 9, 10, 63, 66
+Job Scout rows: 1072; Indeed rows: 4; resume candidates: 279
+Audit: reports/daily/2026-10-16/20261016T053447-165b8fd13a.json
+
+Gecko: Daily discovery, tracker sync, and tailored resumes
+Google Sheets read quota reached; waiting 60 seconds before retry.
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+Google Sheets read quota reached; waiting 60 seconds before retry.

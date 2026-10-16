@@ -1,0 +1,160 @@
+
+Gecko: Validate selected jobs and resume authorities
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+{"selected_ids": [2555, 2556, 2557, 2558, 2559, 2560, 2561, 2562, 2563, 2564, 2565, 2566, 2567, 2568], "pending_ids": [2555, 2556, 2557, 2558, 2559, 2560, 2561, 2562, 2563, 2564, 2565, 2566, 2567, 2568], "discovery": "not run in selected-job mode; no other jobs are added or processed", "automatic_approval": false}
+
+Gecko: Daily report
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+{
+  "backend": "sqlite",
+  "date": "2026-10-16",
+  "updated_at": "2026-10-16T13:52:14.862570+00:00",
+  "jobs": 1051,
+  "pending_resumes": 288,
+  "completed_resumes": 433,
+  "applied": 60,
+  "sources": {
+    "adzuna": 68,
+    "jobicy": 39,
+    "greenhouse": 289,
+    "lever": 208,
+    "workable": 148,
+    "weworkremotely": 26,
+    "remotive": 12,
+    "web-careers": 41,
+    "remoteok": 1,
+    "ashby": 203,
+    "linkedin": 3,
+    "Indeed": 4,
+    "indeed": 9
+  }
+}
+
+Gecko: Selected postings and tailored resumes
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+{"selected_ids": [2555, 2556, 2557, 2558, 2559, 2560, 2561, 2562, 2563, 2564, 2565, 2566, 2567, 2568], "pending_ids": [2555, 2556, 2557, 2558, 2559, 2560, 2561, 2562, 2563, 2564, 2565, 2566, 2567, 2568], "discovery": "not run in selected-job mode; no other jobs are added or processed", "automatic_approval": false}
+Found 14 jobs requiring resumes.
+Tracker rows checked: 14
+Skipped with completion marker or existing Resume Link: 0
+Row | Scout ID | Company | Job title
+859 | 2555 | Pearmill | Senior Paid Search Manager
+860 | 2556 | Boldin | Performance Marketing Lead
+861 | 2557 | Defense Unicorns | Senior Technical Product Marketing Manager, Edge (SMM194)
+862 | 2558 | Defense Unicorns | Senior Technical Product Marketing Manager, Edge (SMM193)
+863 | 2559 | Precision Medicine Group | Director, Integrated Marketing
+864 | 2560 | Wing Assistant | Social Media Manager (Talent Marketing)
+865 | 2561 | Veeva Systems | Senior Manager - Account Based Marketing - QualityOne
+866 | 2562 | Veeva Systems | Senior Manager - Account Based Marketing - QualityOne
+867 | 2563 | Veeva Systems | Senior Implementation Consultant - Marketing & Medical Software (Remote)
+868 | 2564 | Veeva Systems | Senior Implementation Consultant - Marketing & Medical Software (Remote)
+869 | 2565 | Veeva Systems | Senior Implementation Consultant - Marketing & Medical Software (Remote)
+870 | 2566 | Veeva Systems | Senior Field Marketing Manager - Quality Cloud
+871 | 2567 | Veeva Systems | Senior Consultant - Marketing Software
+872 | 2568 | Veeva Systems | Senior Consultant - Marketing Software
+Processing eligible jobs now.
+[1/14] Creating Gecko resume: Pearmill  Senior Paid Search Manager
+Resume created: C:\gecko_main\output\resumes\Dave-Call+Pearmill+Senior-Paid-Search-Manager+00020.docx
+Updated Gecko Job Tracker row 859: Resume Created = X
+[2/14] Creating Gecko resume: Boldin  Performance Marketing Lead
+Resume created: C:\gecko_main\output\resumes\Dave-Call+Boldin+Performance-Marketing-Lead+00021.docx
+Updated Gecko Job Tracker row 860: Resume Created = X
+[3/14] Creating Gecko resume: Defense Unicorns  Senior Technical Product Marketing Manager, Edge (SMM194)
+Resume created: C:\gecko_main\output\resumes\Dave-Call+Defense-Unicorns+Senior-Technical-Product-Marketing-Manager,-Edge-(SMM194)+00022.docx
+Updated Gecko Job Tracker row 861: Resume Created = X
+[4/14] Creating Gecko resume: Defense Unicorns  Senior Technical Product Marketing Manager, Edge (SMM193)
+Resume created: C:\gecko_main\output\resumes\Dave-Call+Defense-Unicorns+Senior-Technical-Product-Marketing-Manager,-Edge-(SMM193)+00023.docx
+Updated Gecko Job Tracker row 862: Resume Created = X
+[5/14] Creating Gecko resume: Precision Medicine Group  Director, Integrated Marketing
+Resume created: C:\gecko_main\output\resumes\Dave-Call+Precision-Medicine-Group+Director,-Integrated-Marketing+00024.docx
+Updated Gecko Job Tracker row 863: Resume Created = X
+[6/14] Creating Gecko resume: Wing Assistant  Social Media Manager (Talent Marketing)
+Resume created: C:\gecko_main\output\resumes\Dave-Call+Wing-Assistant+Social-Media-Manager-(Talent-Marketing)+00025.docx
+Updated Gecko Job Tracker row 864: Resume Created = X
+[7/14] Creating Gecko resume: Veeva Systems  Senior Manager - Account Based Marketing - QualityOne
+Resume created: C:\gecko_main\output\resumes\Dave-Call+Veeva-Systems+Senior-Manager-Account-Based-Marketing-QualityOne+00026.docx
+Updated Gecko Job Tracker row 865: Resume Created = X
+[8/14] Creating Gecko resume: Veeva Systems  Senior Manager - Account Based Marketing - QualityOne
+Resume created: C:\gecko_main\output\resumes\Dave-Call+Veeva-Systems+Senior-Manager-Account-Based-Marketing-QualityOne+00027.docx
+Updated Gecko Job Tracker row 866: Resume Created = X
+[9/14] Creating Gecko resume: Veeva Systems  Senior Implementation Consultant - Marketing & Medical Software (Remote)
+Resume created: C:\gecko_main\output\resumes\Dave-Call+Veeva-Systems+Senior-Implementation-Consultant-Marketing-&-Medical-Software-(Remote)+00028.docx
+Updated Gecko Job Tracker row 867: Resume Created = X
+[10/14] Creating Gecko resume: Veeva Systems  Senior Implementation Consultant - Marketing & Medical Software (Remote)
+Resume created: C:\gecko_main\output\resumes\Dave-Call+Veeva-Systems+Senior-Implementation-Consultant-Marketing-&-Medical-Software-(Remote)+00029.docx
+Updated Gecko Job Tracker row 868: Resume Created = X
+[11/14] Creating Gecko resume: Veeva Systems  Senior Implementation Consultant - Marketing & Medical Software (Remote)
+Resume created: C:\gecko_main\output\resumes\Dave-Call+Veeva-Systems+Senior-Implementation-Consultant-Marketing-&-Medical-Software-(Remote)+00030.docx
+Updated Gecko Job Tracker row 869: Resume Created = X
+[12/14] Creating Gecko resume: Veeva Systems  Senior Field Marketing Manager - Quality Cloud
+Resume created: C:\gecko_main\output\resumes\Dave-Call+Veeva-Systems+Senior-Field-Marketing-Manager-Quality-Cloud+00031.docx
+Updated Gecko Job Tracker row 870: Resume Created = X
+[13/14] Creating Gecko resume: Veeva Systems  Senior Consultant - Marketing Software
+Resume created: C:\gecko_main\output\resumes\Dave-Call+Veeva-Systems+Senior-Consultant-Marketing-Software+00032.docx
+Updated Gecko Job Tracker row 871: Resume Created = X
+[14/14] Creating Gecko resume: Veeva Systems  Senior Consultant - Marketing Software
+Resume created: C:\gecko_main\output\resumes\Dave-Call+Veeva-Systems+Senior-Consultant-Marketing-Software+00033.docx
+Updated Gecko Job Tracker row 872: Resume Created = X
+
+Gecko Resume Queue Complete
+Tracker rows checked: 14
+Eligible jobs: 14
+New resumes eligible: 14
+Completed rows requiring regeneration: 0
+Completed rows skipped: 0
+Cost-excluded rows: 0
+Permanently rejected rows skipped: 0
+Skipped: 0
+Resumes created: 14
+Existing valid resumes discovered and marked: 0
+Processed: 14
+Apply? values auto-set: 0
+Scout IDs assigned: 0
+Resume Links written: 14
+Rows marked Resume Created: 14
+Failed: 0
+Google Sheet rows updated: 14
+Rows marked X: 859, 860, 861, 862, 863, 864, 865, 866, 867, 868, 869, 870, 871, 872
+Remaining eligible rows: 0; unexpected: 0
+
+Gecko: Employer responses for selected jobs
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+{"selected_ids": [2555, 2556, 2557, 2558, 2559, 2560, 2561, 2562, 2563, 2564, 2565, 2566, 2567, 2568], "pending_ids": [], "discovery": "not run in selected-job mode; no other jobs are added or processed", "automatic_approval": false}
+No selected jobs are marked Applied; employer response check is not applicable.
+
+Gecko: Back up the updated tracker
+{
+  "backend": "sqlite",
+  "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261016T065647143279.sqlite3",
+  "integrity": "ok",
+  "google_sheets_accessed": false
+}
+
+Gecko: Refresh daily results
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+{
+  "backend": "sqlite",
+  "date": "2026-10-16",
+  "updated_at": "2026-10-16T13:56:49.520295+00:00",
+  "jobs": 1051,
+  "pending_resumes": 274,
+  "completed_resumes": 447,
+  "applied": 60,
+  "sources": {
+    "adzuna": 68,
+    "jobicy": 39,
+    "greenhouse": 289,
+    "lever": 208,
+    "workable": 148,
+    "weworkremotely": 26,
+    "remotive": 12,
+    "web-careers": 41,
+    "remoteok": 1,
+    "ashby": 203,
+    "linkedin": 3,
+    "Indeed": 4,
+    "indeed": 9
+  }
+}
+
+Gecko: Export updated tracker to Google Sheets
+{"started_at": "2026-10-16T13:56:50.605468+00:00", "status": "verified", "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit#gid=1635953844", "title": "Gecko export 2026-10-16 135652 7a16bb", "rows": 1081, "finished_at": "2026-10-16T13:57:10.042577+00:00"}

@@ -1,0 +1,60 @@
+{
+  "mode": "Indeed public search pages via Firecrawl",
+  "queried": [
+    "digital marketing"
+  ],
+  "locations": [
+    "Utah"
+  ],
+  "unique_postings_attempted": 37,
+  "retrieved": 33,
+  "pages": [
+    {
+      "query": "digital marketing",
+      "location": "Utah",
+      "page": 1,
+      "url": "https://www.indeed.com/jobs?q=digital+marketing&l=Utah",
+      "status": "completed",
+      "cards": 37,
+      "new_keys": 37,
+      "retrieved": 33
+    },
+    {
+      "query": "digital marketing",
+      "location": "Utah",
+      "page": 2,
+      "url": "https://www.indeed.com/jobs?q=digital+marketing&l=Utah&radius=25&start=10",
+      "status": "failed",
+      "error": "Firecrawl page returned HTTP 403"
+    }
+  ],
+  "errors": [
+    {
+      "key": "73ca983458b5794d",
+      "url": "https://www.indeed.com/viewjob?jk=73ca983458b5794d",
+      "error": "Firecrawl page returned HTTP 400"
+    },
+    {
+      "key": "789abcdef0123456",
+      "url": "https://www.indeed.com/viewjob?jk=789abcdef0123456",
+      "error": "Firecrawl page returned HTTP 404"
+    },
+    {
+      "key": "dbaa892853e178d7",
+      "url": "https://www.indeed.com/viewjob?jk=dbaa892853e178d7",
+      "error": "Firecrawl page returned HTTP 403"
+    },
+    {
+      "key": "569267fed8fc6332",
+      "url": "https://www.indeed.com/viewjob?jk=569267fed8fc6332",
+      "error": "Firecrawl page returned HTTP 403"
+    },
+    {
+      "url": "https://www.indeed.com/jobs?q=digital+marketing&l=Utah&radius=25&start=10",
+      "error": "Firecrawl page returned HTTP 403"
+    }
+  ],
+  "exclusions": [],
+  "limits": [],
+  "coverage": "partial"
+}

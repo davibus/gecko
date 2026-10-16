@@ -13,6 +13,17 @@ from daily_run_history import build_block
 
 
 class GeckoDailyTests(unittest.TestCase):
+    def test_live_output_is_retained_for_audit(self):
+        import sys
+        from contextlib import redirect_stdout
+        from io import StringIO
+        observed = StringIO()
+        with redirect_stdout(observed):
+            result = gecko_daily.run_streamed([sys.executable, "-c", "print('workflow progress')"], timeout=10)
+        self.assertEqual(result.returncode, 0)
+        self.assertIn("workflow progress", result.stdout)
+        self.assertEqual(result.stdout, observed.getvalue())
+
     def test_missing_approval_header_has_clear_redacted_error(self):
         error = RuntimeError(
             "Google worksheet 'Job List' has missing header for 'Apply?'; "

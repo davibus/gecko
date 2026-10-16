@@ -50,3 +50,6 @@ job-scout/data/gmail-response-state.json
 
 # Editable personal applicant answers remain local.
 /openclaw/application-answers.md
+
+# Oversized local discovery report; retain on disk only.
+/reports/discovery-audit/20261013/retry/greenhouse.json

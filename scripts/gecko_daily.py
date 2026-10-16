@@ -14,6 +14,8 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import tempfile
+import time
 from uuid import uuid4
 from zoneinfo import ZoneInfo
 
@@ -88,6 +90,15 @@ def safe_error(exc: Exception) -> str:
 def validate_live_targets(tracker: GoogleTracker, run_id: str, run_date: str,
                           resume_ids: set[int] | None = None) -> dict:
     """Read the current workbook, destination, and canonical queue before writes."""
+    if getattr(tracker, 'backend', '') == 'sqlite':
+        from generate_apply_queue import read_queue, validate_requested_ids
+        if resume_ids is not None:
+            validate_requested_ids(tracker,resume_ids)
+        queue = read_queue(tracker,eligible_scout_ids=resume_ids,auto_approve_geographic=True)
+        for name in ('master-resume-v2.txt','MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf'):
+            if not (ROOT/'input/master-resume'/name).is_file():
+                raise RuntimeError('Authoritative resume input is missing')
+        return {'backend':'sqlite','queue_preflight':{'eligible':len(queue.pending),'already_created':len(queue.already_created)}}
     result = inventory(tracker)
     if result["validation"]["daily_run_present"] is not True:
         raise RuntimeError("Daily Run tab is missing; no live workflow was started")
@@ -159,9 +170,40 @@ def history_fields(run_id: str, run_date: str, counts: dict, sources: dict,
     }
 
 
+def run_streamed(command, *, timeout, **kwargs):
+    """Keep the live run log current while retaining output for the audit parser."""
+    for key in ("capture_output", "text", "errors", "check"):
+        kwargs.pop(key, None)
+    chunks = []
+    with tempfile.TemporaryDirectory() as directory, \
+            open(Path(directory) / "stream.log", "wb") as output, \
+            open(Path(directory) / "stream.log", "rb") as reader:
+        with subprocess.Popen(command, stdout=output, stderr=subprocess.STDOUT, **kwargs) as child:
+            started = time.monotonic()
+            position = 0
+            while True:
+                try:
+                    child.wait(timeout=1)
+                except subprocess.TimeoutExpired:
+                    if time.monotonic() - started >= timeout:
+                        child.kill()
+                        child.wait()
+                        raise subprocess.TimeoutExpired(command, timeout)
+                reader.seek(position)
+                chunk = reader.read()
+                position += len(chunk)
+                if chunk:
+                    chunks.append(chunk)
+                    print(chunk.decode("utf-8", errors="backslashreplace"), end="", flush=True)
+                if child.poll() is not None:
+                    break
+    return subprocess.CompletedProcess(command, child.returncode,
+        b"".join(chunks).decode("utf-8", errors="backslashreplace"), "")
+
+
 def run(*, apply: bool, resume_ids: set[int] | None = None,
         sync_local: bool = False,
-        runner=subprocess.run, tracker_factory=GoogleTracker,
+        runner=run_streamed, tracker_factory=GoogleTracker,
         audit_root: Path | None = None) -> tuple[int, dict]:
     started = datetime.now(ZONE)
     run_date = started.date().isoformat()
@@ -240,7 +282,11 @@ def run(*, apply: bool, resume_ids: set[int] | None = None,
                                     error="; ".join(report["errors"]),
                                     attention_counts=attention_counts)
             report["attention_counts"] = attention_counts
-            row, height = write_history(tracker, fields)
+            if getattr(tracker,'backend','') == 'sqlite':
+                from sqlite_daily_report import save_run
+                row, height = save_run(tracker,run_id,fields)
+            else:
+                row, height = write_history(tracker, fields)
             report["daily_run_written"] = height > 0
             report["daily_run_row"] = row
             report["attention"] = fields["Attention Items"].split("; ") if fields["Attention Items"] != "None" else []

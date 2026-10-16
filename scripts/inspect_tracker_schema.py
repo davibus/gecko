@@ -14,6 +14,14 @@ from tracker_schema import DAILY_TASKS_TAB, DAILY_RUN_TAB, DELETED_JOBS_TAB, REQ
 
 
 def inventory(tracker: GoogleTracker) -> dict:
+    if getattr(tracker,'backend','') == 'sqlite':
+        scout = tracker.scout()
+        return {'backend':'sqlite','workbook_id':str(tracker.path),'workbook_title':'Gecko local workspace',
+                'tabs':[{'title':p['title'],'sheet_id':p['sheetId'],'role':'local dataset',
+                         'hidden':False,'header_row':1,'headers':list(tracker.tab(p['title']).header_values),
+                         'row_count':len(tracker.tab(p['title']).rows)} for p in tracker._sheet_properties()],
+                'validation':{'required_tabs_present':True,'job_scout_required_headers_present':bool(scout.headers),
+                              'daily_run_present':True,'daily_tasks_present':True,'deleted_jobs_present':False}}
     metadata = tracker.api.get(spreadsheetId=tracker.config.spreadsheet_id,
                                fields="properties(title)").execute()
     title = metadata.get("properties", {}).get("title")

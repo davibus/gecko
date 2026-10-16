@@ -1009,7 +1009,11 @@ def native_qa(plan: dict, docx_path: Path, scratch: Path) -> dict:
     cmd = ["powershell.exe", "-NoProfile", "-NonInteractive", "-WindowStyle", "Hidden",
            "-ExecutionPolicy", "Bypass", "-File", str(ROOT / "scripts/validate_word_native.ps1"),
            "-DocxPath", str(docx_path), "-PdfPath", str(pdf), "-ResultPath", str(status)]
-    result = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True,
+    # The Word validator invokes Python to inspect its exported PDF. Keep that
+    # child on this working runtime instead of a Windows Store alias on PATH.
+    validation_env = dict(os.environ)
+    validation_env['PATH'] = str(Path(sys.executable).parent) + os.pathsep + validation_env.get('PATH', '')
+    result = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, env=validation_env,
                             creationflags=windows_creationflags())
     issues = inspect_docx(plan, docx_path)
     native = json.loads(status.read_text(encoding="utf-8-sig")) if status.exists() else {}

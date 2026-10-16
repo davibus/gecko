@@ -1,0 +1,24 @@
+{
+  "backend": "sqlite",
+  "date": "2026-10-16",
+  "updated_at": "2026-10-16T13:56:49.520295+00:00",
+  "jobs": 1051,
+  "pending_resumes": 274,
+  "completed_resumes": 447,
+  "applied": 60,
+  "sources": {
+    "adzuna": 68,
+    "jobicy": 39,
+    "greenhouse": 289,
+    "lever": 208,
+    "workable": 148,
+    "weworkremotely": 26,
+    "remotive": 12,
+    "web-careers": 41,
+    "remoteok": 1,
+    "ashby": 203,
+    "linkedin": 3,
+    "Indeed": 4,
+    "indeed": 9
+  }
+}

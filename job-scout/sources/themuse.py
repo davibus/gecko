@@ -16,6 +16,7 @@ class TheMuseProvider(JobSource):
 
     def __init__(self, api_key: str | None = None):
         self.api_key = api_key or os.getenv("THE_MUSE_API_KEY", "")
+        self._pages = {}
 
     def configured(self) -> bool:
         return bool(self.api_key)
@@ -26,7 +27,10 @@ class TheMuseProvider(JobSource):
         params = {"api_key": self.api_key, "page": request.page - 1, "descending": "true"}
         if request.location:
             params["location"] = request.location
-        payload = get_json(self.endpoint + "?" + urlencode(params))
+        page_key = (request.location, request.page)
+        if page_key not in self._pages:
+            self._pages[page_key] = get_json(self.endpoint + "?" + urlencode(params))
+        payload = self._pages[page_key]
         items = payload.get("results", []) if isinstance(payload, dict) else None
         if not isinstance(items, list):
             raise ProviderError("The Muse returned an unexpected jobs payload")

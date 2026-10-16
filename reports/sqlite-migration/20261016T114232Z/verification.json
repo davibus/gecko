@@ -1,0 +1,15 @@
+{
+  "jobs": 1042,
+  "records": 1102,
+  "archived_datasets": 7,
+  "integrity": "ok",
+  "exact_values_verified": true,
+  "snapshot_sha256": "18de4ac5152babf6a4ebc5e27db36433054060c28577e4eb0b6e47fc422436b9",
+  "backup": "C:\\gecko_main\\reports\\sqlite-migration\\20261016T114232Z\\before.sqlite3",
+  "activation": {
+    "backend": "sqlite",
+    "database": "C:\\gecko_main\\job-scout\\data\\jobs.sqlite3",
+    "migration": "C:\\gecko_main\\reports\\sqlite-migration\\20261016T114232Z",
+    "activated_at": "2026-10-16T11:46:01.218229+00:00"
+  }
+}

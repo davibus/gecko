@@ -1,0 +1,25 @@
+{
+  "run_id": "20261016T053300-26236",
+  "started_at": "2026-10-16T05:33:00.593885-06:00",
+  "status": "failed",
+  "steps": [
+    {
+      "name": "Daily report",
+      "exit_code": 0
+    },
+    {
+      "name": "Daily discovery, tracker sync, and tailored resumes",
+      "exit_code": 1
+    },
+    {
+      "name": "Final tracker and Cursor sync",
+      "exit_code": 1
+    },
+    {
+      "name": "Refresh Daily Tasks",
+      "exit_code": 1
+    }
+  ],
+  "current_step": "Refresh Daily Tasks",
+  "updated_at": "2026-10-16T05:33:43.053446-06:00"
+}

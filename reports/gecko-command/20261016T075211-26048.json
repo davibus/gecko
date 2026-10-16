@@ -1,0 +1,53 @@
+{
+  "run_id": "20261016T075211-26048",
+  "started_at": "2026-10-16T07:52:11.606824-06:00",
+  "status": "complete",
+  "steps": [
+    {
+      "name": "Validate selected jobs and resume authorities",
+      "exit_code": 0
+    },
+    {
+      "name": "Daily report",
+      "exit_code": 0
+    },
+    {
+      "name": "Selected postings and tailored resumes",
+      "exit_code": 0
+    },
+    {
+      "name": "Employer responses for selected jobs",
+      "exit_code": 0
+    },
+    {
+      "name": "Back up the updated tracker",
+      "exit_code": 0
+    },
+    {
+      "name": "Refresh daily results",
+      "exit_code": 0
+    },
+    {
+      "name": "Export updated tracker to Google Sheets",
+      "exit_code": 0
+    }
+  ],
+  "job_ids": [
+    2555,
+    2556,
+    2557,
+    2558,
+    2559,
+    2560,
+    2561,
+    2562,
+    2563,
+    2564,
+    2565,
+    2566,
+    2567,
+    2568
+  ],
+  "current_step": "Export updated tracker to Google Sheets",
+  "updated_at": "2026-10-16T07:57:10.126442-06:00"
+}

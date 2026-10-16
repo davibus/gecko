@@ -1,0 +1,14 @@
+{
+  "run_id": "20261016T053446-25636",
+  "started_at": "2026-10-16T05:34:46.505077-06:00",
+  "status": "stopped",
+  "steps": [
+    {
+      "name": "Daily report",
+      "exit_code": 0
+    }
+  ],
+  "current_step": "Daily discovery, tracker sync, and tailored resumes",
+  "error": "Stopped at user request before discovery and resume generation for SQLite migration",
+  "updated_at": "2026-10-16T11:37:14.564975+00:00"
+}

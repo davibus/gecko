@@ -94,8 +94,13 @@ def build_service(config: Config):
         from googleapiclient.discovery import build
     except ImportError as error:
         raise RuntimeError("Google Sheets dependencies are missing; install job-scout/requirements.txt") from error
+    if os.getenv('GECKO_GOOGLE_AUTH_SERVER_CLOCK') == '1':
+        from google_auth_clock import GoogleClockCredentials
+        Credentials = GoogleClockCredentials
     credentials = Credentials.from_service_account_file(str(config.credentials_file), scopes=[SCOPE])
-    return build("sheets", "v4", credentials=credentials, cache_discovery=False)
+    from google_sheets_requests import SheetsRequest
+    return build("sheets", "v4", credentials=credentials, cache_discovery=False,
+                 requestBuilder=SheetsRequest)
 
 
 def _a1(tab: str, cell: str) -> str:
@@ -239,6 +244,14 @@ class Tab:
 
 
 class GoogleTracker:
+    def __new__(cls, config=None, service=None, **kwargs):
+        if cls is GoogleTracker and config is None and service is None:
+            from tracker_backend import sqlite_enabled
+            if sqlite_enabled():
+                from sqlite_tracker import SQLiteTracker
+                return object.__new__(SQLiteTracker)
+        return object.__new__(cls)
+
     def __init__(self, config: Config | None = None, service=None):
         self.config = config or Config.from_environment()
         self.service = service or build_service(self.config)
@@ -560,7 +573,7 @@ class GoogleTracker:
                 continue
             proposed[(row, "Response")] = value
         entries, expected = self._prepare_writes(tab, proposed)
-        changed = [row for row, _ in expected]
+        changed = sorted({row for row, field in expected if field == "Response"})
         if not entries:
             return []
         try:

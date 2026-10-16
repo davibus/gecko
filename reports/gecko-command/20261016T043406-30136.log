@@ -1,0 +1,32 @@
+
+Gecko: Daily report
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+Daily report 20261016T043407-fc6b57cb3c: WARNING | Daily Tasks row 3 | Daily Run row 3
+Retained dates: 2026-10-16, 2026-10-14, 2026-10-13, 2026-10-11
+Updated rows: 4, 7, 8, 9, 10, 11, 12, 14, 15, 17, 18, 26, 27, 49, 50, 53, 56, 57, 63, 66, 71, 74, 75, 76, 77, 78, 79, 80, 93, 94, 116, 117, 120, 123, 130, 133, 138, 141, 142, 143, 144, 145, 146, 150, 151, 154, 155, 156, 160, 161, 163, 164, 177, 178, 179, 180, 183, 184, 187, 190, 191, 197, 200, 204, 205, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 226, 227, 228, 229, 230, 231, 232, 233, 234, 236, 237, 238, 239, 240, 241, 243, 244, 245, 246, 247, 249, 250, 251, 252, 253, 254, 256, 257, 258, 259, 261, 262, 263, 264, 266, 267, 268
+Job Scout rows: 1044; Indeed rows: 4; resume candidates: 255
+Audit: reports/daily/2026-10-16/20261016T043407-fc6b57cb3c.json
+
+Gecko: Daily discovery, tracker sync, and tailored resumes
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+Gecko daily 20261016T043435-1acafcacbc: FAIL
+Jobs Discovered: 21427
+New Jobs Added: 28
+Duplicates Skipped: 995
+Manual Indeed Rows Processed: Unavailable
+Manual Indeed Duplicates Flagged: Unavailable
+Manual Indeed Retrieval Failures: Unavailable
+Declined Rows Preserved: Unavailable
+Resumes Reused: Unavailable
+Resumes Created: Unavailable
+Resume Failures: Unavailable
+Workflow Failures: Unavailable
+Gmail Emails Checked: Unavailable
+Employer Responses Matched: Unavailable
+Response Rows Updated: Unavailable
+Provider Failures: 8
+Indeed Jobs Found: 0
+Daily Run: row 3
+Error: Daily workflow exited with code 1
+Error: Daily workflow stopped before its final summary
+Audit: reports/daily/2026-10-16/20261016T043435-1acafcacbc.json
