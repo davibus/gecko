@@ -834,13 +834,20 @@ def _archive_listing(
             )
             return path, (attempt,)
     original_url = _original_source_url(job, item)
-    result = retrieve_full_description(
+    if str(job.source_job_id or '').startswith('manual-') and description_is_sufficient(job.description):
+        result = DescriptionRetrievalResult(
+            status='succeeded', description=job.description, source_url=original_url,
+            attempts=[RetrievalAttempt('user-pasted job description', original_url, 'accepted', 'manual intake')],
+            authoritative_url=job.authoritative_url or job.url,
+        )
+    else:
+        result = retrieve_full_description(
         job,
         authoritative_urls=(job.authoritative_url, archived_authoritative),
         redirect_urls=(job.url_redirect_url,),
         ats_urls=(job.enriched_source_url,),
         aggregator_urls=(original_url, item.job_url),
-    )
+        )
     if result.status == "succeeded" and description_is_sufficient(result.description):
         if persist_retrieval:
             _persist_queue_retrieval(job, result, store)

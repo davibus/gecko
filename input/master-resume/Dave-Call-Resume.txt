@@ -613,7 +613,7 @@ PAID SEARCH, PERFORMANCE MARKETING & CLIENT PARTNERSHIP SCOPE
 TECHNOLOGY, PLATFORMS & SKILLS INVENTORY
 Paid Media & Advertising | Google Ads / AdWords, Microsoft Ads / Bing Ads, Google Ads Editor, Bing Ads Editor, Meta/Facebook Ads, Instagram, TikTok, Pinterest, Snapchat, Amazon Marketing Services, Yahoo Gemini, Search, Shopping, Display, YouTube, remarketing, mobile, local, audiences, keyword research, bid strategy, budget pacing.
 
-Analytics & Measurement | Google Analytics 4 (GA4), Universal Analytics, Google Tag Manager, Google Search Console, Google Keyword Planner, Google Trends, Adobe Analytics, Triple Whale, Funnel.io, Looker Studio / Google Data Studio, Tableau, Power BI, conversion tracking, data-driven attribution, forecasting, statistical analysis, regression modeling, KPI design, A/B testing, multivariate testing.
+Analytics & Measurement | Google Analytics 4 (GA4), Universal Analytics, Google Tag Manager, Google Search Console, Google Local Services Ads (LSA), Google Keyword Planner, Google Trends, Adobe Analytics, Triple Whale, Funnel.io, Looker Studio / Google Data Studio, Tableau, Power BI, conversion tracking, data-driven attribution, forecasting, statistical analysis, regression modeling, KPI design, A/B testing, multivariate testing.
 
 Data, Automation & Development | Python, SQL, JavaScript, VBA, HTML5, CSS3, Git, XML, PHP, JSON, GraphQL, Google Ads API, web scraping, process automation, machine learning, data visualization, database development, API integrations.
 

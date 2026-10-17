@@ -109,7 +109,7 @@ Digital Marketing Strategy & Campaigns
 Paid Advertising & Media
 •	Google Ads, Google AdWords, Bing Ads, Meta Ads, Facebook Advertising, Facebook Ads Manager, Twitter Ads, Pay-per-click (PPC) advertising, PPC Campaign Management, Paid search marketing, Paid search advertising campaigns, Search Engine Marketing (SEM), SEM, SEM campaigns, Display advertising, Native advertising, Video advertising, Media buying, social media advertising, social media advertising campaigns, Affiliate marketing, Affiliate marketing campaigns
 SEO & Search
-•	Search Engine Optimization (SEO), SEO, SEO audits, SEO competitor analysis, SEO schema markup, Technical SEO, On-page SEO, Off-page SEO, Local SEO, Mobile SEO, Keyword Research, Link building, Search engines, Metadata
+•	Search Engine Optimization (SEO), SEO, SEO audits, SEO competitor analysis, SEO schema markup, Technical SEO, On-page SEO, Off-page SEO, Local SEO, Google Local Services (LSA), Mobile SEO, Keyword Research, Link building, Search engines, Metadata
 Email Marketing
 •	Email marketing, Email marketing campaigns, Email campaign management, Email automation, Email A/B testing, Email conversion tracking, Email list building, Email marketing deliverability, Email marketing segmentation, Email newsletters, Mailchimp, Constant Contact, Klaviyo
 Social Media

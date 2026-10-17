@@ -1,0 +1,30 @@
+
+Gecko: Daily report
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+{
+  "backend": "sqlite",
+  "date": "2026-10-17",
+  "updated_at": "2026-10-17T10:47:59.934620+00:00",
+  "jobs": 1119,
+  "pending_resumes": 32,
+  "completed_resumes": 751,
+  "applied": 67,
+  "sources": {
+    "adzuna": 73,
+    "jobicy": 41,
+    "greenhouse": 293,
+    "lever": 208,
+    "workable": 151,
+    "weworkremotely": 26,
+    "remotive": 12,
+    "web-careers": 42,
+    "remoteok": 1,
+    "ashby": 207,
+    "linkedin": 3,
+    "Indeed": 5,
+    "indeed": 57
+  }
+}
+
+Gecko: Daily discovery, tracker sync, and tailored resumes
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.

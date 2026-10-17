@@ -1,0 +1,33 @@
+{
+  "before_bytes": 25406,
+  "after_bytes": 2874,
+  "original_sha256": "fa380e3a7bea4d77176ddf4aba06de92fd38d592b4366b08a7bdee03cabb94ce",
+  "protected_files_sha256": {
+    "C:\\gecko_main\\GECKO_SYSTEM.md": "8320fa2702127fea3ffef6ed08a579675441cd4aa33b084eeee67359cf6a7a10",
+    "C:\\gecko_main\\openclaw\\application-answers.md": "175324027909d88107dfb221e28e144750b5270ac071f1eb0f4365a1ef6f193b",
+    "C:\\gecko_main\\input\\master-resume\\master-resume-v2.txt": "36306802300f9518c360173a32e00dd183d4d656cd8e3b41e9af40900b2d2e38",
+    "C:\\gecko_main\\input\\master-resume\\MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf": "56341cb297ba98a4215606cdac6265c3da6e52f13e736c7de337c4ed68da90a9",
+    "C:\\gecko_main\\openclaw\\resume-upload.md": "09e7eee52499a0d3a23a7c61acc8b9b56c06512c24c9c04ef1ea3cab5610aaba",
+    "C:\\gecko_main\\project.json": "a350d63fe6093d1c495208d91c4088ced7f17653bb4ee6c1c9da3a61a27665bf",
+    "C:\\gecko_main\\job-scout\\preferences\\tracker-backend.json": "292e904e271a588ff5bdff2680a48ab67c20bd7033dd2bc7646f57b4c66634fb",
+    "C:\\Users\\DCALL\\.openclaw\\workspace\\USER.md": "eba6b9e7ceb9947d0d896b28d9a859e2a2d0390dc645cafafa8746120fde1303",
+    "C:\\Users\\DCALL\\.openclaw\\workspace\\AGENTS.md": "a9073ebb0ccc443c31d255e1cb311e6e6259962da5ee8bd3aa641178533c1b98"
+  },
+  "preserved_sections": {
+    "SQLite tracker authority \u2014 October 16, 2026": "66b4f0a6d5c52c2759d6c23b5c25040d4a5d2ae6eb2ade6b333b04d5390812e8",
+    "Canonical project name": "80764578ceb531f14f0ec23979eaa683e480e89a877fd3f1c8e11e0782c8e365",
+    "Run Gecko command": "3a258b0c2387d603f9708d1349ce1ffeee61f24811f995799ed3719bc4b77da6",
+    "Canonical project identity": "a794742832775fc1850bec23aeb88fe73c9c6ca11aa9ba06bf1dca8deb001795",
+    "Cursor terminals": "3599c6255c69de2660298b28f3833f71e84ab3e5a487de67cc4611bb37f5333f",
+    "Job List validation": "9c04e559d4798ddfe625a6528d69e6663ecfc924186098808b7f018f7452d0c3",
+    "Execution default": "fcf1b4d759d53093ec0ba1b1bbc23d195c220abd673360af62f480ded6d0945d",
+    "Source of truth": "0002a6818b123cad4f3d897b348ef0edc09a5ee32929070c2036f41a6b2c1be8",
+    "Default output": "c60f70575d184c7aaf10d7fbfd28a9c500051acbe5f8a7325ba5723efe97444f",
+    "Job tracker": "3e17446d3b7b5972afda71b9cc93354fad6f25a61b58057dbe779c23e045385d",
+    "Persistent Google Sheets formatting": "a456abe707283bf84111aa9f813301fac0a411c3292b99eff43a7fdc9677cc0e",
+    "OpenClaw application batches": "0e96512a1a0c3471ffca531bb10ae1b3561101b38fea229eb8509b56bae4a21d",
+    "Permanent short resume filename rule": "85a7a3671ed2d0bc87ba273c351e282705006befa74a87c92221f6b63565c850",
+    "Dashboard column filters": "7967e3720836edb44512c29071c1b42f635136a3fa3a2f146b56ca593fd892ba"
+  },
+  "backup": "C:\\gecko_main\\reports\\instruction-reorganization\\20261017T103745Z"
+}

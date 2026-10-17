@@ -16,15 +16,46 @@ It does not run discovery or generate resumes just by opening the dashboard.
 
 ## Daily workflow
 
+### Manual tailored resumes
+
+In Individually submitted applications, **Create resume** opens a form for the
+company, title, posting link, location/work arrangement, and complete pasted job
+description. It saves an approved, eligible, unsubmitted job first and verifies
+its unique Gecko ID, then runs the existing targeted resume workflow. Existing
+completion markers, links, eligibility checks, source authorities, and native
+Word validation remain required. A preserved draft retains the saved ID on retry.
+
+After verified completion, the canonical resume remains in `output/resumes`.
+A byte-verified upload copy is saved to
+`output/resumes/Manual Applications/Ready to Upload` as
+`Dave Call - Company - Job Title - ID123.docx`. Invalid Windows filename characters
+are removed and long company/title components shortened. Conflicting existing
+copies are preserved. Activity reports the upload filename after completion.
+No application is submitted and no Applied marker is set by this flow.
+
 1. Refresh the local SQLite tracker and review Today.
 2. Open a job to review its posting, archived description, saved assessment, and notes.
 3. Approve or decline the job. Decline sets Apply? to No, retains the row, and does not permanently reject/delete it.
 4. Prepare a resume for one approved eligible job. This invokes the canonical targeted queue with the exact tracker ID, preserves existing resumes, and uses existing Word-native validation and tracker readback.
-5. Open the linked resume in Word and the employer's application page. Submit the application yourself.
+5. Open the linked resume in Word and the employer's application page, or select jobs in All Jobs and click **Apply for jobs** to use the existing OpenClaw Gecko assistant.
 6. Select “I applied to this job”, set a follow-up date, and save notes. Update the application stage as conversations progress.
 7. Use Activity to monitor operations. “Run Gecko” runs the full existing daily pipeline, including discovery and all eligible approved resumes. The review dialog explains these effects before starting.
 
 ## Data and protection
+
+All Jobs supports individual application selections across filters and pages (up
+to 100 per batch). The green **Apply for jobs** button dispatches only those exact
+IDs and record versions. Gecko Activity shows each job's outcome, required human
+action, application link, start/finish times, elapsed time, and reported runtime
+model. Already-applied, declined, rejected, expired, or ineligible jobs are skipped;
+missing matching tailored resumes are held without regeneration. CAPTCHA, login,
+new agreements, and unknown required answers remain for Dave while the batch
+continues. Applied is written and read back only after a matching employer receipt.
+Unconfirmed attempts are durably held against repeat submissions. Stop requests
+abort the exact OpenClaw session before terminating its local client. Daily
+Run Gecko remains separate and does not submit applications. Batch tests use
+isolated data and simulated OpenClaw outcomes; no employer submission is performed
+to test this feature.
 
 SQLite is authoritative. Use **Editable tracker** to add custom text columns,
 rename custom columns, search all fields, and edit values with verified row saves.
@@ -129,3 +160,18 @@ Job Sources includes a filterable Explanation column derived from saved source_h
 Manual intake preserves unsaved drafts in browser local storage. While the Gecko lock is held, Save job displays a pending notice and retries after the run finishes while the page remains open; reopening the individual-applications page resumes a pending draft. Editing a pending draft cancels its pending flag until Save job is clicked again. The draft clears only after database/API readback verifies membership in both lists. Required-field and server errors appear beside Save job as well as at the top.
 
 Automatic Sheets export is disabled. The standalone export entry point also refuses automatic invocation, including from an older already-running pipeline; an explicit CLI export requires --manual. Existing generated Gecko export tabs are hidden to leave Cursor Instructions as the final visible tab. They remain recoverable through Sheets hidden-sheet controls.
+
+
+### Match Scores playground
+Match Scores sits below Individually submitted applications in the sidebar.
+It provides 25 manually rated factors, shared weights (0-10), and separate
+ratings, notes and dealbreaker flags for each job or the practice scratchpad.
+Drafts persist only in this browser's local storage. Nothing writes tracker
+records or changes existing Gecko scores. Unknown factors are excluded from
+the weighted average; weighted coverage is shown beside every provisional
+score. Application priority combines all rated factors; the other cards split
+ability, preferences and opportunity signals. Scores are fit assessments,
+not calibrated hiring probabilities. Reset weights affects every playground
+job; clearing ratings affects only the currently selected playground draft.
+
+Dashboard requests automatically renew their connection token once if the server explicitly rejects an outdated token before making changes. Renewing uses a read-only workspace request and preserves unsaved form drafts; other permission errors are not retried.

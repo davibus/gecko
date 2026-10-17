@@ -1,0 +1,6 @@
+---
+description: Current Gecko tracker mirror
+alwaysApply: true
+---
+
+Read `docs/live-tracker-schema.md` and `docs/scratch-column-ideas.md` for the latest local references. Read `job-scout/data/tracker-live.json` for all job cells and formulas. Re-read live Sheet headers and rows before writes. Follow `AGENTS.md` and `GECKO_SYSTEM.md`. When the user says run Gecko, follow `docs/gecko-command.md`.

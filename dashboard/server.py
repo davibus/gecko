@@ -24,7 +24,7 @@ sys.path[:0] = [str(ROOT), str(ROOT / 'scripts'), str(ROOT / 'job-scout')]
 from google_tracker import GoogleTracker, marked, resume_approval_value, is_expired_indeed, INDEED_APPLICATION_HEADER, _a1, _col
 from run_gecko import run_lock
 from dashboard.grid import columns, change_column, cell_changes, export_sheet
-from dashboard import manual
+from dashboard import manual, attachments
 from dashboard.source_explanations import explanation
 
 STATIC = Path(__file__).parent / 'static'
@@ -312,7 +312,7 @@ class Workspace:
             request = STATE / ('manual-import-'+secrets.token_hex(12)+'.txt')
             request.write_text(prompt, encoding='utf-8')
             try:
-                completed = subprocess.run(['powershell.exe','-NoProfile','-ExecutionPolicy','Bypass','-File',str(ROOT/'scripts/Read-Gecko-Job.ps1'),'-RequestFile',str(request)], capture_output=True, text=True, timeout=420, creationflags=subprocess.CREATE_NO_WINDOW)
+                completed = subprocess.run(['powershell.exe','-NoProfile','-ExecutionPolicy','Bypass','-File',str(ROOT/'scripts/Read-Gecko-Job.ps1'),'-RequestFile',str(request)], capture_output=True, text=True, encoding='utf-8', timeout=420, creationflags=subprocess.CREATE_NO_WINDOW)
                 if completed.returncode:
                     raise ValueError('OpenClaw could not read this posting. Check its connection or enter the details manually.')
                 response = json.loads(completed.stdout)
@@ -323,6 +323,9 @@ class Workspace:
                 if not isinstance(details,dict) or details.get('blocked'):
                     raise ValueError('The posting needs manual review or browser verification. Enter its details manually.')
                 details = {k:str(details.get(k) or '')[:30000] for k in manual.FIELDS+['description']}
+                host=(urlsplit(url).hostname or '').lower()
+                if host=='indeed.com' or host.endswith('.indeed.com'):
+                    details['Source']='Indeed'
                 if not details['Company'] or not details['Job Title']:
                     raise ValueError('OpenClaw could not verify the company and job title. Enter them manually.')
                 with self.lock:
@@ -395,7 +398,8 @@ class Workspace:
                 extra = enrichment(data)
             except (sqlite3.Error, OSError):
                 extra = {'description': '', 'evaluation': None}
-            return dict(present(row, data), **extra)
+            attached = attachments.for_job(tracker, job_id) if getattr(tracker,'backend','') == 'sqlite' else None
+            return dict(present(row, data), **extra, attached_resume={'name':attached[0]['name']} if attached else None)
 
     def edit(self, payload):
         with self.lock, run_lock():
@@ -493,6 +497,8 @@ class Workspace:
                     raise ValueError('Job changed or is not eligible for a new resume. Refresh first.')
                 tracker._assert_scout_row_not_rejected(data)
                 job_id = int(data['Scout ID'])
+                if payload.get('manual_upload') is True and str(job_id) not in manual.manual_ids(tracker):
+                    raise ValueError('Manual upload copies require an individually added job.')
             filters = None
             if kind == 'impromptu':
                 from impromptu_filters import validate
@@ -507,6 +513,8 @@ class Workspace:
                 for selected_id in ids or []:
                     find_job(tab,selected_id)
             self.operation = {'kind': kind, 'job_id': job_id, 'started_at': now(), 'status': 'running'}
+            if kind == 'resume' and payload.get('manual_upload') is True:
+                self.operation['manual_upload'] = True
             self.operation['model_info'] = self.model_info()
             if ids is not None:
                 self.operation['job_ids'] = ids
@@ -563,6 +571,10 @@ class Workspace:
                 job = self.detail(job_id)
                 if not job['resume_available'] or str(job['fields'].get('Resume Created', '')).strip().lower() != 'x':
                     raise RuntimeError('Resume workflow ended without a verified completed resume. The job may have been skipped; review its eligibility and run log.')
+                if self.operation.get('manual_upload'):
+                    upload = manual.publish_upload_copy(resume_path(job['fields']), job['fields'], job_id, ROOT)
+                    self.operation['upload_name'] = upload.name
+                    self.operation['upload_path'] = str(upload)
             self.operation.update(status='complete', finished_at=now())
         except Exception as exc:
             self.operation.update(status='failed', error=str(exc), finished_at=now())
@@ -634,6 +646,16 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(200, app.detail(query.get('id', [''])[0]))
             if path == '/api/activity':
                 return self.send(200, app.activity())
+            if path == '/api/manual-resume':
+                with app.lock:
+                    tracker = app.tracker_factory()
+                    job_id = query.get('id', [''])[0]
+                    find_job(tracker.scout(), job_id)
+                    attached = attachments.for_job(tracker, job_id)
+                    if not attached:
+                        raise ValueError('No uploaded resume is attached to this job.')
+                    info, content = attached
+                    return self.send(200, content, info['mime'], info['name'])
             if path == '/api/resume':
                 with app.lock:
                     tracker = app.tracker_factory()
@@ -642,7 +664,7 @@ class Handler(BaseHTTPRequestHandler):
                     if not resume:
                         raise ValueError('The linked resume is not available under Gecko output/resumes.')
                     return self.send(200, resume.read_bytes(), 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', resume.name)
-            files = {'/': 'index.html', '/app.js': 'app.js', '/manual.js':'manual.js', '/filters.js':'filters.js', '/style.css': 'style.css'}
+            files = {'/': 'index.html', '/app.js': 'app.js', '/manual.js':'manual.js', '/match-scores.js':'match-scores.js', '/filters.js':'filters.js', '/style.css': 'style.css'}
             if path not in files:
                 return self.send(404, {'error': 'Not found'})
             file = STATIC / files[path]
@@ -656,6 +678,10 @@ class Handler(BaseHTTPRequestHandler):
         try:
             self.trusted(mutation=True)
             length = int(self.headers.get('Content-Length', 0))
+            if self.path == '/api/manual-resume':
+                if length <= 0 or length > attachments.MAX_BYTES:
+                    raise ValueError('Choose a resume no larger than 10 MB.')
+                return self.send(200, attachments.upload(unquote(self.headers.get('X-Filename', '')), self.rfile.read(length)))
             if length <= 0 or length > 100000 or not self.headers.get('Content-Type', '').startswith('application/json'):
                 raise ValueError('Expected a bounded JSON request.')
             payload = json.loads(self.rfile.read(length))

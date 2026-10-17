@@ -27,6 +27,7 @@ scratch/*
 !scratch/.gitkeep
 tmp/
 output/*.log
+/output/attached-resumes/
 output/*.xlsx
 output/apply-queue-results.md
 

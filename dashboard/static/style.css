@@ -58,13 +58,26 @@ header{min-height:76px}.page-heading{padding:21px 0 20px}h1{font-size:36px;margi
 
 .brand-logo{display:block;width:40px;height:34px;object-fit:contain;flex-shrink:0}
 
-.header-actions{align-items:flex-start}#refresh{align-self:flex-start}
+.header-actions{align-items:center}#refresh{align-self:center}
 
-.header-actions{padding-top:25px}
+.header-actions{padding-top:0}
 
 .header-actions #refresh,.header-actions #run-filters,.header-actions #run-gecko{height:40px}.header-actions #run-filters{width:auto;min-width:0;padding:10px 12px;font-size:12px;line-height:1.5}
 
+/* Match Scores playground */
+.match-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:20px 0}.match-summary .stat strong{font-size:32px}.match-factors{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.match-factor{background:#fff;border:1px solid #dddcd3;border-radius:12px;padding:18px}.match-factor h3{margin:0 0 8px;font-size:16px}.match-factor p{font-size:13px;min-height:36px;color:#65665d}.match-group{margin:28px 0}.match-controls{display:grid;grid-template-columns:1fr 80px;gap:12px}.match-controls label,.match-picker{display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600}.match-controls select,.match-controls input,.match-picker select,.match-picker textarea{box-sizing:border-box;width:100%;padding:9px;border:1px solid #d8d9cf;border-radius:7px;background:white;color:#26352c;font:inherit}.match-picker{margin:18px 0}.match-picker select{max-width:100%}#match-section .activity-card{margin-bottom:18px}#match-section [type=checkbox]{width:auto}#match-save-status,#match-verdict{font-size:13px;line-height:1.6}#match-verdict{font-weight:600}
+
+header{align-items:center}.header-actions{align-items:center}#freshness{white-space:nowrap;max-width:none;flex-shrink:0}
+
+.manual-resume{margin:12px 0;min-width:0;max-width:100%;padding:0 18px;text-align:center;align-self:center;justify-self:stretch}.manual-resume p{overflow-wrap:anywhere}#manual-resume-file[hidden],#manual-resume-remove[hidden]{display:none}
+
 .application-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:flex-end}#apply-selected{height:40px;padding:10px 17px;white-space:nowrap}.application-actions [hidden]{display:none}#application-selection-count{font-size:12px;color:var(--muted)}.application-choice{width:18px;height:18px;flex:0 0 18px;accent-color:var(--green);cursor:pointer}.application-choice:disabled{cursor:default}
+
 .workspace-row{cursor:pointer}.workspace-row:hover{background:#f4f7ef}.workspace-row:focus-visible{outline:2px solid #3c684e;outline-offset:-2px}.workspace-row input,.workspace-row textarea{cursor:text}.workspace-row input[type=checkbox]{cursor:pointer}
+
+.manual-fields>label{min-width:0}#manual-form textarea{max-width:100%;resize:vertical}#manual-form textarea[name="description"]{height:200px;min-height:200px}
+
 /* Recorded completion and readable status text accompany the palette colors. */
 #opportunities-table .resume-created{display:table-cell;min-width:145px;white-space:nowrap}.resume-status{display:inline-block;padding:6px 9px;border-radius:5px;font-size:12px;font-weight:600}.resume-status.created{background:#e6efd9;color:#294b32;border:1px solid #9ab284}.resume-status.missing{background:#f8e7e3;color:#913b32;border:1px solid #b85448}#opportunities-table.all-jobs th:nth-child(3),#opportunities-table.all-jobs td:nth-child(3){min-width:145px}#opportunities-table.all-jobs th:nth-child(4),#opportunities-table.all-jobs td:nth-child(4){display:table-cell;min-width:220px;max-width:260px}#opportunities-table.all-jobs{min-width:1600px}
+#manual-create-dialog{max-width:900px}
+#manual-create-form label{display:block;margin:12px 0}#manual-create-form input,#manual-create-form textarea{display:block;width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #dce2d6;border-radius:8px;background:#fff;color:var(--ink);font:inherit;margin-top:6px}#manual-create-form textarea{min-height:220px;resize:vertical}#manual-create-status{color:var(--green);white-space:pre-wrap}

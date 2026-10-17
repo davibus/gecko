@@ -1,0 +1,16 @@
+const assert=require('node:assert/strict');
+const {calculate,factors}=require('../static/match-scores.js');
+const blank=()=>factors.map(()=>null),weights=factors.map(()=>1);
+assert.equal(factors.length,25);
+assert.equal(calculate(blank(),weights).score,null);
+const ratings=blank();ratings[0]=5;
+assert.deepEqual(calculate(ratings,weights),{score:100,coverage:4,rated:1,total:25});
+ratings[1]=0;
+assert.equal(calculate(ratings,weights).score,50);
+const emphasized=[...weights];emphasized[0]=3;
+assert.equal(calculate(ratings,emphasized).score,75);
+emphasized[1]=0;
+assert.equal(calculate(ratings,emphasized).score,100);
+assert.equal(calculate(ratings,weights,'desire').score,null);
+assert.deepEqual(calculate(ratings,weights.map(()=>0)),{score:null,coverage:0,rated:0,total:0});
+console.log('Match scoring: unknowns, zero ratings, weights, ignored factors, groups and zero total passed.');

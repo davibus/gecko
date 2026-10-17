@@ -1,11 +1,11 @@
 {
   "backend": "sqlite",
   "date": "2026-10-17",
-  "updated_at": "2026-10-17T09:30:43.646390+00:00",
-  "jobs": 1118,
-  "pending_resumes": 32,
+  "updated_at": "2026-10-17T11:36:27.568065+00:00",
+  "jobs": 1120,
+  "pending_resumes": 33,
   "completed_resumes": 751,
-  "applied": 66,
+  "applied": 67,
   "sources": {
     "adzuna": 73,
     "jobicy": 41,
@@ -18,7 +18,7 @@
     "remoteok": 1,
     "ashby": 207,
     "linkedin": 3,
-    "Indeed": 4,
+    "Indeed": 6,
     "indeed": 57
   }
 }

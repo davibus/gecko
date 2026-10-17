@@ -2,11 +2,42 @@
 import hashlib
 import json
 import os
+import re
+from pathlib import Path
 from datetime import date
 from urllib.parse import urlsplit
 from normalize import canonicalize_url, posting_identity
 
 FIELDS = ['Company', 'Job Title', 'Source', 'Location', 'Salary', 'Work Arrangement', 'Employment Type', 'Personal priority', 'Notes', 'Date Posted']
+
+
+def publish_upload_copy(source, fields, job_id, root):
+    """Keep the canonical validated resume intact and publish an upload copy."""
+    source = Path(source).resolve()
+    if source.parent != (Path(root) / 'output/resumes').resolve() or source.suffix.lower() != '.docx' or not source.is_file():
+        raise ValueError('A verified canonical resume is required before publishing an upload copy.')
+    def safe(value):
+        return re.sub(r'[\\/:*?"<>|\x00-\x1f]', '', str(value)).strip(' .')
+    if not str(job_id).isdigit():
+        raise ValueError('A stable Gecko job ID is required.')
+    company = safe(fields['Company'])[:45].rstrip(' .')
+    title = safe(fields['Job Title'])[:65].rstrip(' .')
+    filename = f'Dave Call - {company} - {title} - ID{job_id}.docx'
+    folder = Path(root) / 'output/resumes/Manual Applications/Ready to Upload'
+    folder.mkdir(parents=True, exist_ok=True)
+    target = folder / filename
+    content = source.read_bytes()
+    if not content:
+        raise ValueError('The validated resume is empty.')
+    try:
+        with target.open('xb') as output:
+            output.write(content)
+    except FileExistsError:
+        if target.read_bytes() != content:
+            raise ValueError('An upload copy already exists with different contents; it was preserved.')
+    if hashlib.sha256(target.read_bytes()).digest() != hashlib.sha256(content).digest():
+        raise RuntimeError('Upload copy verification failed.')
+    return target
 
 def validate_url(value):
     value = str(value or '').strip()
@@ -31,13 +62,28 @@ def save(tracker, payload, stamp):
     if any(len(v)>30000 for v in fields.values()) or not fields['Company'] or not fields['Job Title']:
         raise ValueError('Company and job title are required; keep each field under 30,000 characters.')
     applied = payload.get('applied') is True
+    if payload.get('create_resume') is True:
+        from description_retrieval import description_is_sufficient
+        from google_tracker import resume_approval_value
+        description = str(payload.get('description') or '').strip()
+        if len(description) > 30000 or not description_is_sufficient(description):
+            raise ValueError('Paste the complete job description (600–30,000 characters).')
+        if applied or payload.get('resume_token'):
+            raise ValueError('Create a resume for an unsubmitted job without an existing attachment.')
+        if resume_approval_value(fields['Location'], fields['Work Arrangement'], '') != 'Yes':
+            raise ValueError('Enter Utah eligibility or explicit remote work before creating the resume.')
+        fields['Apply?'] = 'Yes'
     applied_date = str(payload.get('applied_date') or '')
     if applied and (date.fromisoformat(applied_date)>date.fromisoformat(stamp[:10])):
         raise ValueError('The application date cannot be in the future.')
     identity = posting_identity(url)
     canonical = canonicalize_url(url)
+    attachment = None
+    if payload.get('resume_token'):
+        from dashboard import attachments
+        attachment, _ = attachments.read(payload['resume_token'])
     if payload.get('id') is not None:
-        return update(tracker, payload, stamp, url, fields)
+        return update(tracker, payload, stamp, url, fields, attachment)
     with tracker.connection() as con, con:
         con.execute('BEGIN IMMEDIATE')
         for row in con.execute("SELECT dataset,archived,values_json FROM workspace_records WHERE dataset IN ('Job List','Rejected Jobs','Deleted Jobs')"):
@@ -63,6 +109,9 @@ def save(tracker, payload, stamp):
         con.execute("INSERT INTO scout_state(key,value) VALUES('id_high_water',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value",(job_id,))
         con.execute('CREATE TABLE IF NOT EXISTS workspace_manual_jobs(job_id INTEGER PRIMARY KEY REFERENCES jobs(id),added_at TEXT NOT NULL)')
         con.execute('INSERT INTO workspace_manual_jobs VALUES(?,?)',(job_id,stamp))
+        if attachment:
+            con.execute('CREATE TABLE IF NOT EXISTS workspace_manual_resumes(job_id INTEGER PRIMARY KEY REFERENCES jobs(id),token TEXT NOT NULL UNIQUE,filename TEXT NOT NULL)')
+            con.execute('INSERT INTO workspace_manual_resumes VALUES(?,?,?)',(job_id,attachment['token'],attachment['name']))
         con.execute("INSERT INTO workspace_events(at,dataset,slot,action,after_json) VALUES(?,'Job List',?,'manual-intake',?)",(stamp,slot,raw))
         assert json.loads(con.execute("SELECT values_json FROM workspace_records WHERE dataset='Job List' AND slot=?",(slot,)).fetchone()[0])==fields
     return {'id':str(job_id),'applied':applied}

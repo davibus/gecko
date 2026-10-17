@@ -1,0 +1,28 @@
+---
+description: Load the authoritative Gecko project instructions
+globs:
+alwaysApply: true
+---
+
+# Gecko project instructions
+
+`Job List` R is `Last Updated` (the actual last Firecrawl/Gecko run) and I
+is `Notes` (verified 2026-10-14). Keep research text in Notes, record only evidence-backed actual
+run dates/times in America/Denver, and preserve both on local syncs. Resolve
+all columns by unique current headers. Read `docs/scratch-column-ideas.md`
+for the synced Scratch research-field proposals; do not add proposed columns
+without a user request.
+
+The canonical project name is **Gecko Main** and the canonical directory is `gecko_main`. Use these names for all new scripts, documentation, commands, paths, and configuration. Read `AGENTS.md` for the deprecated-name rule.
+
+Read `AGENTS.md` before project work, `GECKO_SYSTEM.md` before resume work, and `docs/tracker-schema.md` before tracker work. `job-scout/tracker_schema.py` is the central runtime map. Read live tab metadata and `Job List` headers before each tracker operation; the documented snapshot is never a column-position map. `Job List` has `Apply?` in column E, `Cost` in column H, and no `Status` column. A resume requires `Apply? = Yes` and Utah or explicit remote eligibility; blank Cost is allowed, while confirmed required application fee `Cost = x` forces `Apply? = No` and blocks generation. Every workbook row is 21 pixels high. `scripts/daily_report.py` owns the five-date vertical `Daily Tasks` dashboard and inserts history in `Daily Run`. `Scratch` is unassigned. Do not create or rename tabs implicitly. `python job-scout/scout.py daily-report --dry-run` is console-only. These files are authoritative; this Cursor rule intentionally does not duplicate them.
+
+For every generated resume, use the shared formatter in `scripts/gecko_v2.py`: each employment heading must render on one physical line as `Job Title - Company Name - City, ST` at left, with verified employment dates flush right on that same line. Keep source fields unchanged and fail Word QA on a wrap or overlap.
+For resume facts, read the current `C:\gecko_main\input\master-resume\master-resume-v2.txt` on each generation through the checkout's canonical path. The required model PDF supplies layout only. Reject same-named files elsewhere, cached profiles, and prior DOCX/PDF resumes as factual sources; stop clearly if the TXT is missing, unreadable, or empty.
+
+
+## Permanent short resume filename rule
+
+Resume filenames must use `Dave-Call+<Company-Name>+<Job-Title>+<Resume-ID>.docx`, ending in a unique numeric identifier of at most five digits (Gecko uses five zero-padded digits). Never put a full posting ID, Indeed jk, UUID, hash, or long numeric job number in a resume filename. Keep filenames at most 150 characters, sanitizing Windows-invalid characters and shortening an excessively long title at a word boundary. Reserve identifiers through `job-scout/resume_naming.py`; do not truncate a source ID or guess uniqueness. Full posting IDs remain in the identity registry and DOCX metadata for job matching. Use the same rule for explicitly requested renames, verify tracker links after any rename, and preserve the existing Resume Created = X guard. Archived job descriptions and scratch folders continue to use full posting IDs.
+
+Example: `Dave-Call+Array+Digital-Marketing-Manager+00001.docx`.

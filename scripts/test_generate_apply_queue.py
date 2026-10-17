@@ -29,6 +29,19 @@ FULL_DESCRIPTION = ("Responsibilities include planning paid search campaigns, ma
 
 
 class QueueTests(unittest.TestCase):
+    def test_pasted_manual_description_is_used_without_web_retrieval(self):
+        from models import JobListing
+        job = JobListing(company='Manual Co',title='Marketing Manager',location='Utah',work_arrangement='remote',
+                         employment_type='',salary='',source='example.com',source_job_id='manual-abc',
+                         url='https://example.com/manual-job',date_posted='',date_discovered='2026-10-17',
+                         description=FULL_DESCRIPTION,canonical_url='https://example.com/manual-job',id=123)
+        item=queue.QueueRow(2,123,job.company,job.title,job.url,job.source)
+        with TemporaryDirectory() as temp,patch.object(queue,'ROOT',Path(temp)),patch.object(queue,'_saved_listing',return_value=None),patch.object(queue,'retrieve_full_description') as retrieve,patch.object(queue,'_persist_queue_retrieval'):
+            path,attempts=queue._archive_listing(job,item,Mock())
+            self.assertIn(FULL_DESCRIPTION,path.read_text(encoding='utf-8'))
+            self.assertEqual(attempts[0].method,'user-pasted job description')
+            retrieve.assert_not_called()
+
     def setUp(self):
         self.fake = FakeSheets()
         # Keep a valid URL separate from optional copied listing text.

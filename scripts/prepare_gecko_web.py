@@ -8,7 +8,7 @@ def main():
     source = ROOT / 'dashboard/static'
     destination = ROOT / 'web/assets'
     destination.mkdir(parents=True, exist_ok=True)
-    for name in ('index.html', 'app.js', 'manual.js', 'filters.js', 'style.css'):
+    for name in ('index.html', 'app.js', 'manual.js', 'match-scores.js', 'filters.js', 'style.css'):
         text = (source / name).read_text(encoding='utf-8')
         if name == 'index.html':
             text = text.replace('<script src="/filters.js"', '<script src="/cloud.js" defer></script><script src="/filters.js"', 1)
