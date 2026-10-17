@@ -36,6 +36,8 @@ def save(tracker, payload, stamp):
         raise ValueError('The application date cannot be in the future.')
     identity = posting_identity(url)
     canonical = canonicalize_url(url)
+    if payload.get('id') is not None:
+        return update(tracker, payload, stamp, url, fields)
     with tracker.connection() as con, con:
         con.execute('BEGIN IMMEDIATE')
         for row in con.execute("SELECT dataset,archived,values_json FROM workspace_records WHERE dataset IN ('Job List','Rejected Jobs','Deleted Jobs')"):
@@ -64,3 +66,65 @@ def save(tracker, payload, stamp):
         con.execute("INSERT INTO workspace_events(at,dataset,slot,action,after_json) VALUES(?,'Job List',?,'manual-intake',?)",(stamp,slot,raw))
         assert json.loads(con.execute("SELECT values_json FROM workspace_records WHERE dataset='Job List' AND slot=?",(slot,)).fetchone()[0])==fields
     return {'id':str(job_id),'applied':applied}
+
+
+def update(tracker, payload, stamp, url, fields, attachment=None):
+    """Edit a manual record atomically; retain its identity and managed state."""
+    from dashboard import server as s
+    from tracker_schema import resolve_headers
+    from google_tracker import marked
+    job_id=str(payload['id'])
+    slot, original=s.find_job(tracker.scout(),job_id)
+    if payload.get('version') != s.version(original):
+        raise ValueError('This job changed. Refresh and reopen it before saving.')
+    if posting_identity(url) != posting_identity(original['Job URL']):
+        raise ValueError('Keep the original posting link when editing this job.')
+    changes={k:v for k,v in fields.items() if k in payload and k!='Notes'}
+    text,meta,history=s.notes_parts(original.get('Notes'))
+    if 'Notes' in payload:
+        text=fields['Notes']
+        if s.PREFIX in text:
+            raise ValueError('Notes must be plain text without reserved dashboard markers.')
+    notes=text
+    for event in history: notes=s.append_event(notes,event)
+    event={'action':'manual-edit','at':stamp}
+    applied=marked(original.get('Applied')) or payload.get('applied') is True
+    if applied and not marked(original.get('Applied')):
+        applied_date=str(payload.get('applied_date') or '')
+        date.fromisoformat(applied_date)
+        changes.update({'Applied':'X','Applied Date':applied_date})
+        event.update(action='applied',stage='Applied',applied_at=applied_date)
+    changes['Notes']=s.append_event(notes,event)
+    if len(changes['Notes'])>48000:raise ValueError('Notes history is too long. Preserve it before adding more.')
+    if str(original.get('Apply?','')).strip().lower()=='yes' and not s.eligible({**original,**changes}):
+        changes['Apply?']='No'
+    with tracker.connection() as con,con:
+        con.execute('BEGIN IMMEDIATE')
+        if not con.execute('SELECT 1 FROM workspace_manual_jobs WHERE job_id=?',(job_id,)).fetchone():
+            raise ValueError('Only individually added jobs can be edited in this form.')
+        stored=con.execute("SELECT * FROM workspace_records WHERE dataset='Job List' AND slot=? AND archived=0",(slot,)).fetchone()
+        if not stored:raise ValueError('This job is no longer active.')
+        raw=json.loads(stored['values_json'])
+        headers=json.loads(con.execute("SELECT headers_json FROM workspace_datasets WHERE name='Job List'").fetchone()[0])
+        normalized=dict(raw)
+        for alias,col in resolve_headers(headers).items():normalized[alias]=raw.get(headers[col-1],'')
+        if s.version(normalized)!=payload['version']:
+            raise ValueError('This job changed before saving. Refresh and reopen it.')
+        formulas=json.loads(stored['formulas_json'])
+        if any(raw.get(k,'')!=v and str(formulas.get(k,'')).lstrip().startswith('=') for k,v in changes.items()):
+            raise ValueError('A changed field is formula-protected. Nothing was saved.')
+        after={**raw,**changes}
+        con.execute("UPDATE workspace_records SET values_json=?,revision=revision+1 WHERE dataset='Job List' AND slot=?",(json.dumps(after),slot))
+        columns={'Company':'company','Job Title':'title','Source':'source','Location':'location','Salary':'salary','Work Arrangement':'work_arrangement','Employment Type':'employment_type','Date Posted':'date_posted'}
+        updates={columns[k]:v for k,v in changes.items() if k in columns}
+        if 'description' in payload:updates['description']=str(payload['description'] or '')[:30000]
+        if updates:
+            con.execute('UPDATE jobs SET '+','.join(k+'=?' for k in updates)+' WHERE id=?',(*updates.values(),job_id))
+        if attachment:
+            con.execute('CREATE TABLE IF NOT EXISTS workspace_manual_resumes(job_id INTEGER PRIMARY KEY REFERENCES jobs(id),token TEXT NOT NULL UNIQUE,filename TEXT NOT NULL)')
+            con.execute('INSERT INTO workspace_manual_resumes VALUES(?,?,?) ON CONFLICT(job_id) DO UPDATE SET token=excluded.token,filename=excluded.filename',(job_id,attachment['token'],attachment['name']))
+        con.execute("INSERT INTO workspace_events(at,dataset,slot,action,before_json,after_json) VALUES(?,'Job List',?,'manual-edit',?,?)",(stamp,slot,stored['values_json'],json.dumps(after)))
+    _,verified=s.find_job(tracker.scout(),job_id)
+    if any(verified.get(k,'')!=v for k,v in changes.items()):
+        raise RuntimeError('Saved job readback did not match. Check it before retrying.')
+    return {'id':job_id,'applied':applied,'updated':True}
