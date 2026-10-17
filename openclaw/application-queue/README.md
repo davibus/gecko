@@ -20,9 +20,9 @@ An explicitly selected physical row can replace `--job-id` with `--row <ROW>`;
 `--approved-job-id` must still match that row's live ID. Supply these values
 only after the user approves that specific job for application preparation.
 
-The agent `gecko-resume-application-assistant` in Ubuntu WSL reads:
+The native Windows OpenClaw agent `gecko` reads:
 
-`/mnt/c/gecko_main/openclaw/application-queue/<ID>/application-package.json`
+`C:\gecko_main\openclaw\application-queue\<ID>\application-package.json`
 
 The adjacent `audit.json` contains only the job ID, timestamp, result, and
 check names. Package directories are ignored by Git. The package's approval

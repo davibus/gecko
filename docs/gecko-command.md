@@ -37,14 +37,15 @@ stages and records its exit code. Logs and status are saved in
 
 The dashboard runs scripts/run_gecko.py without a resume-ID limit. The ordered
 steps are daily report, full daily discovery and eligible resume queue, local
-backup, final daily report, then a verified Google Sheets export. SQLite remains
-authoritative. Each export creates a new dated tab in the configured workbook,
+backup, then final daily report. SQLite remains authoritative. Google Sheets
+exports run only when you click **Export to Google Sheets** under **Local workspace**.
+Each export creates a new dated tab in the configured workbook,
 including custom fields and resume links, without overwriting historical tabs.
-The latest automatic export link and verification state appear in Activity.
+The latest manual export link and verification state appear in Activity.
 
 Apply? = Yes resumes use the canonical generator, current master TXT, approved
 PDF formatting model, and native Word two-page checks. Existing completion
 markers or resume links block regeneration; eligibility, fee, rejection, and
 already-applied guards remain active. A failed daily phase still runs the final
-backup/report/export; any failed phase keeps the overall run marked failed.
+backup/report; any failed phase keeps the overall run marked failed.
 A failed initial report stops the run before discovery or generation.

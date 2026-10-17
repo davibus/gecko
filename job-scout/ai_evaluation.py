@@ -121,6 +121,9 @@ class JobEvaluator:
         self.max_triage_chars = int(settings.get("max_triage_description_chars", 6000))
         self.max_scoring_chars = int(settings.get("max_scoring_description_chars", 14000))
         self.store = store
+        if client is None and os.environ.get('GECKO_AI_RUNNER') == 'codex':
+            from codex_runner import CodexJsonClient
+            client = CodexJsonClient()
         self.client = client or OpenAIJsonClient()
         self.profile = load_candidate_profile(settings.get("candidate_profile") or None)
         self.profile_text = compact_profile_text(self.profile)

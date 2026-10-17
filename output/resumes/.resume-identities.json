@@ -264,6 +264,2438 @@
       "company": "Veeva Systems",
       "title": "Senior Consultant - Marketing Software",
       "job_number": "3134f178-51d8-47e3-bd9d-9cc98db8d166"
+    },
+    "Dave-Call+Crossmedia+Manager,-Marketing-Science-&-Analytics+00034.docx": {
+      "id": "00034",
+      "key": "3d18f3ad645481e00e9a6b05ccd4a6553f4130e4f5356e22bb5f503b60b7d697",
+      "primary": true,
+      "company": "Crossmedia",
+      "title": "Manager, Marketing Science & Analytics",
+      "job_number": "5208024007"
+    },
+    "Dave-Call+Pattern+Digital-Marketing-Manager+00035.docx": {
+      "id": "00035",
+      "key": "e11655845f50a1fecdc55adbc90e08425a016f9fadd00b4faec703013be1f154",
+      "primary": true,
+      "company": "Pattern",
+      "title": "Digital Marketing Manager",
+      "job_number": "5353208657"
+    },
+    "Dave-Call+Pattern+Growth-Marketing-Manager+00036.docx": {
+      "id": "00036",
+      "key": "08bf58e3aeb42aa7ad93c17c546c12a700a92cb3692a851efd0ef1ebf1e87dab",
+      "primary": true,
+      "company": "Pattern",
+      "title": "Growth Marketing Manager",
+      "job_number": "5319185940"
+    },
+    "Dave-Call+Motive+Demand-Generation-Marketing-Manager+00037.docx": {
+      "id": "00037",
+      "key": "5efffcee80fb18730805195986a59b6ed80143f9d98906a273c1bcc6de01e323",
+      "primary": true,
+      "company": "Motive",
+      "title": "Demand Generation Marketing Manager",
+      "job_number": "8843484002"
+    },
+    "Dave-Call+Mozilla+Marketing-Data-Science-Manager+00038.docx": {
+      "id": "00038",
+      "key": "fa52d5bc6031d368b827db354dcaf587174ec1ed7488152a7d01594233cfdbb0",
+      "primary": true,
+      "company": "Mozilla",
+      "title": "Marketing Data Science Manager",
+      "job_number": "8126756"
+    },
+    "Dave-Call+Mozilla+Marketing-Data-Science-Manager+00039.docx": {
+      "id": "00039",
+      "key": "f32c7d74f38c428161cf6ae7bcb2d6453691038dd240237b46c8dd869a6847fb",
+      "primary": true,
+      "company": "Mozilla",
+      "title": "Marketing Data Science Manager",
+      "job_number": "8139403"
+    },
+    "Dave-Call+Wiz+Global-Partner-Marketing-Programs-Manager+00040.docx": {
+      "id": "00040",
+      "key": "40ca924602de70b1799d49dab29c49786ebcecf0e141f2b14c3d9c0d21d333d8",
+      "primary": true,
+      "company": "Wiz",
+      "title": "Global Partner Marketing Programs Manager",
+      "job_number": "4715202006"
+    },
+    "Dave-Call+Grafana-Labs+Demand-Generation-Program-Manager-United-States-Remote+00041.docx": {
+      "id": "00041",
+      "key": "b4ef1854c90248bba643a065b415a5b2dfcef13518da9e3b6fe8be0e1ce0abbe",
+      "primary": true,
+      "company": "Grafana Labs",
+      "title": "Demand Generation Program Manager | United States | Remote",
+      "job_number": "6115634004"
+    },
+    "Dave-Call+TPR-Education,-LLC+Director,-Marketing-Analytics+00042.docx": {
+      "id": "00042",
+      "key": "3b085269c3f3244889a5f4074937adfe8ff84fa548192982640eee81f92b091e",
+      "primary": true,
+      "company": "TPR Education, LLC",
+      "title": "Director, Marketing Analytics",
+      "job_number": "4399190009"
+    },
+    "Dave-Call+Tebra+Senior-Digital-Marketing-Manager+00043.docx": {
+      "id": "00043",
+      "key": "8926145f975c68f4d260e0f99bfe77b927490188e70835f29c3479e6c26b4e65",
+      "primary": true,
+      "company": "Tebra",
+      "title": "Senior Digital Marketing Manager",
+      "job_number": "4722381005"
+    },
+    "Dave-Call+Tebra+Product-Marketing-Manager-(TEMPORARY)+00044.docx": {
+      "id": "00044",
+      "key": "9159b77a6011d1cd4dcc12d0b566479b312a53fc09d31ad92d09f8d4c632e925",
+      "primary": true,
+      "company": "Tebra",
+      "title": "Product Marketing Manager (TEMPORARY)",
+      "job_number": "4724258005"
+    },
+    "Dave-Call+Wiz+Senior-Global-Marketing-Programs-Manager+00045.docx": {
+      "id": "00045",
+      "key": "ea36b44f9dbc19b4d74d36655d93c52450a5035b07b57cb9f98c97dce9001129",
+      "primary": true,
+      "company": "Wiz",
+      "title": "Senior Global Marketing Programs Manager",
+      "job_number": "4709632006"
+    },
+    "Dave-Call+ScaleOps+Product-Marketing-Manager-US+00046.docx": {
+      "id": "00046",
+      "key": "3a8defd0224f15d58d3c1545d16d1b6883a97c22c34df3560654eaa2a41b230e",
+      "primary": true,
+      "company": "ScaleOps",
+      "title": "Product Marketing Manager - US",
+      "job_number": "4921844101"
+    },
+    "Dave-Call+Wiz+Senior-Partner-Marketing-Manager+00047.docx": {
+      "id": "00047",
+      "key": "41b26c1898463c0030b0c5f6c3804962bdb8482709d7f6be5d1ef10284a4ba2b",
+      "primary": true,
+      "company": "Wiz",
+      "title": "Senior Partner Marketing Manager",
+      "job_number": "4707996006"
+    },
+    "Dave-Call+Wiz+Product-Marketing-Manager+00048.docx": {
+      "id": "00048",
+      "key": "f5e7cc2f2781693863fbcb940962492f48f9e879a3f9512c2a7e26cd01aab89f",
+      "primary": true,
+      "company": "Wiz",
+      "title": "Product Marketing Manager",
+      "job_number": "4665810006"
+    },
+    "Dave-Call+Underscore-Marketing+Contractor,-Marketing-Analytics-&-Data-Visualization+00049.docx": {
+      "id": "00049",
+      "key": "f5d50b91eb7d6e0f3e3fe51bb228da256bf83a4199a9e55033b7d6ad1d7e4a49",
+      "primary": true,
+      "company": "Underscore Marketing",
+      "title": "Contractor, Marketing Analytics & Data Visualization",
+      "job_number": "4358312009"
+    },
+    "Dave-Call+Appspace+Digital-Marketing-Manager-Americas+00050.docx": {
+      "id": "00050",
+      "key": "92d9bb301f4a27b0a225866308d6a79d83e77f2e47b88b55cb91b28d75199b1b",
+      "primary": true,
+      "company": "Appspace",
+      "title": "Digital Marketing Manager - Americas",
+      "job_number": "6096864004"
+    },
+    "Dave-Call+Mendix+Sr.-Solutions-Marketing-Manager+00051.docx": {
+      "id": "00051",
+      "key": "b05b980945b0b2a2b4d61fc30eb7f318a3c481b0ad260799c364a19e6f6a5e31",
+      "primary": true,
+      "company": "Mendix",
+      "title": "Sr. Solutions Marketing Manager",
+      "job_number": "2b3b42e6-52b9-40f7-b5a8-86e0016ba43b"
+    },
+    "Dave-Call+Express-Chipping-Inc+SEO-Strategist+00052.docx": {
+      "id": "00052",
+      "key": "7916bc7505597c0d2fbaedea51b643d5c382c7ab021a9fedfa29641236217be7",
+      "primary": true,
+      "company": "Express Chipping Inc",
+      "title": "SEO Strategist",
+      "job_number": "fbd30d5c-043e-4e21-a12c-ce98f97b5238"
+    },
+    "Dave-Call+Silverback-Strategies+SEO-Manager+00053.docx": {
+      "id": "00053",
+      "key": "765386a8be38c00dd268050dbdda08e77480f857e2669b20fda469e248c34079",
+      "primary": true,
+      "company": "Silverback Strategies",
+      "title": "SEO Manager",
+      "job_number": "6afbbdac-3700-4f29-949b-ff2c9f4066a6"
+    },
+    "Dave-Call+Legend+Senior-SEO-Specialist+00054.docx": {
+      "id": "00054",
+      "key": "c737fa5093a5cac1996a547f478e95e438dce3b84c5e839770e784693f69512f",
+      "primary": true,
+      "company": "Legend",
+      "title": "Senior SEO Specialist",
+      "job_number": "cd503053-4290-410e-94df-9642ad6ad933"
+    },
+    "Dave-Call+Silverback-Strategies+Senior-SEO-Manager+00055.docx": {
+      "id": "00055",
+      "key": "fca5529c998cfb7260106c7dc8ef82ec6ae4322d1c1523239be31c9c770d0984",
+      "primary": true,
+      "company": "Silverback Strategies",
+      "title": "Senior SEO Manager",
+      "job_number": "076615cc-05e4-4b98-a481-15e95e34a477"
+    },
+    "Dave-Call+Outreach+Senior-Product-Marketing-Manager,-Platform+00056.docx": {
+      "id": "00056",
+      "key": "df135adf2ae8e48cc13f27ddc62df7fa49af3fedc152e86d78a5123be915ef50",
+      "primary": true,
+      "company": "Outreach",
+      "title": "Senior Product Marketing Manager, Platform",
+      "job_number": "550bdb6a-59ce-4e8a-941b-17bcfc63b9a3"
+    },
+    "Dave-Call+Wpromote+Senior-Paid-Search-Manager+00057.docx": {
+      "id": "00057",
+      "key": "1b4308b9cd3c51976e278aa2ac1106da1999e98670c32e655d9809fa4a2238d0",
+      "primary": true,
+      "company": "Wpromote",
+      "title": "Senior Paid Search Manager",
+      "job_number": "859d0ced-47af-4fd8-8458-34c78742f2e0"
+    },
+    "Dave-Call+Seer-Interactive+Senior-Paid-Search-Account-Manager+00058.docx": {
+      "id": "00058",
+      "key": "50a22886c5cab7f07f92368bcb84d490b6adbadb8ad7d83afb2ecb0dccce1d91",
+      "primary": true,
+      "company": "Seer Interactive",
+      "title": "Senior Paid Search Account Manager",
+      "job_number": "2a3b6025-e0c8-4afa-b7c3-072c6d034579"
+    },
+    "Dave-Call+Silverback-Strategies+Senior-Paid-Media-Manager+00059.docx": {
+      "id": "00059",
+      "key": "2fbf6d38be32d3a27132ca9e85bcb12b5264c870cb4b358908f03e39ada132ce",
+      "primary": true,
+      "company": "Silverback Strategies",
+      "title": "Senior Paid Media Manager",
+      "job_number": "14242ff7-3dbe-4a9a-a29f-1658de846cad"
+    },
+    "Dave-Call+Seer-Interactive+Senior-Paid-Media-Account-Manager+00060.docx": {
+      "id": "00060",
+      "key": "e4272beea5e3b9bca1a44198b129141221ab632c16994d49aea553ae4046c3fe",
+      "primary": true,
+      "company": "Seer Interactive",
+      "title": "Senior Paid Media Account Manager",
+      "job_number": "dff81d09-147b-4343-8239-2a4769f5d130"
+    },
+    "Dave-Call+Cin7+Senior-Manager,-Field-&-Event-Marketing+00061.docx": {
+      "id": "00061",
+      "key": "acf59ab0295cce430186e990d754710ed1b7c34c206ed31bf52a7d7f2424d21a",
+      "primary": true,
+      "company": "Cin7",
+      "title": "Senior Manager, Field & Event Marketing",
+      "job_number": "faac0dd3-f209-4844-ba2b-372f17e33ad6"
+    },
+    "Dave-Call+Pattern+Senior-Ecommerce-Manager-1P+00062.docx": {
+      "id": "00062",
+      "key": "2e826fb934dd9cf812effa829ea8ea8b182234cab3d092d8c89df4758038e8dc",
+      "primary": true,
+      "company": "Pattern",
+      "title": "Senior Ecommerce Manager - 1P",
+      "job_number": "ee183784-82cf-445d-b406-291a1c715031"
+    },
+    "Dave-Call+Pattern+Senior-Ecommerce-Manager+00063.docx": {
+      "id": "00063",
+      "key": "a40b28a7aa6369564ec355803772fe006a231acfea9f120acc08806aa9d72461",
+      "primary": true,
+      "company": "Pattern",
+      "title": "Senior Ecommerce Manager",
+      "job_number": "0ce6bf45-eee8-4243-9c0c-94b415e49c02"
+    },
+    "Dave-Call+Bounteous+Senior-Director,-Marketing-Technology+00064.docx": {
+      "id": "00064",
+      "key": "0dac0dcecbac5c7934e138c7d6c5280f0b9c0ec732205996808b0c8152cdd093",
+      "primary": true,
+      "company": "Bounteous",
+      "title": "Senior Director, Marketing Technology",
+      "job_number": "63cde41b-7264-4dcf-b148-c2c7bb5d63f8"
+    },
+    "Dave-Call+Right-Side-Up+Senior-Affiliate-Marketing-Manager-(Consultant)+00065.docx": {
+      "id": "00065",
+      "key": "661c1bd6e67bbf9d39c1bc9286a0f278bfadc4aa907f7241843fd99ea023d0c5",
+      "primary": true,
+      "company": "Right Side Up",
+      "title": "Senior Affiliate Marketing Manager (Consultant)",
+      "job_number": "e4c11209-7527-47d3-afb7-e3233c80821c"
+    },
+    "Dave-Call+Mendix+Product-Marketing-Lead-ICX+00066.docx": {
+      "id": "00066",
+      "key": "06566bd48479ca75e10fb8f0f6c28db453e3e603fa409314f42b8dcf97243fbf",
+      "primary": true,
+      "company": "Mendix",
+      "title": "Product Marketing Lead - ICX",
+      "job_number": "06a61a4a-eb44-451f-9cff-33bc279a2387"
+    },
+    "Dave-Call+Oxylabs+Performance-Marketing-Manager-(China)+00067.docx": {
+      "id": "00067",
+      "key": "c155e83faa553cbb6f7593c2dd71c4c3d04ed3a75e857a3993c99370e60e7dcd",
+      "primary": true,
+      "company": "Oxylabs",
+      "title": "Performance Marketing Manager (China)",
+      "job_number": "37133243-2dbc-4dab-afe9-084dfe0570ee"
+    },
+    "Dave-Call+Right-Side-Up+Paid-Search-Growth-Marketing-Consultant+00068.docx": {
+      "id": "00068",
+      "key": "6b7df936be12865064264f43e69d1f6136f3b2a28d8ca6f943bd78daa03dc8f0",
+      "primary": true,
+      "company": "Right Side Up",
+      "title": "Paid Search Growth Marketing Consultant",
+      "job_number": "260d8300-ec08-484c-9252-bf4474be2f8d"
+    },
+    "Dave-Call+Silverback-Strategies+Paid-Media-Manager+00069.docx": {
+      "id": "00069",
+      "key": "92ae2f48dc019059b21539987f012b0c0d16d28c3608e3e8b977cb70b1f4d0ec",
+      "primary": true,
+      "company": "Silverback Strategies",
+      "title": "Paid Media Manager",
+      "job_number": "f48de87e-5434-47bb-af85-6de2aad116d9"
+    },
+    "Dave-Call+BAMKO+Marketing-Operations-Manager+00070.docx": {
+      "id": "00070",
+      "key": "f4caa71b8c67ad98dea05d0130ce908b004a1f4131197b3d6455efaccdccf439",
+      "primary": true,
+      "company": "BAMKO",
+      "title": "Marketing Operations Manager",
+      "job_number": "c6b321eb-e15a-43b2-9437-608a46f1cb96"
+    },
+    "Dave-Call+United-Tech+Influencer-Marketing-Team-Lead+00071.docx": {
+      "id": "00071",
+      "key": "51f9dc29692ca38ce10cf46bbf54d3b699c629e4aeeda766ea48fba74c8716ca",
+      "primary": true,
+      "company": "United Tech",
+      "title": "Influencer Marketing Team Lead",
+      "job_number": "b6c8f79e-63d5-4592-887a-771ed387c61b"
+    },
+    "Dave-Call+United-Tech+Head-of-Creative-Marketing+00072.docx": {
+      "id": "00072",
+      "key": "8ea32ba2a98e34af8cb6cd35c45d58b83084a41f6373fa7a4a0322d02cbd21c6",
+      "primary": true,
+      "company": "United Tech",
+      "title": "Head of Creative Marketing",
+      "job_number": "2739330d-ee40-43c2-b838-aac0434a211d"
+    },
+    "Dave-Call+Express-Chipping-Inc+Growth-&-Marketing-Operations-Manager+00073.docx": {
+      "id": "00073",
+      "key": "44cc0880c51995b8edba9f50a925070b869dbe3f4f2af2f257d9a37cf660f2cc",
+      "primary": true,
+      "company": "Express Chipping Inc",
+      "title": "Growth & Marketing Operations Manager",
+      "job_number": "fc89cf1e-6a4b-4fdf-8919-3d8bad960525"
+    },
+    "Dave-Call+Saviynt+Director,-Global-Partner-Marketing+00074.docx": {
+      "id": "00074",
+      "key": "63010264a7027068799f9393d9078ef1e980e4513a934aa956a399f5c672a9c8",
+      "primary": true,
+      "company": "Saviynt",
+      "title": "Director, Global Partner Marketing",
+      "job_number": "49eb8db3-d7ea-44a1-b169-397287d97996"
+    },
+    "Dave-Call+Bounteous+Director-of-Marketing-Technology-(Multi-Solution-Architect)+00075.docx": {
+      "id": "00075",
+      "key": "25eb86ef1e0e218b18d1aa1bc51dd9d7b7bde0b3cead811742c37a2514c5f365",
+      "primary": true,
+      "company": "Bounteous",
+      "title": "Director of Marketing Technology (Multi-Solution Architect)",
+      "job_number": "dad6900c-9389-419f-9de6-83e8d6d1328d"
+    },
+    "Dave-Call+Wing-Assistant+Digital-Marketing-Specialist-(US)+00076.docx": {
+      "id": "00076",
+      "key": "523fc25f17a96bad940eeb68ab71dd04bd0224e8c31a1a85429c79b766beed4f",
+      "primary": true,
+      "company": "Wing Assistant",
+      "title": "Digital Marketing Specialist (US)",
+      "job_number": "5adf314a-8960-48a8-90f9-710a2935e09b"
+    },
+    "Dave-Call+Wing-Assistant+Digital-Marketing-Specialist-(PH)-Full-Time-or-Part-Time+00077.docx": {
+      "id": "00077",
+      "key": "54d23d8853e4031d72338e96013b96be8cd71477e86cbea81481436c0ec8420a",
+      "primary": true,
+      "company": "Wing Assistant",
+      "title": "Digital Marketing Specialist (PH) - Full Time or Part-Time",
+      "job_number": "6bdc10b9-a4ef-4e0e-939e-ac81e00d45b8"
+    },
+    "Dave-Call+Wing-Assistant+Digital-Marketing-Specialist-(Pakistan)+00078.docx": {
+      "id": "00078",
+      "key": "0a7ac9c5f44e5c18a807166ba17660275847056fa2b421a1e21feeae5310d848",
+      "primary": true,
+      "company": "Wing Assistant",
+      "title": "Digital Marketing Specialist (Pakistan)",
+      "job_number": "b60ffa9d-37a9-4be0-9936-8b7156bd31c2"
+    },
+    "Dave-Call+Wing-Assistant+Digital-Marketing-Specialist-(Mexico)+00079.docx": {
+      "id": "00079",
+      "key": "182254939f52a52e4e74aa51f170bd918d10c198483192adc9b30cb683533299",
+      "primary": true,
+      "company": "Wing Assistant",
+      "title": "Digital Marketing Specialist (Mexico)",
+      "job_number": "1efa9ca8-be6f-4027-b736-496eb17b75e7"
+    },
+    "Dave-Call+Wing-Assistant+Digital-Marketing-Specialist-(India)+00080.docx": {
+      "id": "00080",
+      "key": "35a38c2dcb3c81eb4b8c154ebbf1e21782358a31051958c919ccb212d2d71057",
+      "primary": true,
+      "company": "Wing Assistant",
+      "title": "Digital Marketing Specialist (India)",
+      "job_number": "9204f540-e85e-4f0e-861b-5a56866ab316"
+    },
+    "Dave-Call+Wing-Assistant+Digital-Marketing-Project-Coordinator-Full-time-21050+00081.docx": {
+      "id": "00081",
+      "key": "81a1defccf90dd841524551111ea1a7bc7fc841cfc4eeca2800778a767f2d0c9",
+      "primary": true,
+      "company": "Wing Assistant",
+      "title": "Digital Marketing Project Coordinator Full-time | 21050",
+      "job_number": "73ddb309-e953-46fa-aa67-7d4f340377e7"
+    },
+    "Dave-Call+Wing-Assistant+Digital-Marketing-Assistant-(Latin-America)+00082.docx": {
+      "id": "00082",
+      "key": "c24530cb9cf374e6c71cdf7c88c67ff0e50a71d055d7ee2d183c4b229023fb0f",
+      "primary": true,
+      "company": "Wing Assistant",
+      "title": "Digital Marketing Assistant (Latin America)",
+      "job_number": "b2175bd2-2524-454c-a58f-9c4a3c4c1452"
+    },
+    "Dave-Call+Wing-Assistant+Digital-Marketing-Account-Manager-Full-time-21091+00083.docx": {
+      "id": "00083",
+      "key": "1460d419c1f07645e86a24a9e839ce0202808e9a1fbc6347703c25e719ea16c4",
+      "primary": true,
+      "company": "Wing Assistant",
+      "title": "Digital Marketing Account Manager Full-time | 21091",
+      "job_number": "fd2beb6a-635a-4aee-8155-79df0855e583"
+    },
+    "Dave-Call+United-Tech+Creative-Marketing-Team-Lead+00084.docx": {
+      "id": "00084",
+      "key": "3f91f68024950b31b2cec5a9a49ab6d6acfcb82d227ba794ea31aa9718cc89ee",
+      "primary": true,
+      "company": "United Tech",
+      "title": "Creative Marketing Team Lead",
+      "job_number": "a65e967a-88c8-40c2-b60b-6dad0a6fdfea"
+    },
+    "Dave-Call+Wing-Assistant+Content-Marketing-20831+00085.docx": {
+      "id": "00085",
+      "key": "3a67be9a8e2dc9c14ae600af32eeef84fbafb1d595daba8a5296ebdc21f835ee",
+      "primary": true,
+      "company": "Wing Assistant",
+      "title": "Content Marketing | 20831",
+      "job_number": "eea896fa-2672-49f5-a7c2-b994184d0dfb"
+    },
+    "Dave-Call+Colibri-Group+Content-Marketing-Manager,-Professional-Learning-&-Growth+00086.docx": {
+      "id": "00086",
+      "key": "b42f7db65bcc8e24c929869bb5ae390cc2a5e27c38a4165d514dac2b86fdbce2",
+      "primary": true,
+      "company": "Colibri Group",
+      "title": "Content Marketing Manager, Professional Learning & Growth",
+      "job_number": "71a2e473-1490-4775-879e-5d4c1d1251f2"
+    },
+    "Dave-Call+Veeva-Systems+Account-Partner-Marketing-Analytics+00087.docx": {
+      "id": "00087",
+      "key": "9df1da6c99a6b093b9ea6714abdea0cc6a112a2b53497619ab6d5146ce3144cd",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Account Partner - Marketing Analytics",
+      "job_number": "6f4f761a-4850-4d45-8bd2-d693a33e5f26"
+    },
+    "Dave-Call+Veeva-Systems+Account-Partner-Marketing-Analytics+00088.docx": {
+      "id": "00088",
+      "key": "c34743675f13aa1b2ea0a33552a16e5de44f67e2c29a24f8aa2e030278cf50f5",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Account Partner - Marketing Analytics",
+      "job_number": "70825ca5-2c1c-450b-b3ab-496357897968"
+    },
+    "Dave-Call+Veeva-Systems+Account-Partner-Marketing-Analytics+00089.docx": {
+      "id": "00089",
+      "key": "8e6ebc20595617c49d463b74f10f4a34a01f8263336c0f104d90eeff650a4240",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Account Partner - Marketing Analytics",
+      "job_number": "ed458e3b-7bc8-4392-9c11-e85b697371f4"
+    },
+    "Dave-Call+OnTheGoSystems+Head-of-Marketing+00090.docx": {
+      "id": "00090",
+      "key": "09021195c15a0202a510e3d42ad4729e355d37f5f6b66e34bdf8d364be8393e8",
+      "primary": true,
+      "company": "OnTheGoSystems",
+      "title": "Head of Marketing",
+      "job_number": "c8987fe67f69d6b7a18b0cfb"
+    },
+    "Dave-Call+Cloudinary+Director-of-Digital-Marketing+00091.docx": {
+      "id": "00091",
+      "key": "d4f47416236d5336e92899b1cfc0576bdddd365fe14782166530e91bda9b51a1",
+      "primary": true,
+      "company": "Cloudinary",
+      "title": "Director of Digital Marketing",
+      "job_number": "155151"
+    },
+    "Dave-Call+Bayesian-Health+Product-Marketing-Lead+00092.docx": {
+      "id": "00092",
+      "key": "eb1bd4b6c450a651d9e07ac6bac9c00ee145c9d2e68eb4dfaaab59115a1508b2",
+      "primary": true,
+      "company": "Bayesian Health",
+      "title": "Product Marketing Lead",
+      "job_number": "155124"
+    },
+    "Dave-Call+Amwell+Sr-Product-Marketing-Manager+00093.docx": {
+      "id": "00093",
+      "key": "14b32a32f3ae22bf3f89cb7dab3dd4de779fc739e126293864921aa986238e1e",
+      "primary": true,
+      "company": "Amwell",
+      "title": "Sr Product Marketing Manager",
+      "job_number": "e9636e80015793a7ae8776d3"
+    },
+    "Dave-Call+PlayStation-Global+Marketing-Technologies-Director+00094.docx": {
+      "id": "00094",
+      "key": "cac853a97e6f523260a85d1b8339908a778b5148acacdae8f293de3749344efd",
+      "primary": true,
+      "company": "PlayStation Global",
+      "title": "Marketing Technologies Director",
+      "job_number": "6223145004"
+    },
+    "Dave-Call+Caraway-Home+Senior-Growth-Manager,-Paid-Search+00095.docx": {
+      "id": "00095",
+      "key": "927654513ccaae145449021dbfa97e06bf20a8ae6c13928885c2f4d9ca8def09",
+      "primary": true,
+      "company": "Caraway Home",
+      "title": "Senior Growth Manager, Paid Search",
+      "job_number": "3f8f4838d77e2fec"
+    },
+    "Dave-Call+Veeva-Systems+Senior-Consultant-Marketing-Software+00096.docx": {
+      "id": "00096",
+      "key": "85e3908ede09812df0d21b7693626c90fc84d8def52ad6bbcc7341ec2e7f5396",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Senior Consultant - Marketing Software",
+      "job_number": "c39b0fa7-3378-40dd-ac7c-7e8eb01c475f"
+    },
+    "Dave-Call+Veeva-Systems+Product-Marketing-Senior-Manager+00097.docx": {
+      "id": "00097",
+      "key": "24648c6d0fef208a712982b8fca6f437202c0299149e82515581bba7cf121d72",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Marketing Senior Manager",
+      "job_number": "58aecbb6-133b-4b68-a556-6b9f71adefe5"
+    },
+    "Dave-Call+Veeva-Systems+Product-Marketing-Senior-Manager+00098.docx": {
+      "id": "00098",
+      "key": "077ed0876f3baba9955bb9821383ed3df639bd97a3a9cbbbd0876b4cbf86bf0d",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Marketing Senior Manager",
+      "job_number": "8aa1748a-8c90-467b-af61-5abf9949ba50"
+    },
+    "Dave-Call+Veeva-Systems+Product-Marketing-Senior-Manager+00099.docx": {
+      "id": "00099",
+      "key": "75fa447989534e72e2fb1fc5dae39372a8f09dcf9371bf4d8a5e0ad9995f2867",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Marketing Senior Manager",
+      "job_number": "ce84f05f-69a1-4788-a59d-8cfabd981296"
+    },
+    "Dave-Call+Veeva-Systems+Product-Marketing-Manager-Senior-Manager-Clinical-Operations+00100.docx": {
+      "id": "00100",
+      "key": "54639a20a0550dd6f59fbb1128db96e685ee33a4e43fc28f3121957b920a8929",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Marketing Manager / Senior Manager - Clinical Operations",
+      "job_number": "0b3c9ec0-86f3-4a84-9f7b-df27921e5635"
+    },
+    "Dave-Call+Veeva-Systems+Product-Marketing-Manager-Senior-Manager-Clinical-Operations+00101.docx": {
+      "id": "00101",
+      "key": "dada2313c0f84a158176ebed55c418ed512d480e672b68f9a402fc4a8400fc94",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Marketing Manager / Senior Manager - Clinical Operations",
+      "job_number": "9533cdfe-5383-427b-affa-2ffe03598250"
+    },
+    "Dave-Call+Veeva-Systems+Product-Marketing-Manager-Senior-Manager-Clinical-Operations+00102.docx": {
+      "id": "00102",
+      "key": "9cc28fce977ad516e72a62a2c1c2c21da6aa399b841a0de56d71c2d1d8382cb0",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Marketing Manager / Senior Manager - Clinical Operations",
+      "job_number": "fa878846-7426-44d5-bd1a-129a8aaeb392"
+    },
+    "Dave-Call+Veeva-Systems+Product-Marketing-Manager-Commercial-Content+00103.docx": {
+      "id": "00103",
+      "key": "39a62b0759350d9a205fc0b00c937f6189545565da4e91170b511bf3806dd5a0",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Marketing Manager - Commercial Content",
+      "job_number": "0d68e344-370a-4ef1-a8fe-031f13b4c1b3"
+    },
+    "Dave-Call+Veeva-Systems+Product-Marketing-Manager-Commercial-Content+00104.docx": {
+      "id": "00104",
+      "key": "ec2e356cc929bf14b471f1b0149a2726da694e68e6baf03832fecba64c9f9a56",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Marketing Manager - Commercial Content",
+      "job_number": "608435e0-2240-409a-8f8d-155b6de68f86"
+    },
+    "Dave-Call+Veeva-Systems+Product-Marketing-Manager-Commercial-Content+00105.docx": {
+      "id": "00105",
+      "key": "a2c0f938a810b7207b2ee5199cf0d30e988220f9f362790ec7e05864221b812a",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Marketing Manager - Commercial Content",
+      "job_number": "b3998e4c-e82b-4460-92ac-1425b5660051"
+    },
+    "Dave-Call+Veeva-Systems+Product-Marketing-Manager-Senior-Manager+00106.docx": {
+      "id": "00106",
+      "key": "2ec569ef3bc4cffe07d5f527e54d43212d6a3a4543f7030351eaaa67420939f5",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Marketing - Manager / Senior Manager",
+      "job_number": "056356f8-820c-438f-b8a5-727866621382"
+    },
+    "Dave-Call+Veeva-Systems+Product-Marketing-Manager-Senior-Manager+00107.docx": {
+      "id": "00107",
+      "key": "d17e94309d364e5a0af3fee4e8e9d490b66cf0adec52801934d05c0a084d7673",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Marketing - Manager / Senior Manager",
+      "job_number": "21abdfb7-f1e1-44cd-b63f-ae47b3f47617"
+    },
+    "Dave-Call+Veeva-Systems+Product-Marketing-Manager-Senior-Manager+00108.docx": {
+      "id": "00108",
+      "key": "79aba13dff614ae013d2bfff498fbc98a96aaab2a90f0f385bacab35ffb17587",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Marketing - Manager / Senior Manager",
+      "job_number": "6d584cfb-a3be-4b0e-a50e-34b639b40143"
+    },
+    "Dave-Call+Veeva-Systems+Product-Marketing-Manager-Senior-Manager+00109.docx": {
+      "id": "00109",
+      "key": "b6a7407c0791103c74c2384d856782385239dd6f74d58fd23866379bf5396a26",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Marketing - Manager / Senior Manager",
+      "job_number": "97fd2444-a4fb-4d4d-a8da-0c08bcf16bed"
+    },
+    "Dave-Call+Veeva-Systems+Product-Marketing-Manager-Senior-Manager+00110.docx": {
+      "id": "00110",
+      "key": "b454a44feeed9f7bd672067cb82308d5c7435a6b3cbcc32c21127c05be2c3a28",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Marketing - Manager / Senior Manager",
+      "job_number": "f784d66a-1809-4cff-beb8-642c84f9f4ba"
+    },
+    "Dave-Call+Veeva-Systems+Product-Expert-Marketing-Analytics+00111.docx": {
+      "id": "00111",
+      "key": "518c8a0990afb28a93c6361792356a8fa5ec26112443c7fd012a64f29f15627c",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Product Expert - Marketing Analytics",
+      "job_number": "b4422f94-b4d5-4ba8-bb08-da1b2c9a77f5"
+    },
+    "Dave-Call+Veeva-Systems+Lead-Services-Engagement-Manager-(SEM)-eCOA+00112.docx": {
+      "id": "00112",
+      "key": "6d5d2f86d0744308b156601ceba1063bf892f186ea819309a78ff5c43098f1fd",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Lead Services Engagement Manager (SEM) - eCOA",
+      "job_number": "7aa28efd-044d-4a16-a6ea-c379fdeaf888"
+    },
+    "Dave-Call+Veeva-Systems+Field-Marketing-Manager-Senior-Manager+00113.docx": {
+      "id": "00113",
+      "key": "e90732dc8ef93aa3a8ed1c1439c63bd7ebf5910046a5d3087893bd64a23d0432",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Field Marketing Manager / Senior Manager",
+      "job_number": "00a005bc-55e2-4558-8a47-8429b53e065b"
+    },
+    "Dave-Call+Veeva-Systems+Field-Marketing-Manager-Senior-Manager+00114.docx": {
+      "id": "00114",
+      "key": "ea71ef057e496bff706e47dd532370c801817e5e910a14de0f77a590d56f6d13",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Field Marketing Manager / Senior Manager",
+      "job_number": "3cb83c93-9798-4cc8-8d8e-e8664b7ead93"
+    },
+    "Dave-Call+Veeva-Systems+Field-Marketing-Manager-Senior-Manager+00115.docx": {
+      "id": "00115",
+      "key": "86b1f5c5d1915d2add15fe51f2e6c2c3992e367769d5efcfee62b1bb0403b3db",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Field Marketing Manager / Senior Manager",
+      "job_number": "7a33f0c4-16d8-4027-bf4a-fb0068c51c69"
+    },
+    "Dave-Call+Veeva-Systems+Field-Marketing-Manager-Senior-Manager+00116.docx": {
+      "id": "00116",
+      "key": "5437d3ccd215c75ecde802417f8055259771bc887d0ac39270b020d0b354868a",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Field Marketing Manager / Senior Manager",
+      "job_number": "fa6939f3-8279-4f00-b873-49b786524a69"
+    },
+    "Dave-Call+Veeva-Systems+Field-Marketing-Director+00117.docx": {
+      "id": "00117",
+      "key": "30d6cd1545d442eca2133646a20a7f14a61e2c529522b5b6cc3ffc1a4cf43746",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Field Marketing Director",
+      "job_number": "85789b15-662d-48e7-b795-ed3cb31872bd"
+    },
+    "Dave-Call+Veeva-Systems+Field-Marketing-Manager-Senior-Manager+00118.docx": {
+      "id": "00118",
+      "key": "0fe88e7b110ee0e76b66a6f28eb3dd70016aeb32febef4a0533bced1dffe1269",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Field Marketing - Manager / Senior Manager",
+      "job_number": "2e90e68f-6846-47ed-9527-12867c852c94"
+    },
+    "Dave-Call+Veeva-Systems+Field-Marketing-Manager-Senior-Manager+00119.docx": {
+      "id": "00119",
+      "key": "d97e611e67ed71c1a31dabcabbd13bad7620fe1da58bcdbee68dbf1ff1b31014",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Field Marketing - Manager / Senior Manager",
+      "job_number": "865b2932-4e74-4e65-b71a-b2c7898a00d0"
+    },
+    "Dave-Call+Veeva-Systems+Field-Marketing-Manager+00120.docx": {
+      "id": "00120",
+      "key": "f32a21b5bed3f59b78012a94200b21812c35ea44cd1e09d0427dd84bb0f2ae5f",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Field Marketing - Manager",
+      "job_number": "1aa9474a-2f91-4145-b610-1196b1c75da5"
+    },
+    "Dave-Call+Veeva-Systems+Director-of-Marketing+00121.docx": {
+      "id": "00121",
+      "key": "a23496959ab914e11e884bf2db8f9fd1b86c89d2e4334f18ebc8002b45875039",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Director of Marketing",
+      "job_number": "2581cb7c-34d1-43a8-8e3a-1e8c16eedc39"
+    },
+    "Dave-Call+Veeva-Systems+Director-of-Marketing+00122.docx": {
+      "id": "00122",
+      "key": "495b9c66ac9f4bf128d7c188ffc99f4850a1e84f3b050db475753066f623bf48",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Director of Marketing",
+      "job_number": "74d90b13-7637-4487-985e-1f1a3373a79d"
+    },
+    "Dave-Call+Veeva-Systems+Director-of-Marketing+00123.docx": {
+      "id": "00123",
+      "key": "f0b01d76636988a6b8f6ea6c4957a29428c9cb206df8e35f44f5ddb60b3b846a",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Director of Marketing",
+      "job_number": "7e9486f7-510c-4a5a-8c62-7b2c4976c7c5"
+    },
+    "Dave-Call+Veeva-Systems+Director-Product-Marketing+00124.docx": {
+      "id": "00124",
+      "key": "fe8e0d64bd314e2b09f3bbef92badc61c188a3cd3fbad68530ea9deca9b96b66",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Director - Product Marketing",
+      "job_number": "2b597ff7-91ef-4416-ae6e-9aa29e85ec7f"
+    },
+    "Dave-Call+Veeva-Systems+Director-Product-Marketing+00125.docx": {
+      "id": "00125",
+      "key": "92797332fbeb5b6e0dc570317864350c2847b7c26eaccdb004155a54737a6e44",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Director - Product Marketing",
+      "job_number": "6bbdd974-4e12-44f7-ac28-0476d79b870e"
+    },
+    "Dave-Call+Veeva-Systems+Director-Product-Marketing+00126.docx": {
+      "id": "00126",
+      "key": "d3e735db41d6b6a8291ff80ad1225b4ebadfc78ccc2d7cd82518446622006b4a",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Director - Product Marketing",
+      "job_number": "9d27ed05-e9a6-4507-8889-4a08e61a4da3"
+    },
+    "Dave-Call+Veeva-Systems+Director-Integrated-and-Field-Marketing+00127.docx": {
+      "id": "00127",
+      "key": "cdfb4d36601a17998129865e769bb0dc0b9d72405fe0d4fe7aa3f296e5bf9681",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Director - Integrated and Field Marketing",
+      "job_number": "241951ec-deb8-4aba-922e-1e2ce560b06c"
+    },
+    "Dave-Call+Veeva-Systems+Director-Integrated-and-Field-Marketing+00128.docx": {
+      "id": "00128",
+      "key": "e962ac3a405bb717328c8bf0f33d35af5e3e05db12322135423e6b110f2742ca",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Director - Integrated and Field Marketing",
+      "job_number": "93fb9702-5eb2-4c42-aff7-aa84d3c61f06"
+    },
+    "Dave-Call+Veeva-Systems+Director-Integrated-and-Field-Marketing+00129.docx": {
+      "id": "00129",
+      "key": "c5c3d4da9ae8da7bcba5f306e660dc5f6632fe33b92069a37ee784468e2e179b",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Director - Integrated and Field Marketing",
+      "job_number": "e5b95c28-1904-4cb4-ab3e-0eb798faa54a"
+    },
+    "Dave-Call+Veeva-Systems+Customer-Marketing-Manager+00130.docx": {
+      "id": "00130",
+      "key": "923364261ed52577aa0f814ab700d64b21db14153d789a94d9ccce923a63006a",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Customer Marketing Manager",
+      "job_number": "30fca1cd-e8a8-4697-94ed-52af230e6565"
+    },
+    "Dave-Call+Veeva-Systems+Customer-Marketing-Manager+00131.docx": {
+      "id": "00131",
+      "key": "d47aad5f921a93717ceced7a0e522848bc61951e1646961cb518d3a41f8f6134",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Customer Marketing Manager",
+      "job_number": "557c53eb-fab9-4ac1-9f12-650f5eceab5f"
+    },
+    "Dave-Call+Veeva-Systems+Customer-Marketing-Manager+00132.docx": {
+      "id": "00132",
+      "key": "c57891fa31984fb1503717705f79ffcfbc50bf9693b769b4d8cb9191fb03bdd9",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Customer Marketing Manager",
+      "job_number": "b74d0923-d814-4b77-8d72-b11da20d8a93"
+    },
+    "Dave-Call+Veeva-Systems+Content-Marketing-Manager-Senior-Manager+00133.docx": {
+      "id": "00133",
+      "key": "b54304d982b35f76d5849d288c048a70ea5f352b0167bad1e3658e92b473c53d",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Content Marketing - Manager / Senior Manager",
+      "job_number": "2e8674cc-6c9c-4564-aa21-4d205b9b349a"
+    },
+    "Dave-Call+Veeva-Systems+Content-Marketing-Manager-Senior-Manager+00134.docx": {
+      "id": "00134",
+      "key": "1ff3df9d55c39b6fcbdf3aaa815385ac49c4ff261ffe26b2096c49d47b28cc98",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Content Marketing - Manager / Senior Manager",
+      "job_number": "8f15dceb-3827-4f41-99d5-53d77b4f550c"
+    },
+    "Dave-Call+Veeva-Systems+Content-Marketing-Manager-Senior-Manager+00135.docx": {
+      "id": "00135",
+      "key": "15504e57306814932e133ce33be0483311f5a4f45b757b8bbf1bdb359dbfaa8a",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Content Marketing - Manager / Senior Manager",
+      "job_number": "b4ab82a5-0554-4a44-b8f2-b96a1776199e"
+    },
+    "Dave-Call+Veeva-Systems+Content-Marketing-Manager+00136.docx": {
+      "id": "00136",
+      "key": "579276c1bfc856f4c94becea517650d92800bf27a48ed534a501360a3bfea113",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Content Marketing - Manager",
+      "job_number": "0353a229-5b7c-483c-9326-289ebb80b31d"
+    },
+    "Dave-Call+Veeva-Systems+Content-Marketing-Manager+00137.docx": {
+      "id": "00137",
+      "key": "a45f993a1f8c9394e7d6035d7d2b46c5aa7b378c0d9c0a75983a5ba8cc998ac7",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Content Marketing - Manager",
+      "job_number": "51967157-70f7-40fd-9044-12b39b5a5d1b"
+    },
+    "Dave-Call+Veeva-Systems+Content-Marketing-Manager+00138.docx": {
+      "id": "00138",
+      "key": "74afb7fb40a4e769a10ece5320d1ee69180188d07983fc063cf74602dada136a",
+      "primary": true,
+      "company": "Veeva Systems",
+      "title": "Content Marketing - Manager",
+      "job_number": "8c824685-7ffa-4b4c-a7de-4c0bd491c104"
+    },
+    "Dave-Call+Gray-Swan-AI+Product-Marketing-Lead+00139.docx": {
+      "id": "00139",
+      "key": "e3f35fc8d305ae3c549a17675994533ff6b653eeb0a167a93cd5cf84f5755d3d",
+      "primary": true,
+      "company": "Gray Swan AI",
+      "title": "Product Marketing Lead",
+      "job_number": "310c2208-bcd1-4d46-bfbc-8df8201b3a3b"
+    },
+    "Dave-Call+Xero+Senior-Product-Marketing-Manager-Payments+00140.docx": {
+      "id": "00140",
+      "key": "de31e48537f532bc7173e3ae7b13d3485aa801bdc0b6d37ada473462bdcc56d3",
+      "primary": true,
+      "company": "Xero",
+      "title": "Senior Product Marketing Manager - Payments",
+      "job_number": "c590b0e6-a7f6-401d-accc-f2250e70b10c"
+    },
+    "Dave-Call+G2+Senior-Specialist,-Marketing-Analytics-and-Planning+00141.docx": {
+      "id": "00141",
+      "key": "33cf3ffcd52f2c2bcb698117d262b0e6779564f56edb9e468f5900750104775a",
+      "primary": true,
+      "company": "G2",
+      "title": "Senior Specialist, Marketing Analytics and Planning",
+      "job_number": "3597c3d3-3ca2-45ac-b848-b70cc92d6c84"
+    },
+    "Dave-Call+Superhuman+Head-of-Product-Marketing,-Self-Serve-Growth+00142.docx": {
+      "id": "00142",
+      "key": "330a29924c33a025764845dead193a7b89edd59298a524ac50633973bf0f4ef1",
+      "primary": true,
+      "company": "Superhuman",
+      "title": "Head of Product Marketing, Self-Serve Growth",
+      "job_number": "a395dda4-288b-4864-ab94-8e4f031f1c14"
+    },
+    "Dave-Call+OnePay+Creator-Marketing-Manager+00143.docx": {
+      "id": "00143",
+      "key": "7117b329e7fb72b463c6ca16360c9a596d7d1eb862ee6e6e6a5d14179a48aebc",
+      "primary": true,
+      "company": "OnePay",
+      "title": "Creator Marketing Manager",
+      "job_number": "8c684117-d4a2-4fdc-847d-2f3d54364b22"
+    },
+    "Dave-Call+Deepgram+Field-&-Event-Marketing-Manager,-APAC-(Singapore)+00144.docx": {
+      "id": "00144",
+      "key": "57ab7bb2c27635c0e688bebdc611980167cbe5456d81c8eedc81659f2b5fc25e",
+      "primary": true,
+      "company": "Deepgram",
+      "title": "Field & Event Marketing Manager, APAC (Singapore)",
+      "job_number": "6c2a6918-b04c-4407-b87c-46090c114bb0"
+    },
+    "Dave-Call+Deepgram+Field-&-Event-Marketing-Manager,-EMEA+00145.docx": {
+      "id": "00145",
+      "key": "6969e89cc958200ab8c9501284dcf2b1ea05335ad902c710baec14198844ef6d",
+      "primary": true,
+      "company": "Deepgram",
+      "title": "Field & Event Marketing Manager, EMEA",
+      "job_number": "f09b0d4a-dbfc-4486-879b-741eb61f9fdb"
+    },
+    "Dave-Call+Xero+Marketing-Communication-Manager-CA-(6-month-contract)+00146.docx": {
+      "id": "00146",
+      "key": "ea94e73dd993fa1eb144303008c7cb10197281954f069e46b45225f8953eb0a4",
+      "primary": true,
+      "company": "Xero",
+      "title": "Marketing Communication Manager - CA (6 month contract)",
+      "job_number": "b2e7129b-434a-4742-a72f-8e516e3c37e7"
+    },
+    "Dave-Call+Deepgram+Senior-Designer,-Brand-Marketing+00147.docx": {
+      "id": "00147",
+      "key": "c0ad341183406a4a130cb4d5960e9b30fbd40b76787a6772b0e8e404847b43f4",
+      "primary": true,
+      "company": "Deepgram",
+      "title": "Senior Designer, Brand Marketing",
+      "job_number": "1d340a0d-9d55-4452-a6dc-38534c4fd06f"
+    },
+    "Dave-Call+Superhuman+SEO-&-AEO-Manager+00148.docx": {
+      "id": "00148",
+      "key": "b1617753498a1a7e078ae5ed85bf451fa317406a715146e7e57596b250958877",
+      "primary": true,
+      "company": "Superhuman",
+      "title": "SEO & AEO Manager",
+      "job_number": "68ed51ae-0eae-433f-981c-cb67c48748aa"
+    },
+    "Dave-Call+Socure+Developer-Marketing-Lead+00149.docx": {
+      "id": "00149",
+      "key": "4d16a30c8cb23ef50e433833f1cf53e5e4966bcb62946464c7bafe599b753d99",
+      "primary": true,
+      "company": "Socure",
+      "title": "Developer Marketing Lead",
+      "job_number": "eeeb5a8e-977e-4478-b104-0c25c01ec645"
+    },
+    "Dave-Call+Socure+Technical-Content-Marketing-Manager+00150.docx": {
+      "id": "00150",
+      "key": "28e3cc276f69a09e195ec74507dc598673d58c63d63fbd28080b7790b7e264c8",
+      "primary": true,
+      "company": "Socure",
+      "title": "Technical Content Marketing Manager",
+      "job_number": "f8038aea-368e-4128-beba-c146d5a49d9d"
+    },
+    "Dave-Call+Socure+Vertical-Marketing-Lead,-Tier-1-Banks+00151.docx": {
+      "id": "00151",
+      "key": "aba86497134d4303bed6693da651adca49489e0943fe2822e4e61f9ebef72c03",
+      "primary": true,
+      "company": "Socure",
+      "title": "Vertical Marketing Lead, Tier 1 Banks",
+      "job_number": "4b17c1c8-8933-4c43-806a-72d39358de1a"
+    },
+    "Dave-Call+OnePay+Senior-Program-Manager,-Marketing-Operations+00152.docx": {
+      "id": "00152",
+      "key": "3e5930a7cff706f104e6fd7931532cf56394403f536a1a43381257b124f8aea8",
+      "primary": true,
+      "company": "OnePay",
+      "title": "Senior Program Manager, Marketing Operations",
+      "job_number": "6d8a6510-d688-45ac-ae38-3753b94bd269"
+    },
+    "Dave-Call+Stryker-Digital+Paid-Search-Strategist+00153.docx": {
+      "id": "00153",
+      "key": "1b0dc1e273c336dcca16a8bd892bbf933b37afa3d68c72c119e66566adb69f17",
+      "primary": true,
+      "company": "Stryker Digital",
+      "title": "Paid Search Strategist",
+      "job_number": "6e82c29e-07f5-46bd-bb56-4ba9ec227203"
+    },
+    "Dave-Call+Harvey+Head-of-Marketing,-APAC+00154.docx": {
+      "id": "00154",
+      "key": "784651bd508dd2bf84019913e26f2ee4e90e90be13726f13091c1ee424ff8025",
+      "primary": true,
+      "company": "Harvey",
+      "title": "Head of Marketing, APAC",
+      "job_number": "ff7aabda-b2d9-422b-aa63-eae9a27ca1c1"
+    },
+    "Dave-Call+Harvey+Senior-Field-Marketing-Manager,-EMEA+00155.docx": {
+      "id": "00155",
+      "key": "0302eb82d0bab99ce85ff46c37967b696c3857397bb4a410f8a411924fde8ef3",
+      "primary": true,
+      "company": "Harvey",
+      "title": "Senior Field Marketing Manager, EMEA",
+      "job_number": "d6ea5dcb-17a9-4aad-82a3-c789812ca9ed"
+    },
+    "Dave-Call+1Password+Senior-Technical-SEO-Analyst+00156.docx": {
+      "id": "00156",
+      "key": "fb9596daf23c744ae0997bda6e8d15587550f69ed8d90faa0cdaf7d15b0513ed",
+      "primary": true,
+      "company": "1Password",
+      "title": "Senior Technical SEO Analyst",
+      "job_number": "e6aa6244-fe74-4b4b-b925-3a353400e6ca"
+    },
+    "Dave-Call+1Password+Senior-Product-Marketing-Manager,-Agentic-Identity-Security-(Apono)+00157.docx": {
+      "id": "00157",
+      "key": "63cb3d58041ca3851c6a3f5afc795fa52698f94e2c0623d6015cad207f6c0227",
+      "primary": true,
+      "company": "1Password",
+      "title": "Senior Product Marketing Manager, Agentic Identity Security (Apono)",
+      "job_number": "6e7795dd-d927-484b-8979-9a7aab24e65a"
+    },
+    "Dave-Call+Socure+Head-of-Digital-Marketing-&-AI-Driven-Growth+00158.docx": {
+      "id": "00158",
+      "key": "624d6c8833fe0f2f433cd6eefbf1e925d39ef0caa0f3164eeedc37a06c1dacb9",
+      "primary": true,
+      "company": "Socure",
+      "title": "Head of Digital Marketing & AI-Driven Growth",
+      "job_number": "6a69ec52-a0be-4d16-aaf8-a9427c46709c"
+    },
+    "Dave-Call+Gray-Swan-AI+Arena-Growth-Marketing-Manager-(Pittsburgh-or-Remote-U.S.)+00159.docx": {
+      "id": "00159",
+      "key": "f32fc90547d2343aee9554604f1264ff44d0c25c8b8d9f0838053ca8fe115934",
+      "primary": true,
+      "company": "Gray Swan AI",
+      "title": "Arena Growth Marketing Manager (Pittsburgh or Remote U.S.)",
+      "job_number": "d209ab12-9fac-4827-a5f6-d4bbe1f033b8"
+    },
+    "Dave-Call+Tern+Head-of-Marketing+00160.docx": {
+      "id": "00160",
+      "key": "3eb29f5955984c839c5345ca8a5521755b6be21ed87515a6aaa59d664a70845c",
+      "primary": true,
+      "company": "Tern",
+      "title": "Head of Marketing",
+      "job_number": "a6179a1c-252b-4901-8490-b718029e0707"
+    },
+    "Dave-Call+Morning-Consult+Director,-Marketing-Operations+00161.docx": {
+      "id": "00161",
+      "key": "a1350c54463199520beb7344d324a5414b557cac111ae732f777c0fe0151f00d",
+      "primary": true,
+      "company": "Morning Consult",
+      "title": "Director, Marketing Operations",
+      "job_number": "d61b7e12-b870-4447-933f-efd42a93ea11"
+    },
+    "Dave-Call+Ambience-Healthcare+Senior-Product-Marketing-Manager-(Chorus)+00162.docx": {
+      "id": "00162",
+      "key": "61320a28745897ba7747f9c1cd5d78ab53855b72d09a61da892d0a44a97bf369",
+      "primary": true,
+      "company": "Ambience Healthcare",
+      "title": "Senior Product Marketing Manager (Chorus)",
+      "job_number": "23feeefb-873c-40a3-ba66-f57353b4bc72"
+    },
+    "Dave-Call+Harvey+Partner-Marketing-Manager+00163.docx": {
+      "id": "00163",
+      "key": "d1d9fac251bb76965ef0c8b24594da061864a26e36bf873dbe753289331ea92b",
+      "primary": true,
+      "company": "Harvey",
+      "title": "Partner Marketing Manager",
+      "job_number": "9515e54b-bae5-414e-a166-9a6231a610a4"
+    },
+    "Dave-Call+Harvey+Partner-Marketing-Manager+00164.docx": {
+      "id": "00164",
+      "key": "61e4ce4f4788b892a2314b27b7e837cc7bdc0e4e877307e69d7aad34064cd54e",
+      "primary": true,
+      "company": "Harvey",
+      "title": "Partner Marketing Manager",
+      "job_number": "6093563c-0c23-4a81-aa6a-b052b734099f"
+    },
+    "Dave-Call+Cogent-Security+Sr.-Manager,-Content-Marketing+00165.docx": {
+      "id": "00165",
+      "key": "d37edc2b8d1812af004f833c337b93c8db87cc9f67c8fd3457fb0b370eab9fc1",
+      "primary": true,
+      "company": "Cogent Security",
+      "title": "Sr. Manager, Content Marketing",
+      "job_number": "f9117568-8934-45a1-b220-95e8bfbc1060"
+    },
+    "Dave-Call+Cogent-Security+Director,-Content-Marketing+00166.docx": {
+      "id": "00166",
+      "key": "53818537ef5c1cf2019f53c19eb4ef410abfef890710d292e7cc663bfc0bf157",
+      "primary": true,
+      "company": "Cogent Security",
+      "title": "Director, Content Marketing",
+      "job_number": "3b5174a5-b369-427b-98a6-88c24bfbc186"
+    },
+    "Dave-Call+Absorb+Senior-Agentic-Demand-Generation-Manager+00167.docx": {
+      "id": "00167",
+      "key": "cd7b9f089b2708ce7c8e44d38a37485a3d876c7ce580de871aa2bc899ff52185",
+      "primary": true,
+      "company": "Absorb",
+      "title": "Senior Agentic Demand Generation Manager",
+      "job_number": "ef386602-9e7e-494c-b41e-771c06b7b834"
+    },
+    "Dave-Call+Absorb+Senior-Agentic-Demand-Generation-Manager+00168.docx": {
+      "id": "00168",
+      "key": "5b35e82aae5782e3f20a84c3de4d5910c91c2656bed0f2ba8d12047507dac2b9",
+      "primary": true,
+      "company": "Absorb",
+      "title": "Senior Agentic Demand Generation Manager",
+      "job_number": "88ab1946-a247-43b5-93bf-5769915f78b4"
+    },
+    "Dave-Call+Stryker-Digital+SEO-Client-Success-Manager+00169.docx": {
+      "id": "00169",
+      "key": "d34418dd8c0c0e421bee225b6373817157f5631f99660dae13e2a494ac4b1e00",
+      "primary": true,
+      "company": "Stryker Digital",
+      "title": "SEO Client Success Manager",
+      "job_number": "f4be2596-3027-4a9b-be1e-2219550a0a8a"
+    },
+    "Dave-Call+Hightouch+Senior-Product-Marketing-Manager,-CDP+00170.docx": {
+      "id": "00170",
+      "key": "3f089f7394fb7c7e9c1ab4b1f95f5ead29f3c3bf6bde8995aa0f393deadb3663",
+      "primary": true,
+      "company": "Hightouch",
+      "title": "Senior Product Marketing Manager, CDP",
+      "job_number": "64e89738-5846-493c-a64b-698da086af58"
+    },
+    "Dave-Call+Directive+Senior-Digital-Marketing-Strategist-Startups-SMB-(Remote-US)-Future-Opening+00171.docx": {
+      "id": "00171",
+      "key": "a6a0e1b1d80b901afed87ad5fb6b520cea2b24dc7022d4e891a028b292745872",
+      "primary": true,
+      "company": "Directive",
+      "title": "Senior Digital Marketing Strategist -Startups/SMB (Remote US) - Future Opening",
+      "job_number": "31e63cb3-1204-491e-837e-0e55ec670f08"
+    },
+    "Dave-Call+TRM-Labs+Content-Marketing-Lead+00172.docx": {
+      "id": "00172",
+      "key": "bcc30a3b3a88ed4dcc80a925f09bd19d9cb76e275c7c6c6bb9f821c61dfff027",
+      "primary": true,
+      "company": "TRM Labs",
+      "title": "Content Marketing Lead",
+      "job_number": "f17832e4-5aaa-4f54-989f-2b845dca7ec8"
+    },
+    "Dave-Call+Rula+Sr.-Affiliate-Marketing-Manager-(Remote)+00173.docx": {
+      "id": "00173",
+      "key": "7bc75f4c42c1f6382402919892cf3ddee8bc0db9b9af4813ffe9f55cca0261db",
+      "primary": true,
+      "company": "Rula",
+      "title": "Sr. Affiliate Marketing Manager (Remote)",
+      "job_number": "81b0eb84-04cb-4231-9cc4-bea4f9164dbf"
+    },
+    "Dave-Call+Acquisition.com+Senior-Paid-Media-Manager+00174.docx": {
+      "id": "00174",
+      "key": "f2b04ebf560d5a4ce37ccfe6c3a675aeb9ff97154eb710e3bff7058901834760",
+      "primary": true,
+      "company": "Acquisition.com",
+      "title": "Senior Paid Media Manager",
+      "job_number": "acde3355-dd4d-4c26-a01e-f0905d5489f8"
+    },
+    "Dave-Call+OpenRouter+Product-Marketing-Manager,-Enterprise+00175.docx": {
+      "id": "00175",
+      "key": "a5b667fb4b3025ae17d9e09249ca837c8c0398230d26f6ff02f13019d42b5332",
+      "primary": true,
+      "company": "OpenRouter",
+      "title": "Product Marketing Manager, Enterprise",
+      "job_number": "80e0a73a-4c76-424a-bf45-9150eadd3320"
+    },
+    "Dave-Call+Ambience-Healthcare+Senior-Manager,-Growth-Marketing+00176.docx": {
+      "id": "00176",
+      "key": "558a98917f47ce1683aa54922cda69c14e5e5e6f028af170d6bd81cb2efe4056",
+      "primary": true,
+      "company": "Ambience Healthcare",
+      "title": "Senior Manager, Growth Marketing",
+      "job_number": "dc3d1b77-d2e3-48c1-9e79-08dd2434e8fa"
+    },
+    "Dave-Call+Directive+Senior-Paid-Media-Strategist-(Remote-US)-Future-Opening+00177.docx": {
+      "id": "00177",
+      "key": "a88691a226e4029da3c17e57ec853b3f9bf569bb837e3350cd4861359f0f377b",
+      "primary": true,
+      "company": "Directive",
+      "title": "Senior Paid Media Strategist (Remote US) - Future Opening",
+      "job_number": "3af9353b-1d4c-4f47-9387-3406b98edb7b"
+    },
+    "Dave-Call+Directive+Paid-Media-Lead-(Remote-US)-Future-Opening+00178.docx": {
+      "id": "00178",
+      "key": "2a846a30a19b8132ca19e7bed8b01561c1e9b5275f1dd63996dfbb37ce6b7e68",
+      "primary": true,
+      "company": "Directive",
+      "title": "Paid Media Lead (Remote US) - Future Opening",
+      "job_number": "2a0515ba-89bc-404a-b507-a2ecd77ef5ca"
+    },
+    "Dave-Call+Directive+Senior-Account-Strategist,-Paid-Media-(Remote-US)-Future-Opening+00179.docx": {
+      "id": "00179",
+      "key": "339acdd15d629e5609454ebd7f8f4cf0a736cd85e469fceb7176b44524286527",
+      "primary": true,
+      "company": "Directive",
+      "title": "Senior Account Strategist, Paid Media (Remote US) - Future Opening",
+      "job_number": "fe1e2e64-5b54-4631-9808-7a532e401682"
+    },
+    "Dave-Call+Directive+Senior-Paid-Media-Strategist-(Remote-Canada)-Future-Opening+00180.docx": {
+      "id": "00180",
+      "key": "7784ea4ac6e524f39c9c8a6d76bcc0dc263e31cdb05e98ce9b3ee0bc3ca98cd7",
+      "primary": true,
+      "company": "Directive",
+      "title": "Senior Paid Media Strategist (Remote Canada) - Future Opening",
+      "job_number": "66eabdf8-7efb-4d96-a50c-98039e1acc30"
+    },
+    "Dave-Call+Directive+Senior-Account-Strategist,-Paid-Media-(Remote-Canada)-Future-Opening+00181.docx": {
+      "id": "00181",
+      "key": "3a5a88652881e0e9667e29872daf141dac6c60d91274f5c3b22977a013658346",
+      "primary": true,
+      "company": "Directive",
+      "title": "Senior Account Strategist, Paid Media (Remote Canada) - Future Opening",
+      "job_number": "14e9f182-7ef1-4f4d-b8d0-ba100ad93e40"
+    },
+    "Dave-Call+Directive+Senior-Demand-Generation-Strategist-(Remote-US)-Future-Opening+00182.docx": {
+      "id": "00182",
+      "key": "1bc0df76d3e64662340048dc36bdf3bc4620cecca17e58bdbbed1bc048a37703",
+      "primary": true,
+      "company": "Directive",
+      "title": "Senior Demand Generation Strategist (Remote US) - Future Opening",
+      "job_number": "bcb14f08-0393-4703-94f0-c4a87a8bdfc3"
+    },
+    "Dave-Call+Directive+Demand-Generation-Manager-(Remote-US)-Future-Opening+00183.docx": {
+      "id": "00183",
+      "key": "81cb41bc543215606c4d6a859b92cdcdc8c710d0bec83651ffea30ad22fa665f",
+      "primary": true,
+      "company": "Directive",
+      "title": "Demand Generation Manager (Remote US) -Future Opening",
+      "job_number": "e6fdeeee-e00d-4043-bd30-c8e467c91547"
+    },
+    "Dave-Call+Directive+Digital-Marketing-Strategist-Startups-SMB-(Remote-US)-Future-Opening+00184.docx": {
+      "id": "00184",
+      "key": "8013693b6219bbe6888df8901f44025c1c32ef78268fcc87eea140ce7b186053",
+      "primary": true,
+      "company": "Directive",
+      "title": "Digital Marketing Strategist -Startups/SMB (Remote US) - Future Opening",
+      "job_number": "6358e60f-8157-41f7-9e4e-ab332b2fb90c"
+    },
+    "Dave-Call+Directive+B2B-Marketing-Manager-(Remote-Canada)-Future-Opening+00185.docx": {
+      "id": "00185",
+      "key": "28f4c552d85947c0709949cd31a9665b62a6f53f9ff26558e687008d52c1ee66",
+      "primary": true,
+      "company": "Directive",
+      "title": "B2B Marketing Manager (Remote Canada) - Future Opening",
+      "job_number": "5853a1bd-5a54-450c-8dae-87296c605c40"
+    },
+    "Dave-Call+Directive+PPC-Manager-(Remote-US)-Future-Opening+00186.docx": {
+      "id": "00186",
+      "key": "d7e52c7cfa216a4e974eb1710c87234c63b22042ce30214915a7c816aee8dc0c",
+      "primary": true,
+      "company": "Directive",
+      "title": "PPC Manager (Remote US) - Future Opening",
+      "job_number": "01053f9d-bfc0-4183-8832-74cebef931c5"
+    },
+    "Dave-Call+Directive+Paid-Media-Strategist-(Remote-US)-Future-Opening+00187.docx": {
+      "id": "00187",
+      "key": "33509c80d3032e0d3181f6b00ae31cabe6655842bbd9c8254c5cb9e04bb3a2e0",
+      "primary": true,
+      "company": "Directive",
+      "title": "Paid Media Strategist (Remote US) - Future Opening",
+      "job_number": "8d19b8fb-498b-4e93-9aae-c308c8be1dfa"
+    },
+    "Dave-Call+Directive+Account-Strategist,-Paid-Media-(Remote-US)-Future-Opening+00188.docx": {
+      "id": "00188",
+      "key": "7db0a2079fd7498e48667438dbe58689c2dbfd8ffa900ba0e14ea69c8d02a00c",
+      "primary": true,
+      "company": "Directive",
+      "title": "Account Strategist, Paid Media (Remote US) - Future Opening",
+      "job_number": "071f5d3d-570d-44df-83c0-3866e14524e4"
+    },
+    "Dave-Call+Directive+Account-Strategist,-Paid-Media-(Remote-Canada)-Future-Opening+00189.docx": {
+      "id": "00189",
+      "key": "5db7248436c4cbb199f648b64df582470382a3abcca1533cb008e1be5e3d15e4",
+      "primary": true,
+      "company": "Directive",
+      "title": "Account Strategist, Paid Media (Remote Canada) - Future Opening",
+      "job_number": "945e63bb-c616-4957-bbe8-9d18df25cb6e"
+    },
+    "Dave-Call+Hinge-Health+Product-Marketing-Manager,-New-Verticals+00190.docx": {
+      "id": "00190",
+      "key": "88ff23694cb6bca41d41f30d3bcd67e12633ab2b0dc19dc5a8fb02e037beb543",
+      "primary": true,
+      "company": "Hinge Health",
+      "title": "Product Marketing Manager, New Verticals",
+      "job_number": "d4b10b1f-c021-4bd0-9c4b-32d0af9f54b2"
+    },
+    "Dave-Call+Benevity+Senior-Manager,-Product-Marketing+00191.docx": {
+      "id": "00191",
+      "key": "5781449b800ff46b7f7f2dd0028e2da7bf868af7236351c47fa3cc3ca0d924ec",
+      "primary": true,
+      "company": "Benevity",
+      "title": "Senior Manager, Product Marketing",
+      "job_number": "7596717c-727a-4abe-9655-3f779a3f0fa9"
+    },
+    "Dave-Call+Xero+SEM-Senior-Manager+00192.docx": {
+      "id": "00192",
+      "key": "1067725c2765059f2bcc006362af6220dd3c514260773b10b262adce8d320f12",
+      "primary": true,
+      "company": "Xero",
+      "title": "SEM Senior Manager",
+      "job_number": "eab641d1-724d-459a-80a6-108e3e804548"
+    },
+    "Dave-Call+Xero+SEM-Senior-Manager+00193.docx": {
+      "id": "00193",
+      "key": "8ece49c0926a2551cc3eca05132bf5ced081d611c44e9d01a908e1435df82bcb",
+      "primary": true,
+      "company": "Xero",
+      "title": "SEM Senior Manager",
+      "job_number": "9bcc876d-22b6-4236-a941-94ff4c5735d4"
+    },
+    "Dave-Call+Xero+SEM-Senior-Manager+00194.docx": {
+      "id": "00194",
+      "key": "b9716390554fc953824db176c113fcee77f763620ddd25232cac72adb76d9bad",
+      "primary": true,
+      "company": "Xero",
+      "title": "SEM Senior Manager",
+      "job_number": "601c6e2b-2933-454c-9c3f-104ca8c6bf84"
+    },
+    "Dave-Call+Vanta+Partner-Marketing-Programs-Manager,-Global+00195.docx": {
+      "id": "00195",
+      "key": "95d602f1a9e4e4e9f188ad697fa100af2e87d9b7207b33dc8eaf5763eb6fe7fc",
+      "primary": true,
+      "company": "Vanta",
+      "title": "Partner Marketing Programs Manager, Global",
+      "job_number": "2deb8b5c-fcea-48f0-8b15-2d2d95b50d72"
+    },
+    "Dave-Call+Socure+Vertical-Marketing-Lead,-Gaming+00196.docx": {
+      "id": "00196",
+      "key": "117d46f6b32c9d1dd529ed4ba1d2e022e919858ee0e3fd92a9e5339065ba1ca1",
+      "primary": true,
+      "company": "Socure",
+      "title": "Vertical Marketing Lead, Gaming",
+      "job_number": "fcc58eff-98b8-44c6-9af9-2a370bbbbc3c"
+    },
+    "Dave-Call+Siege-Media+Senior-SEO-GEO-Analyst+00197.docx": {
+      "id": "00197",
+      "key": "99c62a30552f1722321e96feacb44dd5b75740939842f49a2a5d29081379543c",
+      "primary": true,
+      "company": "Siege Media",
+      "title": "Senior SEO/GEO Analyst",
+      "job_number": "9809831c-d354-4fe6-9d47-2bcf6a42665d"
+    },
+    "Dave-Call+Siege-Media+SEO-GEO-Team-Lead+00198.docx": {
+      "id": "00198",
+      "key": "adadc8d205a59de0606dfc23a1bf505d08aed1df3aa56276381f957ca6c59260",
+      "primary": true,
+      "company": "Siege Media",
+      "title": "SEO/GEO Team Lead",
+      "job_number": "2a559ce9-29a2-4df3-9838-4007d6aee908"
+    },
+    "Dave-Call+Siege-Media+Content-Marketing-Specialist+00199.docx": {
+      "id": "00199",
+      "key": "3212864ed37c62fdff93458dfc075c638357b1455f6a4da4ebd66fb0aa5ccbd6",
+      "primary": true,
+      "company": "Siege Media",
+      "title": "Content Marketing Specialist",
+      "job_number": "dd5355e4-a3ac-47c1-ba5d-bc17a2d8ce24"
+    },
+    "Dave-Call+Thumbtack+Growth-Marketing-Manager,-Paid-Social+00200.docx": {
+      "id": "00200",
+      "key": "9411156e7f765319453b17b9aec9b3d4ce4c42aadd038500941ec57daec33ce0",
+      "primary": true,
+      "company": "Thumbtack",
+      "title": "Growth Marketing Manager, Paid Social",
+      "job_number": "c9a4febc-e861-4ff8-a788-b68b0acb3782"
+    },
+    "Dave-Call+Thumbtack+Growth-Marketing-Manager,-Paid-Social+00201.docx": {
+      "id": "00201",
+      "key": "b5f4e79803d06d6d70ae2f28ac69a66df9d6e40aa3e7f64d8a20a655a2fa4f58",
+      "primary": true,
+      "company": "Thumbtack",
+      "title": "Growth Marketing Manager, Paid Social",
+      "job_number": "5cca9a17-6ec3-4338-8c40-2caa07e0a21e"
+    },
+    "Dave-Call+Socure+Senior-Field-&-Event-Marketing-Manager+00202.docx": {
+      "id": "00202",
+      "key": "5fa555ea0cb9c92052961746985a96f7e343fb41fa3648444cf19dd45fdc0a81",
+      "primary": true,
+      "company": "Socure",
+      "title": "Senior Field & Event Marketing Manager",
+      "job_number": "2eca0f29-73b7-4a28-9cce-a571bf2488bf"
+    },
+    "Dave-Call+DeepJudge+Field-Marketing-Manager+00203.docx": {
+      "id": "00203",
+      "key": "af4a533ff125f5a99f9d3d2b355444739393f9929ac125c93d924d76d537079c",
+      "primary": true,
+      "company": "DeepJudge",
+      "title": "Field Marketing Manager",
+      "job_number": "cd3e6b7a-f46f-4021-80e3-990e89488a3d"
+    },
+    "Dave-Call+DeepJudge+Field-Marketing-Manager-(Remote-Canada)+00204.docx": {
+      "id": "00204",
+      "key": "7fda4576c6c9977cf48ee96f15a5475b4463f06db74c60c9eca2e8ed2c549629",
+      "primary": true,
+      "company": "DeepJudge",
+      "title": "Field Marketing Manager (Remote-Canada)",
+      "job_number": "6a0e22fc-4f7a-4782-b74c-0a4d215f94a5"
+    },
+    "Dave-Call+Directive+SEO-Strategist-(Remote-Canada)-Future-Opening+00205.docx": {
+      "id": "00205",
+      "key": "96dee0b79302da7e597c1a8fc0b9675ce72148957479a89d5800a59ad7c476dd",
+      "primary": true,
+      "company": "Directive",
+      "title": "SEO Strategist (Remote Canada) - Future Opening",
+      "job_number": "0d28bcf2-c598-4761-bc2a-fcde87902e5b"
+    },
+    "Dave-Call+Benevity+Demand-Generation-Manager+00206.docx": {
+      "id": "00206",
+      "key": "964389726e62a1cf34ccf8783905cd8b37c09085f9e99f3d183c1bbe7d5894dc",
+      "primary": true,
+      "company": "Benevity",
+      "title": "Demand Generation Manager",
+      "job_number": "dc714140-931f-4a50-847d-9a53b2f4fef5"
+    },
+    "Dave-Call+Nash+Global-Field-&-Event-Marketing-Lead+00207.docx": {
+      "id": "00207",
+      "key": "a1d28dcd20591dc1f5506704e238ac5b8f5191c08667ac5cc6bfc8d8977db1a7",
+      "primary": true,
+      "company": "Nash",
+      "title": "Global Field & Event Marketing Lead",
+      "job_number": "b20543e5-53d6-4116-8247-5b296324aac0"
+    },
+    "Dave-Call+Benevity+Product-Marketing-Manager+00208.docx": {
+      "id": "00208",
+      "key": "ffdb1412b0ec09677d5061a64c937b6306346cd077f3124212f5e6969cd88915",
+      "primary": true,
+      "company": "Benevity",
+      "title": "Product Marketing Manager",
+      "job_number": "162c4ba2-2969-4632-9812-885e2793724f"
+    },
+    "Dave-Call+Laurel+Principal-Growth-Marketing-Engineer+00209.docx": {
+      "id": "00209",
+      "key": "29319c585247cff059f7056bc5d18a7ffc4aff94bd5be830bb49c8ab2943f49e",
+      "primary": true,
+      "company": "Laurel",
+      "title": "Principal Growth Marketing Engineer",
+      "job_number": "a6542e0f-f00d-447e-af87-551e0f08cd86"
+    },
+    "Dave-Call+Xero+SEM-Senior-Manager+00210.docx": {
+      "id": "00210",
+      "key": "a855fd2755af2c94f286d1af201f109881f1df74e15951eddf6ab540761e856f",
+      "primary": true,
+      "company": "Xero",
+      "title": "SEM Senior Manager",
+      "job_number": "8b86b4a5-0469-432d-8328-bb889b894771"
+    },
+    "Dave-Call+Harvey+Senior-Marketing-Counsel+00211.docx": {
+      "id": "00211",
+      "key": "a54dbf4e9ee75ae4627bb5d457e7d99f91c536523b8b482bc4ef2a9cb7ab14ab",
+      "primary": true,
+      "company": "Harvey",
+      "title": "Senior Marketing Counsel",
+      "job_number": "e45ecdab-c619-4918-acd9-5706734bd001"
+    },
+    "Dave-Call+Harvey+Senior-Marketing-Counsel+00212.docx": {
+      "id": "00212",
+      "key": "83947c07dbb314c9ddb21043195fdff16305b191880a0b9f6f4f92ed3e289cda",
+      "primary": true,
+      "company": "Harvey",
+      "title": "Senior Marketing Counsel",
+      "job_number": "85b1e377-4328-4802-88cc-2fe7162e6051"
+    },
+    "Dave-Call+Harvey+Senior-Marketing-Counsel+00213.docx": {
+      "id": "00213",
+      "key": "d42cdad2e5e8a67efdf8e08487ead04d11d12b4ccd9e79cdd9b02d6fb0cda417",
+      "primary": true,
+      "company": "Harvey",
+      "title": "Senior Marketing Counsel",
+      "job_number": "5a8864a6-0252-4749-bfb0-766efc39604a"
+    },
+    "Dave-Call+Cogent-Security+Performance-Marketing-Lead+00214.docx": {
+      "id": "00214",
+      "key": "96fa7888020dc5f81c69a2fc32e999fa05c3aae7a2aa5d21e94ffa2fc8cc03cc",
+      "primary": true,
+      "company": "Cogent Security",
+      "title": "Performance Marketing Lead",
+      "job_number": "750704ca-4110-4dc8-8779-8e358ea87326"
+    },
+    "Dave-Call+Reprise-Financial+Marketing-Analytics-Manager-Remote+00215.docx": {
+      "id": "00215",
+      "key": "a0466291700275fa9d965625fb243a55bb5ccac0d230e9671495bdefc111fadc",
+      "primary": true,
+      "company": "Reprise Financial",
+      "title": "Marketing Analytics Manager - Remote",
+      "job_number": "f3470ed5-f8c7-4e43-beb3-153c8fa0a9ed"
+    },
+    "Dave-Call+Hightouch+Product-Manager,-Marketing-Orchestration+00216.docx": {
+      "id": "00216",
+      "key": "273e59499a77f89dc8f7cb4633bca9e82619c4269bbfeb7fe451f44fe47c8310",
+      "primary": true,
+      "company": "Hightouch",
+      "title": "Product Manager, Marketing Orchestration",
+      "job_number": "28cb18d8-7047-4cc1-b853-7629d06c706a"
+    },
+    "Dave-Call+Fireworks+Senior-Lifecycle-Marketing-Manager+00217.docx": {
+      "id": "00217",
+      "key": "4f181f689cc66ead8c9e5d05dd782cf41b4fdcee2440c0946cd998fecf359747",
+      "primary": true,
+      "company": "Fireworks",
+      "title": "Senior Lifecycle Marketing Manager",
+      "job_number": "a6c58388-14b7-4c16-bd1f-5c2d3753d297"
+    },
+    "Dave-Call+Whippy+Senior-Product-Marketing-Manager+00218.docx": {
+      "id": "00218",
+      "key": "20adfff458663241b7ca02727aa6c7e09b0fb82c3086b1484d74eb7300dfacc7",
+      "primary": true,
+      "company": "Whippy",
+      "title": "Senior Product Marketing Manager",
+      "job_number": "e0e13199-bdfb-4283-92a5-1df3a756c8c0"
+    },
+    "Dave-Call+Fireworks+Field-Marketing-Manager,-EMEA+00219.docx": {
+      "id": "00219",
+      "key": "27510da07ed48d68fd13095d3cddfa19a16873bc4d61434da515f19a4b5fef14",
+      "primary": true,
+      "company": "Fireworks",
+      "title": "Field Marketing Manager, EMEA",
+      "job_number": "a09d7658-2986-46f9-a4e1-a8ce9a98a07c"
+    },
+    "Dave-Call+Vanta+Product-Marketing-Lead-EMEA+00220.docx": {
+      "id": "00220",
+      "key": "ddaf1d6dfb1a2e20a7757a65e966d3b6705fd52b731035ebda1dcafed3407107",
+      "primary": true,
+      "company": "Vanta",
+      "title": "Product Marketing Lead - EMEA",
+      "job_number": "be485e4d-d874-41fa-9de8-34102977d34e"
+    },
+    "Dave-Call+Xero+Marketing-Automation-Specialist+00221.docx": {
+      "id": "00221",
+      "key": "ec9bcd8ad903a716b541158ff06cb7597b01cade1d70b051d83d79a60624a8c8",
+      "primary": true,
+      "company": "Xero",
+      "title": "Marketing Automation Specialist",
+      "job_number": "2e4fabf0-a3c6-4020-ab40-eec73231721c"
+    },
+    "Dave-Call+Cogent-Security+Field-Marketing-Manager+00222.docx": {
+      "id": "00222",
+      "key": "069a019627f6558225fecc6825999d4801099a811fcd1d4ba856fb202c14f531",
+      "primary": true,
+      "company": "Cogent Security",
+      "title": "Field Marketing Manager",
+      "job_number": "f6f9dfd7-64f8-4aed-8b37-61a903c412cf"
+    },
+    "Dave-Call+LiveKit+Demand-Generation-Manager+00223.docx": {
+      "id": "00223",
+      "key": "2499e8ac967f61337fc18b9ed23002f1e641680019c8c6e7f0bd297cf0f3a7e3",
+      "primary": true,
+      "company": "LiveKit",
+      "title": "Demand Generation Manager",
+      "job_number": "0ce55391-93e3-4927-9cf2-3244756a7e2e"
+    },
+    "Dave-Call+Harvey+Senior-Product-Marketing-Manager,-Solutions+00224.docx": {
+      "id": "00224",
+      "key": "d037ec8e5d9f55ec8e2537020888a6202405993ae45cf2c9cb582303463cff24",
+      "primary": true,
+      "company": "Harvey",
+      "title": "Senior Product Marketing Manager, Solutions",
+      "job_number": "53645e07-5a0e-4257-ba0d-f8b2fc676c44"
+    },
+    "Dave-Call+Harvey+Senior-Product-Marketing-Manager,-Solutions+00225.docx": {
+      "id": "00225",
+      "key": "be615606418f0c92901b461f9b68d93236ff3f8e5057a09098021931955e4878",
+      "primary": true,
+      "company": "Harvey",
+      "title": "Senior Product Marketing Manager, Solutions",
+      "job_number": "5ce5fe86-8e2f-4003-b88a-77fbbdeaecad"
+    },
+    "Dave-Call+Hightouch+Product-Marketing-Manager,-Competitive-Intelligence+00226.docx": {
+      "id": "00226",
+      "key": "8bfb4b686371256a6bb20407aebe161fe9547195e113719a0b08b24dfd14bb6f",
+      "primary": true,
+      "company": "Hightouch",
+      "title": "Product Marketing Manager, Competitive Intelligence",
+      "job_number": "570ddc53-959c-4f69-af5a-e232c4f6cdd2"
+    },
+    "Dave-Call+Stryker-Digital+SEO-Account-Manager+00227.docx": {
+      "id": "00227",
+      "key": "78376d2750b042bf137a60af6b8ab980b0f1b75333b4332a25b73ada0d4c2cf1",
+      "primary": true,
+      "company": "Stryker Digital",
+      "title": "SEO Account Manager",
+      "job_number": "f8a2845d-6dd9-4b15-bce5-a19b36b5b7fb"
+    },
+    "Dave-Call+Hinge-Health+Growth-Marketing-Manager+00228.docx": {
+      "id": "00228",
+      "key": "7aed4e692c4b2e1cec68ecad6778b98050ea31a08cbf60e79e35129ad066f8c8",
+      "primary": true,
+      "company": "Hinge Health",
+      "title": "Growth Marketing Manager",
+      "job_number": "cd67cd2f-3a94-4eaf-9ad8-d067fdd18bf0"
+    },
+    "Dave-Call+Cogent-Security+Head-of-Demand-Generation+00229.docx": {
+      "id": "00229",
+      "key": "737641cfc7714766ea1331f5ba8ccf4a76ef618040b0ed850279fe1376b20ceb",
+      "primary": true,
+      "company": "Cogent Security",
+      "title": "Head of Demand Generation",
+      "job_number": "8ed749ff-cf21-47ec-815d-36af19ab389d"
+    },
+    "Dave-Call+Dandy+Event-Marketing-Manager-ANZ+00230.docx": {
+      "id": "00230",
+      "key": "f3c7276043081553d6e199781f8d9c95f11d1066e533f3ffd75a6d8a0d41e281",
+      "primary": true,
+      "company": "Dandy",
+      "title": "Event Marketing Manager - ANZ",
+      "job_number": "225f7bf6-39bf-4f05-b6aa-c9d77663f5cb"
+    },
+    "Dave-Call+Deepgram+Senior-Product-Marketing-Manager,-Voice-Agent+00231.docx": {
+      "id": "00231",
+      "key": "c00ccf2ce5b8b997bb26ba63f1d52fcdb5814480d4b654539072213343cab357",
+      "primary": true,
+      "company": "Deepgram",
+      "title": "Senior Product Marketing Manager, Voice Agent",
+      "job_number": "928303de-61d6-46ec-b10a-08709e1deb4a"
+    },
+    "Dave-Call+Deepgram+Senior-Product-Marketing-Manager,-Solutions-Marketing+00232.docx": {
+      "id": "00232",
+      "key": "c66dde5d5f39e5b62fcc6a0120fa3c022c4d590d31cb663dacc17c71439c5f3d",
+      "primary": true,
+      "company": "Deepgram",
+      "title": "Senior Product Marketing Manager, Solutions Marketing",
+      "job_number": "0f597b67-3cd4-4d56-b951-d555031ee5cc"
+    },
+    "Dave-Call+Fireworks+Head-of-Product-Marketing+00233.docx": {
+      "id": "00233",
+      "key": "077d30718d4436a03236d794a0d495cf9ea95cd16e25a6eea4d2a7b60d97a24e",
+      "primary": true,
+      "company": "Fireworks",
+      "title": "Head of Product Marketing",
+      "job_number": "d5063bc9-d2ac-4ee4-9e0c-23ea74ad83b2"
+    },
+    "Dave-Call+Rula+Director-of-Organic-Growth-SEO-AEO-CRO-(Remote)+00234.docx": {
+      "id": "00234",
+      "key": "9ba7e4e9b952ff7d89c77f5ecd6c423d6040f78e7a9e31d49516b4e99827103d",
+      "primary": true,
+      "company": "Rula",
+      "title": "Director of Organic Growth - SEO | AEO | CRO (Remote)",
+      "job_number": "a6518f83-b49b-4601-98e9-ddf15e86e587"
+    },
+    "Dave-Call+Laurel+Product-Marketing-Manager+00235.docx": {
+      "id": "00235",
+      "key": "3aa05795a199f03f28250899177353b31cacc1167720fe32756d4bca26228c3f",
+      "primary": true,
+      "company": "Laurel",
+      "title": "Product Marketing Manager",
+      "job_number": "35fec1ae-7fa1-484d-99ac-5cf30884c1d8"
+    },
+    "Dave-Call+Laurel+Field-Marketing-Manager-North-America+00236.docx": {
+      "id": "00236",
+      "key": "91663249926214392805a88c831a6d6ac6d64a11261e5afbbb51c6b48acb17f7",
+      "primary": true,
+      "company": "Laurel",
+      "title": "Field Marketing Manager - North America",
+      "job_number": "64699dad-8c4d-4ab9-860c-6ae771bf6319"
+    },
+    "Dave-Call+OnePay+Senior-Art-Director,-Performance-Marketing+00237.docx": {
+      "id": "00237",
+      "key": "234f4fd029696dff8e679ade7c20b8af203abfa499a3f9170179093451f5776f",
+      "primary": true,
+      "company": "OnePay",
+      "title": "Senior Art Director, Performance Marketing",
+      "job_number": "01f4656c-3f13-4f82-acc7-3e277f0887c0"
+    },
+    "Dave-Call+Constructor+Director-of-Product-Marketing+00238.docx": {
+      "id": "00238",
+      "key": "42d7febc3ac62427c1269db4af490865d13a67e2c30916b50566e237cc7d8d2e",
+      "primary": true,
+      "company": "Constructor",
+      "title": "Director of Product Marketing",
+      "job_number": "1d5e4b81-96ec-4eb8-9f44-7c0402f8aa62"
+    },
+    "Dave-Call+Socure+Senior-Product-Marketing-Manager+00239.docx": {
+      "id": "00239",
+      "key": "721dc9db2a53187c9755bc002c4e5481e94ec3420d6cc0cb95c948c1449259ac",
+      "primary": true,
+      "company": "Socure",
+      "title": "Senior Product Marketing Manager",
+      "job_number": "90641053-f77c-4f88-b8ce-b9553d499782"
+    },
+    "Dave-Call+Kindred+Director,-Lifecycle-Marketing+00240.docx": {
+      "id": "00240",
+      "key": "7def610c8de83a90b9c571a0607d8e169cf986ca316689a48f01cfc018c18f4f",
+      "primary": true,
+      "company": "Kindred",
+      "title": "Director, Lifecycle Marketing",
+      "job_number": "031d501d-998e-47c5-bebf-ad6f1c1b2d95"
+    },
+    "Dave-Call+Kindred+Senior-Manager,-Product-Marketing+00241.docx": {
+      "id": "00241",
+      "key": "20a7a89ae48782a62b2bca4bbeb204d6befc524ed4f581a6624af45c93490db4",
+      "primary": true,
+      "company": "Kindred",
+      "title": "Senior Manager, Product Marketing",
+      "job_number": "42a21c7b-20dc-4202-8352-5f48acbcba83"
+    },
+    "Dave-Call+Dandy+Marketing-Manager+00242.docx": {
+      "id": "00242",
+      "key": "938d64c568630525a669c43be15e96dba648d11e418556cf70e7ade0340f52e1",
+      "primary": true,
+      "company": "Dandy",
+      "title": "Marketing Manager",
+      "job_number": "d284882e-57ff-45ab-942b-bf5874b81bb3"
+    },
+    "Dave-Call+Sanity+Senior-Manager,-Paid-Media+00243.docx": {
+      "id": "00243",
+      "key": "47a67c106b4e24fdb0b2218ab6261b8317bd7cc2947828d5c7259a4dbd3dccda",
+      "primary": true,
+      "company": "Sanity",
+      "title": "Senior Manager, Paid Media",
+      "job_number": "8a2b35f3-384f-4e1c-abbc-6103a88e0738"
+    },
+    "Dave-Call+1Password+Senior-Staff-Product-Marketing-Manager-Enterprise-Password-Manager+00244.docx": {
+      "id": "00244",
+      "key": "229f4f7d02a55905b44fd87ede0ea95f21adb4087737cd2f1645308314a3a97a",
+      "primary": true,
+      "company": "1Password",
+      "title": "Senior Staff Product Marketing Manager - Enterprise Password Manager",
+      "job_number": "88aa605e-60a9-4a41-8879-23cb2f634d73"
+    },
+    "Dave-Call+Cantina+Senior-Creative-Strategist,-Performance-Marketing+00245.docx": {
+      "id": "00245",
+      "key": "56c79b5cf4c3c5f1dfccc5870231e9c2f4e3fb3ab1c5c43f4d07a910e87a7015",
+      "primary": true,
+      "company": "Cantina",
+      "title": "Senior Creative Strategist, Performance Marketing",
+      "job_number": "36b6d184-cc4c-4ede-97d5-649914d5b04e"
+    },
+    "Dave-Call+Found+Product-Marketing-Manager+00246.docx": {
+      "id": "00246",
+      "key": "f0c26cbdbd5a2380baab38a669ed744cbd115afba8022645450de60727fd9131",
+      "primary": true,
+      "company": "Found",
+      "title": "Product Marketing Manager",
+      "job_number": "7194d349-910a-4bc2-b4fb-053960d6982e"
+    },
+    "Dave-Call+Rula+Director-of-B2B-Employer-Marketing-(Remote)+00247.docx": {
+      "id": "00247",
+      "key": "7e440d7826caad88a014f613f3c093223120dbbafe561320ca438b11091ea058",
+      "primary": true,
+      "company": "Rula",
+      "title": "Director of B2B Employer Marketing (Remote)",
+      "job_number": "5d7b5c9b-af41-432f-ba38-6045af9886d5"
+    },
+    "Dave-Call+Fireworks+Head-of-Marketing-Operations+00248.docx": {
+      "id": "00248",
+      "key": "529c8f81a3b63295fdb9ac36fed2a2338ab1c13f5652c60a10d19f29320523de",
+      "primary": true,
+      "company": "Fireworks",
+      "title": "Head of Marketing Operations",
+      "job_number": "0e175af6-e53a-4e48-91ba-db3aaef8dac7"
+    },
+    "Dave-Call+Constructor+Senior-Partner-Marketing-Manager+00249.docx": {
+      "id": "00249",
+      "key": "0e1f2efdcd28823ed36949c80008ee68c90b83ee788794f3d8e73d2cac900f05",
+      "primary": true,
+      "company": "Constructor",
+      "title": "Senior Partner Marketing Manager",
+      "job_number": "1a9ec89c-4785-48dd-9af0-ab370115021c"
+    },
+    "Dave-Call+Found+Growth-Marketing-Lead+00250.docx": {
+      "id": "00250",
+      "key": "2c0a4e097cfded866fd4e182283bef03951fc133af3465776ed261ca86b8035f",
+      "primary": true,
+      "company": "Found",
+      "title": "Growth Marketing Lead",
+      "job_number": "e4bca10f-655a-46fd-9685-1d47c4f415ca"
+    },
+    "Dave-Call+Hinge-Health+Lifecycle-Marketing-Manager,-Growth+00251.docx": {
+      "id": "00251",
+      "key": "20f7671b30f7dfc9868b0fa1adcff81d50a1cfb8107dd43ec8785d5686ff4f2f",
+      "primary": true,
+      "company": "Hinge Health",
+      "title": "Lifecycle Marketing Manager, Growth",
+      "job_number": "0634a070-06e7-4556-9e8a-cfd285ae896c"
+    },
+    "Dave-Call+Nash+Product-Marketing-Lead+00252.docx": {
+      "id": "00252",
+      "key": "3de17ecb72d1eadbc49ef691438ca699470c53d3a612f6cea4eadef4e3b81af2",
+      "primary": true,
+      "company": "Nash",
+      "title": "Product Marketing Lead",
+      "job_number": "0c2f5160-818e-4298-82fc-2bf35fff8dda"
+    },
+    "Dave-Call+Dash0+Senior-Product-Marketing-Manager+00253.docx": {
+      "id": "00253",
+      "key": "a59d5e214cb12d64d3739a01645708f2a195b593aa626321bec80fc77c72106a",
+      "primary": true,
+      "company": "Dash0",
+      "title": "Senior Product Marketing Manager",
+      "job_number": "5be40de5-ab4e-43cf-bff4-85794535a0a3"
+    },
+    "Dave-Call+Cogent-Security+Director-of-Product-Marketing+00254.docx": {
+      "id": "00254",
+      "key": "c38cb3ab5637b1d602544ed54c05052398724969c3f769fa97d9e637b4581081",
+      "primary": true,
+      "company": "Cogent Security",
+      "title": "Director of Product Marketing",
+      "job_number": "fbe585dc-5c69-4287-97a1-522faa5e0054"
+    },
+    "Dave-Call+DIRECTV+Lead-Product-Marketing-Manager,-Digital-Marketing+00255.docx": {
+      "id": "00255",
+      "key": "e3cbb3cab9d803d78030bdd78d2ad79a33049a57cb754dffb81544e5311711ee",
+      "primary": true,
+      "company": "DIRECTV",
+      "title": "Lead Product Marketing Manager, Digital Marketing",
+      "job_number": "5925630126"
+    },
+    "Dave-Call+Pattern+Growth-Marketing-Manager+00256.docx": {
+      "id": "00256",
+      "key": "f777a4ed0ceda28464563c192812f54051a2011ebfcf3c0a19785fd6ff4db1dc",
+      "primary": true,
+      "company": "Pattern",
+      "title": "Growth Marketing Manager",
+      "job_number": "5924680496"
+    },
+    "Dave-Call+Murdoch's-Ranch-&-Home-Supply+Manager-of-Marketing-Intelligence-&-Analytics+00257.docx": {
+      "id": "00257",
+      "key": "41c53c5090f2631804b2d2d7669dbfd18309266890cc17ab17011987ece50fd5",
+      "primary": true,
+      "company": "Murdoch's Ranch & Home Supply",
+      "title": "Manager of Marketing Intelligence & Analytics",
+      "job_number": "5916567934"
+    },
+    "Dave-Call+Lattice+Ecosystem-Marketing-Lead+00258.docx": {
+      "id": "00258",
+      "key": "c9f368e4094c13a0da3e77c925537553ff57d4ac25d45206bb81d3d9d2986f56",
+      "primary": true,
+      "company": "Lattice",
+      "title": "Ecosystem Marketing Lead",
+      "job_number": "a512e45b3d6e933445be3190"
+    },
+    "Dave-Call+Proof+Senior-Manager-of-Marketing-Operations+00259.docx": {
+      "id": "00259",
+      "key": "771f1dc702052452fc9631b519c08f52f755b8212bddc1a25793fceeade5d0d6",
+      "primary": true,
+      "company": "Proof",
+      "title": "Senior Manager of Marketing Operations",
+      "job_number": "108f3a42-7115-4bab-b15c-1088c3c3cd0d"
+    },
+    "Dave-Call+The-Trevor-Project+Digital-Marketing-Strategist+00260.docx": {
+      "id": "00260",
+      "key": "3467dd7af69684050842404703e799f16ee44d6542db98256eff1fbedbce49d5",
+      "primary": true,
+      "company": "The Trevor Project",
+      "title": "Digital Marketing Strategist",
+      "job_number": "a299e127-4da9-4121-a25c-49455822f337"
+    },
+    "Dave-Call+CampusWorks,-Inc+Digital-Marketing-Manager+00261.docx": {
+      "id": "00261",
+      "key": "bd9b4f0a5c96d34399da9c748181ba018439d9f640d2ba9971e1fa62bdca923a",
+      "primary": true,
+      "company": "CampusWorks, Inc.",
+      "title": "Digital Marketing Manager",
+      "job_number": "fa9aebd0-e27c-4df6-b8ad-a425fc672971"
+    },
+    "Dave-Call+Pattern+Growth-Marketing-Manager+00262.docx": {
+      "id": "00262",
+      "key": "db7cabb0497415eeab8521430309b1d8dbb786702db06607a3f2e82eb199063c",
+      "primary": true,
+      "company": "Pattern",
+      "title": "Growth Marketing Manager",
+      "job_number": "85586fb0-774f-4b77-9e7f-21e8402decb1"
+    },
+    "Dave-Call+TE-Connectivity+ANALYST-DIGITAL-MARKETING-IV-(Remote)-IV+00263.docx": {
+      "id": "00263",
+      "key": "5cf3520a99b27cecb82ddf2be9e39474bbf98bf435c13bc3960c894873e99cad",
+      "primary": true,
+      "company": "TE Connectivity",
+      "title": "ANALYST DIGITAL MARKETING IV (Remote) IV",
+      "job_number": "150674"
+    },
+    "Dave-Call+Help-Scout+Director,-Performance-Marketing+00264.docx": {
+      "id": "00264",
+      "key": "58da5775639ce1bcdd06737ae69c9e8d611400e34c818bd06188da071d747856",
+      "primary": true,
+      "company": "Help Scout",
+      "title": "Director, Performance Marketing",
+      "job_number": "153204"
+    },
+    "Dave-Call+DEPT+Account-Coordinator,-Paid-Search+00265.docx": {
+      "id": "00265",
+      "key": "7872a4758750ead73a0740b6fb9b9fadf1e3d9617be27f14333fd4d5809671bd",
+      "primary": true,
+      "company": "DEPT",
+      "title": "Account Coordinator, Paid Search",
+      "job_number": "8286516"
+    },
+    "Dave-Call+Maven-Clinic+Product-Marketing-Manager+00266.docx": {
+      "id": "00266",
+      "key": "63890c86e3e65baecb421c07a54712d270fa1172e1fb672f6bb01086ca3def27",
+      "primary": true,
+      "company": "Maven Clinic",
+      "title": "Product Marketing Manager",
+      "job_number": "8883475002"
+    },
+    "Dave-Call+Wiz+Marketing-Operations-Specialist+00267.docx": {
+      "id": "00267",
+      "key": "b892ca55ce8bb19553e5421f5c8fcb4f03986f128cf58821e5c8e5924de5f310",
+      "primary": true,
+      "company": "Wiz",
+      "title": "Marketing Operations Specialist",
+      "job_number": "4720621006"
+    },
+    "Dave-Call+Parsley-Health+Director-of-Marketing+00268.docx": {
+      "id": "00268",
+      "key": "7221be3c8bff788778e73b6ba766f2a2d59cba82f419eae22bdaab0c344014c5",
+      "primary": true,
+      "company": "Parsley Health",
+      "title": "Director of Marketing",
+      "job_number": "8033283003"
+    },
+    "Dave-Call+SupplyHouse.com+Paid-Media-Analyst+00269.docx": {
+      "id": "00269",
+      "key": "7d97cc839057b799ca57523a614460db55e90bc521c66f325826450a91ba775c",
+      "primary": true,
+      "company": "SupplyHouse.com",
+      "title": "Paid Media Analyst",
+      "job_number": "6211915004"
+    },
+    "Dave-Call+Power-Digital+Paid-Media-Strategist,-Fashion+00270.docx": {
+      "id": "00270",
+      "key": "c194a9cc194c96c02fb8b9f57082b68f5dd3ed70e89886d31b68558ac1d03a8c",
+      "primary": true,
+      "company": "Power Digital",
+      "title": "Paid Media Strategist, Fashion",
+      "job_number": "5265565007"
+    },
+    "Dave-Call+Silverback-Strategies+SEO-Manager+00271.docx": {
+      "id": "00271",
+      "key": "cb4bfdfde88df91ae6560ce90f375daf19c2fde14beeb482b19be87035fa5469",
+      "primary": true,
+      "company": "Silverback Strategies",
+      "title": "SEO Manager",
+      "job_number": "a2dc4e8b-8009-44a2-8503-0cc4c838a21b"
+    },
+    "Dave-Call+Silverback-Strategies+Senior-SEO-Manager+00272.docx": {
+      "id": "00272",
+      "key": "9592cf5d4e3f28734c3c7014101f5f2b1f920c8c397e1d8f6e3d0ade70345993",
+      "primary": true,
+      "company": "Silverback Strategies",
+      "title": "Senior SEO Manager",
+      "job_number": "d673936c-9a02-41aa-a007-a6edbb86b09d"
+    },
+    "Dave-Call+Colibri-Group+Senior-Product-Marketing-Manager+00273.docx": {
+      "id": "00273",
+      "key": "4163b1802cfd2d83e0ab32d0e77cf20decbfe6144b67a353b8d3f1b7eebca74f",
+      "primary": true,
+      "company": "Colibri Group",
+      "title": "Senior Product Marketing Manager",
+      "job_number": "b6e049f5-0916-4bc7-835f-8c0270fc74fb"
+    },
+    "Dave-Call+Silverback-Strategies+Senior-Paid-Media-Manager+00274.docx": {
+      "id": "00274",
+      "key": "80340aa33742e8ad99bbf1e9d025a75da9d2ce6ea63f3dbc8349a3215b9281a1",
+      "primary": true,
+      "company": "Silverback Strategies",
+      "title": "Senior Paid Media Manager",
+      "job_number": "a7cd7b58-5178-4c93-8f43-50bdd4981310"
+    },
+    "Dave-Call+Silverback-Strategies+Senior-Paid-Media-Manager+00275.docx": {
+      "id": "00275",
+      "key": "7ef08decd640d274a391e0f1b88a52bbee25fbffb41f11ee750dc3d8b3773f29",
+      "primary": true,
+      "company": "Silverback Strategies",
+      "title": "Senior Paid Media Manager",
+      "job_number": "f56ac7be-4d40-4ed0-8385-9279f4c729f9"
+    },
+    "Dave-Call+Silverback-Strategies+Paid-Media-Manager-(Remote)+00276.docx": {
+      "id": "00276",
+      "key": "e1d349ea345feb180934ffe2f29144d3717dfc236e7ab7b5b403f1c4f479e5c1",
+      "primary": true,
+      "company": "Silverback Strategies",
+      "title": "Paid Media Manager (Remote)",
+      "job_number": "deec67d0-f38d-44b8-8a49-922c4f7a1e2c"
+    },
+    "Dave-Call+Silverback-Strategies+Paid-Media-Manager+00277.docx": {
+      "id": "00277",
+      "key": "491e8da98a1ffd5f7d223dde8653e0f24b0d317145957d2c86468f241dd6db2d",
+      "primary": true,
+      "company": "Silverback Strategies",
+      "title": "Paid Media Manager",
+      "job_number": "9978beb7-a1b9-45c6-90f0-02bd3b5510f9"
+    },
+    "Dave-Call+Cin7+Email-Marketing-Specialist+00278.docx": {
+      "id": "00278",
+      "key": "3a8d1a7c9c0e460f7b32786b3520a10dc3045a527e14752b8e8c2ba25ce68a98",
+      "primary": true,
+      "company": "Cin7",
+      "title": "Email Marketing Specialist",
+      "job_number": "d3bd3aa1-3da1-442e-b58b-a0715404cde5"
+    },
+    "Dave-Call+Gurobi-Optimization+Director-of-Marketing-(EMEA-Remote)+00279.docx": {
+      "id": "00279",
+      "key": "a37ad35e235e32c7fe2b92874dc5b54e5dd5e73e5d85ce3512c9d7eee3c099bc",
+      "primary": true,
+      "company": "Gurobi Optimization",
+      "title": "Director of Marketing (EMEA - Remote)",
+      "job_number": "385aab93-79b0-476a-b0fa-701ac18e0dd6"
+    },
+    "Dave-Call+Handshake+Director,-Product-Marketing+00280.docx": {
+      "id": "00280",
+      "key": "8e2f00f5960039f63af5f67efe192d0b4c733add329c7ab06696889b8030342a",
+      "primary": true,
+      "company": "Handshake",
+      "title": "Director, Product Marketing",
+      "job_number": "82e17f6f-a13c-41c4-89ce-73b802908f0f"
+    },
+    "Dave-Call+Xero+Senior-Product-Marketing-Manager-Payments+00281.docx": {
+      "id": "00281",
+      "key": "f1d6f427d4b81d4699fcc8a9d35071ea406098af1eac68a1e9d68ba32670d1cf",
+      "primary": true,
+      "company": "Xero",
+      "title": "Senior Product Marketing Manager - Payments",
+      "job_number": "b0c9e380-a93e-4906-9d45-1da911d08077"
+    },
+    "Dave-Call+ClickHouse+Principal-Product-Marketing-Manager+00282.docx": {
+      "id": "00282",
+      "key": "77ce8a5a49466caf1e8a78dfcc104b5f474e82ab7e926ebfa918ffa9f1be9c9c",
+      "primary": true,
+      "company": "ClickHouse",
+      "title": "Principal Product Marketing Manager",
+      "job_number": "1a6d8e0ba8d685d51848b8b5"
+    },
+    "Dave-Call+Customer.io+Events-Marketing-Manager,-EMEA+00283.docx": {
+      "id": "00283",
+      "key": "8588d010e3309d2343a361e69a4622cb5891b2aef5a293757838591b5688476c",
+      "primary": true,
+      "company": "Customer.io",
+      "title": "Events Marketing Manager, EMEA",
+      "job_number": "8bb93bf4d62bab0dbdfa5d9b"
+    },
+    "Dave-Call+Studio-McGee+Influencer-Marketing-Manager+00284.docx": {
+      "id": "00284",
+      "key": "fa0299ff1aa7b5b638d1681cb0d4d21cf3bddc352d2a5ea25aa1b7bfaa1890dc",
+      "primary": true,
+      "company": "Studio McGee",
+      "title": "Influencer Marketing Manager",
+      "job_number": "b2cdb4f8f9e41477"
+    },
+    "Dave-Call+Egnyte+Web-Marketing-Manager+00285.docx": {
+      "id": "00285",
+      "key": "0b370e95902d583b83ef608160adc3b961c9fe3f25832e574b7a971f6d829600",
+      "primary": true,
+      "company": "Egnyte",
+      "title": "Web Marketing Manager",
+      "job_number": "73ca983458b5794d"
+    },
+    "Dave-Call+Indigo-Innovations,-Inc+Marketing-Manager+00286.docx": {
+      "id": "00286",
+      "key": "d51a3c064761e57244746e297ec00a0e429b0fbb689554b0c59edec263147c6c",
+      "primary": true,
+      "company": "Indigo Innovations, Inc",
+      "title": "Marketing Manager",
+      "job_number": "6fd12fe4fb1998f7"
+    },
+    "Dave-Call+BambooHR+Marketing-Manager+00287.docx": {
+      "id": "00287",
+      "key": "3b616b94f14dea409c4134f2624051b23661403410bdf11c456d7fb27b26f201",
+      "primary": true,
+      "company": "BambooHR",
+      "title": "Marketing Manager",
+      "job_number": "40484057aa7d85df"
+    },
+    "Dave-Call+Vitality-Medical+E-Commerce-SEO-Manager+00288.docx": {
+      "id": "00288",
+      "key": "f773b3c0566e37a95913b505c3831a933116b3d41feff666c4827bd19df8052f",
+      "primary": true,
+      "company": "Vitality Medical",
+      "title": "E-Commerce SEO Manager",
+      "job_number": "b1e13fda0b6ba9cb"
+    },
+    "Dave-Call+Anrok+Paid-Marketing-Manager+00289.docx": {
+      "id": "00289",
+      "key": "6542cff8475b3e7444c868e389e40dd694ef88761987ad7505babdb60da142c6",
+      "primary": true,
+      "company": "Anrok",
+      "title": "Paid Marketing Manager",
+      "job_number": "3f1cddf50cb9dda6"
+    },
+    "Dave-Call+Bed-Bath-&-Beyond+Digital-Marketing-Specialist+00290.docx": {
+      "id": "00290",
+      "key": "1d7804ad402514ee096c93f4744c72fe90e7e13460599a804e0665294681698f",
+      "primary": true,
+      "company": "Bed Bath & Beyond",
+      "title": "Digital Marketing Specialist",
+      "job_number": "f53011a7b5f81b19"
+    },
+    "Dave-Call+Squire-&-Company-PC+Director-of-Digital-Marketing-Operations+00291.docx": {
+      "id": "00291",
+      "key": "98c887b8a17d69deaa2139d7e4ea75e16d95a38af60c4ab303809574a504e102",
+      "primary": true,
+      "company": "Squire & Company PC-",
+      "title": "Director of Digital Marketing Operations",
+      "job_number": "f0e9871f633a76b5"
+    },
+    "Dave-Call+Prenuvo+Performance-Marketing-Manager+00292.docx": {
+      "id": "00292",
+      "key": "f18d911fb5117c9c41fce8bfcb551d0a9142ed9b7359b6efe3e7e2901ac3f608",
+      "primary": true,
+      "company": "Prenuvo",
+      "title": "Performance Marketing Manager",
+      "job_number": "4737722005"
+    },
+    "Dave-Call+Veeam-Software+Product-Marketing-Director,-Velocity+00293.docx": {
+      "id": "00293",
+      "key": "a817f52b00ad63df823375858df14281a963b441acec0827e01ae2729e837109",
+      "primary": true,
+      "company": "Veeam Software",
+      "title": "Product Marketing Director, Velocity",
+      "job_number": "4934118101"
+    },
+    "Dave-Call+Tines+Account-Based-Marketing-(ABM)-Manager+00294.docx": {
+      "id": "00294",
+      "key": "fb4825601a1a20ac92b4bf3df7f4e00483fd9aa891b0160f31c71041bfde72b4",
+      "primary": true,
+      "company": "Tines",
+      "title": "Account Based Marketing (ABM) Manager",
+      "job_number": "6226583004"
+    },
+    "Dave-Call+StayOnline+Digital-Marketing-Specialist+00295.docx": {
+      "id": "00295",
+      "key": "a592d5b019cc11f7b4a335d4f1cc9833979ed96cbf200b6fec381484a2a15672",
+      "primary": true,
+      "company": "StayOnline",
+      "title": "Digital Marketing Specialist",
+      "job_number": "c7a8cf6dbf331d5f"
+    },
+    "Dave-Call+iMarket-Solutions+Senior-Paid-Media-Specialist+00296.docx": {
+      "id": "00296",
+      "key": "116d714614a50014751a90d1fee7138f43fd572ec305c2deb0e08306febcf77c",
+      "primary": true,
+      "company": "iMarket Solutions",
+      "title": "Senior Paid Media Specialist",
+      "job_number": "523ef870bb500954"
+    },
+    "Dave-Call+Boldin+Senior-Performance-Marketing-Manager+00297.docx": {
+      "id": "00297",
+      "key": "ddbfcaab63ebc4d62525ec12bb851999aa5bc976063f08bd501a4f56fbd48293",
+      "primary": true,
+      "company": "Boldin",
+      "title": "Senior Performance Marketing Manager",
+      "job_number": "f5f9e79a695ce09e"
+    },
+    "Dave-Call+Kong+Director,-Performance-Marketing+00298.docx": {
+      "id": "00298",
+      "key": "cfcfa4046ffa54482c74523295d81ecdc28b4bfd2f62c6c9cdfae3c85f766045",
+      "primary": true,
+      "company": "Kong",
+      "title": "Director, Performance Marketing",
+      "job_number": "7818d251e5d7ca78"
+    },
+    "Dave-Call+EZMarketing+Digital-Marketing-Manager+00299.docx": {
+      "id": "00299",
+      "key": "4fab8d04da00e85076249d9cc5a786646d0b83e78decbdb6a2aa1a36fefb8014",
+      "primary": true,
+      "company": "EZMarketing",
+      "title": "Digital Marketing Manager",
+      "job_number": "085f21aa5810adce"
+    },
+    "Dave-Call+EXANTE360-INC+Marketing-Director+00300.docx": {
+      "id": "00300",
+      "key": "c00c61a2c7de4cc07bd63d324bf3342e1c0d271e3e2f43e411830b7345157c05",
+      "primary": true,
+      "company": "EXANTE360 INC",
+      "title": "Marketing Director",
+      "job_number": "ff52945f5619ea41"
+    },
+    "Dave-Call+UPS+UPS-Digital-Product-Marketing-Manager-303-Flexible-Location+00301.docx": {
+      "id": "00301",
+      "key": "aafa29cb785d66088e7b7b58802135ae875d7186929f84c6607a4e2513d2431e",
+      "primary": true,
+      "company": "UPS",
+      "title": "UPS Digital Product Marketing Manager | 303 | Flexible Location",
+      "job_number": "6316e037e9641df2"
+    },
+    "Dave-Call+Simply-Done-Tech-Solutions+SEO,-AEO,-PPC-Specialist+00302.docx": {
+      "id": "00302",
+      "key": "e9260e8d26a04775738f2838c1bbaa1b59753d2ee49479ed42568a2fdebf5c99",
+      "primary": true,
+      "company": "Simply Done Tech Solutions",
+      "title": "SEO, AEO, PPC Specialist",
+      "job_number": "ad07fe9d0300724a"
+    },
+    "Dave-Call+Supreme-Optimization+Scientific-Digital-Marketing-Strategist,-SEO-(PhD-Required)+00303.docx": {
+      "id": "00303",
+      "key": "d4706acd9ecd4cbcabdb8fc95e870e7ed9f50985203cc4bbfbdc26d120a9e399",
+      "primary": true,
+      "company": "Supreme Optimization",
+      "title": "Scientific Digital Marketing Strategist, SEO (PhD Required)",
+      "job_number": "8510cf112525e94d"
+    },
+    "Dave-Call+Ultimate-Staffing-Services+Sr-Manager,-Hematology-&-Oncology-Marketing+00304.docx": {
+      "id": "00304",
+      "key": "588c030f57590254742f9958db2ed08c245d58b8b1afb91407aaf92e5ec6f721",
+      "primary": true,
+      "company": "Ultimate Staffing Services",
+      "title": "Sr Manager, Hematology & Oncology Marketing",
+      "job_number": "8442b6da3c7ae1e7"
+    },
+    "Dave-Call+Urbana-Varro-Hospitality-Management-Company-LLC+Corporate-Director-of-Sales-and-Marketing+00305.docx": {
+      "id": "00305",
+      "key": "ce051ef0ac6abf437700b3069e912bb478e1366db9a3ed34e55262eb151ac2de",
+      "primary": true,
+      "company": "Urbana Varro Hospitality Management Company LLC",
+      "title": "Corporate Director of Sales and Marketing",
+      "job_number": "4199b4c3a67c2830"
+    },
+    "Dave-Call+Swire-Coca-Cola+Senior-Marketing-Science-Analyst+00306.docx": {
+      "id": "00306",
+      "key": "8768f8b70c1fcca65ef0d153881fd076b2fd4ee56f8af036ebeca8e112bda9bf",
+      "primary": true,
+      "company": "Swire Coca-Cola",
+      "title": "Senior Marketing Science Analyst",
+      "job_number": "198ecbb614bc5c6b"
+    },
+    "Dave-Call+UnitedHealth-Group+Director-of-Business-Lending-Acquisition-Marketing+00307.docx": {
+      "id": "00307",
+      "key": "3b3865ac57cb76fbc6dcf82264abb53a4e5bfd9b956a9ff1fc46c3e1433612bf",
+      "primary": true,
+      "company": "UnitedHealth Group",
+      "title": "Director of Business Lending Acquisition Marketing",
+      "job_number": "e7754bafa7a70455"
+    },
+    "Dave-Call+Extra-Space-Management,-Inc+Paid-Search-Specialist+00308.docx": {
+      "id": "00308",
+      "key": "3e78514f593f50eef3987806403247a9eeeafede6e9be416c822e0c8fe0006e8",
+      "primary": true,
+      "company": "Extra Space Management, Inc",
+      "title": "Paid Search Specialist",
+      "job_number": "604e24c6633f5ba1"
+    },
+    "Dave-Call+1-800-Contacts+Paid-Media-Manager+00309.docx": {
+      "id": "00309",
+      "key": "e2334ebd90ec87a5c76b4a4d3c66c8e045665e2dece31e9bc61e42738a33260b",
+      "primary": true,
+      "company": "1-800 Contacts",
+      "title": "Paid Media Manager",
+      "job_number": "682655b0d2db07dc"
+    },
+    "Dave-Call+Built-By-Shah+Growth-Marketing-Manager-–-Digital-Marketing-&-Lead-Generation+00310.docx": {
+      "id": "00310",
+      "key": "f863632a3db2778f142aff93d004bde3c376bb9371ffb0e6ffed7edacfccf4a5",
+      "primary": true,
+      "company": "Built By Shah",
+      "title": "Growth Marketing Manager – Digital Marketing & Lead Generation",
+      "job_number": "78cbaa44732d771e"
+    },
+    "Dave-Call+ArchWell-Health+Digital-Marketing-Specialist+00311.docx": {
+      "id": "00311",
+      "key": "66baa91376c6c7123a6b7b0fe617bb4175b7e86ff355c94a9b130153eb8d6880",
+      "primary": true,
+      "company": "ArchWell Health",
+      "title": "Digital Marketing Specialist",
+      "job_number": "9c096e54f737da00"
+    },
+    "Dave-Call+Brand-Clamp+Digital-Marketing-Executive+00312.docx": {
+      "id": "00312",
+      "key": "785e810f8f85a17460329ebf851d4ca0e11234eb7fdd0f475703b4de937b1038",
+      "primary": true,
+      "company": "Brand Clamp",
+      "title": "Digital Marketing Executive",
+      "job_number": "90d05e26fd0ad020"
+    },
+    "Dave-Call+Supreme-Optimization+Scientific-Digital-Marketing-Strategist,-Paid-Ads-(PhD-required)+00313.docx": {
+      "id": "00313",
+      "key": "9106eae29fa3474804cc71bf2efe8cc552cb9c19d4f5f1bff3f3f633d64c7c20",
+      "primary": true,
+      "company": "Supreme Optimization",
+      "title": "Scientific Digital Marketing Strategist, Paid Ads (PhD required)",
+      "job_number": "f2e597c0a4ab9895"
+    },
+    "Dave-Call+Tecnica-Group-USA+Nordica-Digital-Marketing-Manager+00314.docx": {
+      "id": "00314",
+      "key": "c8d8fe95ff1db671b846ca80b20ee1f3d1de7dfe1f2b66ada6ee08ad56a7f9d8",
+      "primary": true,
+      "company": "Tecnica Group USA",
+      "title": "Nordica - Digital Marketing Manager",
+      "job_number": "3a4f22be63ddf7d0"
+    },
+    "Dave-Call+SharkNinja+Sr-Manager,-Performance-Marketing-Amazon+00315.docx": {
+      "id": "00315",
+      "key": "3247a6b68bff790025fa1f45b2bfab3fcbced140fa9a45a9191c1bed3e8fc964",
+      "primary": true,
+      "company": "SharkNinja",
+      "title": "Sr Manager, Performance Marketing - Amazon",
+      "job_number": "5ecca29530b52b17"
+    },
+    "Dave-Call+GoWest-Credit-Union-Association+Manager,-Digital-Experience-&-Marketing-–-Job-#3657+00316.docx": {
+      "id": "00316",
+      "key": "a96675b50eab0d768bf7e6d7227e84afc6b5429839c4ac618dfd22a49a141d7d",
+      "primary": true,
+      "company": "GoWest Credit Union Association",
+      "title": "Manager, Digital Experience & Marketing – Job #3657",
+      "job_number": "97b7e0c1c318fca4"
+    },
+    "Dave-Call+Ethos-Life+Senior-Director,-Performance-Marketing+00317.docx": {
+      "id": "00317",
+      "key": "4dc1e8fc4a8dd87d73d96f0bb49bce3ce345769da50efa2a79f4b64309bb018d",
+      "primary": true,
+      "company": "Ethos Life",
+      "title": "Senior Director, Performance Marketing",
+      "job_number": "e0bab24e984726e8"
+    },
+    "Dave-Call+efficiently+Performance-Marketing-Specialist+00318.docx": {
+      "id": "00318",
+      "key": "2e539712cdf9a8c3eca6539332afcbbbcf04b6fa9db84c43fa36cf7570a1e79b",
+      "primary": true,
+      "company": "efficiently",
+      "title": "Performance Marketing Specialist",
+      "job_number": "36931bf5ec551564"
+    },
+    "Dave-Call+Newsela+Senior-Product-Marketing-Manager,-Core-(Remote,-US)+00319.docx": {
+      "id": "00319",
+      "key": "0ccb0bb46282bc843d80b5b3552ea9ccac739aa1a886fd867eae3234b34635e9",
+      "primary": true,
+      "company": "Newsela",
+      "title": "Senior Product Marketing Manager, Core (Remote, US)",
+      "job_number": "8278660"
+    },
+    "Dave-Call+Procurify+Director,-Performance-Marketing+00320.docx": {
+      "id": "00320",
+      "key": "d4fd4ca45a3dbcdac8c277b5426a83be6d8b3c9d272b20c23976e5260be63c46",
+      "primary": true,
+      "company": "Procurify",
+      "title": "Director, Performance Marketing",
+      "job_number": "0cdc290a-02a7-48e6-99d6-28d1ab2a9b02"
+    },
+    "Dave-Call+Absorb+Customer-Marketing-Manager+00321.docx": {
+      "id": "00321",
+      "key": "ded232fda626b1b159e912d0f74b6a42d167327e749b7ae928d6f07aae364cf6",
+      "primary": true,
+      "company": "Absorb",
+      "title": "Customer Marketing Manager",
+      "job_number": "a18d852c-704a-4e80-b1bd-65faa63e88e3"
+    },
+    "Dave-Call+Absorb+Customer-Marketing-Manager+00322.docx": {
+      "id": "00322",
+      "key": "c105f3a0c20f3d6bb5d001f04a854e6155f16f93624d8f75b0e6ed3de004008a",
+      "primary": true,
+      "company": "Absorb",
+      "title": "Customer Marketing Manager",
+      "job_number": "ede590b0-aacc-45ce-8150-8e89a8fa4309"
+    },
+    "Dave-Call+Xero+Senior-Marketing-Manager,-EMEA+00323.docx": {
+      "id": "00323",
+      "key": "7fd363a5e79d71d87f9ab70026aa9541357330cb285c212e32a4b9b5e74f2932",
+      "primary": true,
+      "company": "Xero",
+      "title": "Senior Marketing Manager, EMEA",
+      "job_number": "4c3021eb-1366-4bfa-88cf-8ff37270262f"
+    },
+    "Dave-Call+Mural+Performance-Marketing-Manager+00324.docx": {
+      "id": "00324",
+      "key": "cce0741a3a159ddae05c689afbb94d00c3843a3de8be141218e244d98b3ff608",
+      "primary": true,
+      "company": "Mural",
+      "title": "Performance Marketing Manager",
+      "job_number": "0d66c80f84d70747"
+    },
+    "Dave-Call+NextPlay-Recruitment+Digital-Marketing-and-Social-Media-Specialist+00325.docx": {
+      "id": "00325",
+      "key": "4a12a7d85c79ce591af429362b6c28c62efac3e6e218da85e6e5dd89d41e0d2b",
+      "primary": true,
+      "company": "NextPlay Recruitment",
+      "title": "Digital Marketing and Social Media Specialist",
+      "job_number": "d2cb1466e557cfc6"
+    },
+    "Dave-Call+French-Florist+Manager,-Paid-Media-&-Acquisition+00326.docx": {
+      "id": "00326",
+      "key": "992e65ab6238a939b4d0e7126e6e9be4379dacce483853dcfadc43ea5a4cdd2a",
+      "primary": true,
+      "company": "French Florist",
+      "title": "Manager, Paid Media & Acquisition",
+      "job_number": "f992540429ee0310"
+    },
+    "Dave-Call+CLICK-HERE-DIGITAL+Senior-Paid-Search-Analyst+00327.docx": {
+      "id": "00327",
+      "key": "0a302d1d3c874cd0c8a1c9f0e13cbafb70610e83f65efa8be2f17f04516e662f",
+      "primary": true,
+      "company": "CLICK HERE DIGITAL",
+      "title": "Senior Paid Search Analyst",
+      "job_number": "0de8d4a8f22b5e71"
+    },
+    "Dave-Call+Strategic-Education,-Inc+Manager-of-Marketing,-Paid-Search+00328.docx": {
+      "id": "00328",
+      "key": "7d63d7932ee66a9e54eaaa5fb83351066d8368b7988944e60b1e7f81ccaa5146",
+      "primary": true,
+      "company": "Strategic Education, Inc.",
+      "title": "Manager of Marketing, Paid Search",
+      "job_number": "6c499eb219d7da68"
+    },
+    "Dave-Call+Digital-Growth-Solutions+Director-of-Paid-Search+00329.docx": {
+      "id": "00329",
+      "key": "2c2b7f93efcfc93dbedda76a7878bc4110a46632ce4d00871fb0f36bb74c3901",
+      "primary": true,
+      "company": "Digital Growth Solutions",
+      "title": "Director of Paid Search",
+      "job_number": "6910c0b85e1b29ef"
+    },
+    "Dave-Call+Riverside-Mental-Health+Marketing-Manager+00330.docx": {
+      "id": "00330",
+      "key": "7fb932a5ded131e06b74c4b3d2c1451e13b2a924a953b5cf1d8b02004614427f",
+      "primary": true,
+      "company": "Riverside Mental Health",
+      "title": "Marketing Manager",
+      "job_number": "2ca9a38f7fdf075c"
+    },
+    "Dave-Call+BairesDev+Head-of-Solutions-Marketing-Remote-Work+00331.docx": {
+      "id": "00331",
+      "key": "69ed77aa9d7a9ec60947aff445364549ebf69aaea06690c0da140701171f130b",
+      "primary": true,
+      "company": "BairesDev",
+      "title": "Head of Solutions Marketing - Remote Work",
+      "job_number": "ee4ed3900ff776db"
+    },
+    "Dave-Call+Butler-Till,-Inc+Paid-Search-Strategist+00332.docx": {
+      "id": "00332",
+      "key": "4ee844ad7206379f04eb4fcd3379b5a3234b558700680fe0fa644e54cbd52bad",
+      "primary": true,
+      "company": "Butler/Till, Inc.",
+      "title": "Paid Search Strategist",
+      "job_number": "775707aafd2a4de3"
+    },
+    "Dave-Call+Carnegie-Dartlet+Assistant-Director,-Paid-Search+00333.docx": {
+      "id": "00333",
+      "key": "51da432b9e647866012643b66c44e3b978c2e5b95e5bd522c44bd41c218c5122",
+      "primary": true,
+      "company": "Carnegie Dartlet",
+      "title": "Assistant Director, Paid Search",
+      "job_number": "8f26090fd87a363c"
+    },
+    "Dave-Call+Carnegie-Dartlet+Director,-Paid-Search+00334.docx": {
+      "id": "00334",
+      "key": "ec05f0e9469bd3c412bde9d027f4ed0857d44772c0e5e683749a179274ad399a",
+      "primary": true,
+      "company": "Carnegie Dartlet",
+      "title": "Director, Paid Search",
+      "job_number": "9a674028e6c9781f"
+    },
+    "Dave-Call+Infinite-Outdoors+Growth-Marketing-Manager+00335.docx": {
+      "id": "00335",
+      "key": "4bcedddb8372ba8ed63df3eb8674c0ad520020fae8eaa3106ed5997398725233",
+      "primary": true,
+      "company": "Infinite Outdoors",
+      "title": "Growth Marketing Manager",
+      "job_number": "d5ce2361b5bf9616"
+    },
+    "Dave-Call+KickCharge-Creative+SEO-Lead+00336.docx": {
+      "id": "00336",
+      "key": "4ae3ec845eec449dc3f24b38a1c25e55bea5565ae8fe9cc7dd49234bb90fa4cf",
+      "primary": true,
+      "company": "KickCharge Creative",
+      "title": "SEO Lead",
+      "job_number": "5aa30972dd8ae529"
+    },
+    "Dave-Call+Moving-Traffic-Media+Paid-Search-(PPC)-Specialist-(Remote-WFH)+00337.docx": {
+      "id": "00337",
+      "key": "20143c55bc30eb9567ad21e488586cb600378a4980357be91b71536f61d43a17",
+      "primary": true,
+      "company": "Moving Traffic Media",
+      "title": "Paid Search (PPC) Specialist (Remote / WFH)",
+      "job_number": "d9b6e968e277b2aa"
     }
   }
 }

@@ -7,6 +7,25 @@ from dashboard.grid import columns, change_column, cell_changes, export_sheet
 from dashboard.server import Workspace, version
 
 class GridTests(SQLiteTrackerTests):
+    def test_stop_targets_only_owned_live_process_and_rejects_stale_run(self):
+        app=Workspace(tracker_factory=lambda:self.tracker)
+        app.operation={'status':'running','started_at':'test-start'}
+        app.run_process=MagicMock(pid=12345)
+        app.run_process.poll.return_value=None
+        with patch('dashboard.server.subprocess.run') as kill:
+            with self.assertRaises(ValueError): app.stop({'started_at':'stale'})
+            kill.assert_not_called()
+            kill.return_value.returncode=0
+            self.assertEqual(app.stop({'started_at':'test-start'}),{'stopping':True})
+            self.assertEqual(kill.call_args.args[0],['taskkill.exe','/PID','12345','/T','/F'])
+            self.assertTrue(app.operation['stop_requested'])
+
+    def test_full_run_has_no_selected_job_limit(self):
+        app=Workspace(tracker_factory=lambda:self.tracker)
+        with patch.object(app,'activity',return_value={'busy':False}), patch('dashboard.server.configured_run_ids',return_value=None), patch('dashboard.server.threading.Thread'), patch.object(app,'persist_operation'):
+            result=app.start({'kind':'gecko','job_ids':[2555]})
+        self.assertNotIn('job_ids',result)
+
     def test_selected_run_database_guard_blocks_unrelated_writes(self):
         with patch.dict('os.environ',{'GECKO_ALLOWED_JOB_IDS':'11'}):
             before=self.tracker.scout().rows[0][1]

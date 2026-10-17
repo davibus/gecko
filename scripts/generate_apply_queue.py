@@ -1049,6 +1049,9 @@ def _finish_generation(
     if (_identity_text(plan["job"]["company"]) != _identity_text(item.company)
             or _identity_text(plan["job"]["title"]) != _identity_text(item.title)):
         raise ValueError("Saved listing identity does not match the live Scout row")
+    if os.environ.get('GECKO_AI_RUNNER') == 'codex':
+        from codex_runner import review_resume
+        review_resume(plan)
     name = f"{plan['job']['safe_company']}+{plan['job']['job_number']}"
     scratch = ROOT / "scratch" / name
     scratch.mkdir(parents=True, exist_ok=True)

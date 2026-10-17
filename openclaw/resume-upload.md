@@ -1,0 +1,54 @@
+# Attach the matching output resume through OpenClaw
+
+Use this procedure for requested applications. Upload authorization does not
+itself authorize submission. Never reopen or resubmit a confirmed application.
+
+1. Read the current repository instructions and tracker backend. Resolve the
+   requested job by stable identity in the active SQLite tracker. Confirm company,
+   title, application URL, and its exact Resume Link. Decode a file URI as a URI
+   (preserve literal plus signs); do not choose the newest file or search Downloads.
+   An existing Resume Created = X never authorizes regenerating a missing file.
+2. Confirm that the matching nonempty DOCX exists directly in
+   `C:\gecko_main\output\resumes`. Keep it there as the authoritative artifact.
+   The dashboard download is a copy of that file, not another required source.
+3. Run this helper using native Windows, substituting the verified exact path:
+
+   ```powershell
+   & 'C:\gecko_main\.tools\dashboard-python\Scripts\python.exe' 'C:\gecko_main\scripts\stage_openclaw_resume.py' --resume 'C:\gecko_main\output\resumes\<exact-matching-file>.docx'
+   ```
+
+   It returns JSON with `media_ref`, filename, byte count, and SHA-256. It verifies
+   the managed inbound copy and refuses to replace a different file of the same
+   name. Do not claim attachment yet.
+4. Use OpenClaw's browser tool with profile `windows-chrome`. Locate the existing
+   application tab in the OpenClaw group, verify its URL and job identity, and keep
+   using that exact target. Avoid creating a second draft when the intended tab
+   already exists. If the user's tab is not shared, ask them to share that tab.
+5. Inspect the actual file input. Use `action: "upload"`, the exact `targetId`,
+   `paths: [media_ref]`, and either `inputRef` or `element` (not both), with
+   `timeoutMs: 20000`. Hidden file inputs can be targeted directly. If the page
+   offers only a chooser button, use the supported upload `ref` operation.
+   Do not type a path into a text field or invent an attachment confirmation.
+6. Read back the file input's file name and size and the page's attachment status.
+   Wait for the site's upload to complete and check for errors. If the field is
+   cleared after the site processes it, use its visible attachment confirmation.
+   A tool success alone is not proof. Stop and report any mismatch or timeout;
+   do not loop the same failed upload or ask the user to locate a known existing
+   resume merely because the connector failed. Submit only within the user's
+   application authorization after all required fields and attachment are verified.
+
+## Installed connector repair — 2026-10-16
+
+OpenClaw 2026.10.4's extension upload route treated the browser as accepting local
+filesystem paths. A synthetic file reproduced the same repeated
+`locator.setInputFiles` timeout seen on Rula. The installed route now sends file
+payloads through Playwright for `local-extension` mode; other browser modes are
+unchanged. Existing path validation, browser access checks, and upload limits
+remain in place. The file payload route requires files smaller than 50 MiB.
+
+Installed file: `%APPDATA%\npm\node_modules\openclaw\dist\routes-OvJdcQl9.mjs`.
+Original backup and test evidence:
+`C:\Users\DCALL\Documents\Codex\2026-10-15\so-i\work\upload-test`.
+This is a local installed-package repair. An OpenClaw update can replace it.
+After an update, run a synthetic attachment check before promising uploads work;
+do not blindly apply this version-specific edit to a different release.

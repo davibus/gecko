@@ -3,8 +3,15 @@ const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const state = {jobs:[],view:'today',page:0,token:'',selected:null,activity:null,loading:false};
 const PAGE_SIZE = 15;
+let impromptuFilters=null;
+let columnSort=null;
+const historyFilters={};
+const historyViews=['deleted','rejected','uninterested'];
+const sourceFilters={source:'',minimum:'',status:'',explanation:''};
+const trendVisible={found:true,resumes:true,applications:true,followups:true};
 const today = () => new Intl.DateTimeFormat('en-CA',{timeZone:'America/Denver',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
-const dateText = value => value ? new Date(value).toLocaleString('en-US',{timeZone:'America/Denver',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}) + ' MT' : 'Not recorded';
+const displayTimeZone = 'America/Denver';
+const dateText = value => value ? new Date(value).toLocaleString('en-US',{timeZone:displayTimeZone,year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}) : 'Not recorded';
 const due = job => job.meta.follow_up && job.meta.follow_up <= today() && !['Closed','Offer','Declined'].includes(job.stage);
 const isReply = job => job.applied && !!job.fields.Response && !['Closed','Offer'].includes(job.stage);
 function nextAction(j){
@@ -35,8 +42,8 @@ async function refresh(){
  if(state.loading) return;
  state.loading=true;$('refresh').disabled=true;$('refresh').textContent='Refreshing…';
  try{
-  const data=await api('/api/jobs');state.jobs=data.jobs;state.runIds=data.run_ids||[];state.columns=data.columns||[];state.token=data.token;state.activity=data.activity;state.refreshed=data.refreshed_at;
-  $('freshness').textContent='Updated '+dateText(data.refreshed_at);$('footer-time').textContent='Tracker refreshed '+dateText(data.refreshed_at);
+  const data=await api('/api/jobs');state.jobs=data.jobs;state.manualIds=data.manual_ids||[];state.history=data.history||{};state.runIds=data.run_ids||[];state.runMode=data.run_mode;state.columns=data.columns||[];state.runFilterOptions=data.run_filter_options;state.token=data.token;state.activity=data.activity;state.refreshed=data.refreshed_at;
+  $('freshness').textContent='Last refreshed '+dateText(data.refreshed_at);$('footer-time').textContent='Tracker refreshed '+dateText(data.refreshed_at);
   $('sheet-link').href=data.sheet_url;$('sheet-link').hidden=!data.sheet_url;banner('');
   const prior=$('source-filter').value;
   $('source-filter').innerHTML='<option value="">All sources</option>'+[...new Set(state.jobs.map(j=>j.fields.Source).filter(Boolean))].sort().map(s=>`<option>${esc(s)}</option>`).join('');
@@ -45,18 +52,46 @@ async function refresh(){
  finally{state.loading=false;$('refresh').disabled=false;$('refresh').textContent='↻ Refresh';}
 }
 function setView(view){if(document.querySelector('.dirty')){notify('Save your edited rows before changing views.');return;}state.view=view;state.page=0;$('stage-filter').value='';$('search').value='';location.hash=view;render();}
-const viewNames={today:'Today',jobs:'All jobs',applications:'Applications',resumes:'Resumes',activity:'Gecko activity',tracker:'Editable tracker'};
+const viewNames={manual:'Individually submitted applications',today:'Today',jobs:'All jobs',applications:'Applications',resumes:'Resumes',activity:'Gecko activity',tracker:'Editable tracker',deleted:'Jobs Deleted',rejected:'Jobs Rejected',uninterested:'Not Interested'};
 function render(){
+ $('opportunities-table').classList.toggle('all-jobs',state.view==='jobs');
  document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===state.view));
  $('crumb').textContent=viewNames[state.view];
  $('page-title').innerHTML=state.view==='today'?'Your next move.':esc(viewNames[state.view]);
  const subtitles={today:'Your opportunities, applications, and next steps. All together.',jobs:'Find the roles worth your time. Review each one on your terms.',applications:'Every application, every conversation, every next step.',resumes:'Your tailored resumes, connected to the right opportunity.',activity:'Know what Gecko is doing, and what needs your attention.'};
  $('page-subtitle').textContent=subtitles[state.view]||'Your columns, your notes, your complete job tracker.';
+ $('manual-section').hidden=state.view!=='manual';
+ $('history-section').hidden=!historyViews.includes(state.view);
+ $('stats').hidden=state.view==='manual'||historyViews.includes(state.view);
  $('tracker-section').hidden=state.view!=='tracker';
- $('today-intro').hidden=state.view!=='today';$('work-section').hidden=['activity','tracker'].includes(state.view);$('activity-section').hidden=state.view!=='activity';
+ $('today-intro').hidden=state.view!=='today';$('work-section').hidden=['activity','tracker','manual',...historyViews].includes(state.view);$('activity-section').hidden=state.view!=='activity';
  const active=state.jobs.filter(j=>!['Closed','Declined'].includes(j.stage));
  const stats=[['Opportunities',active.filter(j=>!j.applied).length,'Ready for your review','jobs'],['Resumes ready',active.filter(j=>!j.applied&&j.resume_available).length,'Your next applications','resumes'],['Applications',state.jobs.filter(j=>j.applied).length,'Every step, in one place','applications'],['Follow-ups due',state.jobs.filter(due).length,'Keep the conversation going','today']];
  $('stats').innerHTML=stats.map(([label,n,note,view])=>`<button class="stat" data-stat-view="${view}"><span class="stat-label">${label}</span><strong>${state.refreshed?n:'—'}</strong><small>${note}</small></button>`).join('');
+ if(state.view==='jobs'){
+  const day=today();
+  const ready=active.filter(j=>!j.applied&&j.resume_available);
+  const applications=state.jobs.filter(j=>j.applied);
+  const followUps=state.jobs.filter(j=>j.meta.follow_up&&!['Closed','Offer','Declined'].includes(j.stage));
+  const follow=GeckoMetrics.activity(followUps,day,j=>j.meta.follow_up);
+  follow.total=state.jobs.filter(due).length;
+  const cards=[
+   ['Jobs Found',GeckoMetrics.jobsFound(state.jobs,day),''],
+   ['Resumes ready',GeckoMetrics.activity(ready,day,j=>j.fields['Resume Created Date']||j.fields['Resume Date']||j.meta.resume_created_at),'Ready resumes by creation date'],
+   ['Applications',GeckoMetrics.activity(applications,day,j=>j.fields['Applied Date']||j.meta.applied_at),'By recorded application date'],
+   ['Follow-ups due',follow,'Due on each day; total includes overdue']
+  ];
+  $('stats').innerHTML=cards.map(([label,metric,note])=>{
+   const delta=metric.change===null?'—':metric.change>0?'+'+metric.change:String(metric.change);
+   const tone=metric.change>0?'stat-positive':metric.change<0?'stat-negative':'';
+   const values=[['Today',metric.today??'—',''],['Yesterday',metric.yesterday??'—',''],['Total',metric.total,''],['Change',delta,tone]];
+   const detail=metric.undated?metric.undated+' missing dates'+(metric.today===null?' · daily counts unavailable':' · daily counts include dated records only'):note;
+   return `<div class="stat jobs-found-stat"><span class="stat-label">${label}</span><div class="jobs-found-grid">${values.map(([name,n,color])=>`<div><small>${name}</small><strong class="${state.refreshed?color:''}">${state.refreshed?n:'—'}</strong></div>`).join('')}</div>${detail?`<small class="metric-note">${esc(detail)}</small>`:''}</div>`;
+  }).join('');
+
+ }
+ renderTrend();
+ renderSources();
  document.querySelectorAll('[data-stat-view]').forEach(b=>b.onclick=()=>setView(b.dataset.statView));
  const focus=[...active].sort((a,b)=>priority(a)-priority(b)).find(j=>priority(j)<9);
  $('focus-title').textContent=focus?nextAction(focus):state.refreshed?'Your queue is clear.':'Connect to your tracker.';
@@ -64,6 +99,8 @@ function render(){
  $('focus-button').textContent=focus?'Open opportunity →':'View all jobs →';$('focus-button').onclick=()=>focus?openJob(focus.id):setView('jobs');
  $('list-title').textContent={today:'Your action queue',jobs:'All opportunities',applications:'Your application pipeline',resumes:'Your resume library',activity:''}[state.view];
  $('list-caption').textContent=state.view==='today'?'Follow-ups, replies, prepared resumes, and jobs to review.':'Select an opportunity to open its complete workspace.';
+ if(historyViews.includes(state.view)){ $('page-subtitle').textContent='Saved records and reasons, kept for reference.';return renderHistory();}
+ if(state.view==='manual') return renderManual();
  if(state.view==='tracker') return renderTracker();
  if(state.view==='activity') return renderActivity();
  let list=state.jobs.filter(j=>state.view==='today'?priority(j)<9:state.view==='applications'?j.applied:state.view==='resumes'?!!(j.fields['Resume Created']||j.fields['Resume Link']):true);
@@ -73,14 +110,71 @@ function render(){
  renderFilterSummary();
  const sort=$('sort').value;
  list.sort((a,b)=>sort==='company'?String(a.fields.Company).localeCompare(String(b.fields.Company)):sort==='newest'?String(b.fields['Date Found']).localeCompare(String(a.fields['Date Found'])):priority(a)-priority(b)||String(b.fields['Date Found']).localeCompare(String(a.fields['Date Found'])));
+ if(columnSort)list.sort((a,b)=>GeckoFilters.compareValues(columnValue(a,columnSort.key),columnValue(b,columnSort.key),columnSort.direction));
+ updateColumnSortControls();
  state.page=Math.max(0,Math.min(state.page,Math.ceil(list.length/PAGE_SIZE)-1));
  $('result-count').textContent=list.length+' opportunities';
- $('jobs').innerHTML=list.slice(state.page*PAGE_SIZE,(state.page+1)*PAGE_SIZE).map(j=>`<tr><td><div class="opportunity"><span class="company-icon">${esc(String(j.fields.Company||'?').slice(0,2).toUpperCase())}</span><div><button class="job-link" data-job="${esc(j.id)}" ${!j.editable?'disabled':''}>${esc(j.fields['Job Title']||'Untitled opportunity')}</button><span class="subtext">${esc(j.fields.Company)} <span>·</span> ${esc(j.fields.Source)}${!j.editable?' · Tracker identity needs review':''}</span></div></div></td><td>${esc(j.fields.Location||'Location not listed')}<span class="subtext">${esc(j.fields.Salary||j.fields['Work Arrangement']||'Salary not listed')}</span></td><td><span class="badge ${j.applied?'applied':j.resume_available?'ready':j.stage==='Review'?'warn':''}">${esc(j.stage)}</span></td><td><span class="next-action">${esc(nextAction(j))}</span></td><td><button class="arrow" data-job="${esc(j.id)}" aria-label="Open ${esc(j.fields.Company)} job" ${!j.editable?'disabled':''}>↗</button></td></tr>`).join('');
+ $('jobs').innerHTML=list.slice(state.page*PAGE_SIZE,(state.page+1)*PAGE_SIZE).map(j=>`<tr><td><div class="opportunity"><span class="company-icon">${esc(String(j.fields.Company||'?').slice(0,2).toUpperCase())}</span><div><button class="job-link" data-job="${esc(j.id)}" ${!j.editable?'disabled':''}>${esc(j.fields['Job Title']||'Untitled opportunity')}</button><span class="subtext">${esc(j.fields.Company)} <span>·</span> ${esc(j.fields.Source)}${!j.editable?' · Tracker identity needs review':''}</span></div></div></td><td class="date-found">${esc(j.fields['Date Found']||'—')}</td><td>${esc(j.fields.Location||'Location not listed')}<span class="subtext">${esc(j.fields.Salary||j.fields['Work Arrangement']||'Salary not listed')}</span></td><td><span class="badge ${j.applied?'applied':j.resume_available?'ready':j.stage==='Review'?'warn':''}">${esc(j.stage)}</span></td><td><span class="next-action">${esc(nextAction(j))}</span></td><td class="all-jobs-column">${esc(j.fields['Personal priority']||'—')}</td><td class="all-jobs-column">${esc(j.fields['Applied Date']||'—')}</td><td class="all-jobs-column">${esc(j.fields.Source||'—')}</td><td><button class="arrow" data-job="${esc(j.id)}" aria-label="Open ${esc(j.fields.Company)} job" ${!j.editable?'disabled':''}>↗</button></td></tr>`).join('');
  $('empty').hidden=!!list.length;$('empty').textContent=state.refreshed?'No opportunities match this view. Try another filter or view all jobs.':'Loading your workspace…';
  $('page-count').textContent=list.length?`${state.page*PAGE_SIZE+1}–${Math.min((state.page+1)*PAGE_SIZE,list.length)} of ${list.length}`:'0 results';
  $('prev').disabled=state.page===0;$('next').disabled=(state.page+1)*PAGE_SIZE>=list.length;
  document.querySelectorAll('[data-job]').forEach(b=>b.onclick=()=>openJob(b.dataset.job));
 }
+
+
+
+function renderHistory(){
+ const category=state.view,rows=state.history?.[category]||[];
+ const columns={company:'Company',title:'Job Title',source:'Source',location:'Location',date:'Recorded Date',reason:'Reason / Notes'};
+ const filters=historyFilters[category]||(historyFilters[category]={});
+ const visible=rows.filter(row=>Object.entries(filters).every(([key,value])=>String(row[key]||'').toLowerCase().includes(value.toLowerCase())));
+ const intro={deleted:'Removed or archived job records. No permanent deletion is performed here.',rejected:'Jobs recorded as rejected by Gecko or marked Reject in your tracker. This does not imply an employer rejection.',uninterested:'Jobs with Apply? set to No, including roles you declined or that did not meet eligibility rules.'};
+ const icon='<svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18l-7 8v7l-4 2v-9z" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
+ $('history-section').innerHTML='<p class="history-explanation">'+intro[category]+'</p><div class="section-heading"><h2>Saved jobs</h2><span>'+visible.length+' of '+rows.length+' records</span></div><div class="table-wrap history-table"><table><thead><tr>'+Object.entries(columns).map(([key,label])=>'<th>'+label+' <button class="column-filter" data-history-focus="'+key+'" aria-label="Filter '+label+'">'+icon+'</button><input data-history-filter="'+key+'" aria-label="Search '+label+'" value="'+esc(filters[key]||'')+'" placeholder="Filter…"></th>').join('')+'</tr></thead><tbody>'+visible.map(row=>'<tr><td>'+esc(row.company||'—')+'</td><td>'+(row.url?'<a href="'+esc(row.url)+'" target="_blank" rel="noopener noreferrer">'+esc(row.title||'Open saved job')+'</a>':esc(row.title||'—'))+'<small class="subtext">'+esc(row.id?'ID '+row.id:'')+'</small></td><td>'+esc(row.source||'—')+'</td><td>'+esc(row.location||'—')+'</td><td>'+esc(row.date||'Not recorded')+'</td><td><details><summary>'+esc(String(row.reason||'Reason not recorded').slice(0,110))+'</summary><div class="history-notes">'+esc(row.reason)+'</div></details></td></tr>').join('')+'</tbody></table></div>'+(!visible.length?'<p class="loading">'+(rows.length?'No saved jobs match your filters.':'No jobs are recorded in this category yet.')+'</p>':'')+'<div class="actions"><button class="button secondary" id="clear-history-filters">Clear filters</button></div>';
+ $('history-section').querySelectorAll('[data-history-filter]').forEach(input=>input.oninput=()=>{const caret=input.selectionStart;filters[input.dataset.historyFilter]=input.value;renderHistory();const next=$('history-section').querySelector('[data-history-filter="'+input.dataset.historyFilter+'"]');next.focus();next.setSelectionRange(caret,caret);});
+ $('history-section').querySelectorAll('[data-history-focus]').forEach(b=>b.onclick=()=>$('history-section').querySelector('[data-history-filter="'+b.dataset.historyFocus+'"]').focus());
+ $('clear-history-filters').onclick=()=>{historyFilters[category]={};renderHistory();};
+}
+
+function renderSources(){
+ let panel=$('source-summary');
+ if(!panel){panel=document.createElement('section');panel.id='source-summary';panel.className='weekly-trend';const row=document.createElement('div');row.id='source-summary-row';$('weekly-trend').after(row);row.append(panel);}
+ panel.hidden=state.view!=='jobs';$('source-summary-row').hidden=panel.hidden;if(panel.hidden)return;
+ const report=state.activity?.sources;
+ const names={adzuna:'Adzuna Official',himalayas:'Himalayas',ashby:'Ashby',greenhouse:'Greenhouse',indeed:'Indeed',jobicy:'Jobicy',personio:'Personio',lever:'Lever',linkedin:'LinkedIn',remoteok:'Remote OK',remotive:'Remotive',usajobs:'USAJOBS',weworkremotely:'We Work Remotely','web-careers':'Web Careers',workable:'Workable',smartrecruiters:'SmartRecruiters',workingnomads:'Working Nomads',themuse:'The Muse',glassdoor:'Glassdoor',ziprecruiter:'ZipRecruiter'};
+ const rows=(report?.rows||[]).map(r=>({...r,label:names[r.source]||r.source}));
+ const filtered=rows.filter(r=>r.label.toLowerCase().includes(sourceFilters.source.toLowerCase())&&(!sourceFilters.minimum||r.found>=Number(sourceFilters.minimum))&&(!sourceFilters.status||r.status===sourceFilters.status)&&String(r.explanation||'').toLowerCase().includes(sourceFilters.explanation.toLowerCase()));
+ const icon='<svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18l-7 8v7l-4 2v-9z" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
+ panel.innerHTML='<div class="trend-heading"><h2>Job Sources</h2><p>'+(report?'Latest saved discovery breakdown · '+esc(dateText(report.recorded_at)):'No saved discovery breakdown available.')+'</p></div><p class="trend-note">Jobs found are listings retrieved before eligibility checks and duplicate removal, not new jobs added to your tracker. Counts describe this saved run, not today’s activity.</p><div class="source-controls"><label>Source<input id="source-name-query" value="'+esc(sourceFilters.source)+'" placeholder="All sources"></label><label>Minimum jobs found<input id="source-min-query" type="number" min="0" value="'+esc(sourceFilters.minimum)+'" placeholder="Any count"></label><label>Run status<select id="source-status-query"><option value="">All statuses</option>'+[...new Set(rows.map(r=>r.status))].sort().map(status=>'<option '+(status===sourceFilters.status?'selected':'')+'>'+esc(status)+'</option>').join('')+'</select></label><label>Explanation<input id="source-explanation-query" value="'+esc(sourceFilters.explanation)+'" placeholder="Search explanations"></label><button class="button secondary" id="clear-source-filters">Clear filters</button></div><div class="table-wrap source-table"><table><thead><tr>'+[['Source','source-name-query'],['Jobs found','source-min-query'],['Run status','source-status-query'],['Explanation','source-explanation-query']].map(([name,id])=>'<th>'+name+' <button class="column-filter" data-source-focus="'+id+'" aria-label="Filter '+name+' in Job Sources">'+icon+'</button></th>').join('')+'</tr></thead><tbody>'+filtered.map(r=>'<tr><td>'+esc(r.label)+'</td><td>'+Number(r.found).toLocaleString()+'</td><td>'+esc(r.status)+'</td><td class="source-explanation">'+esc(r.explanation||'No explanation recorded.')+'</td></tr>').join('')+'</tbody></table></div><p class="trend-note">'+filtered.length+' sources shown'+(!filtered.length?' · No sources match these filters.':'')+'</p>';
+ const bind=(id,key)=>$(id)[id==='source-status-query'?'onchange':'oninput']=()=>{const position=$(id).selectionStart;sourceFilters[key]=$(id).value;renderSources();$(id).focus();if(position!==null)$(id).setSelectionRange(position,position);};
+ bind('source-name-query','source');bind('source-min-query','minimum');bind('source-status-query','status');bind('source-explanation-query','explanation');
+ panel.querySelectorAll('[data-source-focus]').forEach(b=>b.onclick=()=>$(b.dataset.sourceFocus).focus());
+ $('clear-source-filters').onclick=()=>{Object.assign(sourceFilters,{source:'',minimum:'',status:'',explanation:''});renderSources();};
+}
+
+function renderTrend(){
+ let panel=$('weekly-trend');
+ if(!panel){panel=document.createElement('section');panel.id='weekly-trend';panel.className='weekly-trend';$('stats').after(panel);}
+ panel.hidden=state.view!=='jobs';if(panel.hidden)return;
+ if(!state.refreshed){panel.innerHTML='<p class="loading">Loading seven-day activity…</p>';return;}
+ const {dates,series}=GeckoMetrics.week(state.jobs,today());
+ const selected=series.filter(s=>trendVisible[s.key]);
+ const points=selected.flatMap(s=>s.values).filter(v=>v!==null);
+ const step=Math.max(1,Math.ceil(Math.max(1,...points)/4));const max=step*4;
+ const x=i=>56+i*110,y=n=>218-n/max*180;
+ const label=date=>new Date(date+'T12:00:00Z').toLocaleDateString('en-US',{timeZone:'UTC',weekday:'short',month:'short',day:'numeric'});
+ const grid=Array.from({length:5},(_,i)=>{const value=i*step;return '<line x1="56" x2="716" y1="'+y(value)+'" y2="'+y(value)+'" stroke="#e7ece3"/><text x="44" y="'+(y(value)+4)+'" text-anchor="end">'+value+'</text>';}).join('');
+ const lines=selected.map(s=>{
+  if(s.values.every(v=>v===null))return '';
+  let path='',previous=false;
+  s.values.forEach((v,i)=>{if(v===null){previous=false;return;}path+=(previous?' L':' M')+x(i)+' '+y(v);previous=true;});
+  return '<path d="'+path+'" fill="none" stroke="'+s.color+'" stroke-width="2.5" stroke-dasharray="'+s.dash+'"/>'+s.values.map((v,i)=>v===null?'':'<circle tabindex="0" cx="'+x(i)+'" cy="'+y(v)+'" r="4" fill="white" stroke="'+s.color+'" stroke-width="2" aria-label="'+esc(s.label+', '+dates[i]+': '+v)+'"><title>'+esc(s.label+' · '+label(dates[i])+': '+v)+'</title></circle>').join('');
+ }).join('');
+ const empty=!selected.length?'Turn on a series to see its trend.':!points.length?'No dated records for the selected series.':'';
+ panel.innerHTML='<div class="trend-heading"><h2>Past 7 days</h2><p>Daily counts · '+label(dates[0])+' – '+label(dates[6])+' · Mountain Time</p></div><div class="trend-layout"><div class="trend-options" role="group" aria-label="Chart series">'+series.map(s=>'<button class="trend-toggle" data-trend="'+s.key+'" aria-pressed="'+trendVisible[s.key]+'" style="--series-color:'+s.color+'"><span class="trend-swatch"></span><span>'+s.label+'<small>'+(trendVisible[s.key]?'On':'Off')+(s.undated?' · '+s.undated+' missing dates':'')+'</small></span></button>').join('')+'</div><div class="trend-plot"><svg viewBox="0 0 760 275" role="img" aria-label="Daily job search activity over the past seven days"><text x="56" y="20">Count</text>'+grid+'<line x1="56" x2="716" y1="218" y2="218" stroke="#b7c3af"/>'+lines+dates.map((d,i)=>'<text x="'+x(i)+'" y="245" text-anchor="middle">'+new Date(d+'T12:00:00Z').toLocaleDateString('en-US',{timeZone:'UTC',weekday:'short'})+'</text><text x="'+x(i)+'" y="262" text-anchor="middle">'+d.slice(5).replace('-','/')+'</text>').join('')+(empty?'<text x="386" y="120" text-anchor="middle">'+empty+'</text>':'')+'</svg></div></div><p class="trend-note">Counts use recorded dates, not cumulative totals. Missing dates are excluded; an entirely undated series has no line. Follow-ups are grouped by their current due date.</p><details class="trend-data"><summary>View daily values</summary><div class="table-wrap"><table><thead><tr><th>Date</th>'+selected.map(s=>'<th>'+s.label+'</th>').join('')+'</tr></thead><tbody>'+dates.map((d,i)=>'<tr><td>'+d+'</td>'+selected.map(s=>'<td>'+(s.values[i]??'Unavailable')+'</td>').join('')+'</tr>').join('')+'</tbody></table></div></details>';
+ panel.querySelectorAll('[data-trend]').forEach(button=>button.onclick=()=>{trendVisible[button.dataset.trend]=!trendVisible[button.dataset.trend];renderTrend();panel.querySelector('[data-trend="'+button.dataset.trend+'"]').focus();});
+}
+
 async function openJob(id){
  $('job-detail').innerHTML='<div class="loading">Opening your job workspace…</div>';
  if(!$('job-dialog').open)$('job-dialog').showModal();
@@ -102,18 +196,29 @@ async function edit(action, extras={}){
  catch(error){$('detail-error').textContent=error.message;buttons.forEach(b=>b.disabled=false);}
 }
 async function startRun(payload){
- try{const operation=await api('/api/run',payload);state.activity={...state.activity,operation,busy:true};$('run-dialog').close();$('job-dialog').close();setView('activity');notify('Gecko started. You can follow progress here.');}
+ try{const operation=await api('/api/run',payload);state.activity={...state.activity,operation,busy:true};$('run-dialog').close();$('job-dialog').close();setView('activity');notify('Gecko started. You can follow progress here.');return true;}
  catch(error){if($('job-dialog').open)$('detail-error').textContent=error.message;else{$('run-dialog').close();banner(error.message);}}
 }
+function elapsedText(start, end, running){
+ const from=Date.parse(start),to=end?Date.parse(end):running?Date.now():NaN;
+ if(!Number.isFinite(from)||!Number.isFinite(to)||to<from)return 'Not available';
+ const seconds=Math.floor((to-from)/1000),hours=Math.floor(seconds/3600),minutes=Math.floor(seconds%3600/60);
+ return hours+' hours '+minutes+' minutes '+(seconds%60)+' seconds';
+}
+function elapsedMarkup(record, running, end){
+ return '<p class="run-elapsed"><strong>'+ (running?'Time elapsed: ':'Total duration: ')+'</strong><span data-elapsed-start="'+esc(record.started_at||'')+'" data-elapsed-end="'+esc(end||'')+'" data-elapsed-running="'+running+'">'+elapsedText(record.started_at,end,running)+'</span></p>';
+}
+setInterval(()=>{if(state.view==='activity')document.querySelectorAll('[data-elapsed-running="true"]').forEach(el=>{el.textContent=elapsedText(el.dataset.elapsedStart,el.dataset.elapsedEnd,true);});},1000);
 function renderActivity(){
  const activity=state.activity||{},op=activity.operation,pipeline=activity.pipeline,exported=activity.export;
- const summary=op?`${op.kind==='resume'?'Tailored resume · Job '+op.job_id:'Daily Gecko workflow'+(op.job_ids?' · IDs '+op.job_ids.join(', '):'')} — ${op.status}`:'No dashboard run yet';
- $('activity-section').innerHTML=`<div class="activity-card"><span class="eyebrow">WORKSPACE OPERATIONS</span><h3>${esc(summary)}</h3><p>${activity.busy?'Gecko’s processing lock is active. Editing is paused until the run finishes.':'No Gecko processing lock is active.'}</p>${op?`<p>Started ${esc(dateText(op.started_at))}${op.finished_at?' · Finished '+esc(dateText(op.finished_at)):''}</p>${op.error?`<div class="warning">${esc(op.error)}</div>`:''}${op.log?`<p class="subtext">Local log: ${esc(op.log)}</p>`:''}`:''}</div><div class="activity-card"><span class="eyebrow">LAST CANONICAL PIPELINE RECORD</span>${pipeline?`<h3>${esc(pipeline.status)} · ${esc(pipeline.current_step||'Gecko workflow')}</h3><p>Recorded ${esc(dateText(pipeline.updated_at||pipeline.started_at))}</p><ul>${(pipeline.steps||[]).map(s=>`<li>${esc(s.name)} — ${s.exit_code===0?'completed':'stopped (exit '+esc(s.exit_code)+')'}</li>`).join('')}</ul><p class="subtext">This is the last saved pipeline record; it does not by itself indicate a currently running process.</p>`:'<p>No pipeline history is available.</p>'}</div><div class="activity-card"><h3>Google Sheets export</h3>${exported?`<p>${esc(exported.status)} · ${esc(dateText(exported.finished_at||exported.started_at))}</p>${exported.status==='verified'&&/^https:\/\/docs\.google\.com\/spreadsheets\//.test(exported.url||'')?`<a class="button secondary" href="${esc(exported.url)}" target="_blank" rel="noopener noreferrer">Open verified export ↗</a><p>${esc(exported.rows)} tracker rows exported, including custom columns.</p>`:`<p>${esc(exported.error||'Export has not been verified.')}</p>`}`:'<p>No automatic daily export recorded yet.</p>'}<p class="subtext">This is the latest export record; its time identifies which snapshot it contains. SQLite remains the main tracker.</p></div><div class="activity-card"><h3>What a daily run does</h3><p>Daily report → discovery and SQLite updates → approved eligible resumes → employer responses → database backup → final report → verified Google Sheets export.</p><p>Resume creation uses Gecko’s existing validation and completion checks. Applications are never submitted by this dashboard.</p></div>`;
+ const summary=op?`${op.kind==='resume'?'Tailored resume · Job '+op.job_id:(op.kind==='impromptu'?'Impromptu filtered discovery':'Daily Gecko workflow')+(op.job_ids?' · IDs '+op.job_ids.join(', '):'')} — ${op.status}`:'No dashboard run yet';
+ $('activity-section').innerHTML=`<div class="activity-card"><h3>Run Gecko model</h3><p><strong>Model:</strong> ${esc(activity.runner?.model||'Not available')} · <strong>Reasoning:</strong> ${esc(activity.runner?.effort||'Not available')}</p><p>${activity.runner?.verified?'Connection verified '+esc(dateText(activity.runner.verified_at))+'. Each run verifies its runtime settings again.':'Runtime verification runs before job processing. No fallback model is permitted.'}</p></div><div class="activity-card"><span class="eyebrow">WORKSPACE OPERATIONS</span><h3>${esc(summary)}</h3>${op?`<p><strong>Model:</strong> ${esc(op.model_info?.model||'Not recorded for this run')}${op.model_info?(op.model_info.verified?' · Runtime verified':' · Awaiting runtime verification'):''}</p><p><strong>Reasoning level:</strong> ${esc(op.model_info?.effort||'Not recorded for this run')}</p><button id="stop-operation" class="button danger" ${op.status!=='running'||!activity.can_stop?'disabled':''}>Stop run</button>`:''}<p>${activity.busy?'Gecko’s processing lock is active. Editing is paused until the run finishes.':'No Gecko processing lock is active.'}</p>${op?`${elapsedMarkup(op,op.status==='running'&&activity.busy,op.finished_at)}<p><strong>Started:</strong> ${esc(dateText(op.started_at))}</p><p><strong>Finished:</strong> ${op.finished_at?esc(dateText(op.finished_at)):'Not finished'}</p>${op.error?`<div class="warning">${esc(op.error)}</div>`:''}${op.log?`<p class="subtext">Local log: ${esc(op.log)}</p>`:''}`:''}</div><div class="activity-card"><span class="eyebrow">LAST CANONICAL PIPELINE RECORD</span>${pipeline?`${elapsedMarkup(pipeline,pipeline.status==='running'&&activity.busy,pipeline.finished_at||(pipeline.status!=='running'?pipeline.updated_at:null))}<p><strong>Model:</strong> ${esc(pipeline.model_info?.model||'Not recorded for this run')} · <strong>Reasoning:</strong> ${esc(pipeline.model_info?.effort||'Not recorded')}${pipeline.model_info?.verified?' · Runtime verified':''}</p><h3>${esc(pipeline.status)} · ${esc(pipeline.current_step||'Gecko workflow')}</h3><p><strong>Started:</strong> ${esc(dateText(pipeline.started_at))}</p><p><strong>Finished:</strong> ${pipeline.status!=='running'?esc(dateText(pipeline.finished_at||pipeline.updated_at)):'Not finished'}</p><ul>${(pipeline.steps||[]).map(s=>`<li>${esc(s.name)} — ${s.exit_code===0?'completed':'stopped (exit '+esc(s.exit_code)+')'}</li>`).join('')}</ul><p class="subtext">This is the last saved pipeline record; it does not by itself indicate a currently running process.</p>`:'<p>No pipeline history is available.</p>'}</div><div class="activity-card"><h3>Google Sheets export</h3>${exported?`<p>${esc(exported.status)} · ${esc(dateText(exported.finished_at||exported.started_at))}</p>${exported.status==='verified'&&/^https:\/\/docs\.google\.com\/spreadsheets\//.test(exported.url||'')?`<a class="button secondary" href="${esc(exported.url)}" target="_blank" rel="noopener noreferrer">Open verified export ↗</a><p>${esc(exported.rows)} tracker rows exported, including custom columns.</p>`:`<p>${esc(exported.error||'Export has not been verified.')}</p>`}`:'<p>No manual export recorded yet.</p>'}<p class="subtext">This is the latest export record; its time identifies which snapshot it contains. SQLite remains the main tracker.</p></div><div class="activity-card"><h3>What a daily run does</h3><p>Daily report → discovery and SQLite updates → approved eligible resumes → employer responses → database backup → final report. Google Sheets exports are manual using the button under Local workspace.</p><p>Resume creation uses Gecko’s existing validation and completion checks. Applications are never submitted by this dashboard.</p></div>`;
+ const stop=$('stop-operation');if(stop)stop.onclick=async()=>{if(!confirm('Stop this Gecko run and its active work? Completed saves remain; unfinished work may need review.'))return;stop.disabled=true;try{await api('/api/stop',{started_at:op.started_at});notify('Stop requested.');state.activity=await api('/api/activity');renderActivity();}catch(e){notify(e.message);stop.disabled=false;}};
 }
-$('date-label').textContent=new Date().toLocaleDateString('en-US',{timeZone:'America/Denver',weekday:'long',month:'long',day:'numeric',year:'numeric'}).toUpperCase();
+$('date-label').textContent=new Date().toLocaleDateString('en-US',{timeZone:displayTimeZone,weekday:'long',month:'long',day:'numeric',year:'numeric'}).toUpperCase();
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));
 $('refresh').onclick=refresh;$('close-job').onclick=()=>$('job-dialog').close();
-$('run-gecko').onclick=()=>{if(!state.runIds?.length){banner('Refresh to load the verified run scope.');return;}$('run-title').textContent='Run '+state.runIds.length+' selected jobs';$('run-scope').textContent='Only these jobs will be processed: '+state.runIds.join(', ')+'.';$('confirm-run').textContent='Start selected '+state.runIds.length+'-job run';$('run-dialog').showModal();};$('close-run').onclick=$('cancel-run').onclick=()=>$('run-dialog').close();$('confirm-run').onclick=()=>startRun({kind:'gecko'});
+$('run-gecko').onclick=()=>{if(impromptuFilters){showImpromptuConfirmation();return;}if(!state.runMode){banner('Refresh to load the verified run scope.');return;}const full=state.runMode==='full';$('run-title').textContent=full?'Run full Gecko workflow':'Run '+state.runIds.length+' selected jobs';$('run-scope').textContent=full?'Search all configured sources and process the full eligible job queue using your normal preferences.':'Only these jobs will be processed: '+state.runIds.join(', ')+'.';$('confirm-run').textContent=full?'Start full Gecko run':'Start selected '+state.runIds.length+'-job run';$('run-dialog').showModal();};$('close-run').onclick=$('cancel-run').onclick=()=>$('run-dialog').close();$('confirm-run').onclick=()=>startRun({kind:'gecko'});
 for(const id of ['search','stage-filter','source-filter','sort'])$(id).addEventListener(id==='search'?'input':'change',()=>{state.page=0;render();});
 $('prev').onclick=()=>{state.page--;render();};$('next').onclick=()=>{state.page++;render();};
 if(viewNames[location.hash.slice(1)])state.view=location.hash.slice(1);
@@ -149,18 +254,19 @@ function columnDialog(rename){if(document.querySelector('.dirty')){notify('Save 
 $('add-column').onclick=()=>columnDialog(false);$('rename-column').onclick=()=>columnDialog(true);$('column-cancel').onclick=()=>$('column-dialog').close();
 $('column-old').onchange=()=>$('column-name').value=$('column-old').value;
 $('column-form').onsubmit=async e=>{e.preventDefault();try{await api('/api/columns',{name:$('column-name').value,old:$('column-old').hidden?null:$('column-old').value,headers:state.columns.map(c=>c.name)});$('column-dialog').close();await refresh();notify('Columns saved.');}catch(e){$('column-error').textContent=e.message;}};
-$('export-sheet').onclick=async()=>{if(document.querySelector('.dirty')){notify('Save your edited rows before exporting.');return;}const b=$('export-sheet');b.disabled=true;$('grid-status').textContent='Creating and verifying a new export tab in Google Sheets…';try{const result=await api('/api/export',{});$('export-link').href=result.url;$('export-link').hidden=false;$('grid-status').textContent=`Export verified: ${result.rows} rows. Sheets edits do not change this workspace.`;}catch(e){$('grid-status').textContent=e.message;}finally{b.disabled=false;}};
+$('export-sheet').onclick=async()=>{if(document.querySelector('.dirty')){notify('Save your edited rows before exporting.');return;}const b=$('export-sheet'),status=$('export-status');b.disabled=true;b.textContent='Exporting…';$('export-link').hidden=true;status.textContent='Creating and verifying your Google Sheets copy…';try{const result=await api('/api/export',{});$('export-link').href=result.url;$('export-link').hidden=false;status.textContent=`Export verified: ${result.rows} rows.`;}catch(e){status.textContent='Export failed: '+e.message;}finally{b.disabled=false;b.textContent='Export to Google Sheets';}};
 window.addEventListener('beforeunload',e=>{if(document.querySelector('.dirty')){e.preventDefault();e.returnValue='';}});
-const columnFilters={opportunity:'',location:'',minimum:'',maximum:'',unknown:true,hiddenStages:[],hideApplied:false,hiddenActions:[]};
+const columnFilters={opportunity:'',location:'',minimum:'',maximum:'',unknown:true,hiddenStages:[],hideApplied:false,hiddenActions:[],hiddenValues:{}};
 let filterColumn='';
-const filterNames={opportunity:'Opportunity',salary:'Location / salary',progress:'Progress',action:'Next action'};
-function hasColumnFilter(key){return key==='opportunity'?!!columnFilters.opportunity:key==='salary'?!!(columnFilters.location||columnFilters.minimum||columnFilters.maximum||!columnFilters.unknown):key==='progress'?!!(columnFilters.hiddenStages.length||columnFilters.hideApplied):!!columnFilters.hiddenActions.length;}
+const fieldFilters={dateFound:'Date Found',personalPriority:'Personal priority',appliedDate:'Applied Date',source:'Source'};
+const filterNames={dateFound:'Date Found',opportunity:'Opportunity',salary:'Location / salary',progress:'Progress',action:'Next action',personalPriority:'Personal Priority',appliedDate:'Applied Date',source:'Source'};
+function hasColumnFilter(key){if(fieldFilters[key])return !!columnFilters.hiddenValues[fieldFilters[key]]?.length;return key==='opportunity'?!!columnFilters.opportunity:key==='salary'?!!(columnFilters.location||columnFilters.minimum||columnFilters.maximum||!columnFilters.unknown):key==='progress'?!!(columnFilters.hiddenStages.length||columnFilters.hideApplied):!!columnFilters.hiddenActions.length;}
 function renderFilterSummary(){
  document.querySelectorAll('[data-filter]').forEach(b=>{const on=hasColumnFilter(b.dataset.filter);b.classList.toggle('filtered',on);b.setAttribute('aria-pressed',String(on));});
  const active=Object.keys(filterNames).filter(hasColumnFilter);
  $('active-filters').innerHTML=active.length?'<span>Filters: </span>'+active.map(k=>`<button class="filter-chip" data-edit-filter="${k}">${esc(filterNames[k])} · edit</button>`).join('')+'<button class="button secondary" id="clear-filters">Clear column filters</button>':'';
  document.querySelectorAll('[data-edit-filter]').forEach(b=>b.onclick=()=>openColumnFilter(b.dataset.editFilter));
- if($('clear-filters'))$('clear-filters').onclick=()=>{Object.assign(columnFilters,{opportunity:'',location:'',minimum:'',maximum:'',unknown:true,hiddenStages:[],hideApplied:false,hiddenActions:[]});state.page=0;render();};
+ if($('clear-filters'))$('clear-filters').onclick=()=>{Object.assign(columnFilters,{opportunity:'',location:'',minimum:'',maximum:'',unknown:true,hiddenStages:[],hideApplied:false,hiddenActions:[],hiddenValues:{}});state.page=0;render();};
 }
 function openColumnFilter(key){
  filterColumn=key;$('filter-title').textContent='Filter '+filterNames[key];
@@ -169,13 +275,19 @@ function openColumnFilter(key){
  if(key==='salary')$('filter-fields').innerHTML=`<label>Location or work arrangement<input id="column-location" value="${esc(columnFilters.location)}" placeholder="For example: Utah or remote"></label><p>Annual USD salary range. Jobs are included when their stated range overlaps yours.</p><div class="salary-bounds"><label>Minimum ($ / year)<input id="salary-min" type="number" min="0" step="any" value="${esc(columnFilters.minimum)}"></label><label>Maximum ($ / year)<input id="salary-max" type="number" min="0" step="any" value="${esc(columnFilters.maximum)}"></label></div>${checkbox('Include unknown, hourly, or other-currency salaries',columnFilters.unknown,'unknown')}<p class="subtext">Hourly pay is not converted to annual pay. Ambiguous salaries stay in the unknown group.</p>`;
  if(key==='progress')$('filter-fields').innerHTML='<p>Uncheck stages you don’t want to see.</p>'+checkbox('Hide all jobs already applied to',columnFilters.hideApplied,'applied')+[...new Set(state.jobs.map(j=>j.stage))].sort().map(s=>checkbox(s,!columnFilters.hiddenStages.includes(s),'stage')).join('');
  if(key==='action')$('filter-fields').innerHTML='<p>Uncheck next actions you don’t want to see.</p>'+[...new Set(state.jobs.map(nextAction))].sort().map(s=>checkbox(s,!columnFilters.hiddenActions.includes(s),'action')).join('');
+ if(fieldFilters[key]){
+  const field=fieldFilters[key],hidden=columnFilters.hiddenValues[field]||[];
+  const values=[...new Set(state.jobs.map(j=>String(j.fields[field]??'').trim()))].sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
+  $('filter-fields').innerHTML='<p>Uncheck values you don’t want to see.</p>'+values.map(value=>`<label class="filter-choice"><input type="checkbox" data-choice="field-value" value="${esc(value)}" ${hidden.includes(value)?'':'checked'}>${esc(value||'(Blank)')}</label>`).join('');
+ }
  if(key==='salary')for(const id of ['salary-min','salary-max'])$(id).oninput=()=>$('salary-max').setCustomValidity('');
  $('filter-dialog').showModal();
 }
-function clearColumn(key){if(key==='opportunity')columnFilters.opportunity='';if(key==='salary')Object.assign(columnFilters,{location:'',minimum:'',maximum:'',unknown:true});if(key==='progress')Object.assign(columnFilters,{hiddenStages:[],hideApplied:false});if(key==='action')columnFilters.hiddenActions=[];}
+function clearColumn(key){if(fieldFilters[key])delete columnFilters.hiddenValues[fieldFilters[key]];if(key==='opportunity')columnFilters.opportunity='';if(key==='salary')Object.assign(columnFilters,{location:'',minimum:'',maximum:'',unknown:true});if(key==='progress')Object.assign(columnFilters,{hiddenStages:[],hideApplied:false});if(key==='action')columnFilters.hiddenActions=[];}
 $('close-filter').onclick=()=>$('filter-dialog').close();
 $('reset-column').onclick=()=>{clearColumn(filterColumn);$('filter-dialog').close();state.page=0;render();};
 $('filter-form').onsubmit=e=>{e.preventDefault();
+ if(fieldFilters[filterColumn])columnFilters.hiddenValues[fieldFilters[filterColumn]]=[...document.querySelectorAll('[data-choice="field-value"]')].filter(c=>!c.checked).map(c=>c.value);
  if(filterColumn==='opportunity')columnFilters.opportunity=$('column-query').value.trim();
  if(filterColumn==='salary'){
   const min=$('salary-min'),max=$('salary-max');max.setCustomValidity('');if(min.value&&max.value&&+min.value>+max.value){max.setCustomValidity('Maximum must be at least the minimum.');max.reportValidity();return;}
@@ -186,5 +298,64 @@ $('filter-form').onsubmit=e=>{e.preventDefault();
  $('filter-dialog').close();state.page=0;render();
 };
 document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>openColumnFilter(b.dataset.filter));
+
+function runFilterDefaults(){
+ const o=state.runFilterOptions;
+ return {sources:[...o.sources],titles:[...o.titles],arrangements:[...o.arrangements],matches:[...o.matches],costs:o.costs.filter(x=>x!=='Fee required'),locations:[...o.locations],priorities:[...new Set(['High','Medium','Low','Unassigned',...state.jobs.map(j=>j.fields['Personal priority']).filter(Boolean)])],salary_min:'',salary_max:'',salary_unknown:true};
+}
+function drawRunFilters(value){
+ const options={...state.runFilterOptions,priorities:[...new Set([...runFilterDefaults().priorities,...value.priorities])]};
+ const labels={sources:'Sources',titles:'Job titles (title contains)',costs:'Application cost',arrangements:'Work arrangement',locations:'Locations / Utah areas',matches:'Match type — saved fit score',priorities:'Personal Priority'};
+ $('run-filter-fields').innerHTML=Object.entries(labels).map(([key,label])=>'<fieldset><legend>'+label+'</legend><div class="run-choice-grid">'+options[key].map(v=>'<label><input type="checkbox" name="'+key+'" value="'+esc(v)+'" '+(value[key].includes(v)?'checked':'')+'>'+esc(v)+'</label>').join('')+'</div></fieldset>').join('')+'<fieldset><legend>Annual salary (USD)</legend><div class="salary-bounds"><label>Minimum<input id="run-salary-min" type="number" min="0" max="10000000" value="'+(value.salary_min??'')+'"></label><label>Maximum<input id="run-salary-max" type="number" min="0" max="10000000" value="'+(value.salary_max??'')+'"></label></div><label><input id="run-salary-unknown" type="checkbox" '+(value.salary_unknown?'checked':'')+'>Include unknown, hourly, or other-currency salary</label></fieldset><p class="trend-note">New jobs usually have no saved fit score, Personal Priority, or verified fee information. Keep Unrated, Unassigned, and Unknown checked to include them. Strong = 80–100; Possible = 50–79; Low = 0–49. Scores are saved assessments, not new evaluations. Remote / anywhere includes remote listings; other locations match the listed city or Utah. Existing Gecko eligibility and completed-resume protections still apply.</p>';
+ $('run-filter-error').textContent='';
+}
+$('run-filters').onclick=()=>{if(!state.runFilterOptions){notify('Refresh to load run filter options.');return;}drawRunFilters(impromptuFilters||runFilterDefaults());$('run-filters-dialog').showModal();};
+$('close-run-filters').onclick=()=>$('run-filters-dialog').close();
+$('reset-run-filters').onclick=()=>drawRunFilters(runFilterDefaults());
+$('disable-run-filters').onclick=()=>{impromptuFilters=null;$('run-filters').textContent='Filters';$('run-filters-dialog').close();notify('Existing run mode restored.');};
+$('run-filters-form').onsubmit=e=>{
+ e.preventDefault();const value={};
+ for(const key of ['sources','titles','costs','arrangements','locations','matches','priorities']){
+  value[key]=[...document.querySelectorAll('#run-filter-fields input[name="'+key+'"]:checked')].map(x=>x.value);
+  if(!value[key].length){$('run-filter-error').textContent='Select at least one option for '+key+'.';return;}
+ }
+ value.salary_min=$('run-salary-min').value===''?null:Number($('run-salary-min').value);
+ value.salary_max=$('run-salary-max').value===''?null:Number($('run-salary-max').value);
+ value.salary_unknown=$('run-salary-unknown').checked;
+ if(value.salary_min!==null&&value.salary_max!==null&&value.salary_min>value.salary_max){$('run-filter-error').textContent='Maximum salary must be at least the minimum.';return;}
+ impromptuFilters=value;$('run-filters').textContent='Filters ✓';$('run-filters-dialog').close();notify('Filters ready. Click Run Gecko to review and start this impromptu search.');
+};
+function showImpromptuConfirmation(){
+ $('impromptu-summary').innerHTML='<dl>'+Object.entries(impromptuFilters).map(([key,value])=>'<dt>'+esc(key.replaceAll('_',' '))+'</dt><dd>'+esc(Array.isArray(value)?value.join(', '):value===null?'No limit':value===true?'Include':value===false?'Exclude':value)+'</dd>').join('')+'</dl>';
+ $('impromptu-confirm').showModal();
+}
+$('cancel-impromptu').onclick=()=>$('impromptu-confirm').close();
+$('start-impromptu').onclick=async()=>{const button=$('start-impromptu');button.disabled=true;try{const ok=await startRun({kind:'impromptu',filters:impromptuFilters});if(ok){impromptuFilters=null;$('run-filters').textContent='Filters';}$('impromptu-confirm').close();}finally{button.disabled=false;}};
+
+
+const sortableColumns={opportunity:'Opportunity',dateFound:'Date Found',salary:'Location / Salary',progress:'Progress',action:'Next Action',personalPriority:'Personal Priority',appliedDate:'Applied Date',source:'Source'};
+function columnValue(job,key){
+ const f=job.fields;
+ return {opportunity:f['Job Title'],dateFound:f['Date Found'],salary:[f.Location,f.Salary].filter(Boolean).join(' · '),progress:job.stage,action:nextAction(job),personalPriority:f['Personal priority'],appliedDate:f['Applied Date'],source:f.Source}[key];
+}
+function updateColumnSortControls(){
+ if(columnSort){let option=$('column-sort-option');if(!option){option=document.createElement('option');option.id='column-sort-option';option.value='column';option.disabled=true;$('sort').append(option);}option.textContent=sortableColumns[columnSort.key]+' · '+(columnSort.direction==='asc'?'ascending':'descending');$('sort').value='column';}
+ document.querySelectorAll('#opportunities-table [data-column-sort]').forEach(button=>{
+  const key=button.dataset.columnSort,active=columnSort?.key===key;
+  const date=['dateFound','appliedDate'].includes(key);
+  const direction=active?columnSort.direction:'asc';
+  button.textContent=(date?(direction==='asc'?'Oldest first':'Newest first'):(direction==='asc'?'A–Z':'Z–A'))+(active?(direction==='asc'?' ↑':' ↓'):' ↕');
+  button.classList.toggle('sorted',active);
+  button.setAttribute('aria-label','Sort '+sortableColumns[key]+(active&&direction==='asc'?' descending':' ascending'));
+  button.closest('th').setAttribute('aria-sort',active?(direction==='asc'?'ascending':'descending'):'none');
+ });
+}
+for(const [key,label] of Object.entries(sortableColumns)){
+ const header=document.querySelector('#opportunities-table [data-filter="'+key+'"]').closest('th');
+ const button=document.createElement('button');button.className='column-sort';button.dataset.columnSort=key;header.append(button);
+ button.onclick=()=>{columnSort={key,direction:columnSort?.key===key&&columnSort.direction==='asc'?'desc':'asc'};state.page=0;render();};
+}
+$('sort').addEventListener('change',()=>{columnSort=null;state.page=0;render();});
+
 render();refresh();
 setInterval(async()=>{try{const wasRunning=state.activity?.operation?.status==='running';state.activity=await api('/api/activity');if(state.view==='activity')renderActivity();if(wasRunning&&state.activity.operation?.status!=='running'){notify('Gecko '+state.activity.operation.status+'. Refreshing your tracker.');await refresh();}}catch{/* Keep the last observed state; explicit refresh surfaces connection errors. */}},10000);

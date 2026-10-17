@@ -13,7 +13,8 @@ job ID, company, title, approval, application status, notes and resume links.
 are retained in `workspace_archive`.
 
 The current Google Sheet is preserved as a reference, with no automatic import,
-export or two-way synchronization after cutover. New edits belong in the local
+export or two-way synchronization after cutover. Use **Export to Google Sheets**
+under **Local workspace** for a manual snapshot. Daily runs keep automatic local backups. New edits belong in the local
 dashboard. Formula definitions and their evaluated values were preserved during
 migration; SQLite does not recalculate formulas, and imported formula fields
 remain protected until explicitly reviewed.

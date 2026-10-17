@@ -17,7 +17,9 @@ protected historical definitions with their evaluated values; SQLite does not
 recalculate spreadsheet formulas. Local run summaries and backups replace daily
 Sheet report writes. See `docs/sqlite-workspace.md`.
 
-Dashboard custom columns and row edits are authorized. Google Sheets is an
+Dashboard custom columns and row edits are authorized. Google Sheets exports are manual only: use the dashboard button under Local
+workspace. Never export automatically during Run Gecko; retain its automatic local
+SQLite backup step. Google Sheets is an
 export-only destination: create a new timestamped export tab, preserve existing
 tabs, and verify values by readback. Never import Sheet edits into SQLite.
 
@@ -222,3 +224,7 @@ Resume pending jobs after answers arrive without repeating confirmed submissions
 Resume filenames must use `Dave-Call+<Company-Name>+<Job-Title>+<Resume-ID>.docx`, ending in a unique numeric identifier of at most five digits (Gecko uses five zero-padded digits). Never put a full posting ID, Indeed jk, UUID, hash, or long numeric job number in a resume filename. Keep filenames at most 150 characters, sanitizing Windows-invalid characters and shortening an excessively long title at a word boundary. Reserve identifiers through `job-scout/resume_naming.py`; do not truncate a source ID or guess uniqueness. Full posting IDs remain in the identity registry and DOCX metadata for job matching. Use the same rule for explicitly requested renames, verify tracker links after any rename, and preserve the existing Resume Created = X guard. Archived job descriptions and scratch folders continue to use full posting IDs.
 
 Example: `Dave-Call+Array+Digital-Marketing-Manager+00001.docx`.
+
+## Dashboard column filters
+
+Always include a working filter button when adding a dashboard table column. Match the existing column filter controls, support blank values, and include active-filter and clear/reset behavior.

@@ -1,0 +1,29 @@
+{
+  "run_id": "20261016T121434-2796",
+  "started_at": "2026-10-16T12:14:34.611662-06:00",
+  "status": "failed",
+  "steps": [
+    {
+      "name": "Daily report",
+      "exit_code": 0
+    },
+    {
+      "name": "Daily discovery, tracker sync, and tailored resumes",
+      "exit_code": 1
+    },
+    {
+      "name": "Back up the updated tracker",
+      "exit_code": 0
+    },
+    {
+      "name": "Refresh daily results",
+      "exit_code": 0
+    },
+    {
+      "name": "Export updated tracker to Google Sheets",
+      "exit_code": 0
+    }
+  ],
+  "current_step": "Export updated tracker to Google Sheets",
+  "updated_at": "2026-10-16T14:30:32.362103-06:00"
+}

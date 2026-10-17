@@ -1,17 +1,14 @@
 # Gecko local workspace
 
-## Current selected-job test
+## Full Gecko workflow
 
-Run Gecko is pinned server-side to IDs 2555 through 2568 by
-`job-scout/preferences/dashboard-run.json`. The dialog shows the exact IDs before
-starting. The selected pipeline validates IDs and required resume authorities,
-refreshes reports, uses the canonical targeted resume queue without automatic
-approval, checks employer responses only for selected applied jobs, backs up
-SQLite, refreshes results, and exports the full current tracker to a new Sheets
-tab. Broad discovery and rejection cleanup are excluded from this bounded test.
-The `GECKO_ALLOWED_JOB_IDS` guard is inherited by subprocesses and rejects tracker
-writes outside the selected IDs. Existing completion, application, eligibility,
-and native Word QA protections remain in force. This setup does not start a run.
+Run Gecko defaults to the full canonical pipeline. The one-time IDs 2555-2568
+restriction has been removed from job-scout/preferences/dashboard-run.json.
+Discovery uses all configured sources and normal preferences, followed by the
+eligible resume queue, response tracking, local backup, and reports. Google Sheets exports are manual.
+Existing completion and eligibility protections remain active. Optional
+impromptu filters still apply only when explicitly selected. Changing this
+configuration does not start a run.
 
 Open **Gecko Dashboard** from the desktop, or run `scripts/Start-Gecko-Dashboard.ps1`.
 The launcher starts one hidden loopback-only server and opens http://127.0.0.1:8765.
@@ -96,14 +93,35 @@ Opportunity, Location / salary, Progress, and Next action have funnel buttons. F
 
 The dashboard runs scripts/run_gecko.py without a resume-ID limit. The ordered
 steps are daily report, full daily discovery and eligible resume queue, local
-backup, final daily report, then a verified Google Sheets export. SQLite remains
-authoritative. Each export creates a new dated tab in the configured workbook,
+backup, then final daily report. SQLite remains authoritative. Google Sheets
+exports run only when you click **Export to Google Sheets** under **Local workspace**.
+Each export creates a new dated tab in the configured workbook,
 including custom fields and resume links, without overwriting historical tabs.
-The latest automatic export link and verification state appear in Activity.
+The latest manual export link and verification state appear in Activity.
 
 Apply? = Yes resumes use the canonical generator, current master TXT, approved
 PDF formatting model, and native Word two-page checks. Existing completion
 markers or resume links block regeneration; eligibility, fee, rejection, and
 already-applied guards remain active. A failed daily phase still runs the final
-backup/report/export; any failed phase keeps the overall run marked failed.
+backup/report; any failed phase keeps the overall run marked failed.
 A failed initial report stops the run before discovery or generation.
+
+## Impromptu discovery filters
+
+The half-size Filters button under Run Gecko configures the next manual discovery run in the current page. Saving selections does not start a run. Run Gecko then shows the selected scope; Start filtered run launches discovery only, using the existing cross-process lock, URL checks, deduplication, SQLite writes and readback. No resumes or applications are generated or submitted by this mode. Selections clear after a successful launch; daily preferences and the full-workflow default are unchanged.
+
+Selections are OR within a group and AND across groups. Titles use case-insensitive normalized contains matching. Salary is annual USD overlap; unknown/hourly/other-currency compensation has its own inclusion choice. Location is based on advertised location/work arrangement, not residence eligibility. Cost, saved fit score and Personal Priority are matched to existing rows by source and exact URL. New or unmatched jobs are Unknown cost, Unrated and Unassigned. Score bands: Strong 80-100, Possible 50-79, Low 0-49. Existing hard eligibility gates still apply.
+
+Each launch validates and writes a separate immutable filters.json under reports/impromptu/<run-id>/ and records source reconciliation there. The dashboard source table picks up the latest saved reconciliation. No daily schedule is created or changed by this feature.
+
+### Individually submitted applications
+The sidebar manual-intake form saves a single canonical job and tracker row in one SQLite transaction, assigns an ID above the persisted high-water mark, and records manual provenance in workspace_manual_jobs. The same record appears in All Jobs. Duplicate posting identities are refused, including archived/rejected tracker records. Explicitly checking already submitted records Applied and its date; otherwise use the existing job workspace later. Each list column has filters and sorting.
+
+Auto-fill sends only the public posting URL and a read-only extraction request to the existing native Windows OpenClaw gecko agent, through scripts/Read-Gecko-Job.ps1. It never requests submission or CAPTCHA solving. Imported details must be reviewed and saved. Connection failures or blocked pages leave manual entry available. No real posting extraction has been verified as part of implementation; Gateway health and mocked import handling were checked.
+
+### Pinned dashboard AI runner
+Run Gecko, filtered discovery, and dashboard resume operations run a signed-in Codex connection check before launching pipeline work. Model gpt-6.1-sol and reasoning medium are explicit CLI overrides; runtime session turn_context must confirm both. No model fallback is allowed. Screening uses CodexJsonClient rather than API-key inference for these runs. New resumes also receive a source-backed AI plan review before the existing generator and native Word QA; the review cannot rewrite source facts or bypass completion guards. Non-AI discovery, database, export, and layout operations remain deterministic.
+
+Activity records requested settings while verifying, then the observed model, effort, session identity, and verification time. Per-call receipts are retained beside the operation evidence. Historical runs are left without inferred model metadata. A failed connection or mismatch prevents job work from starting. Stop targets the owned process tree, including the connection check.
+
+Job Sources includes a filterable Explanation column derived from saved source_health status/detail. It summarizes known billing, credentials, access, timeout, and company-board errors and reports when no cause was saved. Raw credentials and request logs are not displayed.

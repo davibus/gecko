@@ -54,12 +54,7 @@ from url_resolution import resolve_and_store, url_status_label
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MASTER_RESUME = PROJECT_ROOT / "input" / "master-resume" / "master-resume-v2.txt"
 DEFAULT_SOURCE = "adzuna"
-CORE_PROVIDERS = (
-    "adzuna", "remotive", "web-careers", "remote-careers", "jobicy", "remoteok", "usajobs",
-    "greenhouse", "lever", "ashby", "workable", "weworkremotely",
-    "workingnomads", "themuse", "indeed", "linkedin", "glassdoor",
-    "ziprecruiter",
-)
+from impromptu_filters import CORE_PROVIDERS
 
 
 def load_local_environment(path: Path = PROJECT_ROOT / ".env.local") -> None:
@@ -269,6 +264,10 @@ def search(args, store, preferences):
         selected = list(CORE_PROVIDERS)
     else:
         selected = [args.source]
+    if getattr(args, 'selected_sources', None):
+        selected = list(args.selected_sources)
+        if any(name not in available for name in selected):
+            raise ValueError('Unknown impromptu source')
     queries = args.query or preferences["target_roles"]
     locations = args.location or preferences.get('preferred_locations') or ["Utah", "Remote"]
     # Remotive is globally remote and uses category RSS, never Utah/title discovery.

@@ -25,6 +25,10 @@ def _annual_salary_values(value: str) -> list[int]:
 
 def deterministic_filter(job, preferences: dict) -> tuple[bool, str]:
     """Apply only explicit, high-confidence hard filters."""
+    if preferences.get('_impromptu'):
+        from impromptu_filters import matches
+        if not matches(job, preferences['_impromptu'], preferences.get('_impromptu_known', {})):
+            return False, 'outside impromptu selections'
     filters = preferences.get("deterministic_filters", {})
     relevant, reason = role_filter_reason(job.title)
     if not relevant:

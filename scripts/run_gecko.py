@@ -16,7 +16,6 @@ STEPS = [
     ("Daily discovery, tracker sync, and tailored resumes", "gecko_daily.py", ["--apply", "--sync-local"]),
     ("Back up the updated tracker", "sync_gecko_local.py", []),
     ("Refresh daily results", "daily_report.py", ["--refresh-today"]),
-    ("Export updated tracker to Google Sheets", "export_sqlite_tracker.py", []),
 ]
 
 
@@ -56,6 +55,8 @@ def main(job_ids=None):
     stamp = datetime.now(ZoneInfo("America/Denver"))
     run_id = stamp.strftime("%Y%m%dT%H%M%S") + f"-{os.getpid()}"
     status = dict(run_id=run_id, started_at=stamp.isoformat(), status="running", steps=[])
+    if os.environ.get('GECKO_MODEL_EVIDENCE'):
+        status['model_info'] = json.loads(Path(os.environ['GECKO_MODEL_EVIDENCE']).read_text(encoding='utf-8'))
     status_path = folder / "latest.json"
     env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUNBUFFERED="1")
     if job_ids is not None:
@@ -89,7 +90,10 @@ def main(job_ids=None):
         status["error"] = f"{type(error).__name__}: {error}"
         return 1
     finally:
-        status["updated_at"] = datetime.now(ZoneInfo("America/Denver")).isoformat()
+        finished = datetime.now(ZoneInfo("America/Denver"))
+        status["updated_at"] = finished.isoformat()
+        status["finished_at"] = finished.isoformat()
+        status["elapsed_seconds"] = max(0, (finished.timestamp() - stamp.timestamp()))
         (folder / f"{run_id}.json").write_text(json.dumps(status, indent=2), encoding="utf-8")
         if status["status"] != "blocked":
             status_path.write_text(json.dumps(status, indent=2), encoding="utf-8")
