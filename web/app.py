@@ -17,9 +17,9 @@ from werkzeug.security import check_password_hash
 from werkzeug.exceptions import HTTPException
 
 try:
-    from .broker import Redis, PREFIX, ENQUEUE, CLAIM, COMPLETE, LIMIT
+    from .broker import Redis, StoreError, PREFIX, ENQUEUE, CLAIM, COMPLETE, LIMIT
 except ImportError:
-    from broker import Redis, PREFIX, ENQUEUE, CLAIM, COMPLETE, LIMIT
+    from broker import Redis, StoreError, PREFIX, ENQUEUE, CLAIM, COMPLETE, LIMIT
 
 ASSETS = Path(__file__).parent / 'assets'
 READS = {'/api/health', '/api/jobs', '/api/job', '/api/activity', '/api/resume', '/api/manual-import'}
@@ -126,6 +126,10 @@ def create_app(store=None, config=None):
     def failure(error):
         if isinstance(error, HTTPException):
             return jsonify(error=error.description), error.code
+        if isinstance(error, StoreError):
+            app.logger.error('Temporary request store: %s', error)
+        else:
+            app.logger.error('Gateway request failed: %s',type(error).__name__)
         # Do not send provider URLs, tokens, request bodies, or local errors to logs/browser.
         return jsonify(error='Gecko could not reach its secure connection. Refresh to check the current state; do not repeat an uncertain edit or run.'), 503
 

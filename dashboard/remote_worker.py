@@ -194,7 +194,8 @@ def main():
                     return
                 time.sleep(0.3 if busy else 4)
             except Exception as error:
-                print('Connection unavailable ('+type(error).__name__+'). No action will be replayed.', flush=True)
+                reason = 'HTTP '+str(error.code) if isinstance(error,HTTPError) else type(error).__name__
+                print('Connection unavailable ('+reason+'). No action will be replayed.', flush=True)
                 if args.once:
                     raise SystemExit(1)
                 time.sleep(12)

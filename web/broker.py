@@ -1,10 +1,15 @@
 """Short-lived requests, not a second job tracker. No command is requeued."""
 import json
 import os
+from urllib.error import HTTPError
 from urllib.request import Request, build_opener, HTTPRedirectHandler
 from urllib.parse import urlsplit
 
 PREFIX = 'gecko-main:v1:'
+
+
+class StoreError(RuntimeError):
+    pass
 
 
 class Redis:
@@ -33,10 +38,19 @@ class Redis:
         class NoRedirect(HTTPRedirectHandler):
             def redirect_request(self, req, fp, code, msg, headers, newurl):
                 return None
-        with build_opener(NoRedirect).open(req, timeout=8) as response:
-            result = json.load(response)
+        try:
+            with build_opener(NoRedirect).open(req, timeout=8) as response:
+                result = json.load(response)
+        except HTTPError as error:
+            try:
+                provider_error = str(json.loads(error.read(4096)).get('error',''))
+            except (ValueError,AttributeError):
+                provider_error = ''
+            safe = provider_error.replace(self.token,'[redacted]').replace(self.url,'[redacted]')[:240]
+            raise StoreError('Redis HTTP '+str(error.code)+': '+safe) from None
         if result.get('error'):
-            raise RuntimeError('The temporary request store could not complete this operation.')
+            safe = str(result['error']).replace(self.token,'[redacted]').replace(self.url,'[redacted]')[:240]
+            raise StoreError('Redis command: '+safe)
         return result.get('result')
 
     def eval(self, script, keys, *args):
