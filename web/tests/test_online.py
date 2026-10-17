@@ -1,5 +1,6 @@
 import base64
 from contextlib import closing
+from datetime import timedelta
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import random
@@ -18,7 +19,7 @@ from werkzeug.security import generate_password_hash
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from web.app import create_app, allowed_request
+from web.app import create_app, allowed_request, device_access_token
 from web.broker import PREFIX, ENQUEUE, CLAIM, COMPLETE, Redis
 from dashboard.remote_worker import Worker
 
@@ -43,7 +44,8 @@ class OnlineTests(unittest.TestCase):
     def setUp(self):
         self.store = Store()
         self.app = create_app(self.store, dict(TESTING=True, SECRET_KEY='s'*48,
-            GECKO_PASSWORD_HASH=HASH, GECKO_BRIDGE_SECRET=SECRET, GECKO_PUBLIC_URL=ORIGIN))
+            GECKO_PASSWORD_HASH=HASH, GECKO_BRIDGE_SECRET=SECRET, GECKO_PUBLIC_URL=ORIGIN,
+            GECKO_ACCESS_MODE='password'))
         self.client = self.app.test_client()
         self.login()
 
@@ -260,6 +262,54 @@ class OnlineTests(unittest.TestCase):
                 self.assertEqual(calls[0]['payload']['notes'],'after')
         finally:
             server.shutdown();server.server_close();thread.join(timeout=2)
+
+
+class DeviceAccessTests(unittest.TestCase):
+    def setUp(self):
+        class Offline:
+            def command(self,*args): return None
+        self.app=create_app(Offline(),dict(TESTING=True,SECRET_KEY='s'*48,
+            GECKO_BRIDGE_SECRET=SECRET,GECKO_PUBLIC_URL=ORIGIN,GECKO_ACCESS_MODE='device'))
+        self.client=self.app.test_client()
+
+    def connect(self,token=None,origin=ORIGIN):
+        return self.client.post('/cloud/connect',base_url=ORIGIN,
+            json={'token':token if token is not None else device_access_token('s'*48,ORIGIN)},
+            headers={'Origin':origin})
+
+    def test_dashboard_opens_without_a_password_page_but_data_is_private(self):
+        response=self.client.get('/',base_url=ORIGIN)
+        self.assertEqual(response.status_code,200)
+        self.assertIn('data-access-mode="device"',response.text)
+        self.assertNotIn('Workspace password',response.text)
+        self.assertEqual(self.client.get('/api/jobs',base_url=ORIGIN).status_code,401)
+        response=self.client.get('/login',base_url=ORIGIN)
+        self.assertEqual(response.status_code,302)
+        self.assertEqual(response.headers['Location'],'/')
+
+    def test_private_link_remembers_the_device_and_keeps_csrf_required(self):
+        response=self.connect()
+        self.assertEqual(response.status_code,200)
+        for attribute in ('Secure','HttpOnly','SameSite=Strict','Expires='):
+            self.assertIn(attribute,response.headers['Set-Cookie'])
+        self.assertEqual(self.app.config['PERMANENT_SESSION_LIFETIME'],timedelta(days=365))
+        response=self.client.get('/cloud/connection',base_url=ORIGIN)
+        self.assertEqual(response.status_code,200)
+        self.assertIn('csrf',response.json)
+        self.assertEqual(self.client.post('/api/edit',base_url=ORIGIN,json={}).status_code,403)
+        self.assertEqual(self.client.get('/connect',base_url=ORIGIN).headers['Location'],'/')
+
+    def test_invalid_cross_site_and_other_domain_links_cannot_connect(self):
+        self.assertEqual(self.connect(token='0'*64).status_code,401)
+        self.assertEqual(self.connect(origin='https://evil.example').status_code,403)
+        self.assertEqual(self.connect(token=device_access_token('s'*48,'https://old.example')).status_code,401)
+        self.assertEqual(self.client.get('/cloud/connection',base_url=ORIGIN).status_code,401)
+
+    def test_reenabling_password_access_revokes_remembered_devices(self):
+        self.connect()
+        self.app.config.update(GECKO_ACCESS_MODE='password',GECKO_PASSWORD_HASH=HASH)
+        self.assertEqual(self.client.get('/api/jobs',base_url=ORIGIN).status_code,401)
+        self.assertEqual(self.connect().status_code,404)
 
 
 if __name__=='__main__':

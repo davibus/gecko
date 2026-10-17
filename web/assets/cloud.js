@@ -5,7 +5,8 @@
  let csrf = '';
  const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
  const failure = message => new Response(JSON.stringify({error:message}), {status:503,headers:{'Content-Type':'application/json'}});
- const signIn = response => {if(response.status===401) location.assign('/login');return response;};
+ const deviceAccess=document.documentElement?.dataset.accessMode==='device';
+ const signIn = response => {if(response.status===401 && !deviceAccess) location.assign('/login');return response;};
  async function unpack(ticket, metadata) {
   const parts=[];
   for(let index=0;index<metadata.chunks;index++) {
@@ -69,10 +70,10 @@
   const connection=document.querySelector('.connection');
   const sidebar=document.querySelector('.sidebar-bottom p');
   if(sidebar) sidebar.textContent='Connected to your Windows workspace. Your computer must be awake to view jobs, save changes, and run Gecko.';
-  const logout=document.createElement('button');logout.className='button secondary';logout.textContent='Sign out';
+  const logout=document.createElement('button');logout.className='button secondary';logout.textContent=deviceAccess?'Disconnect device':'Sign out';
   logout.addEventListener('click',async()=>{
    const response=await directFetch('/cloud/logout',{method:'POST',headers:{'X-Gecko-Token':csrf}});
-   if(response.ok || response.status===401) {localStorage.removeItem('gecko.manual-intake.draft.v1');location.assign('/login');}
+   if(response.ok || response.status===401) {localStorage.removeItem('gecko.manual-intake.draft.v1');location.assign(deviceAccess?'/':'/login');}
   });
   document.querySelector('.header-actions')?.append(logout);
   async function check() {

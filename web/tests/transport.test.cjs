@@ -32,5 +32,20 @@ async function main(){
  assert.equal(starts,1,'A request must never be automatically resubmitted');
  assert.equal(requests.filter(path=>path.includes('/cloud/chunk/')).length,3);
  console.log('Browser transport: complete Unicode notes, session token, and single submission passed.');
+ const deviceEvents=[];
+ const deviceKey='a'.repeat(64);
+ const deviceSandbox={
+  location:{hash:'#'+deviceKey,replace:path=>deviceEvents.push(['open',path])},
+  history:{replaceState:(_state,_title,path)=>deviceEvents.push(['scrub',path])},
+  fetch:async(path,options)=>{
+   assert.deepEqual(deviceEvents,[['scrub','/connect']],'Remove the key from the address before transmitting it');
+   assert.equal(path,'/cloud/connect');assert.equal(JSON.parse(options.body).token,deviceKey);
+   deviceEvents.push(['exchange',path]);return Response.json({ok:true});
+  },
+  document:{getElementById(){throw Error('Unexpected connection error');}}
+ };
+ await vm.runInNewContext(fs.readFileSync(require('node:path').join(__dirname,'../assets/device.js'),'utf8'),deviceSandbox);
+ assert.deepEqual(deviceEvents,[['scrub','/connect'],['exchange','/cloud/connect'],['open','/']]);
+ console.log('Automatic device access: private key removed from address before exchange, then dashboard opened.');
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});

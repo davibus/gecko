@@ -1,6 +1,8 @@
 """Create local-only credentials or pair a deployed HTTPS origin. Never print secrets."""
 import argparse
 import getpass
+import hashlib
+import hmac
 import json
 import os
 from pathlib import Path
@@ -47,14 +49,19 @@ def main():
     if public_url:
         worker['url'] = public_url
         environment['GECKO_PUBLIC_URL'] = public_url
+    shortcut = folder/'gecko-web-open.url'
+    if worker['url']:
+        token = hmac.new(environment['GECKO_SESSION_SECRET'].encode(),
+            ('gecko-device-connect-v1:'+worker['url']).encode(),hashlib.sha256).hexdigest()
+        shortcut.write_text('[InternetShortcut]\nURL='+worker['url']+'/connect#'+token+'\n',encoding='utf-8')
     worker_path.write_text(json.dumps(worker, indent=2)+'\n',encoding='utf-8')
     env_path.write_text(''.join(key+'='+value+'\n' for key,value in environment.items()),encoding='utf-8')
     if os.name == 'nt':
-        for path in (worker_path, env_path, login_path):
+        for path in (worker_path, env_path, login_path, *([shortcut] if shortcut.exists() else [])):
             subprocess.run(['icacls.exe',str(path),'/inheritance:r','/grant:r',
                             getpass.getuser()+':(F)','SYSTEM:(F)'],check=True,capture_output=True)
     print('Private setup files are ready under .secrets. Existing credentials were preserved.')
-    print('Import gecko-web-vercel.env into Vercel. Use gecko-web-signin.txt to sign in.')
+    print('Import gecko-web-vercel.env into Vercel. Open gecko-web-open.url once for automatic device access.')
     print('Worker website address is '+('configured.' if worker['url'] else 'pending; run this script with --url after deployment.'))
 
 

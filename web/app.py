@@ -29,6 +29,11 @@ ID = re.compile(r'^[0-9a-f]{32}$')
 MAX_RESULT = 3_000_000
 
 
+def device_access_token(secret, origin):
+    """Purpose- and origin-bound setup key; never include it in HTTP paths or queries."""
+    return hmac.new(secret.encode(), ('gecko-device-connect-v1:'+origin).encode(), hashlib.sha256).hexdigest()
+
+
 def allowed_request(method, path):
     parsed = urlsplit(path)
     if parsed.scheme or parsed.netloc or parsed.fragment or '\\' in path:
@@ -49,6 +54,7 @@ def create_app(store=None, config=None):
         SECRET_KEY=os.environ.get('GECKO_SESSION_SECRET', ''),
         GECKO_PASSWORD_HASH=os.environ.get('GECKO_PASSWORD_HASH', ''),
         GECKO_BRIDGE_SECRET=os.environ.get('GECKO_BRIDGE_SECRET', ''),
+        GECKO_ACCESS_MODE=os.environ.get('GECKO_ACCESS_MODE', 'device'),
         GECKO_PUBLIC_URL=(os.environ.get('GECKO_PUBLIC_URL') or
             ('https://' + os.environ['VERCEL_PROJECT_PRODUCTION_URL'] if os.environ.get('VERCEL_PROJECT_PRODUCTION_URL') else '')).rstrip('/'),
         SESSION_COOKIE_NAME='__Host-gecko', SESSION_COOKIE_HTTPONLY=True,
@@ -57,6 +63,8 @@ def create_app(store=None, config=None):
         SESSION_REFRESH_EACH_REQUEST=False, MAX_CONTENT_LENGTH=1_400_000)
     if config:
         app.config.update(config)
+    if app.config['GECKO_ACCESS_MODE'] == 'device':
+        app.config.update(PERMANENT_SESSION_LIFETIME=timedelta(days=365), SESSION_REFRESH_EACH_REQUEST=True)
 
     def db():
         return store if store is not None else Redis()
@@ -79,7 +87,9 @@ def create_app(store=None, config=None):
                 or public.fragment or public.username
                 or len(app.config['SECRET_KEY']) < 32
                 or len(app.config['GECKO_BRIDGE_SECRET']) < 32
-                or not app.config['GECKO_PASSWORD_HASH'].startswith('scrypt:')):
+                or app.config['GECKO_ACCESS_MODE'] not in {'device','password'}
+                or (app.config['GECKO_ACCESS_MODE']=='password'
+                    and not app.config['GECKO_PASSWORD_HASH'].startswith('scrypt:'))):
             return jsonify(error='Gecko online setup is incomplete. Configure the website environment variables.'), 503
         if request.host != public.netloc:
             return jsonify(error='Open your configured Gecko website address.'), 421
@@ -87,12 +97,17 @@ def create_app(store=None, config=None):
             if not worker():
                 return jsonify(error='Worker authentication required.'), 401
             return None
-        if request.path in {'/login', '/login.js', '/login.css'}:
+        device = app.config['GECKO_ACCESS_MODE'] == 'device'
+        if request.path in {'/login', '/login.js', '/login.css', '/connect', '/device.js', '/cloud/connect'}:
             return None
+        if device and (request.path == '/' or request.path.lstrip('/') in FILES | {'cloud.js'}):
+            return None
+        if not device and session.get('access') == 'device':
+            session.clear()
         if not session.get('sid'):
             if request.path == '/':
                 return redirect('/login')
-            return jsonify(error='Please sign in again.'), 401
+            return jsonify(error='Open your private Gecko setup link once on this device.' if device else 'Please sign in again.'), 401
         if request.method == 'POST':
             if not same_origin() or not hmac.compare_digest(
                     request.headers.get('X-Gecko-Token', ''), session.get('csrf', '')):
@@ -116,6 +131,8 @@ def create_app(store=None, config=None):
 
     @app.route('/login', methods=['GET', 'POST'])
     def login():
+        if app.config['GECKO_ACCESS_MODE'] == 'device':
+            return redirect('/') if request.method=='GET' else (jsonify(error='Use your private Gecko setup link.'),404)
         if request.method == 'GET':
             return send_from_directory(ASSETS, 'login.html')
         if not same_origin() or not request.is_json:
@@ -132,7 +149,29 @@ def create_app(store=None, config=None):
         if not isinstance(password, str) or len(password) > 1024 or not check_password_hash(app.config['GECKO_PASSWORD_HASH'], password):
             return jsonify(error='The password did not match.'), 401
         session.clear()
-        session.update(sid=secrets.token_hex(32), csrf=secrets.token_urlsafe(32))
+        session.update(sid=secrets.token_hex(32), csrf=secrets.token_urlsafe(32), access='password')
+        session.permanent = True
+        return jsonify(ok=True)
+
+    @app.get('/connect')
+    def connect_page():
+        if app.config['GECKO_ACCESS_MODE'] != 'device' or session.get('sid'):
+            return redirect('/')
+        return send_from_directory(ASSETS, 'device.html')
+
+    @app.post('/cloud/connect')
+    def connect_device():
+        if app.config['GECKO_ACCESS_MODE'] != 'device':
+            return jsonify(error='Device setup is not enabled.'),404
+        if not same_origin() or not request.is_json or (request.content_length or 0)>1000:
+            return jsonify(error='Open the private setup link on your Gecko website.'),403
+        payload = request.get_json()
+        token = payload.get('token','') if isinstance(payload,dict) else ''
+        if (not isinstance(token,str) or not re.fullmatch('[0-9a-f]{64}',token)
+                or not hmac.compare_digest(token, device_access_token(app.secret_key, app.config['GECKO_PUBLIC_URL']))):
+            return jsonify(error='This device setup link is invalid. Use the link saved on your Gecko computer.'),401
+        session.clear()
+        session.update(sid=secrets.token_hex(32),csrf=secrets.token_urlsafe(32),access='device')
         session.permanent = True
         return jsonify(ok=True)
 
@@ -277,11 +316,13 @@ def create_app(store=None, config=None):
 
     @app.get('/')
     def home():
-        return send_from_directory(ASSETS, 'index.html')
+        markup = (ASSETS/'index.html').read_text(encoding='utf-8')
+        markup = markup.replace('<html lang="en">', '<html lang="en" data-access-mode="'+app.config['GECKO_ACCESS_MODE']+'">',1)
+        return Response(markup,content_type='text/html; charset=utf-8')
 
     @app.get('/<name>')
     def assets(name):
-        if name not in FILES | {'cloud.js', 'login.js', 'login.css'}:
+        if name not in FILES | {'cloud.js', 'login.js', 'login.css', 'device.js'}:
             return jsonify(error='Not found.'), 404
         return send_from_directory(ASSETS, name)
 

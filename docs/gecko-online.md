@@ -8,20 +8,40 @@ transactions, stale-edit checks, processing lock, eligibility rules, and existin
 resume protections. Opening the website or starting its connection never runs Gecko.
 
 The Windows computer must be awake, online, and signed in for Word-based work.
-The website and sign-in remain available when it is offline; job views and actions
+The website remains available when it is offline; job views and actions
 display an offline error. This release does not move execution or SQLite to the cloud.
 Opening Word remotely downloads the DOCX to the device viewing the website instead
 of opening a window on the Windows computer. Application submission remains manual.
 
 ## Deploy
 
+### Automatic access on your devices
+
+Automatic device access is the default. There is no password page. Open the private
+`.secrets/gecko-web-open.url` shortcut once in each browser you use; subsequent visits
+to the normal website address open the dashboard automatically. The secure device
+cookie lasts 365 days and renews while you use Gecko. Clearing cookies, changing
+browser profiles, or using another device requires opening the private link again.
+
+The shortcut is created by `scripts/configure_gecko_web.py --url` with the actual
+website origin. Its setup key is in a URL fragment, so it is not sent in HTTP URLs,
+server access logs, or referrers. The setup page removes the fragment immediately
+and exchanges it over same-origin HTTPS for the HttpOnly cookie. Keep the shortcut
+private and outside Git. Other visitors can load the empty dashboard shell but
+cannot view jobs, edit records, download resumes, or run Gecko without device access.
+
+To add the password page later, set `GECKO_ACCESS_MODE=password` in Vercel and
+redeploy. The existing password hash and local sign-in file are preserved. This
+mode rejects sessions issued by automatic device access. Rotate the session secret
+to invalidate all sessions and existing private setup links.
+
 1. Run `scripts/prepare_gecko_web.py` with the dashboard Python runtime whenever
    local dashboard assets change. This refreshes the committed deployable copies
    in `web/assets` without editing the local originals.
 2. Run `scripts/configure_gecko_web.py` with the same runtime. It generates private
    credentials in the Git-ignored `.secrets` directory and preserves existing ones.
-   Never commit, paste into chat, or share these files. The sign-in password is in
-   `.secrets/gecko-web-signin.txt`.
+   Never commit, paste into chat, or share these files. The optional future password
+   is preserved in `.secrets/gecko-web-signin.txt`.
 3. Push the website code to `davibus/gecko`. In the intended Vercel account, import
    that repository, use **web** as Root Directory, and use the **Flask** preset.
    Leave install, build, and output overrides disabled. Import the environment
@@ -50,7 +70,8 @@ of opening a window on the Windows computer. Application submission remains manu
 7. Run `scripts/Start-Gecko-Online.ps1`. It starts the existing loopback dashboard
    if needed and one hidden outbound connection process. No port-forwarding,
    tunnel, public Python server, new job schedule, or Windows credentials are needed.
-8. Sign in at the final address and confirm **Gecko computer connected**. Check
+8. Open `.secrets/gecko-web-open.url` to connect this browser without a password,
+   then confirm **Gecko computer connected**. Check
    that jobs and activity load. Verify a harmless notes edit on an explicitly
    chosen job and confirm it in the local dashboard. Start an actual Gecko run
    only when desired using the existing confirmation dialog. Check its run ID
@@ -59,10 +80,11 @@ of opening a window on the Windows computer. Application submission remains manu
 
 ## Request handling and privacy
 
-The browser authenticates with a generated strong password, a Werkzeug scrypt hash,
-and Flask signed sessions. Cookies are Secure, HttpOnly, SameSite Strict, and expire
-after 12 hours. Online mutations require an exact configured origin and a session
-CSRF token. Login attempts have persistent per-address and global limits.
+The browser uses a private origin-bound device setup link and Flask signed sessions.
+Cookies are Secure, HttpOnly, SameSite Strict, and last 365 days in device mode.
+Optional password mode uses the preserved generated strong password, a Werkzeug
+scrypt hash, 12-hour sessions, and persistent per-address and global login limits.
+Online mutations require an exact configured origin and a session CSRF token.
 
 The Windows worker authenticates separately and makes HTTPS outbound requests.
 Both sides restrict actions to explicit dashboard API routes. The worker never
