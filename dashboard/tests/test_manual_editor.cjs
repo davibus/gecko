@@ -5,7 +5,7 @@ controls.applied={name:'applied',type:'checkbox',checked:false,willValidate:fals
 const elements=Object.values(controls);Object.assign(elements,controls,{namedItem:key=>controls[key]});
 const form={elements,querySelector:()=>({textContent:''})};
 const nodes={'manual-form':form};
-for(const key of ['manual-form-title','manual-status','manual-save-status','manual-save','manual-save-applied','manual-new','manual-generated-resume'])nodes[key]={};
+for(const key of ['manual-form-title','manual-status','manual-save-status','manual-save','manual-save-applied','manual-new','manual-generated-resume','manual-resume-status','manual-resume-remove'])nodes[key]={};
 const job={id:'2848',version:'existing-version',url:'https://example.com/mira',applied:false,fields:{Company:'Mira Home','Job Title':'Senior Google Ads Specialist',Location:'Lindon, UT 84042',Salary:'$95,000'},notes:'Unfinished application',description:'Saved complete job description',meta:{}};
 const calls=[];
 const ctx=vm.createContext({$:id=>nodes[id],esc:value=>String(value??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'),state:{manualIds:['2848']},localStorage:{setItem(){},removeItem(){}},today:()=> '2026-10-17',setInterval(){},window:{scrollTo(){}},notify(){},refresh:async()=>{},FormData:class{constructor(f){this.f=f;}*[Symbol.iterator](){for(const el of this.f.elements)if(el.type!=='checkbox'&&!el.disabled)yield [el.name,el.value];}},api:async(path,body)=>{calls.push({path,body});if(path.startsWith('/api/job?'))return job;if(path==='/api/activity')return {busy:false};if(path==='/api/manual')return {id:job.id,updated:true,applied:body.applied};if(path==='/api/jobs')return {manual_ids:[job.id],jobs:[job]};throw Error('Unexpected API '+path);}});
