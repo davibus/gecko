@@ -268,7 +268,11 @@ def create_app(store=None, config=None):
         if not raw:
             return Response(status=204)
         item = json.loads(raw)
-        return jsonify({k:item[k] for k in ('id','deadline','method','path','payload')})
+        command = {k:item[k] for k in ('id','deadline','method','path')}
+        # Some Redis Lua JSON implementations omit object properties with null values.
+        # Reads have no payload; a missing write payload is still rejected by the worker.
+        command['payload'] = item.get('payload')
+        return jsonify(command)
 
     @app.post('/bridge/complete/<command_id>')
     def complete(command_id):

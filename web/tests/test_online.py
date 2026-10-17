@@ -113,6 +113,14 @@ class OnlineTests(unittest.TestCase):
         self.assertEqual(self.worker_call('/bridge/next',{}).status_code,204)
         self.assertTrue(self.call('GET','/cloud/connection').json['online'])
 
+    def test_missing_optional_payload_from_provider_json_is_a_valid_read(self):
+        claimed=dict(id='a'*32,deadline=int(time.time())+45,method='GET',path='/api/jobs')
+        with patch.object(self.store,'eval',return_value=json.dumps(claimed)):
+            response=self.worker_call('/bridge/next',{})
+        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.json['path'],'/api/jobs')
+        self.assertIsNone(response.json['payload'])
+
     def test_route_allowlist_and_payload_bounds(self):
         for path in ('https://evil.example/api/jobs','//evil.example/api/jobs','/api/resume?id=x&path=C:/secret','/api/jobs?x=1','/api/open-resume','/api/../../.env'):
             self.assertFalse(allowed_request('GET',path),path)
