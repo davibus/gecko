@@ -51,8 +51,10 @@ to invalidate all sessions and existing private setup links.
 4. Create/connect **Upstash Redis** using Vercel Storage/Marketplace. Choose a
    suitable plan yourself after reviewing current pricing. Connect it to this
    project's **Production** environment. It must supply
-   `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`; map equivalent integration
-   names to these names if needed. Do not paste credentials into chat.
+   `KV_REST_API_URL` and `KV_REST_API_TOKEN` by default. The gateway also accepts
+   native `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` or custom-prefix
+   `STORAGE_REST_API_URL` / `STORAGE_REST_API_TOKEN` pairs. Read-only tokens cannot
+   process actions. Do not paste credentials into chat.
 5. Deploy or redeploy after configuring the environment. The gateway uses Vercel's
    `VERCEL_PROJECT_PRODUCTION_URL` by default, allowing only that canonical host.
    For a custom domain set `GECKO_PUBLIC_URL` to its exact HTTPS origin. Preview

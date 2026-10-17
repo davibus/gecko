@@ -9,8 +9,19 @@ PREFIX = 'gecko-main:v1:'
 
 class Redis:
     def __init__(self):
-        self.url = os.environ.get('UPSTASH_REDIS_REST_URL', '').rstrip('/')
-        self.token = os.environ.get('UPSTASH_REDIS_REST_TOKEN', '')
+        # Vercel's Upstash integration uses KV_* by default or a custom prefix.
+        # Select a complete pair; never combine credentials from different stores.
+        pairs = (
+            ('UPSTASH_REDIS_REST_URL','UPSTASH_REDIS_REST_TOKEN'),
+            ('KV_REST_API_URL','KV_REST_API_TOKEN'),
+            ('STORAGE_REST_API_URL','STORAGE_REST_API_TOKEN'),
+        )
+        self.url, self.token = '', ''
+        for url_name, token_name in pairs:
+            if os.environ.get(url_name) and os.environ.get(token_name):
+                self.url = os.environ[url_name].rstrip('/')
+                self.token = os.environ[token_name]
+                break
         parsed = urlsplit(self.url)
         if (parsed.scheme != 'https' or not parsed.hostname or parsed.username or parsed.path
                 or parsed.query or parsed.fragment or not self.token):
