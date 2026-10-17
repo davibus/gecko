@@ -47,10 +47,10 @@ function renderManual(){
  $('page-subtitle').textContent='Add a job you found yourself. Review the details, then save it to both this list and All Jobs.';
  if(!root.dataset.built){
   root.dataset.built='yes';
-  root.innerHTML='<form id="manual-form" class="activity-card" novalidate><h2 id="manual-form-title">Add a job or application</h2><p>A unique job ID is assigned when you save. Saving does not submit an application. Save and applied records that you have already submitted it.</p><label>Job posting link<input name="url" type="url" required placeholder="https://www.indeed.com/viewjob?jk=…"></label><button type="button" id="manual-fetch" class="button secondary">Auto-fill with OpenClaw</button><p id="manual-status" role="status">You can also enter details yourself. Review imported information before saving.</p><div class="manual-fields">'+manualFields.map(k=>'<label>'+esc(k==='description'?'Job description':k)+(k==='Notes'||k==='description'?'<textarea name="'+k+'"></textarea>':'<input name="'+k+'" '+(['Company','Job Title'].includes(k)?'required':'')+(k==='Date Posted'?' type="date"':'')+'>')+'</label>').join('')+'</div><label><input type="checkbox" name="applied"> I already submitted this application</label><label>Application date<input type="date" name="applied_date"></label><p id="manual-save-status" class="manual-save-status" role="status" aria-live="polite"></p><div class="actions"><button type="submit" class="button primary" id="manual-save">Save job</button><button type="button" class="button primary" id="manual-save-applied">Save and applied</button><button type="button" class="button secondary" id="manual-new" hidden>Add another job</button></div></form><div id="manual-table"></div>';
+  root.innerHTML='<form id="manual-form" class="activity-card" novalidate><h2 id="manual-form-title">Add a job or application</h2><p>A unique job ID is assigned when you save. Saving does not submit an application. Save and applied records that you have already submitted it.</p><label>Job posting link<input name="url" type="url" required placeholder="https://www.indeed.com/viewjob?jk=…"></label><button type="button" id="manual-fetch" class="button secondary">Auto-fill with OpenClaw</button><p id="manual-status" role="status">You can also enter details yourself. Review imported information before saving.</p><div class="manual-fields">'+manualFields.map(k=>'<label>'+esc(k==='description'?'Job description':k)+(k==='Notes'||k==='description'?'<textarea name="'+k+'"></textarea>':'<input name="'+k+'" '+(['Company','Job Title'].includes(k)?'required':'')+(k==='Date Posted'?' type="date"':'')+'>')+'</label>').join('')+'</div><div id="manual-generated-resume" class="detail-section" aria-live="polite" hidden></div><label><input type="checkbox" name="applied"> I already submitted this application</label><label>Application date<input type="date" name="applied_date"></label><p id="manual-save-status" class="manual-save-status" role="status" aria-live="polite"></p><div class="actions"><button type="submit" class="button primary" id="manual-save">Save job</button><button type="button" class="button primary" id="manual-save-applied">Save and applied</button><button type="button" class="button secondary" id="manual-new" hidden>Add another job</button></div></form><div id="manual-table"></div>';
   const form=$('manual-form');form.elements.applied_date.value=today();
   $('manual-save-applied').onclick=()=>{if(manualBusy)return;form.elements.applied.checked=true;if(!form.elements.applied_date.value)form.elements.applied_date.value=today();saveManualForm(form);};
-  $('manual-new').onclick=()=>{if(manualBusy||manualDirty){manualMessage('Save your current changes before adding another job.');return;}manualEdit=null;if(typeof manualResume!=='undefined'){manualResume=null;$('manual-resume-status').textContent='No resume attached.';$('manual-resume-remove').hidden=true;}form.reset();form.elements.url.readOnly=false;form.elements.applied.disabled=false;form.elements.applied_date.value=today();form.elements.applied_date.required=false;$('manual-form-title').textContent='Add a job or application';$('manual-new').hidden=true;manualMessage('Enter the new job details.');};
+  $('manual-new').onclick=()=>{if(manualBusy||manualDirty){manualMessage('Save your current changes before adding another job.');return;}manualEdit=null;if(typeof manualResume!=='undefined'){manualResume=null;$('manual-resume-status').textContent='No resume attached.';$('manual-resume-remove').hidden=true;}form.reset();form.elements.url.readOnly=false;form.elements.applied.disabled=false;form.elements.applied_date.value=today();form.elements.applied_date.required=false;$('manual-form-title').textContent='Add a job or application';$('manual-new').hidden=true;renderManualGeneratedResume(null);manualMessage('Enter the new job details.');};
   form.onsubmit=e=>{e.preventDefault();saveManualForm(form);};
   form.oninput=()=>{manualDirty=true;const wasPending=manualPending;manualPending=false;form.elements.applied_date.required=form.elements.applied.checked;storeManualDraft(form);if(wasPending){manualMessage('Draft changed. Click Save job to save these updated details.');renderManualTable();}};
   try{const draft=JSON.parse(localStorage.getItem(manualDraftKey)||'null');if(draft?.fields){manualEdit=draft.edit||null;manualDirty=true;if(manualEdit){$('manual-form-title').textContent='Edit job '+manualEdit.id;form.elements.url.readOnly=true;$('manual-new').hidden=false;}for(const [key,value] of Object.entries(draft.fields)){const el=form.elements.namedItem(key);if(el&&el.type!=='checkbox')el.value=value;}form.elements.applied.checked=!!draft.applied;form.elements.applied_date.required=!!draft.applied;manualPending=!!draft.pending;manualMessage(manualPending?'Pending save restored. This job will save when Gecko finishes.':'Your unsaved draft was restored. Review it and click Save job.');}}catch{}
@@ -60,6 +60,7 @@ function renderManual(){
    try{await api('/api/manual-import',{url});let result;const deadline=Date.now()+440000;do{await new Promise(r=>setTimeout(r,2000));result=await api('/api/manual-import');if(Date.now()>deadline)throw Error('Import is taking too long. You can enter the details manually.');}while(result.status==='running');if(result.status!=='ready')throw Error(result.error||'Import did not finish.');if(result.url!==url)throw Error('The import link changed. Please try again.');for(const key of manualFields)if(result.details[key])form.elements.namedItem(key).value=result.details[key];manualMessage('Details imported. Review and correct them, then save.');}catch(err){manualMessage(err.message);}finally{manualBusy=false;Array.from(form.elements).forEach(el=>el.disabled=false);storeManualDraft(form);}
   };
  }
+ if(manualEdit)renderManualGeneratedResume(state.jobs.find(j=>j.id===manualEdit.id));
  renderManualTable();
 }
 function renderManualTable(){
@@ -95,8 +96,22 @@ async function openManualJob(id,afterSave=false){
   $('manual-form-title').textContent='Edit job '+job.id+' · '+job.fields.Company;
   form.querySelector('p').textContent='Continue your saved job or application. Saving updates this same record in this list and All Jobs.';
   $('manual-new').hidden=false;
+  renderManualGeneratedResume(job);
   manualMessage('Job '+job.id+' loaded. Save job keeps its current application status; Save and applied records your completed application.');
   manualDirty=false;
   window.scrollTo({top:0,left:0,behavior:'instant'});
  }catch(error){manualMessage('Could not open this job: '+error.message);}
+}
+
+
+function renderManualGeneratedResume(job){
+ const box=$('manual-generated-resume');if(!box)return;
+ box.hidden=!job;
+ if(!job){box.innerHTML='';return;}
+ const created=String(job.fields['Resume Created']||'').trim().toLowerCase()==='x';
+ if(created&&job.resume_available){
+  box.innerHTML='<h3>Tailored resume attached</h3><p>'+esc(job.resume_name)+'</p><a class="button secondary" href="/api/resume?id='+encodeURIComponent(job.id)+'">Download tailored resume</a><p class="subtext">Automatically linked to job '+esc(job.id)+' when Gecko completed and verified this resume.</p>';
+ }else{
+  box.innerHTML='<h3>Tailored resume</h3><p>'+(created?'Resume creation is recorded, but its linked file needs review. Gecko will preserve the existing completed resume.':'Your tailored resume will attach here automatically after Gecko finishes and validates it.')+'</p>';
+ }
 }
