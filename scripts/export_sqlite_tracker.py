@@ -1,5 +1,6 @@
 """Export the final SQLite tracker to Google Sheets and retain verified evidence."""
 import json
+import argparse
 import os
 from pathlib import Path
 import sys
@@ -11,7 +12,10 @@ from dashboard.grid import export_sheet
 from tracker_backend import sqlite_enabled
 
 
-def main():
+def main(*, manual=False):
+    if not manual:
+        print('Automatic Google Sheets export is disabled. Use the dashboard Export to Google Sheets button for an explicit export.')
+        return 0
     if not sqlite_enabled():
         print('Google Sheets is already the active tracker; SQLite export skipped.')
         return 0
@@ -35,4 +39,6 @@ def main():
 
 
 if __name__ == '__main__':
-    raise SystemExit(main())
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--manual',action='store_true',help='Explicitly request a new export tab')
+    raise SystemExit(main(manual=parser.parse_args().manual))

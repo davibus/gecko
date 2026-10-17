@@ -279,10 +279,14 @@ class Workspace:
         return result
 
     def save_manual(self, payload):
-        with self.lock, run_lock():
+        with self.lock:
             if self.operation and self.operation.get('status') == 'running':
                 raise ValueError('Wait for the current Gecko run to finish.')
-            return manual.save(self.tracker_factory(), payload, now())
+            try:
+                with run_lock():
+                    return manual.save(self.tracker_factory(), payload, now())
+            except PermissionError as exc:
+                raise ValueError('Gecko is running. Keep this draft and save after the run finishes.') from exc
 
     def import_manual(self, payload):
         url = manual.validate_url(payload.get('url'))

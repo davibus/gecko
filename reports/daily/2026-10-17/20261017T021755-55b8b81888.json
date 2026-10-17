@@ -1,0 +1,51 @@
+{
+  "run_id": "20261017T021755-55b8b81888",
+  "run_date": "2026-10-17",
+  "mode": "apply",
+  "started_at": "2026-10-17T02:17:55.144980-06:00",
+  "resume_ids": null,
+  "preflight": {
+    "backend": "sqlite",
+    "queue_preflight": {
+      "eligible": 19,
+      "already_created": 751
+    }
+  },
+  "counts": {
+    "Jobs Discovered": 184941,
+    "New Jobs Added": 14,
+    "Duplicates Skipped": 1000,
+    "Manual Indeed Rows Processed": 0,
+    "Manual Indeed Duplicates Flagged": 0,
+    "Manual Indeed Retrieval Failures": 0,
+    "Declined Rows Preserved": 350,
+    "Resumes Reused": 751,
+    "Resumes Created": 0,
+    "Resume Failures": 32,
+    "Workflow Failures": 40,
+    "Gmail Emails Checked": 2,
+    "Employer Responses Matched": 0,
+    "Response Rows Updated": 0,
+    "Provider Failures": 8,
+    "Indeed Jobs Found": 134
+  },
+  "errors": [
+    "Daily workflow exited with code 1",
+    "Daily workflow reported 40 failure(s)"
+  ],
+  "attention": [
+    "Resume generation failures",
+    "Workflow or provider failures",
+    "Provider failures",
+    "Declined rows retained to protect formulas",
+    "Daily workflow failed",
+    "inspect the local audit"
+  ],
+  "daily_run_written": true,
+  "daily_run_row": null,
+  "attention_counts": {
+    "completed_without_link": 0,
+    "missing_identity": 0
+  },
+  "completed_at": "2026-10-17T03:30:40.565738-06:00"
+}

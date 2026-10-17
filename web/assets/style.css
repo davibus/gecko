@@ -55,3 +55,5 @@ header{min-height:76px}.page-heading{padding:21px 0 20px}h1{font-size:36px;margi
 #source-summary .source-table .source-explanation{width:200px;min-width:200px;max-width:200px;white-space:normal;overflow-wrap:anywhere}
 
 .manual-save-status:not(:empty){padding:12px 14px;border:1px solid #d5dec9;border-radius:8px;background:#f3f6ec;color:#294c36;margin-top:16px;font-weight:600}
+
+.brand-logo{display:block;width:40px;height:34px;object-fit:contain;flex-shrink:0}

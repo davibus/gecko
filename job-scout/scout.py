@@ -488,6 +488,20 @@ def search(args, store, preferences):
     aggregate["already_existed"] = len(aggregate["existing_job_ids"])
     aggregate["sources_searched"] = len(selected) - len(aggregate['skipped_sources'])
     args.run_result = aggregate
+    if not getattr(args, 'dry_run', False):
+        # Keep the dashboard source status current even without a full audit export.
+        report_dir = PROJECT_ROOT / 'reports' / 'discovery' / 'latest'
+        report_dir.mkdir(parents=True, exist_ok=True)
+        source_report = {
+            'source_counts': aggregate['source_counts'],
+            'source_health': {
+                name: {**health, 'detail': safe_error(health.get('detail', ''))}
+                for name, health in aggregate['source_health'].items()
+            },
+        }
+        temporary = report_dir / 'discovery-reconciliation.tmp'
+        temporary.write_text(json.dumps(source_report, indent=2), encoding='utf-8')
+        temporary.replace(report_dir / 'discovery-reconciliation.json')
     if audit_dir:
         (audit_dir/'discovery-reconciliation.json').write_text(json.dumps(aggregate,indent=2),encoding='utf-8')
         (audit_dir/'http-requests.json').write_text(json.dumps(REQUEST_EVENTS,indent=2),encoding='utf-8')

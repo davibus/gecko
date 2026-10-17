@@ -35,29 +35,28 @@ class GeckoCommandTests(unittest.TestCase):
                 run_gecko.subprocess, "run", side_effect=[SimpleNamespace(returncode=code) for code in (0, 7, 0, 0, 0)]
             ) as process:
                 self.assertEqual(run_gecko.main(), 7)
-            self.assertEqual(process.call_count, 5)
+            self.assertEqual(process.call_count, 4)
             status = json.loads((Path(temp) / "reports/gecko-command/latest.json").read_text())
             self.assertEqual(status["status"], "failed")
-            self.assertEqual(len(status["steps"]), 5)
+            self.assertEqual(len(status["steps"]), 4)
 
-    def test_full_run_exports_only_after_daily_and_final_report(self):
+    def test_full_run_does_not_export_to_sheets(self):
         with tempfile.TemporaryDirectory() as temp:
             with patch.object(run_gecko, 'ROOT', Path(temp)), patch.object(
                 run_gecko.subprocess,'run',return_value=SimpleNamespace(returncode=0)) as process:
                 self.assertEqual(run_gecko.main(),0)
             commands=[call.args[0] for call in process.call_args_list]
             self.assertEqual([Path(command[2]).name for command in commands],
-                ['daily_report.py','gecko_daily.py','sync_gecko_local.py','daily_report.py','export_sqlite_tracker.py'])
+                ['daily_report.py','gecko_daily.py','sync_gecko_local.py','daily_report.py'])
             self.assertIn('--apply',commands[1])
             self.assertNotIn('--resume-ids',commands[1])
             self.assertEqual(json.loads((Path(temp)/'reports/gecko-command/latest.json').read_text())['status'],'complete')
 
-    def test_export_failure_is_not_reported_as_success(self):
-        with tempfile.TemporaryDirectory() as temp:
-            with patch.object(run_gecko,'ROOT',Path(temp)), patch.object(
-                run_gecko.subprocess,'run',side_effect=[SimpleNamespace(returncode=c) for c in (0,0,0,0,1)]):
-                self.assertEqual(run_gecko.main(),1)
-            self.assertEqual(json.loads((Path(temp)/'reports/gecko-command/latest.json').read_text())['status'],'failed')
+    def test_automatic_export_entrypoint_does_not_touch_sheets(self):
+        import export_sqlite_tracker
+        with patch.object(export_sqlite_tracker,'export_sheet') as export:
+            self.assertEqual(export_sqlite_tracker.main(),0)
+            export.assert_not_called()
 
     def test_failed_stage_stops_later_writes(self):
         with tempfile.TemporaryDirectory() as temp:
