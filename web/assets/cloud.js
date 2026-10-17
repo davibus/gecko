@@ -72,7 +72,7 @@
   const logout=document.createElement('button');logout.className='button secondary';logout.textContent='Sign out';
   logout.addEventListener('click',async()=>{
    const response=await directFetch('/cloud/logout',{method:'POST',headers:{'X-Gecko-Token':csrf}});
-   if(response.ok || response.status===401) location.assign('/login');
+   if(response.ok || response.status===401) {localStorage.removeItem('gecko.manual-intake.draft.v1');location.assign('/login');}
   });
   document.querySelector('.header-actions')?.append(logout);
   async function check() {

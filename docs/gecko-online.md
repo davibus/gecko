@@ -107,6 +107,7 @@ Preserve the local request journal; never delete it to recover an uncertain acti
 & C:\gecko_main\.tools\dashboard-python\Scripts\python.exe -m unittest discover -s web/tests -v
 node --check web/assets/cloud.js
 node --check web/assets/app.js
+node web/tests/transport.test.cjs
 ```
 
 The local dashboard runtime also needs Flask (`web/requirements.txt`) for the
