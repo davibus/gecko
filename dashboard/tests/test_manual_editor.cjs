@@ -1,0 +1,23 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const controls={};
+for(const key of ['url','Company','Job Title','Source','Location','Salary','Work Arrangement','Employment Type','Personal priority','Date Posted','Notes','description','applied_date'])controls[key]={name:key,value:'',willValidate:false};
+controls.applied={name:'applied',type:'checkbox',checked:false,willValidate:false};
+const elements=Object.values(controls);Object.assign(elements,controls,{namedItem:key=>controls[key]});
+const form={elements,querySelector:()=>({textContent:''})};
+const nodes={'manual-form':form};
+for(const key of ['manual-form-title','manual-status','manual-save-status','manual-save','manual-save-applied','manual-new'])nodes[key]={};
+const job={id:'2848',version:'existing-version',url:'https://example.com/mira',applied:false,fields:{Company:'Mira Home','Job Title':'Senior Google Ads Specialist',Location:'Lindon, UT 84042',Salary:'$95,000'},notes:'Unfinished application',description:'Saved complete job description',meta:{}};
+const calls=[];
+const ctx=vm.createContext({$:id=>nodes[id],state:{manualIds:['2848']},localStorage:{setItem(){},removeItem(){}},today:()=> '2026-10-17',setInterval(){},window:{scrollTo(){}},notify(){},refresh:async()=>{},FormData:class{constructor(f){this.f=f;}*[Symbol.iterator](){for(const el of this.f.elements)if(el.type!=='checkbox'&&!el.disabled)yield [el.name,el.value];}},api:async(path,body)=>{calls.push({path,body});if(path.startsWith('/api/job?'))return job;if(path==='/api/activity')return {busy:false};if(path==='/api/manual')return {id:job.id,updated:true,applied:body.applied};if(path==='/api/jobs')return {manual_ids:[job.id],jobs:[job]};throw Error('Unexpected API '+path);}});
+vm.runInContext(fs.readFileSync(process.argv[2]||'dashboard/static/manual.js','utf8'),ctx);
+(async()=>{
+ await ctx.openManualJob('2848');
+ assert.equal(controls.Company.value,'Mira Home');assert.equal(controls['Job Title'].value,'Senior Google Ads Specialist');assert.equal(controls.Location.value,'Lindon, UT 84042');assert.equal(controls.description.value,job.description);assert.equal(controls.Notes.value,job.notes);assert.equal(controls.url.readOnly,true);assert.equal(controls.applied.checked,false);
+ controls.Salary.value='$100,000';await ctx.saveManualForm(form);
+ let sent=calls.filter(c=>c.path==='/api/manual').at(-1).body;
+ assert.equal(sent.id,'2848');assert.equal(sent.version,'existing-version');assert.equal(sent.Salary,'$100,000');assert.equal(sent.applied,false);
+ controls.applied.checked=true;await ctx.saveManualForm(form);
+ sent=calls.filter(c=>c.path==='/api/manual').at(-1).body;assert.equal(sent.applied,true);assert.equal(sent.applied_date,'2026-10-17');
+ assert.equal(calls.some(c=>c.path==='/api/applications'),false);
+ console.log('Existing job prefill, same-ID save payload, and applied recording passed without application submission.');
+})().catch(error=>{console.error(error);process.exitCode=1;});

@@ -79,6 +79,7 @@ function renderManualTable(){
 async function openManualJob(id,afterSave=false){
  if(manualBusy&&!afterSave)return;
  if(manualDirty){manualMessage('Save your current changes before opening another job.');return;}
+ manualMessage('Opening saved job '+id+'…');
  try{
   const job=await api('/api/job?id='+encodeURIComponent(id));
   if(!(state.manualIds||[]).includes(job.id))throw Error('This job is not in your individually added list.');
