@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict');
+const {resumeCreated,matches}=require('../static/filters.js');
+const base={opportunity:'',location:'',minimum:'',maximum:'',unknown:true,hiddenStages:[],hiddenActions:[],hiddenResumes:[]};
+const job=marker=>({fields:{'Resume Created':marker},stage:'Review'});
+for(const marker of ['X','x',' X '])assert.equal(resumeCreated(job(marker)),true);
+for(const marker of ['',null,undefined,'Yes','0'])assert.equal(resumeCreated(job(marker)),false);
+assert.equal(matches(job(' X '),{...base,hiddenResumes:['Created']},''),false);
+assert.equal(matches(job(''),{...base,hiddenResumes:['Created']},''),true);
+assert.equal(matches(job(null),{...base,hiddenResumes:['Not created']},''),false);
+assert.equal(matches(job('x'),{...base,hiddenResumes:['Not created']},''),true);
+assert.equal(matches(job(''),base,''),true);
+console.log('Resume completion normalization, blank filters and reset passed.');

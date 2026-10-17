@@ -249,6 +249,9 @@ class Workspace:
         with self.lock:
             if not self.operation or payload.get('started_at') != self.operation.get('started_at'):
                 raise ValueError('The run changed. Refresh before stopping it.')
+            if self.operation.get('kind') == 'applications' and self.operation.get('status') == 'running':
+                from dashboard.applications import abort
+                return abort(self)
             process = self.run_process
             if self.operation.get('status') != 'running' or not process or process.poll() is not None:
                 raise ValueError('This operation is no longer running.')
@@ -466,13 +469,14 @@ class Workspace:
             export = json.loads((ROOT/'reports/sheets-exports/latest.json').read_text(encoding='utf-8'))
         except (OSError,ValueError):
             export = None
-        return {'runner':self.runner_status(), 'operation': operation, 'can_stop': bool(self.run_process and self.run_process.poll() is None), 'pipeline': pipeline, 'busy': busy, 'export':export, 'sources':self.source_report()}
+        return {'runner':self.runner_status(), 'operation': operation, 'can_stop': bool(self.run_process and self.run_process.poll() is None) or bool(operation and operation.get('kind')=='applications' and operation.get('status')=='running' and self.operation), 'pipeline': pipeline, 'busy': busy, 'export':export, 'sources':self.source_report()}
 
     def persist_operation(self):
-        STATE.mkdir(parents=True, exist_ok=True)
-        temp = STATE / 'operation.tmp'
-        temp.write_text(json.dumps(self.operation), encoding='utf-8')
-        temp.replace(STATE / 'operation.json')
+        with self.lock:
+            STATE.mkdir(parents=True, exist_ok=True)
+            temp = STATE / 'operation.tmp'
+            temp.write_text(json.dumps(self.operation), encoding='utf-8')
+            temp.replace(STATE / 'operation.json')
 
     def start(self, payload):
         with self.lock:
@@ -659,6 +663,9 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError('Expected a JSON object.')
             if self.path == '/api/stop':
                 result = self.server.workspace.stop(payload)
+            elif self.path == '/api/applications':
+                from dashboard.applications import start
+                result = start(self.server.workspace, payload)
             elif self.path == '/api/manual':
                 result = self.server.workspace.save_manual(payload)
             elif self.path == '/api/manual-import':

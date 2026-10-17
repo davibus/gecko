@@ -14,6 +14,7 @@ const GeckoFilters = (() => {
  }
  function matches(job,f,action){
   const fields=job.fields;
+  if((f.hiddenResumes||[]).includes(resumeCreated(job)?'Created':'Not created'))return false;
   for(const [field,hidden] of Object.entries(f.hiddenValues||{})){
    if(hidden.includes(String(fields[field]??'').trim()))return false;
   }
@@ -33,7 +34,8 @@ const GeckoFilters = (() => {
   if(!a||!b)return a? -1:b?1:0;
   return a.localeCompare(b,undefined,{numeric:true,sensitivity:'base'})*(direction==='desc'?-1:1);
  }
- return {annualSalary,matches,compareValues};
+ function resumeCreated(job){return String(job.fields['Resume Created']||'').trim().toLowerCase()==='x';}
+ return {annualSalary,matches,compareValues,resumeCreated};
 })();
 if(typeof module!=='undefined')module.exports=GeckoFilters;
 

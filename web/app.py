@@ -23,7 +23,7 @@ except ImportError:
 
 ASSETS = Path(__file__).parent / 'assets'
 READS = {'/api/health', '/api/jobs', '/api/job', '/api/activity', '/api/resume', '/api/manual-import'}
-WRITES = {'/api/stop', '/api/manual', '/api/manual-import', '/api/edit', '/api/run', '/api/columns', '/api/export'}
+WRITES = {'/api/stop', '/api/manual', '/api/manual-import', '/api/edit', '/api/run', '/api/applications', '/api/columns', '/api/export'}
 FILES = {'app.js', 'manual.js', 'filters.js', 'style.css'}
 ID = re.compile(r'^[0-9a-f]{32}$')
 MAX_RESULT = 3_000_000

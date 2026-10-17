@@ -103,6 +103,17 @@ class OnlineTests(unittest.TestCase):
         self.assertEqual(self.call('POST','/api/edit',json={},headers={'Origin':'https://evil.example','X-Gecko-Token':self.csrf()}).status_code,403)
         self.assertEqual(self.call('POST','/api/edit',json={},headers={'Origin':ORIGIN,'X-Gecko-Token':'incorrect'}).status_code,403)
 
+    def test_selected_applications_use_authenticated_bridge_without_replay(self):
+        self.assertTrue(allowed_request('POST','/api/applications'))
+        self.assertFalse(allowed_request('GET','/api/applications'))
+        self.assertEqual(self.call('POST','/api/applications',json={'jobs':[]}).status_code,403)
+        payload={'jobs':[{'id':'10','version':'selected-version'}]}
+        ticket=self.enqueue('/api/applications',payload)
+        claimed=self.worker_call('/bridge/next',{}).json
+        self.assertEqual(claimed['path'],'/api/applications')
+        self.assertEqual(claimed['payload'],payload)
+        self.assertEqual(self.worker_call('/bridge/next',{}).status_code,204)
+
     def test_offline_writes_are_not_queued(self):
         response=self.call('POST','/api/run',json={'action':'full'},headers={'Origin':ORIGIN,'X-Gecko-Token':self.csrf()})
         self.assertEqual(response.status_code,503)
