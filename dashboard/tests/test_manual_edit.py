@@ -1,4 +1,5 @@
 import json,sys,unittest
+from unittest.mock import patch
 from pathlib import Path
 sys.path[:0]=[str(Path(__file__).resolve().parents[2]),str(Path(__file__).resolve().parents[2]/'scripts')]
 from test_sqlite_tracker import SQLiteTrackerTests
@@ -58,5 +59,49 @@ class ManualEditTests(unittest.TestCase):
         p=self.payload();p['Salary']='$200,000';p['applied']=True
         with self.assertRaisesRegex(ValueError,'formula-protected'):manual.save(self.tracker,p,'2026-10-17')
         self.assertFalse(server.Workspace(lambda:self.tracker).detail(self.saved['id'])['applied'])
+
+    def attachment_payload(self):
+        from dashboard import attachments
+        self.upload_patch=patch.object(attachments,'DIRECTORY',Path(self.temp.name)/'uploads')
+        self.upload_patch.start();self.addCleanup(self.upload_patch.stop)
+        content=b'%PDF-1.7\nMy uploaded resume\n%%EOF'
+        uploaded=attachments.upload('Dave Resume.pdf',content)
+        payload=self.payload()
+        with self.tracker.connection() as con:
+            payload['description']=con.execute('SELECT description FROM jobs WHERE id=?',(self.saved['id'],)).fetchone()[0]
+        payload['resume_token']=uploaded['token']
+        return payload,content
+
+    def test_upload_after_background_note_saves_applied_and_preserves_note(self):
+        from dashboard import attachments
+        payload,content=self.attachment_payload();payload['applied']=True
+        _,old=server.find_job(self.tracker.scout(),self.saved['id'])
+        self.tracker.dashboard_edit(old,{'Notes':old['Notes']+'\nResume attempt failed: review evidence.'})
+        result=manual.save(self.tracker,payload,'2026-10-17T07:00:00-06:00')
+        self.assertTrue(result['applied'])
+        job=server.Workspace(lambda:self.tracker).detail(self.saved['id'])
+        self.assertTrue(job['applied']);self.assertEqual(job['stage'],'Applied')
+        self.assertIn('Resume attempt failed',job['notes'])
+        self.assertEqual(attachments.for_job(self.tracker,self.saved['id'])[1],content)
+        self.assertEqual(job['fields']['Applied Date'],'2026-10-17')
+
+    def test_upload_conflicting_field_keeps_file_and_blocks_entire_save(self):
+        from dashboard import attachments
+        payload,content=self.attachment_payload();payload['Salary']='$125,000';payload['applied']=True
+        _,old=server.find_job(self.tracker.scout(),self.saved['id'])
+        self.tracker.dashboard_edit(old,{'Salary':'$100,000'})
+        with self.assertRaisesRegex(ValueError,'Salary was edited elsewhere'):
+            manual.save(self.tracker,payload,'2026-10-17')
+        self.assertEqual(attachments.read(payload['resume_token'])[1],content)
+        job=server.Workspace(lambda:self.tracker).detail(self.saved['id'])
+        self.assertFalse(job['applied']);self.assertEqual(job['fields']['Salary'],'$100,000')
+        self.assertIsNone(attachments.for_job(self.tracker,self.saved['id']))
+
+    def test_upload_preserves_unedited_concurrent_salary(self):
+        payload,_=self.attachment_payload()
+        _,old=server.find_job(self.tracker.scout(),self.saved['id'])
+        self.tracker.dashboard_edit(old,{'Salary':'$100,000'})
+        manual.save(self.tracker,payload,'2026-10-17')
+        self.assertEqual(server.Workspace(lambda:self.tracker).detail(self.saved['id'])['fields']['Salary'],'$100,000')
 
 if __name__=='__main__':unittest.main()

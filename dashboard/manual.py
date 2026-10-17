@@ -117,6 +117,43 @@ def save(tracker, payload, stamp):
     return {'id':str(job_id),'applied':applied}
 
 
+def attachment_rebase(tracker, slot, payload, original, fields):
+    """Recover the exact old form from audit history; merge only nonconflicting edits."""
+    from dashboard import server as s
+    from tracker_schema import resolve_headers
+    with tracker.connection() as con:
+        headers=json.loads(con.execute("SELECT headers_json FROM workspace_datasets WHERE name='Job List'").fetchone()[0])
+        events=con.execute("SELECT before_json,after_json FROM workspace_events WHERE dataset='Job List' AND slot=? ORDER BY id DESC",(slot,)).fetchall()
+        description=con.execute('SELECT description FROM jobs WHERE id=?',(str(original['Scout ID']),)).fetchone()
+    base=None
+    for event in events:
+        for raw in event:
+            if not raw:continue
+            try:
+                candidate=json.loads(raw)
+                if not isinstance(candidate,dict):continue
+                for alias,col in resolve_headers(headers).items():candidate[alias]=candidate.get(headers[col-1],'')
+                if s.version(candidate)==payload.get('version'):
+                    base=candidate;break
+            except (ValueError,TypeError):continue
+        if base is not None:break
+    if base is None or base.get('Job URL')!=original.get('Job URL'):
+        raise ValueError('This job changed. Your uploaded resume is kept; reopen the job before saving.')
+    changes={}
+    for key,value in fields.items():
+        if key not in payload:continue
+        before=str(base.get(key) or '')
+        current=str(original.get(key) or '')
+        if key=='Notes':before=s.notes_parts(before)[0];current=s.notes_parts(current)[0]
+        if value==before.strip():continue
+        if current!=before and value!=current.strip():
+            raise ValueError(key+' was edited elsewhere. Your uploaded resume is kept; review that field before saving.')
+        changes[key]=value
+    if 'description' in payload and str(payload.get('description') or '')!=str(description[0] or '' if description else ''):
+        raise ValueError('The job description needs review after a background change. Your uploaded resume is kept.')
+    return changes
+
+
 def update(tracker, payload, stamp, url, fields, attachment=None):
     """Edit a manual record atomically; retain its identity and managed state."""
     from dashboard import server as s
@@ -124,13 +161,17 @@ def update(tracker, payload, stamp, url, fields, attachment=None):
     from google_tracker import marked
     job_id=str(payload['id'])
     slot, original=s.find_job(tracker.scout(),job_id)
-    if payload.get('version') != s.version(original):
+    current_version=s.version(original)
+    stale=payload.get('version') != current_version
+    if stale and not attachment:
         raise ValueError('This job changed. Refresh and reopen it before saving.')
     if posting_identity(url) != posting_identity(original['Job URL']):
         raise ValueError('Keep the original posting link when editing this job.')
+    if stale:
+        fields=attachment_rebase(tracker,slot,payload,original,fields)
     changes={k:v for k,v in fields.items() if k in payload and k!='Notes'}
     text,meta,history=s.notes_parts(original.get('Notes'))
-    if 'Notes' in payload:
+    if 'Notes' in fields and 'Notes' in payload:
         text=fields['Notes']
         if s.PREFIX in text:
             raise ValueError('Notes must be plain text without reserved dashboard markers.')
@@ -157,7 +198,7 @@ def update(tracker, payload, stamp, url, fields, attachment=None):
         headers=json.loads(con.execute("SELECT headers_json FROM workspace_datasets WHERE name='Job List'").fetchone()[0])
         normalized=dict(raw)
         for alias,col in resolve_headers(headers).items():normalized[alias]=raw.get(headers[col-1],'')
-        if s.version(normalized)!=payload['version']:
+        if s.version(normalized)!=current_version:
             raise ValueError('This job changed before saving. Refresh and reopen it.')
         formulas=json.loads(stored['formulas_json'])
         if any(raw.get(k,'')!=v and str(formulas.get(k,'')).lstrip().startswith('=') for k,v in changes.items()):
@@ -166,7 +207,7 @@ def update(tracker, payload, stamp, url, fields, attachment=None):
         con.execute("UPDATE workspace_records SET values_json=?,revision=revision+1 WHERE dataset='Job List' AND slot=?",(json.dumps(after),slot))
         columns={'Company':'company','Job Title':'title','Source':'source','Location':'location','Salary':'salary','Work Arrangement':'work_arrangement','Employment Type':'employment_type','Date Posted':'date_posted'}
         updates={columns[k]:v for k,v in changes.items() if k in columns}
-        if 'description' in payload:updates['description']=str(payload['description'] or '')[:30000]
+        if 'description' in payload and not stale:updates['description']=str(payload['description'] or '')[:30000]
         if updates:
             con.execute('UPDATE jobs SET '+','.join(k+'=?' for k in updates)+' WHERE id=?',(*updates.values(),job_id))
         if attachment:
