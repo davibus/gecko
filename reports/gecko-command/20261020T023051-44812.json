@@ -1,0 +1,34 @@
+{
+  "run_id": "20261020T023051-44812",
+  "started_at": "2026-10-20T02:30:51.767716-06:00",
+  "status": "failed",
+  "steps": [
+    {
+      "name": "Daily report",
+      "exit_code": 0
+    },
+    {
+      "name": "Daily discovery, tracker sync, and tailored resumes",
+      "exit_code": 1
+    },
+    {
+      "name": "Back up the updated tracker",
+      "exit_code": 0
+    },
+    {
+      "name": "Refresh daily results",
+      "exit_code": 0
+    }
+  ],
+  "model_info": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a1586f-1460-75e1-aaa0-2d3f69851b53",
+    "verified_at": "2026-10-20T08:30:51.426949+00:00"
+  },
+  "current_step": "Refresh daily results",
+  "updated_at": "2026-10-20T02:30:57.499633-06:00",
+  "finished_at": "2026-10-20T02:30:57.499633-06:00",
+  "elapsed_seconds": 5.731917142868042
+}

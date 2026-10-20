@@ -1,0 +1,852 @@
+{
+  "pipeline": {
+    "raw_retrieved": 99,
+    "rss_retrieved": 0,
+    "rss_unique": 0,
+    "rss_duplicates_removed": 0,
+    "successful_feeds": 0,
+    "failed_feeds": 0,
+    "feed_results": [],
+    "api_retrieved": 0,
+    "source_backend": "",
+    "fetched": 99,
+    "normalized": 99,
+    "added": 0,
+    "updated": 0,
+    "duplicates": 0,
+    "cross_provider_duplicates": 0,
+    "unique_available": 0,
+    "unique_imported": 0,
+    "filtered_by_role": 98,
+    "deterministic_rejects": 99,
+    "deterministic_reject_reasons": {
+      "outside impromptu selections": 99
+    },
+    "jooble_excluded": 0,
+    "rejected_history_excluded": 0,
+    "missing_content_excluded": 0,
+    "dead_url_excluded": 0,
+    "source_results_limited": 0,
+    "url_review_excluded": 0,
+    "url_validated": 0,
+    "new_job_ids": [],
+    "existing_job_ids": [],
+    "changed_job_ids": [],
+    "eligibility_includes_usa": 0,
+    "eligibility_worldwide": 0,
+    "example_jobs": [],
+    "backend_qualifying": {},
+    "backend_added": {}
+  },
+  "record_decisions": [
+    {
+      "source": "remoteok",
+      "source_job_id": "1137542",
+      "url": "https://remoteOK.com/remote-jobs/remote-graduate-transport-planner-curtins-1137542",
+      "company": "Curtins",
+      "title": "Graduate Transport Planner",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137541",
+      "url": "https://remoteOK.com/remote-jobs/remote-key-account-manager-danish-market-native-speaker-copenhagen-packmatic-gmbh-1137541",
+      "company": "Packmatic GmbH",
+      "title": "Key Account Manager Danish Market Native Speaker Copenhagen",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137540",
+      "url": "https://remoteOK.com/remote-jobs/remote-technical-account-manager-yuno-1137540",
+      "company": "Yuno",
+      "title": "Technical Account Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137539",
+      "url": "https://remoteOK.com/remote-jobs/remote-commercial-account-manager-latam-apryse-1137539",
+      "company": "Apryse",
+      "title": "Commercial Account Manager LATAM",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137538",
+      "url": "https://remoteOK.com/remote-jobs/remote-software-engineer-ai-coding-tasks-askable-1137538",
+      "company": "Askable",
+      "title": "Software Engineer AI Coding Tasks",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137537",
+      "url": "https://remoteOK.com/remote-jobs/remote-head-of-technology-sanctuary-computer-1137537",
+      "company": "Sanctuary Computer",
+      "title": "Head of Technology",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137536",
+      "url": "https://remoteOK.com/remote-jobs/remote-director-of-product-management-and-it-operations-self-bill-pro-1137536",
+      "company": "Self Bill Pro",
+      "title": "Director of Product Management and IT Operations",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137535",
+      "url": "https://remoteOK.com/remote-jobs/remote-sap-re-fx-consultant-yopeso-romania-srl-1137535",
+      "company": "Yopeso Romania SRL",
+      "title": "SAP RE FX Consultant",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137534",
+      "url": "https://remoteOK.com/remote-jobs/remote-apac-python-kodland-1137534",
+      "company": "Kodland",
+      "title": "APAC Python",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137531",
+      "url": "https://remoteOK.com/remote-jobs/remote-associate-data-scientist-algaecal-1137531",
+      "company": "AlgaeCal",
+      "title": "Associate Data Scientist",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137530",
+      "url": "https://remoteOK.com/remote-jobs/remote-director-of-it-and-workplace-hippocratic-ai-1137530",
+      "company": "Hippocratic AI",
+      "title": "Director of IT and Workplace",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137529",
+      "url": "https://remoteOK.com/remote-jobs/remote-customer-success-associate-voltus-1137529",
+      "company": "Voltus",
+      "title": "Customer Success Associate",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137528",
+      "url": "https://remoteOK.com/remote-jobs/remote-account-manager-mid-market-allego-1137528",
+      "company": "Allego",
+      "title": "Account Manager Mid Market",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137527",
+      "url": "https://remoteOK.com/remote-jobs/remote-senior-software-engineer-ii-applied-ai-wrapbook-1137527",
+      "company": "Wrapbook",
+      "title": "Senior Software Engineer II Applied AI",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137525",
+      "url": "https://remoteOK.com/remote-jobs/remote-director-us-tax-accounting-35344-manila-recruitment-1137525",
+      "company": "Manila Recruitment",
+      "title": "Director US Tax & Accounting #35344",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137524",
+      "url": "https://remoteOK.com/remote-jobs/remote-project-and-quality-administrator-work-from-home-dayshift-twoconnect-1137524",
+      "company": "Twoconnect",
+      "title": "Project and Quality Administrator Work From Home Dayshift",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137523",
+      "url": "https://remoteOK.com/remote-jobs/remote-sr-react-native-somnio-software-1137523",
+      "company": "Somnio Software",
+      "title": "Sr REACT NATIVE",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137522",
+      "url": "https://remoteOK.com/remote-jobs/remote-contracts-manager-federal-akicita-federal-llc-1137522",
+      "company": "Akicita Federal, LLC",
+      "title": "Contracts Manager Federal",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137521",
+      "url": "https://remoteOK.com/remote-jobs/remote-federal-account-manager-client-relationships-akicita-federal-llc-1137521",
+      "company": "Akicita Federal, LLC",
+      "title": "Federal Account Manager Client Relationships",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137514",
+      "url": "https://remoteOK.com/remote-jobs/remote-payment-operations-specialist-utopia-1137514",
+      "company": "Utopia",
+      "title": "Payment Operations Specialist",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137513",
+      "url": "https://remoteOK.com/remote-jobs/remote-ai-trainer-imerit-technology-1137513",
+      "company": "iMerit Technology",
+      "title": "AI Trainer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137512",
+      "url": "https://remoteOK.com/remote-jobs/remote-customer-support-specialist-ultimate-marketing-1137512",
+      "company": "Ultimate Marketing",
+      "title": "Customer Support Specialist",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137510",
+      "url": "https://remoteOK.com/remote-jobs/remote-principal-product-manager-strategic-initiatives-thyme-care-1137510",
+      "company": "Thyme Care",
+      "title": "Principal Product Manager Strategic Initiatives",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137509",
+      "url": "https://remoteOK.com/remote-jobs/remote-client-engagement-representative-work-from-home-ao-garcia-agency-1137509",
+      "company": "AO Garcia Agency",
+      "title": "Client Engagement Representative Work From Home",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137508",
+      "url": "https://remoteOK.com/remote-jobs/remote-principal-software-engineer-vytalize-health-1137508",
+      "company": "Vytalize Health",
+      "title": "Principal Software Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137507",
+      "url": "https://remoteOK.com/remote-jobs/remote-graphic-designer-video-editor-bluetuskr-1137507",
+      "company": "BlueTuskr",
+      "title": "Graphic Designer & Video Editor",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137506",
+      "url": "https://remoteOK.com/remote-jobs/remote-technical-customer-support-quickmail-1137506",
+      "company": "QuickMail",
+      "title": "Technical Customer Support",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137498",
+      "url": "https://remoteOK.com/remote-jobs/remote-senior-sales-executive-central-region-simspace-corporation-1137498",
+      "company": "SimSpace Corporation",
+      "title": "Senior Sales Executive Central Region",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137497",
+      "url": "https://remoteOK.com/remote-jobs/remote-product-design-director-midnite-1137497",
+      "company": "Midnite",
+      "title": "Product Design Director",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137488",
+      "url": "https://remoteOK.com/remote-jobs/remote-marketing-and-sales-administrator-hunt-st-1137488",
+      "company": "Hunt St",
+      "title": "Marketing and Sales Administrator",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137482",
+      "url": "https://remoteOK.com/remote-jobs/remote-technical-account-manager-deuna-1137482",
+      "company": "DEUNA",
+      "title": "Technical Account Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137481",
+      "url": "https://remoteOK.com/remote-jobs/remote-manager-clinical-data-management-edetek-1137481",
+      "company": "EDETEK",
+      "title": "Manager Clinical Data Management",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137480",
+      "url": "https://remoteOK.com/remote-jobs/remote-junior-sales-development-representative-it-industry-huzzle-1137480",
+      "company": "Huzzle",
+      "title": "Junior Sales Development Representative IT Industry",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137479",
+      "url": "https://remoteOK.com/remote-jobs/remote-academic-dean-for-miaprep-online-academy-of-ohio-miaplaza-1137479",
+      "company": "Miaplaza",
+      "title": "Academic Dean for MiaPrep Online Academy of Ohio",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137478",
+      "url": "https://remoteOK.com/remote-jobs/remote-product-engineering-lead-tether-operations-limited-1137478",
+      "company": "Tether Operations Limited",
+      "title": "Product Engineering Lead",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137475",
+      "url": "https://remoteOK.com/remote-jobs/remote-senior-react-full-stack-developer-lemon-io-1137475",
+      "company": "Lemon.io",
+      "title": "Senior React Full stack Developer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137474",
+      "url": "https://remoteOK.com/remote-jobs/remote-product-design-lead-fuel50-1137474",
+      "company": "Fuel50",
+      "title": "Product Design Lead",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137469",
+      "url": "https://remoteOK.com/remote-jobs/remote-telefondienst-fur-tierarztpraxis-neuruppin-o-tierarzt-plus-partner-1137469",
+      "company": "Tierarzt Plus Partner",
+      "title": "Telefondienst f\u00c3\u00bcr Tierarztpraxis Neuruppin o",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137466",
+      "url": "https://remoteOK.com/remote-jobs/remote-project-manager-spiralyze-1137466",
+      "company": "Spiralyze",
+      "title": "Project Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137465",
+      "url": "https://remoteOK.com/remote-jobs/remote-platform-and-integration-engineer-security-telemetry-redmimicry-1137465",
+      "company": "RedMimicry",
+      "title": "Platform and Integration Engineer Security Telemetry",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137463",
+      "url": "https://remoteOK.com/remote-jobs/remote-federal-business-development-director-fortanix-1137463",
+      "company": "Fortanix",
+      "title": "Federal Business Development Director",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137461",
+      "url": "https://remoteOK.com/remote-jobs/remote-head-of-operations-leverage-live-local-1137461",
+      "company": "Leverage Live Local",
+      "title": "Head of Operations",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137451",
+      "url": "https://remoteOK.com/remote-jobs/remote-enterprise-sales-development-representative-toptal-1137451",
+      "company": "Toptal",
+      "title": "Enterprise Sales Development Representative",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137439",
+      "url": "https://remoteOK.com/remote-jobs/remote-client-advisor-toptal-1137439",
+      "company": "Toptal",
+      "title": "Client Advisor",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137434",
+      "url": "https://remoteOK.com/remote-jobs/remote-director-payment-integrity-siho-insurance-services-1137434",
+      "company": "SIHO Insurance Services ",
+      "title": "Director Payment Integrity",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137431",
+      "url": "https://remoteOK.com/remote-jobs/remote-danish-speaking-solutions-consultant-work-sofia-bulgaria-mercier-consultancy-group-1137431",
+      "company": "Mercier Consultancy Group",
+      "title": "Danish Speaking Solutions Consultant Work Sofia Bulgaria",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137429",
+      "url": "https://remoteOK.com/remote-jobs/remote-mecanico-automotriz-diagnostico-y-presupuestos-workana-1137429",
+      "company": "Workana",
+      "title": "Mec\u00c3\u00a1nico Automotriz Diagn\u00c3\u00b3stico y Presupuestos",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137428",
+      "url": "https://remoteOK.com/remote-jobs/remote-video-data-annotator-imerit-technology-1137428",
+      "company": "iMerit Technology",
+      "title": "Video Data Annotator",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137427",
+      "url": "https://remoteOK.com/remote-jobs/remote-software-engineer-prenosis-1137427",
+      "company": "Prenosis",
+      "title": "Software Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137421",
+      "url": "https://remoteOK.com/remote-jobs/remote-technical-product-manager-ai-stockbroking-app-bjak-1137421",
+      "company": "Bjak ",
+      "title": "Technical Product Manager AI Stockbroking App",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137418",
+      "url": "https://remoteOK.com/remote-jobs/remote-junior-digital-assets-operations-analyst-omega-enterprises-1137418",
+      "company": "Omega Enterprises",
+      "title": "Junior Digital Assets Operations Analyst",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137415",
+      "url": "https://remoteOK.com/remote-jobs/remote-freelance-grabacion-de-tareas-cotidianas-para-proyecto-de-ia-mindrift-data-annotation-1137415",
+      "company": "Mindrift - Data annotation",
+      "title": "Freelance grabaci\u00c3\u00b3n de tareas cotidianas para proyecto de IA",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137414",
+      "url": "https://remoteOK.com/remote-jobs/remote-senior-growth-product-manager-ai-native-magic-eden-1137414",
+      "company": "Magic Eden",
+      "title": "Senior Growth Product Manager AI Native",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137412",
+      "url": "https://remoteOK.com/remote-jobs/remote-people-operations-coordinator-ashby-1137412",
+      "company": "Ashby",
+      "title": "People Operations Coordinator",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137411",
+      "url": "https://remoteOK.com/remote-jobs/remote-senior-net-software-engineer-okwhen-1137411",
+      "company": "OkWhen",
+      "title": "Senior .NET Software Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137410",
+      "url": "https://remoteOK.com/remote-jobs/remote-frontend-engineer-bjak-1137410",
+      "company": "Bjak ",
+      "title": "Frontend Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137408",
+      "url": "https://remoteOK.com/remote-jobs/remote-software-deployment-engineer-kpi-solutions-1137408",
+      "company": "KPI Solutions",
+      "title": "Software Deployment Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137407",
+      "url": "https://remoteOK.com/remote-jobs/remote-vp-pricing-packaging-delinea-1137407",
+      "company": "Delinea",
+      "title": "VP Pricing & Packaging",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137406",
+      "url": "https://remoteOK.com/remote-jobs/remote-customer-success-manager-mexico-jumpcloud-1137406",
+      "company": "JumpCloud",
+      "title": "Customer Success Manager Mexico",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137405",
+      "url": "https://remoteOK.com/remote-jobs/remote-senior-shopify-developer-sanctuary-computer-1137405",
+      "company": "Sanctuary Computer",
+      "title": "Senior Shopify Developer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137400",
+      "url": "https://remoteOK.com/remote-jobs/remote-golang-kubernetes-engineer-arango-1137400",
+      "company": "Arango",
+      "title": "Golang Kubernetes Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137394",
+      "url": "https://remoteOK.com/remote-jobs/remote-sr-solutions-architect-extrahop-1137394",
+      "company": "ExtraHop",
+      "title": "Sr Solutions Architect",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137388",
+      "url": "https://remoteOK.com/remote-jobs/remote-technical-product-lead-ai-finance-app-bjak-1137388",
+      "company": "Bjak ",
+      "title": "Technical Product Lead AI Finance App",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137387",
+      "url": "https://remoteOK.com/remote-jobs/remote-software-engineer-mirantis-1137387",
+      "company": "Mirantis",
+      "title": "Software Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137381",
+      "url": "https://remoteOK.com/remote-jobs/remote-marketing-student-assistant-copenhagen-optimization-1137381",
+      "company": "Copenhagen Optimization",
+      "title": "Marketing Student Assistant",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137379",
+      "url": "https://remoteOK.com/remote-jobs/remote-senior-communications-officer-strategic-communications-givewell-1137379",
+      "company": "GiveWell",
+      "title": "Senior Communications Officer Strategic Communications",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137375",
+      "url": "https://remoteOK.com/remote-jobs/remote-external-data-specialist-eclinical-solutions-1137375",
+      "company": "eClinical Solutions",
+      "title": "External Data Specialist",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137373",
+      "url": "https://remoteOK.com/remote-jobs/remote-business-development-manager-libertex-group-1137373",
+      "company": "Libertex Group",
+      "title": "Business Development Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137374",
+      "url": "https://remoteOK.com/remote-jobs/remote-quality-dispense-technician-north-thatchers-cider-1137374",
+      "company": "Thatchers Cider",
+      "title": "Quality Dispense Technician North",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137224",
+      "url": "https://remoteOK.com/remote-jobs/remote-ai-engineer-data-apis-benzinga-1137224",
+      "company": "Benzinga",
+      "title": "AI Engineer Data APIs",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137162",
+      "url": "https://remoteOK.com/remote-jobs/remote-principal-engineer-the-ai-whistleblower-initiative-1137162",
+      "company": "The AI Whistleblower Initiative",
+      "title": "Principal Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137156",
+      "url": "https://remoteOK.com/remote-jobs/remote-senior-level-designer-blackbird-interactive-1137156",
+      "company": "Blackbird Interactive",
+      "title": "Senior Level Designer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137155",
+      "url": "https://remoteOK.com/remote-jobs/remote-oracle-fusion-cloud-lead-logistics-supply-chain-management-tessera-labs-1137155",
+      "company": "Tessera Labs",
+      "title": "Oracle Fusion Cloud Lead \u00e2\u0080\u0094 Logistics & Supply Chain Management",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137194",
+      "url": "https://remoteOK.com/remote-jobs/remote-renewables-project-scheduler-transportation-partners-amp-logistics-1137194",
+      "company": "Transportation Partners &amp; Logistics",
+      "title": "Renewables Project Scheduler",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137114",
+      "url": "https://remoteOK.com/remote-jobs/remote-senior-backend-engineer-build-ai-agents-salesforge-1137114",
+      "company": "Salesforge",
+      "title": "Senior Backend Engineer Build AI Agents",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137072",
+      "url": "https://remoteOK.com/remote-jobs/remote-senior-specialist-global-qms-orca-bio-1137072",
+      "company": "Orca Bio",
+      "title": "Senior Specialist Global QMS",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1137062",
+      "url": "https://remoteOK.com/remote-jobs/remote-desarrollador-full-stack-kruger-nearshore-llc-rekluti-1137062",
+      "company": "Kruger NearShore LLC - Rekluti",
+      "title": "DESARROLLADOR FULL STACK",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136987",
+      "url": "https://remoteOK.com/remote-jobs/remote-consultant-implementation-engineer-harbor-1136987",
+      "company": "Harbor",
+      "title": "Consultant Implementation Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136950",
+      "url": "https://remoteOK.com/remote-jobs/remote-marketing-operations-specialist-engine-1136950",
+      "company": "Engine",
+      "title": "Marketing Operations Specialist",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136949",
+      "url": "https://remoteOK.com/remote-jobs/remote-team-lead-education-chaos-1136949",
+      "company": "Chaos",
+      "title": "Team Lead Education",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136948",
+      "url": "https://remoteOK.com/remote-jobs/remote-digital-workplace-automation-specialist-dreem-health-1136948",
+      "company": "Dreem Health",
+      "title": "Digital Workplace & Automation Specialist",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136937",
+      "url": "https://remoteOK.com/remote-jobs/remote-solutions-delivery-manager-benchling-1136937",
+      "company": "Benchling",
+      "title": "Solutions Delivery Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136861",
+      "url": "https://remoteOK.com/remote-jobs/remote-hotline-paralegal-legal-services-nyc-1136861",
+      "company": "Legal Services NYC",
+      "title": "Hotline Paralegal",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136844",
+      "url": "https://remoteOK.com/remote-jobs/remote-senior-contracts-and-budget-associate-precision-medicine-group-1136844",
+      "company": "Precision Medicine Group",
+      "title": "Senior Contracts and Budget Associate",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136841",
+      "url": "https://remoteOK.com/remote-jobs/remote-lead-product-designer-highlevel-1136841",
+      "company": "HighLevel",
+      "title": "Lead Product Designer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136798",
+      "url": "https://remoteOK.com/remote-jobs/remote-member-of-technical-staff-engineering-physical-superintelligence-1136798",
+      "company": "Physical Superintelligence",
+      "title": "Member of Technical Staff Engineering",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136797",
+      "url": "https://remoteOK.com/remote-jobs/remote-strategic-account-executive-lodging-freedompay-1136797",
+      "company": "FreedomPay",
+      "title": "Strategic Account Executive Lodging",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136796",
+      "url": "https://remoteOK.com/remote-jobs/remote-staff-software-development-engineer-sdm-delinea-1136796",
+      "company": "Delinea",
+      "title": "Staff Software Development Engineer SDM",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136795",
+      "url": "https://remoteOK.com/remote-jobs/remote-senior-software-engineer-case-execution-pivotal-health-1136795",
+      "company": "Pivotal Health",
+      "title": "Senior Software Engineer Case Execution",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136701",
+      "url": "https://remoteOK.com/remote-jobs/remote-qa-tester-entry-level-ace-it-careers-1136701",
+      "company": "Ace IT Careers",
+      "title": "QA Tester Entry Level",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136687",
+      "url": "https://remoteOK.com/remote-jobs/remote-brand-protection-marketplace-compliance-analyst-multiplymii-1136687",
+      "company": "MultiplyMii",
+      "title": "Brand Protection & Marketplace Compliance Analyst",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136625",
+      "url": "https://remoteOK.com/remote-jobs/remote-gardener-handyman-driver-nt-health-1136625",
+      "company": "NT Health",
+      "title": "Gardener Handyman Driver",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136857",
+      "url": "https://remoteOK.com/remote-jobs/remote-real-time-drilling-ops-centre-analyst-slb-1136857",
+      "company": "SLB",
+      "title": "Real Time Drilling Ops Centre Analyst",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136878",
+      "url": "https://remoteOK.com/remote-jobs/remote-engineer-estimator-crystalia-glass-llc-1136878",
+      "company": "Crystalia Glass LLC",
+      "title": "Engineer Estimator",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136570",
+      "url": "https://remoteOK.com/remote-jobs/remote-software-engineer-iii-mobile-stone-1136570",
+      "company": "Stone",
+      "title": "Software Engineer III Mobile",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136569",
+      "url": "https://remoteOK.com/remote-jobs/remote-software-engineer-ii-golang-stone-1136569",
+      "company": "Stone",
+      "title": "Software Engineer II Golang",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136568",
+      "url": "https://remoteOK.com/remote-jobs/remote-p2p-bd-assistant-bybit-1136568",
+      "company": "Bybit",
+      "title": "P2P BD Assistant",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136592",
+      "url": "https://remoteOK.com/remote-jobs/remote-surveyor-i-american-bureau-of-shipping-abs-1136592",
+      "company": "American Bureau of Shipping (ABS)",
+      "title": "Surveyor I",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "remoteok",
+      "source_job_id": "1136447",
+      "url": "https://remoteOK.com/remote-jobs/remote-staff-software-engineer-evolve-1136447",
+      "company": "Evolve",
+      "title": "Staff Software Engineer",
+      "reason": "outside impromptu selections"
+    }
+  ],
+  "queries_pages": [
+    {
+      "kind": "full feed",
+      "status": "completed",
+      "parsed": 99
+    }
+  ],
+  "board_errors": [],
+  "page_exclusions": [],
+  "collection_limits": [],
+  "firecrawl_requests": 0,
+  "errors": "",
+  "health": {
+    "status": "success",
+    "found": 99,
+    "detail": ""
+  }
+}

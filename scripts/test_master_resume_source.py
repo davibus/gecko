@@ -25,13 +25,13 @@ class MasterResumeSourceTests(unittest.TestCase):
         self.assertEqual(v2.employment_dates(intercon), "Feb 2018–Feb 2020")
 
     def test_all_runtime_sources_and_project_config_agree(self):
-        expected = v2.ROOT / "input/master-resume/master-resume-v2.txt"
+        expected = v2.ROOT / "input/master-resume/master-resume-v4.docx"
         for source in (v2.MASTER, candidate_profile.MASTER_RESUME,
                        resume_evidence.MASTER_RESUME, scout.MASTER_RESUME):
             self.assertEqual(source.resolve(), expected.resolve())
         config = json.loads((v2.ROOT / "project.json").read_text(encoding="utf-8-sig"))
         self.assertEqual((v2.ROOT / config["master_resume"]).resolve(), expected.resolve())
-        self.assertIn("input/master-resume/master-resume-v2.txt",
+        self.assertIn("input/master-resume/master-resume-v4.docx",
                       (v2.ROOT / "scripts/gecko_daily.py").read_text(encoding="utf-8-sig"))
 
     def test_active_instructions_name_the_new_source(self):
@@ -41,7 +41,7 @@ class MasterResumeSourceTests(unittest.TestCase):
                          "openclaw/application-answers.md"):
             with self.subTest(file=relative):
                 text = (v2.ROOT / relative).read_text(encoding="utf-8-sig")
-                self.assertIn("master-resume-v2.txt", text)
+                self.assertIn("master-resume-v4.docx", text)
                 self.assertNotIn("Dave-Call-" + "Resume.txt", text)
 
     def test_legacy_source_plan_rejected_even_with_matching_content_hash(self):
@@ -53,7 +53,7 @@ class MasterResumeSourceTests(unittest.TestCase):
     def test_missing_new_source_does_not_use_existing_old_txt(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
-            canonical = root / "input/master-resume/master-resume-v2.txt"
+            canonical = root / "input/master-resume/master-resume-v4.docx"
             canonical.parent.mkdir(parents=True)
             legacy = canonical.parent / ("Dave-Call-" + "Resume.txt")
             legacy.write_text("Old approved facts must not be a fallback", encoding="utf-8")
@@ -99,9 +99,34 @@ class MasterResumeSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Conflicting employment facts.*Acme"):
             v2._mixed_archive_jobs(lines)
 
+    def test_abbreviated_dates_and_dash_headings_are_source_preserved(self):
+        lines = ["Marketing Manager - Acme - Provo, UT\tJan 2020 – June 2024",
+                 "• Built verified weekly reporting for marketing channels."]
+        jobs = v2._mixed_archive_jobs(lines)
+        self.assertEqual(jobs[0]["title"], "Marketing Manager")
+        self.assertEqual(jobs[0]["dates"], "January 2020 - June 2024")
+
+    def test_incomplete_heading_stops_instead_of_omitting_role(self):
+        lines = ["Intercon Inc\tFeb 2018 - Feb 2020"]
+        with self.assertRaisesRegex(ValueError, "Incomplete work-history heading.*Intercon"):
+            v2._mixed_archive_jobs(lines)
+
+    def test_user_approved_company_only_heading_does_not_invent_title(self):
+        jobs = v2._mixed_archive_jobs(["Intercon Inc - Salt Lake City, UT\tFeb 2018 - Feb 2020"])
+        self.assertEqual(jobs[0]["title"], "")
+        self.assertEqual(v2.employment_heading(jobs[0]), "Intercon Inc - Salt Lake City, UT")
+
+    def test_employer_punctuation_does_not_hide_conflicting_dates(self):
+        lines = ["Analyst - 1-800-Contacts - Draper, UT\tNov 2022 – June 2024",
+                 "Analyst | 1-800 Contacts", "Draper, UT | November 2022 - June 2026"]
+        with self.assertRaisesRegex(ValueError, "Conflicting employment facts.*1-800 Contacts"):
+            v2._mixed_archive_jobs(lines)
+
     def test_v2_identity_strips_bullet_markers_and_keeps_source_header(self):
         identity = v2.master_identity()
-        self.assertEqual(identity["headline"], v2.master_lines()[1])
+        lines = [line.strip() for line in v2.master_lines() if line.strip()]
+        name_index = next(i for i, line in enumerate(lines) if line.casefold() == "dave call")
+        self.assertEqual(identity["headline"], lines[name_index + 1])
         self.assertFalse(identity["summary"].startswith("•"))
         self.assertIn("Digital marketing", identity["summary"])
 

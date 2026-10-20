@@ -1,8 +1,9 @@
 import json,subprocess,re,sys
 from pathlib import Path
 ROOT=Path('/mnt/c/gecko_main');Q=ROOT/'openclaw/application-queue';cli='/home/dcall/.openclaw/bin/openclaw';jid=sys.argv[1];target='retry-'+jid
+import sys; sys.path.insert(0,str(ROOT/'job-scout')); from resume_source import read_master_text
 assert jid in ['1275','1276','1277'];p=json.loads((Q/jid/'application-package.json').read_text());assert json.loads((Q/jid/'submission-result.json').read_text())['outcome']!='submitted'
-answers=(ROOT/'openclaw/application-answers.md').read_text();assert 'AUTH-01' in answers and 'AUTH-02' in answers;master=(ROOT/'input/master-resume/master-resume-v2.txt').read_text();assert 'American Fork, UT' in master
+answers=(ROOT/'openclaw/application-answers.md').read_text();assert 'AUTH-01' in answers and 'AUTH-02' in answers;master=read_master_text(ROOT/'input/master-resume/master-resume-v4.docx');assert 'American Fork, UT' in master
 def call(args):
  r=subprocess.run([cli,'browser']+args+['--json'],capture_output=True,text=True,timeout=90)
  if r.returncode:raise RuntimeError(r.stderr or r.stdout)

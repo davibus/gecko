@@ -3,8 +3,9 @@ from pathlib import Path
 from datetime import datetime
 from zoneinfo import ZoneInfo
 ROOT=Path('/mnt/c/gecko_main');Q=ROOT/'openclaw/application-queue';cli='/home/dcall/.openclaw/bin/openclaw';jid=sys.argv[1];target='retry-'+jid
+import sys; sys.path.insert(0,str(ROOT/'job-scout')); from resume_source import read_master_text
 assert jid in ['1295','1296','1297','1298','1299'];p=json.loads((Q/jid/'application-package.json').read_text());e=json.loads((Q/jid/'submission-result.json').read_text());assert p['company']=='Engine' and e['outcome']=='blocked';assert e['uploaded_filename']==Path(p['verified_resume_wsl_path']).name
-answers=(ROOT/'openclaw/application-answers.md').read_text();assert '$70,000' in answers and 'AUTH-01' in answers;master=(ROOT/'input/master-resume/master-resume-v2.txt').read_text();assert 'American Fork, UT' in master
+answers=(ROOT/'openclaw/application-answers.md').read_text();assert '$70,000' in answers and 'AUTH-01' in answers;master=read_master_text(ROOT/'input/master-resume/master-resume-v4.docx');assert 'American Fork, UT' in master
 known=['What are your salary expectations?','Would you, now or in the future, require immigration sponsorship for work authorization?','Are you legally authorized to work in the country where this position is based?'];assert set(e['blocking_questions'])==set(known) or (jid=='1297' and set(e['blocking_questions'])==set(known+['How many years of experience do you have?']))
 def call(args):
  r=subprocess.run([cli,'browser']+args+['--json'],capture_output=True,text=True,timeout=90)

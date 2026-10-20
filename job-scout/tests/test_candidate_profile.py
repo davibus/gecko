@@ -14,6 +14,14 @@ from unittest.mock import Mock, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from docx import Document
+from zipfile import ZipFile
+
+def write_master(path, text):
+    doc = Document()
+    doc.add_paragraph(text)
+    doc.save(path)
+
 import candidate_profile
 from ai_evaluation import screening_models, validate_candidate_profile_for_ai
 import scout
@@ -23,8 +31,8 @@ class CandidateProfileValidationTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.master = Path(self.temp.name) / "master.txt"
-        self.master.write_bytes(b"Reviewed source\n")
+        self.master = Path(self.temp.name) / "master.docx"
+        write_master(self.master, "Reviewed source")
         self.profile_path = Path(self.temp.name) / "profile.json"
         self.profile = json.loads(candidate_profile.DEFAULT_PROFILE.read_text(encoding="utf-8-sig"))
         self.profile["master_resume_sha256"] = hashlib.sha256(self.master.read_bytes()).hexdigest()
@@ -40,7 +48,7 @@ class CandidateProfileValidationTests(unittest.TestCase):
         self.assertEqual(candidate_profile.load_candidate_profile(self.profile_path), self.profile)
 
     def test_changed_content_is_rejected(self):
-        self.master.write_bytes(b"Changed source\n")
+        write_master(self.master, "Changed source")
         with self.assertRaisesRegex(ValueError, "candidate profile is stale"):
             candidate_profile.load_candidate_profile(self.profile_path)
 
@@ -53,12 +61,11 @@ class CandidateProfileValidationTests(unittest.TestCase):
                 with self.assertRaises((ValueError, OSError)):
                     candidate_profile.load_candidate_profile(self.profile_path)
 
-    def test_line_endings_and_bom_are_part_of_fingerprint(self):
-        for raw in (b"Reviewed source\r\n", b"\xef\xbb\xbfReviewed source\n"):
-            with self.subTest(raw=raw):
-                self.master.write_bytes(raw)
-                with self.assertRaisesRegex(ValueError, "candidate profile is stale"):
-                    candidate_profile.load_candidate_profile(self.profile_path)
+    def test_word_package_changes_are_part_of_fingerprint(self):
+        with ZipFile(self.master, "a") as package:
+            package.comment = b"Package changed without changing visible content"
+        with self.assertRaisesRegex(ValueError, "candidate profile is stale"):
+            candidate_profile.load_candidate_profile(self.profile_path)
 
     def test_matching_hash_does_not_bypass_required_fields(self):
         del self.profile["leadership"]

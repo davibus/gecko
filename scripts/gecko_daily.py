@@ -95,7 +95,7 @@ def validate_live_targets(tracker: GoogleTracker, run_id: str, run_date: str,
         if resume_ids is not None:
             validate_requested_ids(tracker,resume_ids)
         queue = read_queue(tracker,eligible_scout_ids=resume_ids,auto_approve_geographic=True)
-        for name in ('master-resume-v2.txt','MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf'):
+        for name in ('master-resume-v4.docx','MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf'):
             if not (ROOT/'input/master-resume'/name).is_file():
                 raise RuntimeError('Authoritative resume input is missing')
         return {'backend':'sqlite','queue_preflight':{'eligible':len(queue.pending),'already_created':len(queue.already_created)}}
@@ -113,7 +113,7 @@ def validate_live_targets(tracker: GoogleTracker, run_id: str, run_date: str,
         result["resume_id_rows"] = validate_requested_ids(tracker, resume_ids)
     queue = read_queue(tracker, eligible_scout_ids=resume_ids,
                        auto_approve_geographic=True)
-    if not (ROOT / "input/master-resume/master-resume-v2.txt").is_file():
+    if not (ROOT / "input/master-resume/master-resume-v4.docx").is_file():
         raise RuntimeError("Authoritative master resume is missing")
     if not (ROOT / "input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf").is_file():
         raise RuntimeError("Authoritative resume model is missing")

@@ -1,16 +1,30 @@
 """Summary evidence, relevance, and saved-content regression checks."""
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 from docx import Document
 import resume_summary as summary
 
-MASTER = Path(__file__).resolve().parents[1] / "input/master-resume/master-resume-v2.txt"
+MASTER = Path(__file__).resolve().parents[1] / "input/master-resume/master-resume-v4.docx"
 
 
 class SummaryTests(unittest.TestCase):
+    def test_codex_plan_does_not_require_unused_preset_summary(self):
+        import gecko_v2
+        with tempfile.TemporaryDirectory() as folder:
+            listing = Path(folder)/'example.md'
+            listing.write_text('# Senior Product Marketing Manager\n\n- **Company:** Example\n- **Job Number:** example\n- **URL:** https://example.com/job/example\n\n## Job description\n\nOwn marketing strategy and paid search campaigns.',encoding='utf-8')
+            with patch.object(summary,'choose',side_effect=ValueError('No substantively distinct summary remains')) as choose:
+                plan = gecko_v2.create_plan(listing,defer_summary=True)
+                choose.assert_not_called()
+                self.assertEqual(plan['resume']['summary'],'')
+                with self.assertRaisesRegex(ValueError,'distinct summary'):
+                    gecko_v2.create_plan(listing)
+
     def setUp(self):
-        self.source = MASTER.read_text(encoding="utf-8-sig")
+        from resume_source import read_master_text
+        self.source = read_master_text(MASTER)
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.folder = Path(self.temp.name)

@@ -5,10 +5,11 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+from resume_source import read_master_text
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MASTER_RESUME = ROOT / "input" / "master-resume" / "master-resume-v2.txt"
+MASTER_RESUME = ROOT / "input" / "master-resume" / "master-resume-v4.docx"
 DEFAULT_PROFILE = Path(__file__).resolve().parent / "preferences" / "candidate-profile.json"
 
 
@@ -22,7 +23,7 @@ def load_candidate_profile(path: str | Path | None = None) -> dict:
     profile = json.loads(target.read_text(encoding="utf-8-sig"))
     try:
         source_bytes = MASTER_RESUME.read_bytes()
-        source_text = source_bytes.decode("utf-8-sig")
+        source_text = read_master_text(MASTER_RESUME)
     except (OSError, UnicodeError) as error:
         raise OSError(f"Required Gecko master resume is unreadable: {MASTER_RESUME}") from error
     if not source_text.strip():

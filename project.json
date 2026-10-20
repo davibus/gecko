@@ -1,7 +1,7 @@
 {
   "name": "Gecko Main",
   "purpose": "Job discovery, resume tailoring and generation, and application tracking",
-  "master_resume": "input/master-resume/master-resume-v2.txt",
+  "master_resume": "input/master-resume/master-resume-v4.docx",
   "formatting_model": "input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf",
   "resume_output_dir": "output/resumes",
   "job_tracker": "Google Sheets",

@@ -1,9 +1,10 @@
 import json,subprocess,sys,re,time
 from pathlib import Path
 ROOT=Path('/mnt/c/gecko_main');Q=ROOT/'openclaw/application-queue';cli='/home/dcall/.openclaw/bin/openclaw';jid='1309';target='retry-'+jid
+import sys; sys.path.insert(0,str(ROOT/'job-scout')); from resume_source import read_master_text
 p=json.loads((Q/jid/'application-package.json').read_text());e=json.loads((Q/jid/'submission-result.json').read_text());assert e['outcome']=='pending_user'
 assert 'Confirmed standing screening answers - 2026-10-13' in (ROOT/'openclaw/application-answers.md').read_text()
-assert 'American Fork, UT' in (ROOT/'input/master-resume/master-resume-v2.txt').read_text()
+assert 'American Fork, UT' in read_master_text(ROOT/'input/master-resume/master-resume-v4.docx')
 def call(args):
  for attempt in range(4):
   r=subprocess.run([cli,'browser']+args+['--json'],capture_output=True,text=True,timeout=90)

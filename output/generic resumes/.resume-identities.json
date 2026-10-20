@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "entries": {
+    "Dave-Call+Generic+Product-Management-and-Leadership+00001.docx": {
+      "id": "00001",
+      "key": "78d8e4fe4c9ae463da1eaa0579c20d751ad25527521f1a31467c5b517c32af91",
+      "primary": false,
+      "company": "Generic",
+      "title": "Product Management and Leadership",
+      "job_number": "generic-product-v4-20261019"
+    },
+    "Dave-Call+Generic+Project-Program-Management-and-Operations+00002.docx": {
+      "id": "00002",
+      "key": "3c160df44fa77ba4ac0029ee10518164a2b74cf92d64787b1cf121e5bd9d8c6e",
+      "primary": false,
+      "company": "Generic",
+      "title": "Project Program Management and Operations",
+      "job_number": "generic-program-v4-20261019"
+    }
+  }
+}

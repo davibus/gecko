@@ -50,6 +50,8 @@ def main(job_ids=None):
             ('Employer responses for selected jobs', 'selected_daily.py', ['responses', *scoped]),
             *STEPS[2:],
         ]
+    if os.environ.get("GECKO_SKIP_RESUMES") == "1" and job_ids is not None:
+        steps = [step for step in steps if not (step[1] == "selected_daily.py" and step[2][0] == "resumes")]
     folder = ROOT / "reports/gecko-command"
     folder.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now(ZoneInfo("America/Denver"))

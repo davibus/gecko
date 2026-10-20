@@ -1,0 +1,46 @@
+{
+  "run_id": "20261020T023053-1e232bb492",
+  "run_date": "2026-10-20",
+  "mode": "apply",
+  "started_at": "2026-10-20T02:30:53.665392-06:00",
+  "resume_ids": null,
+  "preflight": {
+    "backend": "sqlite",
+    "queue_preflight": {
+      "eligible": 22,
+      "already_created": 764
+    }
+  },
+  "counts": {
+    "Jobs Discovered": "Unavailable",
+    "New Jobs Added": "Unavailable",
+    "Duplicates Skipped": "Unavailable",
+    "Manual Indeed Rows Processed": "Unavailable",
+    "Manual Indeed Duplicates Flagged": "Unavailable",
+    "Manual Indeed Retrieval Failures": "Unavailable",
+    "Declined Rows Preserved": "Unavailable",
+    "Resumes Reused": "Unavailable",
+    "Resumes Created": "Unavailable",
+    "Resume Failures": "Unavailable",
+    "Workflow Failures": "Unavailable",
+    "Gmail Emails Checked": "Unavailable",
+    "Employer Responses Matched": "Unavailable",
+    "Response Rows Updated": "Unavailable"
+  },
+  "errors": [
+    "Daily workflow exited with code 1",
+    "Daily workflow stopped before its final summary"
+  ],
+  "attention": [
+    "Gmail check unavailable or failed",
+    "Daily workflow failed",
+    "inspect the local audit"
+  ],
+  "daily_run_written": true,
+  "daily_run_row": null,
+  "attention_counts": {
+    "completed_without_link": 0,
+    "missing_identity": 0
+  },
+  "completed_at": "2026-10-20T02:30:55.094035-06:00"
+}

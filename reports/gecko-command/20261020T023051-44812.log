@@ -1,0 +1,85 @@
+
+Gecko: Daily report
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+{
+  "backend": "sqlite",
+  "date": "2026-10-20",
+  "updated_at": "2026-10-20T08:30:52.982431+00:00",
+  "jobs": 1126,
+  "pending_resumes": 22,
+  "completed_resumes": 764,
+  "applied": 75,
+  "sources": {
+    "adzuna": 74,
+    "jobicy": 42,
+    "greenhouse": 293,
+    "lever": 209,
+    "workable": 151,
+    "weworkremotely": 26,
+    "remotive": 12,
+    "web-careers": 42,
+    "remoteok": 1,
+    "ashby": 207,
+    "linkedin": 3,
+    "Indeed": 8,
+    "indeed": 58
+  }
+}
+
+Gecko: Daily discovery, tracker sync, and tailored resumes
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+Error: The compact Job Scout candidate profile is stale; update it from the current master resume before running AI evaluation.
+Gecko daily 20261020T023053-1e232bb492: FAIL
+Jobs Discovered: Unavailable
+New Jobs Added: Unavailable
+Duplicates Skipped: Unavailable
+Manual Indeed Rows Processed: Unavailable
+Manual Indeed Duplicates Flagged: Unavailable
+Manual Indeed Retrieval Failures: Unavailable
+Declined Rows Preserved: Unavailable
+Resumes Reused: Unavailable
+Resumes Created: Unavailable
+Resume Failures: Unavailable
+Workflow Failures: Unavailable
+Gmail Emails Checked: Unavailable
+Employer Responses Matched: Unavailable
+Response Rows Updated: Unavailable
+Daily Run: row None
+Error: Daily workflow exited with code 1
+Error: Daily workflow stopped before its final summary
+Audit: reports/daily/2026-10-20/20261020T023053-1e232bb492.json
+
+Gecko: Back up the updated tracker
+{
+  "backend": "sqlite",
+  "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261020T023055761203.sqlite3",
+  "integrity": "ok",
+  "google_sheets_accessed": false
+}
+
+Gecko: Refresh daily results
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+{
+  "backend": "sqlite",
+  "date": "2026-10-20",
+  "updated_at": "2026-10-20T08:30:57.404945+00:00",
+  "jobs": 1126,
+  "pending_resumes": 22,
+  "completed_resumes": 764,
+  "applied": 75,
+  "sources": {
+    "adzuna": 74,
+    "jobicy": 42,
+    "greenhouse": 293,
+    "lever": 209,
+    "workable": 151,
+    "weworkremotely": 26,
+    "remotive": 12,
+    "web-careers": 42,
+    "remoteok": 1,
+    "ashby": 207,
+    "linkedin": 3,
+    "Indeed": 8,
+    "indeed": 58
+  }
+}

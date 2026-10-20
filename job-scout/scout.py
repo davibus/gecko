@@ -52,7 +52,7 @@ from url_resolution import resolve_and_store, url_status_label
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-MASTER_RESUME = PROJECT_ROOT / "input" / "master-resume" / "master-resume-v2.txt"
+MASTER_RESUME = PROJECT_ROOT / "input" / "master-resume" / "master-resume-v4.docx"
 DEFAULT_SOURCE = "adzuna"
 from impromptu_filters import CORE_PROVIDERS
 
@@ -1033,7 +1033,7 @@ def daily(args, store, preferences):
         print("Local tracker synchronization:", flush=True)
         print(json.dumps(sync_local(), indent=2), flush=True)
     queue_result = _daily_resume_runner(
-        eligible_ids, store, resume_ids=getattr(args, "resume_ids", None))
+        eligible_ids, store, dry_run=os.environ.get("GECKO_SKIP_RESUMES") == "1", resume_ids=getattr(args, "resume_ids", None))
     if not evaluator.enabled:
         run_result["Apply_Yes"] = (
             len(queue_result.snapshot.pending) + len(queue_result.snapshot.already_created)

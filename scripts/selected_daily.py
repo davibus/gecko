@@ -13,7 +13,7 @@ from generate_apply_queue import validate_requested_ids, read_queue, run_queue, 
 
 def preflight(tracker, ids):
     validate_requested_ids(tracker, ids)
-    for name in ('master-resume-v2.txt','MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf'):
+    for name in ('master-resume-v4.docx','MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf'):
         path = ROOT/'input/master-resume'/name
         if not path.is_file() or not path.stat().st_size:
             raise RuntimeError('Missing required resume authority: '+name)

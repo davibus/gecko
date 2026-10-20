@@ -60,7 +60,7 @@ def notes_parts(value):
                 item = json.loads(line[len(PREFIX):])
                 if not isinstance(item, dict):
                     raise ValueError()
-                meta.update({k: item[k] for k in ('follow_up', 'stage', 'applied_at', 'deadline') if k in item})
+                meta.update({k: item[k] for k in ('follow_up', 'stage', 'applied_at', 'deadline', 'website') if k in item})
                 history.append(item)
                 continue
             except (ValueError, TypeError):
@@ -108,7 +108,7 @@ def present(row, data):
     decision = str(data.get('Apply?') or '').strip().lower()
     path = resume_path(data)
     stage = meta.get('stage') if applied else None
-    stage = stage or ('Applied' if applied else 'Declined' if decision in ('no', 'reject', 'delete / reject') else
+    stage = stage or ('Applied' if applied else 'Do not apply' if decision in ('no', 'reject', 'delete / reject') else
                       ('Resume ready' if path else 'Resume review') if complete else 'Approved' if decision == 'yes' else 'Review')
     issues = []
     if complete and path is None:
@@ -147,6 +147,9 @@ def changes_for(data, action, payload):
         changes['Applied'] = 'X'
         event.update(stage='Applied', applied_at=datetime.now(TZ).date().isoformat())
     elif action == 'details':
+        if 'website' in payload:
+            from dashboard.company_websites import validate
+            event['website'] = validate(payload['website'])
         new_text = payload.get('notes', text)
         if not isinstance(new_text, str) or len(new_text) > 30000 or PREFIX in new_text:
             raise ValueError('Notes must be plain text under 30,000 characters without reserved dashboard markers.')
@@ -245,11 +248,36 @@ class Workspace:
         self.manual_import = {'status': 'idle'}
         self.run_process = None
 
+    def pause(self, payload):
+        from dashboard.run_pause import suspend_tree, resume_tree
+        with self.lock:
+            op = self.operation
+            if not op or payload.get('started_at') != op.get('started_at'):
+                raise ValueError('The run changed. Refresh before pausing it.')
+            process = self.run_process
+            if op.get('kind') not in ('gecko', 'impromptu') or op.get('status') != 'running' or not process or process.poll() is not None or not op.get('model_info', {}).get('verified'):
+                raise ValueError('This run cannot be paused right now.')
+            if payload.get('paused') is True:
+                if not op.get('paused'):
+                    self.paused_processes = suspend_tree(process.pid)
+                    op['paused'] = True
+                    op['paused_at'] = now()
+            elif payload.get('paused') is False:
+                if op.get('paused'):
+                    resume_tree(self.paused_processes)
+                    self.paused_processes = []
+                    op['paused'] = False
+                    op.pop('paused_at', None)
+            else:
+                raise ValueError('Choose pause or resume.')
+            self.persist_operation()
+            return {'paused': bool(op.get('paused'))}
+
     def stop(self, payload):
         with self.lock:
             if not self.operation or payload.get('started_at') != self.operation.get('started_at'):
                 raise ValueError('The run changed. Refresh before stopping it.')
-            if self.operation.get('kind') == 'applications' and self.operation.get('status') == 'running':
+            if self.operation.get('kind') in ('applications', 'prepare_application') and self.operation.get('status') == 'running' and self.operation.get('session_key'):
                 from dashboard.applications import abort
                 return abort(self)
             process = self.run_process
@@ -294,7 +322,7 @@ class Workspace:
     def import_manual(self, payload):
         url = manual.validate_url(payload.get('url'))
         with self.lock:
-            if self.manual_import['status'] == 'running' or self.activity()['busy']:
+            if self.manual_import['status'] == 'running' or self.activity()['busy'] or self.operation and self.operation.get('status') == 'running':
                 raise ValueError('Wait for the current operation to finish.')
             self.manual_import = {'status':'running', 'url':url}
             threading.Thread(target=self.import_manual_worker, args=(url,), daemon=True).start()
@@ -378,6 +406,15 @@ class Workspace:
             tracker = self.tracker_factory()
             tab = tracker.scout()
             jobs = [present(r, d) for r, d in tab.rows if d.get('Company') or d.get('Job Title') or d.get('Job URL')]
+            if getattr(tracker, 'backend', '') == 'sqlite':
+                manual_ids = set(manual.manual_ids(tracker))
+                for job in jobs:
+                    if job['id'] in manual_ids:
+                        try:
+                            attached = attachments.for_job(tracker, job['id'])
+                            job['attached_resume'] = {'name': attached[0]['name']} if attached else None
+                        except (OSError, ValueError):
+                            job['attached_resume'] = None
             counts = {}
             for j in jobs:
                 counts[j['id']] = counts.get(j['id'], 0) + 1
@@ -430,7 +467,10 @@ class Workspace:
                 raise ValueError('This action requires the local database.')
             return export_sheet(tracker) if export else {'columns':change_column(tracker,payload)}
 
-    def source_report(self):
+    def source_report(self, previous=False):
+        reports = []
+        archive = STATE / 'source-report-history'
+        archive.mkdir(parents=True, exist_ok=True)
         paths = sorted((ROOT / 'reports').glob('**/discovery-reconciliation.json'),
                        key=lambda p: p.stat().st_mtime, reverse=True)
         for path in paths:
@@ -440,15 +480,30 @@ class Workspace:
                 if not isinstance(counts, dict):
                     continue
                 health = report.get('source_health', {})
-                return {'recorded_at': datetime.fromtimestamp(path.stat().st_mtime, TZ).isoformat(),
+                reports.append({'recorded_at': datetime.fromtimestamp(path.stat().st_mtime, TZ).isoformat(),
                         'report': str(path.relative_to(ROOT)),
                         'rows': [{'source': name, 'found': count,
                                   'explanation': explanation(health.get(name, {})),
                                   'status': health.get(name, {}).get('status', 'Not recorded')}
-                                 for name, count in counts.items()]}
+                                 for name, count in counts.items()]})
+                if len(reports) == 2:
+                    break
             except (OSError, ValueError, TypeError):
                 continue
-        return None
+        for report in reports:
+            key = __import__('hashlib').sha256((report['report'] + report['recorded_at']).encode()).hexdigest()
+            saved = archive / (key + '.json')
+            if not saved.exists():
+                saved.write_text(json.dumps(report), encoding='utf-8')
+        for saved in archive.glob('*.json'):
+            try:
+                report = json.loads(saved.read_text(encoding='utf-8'))
+                if report not in reports:
+                    reports.append(report)
+            except (OSError, ValueError):
+                continue
+        reports.sort(key=lambda r: r['recorded_at'], reverse=True)
+        return (reports[1] if len(reports)>1 else None) if previous else (reports[0] if reports else None)
 
     def activity(self):
         latest = ROOT / 'reports/gecko-command/latest.json'
@@ -473,7 +528,7 @@ class Workspace:
             export = json.loads((ROOT/'reports/sheets-exports/latest.json').read_text(encoding='utf-8'))
         except (OSError,ValueError):
             export = None
-        return {'runner':self.runner_status(), 'operation': operation, 'can_stop': bool(self.run_process and self.run_process.poll() is None) or bool(operation and operation.get('kind')=='applications' and operation.get('status')=='running' and self.operation), 'pipeline': pipeline, 'busy': busy, 'export':export, 'sources':self.source_report()}
+        return {'runner':self.runner_status(), 'operation': operation, 'can_stop': bool(self.run_process and self.run_process.poll() is None) or bool(operation and operation.get('kind')=='applications' and operation.get('status')=='running' and self.operation), 'pipeline': pipeline, 'busy': busy, 'export':export, 'pause_supported':True, 'sources':self.source_report(), 'previous_sources':self.source_report(previous=True)}
 
     def persist_operation(self):
         with self.lock:
@@ -487,7 +542,7 @@ class Workspace:
             if self.operation and self.operation.get('status') == 'running' or self.activity()['busy']:
                 raise ValueError('Gecko is already running. Follow its progress in Activity.')
             kind = payload.get('kind')
-            if kind not in ('resume', 'gecko', 'impromptu'):
+            if kind not in ('resume', 'resumes', 'gecko', 'impromptu'):
                 raise ValueError('Unknown workflow.')
             job_id = None
             if kind == 'resume':
@@ -506,6 +561,10 @@ class Workspace:
                 if getattr(self.tracker_factory(),'backend','') != 'sqlite':
                     raise ValueError('Impromptu runs require SQLite.')
             ids = None
+            resume_items = None
+            if kind == 'resumes':
+                from dashboard.resume_batch import select_jobs
+                ids, resume_items = select_jobs(self.tracker_factory(), payload.get('jobs'))
             if kind == 'gecko':
                 ids = configured_run_ids()
                 tracker = self.tracker_factory()
@@ -513,8 +572,11 @@ class Workspace:
                 for selected_id in ids or []:
                     find_job(tab,selected_id)
             self.operation = {'kind': kind, 'job_id': job_id, 'started_at': now(), 'status': 'running'}
+            if resume_items is not None:
+                self.operation['items'] = resume_items
             if kind == 'resume' and payload.get('manual_upload') is True:
                 self.operation['manual_upload'] = True
+            self.operation['create_resumes'] = payload.get('create_resumes') is True if kind == 'gecko' else bool(filters and filters.get('create_resumes'))
             self.operation['model_info'] = self.model_info()
             if ids is not None:
                 self.operation['job_ids'] = ids
@@ -529,7 +591,7 @@ class Workspace:
             threading.Thread(target=self.worker, args=(kind, job_id), daemon=True).start()
             return self.operation
 
-    def worker(self, kind, job_id):
+    def worker(self, kind, job_id, continuation=None):
         log_path = STATE / ('run-' + datetime.now(TZ).strftime('%Y%m%d-%H%M%S') + '.log')
         try:
             env = dict(os.environ, PYTHONIOENCODING='utf-8', PYTHONUNBUFFERED='1')
@@ -548,14 +610,17 @@ class Workspace:
             self.persist_operation()
             env.update(GECKO_AI_RUNNER='codex', JOB_SCOUT_TRIAGE_MODEL=MODEL, JOB_SCOUT_SCORING_MODEL=MODEL,
                        GECKO_RESUME_MODEL=MODEL, GECKO_REASONING_EFFORT=EFFORT, GECKO_MODEL_EVIDENCE=str(receipt_path))
+            if kind == 'gecko':
+                env['GECKO_SKIP_RESUMES'] = '0' if self.operation.get('create_resumes') else '1'
             with log_path.open('w', encoding='utf-8') as log:
                 args = [sys.executable, '-u']
                 if kind == 'impromptu':
                     args += [str(ROOT / 'scripts/run_impromptu.py'), '--filters', self.operation['filters_path']]
                     completed = self.run_command(args, cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT, creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
-                elif kind == 'resume':
+                elif kind in ('resume', 'resumes'):
                     with run_lock():
-                        args += [str(ROOT / 'scripts/generate_apply_queue.py'), '--ids', str(job_id)]
+                        selected_ids = self.operation['job_ids'] if kind == 'resumes' else [job_id]
+                        args += [str(ROOT / 'scripts/generate_apply_queue.py'), '--ids', *map(str, selected_ids)]
                         completed = self.run_command(args, cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT, creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
                 else:
                     # Canonical pipeline acquires its own cross-process lock.
@@ -565,6 +630,9 @@ class Workspace:
                     completed = self.run_command(args, cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT, creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
             if self.operation.get('stop_requested'):
                 return
+            if kind == 'resumes':
+                from dashboard.resume_batch import verify_results
+                verify_results(self)
             if completed.returncode:
                 raise RuntimeError(f'Gecko stopped with exit code {completed.returncode}. Review Activity and the local run log.')
             if kind == 'resume':
@@ -575,12 +643,17 @@ class Workspace:
                     upload = manual.publish_upload_copy(resume_path(job['fields']), job['fields'], job_id, ROOT)
                     self.operation['upload_name'] = upload.name
                     self.operation['upload_path'] = str(upload)
-            self.operation.update(status='complete', finished_at=now())
+            if continuation is not None:
+                continuation()
+            if kind == 'resumes' and any(item['status'] == 'needs_attention' for item in self.operation['items']):
+                self.operation.update(status='needs attention', finished_at=now())
+                return
+            self.operation.update(**({'workflow_status':'complete'} if continuation else {'status':'complete'}), finished_at=now())
         except Exception as exc:
-            self.operation.update(status='failed', error=str(exc), finished_at=now())
+            self.operation.update(**({'workflow_status':'failed'} if continuation else {'status':'failed'}), error=str(exc), finished_at=now())
         finally:
             if self.operation.get('stop_requested'):
-                self.operation.update(status='stopped',error='Stopped by you. In-progress work may be incomplete.',finished_at=now())
+                self.operation.update(**({'workflow_status':'stopped'} if continuation else {'status':'stopped'}),error='Stopped by you. In-progress work may be incomplete.',finished_at=now())
                 latest = ROOT/'reports/gecko-command/latest.json'
                 if kind == 'gecko':
                     try:
@@ -603,7 +676,7 @@ class Handler(BaseHTTPRequestHandler):
     def log_message(self, *args):
         pass
 
-    def send(self, status, body, content_type='application/json; charset=utf-8', filename=None):
+    def send(self, status, body, content_type='application/json; charset=utf-8', filename=None, inline=False):
         if not isinstance(body, bytes):
             body = json.dumps(body, ensure_ascii=False).encode()
         self.send_response(status)
@@ -615,7 +688,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Content-Security-Policy', "default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'")
         if filename:
             from urllib.parse import quote
-            self.send_header('Content-Disposition', "attachment; filename*=UTF-8''" + quote(filename))
+            self.send_header('Content-Disposition', ("inline" if inline else "attachment") + "; filename*=UTF-8''" + quote(filename))
         self.end_headers()
         self.wfile.write(body)
 
@@ -640,6 +713,9 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(200, {'app': 'gecko-dashboard', 'version': 1})
             if path == '/api/manual-import':
                 return self.send(200, dict(app.manual_import))
+            if path == '/api/prepared-applications':
+                from dashboard.preparation import records
+                return self.send(200, records(app))
             if path == '/api/jobs':
                 return self.send(200, app.snapshot())
             if path == '/api/job':
@@ -655,7 +731,7 @@ class Handler(BaseHTTPRequestHandler):
                     if not attached:
                         raise ValueError('No uploaded resume is attached to this job.')
                     info, content = attached
-                    return self.send(200, content, info['mime'], info['name'])
+                    return self.send(200, content, info['mime'], info['name'], inline=info['mime']=='application/pdf' and query.get('view')==['1'])
             if path == '/api/resume':
                 with app.lock:
                     tracker = app.tracker_factory()
@@ -664,7 +740,7 @@ class Handler(BaseHTTPRequestHandler):
                     if not resume:
                         raise ValueError('The linked resume is not available under Gecko output/resumes.')
                     return self.send(200, resume.read_bytes(), 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', resume.name)
-            files = {'/': 'index.html', '/app.js': 'app.js', '/manual.js':'manual.js', '/match-scores.js':'match-scores.js', '/filters.js':'filters.js', '/style.css': 'style.css'}
+            files = {'/': 'index.html', '/app.js': 'app.js', '/applied-today.js':'applied-today.js', '/manual.js':'manual.js', '/match-scores.js':'match-scores.js', '/filters.js':'filters.js', '/style.css': 'style.css'}
             if path not in files:
                 return self.send(404, {'error': 'Not found'})
             file = STATIC / files[path]
@@ -687,11 +763,25 @@ class Handler(BaseHTTPRequestHandler):
             payload = json.loads(self.rfile.read(length))
             if not isinstance(payload, dict):
                 raise ValueError('Expected a JSON object.')
-            if self.path == '/api/stop':
+            if self.path == '/api/pause':
+                result = self.server.workspace.pause(payload)
+            elif self.path == '/api/stop':
                 result = self.server.workspace.stop(payload)
             elif self.path == '/api/applications':
                 from dashboard.applications import start
                 result = start(self.server.workspace, payload)
+            elif self.path == '/api/prepare-application':
+                from dashboard.preparation import start
+                result = start(self.server.workspace, payload)
+            elif self.path == '/api/company-website':
+                app = self.server.workspace
+                with app.lock:
+                    _, data = find_job(app.tracker_factory().scout(), payload.get('id'))
+                    if version(data) != payload.get('version'):
+                        raise ValueError('This job changed. Refresh before looking up its website.')
+                    company = data.get('Company', '')
+                from dashboard.company_websites import lookup
+                result = lookup(company)
             elif self.path == '/api/manual':
                 result = self.server.workspace.save_manual(payload)
             elif self.path == '/api/manual-import':

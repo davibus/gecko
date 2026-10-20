@@ -1,16 +1,16 @@
 {
   "backend": "sqlite",
-  "date": "2026-10-17",
-  "updated_at": "2026-10-17T11:36:27.568065+00:00",
-  "jobs": 1120,
-  "pending_resumes": 33,
-  "completed_resumes": 751,
-  "applied": 67,
+  "date": "2026-10-20",
+  "updated_at": "2026-10-20T08:38:18.607939+00:00",
+  "jobs": 1126,
+  "pending_resumes": 22,
+  "completed_resumes": 764,
+  "applied": 75,
   "sources": {
-    "adzuna": 73,
-    "jobicy": 41,
+    "adzuna": 74,
+    "jobicy": 42,
     "greenhouse": 293,
-    "lever": 208,
+    "lever": 209,
     "workable": 151,
     "weworkremotely": 26,
     "remotive": 12,
@@ -18,7 +18,7 @@
     "remoteok": 1,
     "ashby": 207,
     "linkedin": 3,
-    "Indeed": 6,
-    "indeed": 57
+    "Indeed": 8,
+    "indeed": 58
   }
 }

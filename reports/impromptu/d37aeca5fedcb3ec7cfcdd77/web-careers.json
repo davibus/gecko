@@ -1,0 +1,218 @@
+{
+  "pipeline": {
+    "raw_retrieved": 5,
+    "rss_retrieved": 0,
+    "rss_unique": 0,
+    "rss_duplicates_removed": 0,
+    "successful_feeds": 0,
+    "failed_feeds": 0,
+    "feed_results": [],
+    "api_retrieved": 0,
+    "source_backend": "",
+    "fetched": 5,
+    "normalized": 5,
+    "added": 1,
+    "updated": 3,
+    "duplicates": 3,
+    "cross_provider_duplicates": 3,
+    "unique_available": 0,
+    "unique_imported": 0,
+    "filtered_by_role": 0,
+    "deterministic_rejects": 1,
+    "deterministic_reject_reasons": {
+      "outside impromptu selections": 1
+    },
+    "jooble_excluded": 0,
+    "rejected_history_excluded": 0,
+    "missing_content_excluded": 0,
+    "dead_url_excluded": 0,
+    "source_results_limited": 0,
+    "url_review_excluded": 0,
+    "url_validated": 4,
+    "new_job_ids": [
+      2854
+    ],
+    "existing_job_ids": [
+      2760,
+      2409,
+      2397
+    ],
+    "changed_job_ids": [],
+    "eligibility_includes_usa": 0,
+    "eligibility_worldwide": 0,
+    "example_jobs": [],
+    "backend_qualifying": {
+      "brave": 4
+    },
+    "backend_added": {
+      "brave": 1
+    }
+  },
+  "record_decisions": [
+    {
+      "source": "web-careers",
+      "source_job_id": "https://jobs.lever.co/silverbackstrategies/deec67d0-f38d-44b8-8a49-922c4f7a1e2c",
+      "url": "https://jobs.lever.co/silverbackstrategies/deec67d0-f38d-44b8-8a49-922c4f7a1e2c",
+      "company": "Silverback Strategies",
+      "title": "Paid Media Manager (Remote)",
+      "reason": "previously known",
+      "matched_id": 2760,
+      "cross_source": true
+    },
+    {
+      "source": "web-careers",
+      "source_job_id": "https://jobs.lever.co/mars-men/a953fd92-fff8-46ea-97f3-7f7868bf1634",
+      "url": "https://jobs.lever.co/mars-men/a953fd92-fff8-46ea-97f3-7f7868bf1634",
+      "company": "Mars Men",
+      "title": "Paid Search & Youtube Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "web-careers",
+      "source_job_id": "https://jobs.lever.co/silverbackstrategies/55b2b02b-5435-4046-8101-f4c59e56145b",
+      "url": "https://jobs.lever.co/silverbackstrategies/55b2b02b-5435-4046-8101-f4c59e56145b",
+      "company": "Silverback Strategies",
+      "title": "Paid Media Manager",
+      "reason": "previously known",
+      "matched_id": 2409,
+      "cross_source": true
+    },
+    {
+      "source": "web-careers",
+      "source_job_id": "https://jobs.lever.co/wpromote/af0f35a1-d0e7-42bb-a90d-38042d803f7d",
+      "url": "https://jobs.lever.co/wpromote/af0f35a1-d0e7-42bb-a90d-38042d803f7d",
+      "company": "Wpromote",
+      "title": "Paid Search Manager (B2B)",
+      "reason": "previously known",
+      "matched_id": 2397,
+      "cross_source": true
+    },
+    {
+      "source": "web-careers",
+      "source_job_id": "https://jobs.lever.co/wpromote/0ff8aaeb-a07a-40d6-b0b4-e5ff5025a592",
+      "url": "https://jobs.lever.co/wpromote/0ff8aaeb-a07a-40d6-b0b4-e5ff5025a592",
+      "company": "Wpromote",
+      "title": "Paid Search Manager",
+      "reason": "new unique",
+      "job_id": 2854
+    }
+  ],
+  "queries_pages": [
+    {
+      "query": "Paid Search Manager",
+      "location": "Remote",
+      "page": 1,
+      "page_size": 20,
+      "status": "failed",
+      "parsed": 5,
+      "error": "[{'stage': 'page-fetch', 'url': 'https://boards.greenhouse.io/alertmedia/jobs/4942451002', 'backends': ['brave'], 'error': 'Request failed for Firecrawl scrape: HTTP 429'}, {'stage': 'page-fetch', 'url': 'https://jobs.lever.co/wpromote', 'backends': ['brave'], 'error': 'Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)'}, {'stage': 'page-fetch', 'url': 'https://boards.greenhouse.io/upwork/jobs/5901500003', 'backends': ['brave'], 'error': 'Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)'}]"
+    }
+  ],
+  "board_errors": [],
+  "page_exclusions": [
+    {
+      "stage": "page-fetch",
+      "url": "https://jobs.lever.co/jobgether/10be5de3-d5af-4589-a378-07e19a74f322",
+      "backends": [
+        "brave"
+      ],
+      "error": "Request failed for https://jobs.lever.co/jobgether/10be5de3-d5af-4589-a378-07e19a74f322: HTTP Error 404: Not Found"
+    },
+    {
+      "stage": "page-fetch",
+      "url": "https://jobs.lever.co/jobgether/98a7202e-37ee-453c-91dd-03347186ba29",
+      "backends": [
+        "brave"
+      ],
+      "error": "Request failed for https://jobs.lever.co/jobgether/98a7202e-37ee-453c-91dd-03347186ba29: HTTP Error 404: Not Found"
+    },
+    {
+      "stage": "page-fetch",
+      "url": "https://jobs.lever.co/cscgeneration-2/1a610092-3af9-4bc3-9992-2b221418fb00",
+      "backends": [
+        "brave"
+      ],
+      "error": "Request failed for https://jobs.lever.co/cscgeneration-2/1a610092-3af9-4bc3-9992-2b221418fb00: HTTP Error 404: Not Found"
+    },
+    {
+      "stage": "page-fetch",
+      "url": "https://boards.greenhouse.io/sociummedia/jobs/4004613005",
+      "backends": [
+        "brave"
+      ],
+      "error": "Request failed for https://boards.greenhouse.io/sociummedia/jobs/4004613005: HTTP Error 404: Not Found"
+    },
+    {
+      "stage": "page-fetch",
+      "url": "https://jobs.lever.co/jobgether/a4df0f8b-3c17-487a-8477-ce186905007e",
+      "backends": [
+        "brave"
+      ],
+      "error": "Request failed for https://jobs.lever.co/jobgether/a4df0f8b-3c17-487a-8477-ce186905007e: HTTP Error 404: Not Found"
+    },
+    {
+      "stage": "page-fetch",
+      "url": "https://jobs.lever.co/wpromote/15aa0ca5-11c4-405f-8b9d-cd9251f32ee1",
+      "backends": [
+        "brave"
+      ],
+      "error": "Request failed for https://jobs.lever.co/wpromote/15aa0ca5-11c4-405f-8b9d-cd9251f32ee1: HTTP Error 404: Not Found"
+    },
+    {
+      "stage": "page-fetch",
+      "url": "https://jobs.lever.co/jobgether/694b31c5-56e0-4c0c-97c2-0e276c439b94",
+      "backends": [
+        "brave"
+      ],
+      "error": "Request failed for https://jobs.lever.co/jobgether/694b31c5-56e0-4c0c-97c2-0e276c439b94: HTTP Error 404: Not Found"
+    },
+    {
+      "stage": "page-fetch",
+      "url": "https://jobs.lever.co/jobgether/59c3ec13-7303-475e-888a-eb84521c6570",
+      "backends": [
+        "brave"
+      ],
+      "error": "Request failed for https://jobs.lever.co/jobgether/59c3ec13-7303-475e-888a-eb84521c6570: HTTP Error 404: Not Found"
+    },
+    {
+      "stage": "page-fetch",
+      "url": "https://jobs.lever.co/nimbletalent/8c638f29-4232-4256-9d43-b8b199902788",
+      "backends": [
+        "brave"
+      ],
+      "error": "Request failed for https://jobs.lever.co/nimbletalent/8c638f29-4232-4256-9d43-b8b199902788: HTTP Error 404: Not Found"
+    },
+    {
+      "stage": "page-fetch",
+      "url": "https://jobs.lever.co/jobgether/6fa6f722-684d-411d-acac-4489c3e34f3e",
+      "backends": [
+        "brave"
+      ],
+      "error": "Request failed for https://jobs.lever.co/jobgether/6fa6f722-684d-411d-acac-4489c3e34f3e: HTTP Error 404: Not Found"
+    },
+    {
+      "stage": "page-fetch",
+      "url": "https://jobs.lever.co/jobgether/6039e6b8-c483-44c7-8e3e-b135688b32b8",
+      "backends": [
+        "brave"
+      ],
+      "error": "Request failed for https://jobs.lever.co/jobgether/6039e6b8-c483-44c7-8e3e-b135688b32b8: HTTP Error 404: Not Found"
+    },
+    {
+      "stage": "page-fetch",
+      "url": "https://jobs.lever.co/oxylabs/37133243-2dbc-4dab-afe9-084dfe0570ee",
+      "backends": [
+        "brave"
+      ],
+      "error": "Request failed for https://jobs.lever.co/oxylabs/37133243-2dbc-4dab-afe9-084dfe0570ee: HTTP Error 404: Not Found"
+    }
+  ],
+  "collection_limits": [],
+  "firecrawl_requests": 1,
+  "errors": "[{\"query\": \"Paid Search Manager\", \"location\": \"Remote\", \"error\": \"[{'stage': 'page-fetch', 'url': 'https://boards.greenhouse.io/alertmedia/jobs/4942451002', 'backends': ['brave'], 'error': 'Request failed for Firecrawl scrape: HTTP 429'}, {'stage': 'page-fetch', 'url': 'https://jobs.lever.co/wpromote', 'backends': ['brave'], 'error': 'Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)'}, {'stage': 'page-fetch', 'url': 'https://boards.greenhouse.io/upwork/jobs/5901500003', 'backends': ['brave'], 'error': 'Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)'}]\"}, {\"stage\": \"page-fetch\", \"url\": \"https://boards.greenhouse.io/alertmedia/jobs/4942451002\", \"backends\": [\"brave\"], \"error\": \"Request failed for Firecrawl scrape: HTTP 429\"}, {\"stage\": \"page-fetch\", \"url\": \"https://jobs.lever.co/wpromote\", \"backends\": [\"brave\"], \"error\": \"Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)\"}, {\"stage\": \"page-fetch\", \"url\": \"https://boards.greenhouse.io/upwork/jobs/5901500003\", \"backends\": [\"brave\"], \"error\": \"Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)\"}]",
+  "health": {
+    "status": "partial failure",
+    "found": 5,
+    "detail": "[{\"query\": \"Paid Search Manager\", \"location\": \"Remote\", \"error\": \"[{'stage': 'page-fetch', 'url': 'https://boards.greenhouse.io/alertmedia/jobs/4942451002', 'backends': ['brave'], 'error': 'Request failed for Firecrawl scrape: HTTP 429'}, {'stage': 'page-fetch', 'url': 'https://jobs.lever.co/wpromote', 'backends': ['brave'], 'error': 'Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)'}, {'stage': 'page-fetch', 'url': 'https://boards.greenhouse.io/upwork/jobs/5901500003', 'backends': ['brave'], 'error': 'Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)'}]\"}, {\"stage\": \"page-fetch\", \"url\": \"https://boards.greenhouse.io/alertmedia/jobs/4942451002\", \"backends\": [\"brave\"], \"error\": \"Request failed for Firecrawl scrape: HTTP 429\"}, {\"stage\": \"page-fetch\", \"url\": \"https://jobs.lever.co/wpromote\", \"backends\": [\"brave\"], \"error\": \"Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)\"}, {\"stage\": \"page-fetch\", \"url\": \"https://boards.greenhouse.io/upwork/jobs/5901500003\", \"backends\": [\"brave\"], \"error\": \"Request failed for Firecrawl scrape: HTTP 429 (no repeated requests this run)\"}]"
+  }
+}

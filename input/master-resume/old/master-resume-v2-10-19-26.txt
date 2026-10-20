@@ -289,7 +289,7 @@ Any Hour Services - Director of PPC and Data Analysis
 
 
 
-Marketing Strategist/Analyst - 1-800-Contacts - Draper, UT 			                                November 2022 – June 2023
+Marketing Strategist/Analyst - 1-800-Contacts - Draper, UT 			                                November 2022 – June 2026
 •	Examples of analysis projects: analyzed max CPC vs smart-bidding, omni-channel brand-holdouts, CPC optimization for Brand, non-brand target CPA, AI-assisted promotion analysis using Namogoo, incremental CPA analysis on scale-up/down, audience analysis in Google Ads to test and apply to other platforms, Data-Driven Attribution analysis (DDA), Lifetime Value of Customer (LTV) analysis, affiliate commission analysis and discount negotiation, Performance Max/Google Shopping mixture analysis, 5year projections using predictive, statistical models, etc
 •	Funnel testing for reach, comparison, conversion (micro-included), and then internal LTV testing, Click-to-Call systems assessment, iSpot Analysis for TV/OTT (reach) campaigns
 •	Built complex Tableau dashboards for Paid Search (Google Ads, Bing Ads, etc). I helped convert their Power BI dashboards to Tableau. We switched for a very specific reason
@@ -300,8 +300,7 @@ Marketing Strategist/Analyst - 1-800-Contacts - Draper, UT 			                  
 •	Evaluated customer journeys from reach and micro-conversions through purchase, click-to-call, and lifetime value to identify scalable search and budget opportunities.
 •	Built Tableau dashboards and automated weekly reporting across 10+ channels using Python, Databricks, SQL, Excel, and Funnel.io, improving accuracy and decision speed.
 •	Used regression models, holdouts, geo tests, scale-up/down analysis, and budget reallocation scenarios to forecast outcomes and present credible investment recommendations.
-•	Marketing Strategist / Analyst | 1-800 Contacts
-•	Draper, UT | November 2022 - June 2023 (Contract)
+
 •	• Analyzed max CPC versus smart bidding, brand CPC optimization, non-brand target CPA, Performance Max and Google Shopping mix, audience performance, data-driven attribution, incremental CPA, lifetime value, affiliate commissions, and AI-assisted promotion performance using Namogoo.
 •	• Designed and interpreted reach, comparison, conversion, micro-conversion, and internal lifetime-value funnel testing, including click-to-call systems assessment and iSpot analysis for TV/OTT reach campaigns.
 •	• Built complex Tableau dashboards for paid search and helped convert existing Power BI reporting to Tableau.
@@ -330,8 +329,6 @@ GRIP6 - Midvale, UT
 •	Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review.
 •	Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions.
 •	Coordinated search and broader channel strategy with website, SEO, operations, and creative Digital Marketing Manager
-•	Director of Digital Marketing | GRIP6
-•	Midvale, UT | May 2022 - January 2023 (Contract)
 •	• Managed Google Ads, Microsoft/Bing Ads, Amazon, Meta/Facebook, Instagram, and TikTok across an approximately $400,000 monthly advertising budget.
 •	• Increased monthly marketing volume from approximately $200,000 to $800,000 while improving ROAS from 1.5 to 3.5.
 •	• Built Looker Studio KPI reporting for multiple departments, improving transparency for inventory planning, engineering decisions based on reviews, management decisions, website development, email performance, and cross-platform budget management.
@@ -348,8 +345,9 @@ TravelPass Group - South Jordan, UT
 •	Automated SERP analysis with Python and used Machine Learning Models for budgets, bids, ad copy, keywords, etc with Google API
 •	Converted and interpreted JSON results to data-mine SERP
 •	Competitor research using Python web-scraping priorities to maintain efficient delivery and support profitable growth
-•	Marketing Strategist / Analyst | 1-800 Contacts
-•	Draper, UT | November 2022 - June 2023 (Contract)
+•	
+Marketing Strategist / Analyst | 1-800 Contacts
+•	Draper, UT | November 2022 - June 2026
 •	• Analyzed max CPC versus smart bidding, brand CPC optimization, non-brand target CPA, Performance Max and Google Shopping mix, audience performance, data-driven attribution, incremental CPA, lifetime value, affiliate commissions, and AI-assisted promotion performance using Namogoo.
 •	• Designed and interpreted reach, comparison, conversion, micro-conversion, and internal lifetime-value funnel testing, including click-to-call systems assessment and iSpot analysis for TV/OTT reach campaigns.
 •	• Built complex Tableau dashboards for paid search and helped convert existing Power BI reporting to Tableau.

@@ -1,4 +1,62 @@
 'use strict';
+let preparationRecords=[],preparationLoading=false,preparationDispatching=false;
+function preparationLabel(record){return ({preparing:'Preparing',ready_for_review:'Ready for your review',needs_attention:'Needs your attention'})[record.status]||record.status;}
+function renderPreparationCards(){
+ const box=$('preparation-records');if(!box)return;
+ box.innerHTML=preparationRecords.map(record=>{
+  const job=state.jobs.find(j=>j.id===record.id),applied=job?.applied;
+  return '<div class="history-item"><strong>'+esc(record.company?record.company+' — '+record.title:'Indeed posting')+'</strong><p><strong>'+esc(applied?'Applied':preparationLabel(record))+'</strong> · '+esc(record.reason)+'</p>'+(record.missing_fields?.length?'<ul>'+record.missing_fields.map(q=>'<li>'+esc(q)+'</li>').join('')+'</ul>':'')+'<div class="actions">'+(!applied?'<a class="button secondary" href="'+esc(record.application_url||record.url)+'" target="_blank" rel="noopener noreferrer">'+(record.status==='ready_for_review'?'Open review':'Open existing application')+'</a>':'')+(record.id?'<button class="button secondary" type="button" data-prepared-job="'+esc(record.id)+'">Open saved job '+esc(record.id)+'</button>':'')+'</div>'+(record.status==='ready_for_review'&&!applied?'<p class="subtext">Review every answer in the employer’s tab, complete any CAPTCHA, and submit yourself. Then open the saved job and use Save and applied. If the site asks you to resume a draft, use that draft.</p>':'')+'</div>';
+ }).join('');
+ box.querySelectorAll('[data-prepared-job]').forEach(button=>button.onclick=()=>openManualJob(button.dataset.preparedJob));
+ box.querySelectorAll('.history-item').forEach((card,index)=>{
+  const record=preparationRecords[index];if(record.status!=='needs_attention'||!record.retry_safe)return;
+  const button=document.createElement('button');button.type='button';button.className='button secondary';button.textContent='Continue preparation';
+  button.onclick=async()=>{button.disabled=true;try{await api('/api/prepare-application',{url:record.url,retry_id:record.preparation_id});await loadPreparations();}catch(error){$('preparation-message').textContent=error.message;}finally{button.disabled=false;}};
+  card.querySelector('.actions').append(button);
+ });
+}
+async function loadPreparations(){
+ if(preparationLoading||!$('preparation-records'))return;preparationLoading=true;
+ try{preparationRecords=await api('/api/prepared-applications');renderPreparationCards();}
+ catch(error){$('preparation-message').textContent=error.message;}
+ finally{preparationLoading=false;}
+}
+function renderPreparationPanel(){
+ if(!$('manual-new-top')){
+  const actions=document.createElement('div');actions.className='actions';actions.id='manual-new-actions';
+  const button=document.createElement('button');button.id='manual-new-top';button.type='button';button.className='button primary';button.textContent='New job';button.onclick=startNewManualJob;
+  actions.append(button);$('manual-section').prepend(actions);
+ }
+ if(!$('preparation-panel')){
+  const panel=document.createElement('section');panel.id='preparation-panel';panel.className='activity-card';
+  panel.innerHTML='<h2>Prepare application from link</h2><p>Paste an Indeed or LinkedIn job link. Gecko saves the job and creates its tailored resume; OpenClaw fills the application and stops for your review. You handle CAPTCHA and submit it yourself.</p><label for="preparation-url">Job posting link</label><input id="preparation-url" type="url" placeholder="https://www.indeed.com/viewjob?jk=…"><p><button type="button" id="prepare-application" class="button primary">Prepare application</button></p><p id="preparation-message" role="status">Preparation continues if you refresh this page. Progress and Stop are in Gecko activity.</p><div id="preparation-records" aria-live="polite"></div>';
+  $('manual-new-actions').after(panel);
+  $('prepare-application').onclick=async()=>{
+   if(preparationDispatching)return;
+   const input=$('preparation-url');if(!input.value.trim()||!input.validity.valid){$('preparation-message').textContent='Paste a valid Indeed or LinkedIn job link first.';input.focus();return;}
+   preparationDispatching=true;$('prepare-application').disabled=true;
+   try{await api('/api/prepare-application',{url:input.value.trim()});$('preparation-message').textContent='Preparation started. You can leave this page; Gecko will stop before submission.';input.value='';await loadPreparations();}
+   catch(error){$('preparation-message').textContent=error.message;}
+   finally{preparationDispatching=false;$('prepare-application').disabled=false;}
+  };
+  loadPreparations();
+ }
+ renderPreparationCards();
+}
+function startNewManualJob(){
+ if(manualBusy||preparationDispatching){manualMessage('Wait for the current form operation to finish, then click New job.');return;}
+ const form=$('manual-form');
+ manualEdit=null;manualDirty=false;manualPending=false;manualResume=null;manualResumeWatching=null;
+ form.reset();form.elements.url.readOnly=false;form.elements.applied.disabled=false;form.elements.applied_date.required=false;form.elements.applied_date.value='';
+ $('manual-resume-file').value='';$('manual-resume-status').textContent='No resume attached.';$('manual-resume-remove').hidden=true;
+ $('manual-form-title').textContent='Add a job or application';$('manual-new').hidden=true;
+ form.querySelector('p').textContent='Save this new job to your individually added jobs and All Jobs. Saving does not submit an application.';
+ renderManualGeneratedResume(null);manualMessage('Ready for a new job.');
+ try{localStorage.removeItem(manualDraftKey);}catch{}
+ $('preparation-url').value='';$('preparation-message').textContent='Paste your new Indeed or LinkedIn job link to get started.';
+ renderManualTable();$('preparation-url').focus();$('manual-new-top').scrollIntoView({block:'start',behavior:'instant'});
+}
+setInterval(()=>{if($('preparation-panel')&&!$('manual-section').hidden)loadPreparations();},5000);
 let manualResumeWatching=null;
 async function createManualResumeFromProfile(){
  const form=$('manual-form');if(!form||manualBusy)return;
@@ -16,7 +74,7 @@ async function createManualResumeFromProfile(){
   const assertAvailable=job=>{
    if(job.applied)throw Error('This job is already recorded as applied. No resume was regenerated.');
    if(String(job.fields['Resume Created']||'').trim()||String(job.fields['Resume Link']||'').trim())throw Error('This job already has a completed or linked resume. Review the existing file; regeneration is blocked.');
-   if(['no','reject','delete / reject'].includes(String(job.fields['Apply?']||'').trim().toLowerCase()))throw Error('This job is declined. Review its approval before creating a resume.');
+   if(['no','reject','delete / reject'].includes(String(job.fields['Apply?']||'').trim().toLowerCase()))throw Error('This job is marked Do not apply. Review its approval before creating a resume.');
   };
   if(manualEdit){const original=await api('/api/job?id='+encodeURIComponent(manualEdit.id));if(original.version!==manualEdit.version)throw Error('This job changed. Refresh and reopen it before creating a resume.');assertAvailable(original);}
   manualMessage('Checking the job posting for additional information…');
@@ -121,7 +179,7 @@ function renderManual(){
   root.innerHTML='<form id="manual-form" class="activity-card" novalidate><div class="section-heading"><h2 id="manual-form-title">Add a job or application</h2><button type="button" id="manual-create-resume" class="button primary">Create resume</button></div><p>Saving assigns a unique job ID and adds the job below and in All Jobs as Not applied.<br>Saving does not submit an application. Use Save and applied only after you have submitted it.</p><label>Job posting link<input name="url" type="url" required placeholder="https://www.indeed.com/viewjob?jk=…"></label><button type="button" id="manual-fetch" class="button secondary">Auto-fill with OpenClaw</button><p id="manual-status" role="status">You can also enter details yourself. Review imported information before saving.</p><div class="manual-fields">'+manualFields.map(k=>'<label>'+esc(k==='description'?'Job description':k)+(k==='Notes'||k==='description'?'<textarea name="'+k+'"></textarea>':'<input name="'+k+'" '+(['Company','Job Title'].includes(k)?'required':'')+(k==='Date Posted'?' type="date"':'')+'>')+'</label>').join('')+'<div class="manual-resume"><span>Resume attachment</span><p><button type="button" class="button secondary" id="manual-resume-attach">Attach resume</button> <button type="button" class="text-button" id="manual-resume-remove" hidden>Remove</button></p><input id="manual-resume-file" type="file" accept=".pdf,.docx" hidden><p id="manual-resume-status" role="status">No resume attached.</p><p class="subtext">PDF or DOCX, up to 10 MB. Attached when you save this job.</p></div></div><div id="manual-generated-resume" class="detail-section" aria-live="polite" hidden></div><label><input type="checkbox" name="applied"> I already submitted this application</label><label>Application date<input type="date" name="applied_date"></label><p id="manual-save-status" class="manual-save-status" role="status" aria-live="polite"></p><div class="actions"><button type="submit" class="button primary" id="manual-save">Save job</button><button type="button" class="button primary" id="manual-save-applied">Save and applied</button><button type="button" class="button secondary" id="manual-new" hidden>Add another job</button></div></form><div id="manual-table"></div>';
   const form=$('manual-form');form.elements.applied_date.value=today();
   $('manual-save-applied').onclick=()=>{if(manualBusy)return;form.elements.applied.checked=true;if(!form.elements.applied_date.value)form.elements.applied_date.value=today();saveManualForm(form);};
-  $('manual-new').onclick=()=>{if(manualBusy||manualDirty){manualMessage('Save your current changes before adding another job.');return;}manualEdit=null;if(typeof manualResume!=='undefined'){manualResume=null;$('manual-resume-status').textContent='No resume attached.';$('manual-resume-remove').hidden=true;}form.reset();form.elements.url.readOnly=false;form.elements.applied.disabled=false;form.elements.applied_date.value=today();form.elements.applied_date.required=false;$('manual-form-title').textContent='Add a job or application';$('manual-new').hidden=true;renderManualGeneratedResume(null);manualMessage('Enter the new job details.');};
+  $('manual-new').onclick=startNewManualJob;
   form.onsubmit=e=>{e.preventDefault();saveManualForm(form);};
   form.oninput=()=>{manualDirty=true;const wasPending=manualPending;manualPending=false;form.elements.applied_date.required=form.elements.applied.checked;storeManualDraft(form);if(wasPending){manualMessage('Draft changed. Click Save job to save these updated details.');renderManualTable();}};
   try{const draft=JSON.parse(localStorage.getItem(manualDraftKey)||'null');if(draft?.fields){manualEdit=draft.edit||null;manualDirty=true;if(manualEdit){$('manual-form-title').textContent='Edit job '+manualEdit.id;form.elements.url.readOnly=true;$('manual-new').hidden=false;}manualResume=draft.resume||null;if(manualResume){$('manual-resume-status').textContent=manualResume.name;$('manual-resume-remove').hidden=false;}draft.fields=cleanManualImport(draft.fields,draft.fields.url);for(const [key,value] of Object.entries(draft.fields)){const el=form.elements.namedItem(key);if(el&&el.type!=='checkbox')el.value=value;}form.elements.applied.checked=!!draft.applied;form.elements.applied_date.required=!!draft.applied;manualPending=!!draft.pending;manualMessage(manualPending?'Pending save restored. This job will save when Gecko finishes.':'Your unsaved draft was restored. Review it and click Save job.');}}catch{}
@@ -153,6 +211,7 @@ function renderManual(){
  if(manualResumeWatching&&String(resumeOperation?.job_id)===manualResumeWatching&&resumeOperation.status!=='running'){manualMessage(resumeOperation.status==='complete'?'Tailored resume completed and attached to job '+manualResumeWatching+'.':'Resume '+resumeOperation.status+'. '+(resumeOperation.error||'Review Gecko activity.'));manualResumeWatching=null;}
  if(manualEdit)renderManualGeneratedResume(state.jobs.find(j=>j.id===manualEdit.id));
  renderManualTable();
+ renderPreparationPanel();
 }
 function renderManualTable(){
  const cols=['ID','Company','Job Title','Source','Location','Applied Date','Status'];
@@ -160,7 +219,7 @@ function renderManualTable(){
  const shown=rows.filter(r=>cols.every(k=>String(r[k]||'').toLowerCase().includes((manualFilters[k]||'').toLowerCase()))).sort((a,b)=>String(a[manualSort.key]||'').localeCompare(String(b[manualSort.key]||''),undefined,{numeric:true})*manualSort.direction);
  const pendingForm=$('manual-form');
  const pendingNotice=manualPending?'<div class="manual-save-status" role="status"><strong>Pending save: '+esc(pendingForm.elements.namedItem('Company').value)+' — '+esc(pendingForm.elements.namedItem('Job Title').value)+'</strong><br>This entry is preserved in this browser. It will receive its job ID and appear in both lists after Gecko finishes and the save is verified.</div>':'';
- $('manual-table').innerHTML=pendingNotice+'<div class="section-heading"><h2>Your individually added jobs</h2><span>'+shown.length+' of '+rows.length+(manualPending?' saved · 1 pending':'')+'</span></div><p>Open a job to record an application or update its next steps. All Jobs uses the same record.</p><div class="table-wrap"><table><thead><tr>'+cols.map(k=>'<th>'+esc(k)+' <button type="button" class="column-filter" data-manual-focus="'+k+'" aria-label="Filter '+k+'">▽</button><button type="button" class="column-filter" data-manual-sort="'+k+'" aria-label="Sort '+k+'">↕</button><input data-manual-filter="'+k+'" aria-label="Search '+k+'" value="'+esc(manualFilters[k]||'')+'" placeholder="Filter…"></th>').join('')+'</tr></thead><tbody>'+shown.map(r=>'<tr data-workspace-job="'+esc(r.ID)+'" data-workspace-label="'+esc(r.Company)+' — '+esc(r['Job Title'])+'">'+cols.map(k=>'<td>'+(k==='Job Title'?'<button class="text-button" data-manual-open="'+esc(r.ID)+'">'+esc(r[k])+'</button>':esc(r[k]||'—'))+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>'+(!rows.length?'<p>'+(manualPending?'No saved records yet. Your pending entry is shown above.':'No individually added jobs yet. Add your first posting above.')+'</p>':'');
+ $('manual-table').innerHTML=pendingNotice+'<div class="section-heading"><h2>Your individually added jobs</h2><span>'+shown.length+' of '+rows.length+(manualPending?' saved · 1 pending':'')+'</span></div><p>Open a job to record an application or update its next steps. All Jobs uses the same record.</p><div class="table-wrap"><table><thead><tr>'+cols.map(k=>'<th>'+esc(k)+' <button type="button" class="column-filter" data-manual-focus="'+k+'" aria-label="Filter '+k+'">▽</button><button type="button" class="column-filter" data-manual-sort="'+k+'" aria-label="Sort '+k+'">↕</button><input data-manual-filter="'+k+'" aria-label="Search '+k+'" value="'+esc(manualFilters[k]||'')+'" placeholder="Filter…"></th>').join('')+'</tr></thead><tbody>'+shown.map(r=>'<tr data-workspace-job="'+esc(r.ID)+'" data-workspace-label="'+esc(r.Company)+' — '+esc(r['Job Title'])+'">'+cols.map(k=>'<td>'+(k==='Job Title'?'<button class="text-button" data-manual-open="'+esc(r.ID)+'">'+esc(r[k])+'</button>':k==='Status'?'<span class="manual-application-status '+(r.Status==='Applied'?'applied':'not-applied')+'">'+esc(r.Status)+'</span>':esc(r[k]||'—'))+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>'+(!rows.length?'<p>'+(manualPending?'No saved records yet. Your pending entry is shown above.':'No individually added jobs yet. Add your first posting above.')+'</p>':'');
  const root=$('manual-table');root.querySelectorAll('[data-manual-open]').forEach(b=>b.onclick=()=>openManualJob(b.dataset.manualOpen));bindWorkspaceRows(root,row=>openManualJob(row.dataset.workspaceJob));
  root.querySelectorAll('[data-manual-filter]').forEach(input=>input.oninput=()=>{const key=input.dataset.manualFilter,caret=input.selectionStart;manualFilters[key]=input.value;renderManualTable();const next=root.querySelector('[data-manual-filter="'+key+'"]');next.focus();next.setSelectionRange(caret,caret);});
  root.querySelectorAll('[data-manual-focus]').forEach(b=>b.onclick=()=>root.querySelector('[data-manual-filter="'+b.dataset.manualFocus+'"]').focus());
@@ -178,7 +237,7 @@ async function openManualJob(id,afterSave=false){
   if(manualDirty){manualMessage('Your draft changed while this job was loading. Save it before opening another job.');return;}
   const form=$('manual-form');
   manualEdit={id:job.id,version:job.version};manualPending=false;
-  if(typeof manualResume!=='undefined'){manualResume=null;$('manual-resume-status').textContent=job.attached_resume?job.attached_resume.name+' — existing attachment preserved.':'No resume attached.';$('manual-resume-remove').hidden=true;}
+  if(typeof manualResume!=='undefined'){manualResume=null;$('manual-resume-status').innerHTML=job.attached_resume?'<a href="/api/manual-resume?id='+encodeURIComponent(job.id)+'&amp;view=1" target="_blank" rel="noopener noreferrer">'+esc(job.attached_resume.name)+'</a><br><a class="button secondary" href="/api/manual-resume?id='+encodeURIComponent(job.id)+'&amp;view=1" target="_blank" rel="noopener noreferrer">Open saved resume</a> <a href="/api/manual-resume?id='+encodeURIComponent(job.id)+'">Download</a>':'No resume attached.';$('manual-resume-remove').hidden=true;}
   form.elements.url.value=job.url;form.elements.url.readOnly=true;
   for(const key of manualFields)form.elements.namedItem(key).value=key==='description'?(job.description||''):key==='Notes'?job.notes:(job.fields[key]||'');
   form.elements.applied.checked=job.applied;form.elements.applied.disabled=job.applied;

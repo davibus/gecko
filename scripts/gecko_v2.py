@@ -25,9 +25,10 @@ from silent_subprocess import windows_creationflags
 import resume_summary
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'job-scout'))
 import resume_naming
+from resume_source import read_master_text
 
 ROOT = Path(__file__).resolve().parents[1]
-MASTER = ROOT / "input" / "master-resume" / "master-resume-v2.txt"
+MASTER = ROOT / "input" / "master-resume" / "master-resume-v4.docx"
 FORMAT_MODEL = ROOT / "input" / "master-resume" / "MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf"
 SECTIONS = (
     "Professional Summary", "Core Strengths", "Selected Results",
@@ -41,11 +42,11 @@ MODEL_OLIVE = (85, 107, 47)
 def employment_heading(job: dict[str, str]) -> str:
     """Build the one-line heading from the unchanged, verified job fields."""
     fields = [job.get(name, "").strip() for name in ("title", "company", "location")]
-    if any(not field or re.search(r"[\t\r\n]", field) for field in fields):
-        raise ValueError("Employment heading requires title, company, and single-line location.")
+    if not fields[1] or not fields[2] or any(re.search(r"[\t\r\n]", field) for field in fields):
+        raise ValueError("Employment heading requires company and single-line location; title is included when supplied.")
     if not re.fullmatch(r".+, [A-Z]{2}", fields[2]):
         raise ValueError(f"Employment location must be City, ST: {fields[2]!r}")
-    return " - ".join(fields)
+    return " - ".join(field for field in fields if field)
 
 
 MONTH_ABBREVIATIONS = {month: month[:3] for month in (
@@ -288,13 +289,7 @@ def document_format_issues(plan: dict, doc: Document) -> list[str]:
 
 def master_lines() -> list[str]:
     """Read the current master archive on every call."""
-    try:
-        content = MASTER.read_text(encoding="utf-8-sig")
-    except (OSError, UnicodeError) as error:
-        raise OSError(f"Required Gecko master resume is missing or unreadable: {MASTER}") from error
-    if not content.strip():
-        raise ValueError(f"Required Gecko master resume is empty: {MASTER}")
-    return content.splitlines()
+    return read_master_text(MASTER).splitlines()
 
 
 def source_text() -> str:
@@ -303,6 +298,7 @@ def source_text() -> str:
 
 
 def source_hashes() -> dict[str, str]:
+    read_master_text(MASTER)
     try:
         content = MASTER.read_bytes()
     except OSError as error:
@@ -328,6 +324,34 @@ def _is_job_header(line: str) -> bool:
 def parsed_jobs() -> list[dict]:
     """Employment roles from PROFESSIONAL EXPERIENCE; consulting remains in source_text()."""
     lines = [line.strip() for line in master_lines()]
+    section_names = [line.casefold() for line in lines]
+    if "work experience (jobs)" in section_names:
+        start = section_names.index("work experience (jobs)") + 1
+        end = next((i for i in range(start, len(lines))
+                    if section_names[i] == "variations of specialization"), len(lines))
+        jobs = _mixed_archive_jobs(lines[start:end])
+        # V3 keeps some employment accomplishments in named project sections.
+        # Use only that employer's explicit resume-ready block, never a neighbor's.
+        for job in jobs:
+            project = next((i for i in range(start)
+                            if lines[i].casefold() == job["company"].casefold()), None)
+            if project is None:
+                continue
+            boundary = next((i for i in range(project + 1, start)
+                             if lines[i].casefold() in {"skills", "work experience (jobs)"}), start)
+            ready = next((i for i in range(project + 1, boundary)
+                          if lines[i].casefold() == "resume-ready bullets to select from"), None)
+            if ready is None:
+                continue
+            for line in lines[ready + 1:boundary]:
+                if not line:
+                    continue
+                if not _is_bullet(line):
+                    break
+                quote = _bullet_text(line)
+                if len(quote) >= 35 and quote not in job["bullets"]:
+                    job["bullets"].append(quote)
+        return jobs
     if "PROFESSIONAL EXPERIENCE" not in lines:
         return _mixed_archive_jobs(lines)
     start = lines.index("PROFESSIONAL EXPERIENCE") + 1
@@ -366,7 +390,7 @@ def _mixed_archive_jobs(lines: list[str]) -> list[dict]:
     attribution. Contradictory locations or date ranges stop generation instead
     of silently choosing one of the archive's duplicated versions.
     """
-    months = "|".join(MONTH_ABBREVIATIONS)
+    months = "|".join(dict.fromkeys([*MONTH_ABBREVIATIONS, *MONTH_ABBREVIATIONS.values()]))
     dated = re.compile(r"^(.*?)\s+((?:" + months + r") \d{4}\s*(?:to|[-–—])\s*"
                        r"(?:(?:" + months + r") \d{4}|Present)(?: \(Contract\))?)$")
     jobs = []
@@ -374,12 +398,14 @@ def _mixed_archive_jobs(lines: list[str]) -> list[dict]:
     conflicts = []
 
     def select_role(title, company, location, dates):
-        dates = re.sub(r"\s+(?:to|[–—])\s+", " - ", dates)
+        dates = re.sub(r"\s+to\s+|\s*[-–—]\s*", " - ", dates)
+        for full, short in MONTH_ABBREVIATIONS.items():
+            dates = re.sub(r"\b" + short + r"\b", full, dates)
         employment_dates({"dates": dates})
         # Employer variants within this archive include Inc. and slash aliases.
-        employer = key(company.split("/")[0]).removesuffix(" inc")
+        employer = key(company.split("/")[0]).removesuffix(" inc").replace(" ", "")
         existing = next((job for job in jobs
-                         if key(job["company"].split("/")[0]).removesuffix(" inc") == employer), None)
+                         if key(job["company"].split("/")[0]).removesuffix(" inc").replace(" ", "") == employer), None)
         if existing:
             if (existing["location"] != location or
                     employment_dates(existing) != employment_dates({"dates": dates})):
@@ -408,14 +434,22 @@ def _mixed_archive_jobs(lines: list[str]) -> list[dict]:
         match = dated.fullmatch(text) if not _is_bullet(line) else None
         if match:
             heading, dates = match.groups()
-            if re.search(r" - .+, [A-Z]{2}$", heading):
+            heading = re.sub(r"\s+[–—]\s+", " - ", heading)
+            if len(heading.rsplit(" - ", 2)) == 3 and re.search(r" - .+, [A-Z]{2}$", heading):
                 title, company, location = heading.rsplit(" - ", 2)
+            elif re.fullmatch(r".+ - .+, [A-Z]{2}", heading):
+                # Dave allows a company-only heading when the master omits a title.
+                title = ""
+                company, location = heading.rsplit(" - ", 1)
             elif re.fullmatch(r".+ - .+, [A-Z]{2}", next_text):
                 title = heading
                 company, location = next_text.rsplit(" - ", 1)
                 i = following
             else:
-                raise ValueError(f"Master archive job is missing verified company or location: {heading}")
+                conflicts.append(f"Incomplete work-history heading: {heading}; verified company and City, ST are required")
+                current = None
+                i += 1
+                continue
             current = select_role(title, company, location, dates)
         elif current and _is_bullet(line) and len(text) >= 35:
             if text not in current["bullets"]:
@@ -462,7 +496,8 @@ def extract_evidence(source: str) -> list[dict]:
         for quote in job["bullets"]:
             evidence.append({"id": f"E{len(evidence)+1:03d}", "job": job_index, "source": rel, "quote": quote})
     lines = [line.strip() for line in master_lines()]
-    highlight_start = lines.index("CAREER HIGHLIGHTS & SELECTED RESULTS") + 1
+    highlight_start = next(i for i, line in enumerate(lines)
+                           if line.casefold() == "career highlights & selected results") + 1
     highlight_end = (lines.index("PROFESSIONAL EXPERIENCE") if "PROFESSIONAL EXPERIENCE" in lines
                      else next((i for i in range(highlight_start, len(lines))
                                 if not lines[i] or not _is_bullet(lines[i])), len(lines)))
@@ -614,7 +649,7 @@ def _near_duplicate(left: str, right: str) -> bool:
 def master_identity() -> dict[str, str]:
     lines = [line.strip() for line in master_lines() if line.strip()]
     education = next(_bullet_text(line) for line in lines if "Brigham Young University" in line)
-    cert_start = lines.index("CERTIFICATIONS") + 1
+    cert_start = next(i for i, line in enumerate(lines) if line.casefold() == "certifications") + 1
     certs = []
     for line in lines[cert_start:]:
         if line.startswith("ADDITIONAL") or not _is_bullet(line):
@@ -626,7 +661,8 @@ def master_identity() -> dict[str, str]:
                            if "MASTER RESUME / CAREER ARCHIVE" in lines
                            else next(i for i, line in enumerate(lines) if line.casefold() == "dave call")) + 1],
         "contact": normalized(next(line for line in lines if "linkedin.com/in/mdavidcall" in line)),
-        "summary": _bullet_text(lines[lines.index("PROFESSIONAL PROFILE") + 1]),
+        "summary": _bullet_text(lines[next(i for i, line in enumerate(lines)
+                                          if line.casefold() == "professional profile") + 1]),
         "education": education,
         "certifications": "Certifications: " + "; ".join(certs),
     }
@@ -637,7 +673,7 @@ def master_jobs() -> list[dict[str, str]]:
             for job in parsed_jobs()]
 
 
-def create_plan(listing_path: Path) -> dict:
+def create_plan(listing_path: Path, *, defer_summary: bool = False) -> dict:
     validate_required_sources()
     listing = listing_path.read_text(encoding="utf-8-sig")
     source = source_text()
@@ -648,10 +684,8 @@ def create_plan(listing_path: Path) -> dict:
     mandatory_metrics = relevant_metric_ids(listing, evidence)
     selected = []
     jobs = master_jobs()
-    # Start with three relevant accomplishments per role. The native Word
-    # pagination pass may selectively remove a role's third-ranked bullet, but
-    # never its first two, when that is necessary to preserve two pages.
-    bullets_per_job = 3
+    # Seed by content length, not a fixed bullet ceiling. Native QA can add
+    # further distinct evidence to use page two or trim lower-priority detail.
     for index in range(len(jobs)):
         pool = [item for item in evidence if item["job"] == index]
         concise = [item for item in pool if len(item["quote"].split()) <= 55]
@@ -669,10 +703,9 @@ def create_plan(listing_path: Path) -> dict:
             if any(_near_duplicate(item["quote"], picked["quote"]) for picked in chosen_items):
                 continue
             chosen_items.append(item)
-            if len(chosen_items) == bullets_per_job:
+            if sum(len(item['quote'].split()) for item in chosen_items) >= 90:
                 break
-        # Keep two source-backed bullets when available, but do not add a
-        # repetitive third bullet merely to reach the preferred count.
+        # Keep useful source-backed detail without adding repeated claims.
         minimum_useful_bullets = min(2, len(ranked))
         if len(chosen_items) < minimum_useful_bullets:
             chosen_items.extend(item for item in ranked if item not in chosen_items)
@@ -692,7 +725,9 @@ def create_plan(listing_path: Path) -> dict:
             selected_results.append(item["id"])
         if len(selected_results) == 4:
             break
-    summary, summary_selection = resume_summary.choose(listing, source, ROOT / "output/resumes", meta["title"])
+    # Codex authors and reviews its own summary next. A finite bank of preset
+    # summaries must not prevent that drafting step from being reached.
+    summary, summary_selection = ("", []) if defer_summary else resume_summary.choose(listing, source, ROOT / "output/resumes", meta["title"])
     plan = {"version": 3, "job": meta, "listing": str(listing_path.resolve()),
             "listing_sha256": hashlib.sha256(listing_path.read_bytes()).hexdigest(),
             "source_sha256": source_hashes(), "format_model_sha256": formatting_model_hash(),
@@ -705,7 +740,7 @@ def create_plan(listing_path: Path) -> dict:
                        "selected_results_ids": selected_results,
                        "relevant_metric_ids": mandatory_metrics},
             "review_notes": ["Review requirement classifications and evidence links before generation.",
-                             "All factual content comes from the required master TXT.",
+                             "All factual content comes from the required master DOCX.",
                              "Visual formatting is governed by the required model PDF; no fallback resume or template is allowed."]}
     select_summary_focus_evidence(plan)
     return plan
@@ -739,7 +774,7 @@ def select_summary_focus_evidence(plan: dict) -> None:
             if any(_near_duplicate(item["quote"], prior["quote"]) for prior in chosen):
                 continue
             chosen.append(item)
-            if len(chosen) == 3:
+            if sum(len(item['quote'].split()) for item in chosen) >= 90:
                 break
         if len(chosen) < 2:
             raise ValueError("Insufficient distinct source-backed accomplishments for job history")
@@ -750,7 +785,7 @@ def select_summary_focus_evidence(plan: dict) -> None:
     metrics = sorted((item for item in evidence if re.search(r"\$[\d,]+|\b\d+(?:\.\d+)?[%+]", item["quote"])),
                      key=lambda item: (len(words(item["quote"]) & focus), -len(item["quote"].split())), reverse=True)
     for item in metrics:
-        if item["id"] not in results and not any(_near_duplicate(item["quote"], next(e["quote"] for e in evidence if e["id"] == eid)) for eid in results):
+        if item["id"] not in results + selected and not any(_near_duplicate(item["quote"], next(e["quote"] for e in evidence if e["id"] == eid)) for eid in results + selected):
             results.append(item["id"])
         if len(results) >= 4:
             break
@@ -794,6 +829,10 @@ def verify_plan(plan: dict) -> None:
     if format_issues:
         raise ValueError(" ".join(format_issues))
     identity = master_identity()
+    if plan['resume'].get('codex_authored'):
+        if plan['resume'].get('codex_reviewed_summary_sha256') != hashlib.sha256(plan['resume']['summary'].encode()).hexdigest():
+            raise ValueError('Codex summary has not passed factual review or was changed after review.')
+        identity.pop('summary',None)
     if "summary_selection" in plan["resume"]:
         identity["summary"] = resume_summary.render(plan["resume"]["summary_selection"], source)
     if any(plan["resume"].get(field) != value for field, value in identity.items()):
@@ -916,11 +955,11 @@ def make_resume(plan: dict, path: Path) -> None:
         for item_index, item in enumerate(selected):
             p = para(polish_quote(item["quote"]), style="List Bullet", after=1)
             p.paragraph_format.left_indent = Inches(.18)
-            # Keep a role's bullets together with its table-backed heading when
-            # Word can fit the complete block on one page. This avoids a lone
-            # continuation bullet at the top of the following page.
-            if item_index < len(selected) - 1:
-                p.paragraph_format.keep_with_next = True
+            # Expanded roles may cross a page boundary; keep each accomplishment
+            # intact without forcing a large block of unused space.
+            p.paragraph_format.keep_together = True
+            # The table already stays with the first bullet. Let subsequent
+            # complete bullets flow naturally instead of moving the whole role.
     section(SECTIONS[4])
     para(" • ".join(plan["resume"]["tools_platforms"]), after=2)
     section(SECTIONS[5])
@@ -1002,6 +1041,26 @@ def inspect_docx(plan: dict, docx_path: Path) -> list[str]:
     return issues
 
 
+def page_two_density(docx_path: Path, pdf: Path) -> dict:
+    """Measure the final body section against the normal bottom text boundary."""
+    doc = Document(docx_path)
+    with fitz.open(pdf) as rendered:
+        if len(rendered) != 2:
+            return {}
+        page = rendered[1]
+        blocks = [b for b in page.get_text('blocks') if normalized(str(b[4]))]
+        text = normalized(page.get_text())
+        if 'EDUCATION & CERTIFICATIONS' not in text or not blocks:
+            return {'density_issue': 'Education & Certifications must end in the body of page two.'}
+        boundary = page.rect.height - doc.sections[-1].bottom_margin.pt
+        bottom = max(b[3] for b in blocks)
+        gap = boundary - bottom
+        return {'page_two_bottom_gap_pt': round(gap, 2),
+                'page_two_text_boundary_pt': round(boundary, 2),
+                'density_issue': ('Page two is underfilled; add distinct, relevant evidence or document an evidence-exhaustion review.'
+                                  if gap > 36 else 'Text exceeds the normal bottom boundary.' if gap < -2 else '')}
+
+
 def native_qa(plan: dict, docx_path: Path, scratch: Path) -> dict:
     scratch.mkdir(parents=True, exist_ok=True)
     pdf = scratch / "word-export.pdf"
@@ -1052,17 +1111,23 @@ def native_qa(plan: dict, docx_path: Path, scratch: Path) -> dict:
                         and abs((date_lines[0][0] - 36) - date_lines[0][1].x1) < 4
                     ):
                         issues.append(f"Employment dates wrapped, overlapped, or missed the right margin: {job['company']}.")
+    density = page_two_density(docx_path, pdf) if pdf.exists() else {}
+    if density.get('density_issue'):
+        reason = plan['resume'].get('content_exhaustion_reason', '').strip()
+        if not (reason and density.get('page_two_bottom_gap_pt', 0) > 36):
+            issues.append(density['density_issue'])
     reqs = plan["requirements"]
     weaknesses = [r["text"] for group in ("required_skills", "preferred_skills", "responsibilities") for r in reqs[group] if r["status"] != "supported"]
     report = {"status": "pass" if not issues else "fail", "word_pages": native.get("word_pages"),
               "pdf_pages": native.get("pdf_pages"), "issues": issues, "remaining_weaknesses": weaknesses,
-              "native_validation": str(status), "word_output": result.stdout.strip()}
+              "native_validation": str(status), "word_output": result.stdout.strip(),
+              **density, "content_exhaustion_reason": plan['resume'].get('content_exhaustion_reason', '')}
     (scratch / "v2-qa.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     return report
 
 
 def _third_bullet_fallbacks(plan: dict) -> list[str]:
-    """Return least-useful third bullets first for native page-fit reduction."""
+    """Rank removable supporting bullets beyond each role's first two."""
     evidence = {item["id"]: item for item in plan["evidence"]}
     selected = plan["resume"]["selected_evidence_ids"]
     listing_terms = words(Path(plan["listing"]).read_text(encoding="utf-8-sig"))
@@ -1071,23 +1136,64 @@ def _third_bullet_fallbacks(plan: dict) -> list[str]:
     for job_index in range(len(plan["resume"]["jobs"])):
         role_ids = [eid for eid in selected if evidence[eid]["job"] == job_index]
         for eid in role_ids[2:]:
+            if eid in mandatory:
+                continue
             quote = evidence[eid]["quote"]
             relevance = len(words(quote) & listing_terms)
             candidates.append((eid in mandatory, relevance, -len(words(quote)), job_index, eid))
     return [item[-1] for item in sorted(candidates)]
 
 
+def _additional_evidence(plan: dict) -> list[str]:
+    """Reviewable expansion pool, without a per-role bullet ceiling."""
+    evidence = {item['id']: item for item in plan['evidence']}
+    selected = plan['resume']['selected_evidence_ids']
+    used = selected + plan['resume'].get('selected_results_ids', [])
+    active_jobs = {evidence[eid]['job'] for eid in selected}
+    listing_terms = words(Path(plan['listing']).read_text(encoding='utf-8-sig'))
+    pool = plan['resume'].get('additional_evidence_ids')
+    if pool is None:
+        pool = sorted(evidence, key=lambda eid: len(words(evidence[eid]['quote']) & listing_terms), reverse=True)
+    return [eid for eid in pool if eid in evidence and eid not in used
+            and evidence[eid]['job'] in active_jobs
+            and len(words(evidence[eid]['quote']) & listing_terms) >= 3
+            and not re.search(r'\b(?:I|my|we|our)\b', evidence[eid]['quote'])
+            and not re.search(r'marketing environment|B2C e,|Digital Marketing Manager$|web-scraping priorities|(?:and|the|in|with)$', evidence[eid]['quote'])
+            and not any(_near_duplicate(evidence[eid]['quote'], evidence[used_id]['quote']) for used_id in used)]
+
+
 def generate_two_page_resume(plan: dict, path: Path, scratch: Path) -> dict:
-    """Generate a three-bullet-first resume and trim only third bullets on overflow."""
+    """Fit two pages, then expand useful evidence until page two is substantially used."""
     make_resume(plan, path)
     report = native_qa(plan, path, scratch)
-    if max(report.get("word_pages") or 0, report.get("pdf_pages") or 0) <= 2:
-        return report
     fallbacks = _third_bullet_fallbacks(plan)
     while max(report.get("word_pages") or 0, report.get("pdf_pages") or 0) > 2 and fallbacks:
         plan["resume"]["selected_evidence_ids"].remove(fallbacks.pop(0))
         make_resume(plan, path)
         report = native_qa(plan, path, scratch)
+    # Stop on native or structural failures; density alone can be repaired here.
+    if report.get('word_pages') != 2 or report.get('pdf_pages') != 2:
+        return report
+    if any(issue != report.get('density_issue') for issue in report.get('issues', [])):
+        return report
+    candidates = _additional_evidence(plan) if report.get('page_two_bottom_gap_pt', 0) > 36 else []
+    for eid in candidates:
+        if report.get('page_two_bottom_gap_pt', 0) <= 36:
+            break
+        if eid not in _additional_evidence(plan):
+            continue
+        previous = list(plan['resume']['selected_evidence_ids'])
+        plan['resume']['selected_evidence_ids'].append(eid)
+        make_resume(plan, path)
+        trial = native_qa(plan, path, scratch)
+        if trial.get('word_pages') is None or trial.get('pdf_pages') is None:
+            return trial
+        if trial.get('word_pages') == 2 and trial.get('pdf_pages') == 2 and trial.get('page_two_bottom_gap_pt', float('inf')) < report['page_two_bottom_gap_pt']:
+            report = trial
+        else:
+            plan['resume']['selected_evidence_ids'] = previous
+            make_resume(plan, path)
+            report = native_qa(plan, path, scratch)
     return report
 
 

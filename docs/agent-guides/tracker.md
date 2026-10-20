@@ -82,3 +82,17 @@ tabs, and verify values by readback. Never import Sheet edits into SQLite.
   They are proposals, not approval to add columns. Historical Sheet formatting,
   protected cells, report exceptions, and synchronization procedures are preserved
   in legacy-sheets.md for explicitly requested legacy work, not routine daily runs.
+
+
+## Missing job description — user rule (October 19, 2026)
+
+Before automatic resume generation, verify that a usable job description exists
+and belongs to the exact job. If the description is missing, empty, incomplete,
+or mismatched, skip resume creation and record the job status as **No job description**
+in the SQLite workspace/dashboard, with the specific reason in Notes. A company
+name, title, search snippet, or another job's description is not sufficient.
+Continue processing other eligible jobs. Never invent requirements or create a
+generic resume to bypass the missing description. Preserve existing resumes,
+Resume Created markers, links, manual decisions, Applied, and protected fields.
+Only remove this blocker after a matching usable description has been obtained
+and verified; all normal approval and completed-resume guards still apply.

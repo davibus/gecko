@@ -29,7 +29,27 @@ itself authorize submission. Never reopen or resubmit a confirmed application.
    `timeoutMs: 20000`. Hidden file inputs can be targeted directly. If the page
    offers only a chooser button, use the supported upload `ref` operation.
    Do not type a path into a text field or invent an attachment confirmation.
-6. Read back the file input's file name and size and the page's attachment status.
+6. Verify the ACTIVE resume selected for this exact application, not merely a
+   filename in upload history, the account's saved-resume list, or a temporary
+   file input. A stored/default resume (including K9 Sport Sack) must never
+   replace the job-specific resume. On Indeed, review-module URLs are shared
+   across jobs: identify the visible employer and role on the actual draft and
+   keep the same verified browser target throughout the edit and final review.
+   Open the selected attachment's preview or download through the supported
+   browser path and compare its heading and professional summary with the
+   exact local DOCX. Confirm the job-specific resume remains selected after
+   navigation back to the final review page. If the site converts DOCX to PDF,
+   verify the converted content too; filename similarity alone is insufficient.
+   If preview/content or exact draft identity cannot be verified, report the
+   attachment as UNVERIFIED and leave the application pending for Dave.
+   Do not change the account-wide default resume or another job's draft.
+   Also inspect separate resume-derived work-history/education fields. Sites may
+   keep values parsed from an older resume even when the correct attachment is
+   selected. Compare dates, titles, and descriptions against the chosen resume;
+   correct application-specific mismatches using verified source facts. If the
+   edit would change an account-wide profile, report that separately for Dave.
+   Do not call the application ready while known factual mismatches remain.
+7. Read back the file input's file name and size and the page's attachment status.
    Wait for the site's upload to complete and check for errors. If the field is
    cleared after the site processes it, use its visible attachment confirmation.
    A tool success alone is not proof. Stop and report any mismatch or timeout;
@@ -37,7 +57,7 @@ itself authorize submission. Never reopen or resubmit a confirmed application.
    resume merely because the connector failed. Submit only within the user's
    application authorization after all required fields and attachment are verified.
 
-## Installed connector repair — 2026-10-16
+## Installed connector repair â€” 2026-10-16
 
 OpenClaw 2026.10.4's extension upload route treated the browser as accepting local
 filesystem paths. A synthetic file reproduced the same repeated

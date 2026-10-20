@@ -29,7 +29,7 @@ To run it through the agent, use the reusable prompt in `prompts/scout-jobs.md`.
 1. Open this folder as a project in AntiGravity.
 2. Put a job description or copied job listing into `input/job-descriptions/`.
 3. Use the prompt in `prompts/use-gecko.md`.
-4. Gecko uses `input/master-resume/master-resume-v2.txt` as the sole factual source and `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as the required visual formatting/layout model. Generation stops rather than falling back when either file is missing.
+4. Gecko uses `input/master-resume/master-resume-v4.docx` as the sole factual source and `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as the required visual formatting/layout model. Generation stops rather than falling back when either file is missing.
    For V2, create and review the evidence-backed plan with `python scripts/gecko_v2.py plan "input/job-descriptions/Company+JobNumber.md"`, then run `python scripts/gecko_v2.py generate "scratch/Company+JobNumber/tailoring-plan.json"`. Generation runs Word-native QA and records any remaining weaknesses. Every new resume uses a one-physical-line `Job Title - Company Name - City, ST` heading at left with verified employment dates aligned to the right text margin. See `docs/workflow.md` for the full process.
 5. Save tailored resumes to `output/resumes/`.
 6. After the final resume is successfully created and validated, add or update the job in the canonical Google Sheet with `scripts/manage_job_tracker.py`.
@@ -114,7 +114,7 @@ Gecko's only job tracker is Google Sheets. Resume queues, link audits, and Gmail
 - `AGENTS.md` — project instructions AntiGravity should follow
 - `GECKO_SYSTEM.md` — full Gecko operating specification
 - `scripts/` — reusable resume generation, PDF preview, and layout tuning scripts
-- `input/master-resume/` — canonical content archive (`master-resume-v2.txt`) and required visual model (`MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf`)
+- `input/master-resume/` — canonical content archive (`master-resume-v4.docx`) and required visual model (`MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf`)
 - `input/job-descriptions/` — job listings to tailor against
 - `output/resumes/` — generated resumes
 - Google Sheets (`Job List` tab) — current canonical job tracker; `Rejected Jobs` stores durable rejection history
@@ -130,3 +130,7 @@ Gecko's only job tracker is Google Sheets. Resume queues, link audits, and Gmail
 Resume filenames must use `Dave-Call+<Company-Name>+<Job-Title>+<Resume-ID>.docx`, ending in a unique numeric identifier of at most five digits (Gecko uses five zero-padded digits). Never put a full posting ID, Indeed jk, UUID, hash, or long numeric job number in a resume filename. Keep filenames at most 150 characters, sanitizing Windows-invalid characters and shortening an excessively long title at a word boundary. Reserve identifiers through `job-scout/resume_naming.py`; do not truncate a source ID or guess uniqueness. Full posting IDs remain in the identity registry and DOCX metadata for job matching. Use the same rule for explicitly requested renames, verify tracker links after any rename, and preserve the existing Resume Created = X guard. Archived job descriptions and scratch folders continue to use full posting IDs.
 
 Example: `Dave-Call+Array+Digital-Marketing-Manager+00001.docx`.
+
+## Resume content density
+
+Exactly two pages is necessary but not sufficient when useful, job-relevant evidence remains. Education & Certifications should finish within approximately 0.5 inch (36 points) above the normal bottom text boundary on page two. Use distinct, source-supported accomplishments and relevant project detail, prioritizing the most relevant roles; there is no fixed two- or three-bullet ceiling. Keep standard sections, readable model typography, and normal margins/spacing. Do not fill space with larger fonts, inflated spacing, blank paragraphs, repeated claims, unrelated material, or an education footer/text box. Inspect both rendered pages and measure the final section after native Word/PDF validation. If genuinely relevant evidence is exhausted, document the reviewed evidence and explain the remaining gap; page count alone is not completion.

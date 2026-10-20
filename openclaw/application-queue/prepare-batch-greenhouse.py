@@ -3,9 +3,10 @@ from pathlib import Path
 from datetime import datetime
 from zoneinfo import ZoneInfo
 ROOT=Path('/mnt/c/gecko_main');Q=ROOT/'openclaw/application-queue';cli='/home/dcall/.openclaw/bin/openclaw'
+import sys; sys.path.insert(0,str(ROOT/'job-scout')); from resume_source import read_master_text
 jid=sys.argv[1];p=json.loads((Q/jid/'application-package.json').read_text());target='retry-'+jid
 answers=(ROOT/'openclaw/application-answers.md').read_text();assert 'mdavidcall@gmail.com' in answers and 'AUTH-01' in answers
-master=(ROOT/'input/master-resume/master-resume-v2.txt').read_text();assert 'American Fork, UT' in master
+master=read_master_text(ROOT/'input/master-resume/master-resume-v4.docx');assert 'American Fork, UT' in master
 assert jid in ['1294','1295','1296','1297','1298','1299','1301','1302','1303','1304','1305','1306','1308','1309','1310']
 old_path=Q/jid/'submission-result.json';old=json.loads(old_path.read_text()) if old_path.exists() else {};assert old.get('outcome')!='submitted'
 def call(args):

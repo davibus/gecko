@@ -1,0 +1,29 @@
+# Manager Growth Marketing (Public Sector)
+
+- **Company:** Akamai Technologies, Inc.
+- **Job Number:** 5870464703
+- **Scout ID:** 2259
+- **URL:** https://www.adzuna.com/land/ad/5870464703?se=Xu3hwKPF8RGjSfrCsBO0RQ&v=6444FC0847A37FB87B772BEB8118033323553480
+- **Original Source URL:** https://www.adzuna.com/land/ad/5870464703?se=Xu3hwKPF8RGjSfrCsBO0RQ&v=6444FC0847A37FB87B772BEB8118033323553480
+- **Description Source URL:** https://www.adzuna.com/land/ad/5870464703?se=Xu3hwKPF8RGjSfrCsBO0RQ&v=6444FC0847A37FB87B772BEB8118033323553480
+- **Source:** adzuna
+- **Source Captured:** 2026-10-13
+- **Recovery provenance:** Complete Firecrawl posting text preserved in this exact SQLite job record. Source ID, returned title, company, and original source excerpt verified. This is archived content, not a new live availability check.
+
+## Job description
+
+Manager Growth Marketing (Public Sector)
+
+❮ back to last search
+
+Akamai Technologies, Inc.
+
+Salt Lake City, Utah, 84190
+
+$175,493
+per year - estimated
+?
+
+CLOSING SOON
+
+Apply for this jobDo you enjoy creating marketing strategy and delivering results? Are you motivated by the opportunity to work in a high-growth, cross-functional team? Join our Public Sector Marketing Team Our Public Sector Marketing Team is responsible for developing and executing marketing strategies that build brand awareness, generate demand, and accelerate revenue growth across the US and Canada. We work closely with sales, channel partners, and global marketing teams to deliver integrated programs tailored to the unique needs of Federal, State, Local Government, and Higher Education customers. Partner with the best As a Growth Marketing Manager, you will lead marketing strategy and program execution across the US and Canada Public Sector. You will bridge local Public Sector sales leadership with global marketing teams to build brand awareness, drive net-new pipeline, and accelerate revenue growth through both direct sales initiatives and strategic indirect partner channels. As a Growth Marketing Manager, you will be responsible for: + Aligning with sales leadership to develop and execute marketing strategies across target public sector audiences + Designing and executing multi-channel demand generation programs that generate qualified leads and sales pipeline + Collaborating with direct sales teams and channel partners to develop and execute joint marketing programs + Connecting regional sales needs with global marketing and product teams to drive alignment and execution + Partnering with sales teams to improve lead conversion, funnel velocity, and pipeline performance + Monitoring pipeline metrics, campaign performance, and ROI to optimize marketing investments + Managing marketing budgets and allocating resources toward high-impact programs and initiatives Do what you love To be successful in this role you will: + Have 8 years of relevant experience and a Bachelor's degree or its equivalent + Have proven experience building and executing B2B demand generation campaigns within the technology industry + Have familiarity with government procurement cycles, public sector purchasing dynamics, and key government initiatives + Have experience supporting both direct sales organizations and channel partner networks + Have a track record of driving alignment across matrixed sales, marketing, and cross-functional teams + Have a data-informed mindset with experience using marketing data and CRM tools to measure business impact Build your career at Akamai Our ability to shape digital life today relies on developing exceptional people like you. The kind that can turn impossible into possible. We're doing everything we can to make Akamai a great place to work. A place where you can learn, grow and have a meaningful impact. With our company moving so fast, it's important that you're able to build new skills, explore new roles, and try out different opportunities. There are so many different ways to build your career at Akamai, and we want to support you as much as possible. We have all kinds of development opportunities available, from programs such as GROW and Mentoring, to internal events like the APEX Expo and tools such as Linkedin Learning, all to help you expand your knowledge and experience here. Learn more Not sure if this job is the right match for you or want to learn more about the job before you apply? Schedule a 15-minute exploratory call with the Recruiter and they would be happy to share more details. Compensation Akamai is committed to fair and equitable compensation practices. For US based candidates only - the base salary for this position ranges from $108,600 - $195,400/year; a candidate's salary is determined by various factors including, but not limited to, relevant work experience, skills, certifications and location. Compensation for candidates outside the US will vary. The compensation package may also include incentive compensation opportunities in the form of annual bonus or incentives, equity awards and an Employee Stock Purchase Plan (ESPP). Akamai provides industry-leading benefits including healthcare, 401K savings plan, company holidays, vacation (in the form of PTO), sick time, family friendly benefits including parental leave and an employee assistance program including a focus on mental and financial wellness; Eligibility requirements apply. Equal Employment Opportunity Rights Akamai Technologies is an Affirmative Action, Equal Opportunity Employer that values the strength that diversity brings to the workplace. All qualified applicants will receive consideration for employment and will not be discriminated against on the basis of gender, gender identity, sexual orientation, race/ethnicity, protected veteran status, disability, or other protected group status. Apply for this job

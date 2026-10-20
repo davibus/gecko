@@ -3,10 +3,11 @@ from pathlib import Path
 from datetime import datetime
 from zoneinfo import ZoneInfo
 R=Path('/mnt/c/gecko_main');Q=R/'openclaw/application-queue';j=sys.argv[1];target='retry-'+j
+import sys; sys.path.insert(0,str(R/'job-scout')); from resume_source import read_master_text
 assert j in ['1297','1298','1299','1301','1302','1303','1308']
 p=json.loads((Q/j/'application-package.json').read_text());e=json.loads((Q/j/'submission-result.json').read_text())
 assert e['outcome']=='blocked' and e['uploaded_filename']==Path(p['verified_resume_wsl_path']).name
-bank=(R/'openclaw/application-answers.md').read_text();master=(R/'input/master-resume/master-resume-v2.txt').read_text()
+bank=(R/'openclaw/application-answers.md').read_text();master=read_master_text(R/'input/master-resume/master-resume-v4.docx')
 assert 'AUTH-01' in bank and '$70,000' in bank and 'American Fork, UT' in master
 cli='/home/dcall/.openclaw/bin/openclaw'
 def call(args):

@@ -1,0 +1,1107 @@
+{
+  "pipeline": {
+    "raw_retrieved": 130,
+    "rss_retrieved": 0,
+    "rss_unique": 0,
+    "rss_duplicates_removed": 0,
+    "successful_feeds": 0,
+    "failed_feeds": 0,
+    "feed_results": [],
+    "api_retrieved": 0,
+    "source_backend": "",
+    "fetched": 130,
+    "normalized": 130,
+    "added": 0,
+    "updated": 2,
+    "duplicates": 2,
+    "cross_provider_duplicates": 0,
+    "unique_available": 0,
+    "unique_imported": 0,
+    "filtered_by_role": 113,
+    "deterministic_rejects": 128,
+    "deterministic_reject_reasons": {
+      "outside impromptu selections": 128
+    },
+    "jooble_excluded": 0,
+    "rejected_history_excluded": 0,
+    "missing_content_excluded": 0,
+    "dead_url_excluded": 0,
+    "source_results_limited": 0,
+    "url_review_excluded": 0,
+    "url_validated": 2,
+    "new_job_ids": [],
+    "existing_job_ids": [
+      2835,
+      2544
+    ],
+    "changed_job_ids": [],
+    "eligibility_includes_usa": 0,
+    "eligibility_worldwide": 0,
+    "example_jobs": [],
+    "backend_qualifying": {},
+    "backend_added": {}
+  },
+  "record_decisions": [
+    {
+      "source": "jobicy",
+      "source_job_id": "153611",
+      "url": "https://jobicy.com/jobs/153611-gtm-ai",
+      "company": "Kalshi",
+      "title": "GTM - AI",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153584",
+      "url": "https://jobicy.com/jobs/153584-business-development-manager-northeastern",
+      "company": "CompScience",
+      "title": "Business Development Manager, Northeastern",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153582",
+      "url": "https://jobicy.com/jobs/153582-director-of-product-marketing-2",
+      "company": "Help Scout",
+      "title": "Director of Product Marketing",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153541",
+      "url": "https://jobicy.com/jobs/153541-emerging-account-executive",
+      "company": "MaintainX",
+      "title": "Emerging Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "151025",
+      "url": "https://jobicy.com/jobs/151025-marketing-engineer",
+      "company": "Figma",
+      "title": "Marketing Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "151024",
+      "url": "https://jobicy.com/jobs/151024-manager-strategic-sales",
+      "company": "Figma",
+      "title": "Manager, Strategic Sales",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "149375",
+      "url": "https://jobicy.com/jobs/149375-senior-principal-sales-compensation-design-strategy",
+      "company": "Cloudflare, Inc.",
+      "title": "Senior Principal, Sales Compensation Design & Strategy",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155774",
+      "url": "https://jobicy.com/jobs/155774-inbound-sales-representative-remote-central-time",
+      "company": "A Place For Mom",
+      "title": "Inbound Sales Representative (Remote/Central Time)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155769",
+      "url": "https://jobicy.com/jobs/155769-general-manager-venture-private-equity",
+      "company": "Flex",
+      "title": "General Manager, Venture & Private Equity",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155768",
+      "url": "https://jobicy.com/jobs/155768-general-manager-construction",
+      "company": "Flex",
+      "title": "General Manager, Construction",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155763",
+      "url": "https://jobicy.com/jobs/155763-gtm-strategist",
+      "company": "Fandom",
+      "title": "GTM Strategist",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155761",
+      "url": "https://jobicy.com/jobs/155761-b2b-event-marketing-manager-6-month-contract",
+      "company": "Instacart",
+      "title": "B2B Event Marketing Manager (6-Month Contract)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155737",
+      "url": "https://jobicy.com/jobs/155737-consultant-relations-senior-manager",
+      "company": "BetterHelp",
+      "title": "Consultant Relations Senior Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155740",
+      "url": "https://jobicy.com/jobs/155740-ae-sr-ae-sales",
+      "company": "EDB",
+      "title": "AE/Sr AE, Sales",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155745",
+      "url": "https://jobicy.com/jobs/155745-account-executive-enterprise-southern-ca",
+      "company": "Zscaler",
+      "title": "Account Executive, Enterprise - Southern CA",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155738",
+      "url": "https://jobicy.com/jobs/155738-account-executive-commercial-kansas-city",
+      "company": "Zscaler",
+      "title": "Account Executive, Commercial - Kansas City",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155722",
+      "url": "https://jobicy.com/jobs/155722-business-development-manager-5",
+      "company": "Goodleap",
+      "title": "Business Development Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155630",
+      "url": "https://jobicy.com/jobs/155630-sales-development-representative-renewables",
+      "company": "Unison Infrastructure",
+      "title": "Sales Development Representative - Renewables",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155633",
+      "url": "https://jobicy.com/jobs/155633-enterprise-territory-account-executive-southeast",
+      "company": "Kong Inc.",
+      "title": "Enterprise Territory Account Executive, Southeast",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153519",
+      "url": "https://jobicy.com/jobs/153519-account-director-enterprise",
+      "company": "Recorded Future, Inc.",
+      "title": "Account Director, Enterprise",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153517",
+      "url": "https://jobicy.com/jobs/153517-account-executive-commercial-norcal",
+      "company": "Zscaler",
+      "title": "Account Executive, Commercial - NorCal",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153514",
+      "url": "https://jobicy.com/jobs/153514-enterprise-sales-account-executive-central",
+      "company": "Keyfactor, Inc.",
+      "title": "Enterprise Sales Account Executive, Central",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153525",
+      "url": "https://jobicy.com/jobs/153525-territory-manager-north-dakota",
+      "company": "Halter",
+      "title": "Territory Manager (North Dakota)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153523",
+      "url": "https://jobicy.com/jobs/153523-enterprise-sales-manager-texas",
+      "company": "Halter",
+      "title": "Enterprise Sales Manager (Texas)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150920",
+      "url": "https://jobicy.com/jobs/150920-account-executive-ii",
+      "company": "Xometry",
+      "title": "Account Executive II",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150892",
+      "url": "https://jobicy.com/jobs/150892-social-media-lead-for-talent",
+      "company": "Playbook",
+      "title": "Social Media Lead for Talent",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150924",
+      "url": "https://jobicy.com/jobs/150924-business-development-representative-6",
+      "company": "AssetWatch",
+      "title": "Business Development Representative",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150890",
+      "url": "https://jobicy.com/jobs/150890-sales-lead",
+      "company": "Playbook",
+      "title": "Sales Lead",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150922",
+      "url": "https://jobicy.com/jobs/150922-b2b-marketing-manager",
+      "company": "AssetWatch",
+      "title": "B2B Marketing Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155607",
+      "url": "https://jobicy.com/jobs/155607-cloud-partner-sales-manager-northeast",
+      "company": "Cribl",
+      "title": "Cloud Partner Sales Manager (Northeast)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155596",
+      "url": "https://jobicy.com/jobs/155596-head-of-business-and-corporate-development",
+      "company": "Phantom",
+      "title": "Head of Business and Corporate Development",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155598",
+      "url": "https://jobicy.com/jobs/155598-customer-field-marketing-manager-us-remote-3",
+      "company": "PerfectServe",
+      "title": "Customer & Field Marketing Manager - US Remote",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155570",
+      "url": "https://jobicy.com/jobs/155570-field-marketing-manager",
+      "company": "infisical",
+      "title": "Field Marketing Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155559",
+      "url": "https://jobicy.com/jobs/155559-1011-sales-development-representative",
+      "company": "GoFasti",
+      "title": "Sales Development Representative",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155558",
+      "url": "https://jobicy.com/jobs/155558-sr-product-marketing-manager-enterprise",
+      "company": "Zapier",
+      "title": "Sr. Product Marketing Manager, Enterprise",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153447",
+      "url": "https://jobicy.com/jobs/153447-mantle-squad-global",
+      "company": "Windranger Labs",
+      "title": "Mantle Squad - Global",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153464",
+      "url": "https://jobicy.com/jobs/153464-enterprise-account-director-2",
+      "company": "Salesloft",
+      "title": "Enterprise Account Director",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153436",
+      "url": "https://jobicy.com/jobs/153436-business-development-representative-14",
+      "company": "Osano",
+      "title": "Business Development Representative",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153426",
+      "url": "https://jobicy.com/jobs/153426-market-development-executive-united-states-air-force-space-force",
+      "company": "Silvus Technologies",
+      "title": "Market Development Executive, United States Air Force & Space Force",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153411",
+      "url": "https://jobicy.com/jobs/153411-senior-performance-marketing-manager-2",
+      "company": "Fieldguide",
+      "title": "Senior Performance Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2835,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153441",
+      "url": "https://jobicy.com/jobs/153441-sales-cx-enablement-partner",
+      "company": "Osano",
+      "title": "Sales & CX Enablement Partner",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153438",
+      "url": "https://jobicy.com/jobs/153438-account-manager-federal",
+      "company": "Mattermost",
+      "title": "Account Manager - Federal",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150852",
+      "url": "https://jobicy.com/jobs/150852-account-executive-2",
+      "company": "Housecall Pro",
+      "title": "Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150856",
+      "url": "https://jobicy.com/jobs/150856-account-executive-key-accounts",
+      "company": "Housecall Pro",
+      "title": "Account Executive (Key Accounts)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150811",
+      "url": "https://jobicy.com/jobs/150811-area-vice-president-strategic-sales",
+      "company": "Okta",
+      "title": "Area Vice President, Strategic Sales",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150860",
+      "url": "https://jobicy.com/jobs/150860-account-executive-saas",
+      "company": "Housecall Pro",
+      "title": "Account Executive (SaaS)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150835",
+      "url": "https://jobicy.com/jobs/150835-enterprise-account-executive-2",
+      "company": "Submittable",
+      "title": "Enterprise Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153360",
+      "url": "https://jobicy.com/jobs/153360-director-of-product-growth-digital-marketing",
+      "company": "Playbook",
+      "title": "Director of Product Growth & Digital Marketing",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153365",
+      "url": "https://jobicy.com/jobs/153365-advertising-account-director-mid-market",
+      "company": "Demandbase, Inc.",
+      "title": "Advertising Account Director, Mid-Market",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155535",
+      "url": "https://jobicy.com/jobs/155535-director-programmatic-b2b",
+      "company": "Wpromote",
+      "title": "Director, Programmatic B2B",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155539",
+      "url": "https://jobicy.com/jobs/155539-director-strategic-partnerships-digital-media-investment",
+      "company": "Wpromote",
+      "title": "Director, Strategic Partnerships & Digital Media Investment",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155529",
+      "url": "https://jobicy.com/jobs/155529-senior-manager-customer-expansion",
+      "company": "Dandy",
+      "title": "Senior Manager, Customer Expansion",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155527",
+      "url": "https://jobicy.com/jobs/155527-corporate-account-executive-central-2",
+      "company": "Chainguard",
+      "title": "Corporate Account Executive - Central",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155528",
+      "url": "https://jobicy.com/jobs/155528-account-manager-13",
+      "company": "UpGuard",
+      "title": "Account Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155509",
+      "url": "https://jobicy.com/jobs/155509-account-executive-25",
+      "company": "Cision",
+      "title": "Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155504",
+      "url": "https://jobicy.com/jobs/155504-business-development-representative-commercial",
+      "company": "Defense Unicorns",
+      "title": "Business Development Representative - Commercial",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155501",
+      "url": "https://jobicy.com/jobs/155501-business-development-representative-army",
+      "company": "Defense Unicorns",
+      "title": "Business Development Representative - Army",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155487",
+      "url": "https://jobicy.com/jobs/155487-enterprise-account-executive-hospitality",
+      "company": "WorkWhile",
+      "title": "Enterprise Account Executive - Hospitality",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155489",
+      "url": "https://jobicy.com/jobs/155489-sales-manager-smb-mid-market",
+      "company": "Documo Inc.",
+      "title": "Sales Manager, SMB & Mid-Market",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155419",
+      "url": "https://jobicy.com/jobs/155419-enterprise-account-director-3",
+      "company": "AlertMedia",
+      "title": "Enterprise Account Director",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153330",
+      "url": "https://jobicy.com/jobs/153330-major-gifts-officer",
+      "company": "Mozilla",
+      "title": "Major Gifts Officer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150674",
+      "url": "https://jobicy.com/jobs/150674-analyst-digital-marketing-iv-remote-iv",
+      "company": "TE Connectivity",
+      "title": "ANALYST DIGITAL MARKETING IV (Remote) IV",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150672",
+      "url": "https://jobicy.com/jobs/150672-account-manager-iv-remote-in-bay-area-ca",
+      "company": "TE Connectivity",
+      "title": "Account Manager IV (Remote in Bay Area, CA)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153337",
+      "url": "https://jobicy.com/jobs/153337-sales-engineer-enterprise-2",
+      "company": "Socket",
+      "title": "Sales Engineer, Enterprise",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153333",
+      "url": "https://jobicy.com/jobs/153333-solutions-engineer-us",
+      "company": "Quantum Metric",
+      "title": "Solutions Engineer - US",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153342",
+      "url": "https://jobicy.com/jobs/153342-sales-engineer-commercial",
+      "company": "Socket",
+      "title": "Sales Engineer, Commercial",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153325",
+      "url": "https://jobicy.com/jobs/153325-territory-manager-north-east-nebraska",
+      "company": "Halter",
+      "title": "Territory Manager (North East, Nebraska)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150770",
+      "url": "https://jobicy.com/jobs/150770-account-executive-smb",
+      "company": "Fleetio",
+      "title": "Account Executive, SMB",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150768",
+      "url": "https://jobicy.com/jobs/150768-account-executive-mid-market",
+      "company": "Fleetio",
+      "title": "Account Executive, Mid-Market",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150766",
+      "url": "https://jobicy.com/jobs/150766-enterprise-account-director",
+      "company": "dscout",
+      "title": "Enterprise Account Director",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150755",
+      "url": "https://jobicy.com/jobs/150755-partnership-director",
+      "company": "Nabla",
+      "title": "Partnership Director",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150752",
+      "url": "https://jobicy.com/jobs/150752-mid-market-account-executive",
+      "company": "Nabla",
+      "title": "Mid-Market Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150713",
+      "url": "https://jobicy.com/jobs/150713-account-executive-new-business-mid-market",
+      "company": "Apollo.io",
+      "title": "Account Executive, New Business (Mid-Market)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150671",
+      "url": "https://jobicy.com/jobs/150671-account-executive-essex-middlesex-ma-region-entry-level",
+      "company": "Quadient",
+      "title": "Account Executive - Essex/Middlesex, MA Region (Entry Level)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150709",
+      "url": "https://jobicy.com/jobs/150709-customer-growth-director",
+      "company": "Archive",
+      "title": "Customer Growth, Director",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155402",
+      "url": "https://jobicy.com/jobs/155402-svp-partners",
+      "company": "Vonage",
+      "title": "SVP, Partners",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155400",
+      "url": "https://jobicy.com/jobs/155400-senior-account-executive-6",
+      "company": "Paddle",
+      "title": "Senior Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155399",
+      "url": "https://jobicy.com/jobs/155399-mid-market-account-executive-new-business-api-cpaas",
+      "company": "Vonage",
+      "title": "Mid-Market Account Executive, New Business (API/CPaaS)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155396",
+      "url": "https://jobicy.com/jobs/155396-enterprise-account-director-new-business-api-cpaas",
+      "company": "Vonage",
+      "title": "Enterprise Account Director, New Business (API/CPaaS)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155394",
+      "url": "https://jobicy.com/jobs/155394-account-executive-enterprise-mountain",
+      "company": "Motive",
+      "title": "Account Executive, Enterprise - Mountain",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155390",
+      "url": "https://jobicy.com/jobs/155390-senior-manager-sales-engineering-us-public-sector",
+      "company": "Recorded Future, Inc.",
+      "title": "Senior Manager, Sales Engineering - US Public Sector",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155388",
+      "url": "https://jobicy.com/jobs/155388-senior-director-regional-sales-west-coast",
+      "company": "Recorded Future, Inc.",
+      "title": "Senior Director, Regional Sales (West Coast)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155384",
+      "url": "https://jobicy.com/jobs/155384-community-engagement-lead-brightlife-kids-sf-bay-area",
+      "company": "Brightline",
+      "title": "Community Engagement Lead (BrightLife Kids - SF Bay Area)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155387",
+      "url": "https://jobicy.com/jobs/155387-strategic-alliance-director",
+      "company": "Actian",
+      "title": "Strategic Alliance Director",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155360",
+      "url": "https://jobicy.com/jobs/155360-senior-lifecycle-marketing-manager-3",
+      "company": "Fleetio",
+      "title": "Senior Lifecycle Marketing Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155356",
+      "url": "https://jobicy.com/jobs/155356-senior-field-marketing-manager",
+      "company": "Fleetio",
+      "title": "Senior Field Marketing Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155355",
+      "url": "https://jobicy.com/jobs/155355-senior-director-brand-marketing",
+      "company": "Fleetio",
+      "title": "Senior Director, Brand Marketing",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155354",
+      "url": "https://jobicy.com/jobs/155354-partner-development-manager-2",
+      "company": "Fleetio",
+      "title": "Partner Development Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "146820",
+      "url": "https://jobicy.com/jobs/146820-enterprise-and-dynamic-supplier-finance-dsf-sales",
+      "company": "C2FO",
+      "title": "Enterprise and Dynamic Supplier Finance (DSF) Sales",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153218",
+      "url": "https://jobicy.com/jobs/153218-enterprise-sales-leader-technology-and-telecommunications",
+      "company": "Qualtrics",
+      "title": "Enterprise Sales Leader - Technology and Telecommunications",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153201",
+      "url": "https://jobicy.com/jobs/153201-enterprise-account-executive-tmt",
+      "company": "Qualtrics",
+      "title": "Enterprise Account Executive - TMT",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153206",
+      "url": "https://jobicy.com/jobs/153206-enterprise-sales-leader-financial-services",
+      "company": "Qualtrics",
+      "title": "Enterprise Sales Leader - Financial Services",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153200",
+      "url": "https://jobicy.com/jobs/153200-business-development-manager-collectibles-category",
+      "company": "Palmstreet",
+      "title": "Business Development Manager \u2013 Collectibles Category",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153204",
+      "url": "https://jobicy.com/jobs/153204-director-performance-marketing",
+      "company": "Help Scout",
+      "title": "Director, Performance Marketing",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155333",
+      "url": "https://jobicy.com/jobs/155333-regional-sales-manager-mid-market",
+      "company": "Fleetio",
+      "title": "Regional Sales Manager, Mid-Market",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155323",
+      "url": "https://jobicy.com/jobs/155323-customer-strategy-director",
+      "company": "Cresta",
+      "title": "Customer Strategy Director",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155317",
+      "url": "https://jobicy.com/jobs/155317-manager-airline-partnerships",
+      "company": "TripActions",
+      "title": "Manager, Airline Partnerships",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155307",
+      "url": "https://jobicy.com/jobs/155307-inside-sales-representative-3",
+      "company": "RStudio",
+      "title": "Inside Sales Representative",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155298",
+      "url": "https://jobicy.com/jobs/155298-client-director",
+      "company": "Nash",
+      "title": "Client Director",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155301",
+      "url": "https://jobicy.com/jobs/155301-product-marketing-lead-3",
+      "company": "Nash",
+      "title": "Product Marketing Lead",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155289",
+      "url": "https://jobicy.com/jobs/155289-enterprise-account-executive-acquisition-fl-remote",
+      "company": "Grafana Labs",
+      "title": "Enterprise Account Executive, Acquisition | FL | Remote",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155286",
+      "url": "https://jobicy.com/jobs/155286-enterprise-account-executive-acquisition-dmv-remote",
+      "company": "Grafana Labs",
+      "title": "Enterprise Account Executive, Acquisition | DMV | Remote",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155282",
+      "url": "https://jobicy.com/jobs/155282-us-sales-development-representative-6-month-contract",
+      "company": "PointClickCare",
+      "title": "(US) Sales Development Representative (6 month contract)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155279",
+      "url": "https://jobicy.com/jobs/155279-us-sales-development-representative",
+      "company": "PointClickCare",
+      "title": "(US) Sales Development Representative",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155266",
+      "url": "https://jobicy.com/jobs/155266-demand-generation-program-manager-united-states-remote",
+      "company": "Grafana Labs",
+      "title": "Demand Generation Program Manager | United States | Remote",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155272",
+      "url": "https://jobicy.com/jobs/155272-compliance-account-executive",
+      "company": "Skillsoft",
+      "title": "Compliance Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155269",
+      "url": "https://jobicy.com/jobs/155269-analyst-relations-director",
+      "company": "Skillsoft",
+      "title": "Analyst Relations Director",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155259",
+      "url": "https://jobicy.com/jobs/155259-enterprise-account-director-north-east",
+      "company": "MaintainX",
+      "title": "Enterprise Account Director - North East",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155263",
+      "url": "https://jobicy.com/jobs/155263-director-of-enterprise-sales",
+      "company": "MaintainX",
+      "title": "Director of Enterprise Sales",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153181",
+      "url": "https://jobicy.com/jobs/153181-account-executive-20",
+      "company": "Dropbox",
+      "title": "Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153149",
+      "url": "https://jobicy.com/jobs/153149-account-executive-enterprise-intelligence",
+      "company": "AlphaSense",
+      "title": "Account Executive, Enterprise Intelligence",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155240",
+      "url": "https://jobicy.com/jobs/155240-enterprise-account-executive-financial-services-new-york-northeast",
+      "company": "Qualtrics",
+      "title": "Enterprise Account Executive - Financial Services, New York/Northeast",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155237",
+      "url": "https://jobicy.com/jobs/155237-enterprise-account-executive-business-services",
+      "company": "Qualtrics",
+      "title": "Enterprise Account Executive - Business Services",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155229",
+      "url": "https://jobicy.com/jobs/155229-account-director-4",
+      "company": "AudioEye",
+      "title": "Account Director",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155197",
+      "url": "https://jobicy.com/jobs/155197-strategic-account-executive-13",
+      "company": "CoderPad",
+      "title": "Strategic Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155204",
+      "url": "https://jobicy.com/jobs/155204-performance-creative-manager",
+      "company": "Solace",
+      "title": "Performance Creative Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153133",
+      "url": "https://jobicy.com/jobs/153133-account-executive-chicago-il",
+      "company": "PadSplit",
+      "title": "Account Executive - Chicago, IL",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153137",
+      "url": "https://jobicy.com/jobs/153137-account-executive-denver-co",
+      "company": "PadSplit",
+      "title": "Account Executive - Denver, CO",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153128",
+      "url": "https://jobicy.com/jobs/153128-account-executive-boston-ma",
+      "company": "PadSplit",
+      "title": "Account Executive - Boston, MA",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153126",
+      "url": "https://jobicy.com/jobs/153126-digital-insurance-agent",
+      "company": "Insurify",
+      "title": "Digital Insurance Agent",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153086",
+      "url": "https://jobicy.com/jobs/153086-brand-events-lead",
+      "company": "Teachable",
+      "title": "Brand & Events Lead",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "150478",
+      "url": "https://jobicy.com/jobs/150478-senior-customer-activation-manager-partnerships",
+      "company": "Ramp",
+      "title": "Senior Customer Activation Manager | Partnerships",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "149104",
+      "url": "https://jobicy.com/jobs/149104-manager-ad-operations",
+      "company": "StackAdapt",
+      "title": "Manager, Ad Operations",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "153092",
+      "url": "https://jobicy.com/jobs/153092-account-executive-mid-market-3",
+      "company": "Zapier",
+      "title": "Account Executive, Mid Market",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155151",
+      "url": "https://jobicy.com/jobs/155151-director-of-digital-marketing",
+      "company": "Cloudinary",
+      "title": "Director of Digital Marketing",
+      "reason": "previously known",
+      "matched_id": 2544,
+      "cross_source": false
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155143",
+      "url": "https://jobicy.com/jobs/155143-marketing-technology-engineer-2",
+      "company": "TRM Labs",
+      "title": "Marketing Technology Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155127",
+      "url": "https://jobicy.com/jobs/155127-enterprise-account-executive-namer",
+      "company": "Legion",
+      "title": "Enterprise Account Executive - NAMER",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155124",
+      "url": "https://jobicy.com/jobs/155124-product-marketing-lead-2",
+      "company": "Bayesian Health",
+      "title": "Product Marketing Lead",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155117",
+      "url": "https://jobicy.com/jobs/155117-enterprise-account-executive-americas-west",
+      "company": "Ashby",
+      "title": "Enterprise Account Executive - Americas (West)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155114",
+      "url": "https://jobicy.com/jobs/155114-enterprise-account-executive-americas-east",
+      "company": "Ashby",
+      "title": "Enterprise Account Executive - Americas (East)",
+      "reason": "outside impromptu selections"
+    }
+  ],
+  "queries_pages": [
+    {
+      "kind": "full feed",
+      "status": "completed",
+      "parsed": 130
+    }
+  ],
+  "board_errors": [],
+  "page_exclusions": [],
+  "collection_limits": [],
+  "firecrawl_requests": 0,
+  "errors": "",
+  "health": {
+    "status": "success",
+    "found": 130,
+    "detail": ""
+  }
+}

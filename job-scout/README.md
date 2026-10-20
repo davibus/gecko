@@ -106,7 +106,7 @@ Source concurrency and volume are bounded by `JOB_SCOUT_SOURCE_CONCURRENCY` and 
 
 When both AI screening models are configured, `daily` validates the candidate profile before opening the database, checking existing links, discovering jobs, or writing to Sheets. Direct calls to `daily()` perform the same check. Environment model overrides take precedence over preference values; whitespace-only or empty model values disable this early AI check. The evaluator's existing profile validation remains in place.
 
-`candidate_profile.py` resolves the master from its own checkout root, not another Gecko working copy. The default profile is beside it at `preferences/candidate-profile.json`; `ai_evaluation.candidate_profile` can select a different profile (relative paths resolve from the process working directory). The fingerprint is SHA-256 of `MASTER_RESUME.read_bytes()`: line endings and encoding are significant.
+`candidate_profile.py` resolves the master from its own checkout root, not another Gecko working copy. The default profile is beside it at `preferences/candidate-profile.json`; `ai_evaluation.candidate_profile` can select a different profile (relative paths resolve from the process working directory). The fingerprint is SHA-256 of `MASTER_RESUME.read_bytes()`: the complete Word package, including formatting and metadata, is significant.
 
 There is no automatic content-refresh command. Refresh requires reviewing the source and maintaining the compact summary:
 
@@ -114,10 +114,10 @@ There is no automatic content-refresh command. Refresh requires reviewing the so
 2. Read the complete current master and record its raw-byte hash. This PowerShell command uses the loader's exact source path:
 
    ```powershell
-   python -c "import sys,hashlib; sys.path.insert(0,'job-scout'); import candidate_profile as c; b=c.MASTER_RESUME.read_bytes(); print(c.MASTER_RESUME.resolve()); print(c.DEFAULT_PROFILE.resolve()); print(hashlib.sha256(b).hexdigest()); print(b.decode('utf-8-sig'))"
+   python -c "import sys,hashlib; sys.path.insert(0,'job-scout'); import candidate_profile as c; b=c.MASTER_RESUME.read_bytes(); print(c.MASTER_RESUME.resolve()); print(c.DEFAULT_PROFILE.resolve()); print(hashlib.sha256(b).hexdigest()); print(c.read_master_text(c.MASTER_RESUME))"
    ```
 
-3. Review every profile field against that source and update relevant skills, industries, accomplishments, and summaries. Preserve the required keys listed in `load_candidate_profile()`. Do not invent dates, experience, or outcomes, or resolve contradictory source dates by guessing. Retain content for a formatting-only change only after explicitly proving the decoded text is identical to the previously fingerprinted source after line-ending/encoding normalization.
+3. Review every profile field against that source and update relevant skills, industries, accomplishments, and summaries. Preserve the required keys listed in `load_candidate_profile()`. Do not invent dates, experience, or outcomes, or resolve contradictory source dates by guessing. Retain content for a formatting-only change only after explicitly proving the extracted Word text is identical to the previously fingerprinted source after whitespace/list-marker normalization, with every factual change reviewed.
 4. Only after review, set `master_resume_sha256` to the hash recorded in step 2. The following PowerShell block checks that the source has not changed during review. Replace the placeholder with the reviewed hash and use the selected profile path if it is customized. This stamps the reviewed JSON; it does not review or refresh its content for you.
 
    ```powershell
@@ -277,11 +277,11 @@ python job-scout/gmail_response_tracker.py check
 
 ## Resume handoff
 
-Gecko evaluates the job description directly against the required master archive (`input/master-resume/master-resume-v2.txt`) while building the tailoring plan. Resume generation uses `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as the required visual formatting/layout model. The V2 pipeline stops without fallback if either file is missing. It produces:
+Gecko evaluates the job description directly against the required master archive (`input/master-resume/master-resume-v4.docx`) while building the tailoring plan. Resume generation uses `input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf` as the required visual formatting/layout model. The V2 pipeline stops without fallback if either file is missing. It produces:
 
 - an exactly two-page DOCX after native Microsoft Word validation.
 
-The completed resume is recorded only after the DOCX exists directly under `output/resumes` and native QA passes. The current Gecko style comes from the required master TXT and model PDF, with every employment heading on one physical line (`Job Title - Company Name - City, ST`) and verified dates flush with the right text margin on that same line. This applies to Indeed Scout, Job Scout, and the shared apply queue; mandatory Core Strengths and Tools & Platforms counts still apply. The daily queue marks `Resume Created` with canonical `X` and writes a clickable absolute file URI to `Resume Link`. Every scout and the queue read the existing tracker row by stable identity. An X, ignoring case and spaces, always skips generation and preserves the existing marker and link. A blank link is reported for manual review, never regenerated automatically. A nonblank link with a blank marker also stops generation for manual review. Cost `x` rows, including effective formula results, are excluded. Local file links are machine-scoped and require access to the same Windows path; no public URL or Google Drive copy is invented.
+The completed resume is recorded only after the DOCX exists directly under `output/resumes` and native QA passes. The current Gecko style comes from the required master DOCX and model PDF, with every employment heading on one physical line (`Job Title - Company Name - City, ST`) and verified dates flush with the right text margin on that same line. This applies to Indeed Scout, Job Scout, and the shared apply queue; mandatory Core Strengths and Tools & Platforms counts still apply. The daily queue marks `Resume Created` with canonical `X` and writes a clickable absolute file URI to `Resume Link`. Every scout and the queue read the existing tracker row by stable identity. An X, ignoring case and spaces, always skips generation and preserves the existing marker and link. A blank link is reported for manual review, never regenerated automatically. A nonblank link with a blank marker also stops generation for manual review. Cost `x` rows, including effective formula results, are excluded. Local file links are machine-scoped and require access to the same Windows path; no public URL or Google Drive copy is invented.
 
 ## Data preservation
 
@@ -304,3 +304,7 @@ The regression suite covers schema migration idempotence, header-based writes, d
 Resume filenames must use `Dave-Call+<Company-Name>+<Job-Title>+<Resume-ID>.docx`, ending in a unique numeric identifier of at most five digits (Gecko uses five zero-padded digits). Never put a full posting ID, Indeed jk, UUID, hash, or long numeric job number in a resume filename. Keep filenames at most 150 characters, sanitizing Windows-invalid characters and shortening an excessively long title at a word boundary. Reserve identifiers through `job-scout/resume_naming.py`; do not truncate a source ID or guess uniqueness. Full posting IDs remain in the identity registry and DOCX metadata for job matching. Use the same rule for explicitly requested renames, verify tracker links after any rename, and preserve the existing Resume Created = X guard. Archived job descriptions and scratch folders continue to use full posting IDs.
 
 Example: `Dave-Call+Array+Digital-Marketing-Manager+00001.docx`.
+
+## Resume content density
+
+Exactly two pages is necessary but not sufficient when useful, job-relevant evidence remains. Education & Certifications should finish within approximately 0.5 inch (36 points) above the normal bottom text boundary on page two. Use distinct, source-supported accomplishments and relevant project detail, prioritizing the most relevant roles; there is no fixed two- or three-bullet ceiling. Keep standard sections, readable model typography, and normal margins/spacing. Do not fill space with larger fonts, inflated spacing, blank paragraphs, repeated claims, unrelated material, or an education footer/text box. Inspect both rendered pages and measure the final section after native Word/PDF validation. If genuinely relevant evidence is exhausted, document the reviewed evidence and explain the remaining gap; page count alone is not completion.

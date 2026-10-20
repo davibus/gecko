@@ -6,6 +6,13 @@ import unittest
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
+from docx import Document
+
+def write_master(path, text):
+    doc = Document()
+    for line in text.splitlines(): doc.add_paragraph(line)
+    doc.save(path)
+
 
 import gecko_v2 as v2
 
@@ -21,10 +28,9 @@ class GeckoV2Tests(unittest.TestCase):
         temp = tempfile.TemporaryDirectory()
         cls.addClassCleanup(temp.cleanup)
         root = Path(temp.name)
-        master = root / "input/master-resume/master-resume-v2.txt"
+        master = root / "input/master-resume/master-resume-v4.docx"
         master.parent.mkdir(parents=True)
-        content = v2.MASTER.read_text(encoding="utf-8-sig")
-        master.write_text(content, encoding="utf-8")
+        master.write_bytes(v2.MASTER.read_bytes())
         model = master.parent / v2.FORMAT_MODEL.name
         model.write_bytes(v2.FORMAT_MODEL.read_bytes())
         fixture_listing = root / "input/job-descriptions/Pattern+3245845963235237630.md"
@@ -153,42 +159,42 @@ class GeckoV2Tests(unittest.TestCase):
 
     def test_reads_updated_master_archive_instead_of_cached_content(self):
         with tempfile.TemporaryDirectory() as tmp:
-            master = Path(tmp) / "master-resume-v2.txt"
-            master.write_text("First master version\n", encoding="utf-8")
+            master = Path(tmp) / "master-resume-v4.docx"
+            write_master(master, "First master version\n")
             with patch.object(v2, "ROOT", Path(tmp)), patch.object(v2, "MASTER", master):
                 first = v2.source_text()
                 first_hash = v2.source_hashes()
-                master.write_text("First master version\nNew approved accomplishment\n", encoding="utf-8")
+                write_master(master, "First master version\nNew approved accomplishment\n")
                 self.assertIn("New approved accomplishment", v2.source_text())
                 self.assertNotEqual(first, v2.source_text())
                 self.assertNotEqual(first_hash, v2.source_hashes())
 
     def test_unreadable_or_empty_master_fails_clearly(self):
         with tempfile.TemporaryDirectory() as tmp:
-            master = Path(tmp) / "master-resume-v2.txt"
+            master = Path(tmp) / "master-resume-v4.docx"
             with patch.object(v2, "ROOT", Path(tmp)), patch.object(v2, "MASTER", master):
                 with self.assertRaisesRegex(OSError, "missing or unreadable"):
                     v2.source_text()
-                master.write_text(" \n", encoding="utf-8")
+                write_master(master, " \n")
                 with self.assertRaisesRegex(ValueError, "is empty"):
                     v2.source_text()
 
     def test_old_files_and_format_reference_are_not_evidence(self):
-        self.assertEqual(v2.MASTER.name, "master-resume-v2.txt")
+        self.assertEqual(v2.MASTER.name, "master-resume-v4.docx")
         self.assertEqual(v2.FORMAT_MODEL.name, "MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf")
         self.assertEqual({Path(path).as_posix() for path in self.plan["source_sha256"]},
-                         {"input/master-resume/master-resume-v2.txt"})
+                         {"input/master-resume/master-resume-v4.docx"})
         self.assertEqual(self.plan["format_model"],
                          "input/master-resume/MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf")
         self.assertEqual(self.plan["format_model_sha256"], v2.formatting_model_hash())
-        self.assertTrue(all(e["source"].endswith("master-resume-v2.txt")
+        self.assertTrue(all(e["source"].endswith("master-resume-v4.docx")
                             for e in self.plan["evidence"]))
         self.assertNotIn("Spanish", self.plan["resume"]["contact"])
         self.assertNotIn("Spanish", self.plan["resume"]["certifications"])
 
     def test_missing_required_authorities_fail_without_fallback(self):
         with tempfile.TemporaryDirectory() as tmp:
-            missing_master = Path(tmp) / "master-resume-v2.txt"
+            missing_master = Path(tmp) / "master-resume-v4.docx"
             missing_model = Path(tmp) / "MODEL-GECKO-PRODUCT_Dave_Call_Resume.pdf"
             with patch.object(v2, "MASTER", missing_master), patch.object(v2, "FORMAT_MODEL", v2.FORMAT_MODEL):
                 with self.assertRaisesRegex(FileNotFoundError, "Required Gecko master resume could not be found"):
@@ -248,7 +254,7 @@ class GeckoV2Tests(unittest.TestCase):
         for title, company, location in cases:
             self.assertEqual(v2.employment_heading({"title": title, "company": company, "location": location}),
                              f"{title} - {company} - {location}")
-        for missing in ("title", "company", "location"):
+        for missing in ("company", "location"):
             job = {"title": "Manager", "company": "Acme", "location": "Provo, UT"}
             job[missing] = ""
             with self.assertRaises(ValueError):

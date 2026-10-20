@@ -1,0 +1,388 @@
+{
+  "pipeline": {
+    "raw_retrieved": 41,
+    "rss_retrieved": 0,
+    "rss_unique": 0,
+    "rss_duplicates_removed": 0,
+    "successful_feeds": 0,
+    "failed_feeds": 0,
+    "feed_results": [],
+    "api_retrieved": 0,
+    "source_backend": "",
+    "fetched": 41,
+    "normalized": 41,
+    "added": 0,
+    "updated": 0,
+    "duplicates": 0,
+    "cross_provider_duplicates": 0,
+    "unique_available": 0,
+    "unique_imported": 0,
+    "filtered_by_role": 41,
+    "deterministic_rejects": 41,
+    "deterministic_reject_reasons": {
+      "outside impromptu selections": 41
+    },
+    "jooble_excluded": 0,
+    "rejected_history_excluded": 0,
+    "missing_content_excluded": 0,
+    "dead_url_excluded": 0,
+    "source_results_limited": 0,
+    "url_review_excluded": 0,
+    "url_validated": 0,
+    "new_job_ids": [],
+    "existing_job_ids": [],
+    "changed_job_ids": [],
+    "eligibility_includes_usa": 0,
+    "eligibility_worldwide": 0,
+    "example_jobs": [],
+    "backend_qualifying": {},
+    "backend_added": {}
+  },
+  "record_decisions": [
+    {
+      "source": "workingnomads",
+      "source_job_id": "1944774",
+      "url": "https://www.workingnomads.com/job/go/1944774/",
+      "company": "Marker Video",
+      "title": "Video Creator (100% remote)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1944801",
+      "url": "https://www.workingnomads.com/job/go/1944801/",
+      "company": "Lemon.io",
+      "title": "Senior AI Engineer / Architect",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1939844",
+      "url": "https://www.workingnomads.com/job/go/1939844/",
+      "company": "iMerit Technology",
+      "title": "Language specialist",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1939843",
+      "url": "https://www.workingnomads.com/job/go/1939843/",
+      "company": "iMerit Technology",
+      "title": "AI Trainer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1938564",
+      "url": "https://www.workingnomads.com/job/go/1938564/",
+      "company": "Lemon.io",
+      "title": "Senior Full-stack PHP Developer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1936318",
+      "url": "https://www.workingnomads.com/job/go/1936318/",
+      "company": "ShyftOff",
+      "title": "Remote Financial Services Agent (Independent Contractor) \u2013 Inbound Card & Account Support",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925654",
+      "url": "https://www.workingnomads.com/job/go/1925654/",
+      "company": "Proxify",
+      "title": "Senior Backend Developer (Node.js / Nest.js)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925652",
+      "url": "https://www.workingnomads.com/job/go/1925652/",
+      "company": "Proxify",
+      "title": "Senior Backend Developer (Python)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925645",
+      "url": "https://www.workingnomads.com/job/go/1925645/",
+      "company": "Proxify",
+      "title": "Senior Business Central Developer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925640",
+      "url": "https://www.workingnomads.com/job/go/1925640/",
+      "company": "Proxify",
+      "title": "Senior Cloud Engineer (Azure)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925636",
+      "url": "https://www.workingnomads.com/job/go/1925636/",
+      "company": "Proxify",
+      "title": "Senior Data Engineer (Azure)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925634",
+      "url": "https://www.workingnomads.com/job/go/1925634/",
+      "company": "Proxify",
+      "title": "Senior DevOps Engineer (Azure)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925629",
+      "url": "https://www.workingnomads.com/job/go/1925629/",
+      "company": "Proxify",
+      "title": "Senior Fullstack Developer (React.js / Node.js)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925623",
+      "url": "https://www.workingnomads.com/job/go/1925623/",
+      "company": "Proxify",
+      "title": "Senior Python Developer (Fullstack, BE-Heavy)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925616",
+      "url": "https://www.workingnomads.com/job/go/1925616/",
+      "company": "Proxify",
+      "title": "Senior Django Developer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925599",
+      "url": "https://www.workingnomads.com/job/go/1925599/",
+      "company": "Proxify",
+      "title": "Senior Fullstack Developer (.NET)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925598",
+      "url": "https://www.workingnomads.com/job/go/1925598/",
+      "company": "Proxify",
+      "title": "Senior Backend Developer (.NET)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925596",
+      "url": "https://www.workingnomads.com/job/go/1925596/",
+      "company": "Proxify",
+      "title": "Senior AI Engineer (Backend-Focused)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925594",
+      "url": "https://www.workingnomads.com/job/go/1925594/",
+      "company": "Proxify",
+      "title": "Senior QA Automation Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925592",
+      "url": "https://www.workingnomads.com/job/go/1925592/",
+      "company": "Proxify",
+      "title": "Senior Salesforce Developer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1925590",
+      "url": "https://www.workingnomads.com/job/go/1925590/",
+      "company": "Proxify",
+      "title": "Senior SAP S/4HANA Developer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1923073",
+      "url": "https://www.workingnomads.com/job/go/1923073/",
+      "company": "Lemon.io",
+      "title": "Senior Vue Developer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1920476",
+      "url": "https://www.workingnomads.com/job/go/1920476/",
+      "company": "Peroptyx",
+      "title": "Data Analyst (No Experience Required)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1920195",
+      "url": "https://www.workingnomads.com/job/go/1920195/",
+      "company": "Lemon.io",
+      "title": "Senior React Full-stack Developer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1915664",
+      "url": "https://www.workingnomads.com/job/go/1915664/",
+      "company": "Peroptyx",
+      "title": "AI Content Analyst (No Experience Required)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1915662",
+      "url": "https://www.workingnomads.com/job/go/1915662/",
+      "company": "Peroptyx",
+      "title": "Data Analyst (No Experience Required)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1907122",
+      "url": "https://www.workingnomads.com/job/go/1907122/",
+      "company": "TELUS Digital",
+      "title": "Live Photo Collection Study in India",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1907058",
+      "url": "https://www.workingnomads.com/job/go/1907058/",
+      "company": "TELUS Digital",
+      "title": "Content Reviewer United States - English-speaking",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1906010",
+      "url": "https://www.workingnomads.com/job/go/1906010/",
+      "company": "TELUS Digital",
+      "title": "Quality Assurance Rater - Spanish (ES)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1901972",
+      "url": "https://www.workingnomads.com/job/go/1901972/",
+      "company": "Peroptyx",
+      "title": "Data Analyst (No Experience Required)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1901964",
+      "url": "https://www.workingnomads.com/job/go/1901964/",
+      "company": "Peroptyx",
+      "title": "Data Analyst (No Experience Required)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1901953",
+      "url": "https://www.workingnomads.com/job/go/1901953/",
+      "company": "Peroptyx",
+      "title": "AI Content Analyst (No Experience Required)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1901331",
+      "url": "https://www.workingnomads.com/job/go/1901331/",
+      "company": "Lemon.io",
+      "title": "Senior UI & UX / Graphic Designer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1899188",
+      "url": "https://www.workingnomads.com/job/go/1899188/",
+      "company": "Elite Editing",
+      "title": "Storyteller: Freelance B2B Interviewer and Writer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1891955",
+      "url": "https://www.workingnomads.com/job/go/1891955/",
+      "company": "Beekman Social",
+      "title": "Beekman Social - Account Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1889808",
+      "url": "https://www.workingnomads.com/job/go/1889808/",
+      "company": "CloudGeometry",
+      "title": "Stack .NET Developer / Algorithm Engineer \u2013 Backend Focus.",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1885527",
+      "url": "https://www.workingnomads.com/job/go/1885527/",
+      "company": "Lemon.io",
+      "title": "Senior back-end Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1884997",
+      "url": "https://www.workingnomads.com/job/go/1884997/",
+      "company": "Polly English",
+      "title": "Looking For Online ESL Teachers - Remote- Joining Rewards of up to USD $100",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1880339",
+      "url": "https://www.workingnomads.com/job/go/1880339/",
+      "company": "Strong Roots Accounting",
+      "title": "Virtual Bookkeeper",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1879612",
+      "url": "https://www.workingnomads.com/job/go/1879612/",
+      "company": "TELUS Digital",
+      "title": "Content Reviewer - United States",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "workingnomads",
+      "source_job_id": "1878435",
+      "url": "https://www.workingnomads.com/job/go/1878435/",
+      "company": "Lemon.io",
+      "title": "Head of Engineering",
+      "reason": "outside impromptu selections"
+    }
+  ],
+  "queries_pages": [
+    {
+      "kind": "full feed",
+      "status": "completed",
+      "parsed": 41
+    }
+  ],
+  "board_errors": [],
+  "page_exclusions": [],
+  "collection_limits": [],
+  "firecrawl_requests": 0,
+  "errors": "",
+  "health": {
+    "status": "success",
+    "found": 41,
+    "detail": ""
+  }
+}

@@ -22,6 +22,9 @@ def validate(value):
         raise ValueError('Choose filters for this impromptu run.')
     allowed=options()
     result={}
+    if type(value.get("create_resumes", False)) is not bool:
+        raise ValueError("Create resumes must be on or off.")
+    result["create_resumes"] = value.get("create_resumes", False)
     for key in ['sources','titles','arrangements','matches','costs','locations','priorities']:
         items=value.get(key)
         if not isinstance(items,list) or not items or len(items)>100 or any(not isinstance(x,str) or not x.strip() or len(x)>120 for x in items):

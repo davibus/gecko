@@ -3,8 +3,9 @@ from pathlib import Path
 from datetime import datetime
 from zoneinfo import ZoneInfo
 ROOT=Path('/mnt/c/gecko_main');Q=ROOT/'openclaw/application-queue';cli='/home/dcall/.openclaw/bin/openclaw';jid=sys.argv[1];target='retry-'+jid
+import sys; sys.path.insert(0,str(ROOT/'job-scout')); from resume_source import read_master_text
 assert jid=='1308';p=json.loads((Q/jid/'application-package.json').read_text());e=json.loads((Q/jid/'submission-result.json').read_text());assert p['company']=='ezCater, Inc' and e['outcome']=='blocked';assert e['uploaded_filename']==Path(p['verified_resume_wsl_path']).name
-answers=(ROOT/'openclaw/application-answers.md').read_text();assert '$70,000' in answers and 'AUTH-01' in answers;master=(ROOT/'input/master-resume/master-resume-v2.txt').read_text();assert 'American Fork, UT' in master
+answers=(ROOT/'openclaw/application-answers.md').read_text();assert '$70,000' in answers and 'AUTH-01' in answers;master=read_master_text(ROOT/'input/master-resume/master-resume-v4.docx');assert 'American Fork, UT' in master
 known=['Please briefly describe the team sizes and scopes you have led as a Marketing leader.',next(x for x in e['blocking_questions'] if x.startswith('Will you, now or in the future, require sponsorship')),'Do you have the unrestricted right to work for any employer in the United States?']
 assert set(e['blocking_questions'])==set(known+['Which state do you currently reside in?','Do you have experience leading Marketing Analytics?'])
 assert 'Led an eight-person e-commerce team' in master and 'annual projections and KPI reporting' in master

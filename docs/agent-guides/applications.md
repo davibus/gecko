@@ -21,3 +21,18 @@ immediately to the next ID, and collect the pending actions for Dave to resolve
 when he returns. Use each job's matching tailored resume, never guess required
 answers, and update Applied only after employer confirmation with tracker readback.
 Resume pending jobs after answers arrive without repeating confirmed submissions.
+
+## Fill known fields first and leave for review - October 19, 2026
+
+Dave requests review before submission. This newer instruction overrides older
+automatic-submission wording unless Dave explicitly authorizes submission later.
+Attach and verify the matching existing tailored resume and fill all accessible
+fields supported by confirmed answers and the current master resume. Preserve
+existing user-entered answers. Unknown required questions must remain blank, but
+do not stop filling other independent fields because one answer is unknown.
+Collect the exact remaining question labels and explain any page-navigation
+barrier. Never guess, use placeholder answers, or bypass validation. If login,
+CAPTCHA, OTP, a new agreement or a fee blocks access, preserve the draft and report
+that action. Leave the existing application tab open for Dave's review, including
+single-page applications with no separate review screen. Never click Submit,
+Send application, Finish or another final submission control under this request.

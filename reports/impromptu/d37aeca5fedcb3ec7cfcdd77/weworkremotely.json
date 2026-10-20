@@ -1,0 +1,1088 @@
+{
+  "pipeline": {
+    "raw_retrieved": 128,
+    "rss_retrieved": 0,
+    "rss_unique": 0,
+    "rss_duplicates_removed": 0,
+    "successful_feeds": 0,
+    "failed_feeds": 0,
+    "feed_results": [],
+    "api_retrieved": 0,
+    "source_backend": "",
+    "fetched": 128,
+    "normalized": 128,
+    "added": 0,
+    "updated": 1,
+    "duplicates": 1,
+    "cross_provider_duplicates": 0,
+    "unique_available": 0,
+    "unique_imported": 0,
+    "filtered_by_role": 103,
+    "deterministic_rejects": 127,
+    "deterministic_reject_reasons": {
+      "outside impromptu selections": 127
+    },
+    "jooble_excluded": 0,
+    "rejected_history_excluded": 0,
+    "missing_content_excluded": 0,
+    "dead_url_excluded": 0,
+    "source_results_limited": 0,
+    "url_review_excluded": 0,
+    "url_validated": 1,
+    "new_job_ids": [],
+    "existing_job_ids": [
+      1954
+    ],
+    "changed_job_ids": [],
+    "eligibility_includes_usa": 0,
+    "eligibility_worldwide": 0,
+    "example_jobs": [],
+    "backend_qualifying": {},
+    "backend_added": {}
+  },
+  "record_decisions": [
+    {
+      "source": "weworkremotely",
+      "source_job_id": "cdac7168c3a1c55aa32c509e",
+      "url": "https://weworkremotely.com/remote-jobs/alloy-senior-solutions-engineer",
+      "company": "Alloy",
+      "title": "Senior Solutions Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "821969979333a9d1e9e12949",
+      "url": "https://weworkremotely.com/remote-jobs/pendo-vp-growth-marketing",
+      "company": "Pendo",
+      "title": "VP, Growth Marketing",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "2098d9de2043287fc3b03976",
+      "url": "https://weworkremotely.com/remote-jobs/pendo-sr-product-marketing-manager",
+      "company": "Pendo",
+      "title": "Sr. Product Marketing Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "27e47dd5e3abf9a8480bae2f",
+      "url": "https://weworkremotely.com/remote-jobs/tebra-senior-benefits-administrator",
+      "company": "Tebra",
+      "title": "Senior Benefits Administrator",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "56174b05501e4467dcca17b0",
+      "url": "https://weworkremotely.com/remote-jobs/tebra-sales-development-representative",
+      "company": "Tebra",
+      "title": "Sales Development Representative",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "2e657f4873a374d15b94ef69",
+      "url": "https://weworkremotely.com/remote-jobs/planetscale-brand-designer",
+      "company": "PlanetScale",
+      "title": "Brand Designer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "7c010dee5f94ad59e46a03d4",
+      "url": "https://weworkremotely.com/remote-jobs/atomic-construction-llc-marketing-appt-setting",
+      "company": "Atomic Construction, LLC",
+      "title": "Marketing/Appt Setting",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "73b483c0cfed769f74ab3503",
+      "url": "https://weworkremotely.com/remote-jobs/customer-io-mid-market-account-executive-emea",
+      "company": "Customer.io",
+      "title": "Mid-Market Account Executive, EMEA",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "4c7f358b3bb756ac68c0e150",
+      "url": "https://weworkremotely.com/remote-jobs/abnormal-area-vice-president-west-south-central",
+      "company": "Abnormal",
+      "title": "Area Vice President, West/South Central",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "2306f97267e6410e228b15fe",
+      "url": "https://weworkremotely.com/remote-jobs/celonis-client-director-financial-services",
+      "company": "Celonis",
+      "title": "Client Director - Financial Services",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "4e33107a7492118e594391f7",
+      "url": "https://weworkremotely.com/remote-jobs/collibra-senior-account-executive-ii",
+      "company": "Collibra",
+      "title": "Senior Account Executive II",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "826247835c8e1bce1528678c",
+      "url": "https://weworkremotely.com/remote-jobs/beyondtrust-enterprise-account-manager-east-region-saudi-national",
+      "company": "BeyondTrust",
+      "title": "Enterprise Account Manager - East Region (Saudi National)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "35d45f232959899c8da98dcc",
+      "url": "https://weworkremotely.com/remote-jobs/legion-enterprise-account-executive-namer",
+      "company": "Legion",
+      "title": "Enterprise Account Executive - NAMER",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "930733e2fbd2df3a15e0ff4a",
+      "url": "https://weworkremotely.com/remote-jobs/expel-senior-account-executive-ny",
+      "company": "Expel",
+      "title": "Senior Account Executive - NY",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "11d09ee2e5ee516baf6dc408",
+      "url": "https://weworkremotely.com/remote-jobs/celonis-account-executive-retail",
+      "company": "Celonis",
+      "title": "Account Executive - Retail",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "dec4344bafd67aebe85796d5",
+      "url": "https://weworkremotely.com/remote-jobs/ucm-practice-growth-systems-70-100k-potential-for-practice-growth-advisor-sales-position-central-or-eastern",
+      "company": "UCM Practice Growth Systems",
+      "title": "70-100K Potential for Practice Growth Advisor Sales Position  (Central or Eastern Time Zone)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "13d7203d40cbaa0bf933fe09",
+      "url": "https://weworkremotely.com/remote-jobs/airtable-sales-manager-strategic-accounts",
+      "company": "Airtable",
+      "title": "Sales Manager, Strategic Accounts",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "f5c3da1857493e96b133c114",
+      "url": "https://weworkremotely.com/remote-jobs/zscaler-account-executive-enterprise-wisconsin",
+      "company": "Zscaler",
+      "title": "Account Executive - Enterprise, Wisconsin",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "0a93bcd13160fef78fa24425",
+      "url": "https://weworkremotely.com/remote-jobs/zscaler-account-executive-enterprise-southern-ca",
+      "company": "Zscaler",
+      "title": "Account Executive, Enterprise - Southern CA",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "3868d139a8f4aa639a2523e9",
+      "url": "https://weworkremotely.com/remote-jobs/zapier-sr-motion-designer",
+      "company": "Zapier",
+      "title": "Sr. Motion Designer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "1a6d8e0ba8d685d51848b8b5",
+      "url": "https://weworkremotely.com/remote-jobs/clickhouse-principal-product-marketing-manager",
+      "company": "ClickHouse",
+      "title": "Principal Product Marketing Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "35ca39bd92d1d59cac1abadf",
+      "url": "https://weworkremotely.com/remote-jobs/6sense-principal-competitive-intelligence-manager",
+      "company": "6sense",
+      "title": "Principal Competitive Intelligence Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "8bb93bf4d62bab0dbdfa5d9b",
+      "url": "https://weworkremotely.com/remote-jobs/customer-io-events-marketing-manager-emea",
+      "company": "Customer.io",
+      "title": "Events Marketing Manager, EMEA",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "8b98def1662770115f53dda2",
+      "url": "https://weworkremotely.com/remote-jobs/databricks-enterprise-account-executive-china",
+      "company": "Databricks",
+      "title": "Enterprise Account Executive - China",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "556d8abb2477390c1815221a",
+      "url": "https://weworkremotely.com/remote-jobs/stockx-category-manager",
+      "company": "StockX",
+      "title": "Category Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "0875b033fc8315304ba11410",
+      "url": "https://weworkremotely.com/remote-jobs/abnormal-account-executive-sled-sacramento-only",
+      "company": "Abnormal",
+      "title": "Account Executive, SLED (Sacramento only)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "11469d28c6ab51d0d7cf1501",
+      "url": "https://weworkremotely.com/remote-jobs/tailscale-brand-designer-1",
+      "company": "Tailscale",
+      "title": "Brand Designer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "a512e45b3d6e933445be3190",
+      "url": "https://weworkremotely.com/remote-jobs/lattice-ecosystem-marketing-lead",
+      "company": "Lattice",
+      "title": "Ecosystem Marketing Lead",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "7414f67f3fc0ad4b7cf915fd",
+      "url": "https://weworkremotely.com/remote-jobs/tailscale-brand-designer",
+      "company": "Tailscale",
+      "title": "Brand Designer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "2537351e29421d59c9bb57e1",
+      "url": "https://weworkremotely.com/remote-jobs/typeform-senior-account-executive",
+      "company": "Typeform",
+      "title": "Senior Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "2537351e29421d59c9bb57e1",
+      "url": "https://weworkremotely.com/remote-jobs/typeform-senior-account-executive",
+      "company": "Typeform",
+      "title": "Senior Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "4a3c8714c4cabc85f814a803",
+      "url": "https://weworkremotely.com/remote-jobs/airtable-account-executive-corporate",
+      "company": "Airtable",
+      "title": "Account Executive, Corporate",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "c2b5d8f109c0f551fa0b8627",
+      "url": "https://weworkremotely.com/remote-jobs/kyro-ai-sales-development-representative",
+      "company": "Kyro AI",
+      "title": "Sales Development Representative",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "addf744df54a0da9f0f65626",
+      "url": "https://weworkremotely.com/remote-jobs/webflow-senior-manager-corporate-sales-west",
+      "company": "Webflow",
+      "title": "Senior Manager, Corporate Sales - West",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "9db6a04e5a7893db8016d512",
+      "url": "https://weworkremotely.com/remote-jobs/webflow-senior-manager-ai-customer-success",
+      "company": "Webflow",
+      "title": "Senior Manager, AI Customer Success",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "b9860fc4da01e83ebb5e85d0",
+      "url": "https://weworkremotely.com/remote-jobs/tebra-product-marketing-manager-temporary",
+      "company": "Tebra",
+      "title": "Product Marketing Manager (TEMPORARY)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "516df2b9d6fd05aad0600df1",
+      "url": "https://weworkremotely.com/remote-jobs/collibra-general-manager-collibra-public-sector",
+      "company": "Collibra",
+      "title": "General Manager, Collibra Public Sector",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "b32bccdeaee2877aaac988a2",
+      "url": "https://weworkremotely.com/remote-jobs/elation-health-account-executive-small-group",
+      "company": "Elation Health",
+      "title": "Account Executive, Small Group",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "d21de84706a5784f3ece34d3",
+      "url": "https://weworkremotely.com/remote-jobs/tebra-data-engineer",
+      "company": "Tebra",
+      "title": "Data Engineer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "df1b387fee88939b8a1d0626",
+      "url": "https://weworkremotely.com/remote-jobs/collibra-collibra-public-sector-senior-account-executive-federal-civilian-agencies",
+      "company": "Collibra",
+      "title": "Collibra Public Sector Senior Account Executive, Federal Civilian Agencies",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "b4751b75a51d1201822eca49",
+      "url": "https://weworkremotely.com/remote-jobs/mercury-account-executive-technology",
+      "company": "Mercury",
+      "title": "Account Executive - Technology",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "e9636e80015793a7ae8776d3",
+      "url": "https://weworkremotely.com/remote-jobs/amwell-sr-product-marketing-manager",
+      "company": "Amwell",
+      "title": "Sr Product Marketing Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "757b013c18e48008219366f7",
+      "url": "https://weworkremotely.com/remote-jobs/glean-enterprise-account-executive-ohio-valley",
+      "company": "Glean",
+      "title": "Enterprise Account Executive, Ohio Valley",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "2067cddbde317c9775065daf",
+      "url": "https://weworkremotely.com/remote-jobs/bitwarden-channel-marketing-manager-partner-growth",
+      "company": "Bitwarden",
+      "title": "Channel Marketing Manager (Partner Growth)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "4f2eeed9807df54b9c354890",
+      "url": "https://weworkremotely.com/remote-jobs/glean-enterprise-account-executive-mid-atlantic",
+      "company": "Glean",
+      "title": "Enterprise Account Executive, Mid-Atlantic",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "ed98405b036661b370dc9e6e",
+      "url": "https://weworkremotely.com/remote-jobs/rubrik-job-board-field-sales-operations-manager",
+      "company": "Rubrik Job Board",
+      "title": "Field Sales Operations Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "fec7c1489ab0faccb43bf8be",
+      "url": "https://weworkremotely.com/remote-jobs/descript-brand-design-lead",
+      "company": "Descript",
+      "title": "Brand Design Lead",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "51e06990635711603f5ccac2",
+      "url": "https://weworkremotely.com/remote-jobs/stripe-account-executive-product-sales-tax",
+      "company": "Stripe",
+      "title": "Account Executive, Product Sales - Tax",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "648a2b2378fcb1b154dbf393",
+      "url": "https://weworkremotely.com/remote-jobs/zscaler-account-executive-enterprise-ny-nj",
+      "company": "Zscaler",
+      "title": "Account Executive, Enterprise - NY/NJ",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "b269eb385720b52812a24cbf",
+      "url": "https://weworkremotely.com/remote-jobs/zscaler-account-executive-enterprise-expansion",
+      "company": "Zscaler",
+      "title": "Account Executive, Enterprise - Expansion",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "d693c43e9a97fa5d01e7c4f3",
+      "url": "https://weworkremotely.com/remote-jobs/netlify-senior-demand-generation-marketing-manager",
+      "company": "Netlify",
+      "title": "Senior Demand Generation Marketing Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "97259109c9dcfdc780959c9b",
+      "url": "https://weworkremotely.com/remote-jobs/instacart-ai-solutions-lead-marketing",
+      "company": "Instacart",
+      "title": "AI Solutions Lead, Marketing",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "922bc2c9318bd475cc40f3a4",
+      "url": "https://weworkremotely.com/remote-jobs/pendo-lead-product-marketing-manager-novus",
+      "company": "Pendo",
+      "title": "Lead Product Marketing Manager - Novus",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "41f2bb836cc6b14036f86356",
+      "url": "https://weworkremotely.com/remote-jobs/retr-customer-success-manager",
+      "company": "RETR",
+      "title": "Customer Success Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "010f20101970d39fcdcc29ce",
+      "url": "https://weworkremotely.com/remote-jobs/amwell-lead-digital-marketing-manager",
+      "company": "Amwell",
+      "title": "Lead Digital Marketing Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "0f84ec8b2723b1848e29ef32",
+      "url": "https://weworkremotely.com/remote-jobs/stripe-account-executive-product-fraud-risk",
+      "company": "Stripe",
+      "title": "Account Executive Product - Fraud & Risk",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "ba7eb62945b3ae9632f1c5f3",
+      "url": "https://weworkremotely.com/remote-jobs/storyblok-developer-relations-engineer-usa",
+      "company": "Storyblok",
+      "title": "Developer Relations Engineer - USA",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "5abb3120a35e23dd972539c9",
+      "url": "https://weworkremotely.com/remote-jobs/amwell-content-marketing-manager",
+      "company": "Amwell",
+      "title": "Content Marketing Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "17d856ed20743de00ede146b",
+      "url": "https://weworkremotely.com/remote-jobs/stripe-account-executive-hunter-central-eastern-europe",
+      "company": "Stripe",
+      "title": "Account Executive, Hunter (Central Eastern Europe)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "1cb36acae903f34a87979afc",
+      "url": "https://weworkremotely.com/remote-jobs/jfrog-regional-vice-president-strategic-solution-engineering-central",
+      "company": "JFrog",
+      "title": "Regional Vice President, Strategic Solution Engineering (Central)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "e8447db68b34dffbea51a55c",
+      "url": "https://weworkremotely.com/remote-jobs/zscaler-account-executive-enterprise-1",
+      "company": "Zscaler",
+      "title": "Account Executive, Enterprise",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "d3332ef4622e43a64e519c69",
+      "url": "https://weworkremotely.com/remote-jobs/storyblok-account-executive-north-eastern-usa",
+      "company": "Storyblok",
+      "title": "Account Executive - North Eastern USA",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "dcfe33eba605b02f4901443e",
+      "url": "https://weworkremotely.com/remote-jobs/zscaler-account-executive-commercial",
+      "company": "Zscaler",
+      "title": "Account Executive -  Commercial",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "2f59a38d0976122bdbd0fa88",
+      "url": "https://weworkremotely.com/remote-jobs/alloy-account-executive-enterprise",
+      "company": "Alloy",
+      "title": "Account Executive, Enterprise",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "3022999e84cfc4112ffb6d56",
+      "url": "https://weworkremotely.com/remote-jobs/alloy-account-executive-banking-credit-unions",
+      "company": "Alloy",
+      "title": "Account Executive, Banking & Credit Unions",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "23872e7900c57b44ba6b8e26",
+      "url": "https://weworkremotely.com/remote-jobs/highradius-enterprise-account-executive-dach-region",
+      "company": "HighRadius",
+      "title": "Enterprise Account Executive - DACH Region",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "69cbda85bca5c0b50e6b02b6",
+      "url": "https://weworkremotely.com/remote-jobs/logicstics-digital-marketing-google-ads-ai-search-specialist",
+      "company": "Logicstics",
+      "title": "Digital Marketing & Google Ads / AI Search Specialist",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "3ca5c0b6c22697b75d2471b0",
+      "url": "https://weworkremotely.com/remote-jobs/simpletiger-content-coordinator-u-s-based-remote-contractor",
+      "company": "SimpleTiger",
+      "title": "Content Coordinator (U.S. Based, Remote Contractor)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "4cd7c4ecdfd587c7c9396b1d",
+      "url": "https://weworkremotely.com/remote-jobs/gilbert-pharmaceuticals-head-of-design-development-construction",
+      "company": "Gilbert Pharmaceuticals",
+      "title": "Head of Design & Development & Construction",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "113a1d99305c9ff473b7fbff",
+      "url": "https://weworkremotely.com/remote-jobs/expel-principal-solutions-architect",
+      "company": "Expel",
+      "title": "Principal Solutions Architect",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "95b1fe8e2dddd64e92494b15",
+      "url": "https://weworkremotely.com/remote-jobs/gitlab-account-executive-france",
+      "company": "GitLab",
+      "title": "Account Executive - France",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "27617f62406050c4046ecd31",
+      "url": "https://weworkremotely.com/remote-jobs/beyondtrust-account-executive-ii-riyadh-saudi-national",
+      "company": "BeyondTrust",
+      "title": "Account Executive II - Riyadh (Saudi National)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "f3bc11748263a35674145d9c",
+      "url": "https://weworkremotely.com/remote-jobs/stripe-account-executive-existing-business-central-eastern-europe",
+      "company": "Stripe",
+      "title": "Account Executive, Existing Business (Central Eastern Europe)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "1db93bad1b9e97ee00187354",
+      "url": "https://weworkremotely.com/remote-jobs/everpure-account-executive-enterprise-denmark",
+      "company": "Everpure",
+      "title": "Account Executive, Enterprise (Denmark)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "691ea448447113602c423e61",
+      "url": "https://weworkremotely.com/remote-jobs/everpure-account-executive-enterprise-chicago",
+      "company": "Everpure",
+      "title": "Account Executive, Enterprise (Chicago)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "9a3ff9f86e90bcf746521128",
+      "url": "https://weworkremotely.com/remote-jobs/tines-field-marketing-manager-west",
+      "company": "Tines",
+      "title": "Field Marketing Manager - West",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "e5686dab42a4f67aa0ea9615",
+      "url": "https://weworkremotely.com/remote-jobs/descript-account-executive",
+      "company": "Descript",
+      "title": "Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "b803dd4fca6b68b67f85a40c",
+      "url": "https://weworkremotely.com/remote-jobs/stripe-account-executive-dach-commercial-existing-business",
+      "company": "Stripe",
+      "title": "Account Executive, DACH, Commercial (Existing Business)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "fc1925e4f1343732d8b074b6",
+      "url": "https://weworkremotely.com/remote-jobs/jfrog-strategic-solution-architect-presales-west",
+      "company": "JFrog",
+      "title": "Strategic Solution Architect, Presales (West)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "d45c8ff3e02b63e8f1082523",
+      "url": "https://weworkremotely.com/remote-jobs/everpure-account-executive-enterprise-acquisition-uk",
+      "company": "Everpure",
+      "title": "Account Executive, Enterprise (Acquisition) UK",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "20476d49e490861132c999b4",
+      "url": "https://weworkremotely.com/remote-jobs/zscaler-account-executive-enterprise",
+      "company": "Zscaler",
+      "title": "Account Executive - Enterprise",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "296f9a01a85d6a36e98a74ce",
+      "url": "https://weworkremotely.com/remote-jobs/jfrog-strategic-solution-architect-presales-central",
+      "company": "JFrog",
+      "title": "Strategic Solution Architect, Presales (Central)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "07b11704b31c8578a498e255",
+      "url": "https://weworkremotely.com/remote-jobs/zscaler-account-executive-commercial-norcal",
+      "company": "Zscaler",
+      "title": "Account Executive, Commercial - NorCal",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "03ea1096b4c516c8ed7a06e4",
+      "url": "https://weworkremotely.com/remote-jobs/everpure-account-executive-commercial-upstate-new-york",
+      "company": "Everpure",
+      "title": "Account Executive, Commercial (Upstate New York)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "c03a7d26a2e285dc00f40641",
+      "url": "https://weworkremotely.com/remote-jobs/talkspace-business-development-growth-associate-pharma",
+      "company": "Talkspace",
+      "title": "Business Development & Growth Associate, Pharma",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "8b24cb4fd4919333f047686d",
+      "url": "https://weworkremotely.com/remote-jobs/6sense-principal-technical-product-marketing-manager",
+      "company": "6sense",
+      "title": "Principal Technical Product Marketing Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "fa0505272d6faf98d2cb829e",
+      "url": "https://weworkremotely.com/remote-jobs/talkspace-business-development-representative-consultant-relationships",
+      "company": "Talkspace",
+      "title": "Business Development Representative, Consultant Relationships",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "c357b09bee22b07815cd0bc3",
+      "url": "https://weworkremotely.com/remote-jobs/knock-director-of-sales-remote-anywhere-in-the-us",
+      "company": "Knock",
+      "title": "Director of Sales - Remote (anywhere in the US)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "ce6cdf3a51f703edeeefbed7",
+      "url": "https://weworkremotely.com/remote-jobs/melio-senior-account-executive-uhv-payors",
+      "company": "Melio",
+      "title": "Senior Account Executive - UHV Payors",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "0905e6a335dee4e05a75ec01",
+      "url": "https://weworkremotely.com/remote-jobs/hex-technologies-manager-enterprise-sales",
+      "company": "Hex Technologies",
+      "title": "Manager, Enterprise Sales",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "aa21c719b505647f394e61f2",
+      "url": "https://weworkremotely.com/remote-jobs/melio-senior-account-executive-strategic-partnerships-affiliates",
+      "company": "Melio",
+      "title": "Senior Account Executive, Strategic Partnerships & Affiliates",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "0e0786ac97a148d6c7f018c9",
+      "url": "https://weworkremotely.com/remote-jobs/orchard-founding-head-of-sales",
+      "company": "Orchard",
+      "title": "Founding Head of Sales",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "b068e682f78a1f22061839ca",
+      "url": "https://weworkremotely.com/remote-jobs/storyblok-documentation-engineer-ii",
+      "company": "Storyblok",
+      "title": "Documentation Engineer II",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "e63c8905ef1a88387a72b29a",
+      "url": "https://weworkremotely.com/remote-jobs/storyblok-director-of-product-marketing-usa",
+      "company": "Storyblok",
+      "title": "Director of Product Marketing - USA",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "c8987fe67f69d6b7a18b0cfb",
+      "url": "https://weworkremotely.com/remote-jobs/onthegosystems-head-of-marketing-1",
+      "company": "OnTheGoSystems",
+      "title": "Head of Marketing",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "ea9825979bdbf9612cde7139",
+      "url": "https://weworkremotely.com/remote-jobs/prove-enterprise-account-executive",
+      "company": "Prove",
+      "title": "Enterprise Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "d14732a213cc633ac3d57521",
+      "url": "https://weworkremotely.com/remote-jobs/manaferra-senior-seo-geo-specialist",
+      "company": "Manaferra",
+      "title": "Senior SEO & GEO Specialist",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "81acd51188bb3dceb5875b5a",
+      "url": "https://weworkremotely.com/remote-jobs/jfrog-strategic-account-executive",
+      "company": "JFrog",
+      "title": "Strategic Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "8c7426e7e62a4128b0361ee2",
+      "url": "https://weworkremotely.com/remote-jobs/pagerduty-enterprise-account-executive-san-francisco",
+      "company": "PagerDuty",
+      "title": "Enterprise Account Executive (San Francisco)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "1fd5916fed38762fee706210",
+      "url": "https://weworkremotely.com/remote-jobs/checkr-senior-account-executive-insurtech",
+      "company": "Checkr",
+      "title": "Senior Account Executive, InsurTech",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "af1eb6536f022e90c8314d4f",
+      "url": "https://weworkremotely.com/remote-jobs/asana-channel-account-executive-latam",
+      "company": "Asana",
+      "title": "Channel Account Executive, LATAM",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "545ab10d89d7177b1b04f257",
+      "url": "https://weworkremotely.com/remote-jobs/iterable-evergreen-account-executive-enterprise-strategic-east-region",
+      "company": "Iterable",
+      "title": "[Evergreen] Account Executive (Enterprise / Strategic) - East Region",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "35d9d26a9206103cb1a7113d",
+      "url": "https://weworkremotely.com/remote-jobs/belkins-sales-development-representative-intake-pod",
+      "company": "Belkins",
+      "title": "Sales Development Representative (Intake Pod)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "dd0a5d4b628ad51e6b370c2c",
+      "url": "https://weworkremotely.com/remote-jobs/kobie-marketing-remote-customer-service-representative",
+      "company": "Kobie Marketing",
+      "title": "Remote Customer Service Representative",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "51df11a4b44271af75e90f80",
+      "url": "https://weworkremotely.com/remote-jobs/infuse-marketing-analyst-remote-contract",
+      "company": "INFUSE",
+      "title": "Marketing Analyst (Remote, Contract)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "9ef6efc7080d03c556a2f8f3",
+      "url": "https://weworkremotely.com/remote-jobs/xometry-europe-copywriter-paid-social-media-ad-creative",
+      "company": "Xometry Europe",
+      "title": "Copywriter - Paid Social Media Ad Creative",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "a56d8a0c4f894f6dea0e9e79",
+      "url": "https://weworkremotely.com/remote-jobs/veeam-software-campaign-marketing-intern-summer-2027",
+      "company": "Veeam Software",
+      "title": "Campaign Marketing Intern - Summer 2027",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "d3ede23dd85ce3da29914e73",
+      "url": "https://weworkremotely.com/remote-jobs/oportun-manager-lifecycle-marketing-r13983",
+      "company": "Oportun",
+      "title": "Manager, Lifecycle Marketing (R13983)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "386b61b87b0d2c8089638149",
+      "url": "https://weworkremotely.com/remote-jobs/zscaler-account-executive-commercial-kansas-city",
+      "company": "Zscaler",
+      "title": "Account Executive, Commercial - Kansas City",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "d640688e5d2c9adf01204543",
+      "url": "https://weworkremotely.com/remote-jobs/zscaler-account-executive-commercial-nagoya",
+      "company": "Zscaler",
+      "title": "Account Executive, Commercial (Nagoya)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "bf6bc2b7fba1c1898b16dfaa",
+      "url": "https://weworkremotely.com/remote-jobs/bbe-marketing-inc-business-development-manager-1",
+      "company": "BBE Marketing Inc",
+      "title": "Business Development Manager",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "e5f04beac275c78dc658dc7d",
+      "url": "https://weworkremotely.com/remote-jobs/elemental-claims-llc-appointment-setter-inside-sales",
+      "company": "Elemental Claims LLC",
+      "title": "Appointment Setter / Inside Sales",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "326dfdebbb9640dc3465160f",
+      "url": "https://weworkremotely.com/remote-jobs/animalz-developmental-content-editor",
+      "company": "Animalz",
+      "title": "(Developmental) Content Editor",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "90ec7f97dd608072064546d9",
+      "url": "https://weworkremotely.com/remote-jobs/glean-enterprise-account-executive-chicago",
+      "company": "Glean",
+      "title": "Enterprise Account Executive, Chicago",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "ce389c653cd689466e85bfaa",
+      "url": "https://weworkremotely.com/remote-jobs/twilio-account-executive-3",
+      "company": "Twilio",
+      "title": "Account Executive 3",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "d71fd48498269627e21e182e",
+      "url": "https://weworkremotely.com/remote-jobs/c4media-inc-demand-generation-specialist",
+      "company": "C4Media Inc.",
+      "title": "Demand Generation Specialist",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "7acba29844ce2a663e08c360",
+      "url": "https://weworkremotely.com/remote-jobs/gusto-inc-partner-manager-gusto-pro",
+      "company": "Gusto, Inc.",
+      "title": "Partner Manager, Gusto Pro",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "7e59bccea15dd700f5987cac",
+      "url": "https://weworkremotely.com/remote-jobs/gusto-inc-future-opportunities-early-career-sales-talent",
+      "company": "Gusto, Inc.",
+      "title": "Future Opportunities: Early Career Sales Talent",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "30bec66500429ffa2eea6fcf",
+      "url": "https://weworkremotely.com/remote-jobs/rove-concepts-marketing-manager-ai-and-lifecycle",
+      "company": "Rove Concepts",
+      "title": "Marketing Manager, AI and Lifecycle",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "2996b850f366991cf0e5ae49",
+      "url": "https://weworkremotely.com/remote-jobs/ebanx-talent-pool-business-development-specialist",
+      "company": "EBANX",
+      "title": "[Talent Pool] Business Development Specialist",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "cf6f0dc9a3687d2d5e910224",
+      "url": "https://weworkremotely.com/remote-jobs/legion-enterprise-account-executive-east",
+      "company": "Legion",
+      "title": "Enterprise Account Executive, East",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "f851e4aade2ec823206442e1",
+      "url": "https://weworkremotely.com/remote-jobs/uttr-senior-performance-marketing-manager-part-time",
+      "company": "UTTR",
+      "title": "Senior Performance Marketing Manager (Part-Time)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "365b6b8e652420a1a6ccfbed",
+      "url": "https://weworkremotely.com/remote-jobs/icarus-digital-marketing-performance-creative-strategist-and-ai-producer",
+      "company": "Icarus Digital Marketing",
+      "title": "Performance Creative Strategist and AI Producer",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "896aae1217805044303dd0ef",
+      "url": "https://weworkremotely.com/remote-jobs/testgorilla-senior-demand-generation-manager",
+      "company": "TestGorilla",
+      "title": "Senior Demand Generation Manager",
+      "reason": "previously known",
+      "matched_id": 1954,
+      "cross_source": false
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "636081301af1ef87f138b5be",
+      "url": "https://weworkremotely.com/remote-jobs/your-resource-group-llc-remote-inside-sales-1",
+      "company": "Your Resource Group LLC",
+      "title": "Remote Inside Sales",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "13e3de6f2a43101087000362",
+      "url": "https://weworkremotely.com/remote-jobs/credit-wellness-llc-inside-sales-account-executive",
+      "company": "Credit Wellness LLC",
+      "title": "Inside Sales - Account Executive",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "83010ee09cd2a8be2a21efb9",
+      "url": "https://weworkremotely.com/remote-jobs/reddit-senior-product-adoption-strategist-shopping-1",
+      "company": "reddit",
+      "title": "Senior Product Adoption Strategist (Shopping)",
+      "reason": "outside impromptu selections"
+    },
+    {
+      "source": "weworkremotely",
+      "source_job_id": "bd94744c73bb31f7ebff2952",
+      "url": "https://weworkremotely.com/remote-jobs/forager-growth-lead",
+      "company": "Forager",
+      "title": "Growth Lead",
+      "reason": "outside impromptu selections"
+    }
+  ],
+  "queries_pages": [
+    {
+      "kind": "full feed",
+      "status": "completed",
+      "parsed": 128
+    }
+  ],
+  "board_errors": [],
+  "page_exclusions": [],
+  "collection_limits": [],
+  "firecrawl_requests": 0,
+  "errors": "",
+  "health": {
+    "status": "success",
+    "found": 128,
+    "detail": ""
+  }
+}

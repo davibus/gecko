@@ -1052,12 +1052,14 @@ def _finish_generation(
         raise ValueError(
             "Full job description unavailable or insufficient; resume was not generated"
         )
-    plan = gecko_v2.create_plan(listing.resolve())
+    ai_summary = os.environ.get('GECKO_AI_RUNNER') == 'codex'
+    plan = gecko_v2.create_plan(listing.resolve(), defer_summary=ai_summary)
     if (_identity_text(plan["job"]["company"]) != _identity_text(item.company)
             or _identity_text(plan["job"]["title"]) != _identity_text(item.title)):
         raise ValueError("Saved listing identity does not match the live Scout row")
-    if os.environ.get('GECKO_AI_RUNNER') == 'codex':
-        from codex_runner import review_resume
+    if ai_summary:
+        from codex_runner import draft_resume, review_resume
+        draft_resume(plan)
         review_resume(plan)
     name = f"{plan['job']['safe_company']}+{plan['job']['job_number']}"
     scratch = ROOT / "scratch" / name

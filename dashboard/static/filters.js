@@ -14,13 +14,13 @@ const GeckoFilters = (() => {
  }
  function matches(job,f,action){
   const fields=job.fields;
-  if((f.hiddenResumes||[]).includes(resumeCreated(job)?'Created':'Not created'))return false;
+  if((f.hiddenResumes||[]).includes(resumeLabel(job)))return false;
   for(const [field,hidden] of Object.entries(f.hiddenValues||{})){
-   if(hidden.includes(String(fields[field]??'').trim()))return false;
+   if(hidden.includes(String(field==='Applied Date'?(fields[field]||job.meta?.applied_at||''):fields[field]??'').trim()))return false;
   }
   if(f.opportunity && ![fields.Company,fields['Job Title'],fields.Source].join(' ').toLowerCase().includes(f.opportunity.toLowerCase()))return false;
   if(f.location && ![fields.Location,fields['Work Arrangement']].join(' ').toLowerCase().includes(f.location.toLowerCase()))return false;
-  if(f.hideApplied&&job.applied || f.hiddenStages.includes(job.stage) || f.hiddenActions.includes(action))return false;
+  if(f.hideApplied&&job.applied || (f.hiddenStages.includes(job.stage)||f.hiddenStages.includes(statusLabel(job))) || f.hiddenActions.includes(action))return false;
   if(f.minimum!==''||f.maximum!==''||!f.unknown){
    const salary=annualSalary(fields.Salary);
    if(!salary)return f.unknown;
@@ -35,7 +35,10 @@ const GeckoFilters = (() => {
   return a.localeCompare(b,undefined,{numeric:true,sensitivity:'base'})*(direction==='desc'?-1:1);
  }
  function resumeCreated(job){return String(job.fields['Resume Created']||'').trim().toLowerCase()==='x';}
- return {annualSalary,matches,compareValues,resumeCreated};
+ function resumeLabel(job){return job.attached_resume?'Manually uploaded':resumeCreated(job)?'Created':'Not created';}
+ function needsResume(job){return !job.applied&&!job.resume_available&&!job.attached_resume&&!['Do not apply','Closed','Offer','Interview'].includes(job.stage);}
+ function statusLabel(job){return needsResume(job)?'Needs resume':job.stage==='Resume ready'?'Ready to apply':job.stage;}
+ return {resumeLabel,annualSalary,matches,compareValues,resumeCreated,needsResume,statusLabel};
 })();
 if(typeof module!=='undefined')module.exports=GeckoFilters;
 
@@ -63,12 +66,12 @@ const GeckoMetrics = (() => {
  }
  function week(jobs,day){
   const dates=Array.from({length:7},(_,i)=>{const d=new Date(day+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+i-6);return d.toISOString().slice(0,10);});
-  const active=jobs.filter(j=>!['Closed','Declined'].includes(j.stage));
+  const active=jobs.filter(j=>!['Closed','Do not apply'].includes(j.stage));
   const definitions=[
    ['found','Jobs Found','#607d42','',jobs,j=>j.fields['Date Found']],
    ['resumes','Resumes Ready','#367cad','7 4',active.filter(j=>!j.applied&&j.resume_available),j=>j.fields['Resume Created Date']||j.fields['Resume Date']||j.meta.resume_created_at],
    ['applications','Applications','#ae7625','2 4',jobs.filter(j=>j.applied),j=>j.fields['Applied Date']||j.meta.applied_at],
-   ['followups','Follow-ups Due','#a65682','10 3 2 3',jobs.filter(j=>j.meta.follow_up&&!['Closed','Offer','Declined'].includes(j.stage)),j=>j.meta.follow_up]
+   ['followups','Follow-ups Due','#a65682','10 3 2 3',jobs.filter(j=>j.meta.follow_up&&!['Closed','Offer','Do not apply'].includes(j.stage)),j=>j.meta.follow_up]
   ];
   return {dates,series:definitions.map(([key,label,color,dash,rows,dateOf])=>({key,label,color,dash,undated:activity(rows,day,dateOf).undated,values:dates.map(date=>activity(rows,date,dateOf).today)}))};
  }
