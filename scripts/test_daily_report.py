@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import daily_report as report
 from daily_tasks_dashboard import TITLE, _parse
 from rejected_jobs import RejectedJob, RejectedJobsIndex
-from tracker_schema import CURRENT_SCOUT_HEADERS, INDEED_APPLICATION_HEADER
+from tracker_schema import LEGACY_SCOUT_HEADERS, INDEED_APPLICATION_HEADER
 
 class Call:
     def __init__(self, callback): self.callback=callback
@@ -26,7 +26,7 @@ class Call:
 class FakeSheets:
     def __init__(self):
         self.data={'Daily Tasks':[], 'Daily Run':[[],[]],
-                   'Job Scout':[list(CURRENT_SCOUT_HEADERS)], 'Deleted Jobs':[],
+                   'Job Scout':[list(LEGACY_SCOUT_HEADERS)], 'Deleted Jobs':[],
                    'Rejected Jobs':[['Source','Job ID','Original Job URL','Normalized Job URL','Company','Job Title','Date Rejected','Reason or Status']]}
         self.writes=[]
         self.formats=[]
@@ -125,7 +125,7 @@ def fields(run_id, day='2026-10-10', sources=None):
     return values
 
 def tab_fixture():
-    columns=list(CURRENT_SCOUT_HEADERS)
+    columns=list(LEGACY_SCOUT_HEADERS)
     def row(**values): return {**dict.fromkeys(columns,''),**values}
     rows=[(2,row(ID=1,Source='Indeed',Company='A',**{'Job Title':'Role','Location':'Utah',
            'Job URL':'https://indeed.com/viewjob?jk=one','Apply?':'Yes',

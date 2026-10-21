@@ -1,0 +1,51 @@
+{
+  "run_id": "20261020T023819-dac0d244a6",
+  "run_date": "2026-10-20",
+  "mode": "apply",
+  "started_at": "2026-10-20T02:38:19.432003-06:00",
+  "resume_ids": null,
+  "preflight": {
+    "backend": "sqlite",
+    "queue_preflight": {
+      "eligible": 22,
+      "already_created": 764
+    }
+  },
+  "counts": {
+    "Jobs Discovered": 184773,
+    "New Jobs Added": 20,
+    "Duplicates Skipped": 955,
+    "Manual Indeed Rows Processed": 0,
+    "Manual Indeed Duplicates Flagged": 0,
+    "Manual Indeed Retrieval Failures": 0,
+    "Declined Rows Preserved": 350,
+    "Resumes Reused": 764,
+    "Resumes Created": 0,
+    "Resume Failures": 0,
+    "Workflow Failures": 9,
+    "Gmail Emails Checked": "Unavailable",
+    "Employer Responses Matched": "Unavailable",
+    "Response Rows Updated": "Unavailable",
+    "Provider Failures": 8,
+    "Indeed Jobs Found": 0
+  },
+  "errors": [
+    "Daily workflow reported 9 failure(s)",
+    "Gmail response tracking failed"
+  ],
+  "attention": [
+    "Gmail check unavailable or failed",
+    "Workflow or provider failures",
+    "Provider failures",
+    "Declined rows retained to protect formulas",
+    "Daily workflow failed",
+    "inspect the local audit"
+  ],
+  "daily_run_written": true,
+  "daily_run_row": null,
+  "attention_counts": {
+    "completed_without_link": 0,
+    "missing_identity": 0
+  },
+  "completed_at": "2026-10-20T03:29:54.273412-06:00"
+}

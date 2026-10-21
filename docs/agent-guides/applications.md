@@ -1,5 +1,21 @@
 # OpenClaw applications and saved answers
 
+## Columns follow names, not positions
+
+Users may move whole columns freely without asking for code or instruction updates.
+Read live headers on every sync; use unique header names for fields and stable IDs
+for jobs. Never restore a saved order or treat column letters/counts in documentation
+as requirements. Automatic idle sync adopts the current order and preserves custom
+columns, resume links and Sheet formulas. Moving columns is different from renaming
+or deleting a field: missing or ambiguous names must be resolved without guessing.
+Keep row 1 frozen. Historical layout tables are reference snapshots only.
+
+
+## Current tracker columns
+
+Use `docs/current-tracker-columns.md` for the current 36-column Sheet layout and field behavior. Its current-layout rules supersede historical column letters and tracker-authority text in this document. Resolve fields by unique name and jobs by ID, preserve formulas and all jobs/resumes, and always keep row 1 frozen. The qualification field is Qualifies to Apply?; Applied Date is primary and Previous Applied Date is history. Create Resume follows the saved Enough Data value and does not itself trigger generation.
+
+
 Read only for requested applications or application workflow changes.
 Before each application, read openclaw/application-answers.md. That unchanged
 file holds Dave's custom answers, identity preferences, and batch instructions.
@@ -14,8 +30,7 @@ in older notes never authorize importing or overwriting the current database.
 ## OpenClaw application batches
 
 Read `openclaw/application-answers.md` before every application. For job IDs Dave
-explicitly asks to apply for, automatically submit complete, verified applications unless
-he requests review first. A job needing Dave's attention must not block the rest
+explicitly asks to apply for, prepare drafts for Dave to review and submit himself. A job needing Dave's attention must not block the rest
 of the batch: preserve its draft and exact missing fields as pending, continue
 immediately to the next ID, and collect the pending actions for Dave to resolve
 when he returns. Use each job's matching tailored resume, never guess required
@@ -25,7 +40,7 @@ Resume pending jobs after answers arrive without repeating confirmed submissions
 ## Fill known fields first and leave for review - October 19, 2026
 
 Dave requests review before submission. This newer instruction overrides older
-automatic-submission wording unless Dave explicitly authorizes submission later.
+automatic-submission wording. Leave final submission to Dave.
 Attach and verify the matching existing tailored resume and fill all accessible
 fields supported by confirmed answers and the current master resume. Preserve
 existing user-entered answers. Unknown required questions must remain blank, but
@@ -36,3 +51,21 @@ CAPTCHA, OTP, a new agreement or a fee blocks access, preserve the draft and rep
 that action. Leave the existing application tab open for Dave's review, including
 single-page applications with no separate review screen. Never click Submit,
 Send application, Finish or another final submission control under this request.
+
+
+## Completion dates — user instruction October 20, 2026
+
+Whenever a confirmed application is marked Applied, write its actual submission date to **Applied Date** in the same update. Use America/Denver dates (YYYY-MM-DD); when Dave confirms submitting today, use today. Preserve **Previous Applied Date** as history. If the actual date is unknown, ask rather than inventing it.
+
+Whenever a resume is successfully created and verified, write its actual completion date to **Resume Created Date** together with Resume Created and Resume Link. Do not substitute CV Created Date or overwrite historical dates merely during sync. Resolve all columns by unique header name, never position. Verify both the completion marker and date by readback. This supersedes earlier wording treating Resume Created Date as exclusively user-managed.
+
+## Mandatory application review handoff — October 21, 2026
+
+For EVERY OpenClaw job application, fill supported answers and attach the matching tailored resume, then STOP before the final Submit, Send application, Finish, or equivalent submission action. Leave the exact application tab and draft open so Dave can review every answer and submit it himself. Do not close or refresh away the draft.
+
+Notify Dave for each completed draft: "Ready for your review and submission," identifying the employer, job ID/title, and application link or tab. If anything remains incomplete or unverified, say "Needs your attention" and list the remaining items instead of claiming it is ready. Keep that tab open too; continue other authorized jobs independently.
+
+This standing rule applies to every application, including batches and resumed drafts after answers, login, or CAPTCHA. A request to "apply" does not authorize automatic submission. This replaces older auto-submit instructions. Do not mark Applied merely because a draft is ready; after confirmed submission, record Applied and the actual Applied Date together and verify readback.
+
+## Recruiting message consent — October 21, 2026
+Dave's standing instruction: select No whenever any company asks permission to send recruiting text/SMS messages or recruiting-message updates. Apply automatically to all current and future applications, including PerfectServe and Opiniion. This supersedes earlier employer-specific Yes answers, including Five Star. Do not treat this as refusal of ordinary application email correspondence or required account verification messages.

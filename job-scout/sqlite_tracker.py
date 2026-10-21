@@ -42,7 +42,7 @@ CREATE VIEW IF NOT EXISTS workspace_jobs AS SELECT slot, revision, archived,
  json_extract(values_json,'$.Company') AS company,
  json_extract(values_json,'$."Job Title"') AS title,
  json_extract(values_json,'$.Source') AS source,
- json_extract(values_json,'$."Apply?"') AS approval,
+ COALESCE(json_extract(values_json,'$."Qualifies to Apply?"'),json_extract(values_json,'$.Qualifies'),json_extract(values_json,'$."Apply?"')) AS approval,
  json_extract(values_json,'$.Applied') AS applied,
  json_extract(values_json,'$."Resume Created"') AS resume_created,
  json_extract(values_json,'$."Resume Link"') AS resume_link,
@@ -167,6 +167,11 @@ class SQLiteTracker(GoogleTracker):
         with self.connection() as con, con:
             con.execute('BEGIN IMMEDIATE')
             for (dataset, slot), changes in grouped.items():
+                header_row=con.execute('SELECT headers_json FROM workspace_datasets WHERE name=?',(dataset,)).fetchone()
+                if header_row:
+                    physical=json.loads(header_row[0])
+                    resolved=resolve_headers(physical)
+                    changes={physical[resolved[k]-1] if k in resolved else k:v for k,v in changes.items()}
                 record = con.execute('SELECT * FROM workspace_records WHERE dataset=? AND slot=?', (dataset,slot)).fetchone()
                 before = json.loads(record['values_json']) if record else {}
                 scope = os.getenv('GECKO_ALLOWED_JOB_IDS')
@@ -246,4 +251,8 @@ class SQLiteTracker(GoogleTracker):
         return set(scout_ids)
 
     def url(self):
+        from tracker_backend import CONFIG
+        settings = json.loads(CONFIG.read_text(encoding='utf-8'))
+        if settings.get('authority') == 'google_sheets':
+            return 'https://docs.google.com/spreadsheets/d/' + settings['spreadsheet_id'] + '/edit'
         return ''

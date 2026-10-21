@@ -7,6 +7,7 @@ from pathlib import Path
 from datetime import date
 from urllib.parse import urlsplit
 from normalize import canonicalize_url, posting_identity
+from tracker_schema import resolve_headers
 
 FIELDS = ['Company', 'Job Title', 'Source', 'Location', 'Salary', 'Work Arrangement', 'Employment Type', 'Personal priority', 'Notes', 'Date Posted']
 
@@ -104,6 +105,9 @@ def save(tracker, payload, stamp):
         con.execute('INSERT INTO jobs(id,company,title,location,work_arrangement,employment_type,salary,source,source_job_id,url,canonical_url,date_posted,date_discovered,last_seen,description) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
                     (job_id,fields['Company'],fields['Job Title'],fields['Location'],fields['Work Arrangement'],fields['Employment Type'],fields['Salary'],source,'manual-'+hashlib.sha256(canonical.encode()).hexdigest(),url,canonical,fields['Date Posted'],stamp,stamp,str(payload.get('description') or '')[:30000]))
         slot = con.execute("SELECT COALESCE(MAX(slot),1)+1 FROM workspace_records WHERE dataset='Job List'").fetchone()[0]
+        headers=json.loads(con.execute("SELECT headers_json FROM workspace_datasets WHERE name='Job List'").fetchone()[0])
+        resolved=resolve_headers(headers)
+        fields={headers[resolved[k]-1] if k in resolved else k:v for k,v in fields.items()}
         raw = json.dumps(fields)
         con.execute("INSERT INTO workspace_records(dataset,slot,values_json) VALUES('Job List',?,?)",(slot,raw))
         con.execute("INSERT INTO scout_state(key,value) VALUES('id_high_water',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value",(job_id,))
@@ -200,6 +204,8 @@ def update(tracker, payload, stamp, url, fields, attachment=None):
         for alias,col in resolve_headers(headers).items():normalized[alias]=raw.get(headers[col-1],'')
         if s.version(normalized)!=current_version:
             raise ValueError('This job changed before saving. Refresh and reopen it.')
+        resolved=resolve_headers(headers)
+        changes={headers[resolved[k]-1] if k in resolved else k:v for k,v in changes.items()}
         formulas=json.loads(stored['formulas_json'])
         if any(raw.get(k,'')!=v and str(formulas.get(k,'')).lstrip().startswith('=') for k,v in changes.items()):
             raise ValueError('A changed field is formula-protected. Nothing was saved.')

@@ -1,5 +1,21 @@
 # Gecko execution and workspace preferences
 
+## Columns follow names, not positions
+
+Users may move whole columns freely without asking for code or instruction updates.
+Read live headers on every sync; use unique header names for fields and stable IDs
+for jobs. Never restore a saved order or treat column letters/counts in documentation
+as requirements. Automatic idle sync adopts the current order and preserves custom
+columns, resume links and Sheet formulas. Moving columns is different from renaming
+or deleting a field: missing or ambiguous names must be resolved without guessing.
+Keep row 1 frozen. Historical layout tables are reference snapshots only.
+
+
+## Current tracker columns
+
+Use `docs/current-tracker-columns.md` for the current 36-column Sheet layout and field behavior. Its current-layout rules supersede historical column letters and tracker-authority text in this document. Resolve fields by unique name and jobs by ID, preserve formulas and all jobs/resumes, and always keep row 1 frozen. The qualification field is Qualifies to Apply?; Applied Date is primary and Previous Applied Date is history. Create Resume follows the saved Enough Data value and does not itself trigger generation.
+
+
 Read for running Gecko, changing its runner, or managing the workspace/terminals.
 The root AGENTS.md and docs/sqlite-workspace.md control storage: any preserved
 Google Sheet wording below refers to the retired workflow, not permission to

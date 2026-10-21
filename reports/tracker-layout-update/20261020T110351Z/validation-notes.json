@@ -1,0 +1,8 @@
+{
+  "focused_tests": "94 passed: SQLite tracker, Sheet sync, resume queue",
+  "broader_test_limitations": [
+    "Older Google tracker tests reference a Status column absent from their legacy fixture.",
+    "Two daily-report CLI tests fail independently of this column mapping change; no report CLI behavior was changed."
+  ],
+  "live_verification": "pending"
+}

@@ -1,0 +1,107 @@
+{
+  "before": [
+    {
+      "id": 2858,
+      "row": 1128,
+      "Applied": "",
+      "Applied Date": ""
+    },
+    {
+      "id": 2859,
+      "row": 1129,
+      "Applied": "",
+      "Applied Date": ""
+    },
+    {
+      "id": 2860,
+      "row": 1130,
+      "Applied": "",
+      "Applied Date": ""
+    },
+    {
+      "id": 2861,
+      "row": 1131,
+      "Applied": "",
+      "Applied Date": ""
+    },
+    {
+      "id": 2862,
+      "row": 1132,
+      "Applied": "",
+      "Applied Date": ""
+    },
+    {
+      "id": 2866,
+      "row": 1136,
+      "Applied": "",
+      "Applied Date": ""
+    },
+    {
+      "id": 2867,
+      "row": 1137,
+      "Applied": "",
+      "Applied Date": ""
+    },
+    {
+      "id": 2868,
+      "row": 1138,
+      "Applied": "",
+      "Applied Date": ""
+    },
+    {
+      "id": 2874,
+      "row": 1144,
+      "Applied": "",
+      "Applied Date": ""
+    }
+  ],
+  "verified": [
+    {
+      "id": 2858,
+      "Applied": "X",
+      "Applied Date": "2026-10-21"
+    },
+    {
+      "id": 2859,
+      "Applied": "X",
+      "Applied Date": "2026-10-21"
+    },
+    {
+      "id": 2860,
+      "Applied": "X",
+      "Applied Date": "2026-10-21"
+    },
+    {
+      "id": 2861,
+      "Applied": "X",
+      "Applied Date": "2026-10-21"
+    },
+    {
+      "id": 2862,
+      "Applied": "X",
+      "Applied Date": "2026-10-21"
+    },
+    {
+      "id": 2866,
+      "Applied": "X",
+      "Applied Date": "2026-10-21"
+    },
+    {
+      "id": 2867,
+      "Applied": "X",
+      "Applied Date": "2026-10-21"
+    },
+    {
+      "id": 2868,
+      "Applied": "X",
+      "Applied Date": "2026-10-21"
+    },
+    {
+      "id": 2874,
+      "Applied": "X",
+      "Applied Date": "2026-10-21"
+    }
+  ],
+  "job_2875": "On hold; not marked Applied",
+  "source": "Dave confirmed submission in chat 2026-10-21"
+}

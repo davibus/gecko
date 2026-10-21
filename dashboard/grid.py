@@ -7,7 +7,7 @@ from sqlite_tracker import stamp
 
 RESERVED = set(CURRENT_SCOUT_HEADERS) | {a for aliases in SCOUT_HEADER_ALIASES.values() for a in aliases}
 PROTECTED = {'ID', 'Scout ID', 'Source', 'Company', 'Job Title', 'Job URL',
-             'Resume Created', 'Resume Link', 'Applied', 'Apply?', 'Notes',
+             'Resume Created', 'Resume Link', 'Applied', 'Apply?', 'Qualifies', 'Qualifies to Apply?', 'Notes',
              'Last Updated', 'Date Found', 'Last Seen'}
 
 def columns(tracker):

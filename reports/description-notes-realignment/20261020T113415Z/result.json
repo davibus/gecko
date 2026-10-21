@@ -1,0 +1,19 @@
+{
+  "status": "synced",
+  "synced_at": "2026-10-20T11:35:27.701271+00:00",
+  "rows": 1147,
+  "cells_written": 0,
+  "jobs_added_to_sheet": 0,
+  "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit",
+  "total": 1147,
+  "yes": 1127,
+  "no": 20,
+  "updated_cells": {
+    "Job Description": 1136,
+    "Notes": 1147,
+    "Enough Data": 1127
+  },
+  "all_other_sheet_cells_and_formulas_preserved": true,
+  "archived_state_preserved": true,
+  "report": "C:\\gecko_main\\reports\\description-notes-realignment\\20261020T113415Z"
+}

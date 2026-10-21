@@ -228,7 +228,7 @@ def _valid_job_url(value: object) -> bool:
 
 
 def _listing_value(data: dict[str, object]) -> str:
-    for name in ("Job Listing", "Job Description", "Listing", "Description"):
+    for name in ("Job Description", "Job Listing", "Listing", "Description"):
         value = str(data.get(name) or "").strip()
         if value:
             return value
@@ -735,7 +735,7 @@ def _archive_row_context(item: QueueRow) -> Path:
     effective_source = item.source.strip() or ("Indeed" if _is_indeed_url(item.job_url) else "")
     primary = item.listing_content.strip()
     description = (
-        f"## Job description (Google Sheet Job URL/listing field)\n\n{primary}\n\n"
+        f"## Job description (tracker description/listing field)\n\n{primary}\n\n"
         if _usable_listing(primary) else ""
     )
     text = (f"# {item.title}\n\n"
@@ -914,10 +914,10 @@ def generate(item: QueueRow, db: Path, *, force_recreate: bool = False,
         raise RuntimeError("SKIP RESUME: live tracker row is no longer eligible for generation")
     with JobStore(db) as store:
         job = store.get(item.scout_id) if item.scout_id is not None else None
-        if _usable_listing(item.listing_content):
+        if str((item.fields or {}).get("Job Description") or "").strip() or _usable_listing(item.listing_content):
             listing, attempts = _archive_row_context(item), (
                 RetrievalAttempt(
-                    "Google Sheet Job URL/listing field", "Job Scout", "accepted",
+                    "Tracker Job Description/listing field", "Job Scout", "accepted",
                     "used as the primary job listing",
                 ),
             )
@@ -1430,6 +1430,17 @@ def validate_requested_ids(tracker: GoogleTracker, ids: set[int]) -> dict[int, i
     return {value: rows[0] for value, rows in matches.items()}
 
 
+def sync_selected_resume_inputs():
+    """Refresh Sheet edits before selection; dashboard parent holds the run lock."""
+    import sheet_sync
+    if sheet_sync.enabled():
+        try:
+            sheet_sync.sync()
+        except Exception as error:
+            sheet_sync.record_error(error)
+            raise
+
+
 def main() -> int:
     sys.stdout.reconfigure(errors="backslashreplace")
     sys.stderr.reconfigure(errors="backslashreplace")
@@ -1451,6 +1462,8 @@ def main() -> int:
     logger = None if args.dry_run else _append_run_log
     if logger is not None:
         logger(f"RUN START dry_run={args.dry_run} source={args.source or 'all'} db={args.db.resolve()}")
+    if args.ids and not args.dry_run:
+        sync_selected_resume_inputs()
     tracker = GoogleTracker()
     target_ids = set(args.ids) if args.ids else None
     if target_ids is not None:

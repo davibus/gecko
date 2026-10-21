@@ -1,0 +1,9 @@
+
+Gecko: Read primary Google Sheet
+Traceback (most recent call last):
+  File "C:\gecko_main\scripts\sync_primary_sheet.py", line 12, in <module>
+    print(json.dumps(sheet_sync.sync()))
+                     ~~~~~~~~~~~~~~~^^
+  File "C:\gecko_main\job-scout\sheet_sync.py", line 131, in sync
+    raise ValueError("Google Sheet changed during synchronization; retrying preserves both versions.")
+ValueError: Google Sheet changed during synchronization; retrying preserves both versions.

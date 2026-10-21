@@ -1,5 +1,23 @@
 # Gecko command
 
+## Columns follow names, not positions
+
+Users may move whole columns freely without asking for code or instruction updates.
+Read live headers on every sync; use unique header names for fields and stable IDs
+for jobs. Never restore a saved order or treat column letters/counts in documentation
+as requirements. Automatic idle sync adopts the current order and preserves custom
+columns, resume links and Sheet formulas. Moving columns is different from renaming
+or deleting a field: missing or ambiguous names must be resolved without guessing.
+Keep row 1 frozen. Historical layout tables are reference snapshots only.
+
+
+## Current tracker columns
+
+Use `docs/current-tracker-columns.md` for the current 36-column Sheet layout and field behavior. Its current-layout rules supersede historical column letters and tracker-authority text in this document. Resolve fields by unique name and jobs by ID, preserve formulas and all jobs/resumes, and always keep row 1 frozen. The qualification field is Qualifies to Apply?; Applied Date is primary and Previous Applied Date is history. Create Resume follows the saved Enough Data value and does not itself trigger generation.
+
+
+**Frozen header rule:** Always keep row 1 frozen on every Gecko tracker tab and new tracker/export sheet. Preserve any larger existing frozen region. Column edits, reordering, syncing, formatting, and exports must never unfreeze row 1. Verify this after spreadsheet changes.
+
 When the user says **run Gecko**, start the Windows Scheduled Task named
 `Gecko` through `scripts/Start-Gecko.ps1`. In a terminal, the command is
 `Gecko`. `Gecko --status` shows the task state and pipeline progress.
@@ -49,3 +67,26 @@ markers or resume links block regeneration; eligibility, fee, rejection, and
 already-applied guards remain active. A failed daily phase still runs the final
 backup/report; any failed phase keeps the overall run marked failed.
 A failed initial report stops the run before discovery or generation.
+
+## Current tracker authority — October 20, 2026
+
+Dave explicitly requested the existing Gecko Job Tracker Google Sheet become the
+primary tracker, with dashboard and Sheet edits synchronized and all jobs/resumes
+preserved. This supersedes earlier SQLite-only/export-only restrictions below.
+`job-scout/preferences/tracker-backend.json` now declares
+`authority: google_sheets`; `backend: sqlite` identifies the local working cache
+and attachment/discovery storage, not a separate primary ledger. Keep the existing
+spreadsheet ID. Do not replace tabs or upload local resume files.
+
+`job-scout/sheet_sync.py` reconciles individual cells using the last verified
+baseline, preserves custom columns and formulas, and verifies Sheet writes before
+updating the cache/baseline. Dashboard synchronization runs every 30 seconds while
+idle; canonical daily runs synchronize before and after processing. Conflicting
+edits and row removals stop sync for review; never choose a winner silently.
+Sheet rows representing jobs must retain unique positive IDs. Existing note-only
+rows are left untouched. Archived local history remains archived.
+
+Backups and reconciliation evidence: `reports/sheets-primary-cutover/`.
+Never delete local jobs, resume files, attachments, drafts or rejection history
+as part of synchronization. Preserve existing completion protections.
+

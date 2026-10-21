@@ -31,7 +31,7 @@ from tracker_schema import (
     LEGACY_APPLICATION_TAB as APPLICATION_TAB, SCOUT_TAB,
     DAILY_TASKS_TAB, SCOUT_FIELDS,
     PROTECTED_SCOUT_FIELDS, RETIRED_SCOUT_HEADERS, SCOUT_HEADER_ALIASES,
-    CURRENT_SCOUT_HEADERS, INDEED_APPLICATION_HEADER, LAST_RUN_HEADER, resolve_headers,
+    CURRENT_SCOUT_HEADERS, LEGACY_SCOUT_HEADERS, INDEED_APPLICATION_HEADER, LAST_RUN_HEADER, resolve_headers,
     header_key as _header_key, INDEED_EXPIRED_TEXTS, STATUS_LABELS, STATUS_RANKS,
     discover_tabs,
 )
@@ -707,7 +707,7 @@ class GoogleTracker:
             return [], {}
         allowed = (set(APPLICATION_FIELDS) | {"Index", "Resume #", "Applied", "Contacted"}
                    if tab.title == self.config.application_tab else
-                   set(SCOUT_FIELDS) | {"Apply?", "Resume Created", "Notes", "Response", LAST_RUN_HEADER}
+                   set(SCOUT_FIELDS) | {"Apply?", "Resume Created", "Resume Created Date", "Notes", "Response", LAST_RUN_HEADER}
                    if tab.title == self.config.scout_tab else set(REJECTED_HEADERS)
                    if tab.title == REJECTED_TAB else set())
         unexpected = {field for _, field in proposed} - allowed
@@ -1290,6 +1290,8 @@ class GoogleTracker:
         proposed = {}
         proposed[(row, "Resume Link")] = target
         proposed[(row, "Resume Created")] = marker
+        if "Resume Created Date" in tab.headers:
+            proposed[(row, "Resume Created Date")] = datetime.now(ZoneInfo("America/Denver")).date().isoformat()
         if notes is not None and notes != str(current.get("Notes") or "").strip():
             if "Notes" not in tab.headers:
                 raise RuntimeError("Job Scout is missing Notes; no cell was changed")

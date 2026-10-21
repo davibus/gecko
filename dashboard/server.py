@@ -225,7 +225,7 @@ def write_verified(tracker, tab, row, original, changes):
 
 
 def enrichment(data):
-    result = {'description': '', 'evaluation': None}
+    result = {'description': str(data.get('Job Description') or '').strip(), 'evaluation': None}
     db = ROOT / 'job-scout/data/jobs.sqlite3'
     if not db.exists():
         return result
@@ -233,7 +233,7 @@ def enrichment(data):
         con.row_factory = sqlite3.Row
         job = con.execute('SELECT * FROM jobs WHERE id=?', (data.get('Scout ID'),)).fetchone()
         if job and str(job['source']).lower() == str(data.get('Source', '')).lower() and job['url'] == data.get('Job URL'):
-            result['description'] = job['description'] or ''
+            result['description'] = result['description'] or job['description'] or ''
             score = con.execute('SELECT * FROM job_evaluations WHERE job_id=?', (job['id'],)).fetchone()
             result['evaluation'] = dict(score) if score else None
     return result
@@ -247,6 +247,21 @@ class Workspace:
         self.token = secrets.token_urlsafe(32)
         self.manual_import = {'status': 'idle'}
         self.run_process = None
+
+    def sheet_sync_loop(self):
+        import sheet_sync
+        import time
+        while True:
+            if sheet_sync.enabled():
+                try:
+                    with run_lock():
+                        if not (self.operation and self.operation.get('status') == 'running'):
+                            sheet_sync.sync()
+                except PermissionError:
+                    pass  # An active Gecko process owns the workspace.
+                except Exception as exc:
+                    sheet_sync.record_error(exc)
+            time.sleep(30)
 
     def pause(self, payload):
         from dashboard.run_pause import suspend_tree, resume_tree
@@ -434,7 +449,7 @@ class Workspace:
             try:
                 extra = enrichment(data)
             except (sqlite3.Error, OSError):
-                extra = {'description': '', 'evaluation': None}
+                extra = {'description': str(data.get('Job Description') or '').strip(), 'evaluation': None}
             attached = attachments.for_job(tracker, job_id) if getattr(tracker,'backend','') == 'sqlite' else None
             return dict(present(row, data), **extra, attached_resume={'name':attached[0]['name']} if attached else None)
 
@@ -528,7 +543,12 @@ class Workspace:
             export = json.loads((ROOT/'reports/sheets-exports/latest.json').read_text(encoding='utf-8'))
         except (OSError,ValueError):
             export = None
-        return {'runner':self.runner_status(), 'operation': operation, 'can_stop': bool(self.run_process and self.run_process.poll() is None) or bool(operation and operation.get('kind')=='applications' and operation.get('status')=='running' and self.operation), 'pipeline': pipeline, 'busy': busy, 'export':export, 'pause_supported':True, 'sources':self.source_report(), 'previous_sources':self.source_report(previous=True)}
+        import sheet_sync
+        try:
+            sync_status = json.loads(sheet_sync.STATUS.read_text(encoding='utf-8')) if sheet_sync.enabled() else None
+        except (OSError, ValueError):
+            sync_status = {'status': 'pending'}
+        return {'runner':self.runner_status(), 'sheet_sync':sync_status, 'operation': operation, 'can_stop': bool(self.run_process and self.run_process.poll() is None) or bool(operation and operation.get('kind')=='applications' and operation.get('status')=='running' and self.operation), 'pipeline': pipeline, 'busy': busy, 'export':export, 'pause_supported':True, 'sources':self.source_report(), 'previous_sources':self.source_report(previous=True)}
 
     def persist_operation(self):
         with self.lock:
@@ -685,7 +705,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Cache-Control', 'no-store')
         self.send_header('X-Content-Type-Options', 'nosniff')
         self.send_header('Referrer-Policy', 'no-referrer')
-        self.send_header('Content-Security-Policy', "default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'")
+        self.send_header('Content-Security-Policy', "default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src https://docs.google.com; frame-ancestors 'none'; base-uri 'none'; form-action 'self'")
         if filename:
             from urllib.parse import quote
             self.send_header('Content-Disposition', ("inline" if inline else "attachment") + "; filename*=UTF-8''" + quote(filename))
@@ -820,6 +840,7 @@ def main():
     os.environ['GECKO_GOOGLE_AUTH_SERVER_CLOCK'] = '1'
     server = ThreadingHTTPServer(('127.0.0.1', args.port), Handler)
     server.workspace = Workspace()
+    threading.Thread(target=server.workspace.sheet_sync_loop, daemon=True).start()
     print(f'Gecko workspace: http://127.0.0.1:{args.port}', flush=True)
     server.serve_forever()
 

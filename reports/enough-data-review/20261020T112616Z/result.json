@@ -1,0 +1,19 @@
+{
+  "status": "synced",
+  "synced_at": "2026-10-20T11:26:44.798113+00:00",
+  "rows": 1147,
+  "cells_written": 0,
+  "jobs_added_to_sheet": 0,
+  "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit",
+  "total": 1147,
+  "yes": 0,
+  "no": 1147,
+  "reasons": {
+    "Description belongs to another posting; combined fields do not establish relevant requirements for this row": 1076,
+    "Both fields empty": 34,
+    "Placeholder text unrelated to a job": 1,
+    "Notes alone lack verified responsibilities and qualifications for this opportunity": 36
+  },
+  "all_other_cells_and_formulas_preserved": true,
+  "report": "C:\\gecko_main\\reports\\enough-data-review\\20261020T112616Z"
+}

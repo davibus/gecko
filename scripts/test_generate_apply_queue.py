@@ -29,6 +29,33 @@ FULL_DESCRIPTION = ("Responsibilities include planning paid search campaigns, ma
 
 
 class QueueTests(unittest.TestCase):
+    def test_sheet_description_takes_priority_and_reaches_resume_generation(self):
+        data = {"Scout ID": "42", "Company": "Existing", "Job Title": "Marketing Manager",
+                "Job URL": "https://example.test/job/42", "Job Listing": "Older listing",
+                "Job Description": FULL_DESCRIPTION}
+        item = queue._queue_item(None, 2, data)
+        self.assertEqual(item.listing_content, FULL_DESCRIPTION.strip())
+        self.assertEqual(item.job_url, data["Job URL"])
+        with TemporaryDirectory() as temp, patch.object(queue, "ROOT", Path(temp)), \
+                patch.object(queue, "_still_pending", return_value=True), \
+                patch.object(queue, "JobStore"), \
+                patch.object(queue, "_archive_listing") as retrieve, \
+                patch.object(queue, "_finish_generation") as finish:
+            queue.generate(item, Path(temp) / "unused.sqlite3", tracker=Mock())
+            archived = finish.call_args.args[1].read_text(encoding="utf-8")
+            self.assertIn(FULL_DESCRIPTION.strip(), archived)
+            self.assertNotIn("Older listing", archived)
+            retrieve.assert_not_called()
+
+    def test_selected_resume_sync_failure_stops_instead_of_using_stale_data(self):
+        import sheet_sync
+        with patch.object(sheet_sync, "enabled", return_value=True), \
+                patch.object(sheet_sync, "sync", side_effect=RuntimeError("sync conflict")), \
+                patch.object(sheet_sync, "record_error") as record:
+            with self.assertRaisesRegex(RuntimeError, "sync conflict"):
+                queue.sync_selected_resume_inputs()
+            record.assert_called_once()
+
     def test_pasted_manual_description_is_used_without_web_retrieval(self):
         from models import JobListing
         job = JobListing(company='Manual Co',title='Marketing Manager',location='Utah',work_arrangement='remote',
@@ -822,7 +849,7 @@ class QueueTests(unittest.TestCase):
             )
             listing = queue._archive_row_context(item)
             content = listing.read_text(encoding="utf-8")
-        self.assertIn("## Job description (Google Sheet Job URL/listing field)", content)
+        self.assertIn("## Job description (tracker description/listing field)", content)
         self.assertIn("Manage paid search.", content)
 
     def test_effectively_empty_listing_and_metadata_fail_safely(self):

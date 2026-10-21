@@ -13,7 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import google_tracker
 from google_tracker import (
     Config, GoogleTracker, NEW_SCOUT_ID_COLOR, SCOUT_FIELDS, apply_value, job_key,
-    INDEED_APPLICATION_HEADER, CURRENT_SCOUT_HEADERS,
+    INDEED_APPLICATION_HEADER, LEGACY_SCOUT_HEADERS,
 )
 from models import RawListing
 from normalize import normalize
@@ -26,7 +26,7 @@ SCOUT = ["ID", "Source", "Company", "Job Title", "Apply?",
          "Work Arrangement", "Employment Type", "Salary", "Job URL", "Resume Link",
          "Date Posted", "Date Found", "Last Seen"]
 
-assert tuple(SCOUT) == CURRENT_SCOUT_HEADERS
+assert tuple(SCOUT) == LEGACY_SCOUT_HEADERS
 
 
 class Call:

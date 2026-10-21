@@ -32,8 +32,8 @@ def result(**updates):
 class JobListValidationTests(unittest.TestCase):
     def test_inserted_last_updated_column_resolves_notes_and_link_by_name(self):
         from types import SimpleNamespace
-        from tracker_schema import CURRENT_SCOUT_HEADERS, resolve_headers
-        names = list(CURRENT_SCOUT_HEADERS)
+        from tracker_schema import LEGACY_SCOUT_HEADERS, resolve_headers
+        names = list(LEGACY_SCOUT_HEADERS)
         tab = SimpleNamespace(header_values=names, headers=resolve_headers(names))
         tracker = Mock()
         tracker.tab.return_value = tab

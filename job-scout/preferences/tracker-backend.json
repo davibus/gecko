@@ -2,5 +2,9 @@
   "backend": "sqlite",
   "database": "C:\\gecko_main\\job-scout\\data\\jobs.sqlite3",
   "migration": "C:\\gecko_main\\reports\\sqlite-migration\\20261016T114232Z",
-  "activated_at": "2026-10-16T11:46:01.218229+00:00"
+  "activated_at": "2026-10-16T11:46:01.218229+00:00",
+  "authority": "google_sheets",
+  "spreadsheet_id": "1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I",
+  "local_role": "working_cache_and_resume_metadata",
+  "sync_interval_seconds": 30
 }

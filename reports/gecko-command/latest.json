@@ -1,19 +1,22 @@
 {
-  "run_id": "20261020T023817-28652",
-  "started_at": "2026-10-20T02:38:17.388234-06:00",
-  "status": "running",
+  "run_id": "20261020T044205-20508",
+  "started_at": "2026-10-20T04:42:05.093071-06:00",
+  "status": "failed",
   "steps": [
     {
-      "name": "Daily report",
-      "exit_code": 0
+      "name": "Read primary Google Sheet",
+      "exit_code": 1
     }
   ],
   "model_info": {
     "model": "gpt-6.1-sol",
     "effort": "medium",
     "verified": true,
-    "session_id": "01a15875-dd5e-77d0-83cb-e97e4fb52be0",
-    "verified_at": "2026-10-20T08:38:17.019210+00:00"
+    "session_id": "01a158e7-0e30-7b33-b675-d4ddfc9dcb3e",
+    "verified_at": "2026-10-20T10:42:04.392863+00:00"
   },
-  "current_step": "Daily discovery, tracker sync, and tailored resumes"
+  "current_step": "Read primary Google Sheet",
+  "updated_at": "2026-10-20T04:42:24.127607-06:00",
+  "finished_at": "2026-10-20T04:42:24.127607-06:00",
+  "elapsed_seconds": 19.034536123275757
 }

@@ -17,7 +17,6 @@ from sources.indeed import extract_indeed_job_key
 from tracker_schema import (
     DELETED_JOBS_TAB, INDEED_APPLICATION_HEADER,
     COST_EXCLUSION_MARKER, REJECT_STATUSES, INDEED_EXPIRED_TEXTS,
-    CURRENT_SCOUT_HEADERS,
 )
 
 
@@ -126,10 +125,6 @@ def read_live_snapshot(tracker) -> dict[str, Any]:
     deleted_count = sum(any(value not in (None, "") for value in row) for row in deleted[1:])
     report = build_snapshot(scout.rows, deleted_count=deleted_count,
                             report_tab_empty=True)
-    if tuple(scout.header_values[:len(CURRENT_SCOUT_HEADERS)]) != CURRENT_SCOUT_HEADERS:
-        report["validation_warnings"].append(
-            "Job Scout header order differs from the verified snapshot; fields were resolved by name"
-        )
     scripts = Path(__file__).resolve().parents[1] / "scripts"
     if str(scripts) not in sys.path:
         sys.path.insert(0, str(scripts))

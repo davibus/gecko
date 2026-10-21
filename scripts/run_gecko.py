@@ -29,7 +29,12 @@ def run_lock():
             stream.write(b"0")
             stream.flush()
         stream.seek(0)
-        msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
+        try:
+            msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
+        except PermissionError as exc:
+            raise PermissionError(
+                "Gecko is currently running. Wait for it to finish before exporting or editing jobs."
+            ) from exc
         try:
             yield
         finally:
@@ -52,6 +57,10 @@ def main(job_ids=None):
         ]
     if os.environ.get("GECKO_SKIP_RESUMES") == "1" and job_ids is not None:
         steps = [step for step in steps if not (step[1] == "selected_daily.py" and step[2][0] == "resumes")]
+    tracker_settings = json.loads((ROOT / "job-scout/preferences/tracker-backend.json").read_text(encoding="utf-8"))
+    if tracker_settings.get("authority") == "google_sheets":
+        steps = [("Read primary Google Sheet", "sync_primary_sheet.py", []), *steps,
+                 ("Save results to primary Google Sheet", "sync_primary_sheet.py", [])]
     folder = ROOT / "reports/gecko-command"
     folder.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now(ZoneInfo("America/Denver"))
@@ -82,7 +91,7 @@ def main(job_ids=None):
                     failure_code = failure_code or result.returncode
                     # A failed preflight must stop all live work. Once daily work
                     # has run, refresh the tracker and report even after partial failure.
-                    if script == 'selected_daily.py' and args[0] == 'preflight' or script == "daily_report.py" and args == ["--dry-run"]:
+                    if name == "Read primary Google Sheet" or script == 'selected_daily.py' and args[0] == 'preflight' or script == "daily_report.py" and args == ["--dry-run"]:
                         status["status"] = "failed"
                         return failure_code
             status["status"] = "failed" if failure_code else "complete"

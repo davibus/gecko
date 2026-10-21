@@ -14,7 +14,7 @@ DEFAULT_PROFILE = Path(__file__).resolve().parent / "preferences" / "candidate-p
 
 
 def load_candidate_profile(path: str | Path | None = None) -> dict:
-    """Return a compact profile only when it matches the current master archive."""
+    """Use the reviewed summary when current, otherwise read current facts directly."""
     if not MASTER_RESUME.is_file():
         raise FileNotFoundError(f"Required Gecko master resume could not be found: {MASTER_RESUME}")
     target = Path(path) if path else DEFAULT_PROFILE
@@ -29,11 +29,6 @@ def load_candidate_profile(path: str | Path | None = None) -> dict:
     if not source_text.strip():
         raise ValueError(f"Required Gecko master resume is empty: {MASTER_RESUME}")
     actual = hashlib.sha256(source_bytes).hexdigest()
-    if profile.get("master_resume_sha256") != actual:
-        raise ValueError(
-            "The compact Job Scout candidate profile is stale; update it from the current "
-            "master resume before running AI evaluation."
-        )
     required = {
         "target_roles", "major_skills", "seniority", "industries",
         "strongest_accomplishments", "paid_media_ppc", "e_commerce",
@@ -42,6 +37,17 @@ def load_candidate_profile(path: str | Path | None = None) -> dict:
     missing = required - profile.keys()
     if missing:
         raise ValueError("Candidate profile is missing: " + ", ".join(sorted(missing)))
+    if profile.get("master_resume_sha256") != actual:
+        # A resume edit must not stop discovery or reuse outdated factual claims.
+        # Keep only search preferences from the old summary. Supply fresh Word
+        # text as evidence; do not silently certify or rewrite the saved summary.
+        if MASTER_RESUME.read_bytes() != source_bytes:
+            raise OSError("Master resume changed while being read; retry the search.")
+        return {
+            "target_roles": profile["target_roles"],
+            "current_master_resume": source_text,
+            "master_resume_sha256": actual,
+        }
     return profile
 
 

@@ -1,0 +1,98 @@
+{
+  "properties": {
+    "sheetId": 1274044170,
+    "title": "Job List",
+    "index": 2,
+    "sheetType": "GRID",
+    "gridProperties": {
+      "rowCount": 1608,
+      "columnCount": 45,
+      "frozenRowCount": 1,
+      "frozenColumnCount": 3
+    },
+    "tabColor": {
+      "red": 0.35686275,
+      "green": 0.60784316,
+      "blue": 0.8352941
+    },
+    "tabColorStyle": {
+      "rgbColor": {
+        "red": 0.35686275,
+        "green": 0.60784316,
+        "blue": 0.8352941
+      }
+    }
+  },
+  "conditionalFormats": [
+    {
+      "ranges": [
+        {
+          "sheetId": 1274044170,
+          "startRowIndex": 1,
+          "endRowIndex": 1608,
+          "startColumnIndex": 0,
+          "endColumnIndex": 45
+        }
+      ],
+      "booleanRule": {
+        "condition": {
+          "type": "CUSTOM_FORMULA",
+          "values": [
+            {
+              "userEnteredValue": "=LOWER(TRIM(#REF!))=\"x\""
+            }
+          ]
+        },
+        "format": {
+          "backgroundColor": {
+            "red": 0.7176471,
+            "green": 0.88235295,
+            "blue": 0.8039216
+          },
+          "backgroundColorStyle": {
+            "rgbColor": {
+              "red": 0.7176471,
+              "green": 0.88235295,
+              "blue": 0.8039216
+            }
+          }
+        }
+      }
+    },
+    {
+      "ranges": [
+        {
+          "sheetId": 1274044170,
+          "startRowIndex": 1,
+          "endRowIndex": 1608,
+          "startColumnIndex": 0,
+          "endColumnIndex": 45
+        }
+      ],
+      "booleanRule": {
+        "condition": {
+          "type": "CUSTOM_FORMULA",
+          "values": [
+            {
+              "userEnteredValue": "=LOWER(TRIM(#REF!))=\"no\""
+            }
+          ]
+        },
+        "format": {
+          "backgroundColor": {
+            "red": 0.9882353,
+            "green": 0.9098039,
+            "blue": 0.9019608
+          },
+          "backgroundColorStyle": {
+            "rgbColor": {
+              "red": 0.9882353,
+              "green": 0.9098039,
+              "blue": 0.9019608
+            }
+          }
+        }
+      }
+    }
+  ]
+}

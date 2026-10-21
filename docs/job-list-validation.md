@@ -1,5 +1,20 @@
 # Job List validation
 
+## Columns follow names, not positions
+
+Users may move whole columns freely without asking for code or instruction updates.
+Read live headers on every sync; use unique header names for fields and stable IDs
+for jobs. Never restore a saved order or treat column letters/counts in documentation
+as requirements. Automatic idle sync adopts the current order and preserves custom
+columns, resume links and Sheet formulas. Moving columns is different from renaming
+or deleting a field: missing or ambiguous names must be resolved without guessing.
+Keep row 1 frozen. Historical layout tables are reference snapshots only.
+
+
+## Current column layout — October 20, 2026
+
+See `docs/current-tracker-columns.md` (repository-relative) for the verified 36-column layout and field behavior. This supersedes historical letters and schemas below. Resolve unique live headers by name and jobs by ID; never sort or move only part of a job row. Qualifies to Apply? is the eligibility field (legacy internal alias Apply?). Applied Date is primary; Previous Applied Date is preserved history, wherever those named columns are moved. Cover Letter, CV Created Date, Cover Letter Link, and Cover Letter Created Date remain user-managed. Create Resume is a preserved Sheet formula showing Yes only when Enough Data is Yes; it does not start generation. Enough Data is a saved review, not an automatic AI assessment. Preserve Job Description, Notes, Previous Notes, word-count formulas, all jobs and resumes, and frozen row 1. The removed Cursor Instructions tab must not be recreated automatically.
+
 Run `python scripts/validate_job_list.py --apply` to check the live `Job List`
 tab. The command uses Gecko's configured service account and exact workbook
 title. It resolves unique current headers, including R Last Updated and I

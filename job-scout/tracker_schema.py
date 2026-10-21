@@ -1,6 +1,6 @@
 """Gecko Job Tracker contract. Discover tabs and resolve named headers.
 
-The header snapshot documents the workbook observed on 2026-10-10. Runtime
+The header snapshot documents the workbook observed on 2026-10-20. Runtime
 operations must read current metadata and headers; snapshots are not write maps.
 """
 
@@ -21,15 +21,54 @@ LEGACY_APPLICATION_TAB = "Job Tracker"  # Only for explicitly configured older w
 
 INDEED_APPLICATION_HEADER = "Apply or on Company Website (If Indeed)"
 LAST_RUN_HEADER = "Last Updated"  # Last actual Firecrawl/Gecko run, America/Denver.
-CURRENT_SCOUT_HEADERS = (
+LEGACY_SCOUT_HEADERS = (
     "ID", "Source", "Company", "Job Title", "Apply?",
     "Resume Created", "Applied", "Cost", LAST_RUN_HEADER, "Notes", INDEED_APPLICATION_HEADER,
     "Response", "Location", "Work Arrangement", "Employment Type", "Salary",
     "Job URL", "Resume Link", "Date Posted", "Date Found", "Last Seen",
 )
+CURRENT_SCOUT_HEADERS = (
+    'ID',
+    'Company',
+    'Job Title',
+    'Applied',
+    'Applied Date',
+    'Source',
+    'Qualifies to Apply?',
+    'Cover Letter',
+    'CV Created Date',
+    'Create Resume',
+    'Resume Created',
+    'Cost',
+    'Previous Notes',
+    'Apply or on Company Website (If Indeed)',
+    'Response',
+    'Location',
+    'Work Arrangement',
+    'Employment Type',
+    'Salary',
+    'Job URL',
+    'Resume Link',
+    'Resume Created Date',
+    'Cover Letter Link',
+    'Cover Letter Created Date',
+    'Last Updated',
+    'Date Posted',
+    'Date Found',
+    'Last Seen',
+    'Personal priority',
+    'Previous Applied Date',
+    'Notes',
+    'Job Description',
+    'Enough Data',
+    '# Words',
+    '# Job Desc Words',
+    'Total Words',
+)
+
 SCOUT_HEADER_ALIASES = {
     "Scout ID": ("ID", "Scout ID"),
-    "Apply?": ("Apply?", "Apply"),
+    "Apply?": ("Qualifies to Apply?", "Qualifies", "Apply?", "Apply"),
 }
 SCOUT_FIELDS = (
     "Scout ID", "Source", "Company", "Job Title",

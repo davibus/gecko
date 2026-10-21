@@ -1,5 +1,21 @@
 # Resume generation, layout, validation, and naming
 
+## Columns follow names, not positions
+
+Users may move whole columns freely without asking for code or instruction updates.
+Read live headers on every sync; use unique header names for fields and stable IDs
+for jobs. Never restore a saved order or treat column letters/counts in documentation
+as requirements. Automatic idle sync adopts the current order and preserves custom
+columns, resume links and Sheet formulas. Moving columns is different from renaming
+or deleting a field: missing or ambiguous names must be resolved without guessing.
+Keep row 1 frozen. Historical layout tables are reference snapshots only.
+
+
+## Current tracker columns
+
+Use `docs/current-tracker-columns.md` for the current 36-column Sheet layout and field behavior. Its current-layout rules supersede historical column letters and tracker-authority text in this document. Resolve fields by unique name and jobs by ID, preserve formulas and all jobs/resumes, and always keep row 1 frozen. The qualification field is Qualifies to Apply?; Applied Date is primary and Previous Applied Date is history. Create Resume follows the saved Enough Data value and does not itself trigger generation.
+
+
 Read this guide and GECKO_SYSTEM.md before generating, tailoring, renaming, or
 validating resumes. These detailed rules were moved from the root AGENTS.md;
 their resume facts, style, layout, naming, and native Word requirements are retained.
@@ -102,3 +118,10 @@ generic resume to bypass the missing description. Preserve existing resumes,
 Resume Created markers, links, manual decisions, Applied, and protected fields.
 Only remove this blocker after a matching usable description has been obtained
 and verified; all normal approval and completed-resume guards still apply.
+
+
+## Completion dates — user instruction October 20, 2026
+
+Whenever a confirmed application is marked Applied, write its actual submission date to **Applied Date** in the same update. Use America/Denver dates (YYYY-MM-DD); when Dave confirms submitting today, use today. Preserve **Previous Applied Date** as history. If the actual date is unknown, ask rather than inventing it.
+
+Whenever a resume is successfully created and verified, write its actual completion date to **Resume Created Date** together with Resume Created and Resume Link. Do not substitute CV Created Date or overwrite historical dates merely during sync. Resolve all columns by unique header name, never position. Verify both the completion marker and date by readback. This supersedes earlier wording treating Resume Created Date as exclusively user-managed.

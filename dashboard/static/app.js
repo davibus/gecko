@@ -1,4 +1,21 @@
 'use strict';
+const GeckoTracker = (() => {
+ function render(){
+  const section=$('tracker-section');
+  if(section.querySelector('#google-tracker-editor'))return;
+  const sheetUrl=state.sheetUrl;
+  if(!sheetUrl||!/^https:\/\/docs\.google\.com\/spreadsheets\/d\/[a-zA-Z0-9_-]+\/edit/.test(sheetUrl)){
+   section.innerHTML='<p>Loading your Google Job Tracker…</p>';return;
+  }
+  const url=new URL(sheetUrl);url.hash='gid=1274044170';
+  section.innerHTML=`<div class="sheet-editor-toolbar"><button id="reload-sheet-editor" class="button secondary">Reload editor</button><a class="button secondary" href="${esc(url.href)}" target="_blank" rel="noopener noreferrer">Open full window ↗</a></div><iframe id="google-tracker-editor" title="Gecko Job Tracker — Google Sheets editor" src="${esc(url.href)}" allow="clipboard-read; clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="tracker-help">If Google asks, sign in with the account that can edit this sheet. Job data syncs back to Gecko; formatting stays in Google Sheets.</p>`;
+  document.querySelector('.page-heading').append(section.querySelector('.sheet-editor-toolbar'));
+  $('reload-sheet-editor').onclick=()=>{$('google-tracker-editor').src=url.href;};
+ }
+ return {render};
+})();
+
+'use strict';
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const state = {jobs:[],view:'today',page:0,token:'',selected:null,activity:null,loading:false};
@@ -11,7 +28,6 @@ let columnSort=null;
 const historyFilters={};
 const historyViews=['deleted','rejected','uninterested','do-not-apply'];
 const sourceFilterSets={previous:{source:'',minimum:'',status:'',explanation:''},latest:{source:'',minimum:'',status:'',explanation:''}};
-const trendVisible={found:true,resumes:true,applications:true,followups:true};
 const today = () => new Intl.DateTimeFormat('en-CA',{timeZone:'America/Denver',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 const foundOnDay=(job,day)=>String(job.fields['Date Found']||'').trim()===day;
 const displayTimeZone = 'America/Denver';
@@ -52,18 +68,19 @@ async function refresh(){
  if(state.loading) return;
  state.loading=true;$('refresh').disabled=true;$('refresh').textContent='Refreshing…';
  try{
-  const data=await api('/api/jobs');state.jobs=data.jobs;state.manualIds=data.manual_ids||[];state.history=data.history||{};state.runIds=data.run_ids||[];state.runMode=data.run_mode;state.columns=data.columns||[];state.runFilterOptions=data.run_filter_options;state.token=data.token;state.activity=data.activity;state.refreshed=data.refreshed_at;
+  const data=await api('/api/jobs');state.jobs=data.jobs;state.manualIds=data.manual_ids||[];state.history=data.history||{};state.runIds=data.run_ids||[];state.runMode=data.run_mode;state.columns=data.columns||[];state.runFilterOptions=data.run_filter_options;state.token=data.token;state.activity=data.activity;state.refreshed=data.refreshed_at;state.sheetUrl=data.sheet_url;
+
   for(const [id,version] of applicationSelection){const job=state.jobs.find(j=>j.id===id);if(!job||job.version!==version)applicationSelection.delete(id);}
   $('freshness').textContent='Last refreshed '+dateText(data.refreshed_at);$('footer-time').textContent='Tracker refreshed '+dateText(data.refreshed_at);
-  $('sheet-link').href=data.sheet_url;$('sheet-link').hidden=!data.sheet_url;banner('');
+  banner(data.activity?.sheet_sync?.status==='needs_attention'?'Google Sheets sync needs attention: '+data.activity.sheet_sync.error:'');
   const prior=$('source-filter').value;
   $('source-filter').innerHTML='<option value="">All sources</option>'+[...new Set(state.jobs.map(j=>j.fields.Source).filter(Boolean))].sort().map(s=>`<option>${esc(s)}</option>`).join('');
   $('source-filter').value=prior;render();
  }catch(error){banner('Your local workspace could not be refreshed. '+error.message+(state.jobs.length?' Displayed jobs are from the last successful refresh.':''));$('freshness').textContent='Refresh failed · data may be stale';}
  finally{state.loading=false;$('refresh').disabled=false;$('refresh').textContent='↻ Refresh';}
 }
-function setView(view){if(['resumes','tracker'].includes(view))view='jobs';if(document.querySelector('.dirty')){notify('Save your edited rows before changing views.');return;}state.view=view;state.page=0;$('stage-filter').value='';$('search').value='';location.hash=view;render();window.scrollTo({top:0,left:0,behavior:'instant'});}
-const viewNames={matches:'Match Scores',manual:'Individually submitted applications',today:'Today',jobs:'All jobs',applications:'Applications',activity:'Gecko activity',deleted:'Jobs Deleted',rejected:'Jobs Rejected',uninterested:'Not Interested','do-not-apply':'Do not apply'};
+function setView(view){if(view==='resumes')view='jobs';if(document.querySelector('.dirty')){notify('Save your edited rows before changing views.');return;}state.view=view;state.page=0;$('stage-filter').value='';$('search').value='';location.hash=view;render();window.scrollTo({top:0,left:0,behavior:'instant'});}
+const viewNames={tracker:'Job tracker',matches:'Match Scores',manual:'Individually submitted applications',today:'Today',jobs:'All jobs',applications:'Applications',activity:'Gecko activity',deleted:'Jobs Deleted',rejected:'Jobs Rejected',uninterested:'Not Interested','do-not-apply':'Do not apply'};
 function opportunityRow(j,selectable=true){const resumeCell=`<td class="resume-created"><span class="resume-status ${j.attached_resume?'uploaded':GeckoFilters.resumeCreated(j)?'created':'missing'}" title="${j.attached_resume?'Manually uploaded resume attached':GeckoFilters.resumeCreated(j)?(j.resume_available?'Existing tailored resume available':'Recorded as created; linked file needs review'):'Tailored resume has not been marked created'}">${GeckoFilters.resumeLabel(j)}</span>${!j.attached_resume&&GeckoFilters.resumeCreated(j)&&!j.resume_available?'<span class="subtext">File needs review</span>':''}</td>`;const statusCell=`<td><span class="badge ${GeckoFilters.needsResume(j)?'needs-resume':j.applied?'applied':GeckoFilters.statusLabel(j)==='Ready to apply'?'ready-to-apply':j.resume_available?'ready':j.stage==='Review'?'warn':''}">${esc(GeckoFilters.statusLabel(j))}</span></td>`;return `<tr ${j.editable?`data-workspace-job="${esc(j.id)}" data-workspace-label="${esc(j.fields.Company)} — ${esc(j.fields['Job Title'])}"`:""}><td><div class="opportunity">${selectable&&state.view==='jobs'?`<input type="checkbox" class="application-choice" data-apply-job="${esc(j.id)}" aria-label="Select ${esc(j.fields.Company)} — ${esc(j.fields['Job Title'])} for application" ${applicationSelection.has(j.id)?'checked':''} ${!j.editable?'disabled':''} title="${j.applied?'Already applied — will be skipped to prevent a duplicate':'Select this job to apply'}">`:''}<span class="company-icon">${esc(String(j.fields.Company||'?').slice(0,2).toUpperCase())}</span><div><button class="job-link" data-job="${esc(j.id)}" ${!j.editable?'disabled':''}>${state.view==='jobs'&&selectable?esc(j.fields.Company||'Company not listed')+' · ID '+esc(j.id):esc(j.fields['Job Title']||'Untitled opportunity')}</button><span class="subtext">${state.view==='jobs'&&selectable?esc(j.fields['Job Title']||'Untitled opportunity'):esc(j.fields.Company)} <span>·</span> ${esc(j.fields.Source)}${!j.editable?' · Tracker identity needs review':''}</span></div></div></td>${state.view==='jobs'&&selectable?'':resumeCell}<td class="date-found">${esc(j.fields['Date Found']||'—')}</td>${state.view==='jobs'&&selectable?resumeCell+statusCell:''}${state.view==='applications'?`<td class="all-jobs-column applied-date-column">${esc(j.fields['Applied Date']||j.meta.applied_at||'—')}</td>`:''}<td>${esc(j.fields.Location||'Location not listed')}<span class="subtext">${esc(j.fields.Salary||j.fields['Work Arrangement']||'Salary not listed')}</span></td>${state.view==='jobs'&&selectable?'':statusCell}<td><span class="next-action">${esc(nextAction(j))}</span></td><td class="all-jobs-column">${esc(j.fields['Personal priority']||'—')}</td>${state.view!=='applications'?`<td class="all-jobs-column applied-date-column">${esc(j.fields['Applied Date']||j.meta.applied_at||'—')}</td>`:''}<td class="all-jobs-column">${esc(j.fields.Source||'—')}</td><td></td></tr>`;}
 function render(){
  $('opportunities-table').classList.toggle('all-jobs',state.view==='jobs');
@@ -102,12 +119,14 @@ function render(){
  $('page-title').innerHTML=state.view==='today'?'Your next move.':esc(viewNames[state.view]);
  const subtitles={today:'Jobs found today, based on Date Found in Mountain Time.',jobs:'Find the roles worth your time. Review each one on your terms.',applications:'Every application, every conversation, every next step.',activity:'Know what Gecko is doing, and what needs your attention.'};
  $('page-subtitle').textContent=subtitles[state.view]||'Your columns, your notes, your complete job tracker.';
+ $('tracker-section').hidden=state.view!=='tracker';
+ document.body.classList.toggle('tracker-view',state.view==='tracker');
  $('match-section').hidden=state.view!=='matches';
  $('manual-section').hidden=state.view!=='manual';
  $('history-section').hidden=!historyViews.includes(state.view);
- $('stats').hidden=['manual','matches'].includes(state.view)||historyViews.includes(state.view);
+ $('stats').hidden=['manual','matches','tracker'].includes(state.view)||historyViews.includes(state.view);
 
- $('today-intro').hidden=state.view!=='today';$('work-section').hidden=['activity','manual','matches',...historyViews].includes(state.view);$('activity-section').hidden=state.view!=='activity';
+ $('today-intro').hidden=state.view!=='today';$('work-section').hidden=['activity','manual','matches','tracker',...historyViews].includes(state.view);$('activity-section').hidden=state.view!=='activity';
  const viewJobs=state.view==='today'?state.jobs.filter(j=>foundOnDay(j,today())):state.jobs;
  const active=viewJobs.filter(j=>!['Closed','Do not apply'].includes(j.stage));
  const stats=[['Opportunities',active.filter(j=>!j.applied).length,'Ready for your review','jobs'],['Resumes ready',active.filter(j=>!j.applied&&j.resume_available).length,'Your next applications','jobs'],['Applications',viewJobs.filter(j=>j.applied).length,'Every step, in one place','applications'],['Follow-ups due',viewJobs.filter(due).length,'Keep the conversation going','today']];
@@ -135,7 +154,6 @@ function render(){
 
  }
  renderAppliedToday();
- renderTrend();
  renderSources();
  document.querySelectorAll('[data-stat-view]').forEach(b=>b.onclick=()=>setView(b.dataset.statView));
  const focus=[...active].sort((a,b)=>priority(a)-priority(b)).find(j=>priority(j)<9);
@@ -149,6 +167,7 @@ function render(){
  if(state.view==='matches'){ $('page-subtitle').textContent='Explore your own scoring model, then try it on your jobs.';return GeckoMatchScores.render(state.jobs);}
  if(state.view==='manual') return renderManual();
 
+ if(state.view==='tracker'){ $('page-subtitle').textContent=''; return GeckoTracker.render(); }
  if(state.view==='activity') return renderActivity();
  let list=state.jobs.filter(j=>state.view==='today'?foundOnDay(j,today()):state.view==='applications'?j.applied:true);
  const query=$('search').value.trim().toLowerCase(),stage=$('stage-filter').value,source=$('source-filter').value;
@@ -229,7 +248,7 @@ function renderHistory(){
  const columns={company:'Company',title:'Job Title',source:'Source',location:'Location',date:'Recorded Date',reason:'Reason / Notes'};
  const filters=historyFilters[category]||(historyFilters[category]={});
  const visible=rows.filter(row=>Object.entries(filters).every(([key,value])=>String(row[key]||'').toLowerCase().includes(value.toLowerCase())));
- const intro={'do-not-apply':'Jobs currently marked Do not apply (Apply? = No). Open a job to review its details and saved notes.',deleted:'Removed or archived job records. No permanent deletion is performed here.',rejected:'Jobs recorded as rejected by Gecko or marked Reject in your tracker. This does not imply an employer rejection.',uninterested:'Jobs with Apply? set to No, including roles marked Do not apply or that did not meet eligibility rules.'};
+ const intro={'do-not-apply':'Jobs currently marked Do not apply (Apply? = No). Open a job to review its details and saved notes.',deleted:'Removed or archived job records. No permanent deletion is performed here.',rejected:'Jobs recorded as rejected by Gecko or marked Reject in your tracker. This does not imply an employer rejection.',uninterested:'Jobs with Qualifies set to No, including roles marked Do not apply or that did not meet eligibility rules.'};
  const icon='<svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18l-7 8v7l-4 2v-9z" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
  $('history-section').innerHTML='<p class="history-explanation">'+intro[category]+'</p><div class="section-heading"><h2>Saved jobs</h2><span>'+visible.length+' of '+rows.length+' records</span></div><div class="table-wrap history-table"><table><thead><tr>'+Object.entries(columns).map(([key,label])=>'<th>'+label+' <button class="column-filter" data-history-focus="'+key+'" aria-label="Filter '+label+'">'+icon+'</button><input data-history-filter="'+key+'" aria-label="Search '+label+'" value="'+esc(filters[key]||'')+'" placeholder="Filter…"></th>').join('')+'</tr></thead><tbody>'+visible.map((row,index)=>'<tr data-saved-record="'+index+'" data-workspace-label="'+esc(row.company)+' — '+esc(row.title)+'"><td>'+esc(row.company||'—')+'</td><td>'+(row.url?'<a href="'+esc(row.url)+'" target="_blank" rel="noopener noreferrer">'+esc(row.title||'Open saved job')+'</a>':esc(row.title||'—'))+'<small class="subtext">'+esc(row.id?'ID '+row.id:'')+'</small></td><td>'+esc(row.source||'—')+'</td><td>'+esc(row.location||'—')+'</td><td>'+esc(row.date||'Not recorded')+'</td><td><details><summary>'+esc(String(row.reason||'Reason not recorded').slice(0,110))+'</summary><div class="history-notes">'+esc(row.reason)+'</div></details></td></tr>').join('')+'</tbody></table></div>'+(!visible.length?'<p class="loading">'+(rows.length?'No saved jobs match your filters.':'No jobs are recorded in this category yet.')+'</p>':'')+'<div class="actions"><button class="button secondary" id="clear-history-filters">Clear filters</button></div>';
  $('history-section').querySelectorAll('[data-history-filter]').forEach(input=>input.oninput=()=>{const caret=input.selectionStart;filters[input.dataset.historyFilter]=input.value;renderHistory();const next=$('history-section').querySelector('[data-history-filter="'+input.dataset.historyFilter+'"]');next.focus();next.setSelectionRange(caret,caret);});
@@ -240,7 +259,7 @@ function renderHistory(){
 
 function renderSources(){
  let row=document.getElementById('source-summary-row');
- if(!row){row=document.createElement('div');row.id='source-summary-row';document.getElementById('weekly-trend').after(row);}
+ if(!row){row=document.createElement('div');row.id='source-summary-row';document.getElementById('stats').after(row);}
  row.hidden=state.view!=='jobs';if(row.hidden)return;
  for(const [key,title,report] of [['previous','Previous run',state.activity?.previous_sources],['latest','Most recent run',state.activity?.sources]]){
  let panel=document.getElementById('source-summary-'+key);
@@ -261,29 +280,6 @@ function renderSourcePanel(panel,key,title,report){
  bind('source-name-query','source');bind('source-min-query','minimum');bind('source-status-query','status');bind('source-explanation-query','explanation');
  panel.querySelectorAll('[data-source-focus]').forEach(b=>b.onclick=()=>$(b.dataset.sourceFocus).focus());
  $('clear-source-filters').onclick=()=>{Object.assign(sourceFilters,{source:'',minimum:'',status:'',explanation:''});renderSources();};
-}
-
-function renderTrend(){
- let panel=$('weekly-trend');
- if(!panel){panel=document.createElement('section');panel.id='weekly-trend';panel.className='weekly-trend';$('stats').after(panel);}
- panel.hidden=state.view!=='jobs';if(panel.hidden)return;
- if(!state.refreshed){panel.innerHTML='<p class="loading">Loading seven-day activity…</p>';return;}
- const {dates,series}=GeckoMetrics.week(state.jobs,today());
- const selected=series.filter(s=>trendVisible[s.key]);
- const points=selected.flatMap(s=>s.values).filter(v=>v!==null);
- const step=Math.max(1,Math.ceil(Math.max(1,...points)/4));const max=step*4;
- const x=i=>56+i*110,y=n=>100-n/max*75;
- const label=date=>new Date(date+'T12:00:00Z').toLocaleDateString('en-US',{timeZone:'UTC',weekday:'short',month:'short',day:'numeric'});
- const grid=Array.from({length:5},(_,i)=>{const value=i*step;return '<line x1="56" x2="716" y1="'+y(value)+'" y2="'+y(value)+'" stroke="#e7ece3"/><text x="44" y="'+(y(value)+4)+'" text-anchor="end">'+value+'</text>';}).join('');
- const lines=selected.map(s=>{
-  if(s.values.every(v=>v===null))return '';
-  let path='',previous=false;
-  s.values.forEach((v,i)=>{if(v===null){previous=false;return;}path+=(previous?' L':' M')+x(i)+' '+y(v);previous=true;});
-  return '<path d="'+path+'" fill="none" stroke="'+s.color+'" stroke-width="2.5" stroke-dasharray="'+s.dash+'"/>'+s.values.map((v,i)=>v===null?'':'<circle tabindex="0" cx="'+x(i)+'" cy="'+y(v)+'" r="4" fill="white" stroke="'+s.color+'" stroke-width="2" aria-label="'+esc(s.label+', '+dates[i]+': '+v)+'"><title>'+esc(s.label+' · '+label(dates[i])+': '+v)+'</title></circle>').join('');
- }).join('');
- const empty=!selected.length?'Turn on a series to see its trend.':!points.length?'No dated records for the selected series.':'';
- panel.innerHTML='<div class="trend-heading"><h2>Past 7 days</h2><p>Daily counts · '+label(dates[0])+' – '+label(dates[6])+' · Mountain Time</p></div><div class="trend-layout"><div class="trend-options" role="group" aria-label="Chart series">'+series.map(s=>'<button class="trend-toggle" data-trend="'+s.key+'" aria-pressed="'+trendVisible[s.key]+'" style="--series-color:'+s.color+'"><span class="trend-swatch"></span><span>'+s.label+'<small>'+(trendVisible[s.key]?'On':'Off')+(s.undated?' · '+s.undated+' missing dates':'')+'</small></span></button>').join('')+'</div><div class="trend-plot"><svg viewBox="0 0 760 145" role="img" aria-label="Daily job search activity over the past seven days"><text x="56" y="14">Count</text>'+grid+'<line x1="56" x2="716" y1="100" y2="100" stroke="#b7c3af"/>'+lines+dates.map((d,i)=>'<text x="'+x(i)+'" y="122" text-anchor="middle">'+new Date(d+'T12:00:00Z').toLocaleDateString('en-US',{timeZone:'UTC',weekday:'short'})+'</text><text x="'+x(i)+'" y="138" text-anchor="middle">'+d.slice(5).replace('-','/')+'</text>').join('')+(empty?'<text x="386" y="65" text-anchor="middle">'+empty+'</text>':'')+'</svg></div></div><p class="trend-note">Counts use recorded dates, not cumulative totals. Missing dates are excluded; an entirely undated series has no line. Follow-ups are grouped by their current due date.</p><details class="trend-data"><summary>View daily values</summary><div class="table-wrap"><table><thead><tr><th>Date</th>'+selected.map(s=>'<th>'+s.label+'</th>').join('')+'</tr></thead><tbody>'+dates.map((d,i)=>'<tr><td>'+d+'</td>'+selected.map(s=>'<td>'+(s.values[i]??'Unavailable')+'</td>').join('')+'</tr>').join('')+'</tbody></table></div></details>';
- panel.querySelectorAll('[data-trend]').forEach(button=>button.onclick=()=>{trendVisible[button.dataset.trend]=!trendVisible[button.dataset.trend];renderTrend();panel.querySelector('[data-trend="'+button.dataset.trend+'"]').focus();});
 }
 
 async function openJob(id){
@@ -355,7 +351,7 @@ function renderDetail(j){
 }
 async function edit(action, extras={}){
  const j=state.selected;const buttons=[...$('job-detail').querySelectorAll('button')];buttons.forEach(b=>b.disabled=true);$('detail-error').textContent='Saving and verifying in your local database…';
- try{const result=await api('/api/edit',{id:j.id,version:j.version,action,...extras});state.selected={...j,...result};renderDetail(state.selected);notify('Saved and verified in your local database.');await refresh();}
+ try{const result=await api('/api/edit',{id:j.id,version:j.version,action,...extras});state.selected={...j,...result};renderDetail(state.selected);notify(state.activity?.sheet_sync?'Saved locally; syncing to Google Sheets.':'Saved and verified in your local database.');await refresh();}
  catch(error){$('detail-error').textContent=error.message;buttons.forEach(b=>b.disabled=false);}
 }
 async function startRun(payload){
@@ -400,10 +396,9 @@ document.querySelectorAll('dialog').forEach(enableDialogDismiss);
 $('run-gecko').onclick=()=>{if(impromptuFilters){showImpromptuConfirmation();return;}if(!state.runMode){banner('Refresh to load the verified run scope.');return;}const full=state.runMode==='full';$('run-title').textContent=full?'Run full Gecko workflow':'Run '+state.runIds.length+' selected jobs';$('run-scope').textContent=(createResumesForRun?'Automatic resumes: ON. ':'Automatic resumes: OFF. ')+(full?'Search all configured sources and process the full eligible job queue using your normal preferences.':'Only these jobs will be processed: '+state.runIds.join(', ')+'.');$('confirm-run').textContent=full?'Start full Gecko run':'Start selected '+state.runIds.length+'-job run';$('run-dialog').showModal();};$('close-run').onclick=$('cancel-run').onclick=()=>$('run-dialog').close();$('confirm-run').onclick=()=>startRun({kind:'gecko',create_resumes:createResumesForRun});
 for(const id of ['search','stage-filter','source-filter','sort'])$(id).addEventListener(id==='search'?'input':'change',()=>{state.page=0;render();});
 $('prev').onclick=()=>{state.page--;render();};$('next').onclick=()=>{state.page++;render();};
-if(['resumes','tracker'].includes(location.hash.slice(1)))history.replaceState(null,'','#jobs');
+if(location.hash.slice(1)==='resumes')history.replaceState(null,'','#jobs');
 if(viewNames[location.hash.slice(1)])state.view=location.hash.slice(1);
-window.addEventListener('hashchange',()=>{let view=location.hash.slice(1);if(['resumes','tracker'].includes(view)){view='jobs';history.replaceState(null,'','#jobs');}if(viewNames[view]&&view!==state.view){if(document.querySelector('.dirty')){location.hash=state.view;notify('Save your edited rows before changing views.');return;}state.view=view;state.page=0;render();window.scrollTo({top:0,left:0,behavior:'instant'});}});
-$('export-sheet').onclick=async()=>{if(document.querySelector('.dirty')){notify('Save your edited rows before exporting.');return;}const b=$('export-sheet'),status=$('export-status');b.disabled=true;b.textContent='Exporting…';$('export-link').hidden=true;status.textContent='Creating and verifying your Google Sheets copy…';try{const result=await api('/api/export',{});$('export-link').href=result.url;$('export-link').hidden=false;status.textContent=`Export verified: ${result.rows} rows.`;}catch(e){status.textContent='Export failed: '+e.message;}finally{b.disabled=false;b.textContent='Export to Google Sheets';}};
+window.addEventListener('hashchange',()=>{let view=location.hash.slice(1);if(view==='resumes'){view='jobs';history.replaceState(null,'','#jobs');}if(viewNames[view]&&view!==state.view){if(document.querySelector('.dirty')){location.hash=state.view;notify('Save your edited rows before changing views.');return;}state.view=view;state.page=0;render();window.scrollTo({top:0,left:0,behavior:'instant'});}});
 window.addEventListener('beforeunload',e=>{if(document.querySelector('.dirty')){e.preventDefault();e.returnValue='';}});
 const columnFilters={opportunity:'',location:'',minimum:'',maximum:'',unknown:true,hiddenStages:[],hideApplied:false,hiddenActions:[],hiddenResumes:[],hiddenValues:{}};
 let filterColumn='';
@@ -510,3 +505,5 @@ $('sort').addEventListener('change',()=>{columnSort=null;state.page=0;render();}
 
 render();refresh();
 setInterval(async()=>{try{const wasRunning=state.activity?.operation?.status==='running';state.activity=await api('/api/activity');if(state.view==='activity')renderActivity();updateApplicationButton();await syncJobResume();if(wasRunning&&state.activity.operation?.status!=='running'){notify('Gecko '+state.activity.operation.status+'. Refreshing your tracker.');await refresh();}}catch{/* Keep the last observed state; explicit refresh surfaces connection errors. */}},10000);
+
+setInterval(()=>{if(state.activity?.sheet_sync&&!state.loading&&!document.querySelector('.dirty')&&!$('job-dialog').open)refresh();},30000);

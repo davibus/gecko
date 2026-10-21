@@ -47,10 +47,16 @@ class CandidateProfileValidationTests(unittest.TestCase):
     def test_current_bytes_pass(self):
         self.assertEqual(candidate_profile.load_candidate_profile(self.profile_path), self.profile)
 
-    def test_changed_content_is_rejected(self):
+    def test_changed_content_uses_current_facts_without_rewriting_profile(self):
+        before = self.profile_path.read_bytes()
         write_master(self.master, "Changed source")
-        with self.assertRaisesRegex(ValueError, "candidate profile is stale"):
-            candidate_profile.load_candidate_profile(self.profile_path)
+        current = candidate_profile.load_candidate_profile(self.profile_path)
+        self.assertEqual(current["current_master_resume"], "Changed source")
+        self.assertEqual(current["target_roles"], self.profile["target_roles"])
+        self.assertNotIn("major_skills", current)
+        self.assertEqual(self.profile_path.read_bytes(), before)
+        self.assertNotEqual(candidate_profile.candidate_profile_hash(current),
+                            candidate_profile.candidate_profile_hash(self.profile))
 
     def test_empty_or_invalid_master_cannot_be_stamped_valid(self):
         for raw in (b" \n", b"\xef\xbb\xbf", b"\xff"):
@@ -64,8 +70,8 @@ class CandidateProfileValidationTests(unittest.TestCase):
     def test_word_package_changes_are_part_of_fingerprint(self):
         with ZipFile(self.master, "a") as package:
             package.comment = b"Package changed without changing visible content"
-        with self.assertRaisesRegex(ValueError, "candidate profile is stale"):
-            candidate_profile.load_candidate_profile(self.profile_path)
+        current = candidate_profile.load_candidate_profile(self.profile_path)
+        self.assertEqual(current["current_master_resume"], "Reviewed source")
 
     def test_matching_hash_does_not_bypass_required_fields(self):
         del self.profile["leadership"]
@@ -99,9 +105,8 @@ class DailyProfilePreflightTests(unittest.TestCase):
         patcher.start()
         self.addCleanup(patcher.stop)
 
-    def test_configured_stale_profile_rejected_when_enabled(self):
-        with self.assertRaisesRegex(ValueError, "candidate profile is stale"):
-            validate_candidate_profile_for_ai(self.preferences)
+    def test_configured_stale_profile_refreshes_when_enabled(self):
+        validate_candidate_profile_for_ai(self.preferences)
 
     def test_valid_default_and_custom_profiles_pass(self):
         for path in ("", str(candidate_profile.DEFAULT_PROFILE)):
@@ -119,10 +124,15 @@ class DailyProfilePreflightTests(unittest.TestCase):
         validate_candidate_profile_for_ai(self.preferences)
         with patch.dict(os.environ, {"JOB_SCOUT_TRIAGE_MODEL": " t ", "JOB_SCOUT_SCORING_MODEL": " s "}):
             self.assertEqual(screening_models(self.preferences), ("t", "s"))
-            with self.assertRaisesRegex(ValueError, "candidate profile is stale"):
-                validate_candidate_profile_for_ai(self.preferences)
+            validate_candidate_profile_for_ai(self.preferences)
 
-    def test_main_rejects_before_opening_database_or_daily(self):
+    def invalidate_profile(self):
+        profile = json.loads(self.stale.read_text())
+        del profile["leadership"]
+        self.stale.write_text(json.dumps(profile))
+
+    def test_main_rejects_invalid_profile_before_opening_database_or_daily(self):
+        self.invalidate_profile()
         for options in ([], ["--dry-run"]):
             with (self.subTest(options=options),
                   patch.object(sys, "argv", ["scout.py", "daily", *options]),
@@ -132,11 +142,12 @@ class DailyProfilePreflightTests(unittest.TestCase):
                   patch("scout.daily") as daily,
                   redirect_stderr(io.StringIO()) as errors):
                 self.assertEqual(scout.main(), 1)
-                self.assertIn("candidate profile is stale", errors.getvalue())
+                self.assertIn("missing: leadership", errors.getvalue())
                 database.assert_not_called()
                 daily.assert_not_called()
 
-    def test_direct_daily_rejects_before_any_workflow_activity(self):
+    def test_direct_daily_rejects_invalid_profile_before_any_workflow_activity(self):
+        self.invalidate_profile()
         boundaries = ["JobStore", "DailyLinkValidator", "sheet_only_active_jobs",
                       "protected_job_ids", "scout_row_ids", "sync_tracker", "search",
                       "GoogleTracker", "process_manual_indeed_rows", "JobEvaluator",
@@ -146,7 +157,7 @@ class DailyProfilePreflightTests(unittest.TestCase):
                 mocks = [stack.enter_context(patch("scout." + name)) for name in boundaries]
                 store = Mock()
                 args = scout.build_parser().parse_args(["daily", *options])
-                with self.assertRaisesRegex(ValueError, "candidate profile is stale"):
+                with self.assertRaisesRegex(ValueError, "missing: leadership"):
                     scout.daily(args, store, self.preferences)
                 self.assertEqual(store.mock_calls, [])
                 for boundary in mocks:

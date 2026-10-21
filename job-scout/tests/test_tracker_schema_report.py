@@ -9,7 +9,7 @@ import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from daily_report import build_snapshot
-from tracker_schema import (CURRENT_SCOUT_HEADERS, INDEED_APPLICATION_HEADER, SCOUT_TAB,
+from tracker_schema import (LEGACY_SCOUT_HEADERS, INDEED_APPLICATION_HEADER, SCOUT_TAB,
                             discover_tabs, resolve_headers)
 
 
@@ -33,7 +33,7 @@ class TrackerSchemaReportTests(unittest.TestCase):
                            {"title": "Rejected Jobs", "sheetId": 1}])
 
     def test_reordered_headers_and_documented_aliases(self):
-        moved = list(reversed(CURRENT_SCOUT_HEADERS))
+        moved = list(reversed(LEGACY_SCOUT_HEADERS))
         moved[moved.index("ID")] = "Scout ID"
         fields = resolve_headers(moved, required=("Scout ID", "Apply?", "Resume Link"))
         self.assertEqual(fields["Resume Link"], moved.index("Resume Link") + 1)
