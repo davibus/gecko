@@ -28,6 +28,8 @@ def _display_value(name: str, value):
         value is None or isinstance(value, str) and value.strip().casefold() in {"", "unavailable"}
     ):
         return 0
+    if value is None:
+        return ""
     return value
 
 

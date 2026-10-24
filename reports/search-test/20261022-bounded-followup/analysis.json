@@ -1,0 +1,208 @@
+[
+  {
+    "retrieved_by": "Gecko",
+    "candidate_key": "5918962508",
+    "company": "Thriveworks",
+    "title": "Senior Performance Marketing Manager",
+    "url": "https://www.adzuna.com/details/5918962508?utm_medium=api&utm_source=b4f3e3f8",
+    "date_posted": "2026-10-08T08:46:37",
+    "salary": "$ 181,690",
+    "outcome": "filtered",
+    "reason": "Outside four-day posting window"
+  },
+  {
+    "retrieved_by": "Gecko",
+    "candidate_key": "5917303579",
+    "company": "TCWGlobal",
+    "title": "Performance Marketing Manager \u2013 Degrees Program",
+    "url": "https://www.adzuna.com/details/5917303579?utm_medium=api&utm_source=b4f3e3f8",
+    "date_posted": "2026-10-07T11:52:04",
+    "salary": "USD 50\u201355 per hour",
+    "outcome": "filtered",
+    "reason": "Outside four-day posting window"
+  },
+  {
+    "retrieved_by": "Gecko",
+    "candidate_key": "5933427996",
+    "company": "Community Choice Financial Family of Brands",
+    "title": "Manager of Paid Search",
+    "url": "https://www.adzuna.com/details/5933427996?utm_medium=api&utm_source=b4f3e3f8",
+    "date_posted": "2026-10-17T09:33:00",
+    "salary": "$ 76,175",
+    "outcome": "filtered",
+    "reason": "Outside four-day posting window"
+  },
+  {
+    "retrieved_by": "Gecko",
+    "candidate_key": "5934060747",
+    "company": "Carhartt",
+    "title": "Paid Media Strategist",
+    "url": "https://www.adzuna.com/details/5934060747?utm_medium=api&utm_source=b4f3e3f8",
+    "date_posted": "2026-10-19T05:03:01",
+    "salary": "$ 96,113",
+    "outcome": "qualified",
+    "reason": "Within four days; full posting and filters verified"
+  },
+  {
+    "retrieved_by": "Gecko",
+    "candidate_key": "5927964926",
+    "company": "Reliable Software Resources",
+    "title": "Senior Program Manager Digital Marketing Campaign Management",
+    "url": "https://www.adzuna.com/land/ad/5927964926?se=NMgCUQzO8RGOK_A7kFecOQ&utm_medium=api&utm_source=b4f3e3f8&v=97417506C988F8FCC57A287BECBD8D1560F61FDF",
+    "date_posted": "2026-10-14T00:00:00",
+    "salary": "$ 106,055",
+    "outcome": "filtered",
+    "reason": "Outside four-day posting window"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "f6c26521-7087-4685-9d47-537f42573ba8",
+    "title": "Paid Media Manager - Terra - Lever",
+    "url": "https://jobs.lever.co/terrahq/f6c26521-7087-4685-9d47-537f42573ba8",
+    "company": "Terra",
+    "outcome": "already tracked",
+    "tracker_id": 1748,
+    "reason": "Skipped before paid page retrieval"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "427efd69-7b40-4748-addc-dc898c1d7251",
+    "title": "Paid Media Manager (Remote US) - Future Opening @ Directive - Jobs",
+    "url": "https://jobs.ashbyhq.com/directive/427efd69-7b40-4748-addc-dc898c1d7251",
+    "outcome": "filtered",
+    "reason": "Future opening/talent pool; no current vacancy"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "d68c46f4-805c-45e6-80ec-69046dcfe137",
+    "company": "Silverback Strategies",
+    "title": "Senior Paid Media Manager (Remote)",
+    "url": "https://jobs.lever.co/silverbackstrategies/d68c46f4-805c-45e6-80ec-69046dcfe137",
+    "date_posted": "2026-10-22T03:58:46.429000+00:00",
+    "salary": "USD 90000-115000 per year",
+    "outcome": "qualified",
+    "reason": "Within four days; full posting and filters verified"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "5432878008",
+    "company": "Scorpion Enterprises, LLC",
+    "title": "Paid Media Manager",
+    "url": "https://job-boards.greenhouse.io/scorpionenterprisesllc/jobs/5432878008",
+    "date_posted": "2026-09-23T13:27:28-04:00",
+    "salary": "",
+    "outcome": "filtered",
+    "reason": "Outside four-day posting window"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "deec67d0-f38d-44b8-8a49-922c4f7a1e2c",
+    "title": "Silverback Strategies - Paid Media Manager (Remote) - Lever",
+    "url": "https://jobs.lever.co/silverbackstrategies/deec67d0-f38d-44b8-8a49-922c4f7a1e2c",
+    "company": "Silverback Strategies",
+    "outcome": "already tracked",
+    "tracker_id": 2760,
+    "reason": "Skipped before paid page retrieval"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "6e3f93c0-d1ad-4129-ab76-6362d7e14d69",
+    "title": "Sr. Paid Search Specialist (Remote) @ Rula - Jobs",
+    "url": "https://jobs.ashbyhq.com/rula/6e3f93c0-d1ad-4129-ab76-6362d7e14d69",
+    "company": "Rula",
+    "outcome": "already tracked",
+    "tracker_id": 2554,
+    "reason": "Skipped before paid page retrieval"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "5405288008",
+    "company": "Gr\u00fcns",
+    "title": "Paid Media Manager, International",
+    "url": "https://job-boards.greenhouse.io/gruns/jobs/5405288008",
+    "date_posted": "2026-08-25T12:15:37-04:00",
+    "salary": "",
+    "outcome": "filtered",
+    "reason": "Outside four-day posting window"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "4395139009",
+    "company": "My Technology, Inc.",
+    "title": "Marketing Analytics Manager",
+    "url": "https://job-boards.greenhouse.io/mytechnologyinc/jobs/4395139009",
+    "date_posted": "2026-09-03T16:04:07-04:00",
+    "salary": "",
+    "outcome": "filtered",
+    "reason": "Outside four-day posting window"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "6227418004",
+    "company": "Goodway Group",
+    "title": "Global Paid Media Manager",
+    "url": "https://job-boards.greenhouse.io/goodwaygroup/jobs/6227418004",
+    "date_posted": "2026-10-16T16:47:05-04:00",
+    "salary": "",
+    "outcome": "filtered",
+    "reason": "Outside four-day posting window"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "6185532004",
+    "title": "Job Application for Paid Search Specialist at MissionOne Media",
+    "url": "https://job-boards.greenhouse.io/missiononemedia/jobs/6185532004",
+    "outcome": "closed",
+    "reason": "Official job-specific employer API returned HTTP 404; not retried"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "acde3355-dd4d-4c26-a01e-f0905d5489f8",
+    "title": "Senior Paid Media Manager @ Acquisition.com - Jobs",
+    "url": "https://jobs.ashbyhq.com/acquisition/acde3355-dd4d-4c26-a01e-f0905d5489f8",
+    "company": "Acquisition.com",
+    "outcome": "already tracked",
+    "tracker_id": 2647,
+    "reason": "Skipped before paid page retrieval"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "2f01fde6-4c52-458f-aa99-8c10b3de99db",
+    "title": "Senior Paid Search Specialist - Talent Pool @ Darkroom - Jobs",
+    "url": "https://jobs.ashbyhq.com/darkroom/2f01fde6-4c52-458f-aa99-8c10b3de99db",
+    "outcome": "filtered",
+    "reason": "Future opening/talent pool; no current vacancy"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "6fc9b727-de6b-49aa-8cbc-c3edaae5a0f9",
+    "company": "TENEX.AI",
+    "title": "Senior Paid Media Manager",
+    "url": "https://jobs.ashbyhq.com/tenex/6fc9b727-de6b-49aa-8cbc-c3edaae5a0f9",
+    "date_posted": "2026-07-13",
+    "salary": "",
+    "outcome": "filtered",
+    "reason": "Outside four-day posting window"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "6185533004",
+    "company": "MissionOne Media",
+    "title": "Senior Paid Search Specialist ",
+    "url": "https://job-boards.greenhouse.io/missiononemedia/jobs/6185533004",
+    "date_posted": "2026-09-08T14:21:24-04:00",
+    "salary": "",
+    "outcome": "filtered",
+    "reason": "Outside four-day posting window"
+  },
+  {
+    "retrieved_by": "Firecrawl",
+    "candidate_key": "6096864004",
+    "title": "Job Application for Digital Marketing Manager - Americas at Appspace",
+    "url": "https://job-boards.greenhouse.io/appspace/jobs/6096864004",
+    "company": "Appspace",
+    "outcome": "already tracked",
+    "tracker_id": 2390,
+    "reason": "Skipped before paid page retrieval"
+  }
+]

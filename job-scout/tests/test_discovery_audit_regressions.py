@@ -52,7 +52,7 @@ class DiscoveryAuditRegressions(unittest.TestCase):
             scout.search(args,store,load_preferences())
         self.assertEqual(args.run_result['source_health']['test']['status'],'partial failure')
         self.assertIn('test',args.run_result['source_errors'])
-    def test_all_16_roles_and_8_locations_reach_search_adapter(self):
+    def test_all_13_phrases_and_8_locations_reach_search_adapter(self):
         class Provider:
             name='test';broad_queries=['marketing']
             def configured(self):return True
@@ -67,9 +67,28 @@ class DiscoveryAuditRegressions(unittest.TestCase):
               redirect_stdout(io.StringIO())):
             scout.search(args,store,load_preferences())
         requests=acquire.call_args.args[1]
-        self.assertEqual(len(requests),128)
+        self.assertEqual(len(requests),104)
         self.assertEqual({r.query for r in requests},set(load_preferences()['target_roles']))
         self.assertEqual({r.location for r in requests},set(load_preferences()['preferred_locations']))
+
+    def test_broad_phrases_reach_indeed_and_firecrawl(self):
+        from firecrawl_discovery import build_queries
+        from sources.indeed_search import IndeedSearchProvider
+        expected = ['Paid media', 'Paid search', 'PPC', 'SEM', 'Digital marketing',
+                    'Performance marketing', 'Growth marketing', 'Marketing analytics',
+                    'E-commerce marketing', 'Demand generation', 'Marketing operations',
+                    'Marketing technology', 'Google Ads']
+        preferences = load_preferences()
+        self.assertEqual(preferences['target_roles'], expected)
+        self.assertEqual(IndeedSearchProvider().queries, expected)
+        self.assertEqual(IndeedSearchProvider(queries=['custom phrase']).queries, ['custom phrase'])
+        queries = build_queries(preferences)
+        for location in ('Utah', 'remote'):
+            text = ' '.join(q['query'] for q in queries if q['location'] == location)
+            for phrase in expected:
+                self.assertIn('"' + phrase + '"', text)
+            for title in ('Manager', 'Strategist', 'Director'):
+                self.assertNotIn(title, text)
 
     def test_remotive_count_is_fetched_and_not_imported_or_daily_review_limit(self):
         provider=SimpleNamespace(name='remotive',configured=lambda:True)
@@ -85,12 +104,14 @@ class DiscoveryAuditRegressions(unittest.TestCase):
         self.assertIsNone(discover.call_args.kwargs['limit'])
         self.assertEqual(args.run_result['source_counts']['remotive'],7)
 
-    def test_ashby_fulltime_passes_full_time_filter(self):
+    def test_ashby_fulltime_and_contract_follow_current_employment_filter(self):
         from normalize import normalize
         from hard_filters import deterministic_filter
         listing=raw(1);listing.employment_type='FullTime'
         self.assertTrue(deterministic_filter(normalize(listing),load_preferences())[0])
         listing.employment_type='Contract'
+        self.assertTrue(deterministic_filter(normalize(listing),load_preferences())[0])
+        listing.employment_type='Internship'
         self.assertEqual(deterministic_filter(normalize(listing),load_preferences())[1],
                          'excluded employment type')
     def test_unrelated_companies_do_not_compare_large_descriptions(self):

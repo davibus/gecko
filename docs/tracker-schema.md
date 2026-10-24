@@ -1,5 +1,19 @@
 # Gecko Job Tracker live schema
 
+## Found Using
+
+`Found Using` records the original discovery system (`Gecko` or `Firecrawl`),
+separately from the job-board `Source`. Resolve its live header by name; its
+position is user-controlled. New listings carry provenance through normalization,
+SQLite storage and tracker insertion. Rediscovery preserves the first value and
+manual entries. Existing blank cells remain blank; no historical source is inferred
+from the current provider, a later scrape, or Last Updated. Explicit discovery
+metadata takes precedence over retrieval: a Gecko/Brave-discovered URL remains
+Gecko even if Firecrawl retrieves its description. Firecrawl search and Indeed
+result-page discovery are Firecrawl. Legacy retrieval-only metadata is supported;
+later description enrichment never changes provenance. Legacy trackers remain
+supported without inserting or moving columns.
+
 ## Columns follow names, not positions
 
 Users may move whole columns freely without asking for code or instruction updates.

@@ -129,6 +129,8 @@ class SQLiteTracker(GoogleTracker):
             raw[record['slot']] = tuple(data.get(field, '') for field in headers)
             for alias,column in resolved.items():
                 data[alias] = raw[record['slot']][column-1]
+            from description_columns import add_read_alias
+            add_read_alias(data, resolved)
             rows.append((record['slot'], data))
         return Tab(title, dataset['source_id'], resolved, rows,
                    max(maximum + 1000, 10000), tuple(headers), raw)

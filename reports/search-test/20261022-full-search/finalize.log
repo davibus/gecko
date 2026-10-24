@@ -1,0 +1,11 @@
+{
+  "job_scout_worksheet": {
+    "rows": 1202,
+    "added": 1,
+    "updated": 0
+  },
+  "google_sheets": {
+    "spreadsheet_id": "sqlite:C:\\gecko_main\\job-scout\\data\\jobs.sqlite3"
+  }
+}
+{"verified": true, "new_listings": 20, "credits_this_request": 45, "credits_today": 69, "firecrawl": "paused HTTP 403", "backup": {"backend": "sqlite", "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T061648104883.sqlite3", "integrity": "ok", "google_sheets_accessed": false}}

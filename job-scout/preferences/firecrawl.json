@@ -1,0 +1,29 @@
+{
+  "enabled": true,
+  "daily_enabled": true,
+  "allocation_credits": 5000,
+  "daily_soft_credits": 2000,
+  "daily_hard_credits": 2000,
+  "timezone": "America/Denver",
+  "reservation_headroom": 2,
+  "allow_priority_requests": false,
+  "require_balance": true,
+  "balance_max_age_seconds": 300,
+  "cache_hours": 24,
+  "posting_window_hours": 96,
+  "max_queries_per_day": 16,
+  "results_per_query": 50,
+  "max_scrapes_per_day": 100,
+  "max_unknown_date_verifications_per_day": 60,
+  "paid_scrapes_per_query_round": 2,
+  "search_verification_headroom_credits": 20,
+  "pricing": {
+    "verified_on": "2026-10-21",
+    "search_per_10_results": 2,
+    "basic_scrape": 1,
+    "sources": [
+      "https://docs.firecrawl.dev/features/search",
+      "https://docs.firecrawl.dev/features/scrape"
+    ]
+  }
+}

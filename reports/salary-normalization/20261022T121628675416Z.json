@@ -1,0 +1,24 @@
+{
+  "status": "verified",
+  "synced_at": "2026-10-22T12:16:44.861268+00:00",
+  "changes": [
+    {
+      "id": "2885",
+      "before": {
+        "Salary": "Estimated $71,925 - $71,925",
+        "Notes": "Original JobPosting explicitly identifies Salt Lake City, UT, US (postal code 84101). Full description verified. Adzuna pay is an estimate, not confirmed employer base salary. No resume or application started."
+      },
+      "changes": {
+        "Salary": "$71,925 - $71,925",
+        "Notes": "Original JobPosting explicitly identifies Salt Lake City, UT, US (postal code 84101). Full description verified. Adzuna pay is an estimate, not confirmed employer base salary. No resume or application started.\n\nSalary details: Provider estimate; not confirmed employer base pay."
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "$71,925 - $71,925",
+        "original_salary": "Estimated $71,925 - $71,925",
+        "formatted_salary": "$71,925 - $71,925"
+      }
+    }
+  ]
+}

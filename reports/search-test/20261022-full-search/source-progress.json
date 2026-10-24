@@ -1,0 +1,138 @@
+{
+  "jobicy": {
+    "counts": {
+      "fetched": 188,
+      "filter: outside target role families": 65,
+      "filter: unrelated role family": 39,
+      "already_known": 13,
+      "filter: starting annual base salary above $120,000": 6,
+      "outside_four_days": 62,
+      "passed_cheap_checks": 3
+    },
+    "errors": []
+  },
+  "remotive": {
+    "counts": {
+      "fetched": 2,
+      "already_known": 2,
+      "passed_cheap_checks": 0
+    },
+    "errors": []
+  },
+  "remoteok": {
+    "counts": {
+      "fetched": 99,
+      "filter: outside target role families": 2,
+      "filter: unrelated role family": 3,
+      "outside_four_days": 93,
+      "already_known": 1,
+      "passed_cheap_checks": 0
+    },
+    "errors": []
+  },
+  "adzuna": {
+    "counts": {
+      "fetched": 17,
+      "outside_four_days": 3,
+      "same_source_duplicate": 3,
+      "already_known": 3,
+      "filter: non-remote role outside preferred locations": 5,
+      "filter: outside target role families": 2,
+      "passed_cheap_checks": 1
+    },
+    "errors": []
+  },
+  "usajobs": {
+    "counts": {
+      "fetched": 10,
+      "filter: outside target role families": 10,
+      "passed_cheap_checks": 0
+    },
+    "errors": []
+  },
+  "greenhouse": {
+    "counts": {
+      "fetched": 7032,
+      "outside_four_days": 6293,
+      "filter: outside target role families": 301,
+      "filter: unrelated role family": 123,
+      "already_known": 228,
+      "filter: generic non-marketing manager/production role": 15,
+      "filter: non-remote role outside preferred locations": 18,
+      "filter: non-marketing data science": 36,
+      "filter: excluded title/seniority": 1,
+      "passed_cheap_checks": 17
+    },
+    "errors": [
+      {
+        "company": "Ashley Digital",
+        "error": "Request failed for https://boards-api.greenhouse.io/v1/boards/residenthome/jobs: HTTP Error 404: Not Found | {\"status\": 404, \"error\": \"Job not found\"}"
+      }
+    ]
+  },
+  "ashby": {
+    "counts": {
+      "fetched": 3130,
+      "outside_four_days": 2739,
+      "already_known": 175,
+      "filter: outside target role families": 164,
+      "filter: starting annual base salary above $120,000": 5,
+      "filter: unrelated role family": 40,
+      "filter: generic non-marketing manager/production role": 2,
+      "filter: excluded title/seniority": 1,
+      "filter: non-marketing data science": 1,
+      "passed_cheap_checks": 3
+    },
+    "errors": []
+  },
+  "weworkremotely": {
+    "counts": {
+      "fetched": 127,
+      "filter: outside target role families": 12,
+      "filter: unrelated role family": 5,
+      "already_known": 17,
+      "outside_four_days": 91,
+      "same_source_duplicate": 1,
+      "passed_cheap_checks": 1
+    },
+    "errors": []
+  },
+  "workingnomads": {
+    "counts": {
+      "fetched": 43,
+      "filter: outside target role families": 1,
+      "filter: unrelated role family": 4,
+      "outside_four_days": 38,
+      "passed_cheap_checks": 0
+    },
+    "errors": []
+  },
+  "workable": {
+    "counts": {
+      "fetched": 5521,
+      "outside_four_days": 2923,
+      "same_source_duplicate": 2167,
+      "already_known": 321,
+      "filter: outside target role families": 81,
+      "filter: unrelated role family": 19,
+      "filter: generic non-marketing manager/production role": 3,
+      "passed_cheap_checks": 7
+    },
+    "errors": []
+  },
+  "lever": {
+    "counts": {
+      "fetched": 4699,
+      "outside_four_days": 4366,
+      "already_known": 190,
+      "filter: outside target role families": 116,
+      "filter: unrelated role family": 11,
+      "filter: generic non-marketing manager/production role": 3,
+      "filter: non-remote role outside preferred locations": 2,
+      "filter: excluded title/seniority": 1,
+      "filter: excluded employment type": 1,
+      "passed_cheap_checks": 9
+    },
+    "errors": []
+  }
+}

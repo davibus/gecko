@@ -21,7 +21,7 @@ class MasterResumeSourceTests(unittest.TestCase):
         jobs = v2.master_jobs()
         travelpass = next(job for job in jobs if "TravelPass" in job["company"])
         intercon = next(job for job in jobs if "Intercon" in job["company"])
-        self.assertEqual(v2.employment_dates(travelpass), "Aug 2021–Apr 2022")
+        self.assertEqual(v2.employment_dates(travelpass), "Aug 2020–Apr 2022")
         self.assertEqual(v2.employment_dates(intercon), "Feb 2018–Feb 2020")
 
     def test_all_runtime_sources_and_project_config_agree(self):

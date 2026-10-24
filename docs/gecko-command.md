@@ -1,5 +1,9 @@
 # Gecko command
 
+For the manual unified `gecko job search` route, exact local command syntax,
+mocked verification and PATH requirements, see [Unified job search](unified-job-search.md).
+This search-only route preserves the existing daily/task command below.
+
 ## Columns follow names, not positions
 
 Users may move whole columns freely without asking for code or instruction updates.

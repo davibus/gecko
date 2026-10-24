@@ -1,8 +1,13 @@
 {
   "status": "synced",
-  "synced_at": "2026-10-21T10:18:34.919999+00:00",
-  "rows": 1144,
+  "synced_at": "2026-10-23T12:13:26.324908+00:00",
+  "rows": 1204,
   "cells_written": 0,
   "jobs_added_to_sheet": 0,
-  "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit"
+  "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit",
+  "range_extension": {
+    "requests": 0,
+    "formulas_filled": 0
+  },
+  "salaries_normalized": 0
 }

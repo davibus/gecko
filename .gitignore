@@ -45,6 +45,8 @@ gmail-oauth-client*.json
 gmail-oauth-token*.json
 gmail-response-state.json
 job-scout/data/gmail-response-state.json
+job-scout/data/firecrawl_discovery.sqlite*
+job-scout/data/firecrawl_discovery.lock
 
 # Per-job local OpenClaw handoffs contain resume paths and application URLs.
 /openclaw/application-queue/*/
@@ -52,5 +54,11 @@ job-scout/data/gmail-response-state.json
 # Editable personal applicant answers remain local.
 /openclaw/application-answers.md
 
+# Local Playwright application evidence contains personal data and browser state.
+/reports/playwright-pilot/
+
 # Oversized local discovery report; retain on disk only.
 /reports/discovery-audit/20261013/retry/greenhouse.json
+
+# Local candidate match evidence contains excerpts from the personal master.
+/job-scout/data/resume-match/

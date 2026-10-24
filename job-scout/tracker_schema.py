@@ -33,6 +33,7 @@ CURRENT_SCOUT_HEADERS = (
     'Job Title',
     'Applied',
     'Applied Date',
+    'Found Using',
     'Source',
     'Qualifies to Apply?',
     'Cover Letter',
@@ -59,7 +60,8 @@ CURRENT_SCOUT_HEADERS = (
     'Personal priority',
     'Previous Applied Date',
     'Notes',
-    'Job Description',
+    'Gecko Job Description',
+    'FireCrawl Job Description',
     'Enough Data',
     '# Words',
     '# Job Desc Words',
@@ -69,6 +71,8 @@ CURRENT_SCOUT_HEADERS = (
 SCOUT_HEADER_ALIASES = {
     "Scout ID": ("ID", "Scout ID"),
     "Apply?": ("Qualifies to Apply?", "Qualifies", "Apply?", "Apply"),
+    "Gecko Job Description": ("Gecko Job Description",),
+    "Firecrawl Job Description": ("Firecrawl Job Description",),
 }
 SCOUT_FIELDS = (
     "Scout ID", "Source", "Company", "Job Title",

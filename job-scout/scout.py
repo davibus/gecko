@@ -25,7 +25,7 @@ from indeed_application_backfill import backfill as backfill_indeed_buttons, loa
 from link_validation import DailyLinkValidator
 from manual_indeed import ManualIndeedSummary, process_manual_indeed_rows
 from models import RawListing
-from normalize import normalize, posting_identity
+from normalize import normalize, posting_identity, posting_aliases
 from normalize import canonicalize_url
 from rejected_jobs import RejectedJobsIndex
 from rejection_workflow import process_rejected_rows
@@ -233,6 +233,9 @@ def sheet_only_active_jobs(tracker_path, known_ids: set[int]):
 
 
 def search(args, store, preferences):
+    if getattr(args, 'unified', False):
+        from unified_search import run
+        return run(args, store, preferences)
     daily_mode = bool(getattr(args, "daily_mode", False))
     safe_discovery = bool(getattr(args,'safe_discovery',False)) and not daily_mode
     audit_dir = Path(args.audit_dir).resolve() if getattr(args,'audit_dir',None) else None
@@ -256,6 +259,14 @@ def search(args, store, preferences):
             live_ids=[int(row.get('Scout ID')) for _,row in live.rows if str(row.get('Scout ID') or '').isdigit()]
             if live_ids: store.observe_scout_id(max(live_ids))
     preexisting_ids = {job.id for job in store.all()}
+    primary_by_url = {}
+    if safe_discovery and getattr(args, 'adopt_primary_ids', False):
+        for _, values in live.rows:
+            if values.get('Job URL') and str(values.get('Scout ID') or '').isdigit():
+                key = posting_identity(values['Job URL'])
+                if key in primary_by_url:
+                    raise RuntimeError('Primary tracker has ambiguous posting identities')
+                primary_by_url[key] = values
     source_config = load_source_config(getattr(args, "sources_config", None))
     available = providers(getattr(args, "sources_config", None))
     if args.source == "all":
@@ -288,6 +299,7 @@ def search(args, store, preferences):
         "missing_content_excluded": 0, "dead_url_excluded": 0,
         "deterministic_reject_reasons": {},
         "url_review_excluded":0,"url_validated":0,
+        "match_excluded": 0, "match_pending": 0,
         "source_results_limited": 0,
         "newly_discovered": 0, "already_existed": 0,
         "new_job_ids": [], "existing_job_ids": [], "changed_job_ids": [],
@@ -373,6 +385,22 @@ def search(args, store, preferences):
                     )
                 elif name in futures:
                     listings, require_content, limited, acquisition_errors, raw_count = futures[name].result()
+                    for raw in listings:
+                        primary = primary_by_url.get(posting_identity(raw.url))
+                        if primary is not None:
+                            job_id = int(primary['Scout ID'])
+                            prior = store.get(job_id)
+                            if prior is None:
+                                job = normalize(raw)
+                                job.found_using = str(primary.get('Found Using') or '')
+                                saved_id = store.save(job, job_id=job_id)
+                                if saved_id != job_id:
+                                    raise RuntimeError('Primary ID conflicts with retained discovery history')
+                            elif posting_identity(raw.url) not in posting_aliases(prior):
+                                message = f'Primary ID {job_id} conflicts with another stored posting'
+                                print(message, file=sys.stderr, flush=True)
+                                raise RuntimeError(message)
+                            preexisting_ids.add(job_id)
                     aggregate['source_diagnostics'][name] = {
                         'raw_parsed_results': raw_count, 'limited_before_filter': limited,
                         'errors': acquisition_errors,
@@ -469,6 +497,7 @@ def search(args, store, preferences):
                 "filtered_by_role", "deterministic_rejects", "jooble_excluded",
                 "rejected_history_excluded",
                 "missing_content_excluded", "dead_url_excluded",
+                "match_excluded", "match_pending",
                 "url_review_excluded","url_validated",
             ):
                 aggregate[key] += getattr(summary, key)
@@ -518,6 +547,7 @@ def search(args, store, preferences):
     print(f"Duplicates removed: {aggregate['duplicates']}", file=sys.stderr)
     print(f"Previously seen: {aggregate['already_existed']}", file=sys.stderr)
     print(f"Rejected by Gecko filters: {aggregate['filtered_by_role']}", file=sys.stderr)
+    print(f"Below resume-match policy: {aggregate['match_excluded'] - aggregate['match_pending']}; match review pending: {aggregate['match_pending']}", file=sys.stderr)
     print(f"New unique jobs saved locally: {aggregate['newly_discovered']}", file=sys.stderr)
     if len(aggregate["skipped_sources"]) == len(selected):
         print("No selected source is configured. See job-scout/README.md.", file=sys.stderr)
@@ -525,6 +555,8 @@ def search(args, store, preferences):
     if not successful_sources:
         print("All configured sources failed. Review source_errors above.", file=sys.stderr)
         return 1
+    if getattr(args, 'defer_tracker_sync', False):
+        return 0 if successful_sources else 1
     if daily_mode:
         if not getattr(args, "dry_run", False):
             new_jobs = [store.get(job_id) for job_id in aggregate["new_job_ids"]]
@@ -848,6 +880,13 @@ def _daily_gmail_response_runner():
 def _print_daily_summary(run_result, queue_result, tracker_summary, *, dry_run=False,
                          gmail_result=None, gmail_error="", manual_indeed=None):
     manual_indeed = manual_indeed or ManualIndeedSummary()
+    if run_result.get('firecrawl'):
+        from firecrawl_state import History
+        report = run_result['firecrawl']
+        report.update(History().usage(report['day']))
+        report['credits_per_new_qualified_job'] = (report['total_credits_accounted'] / report['new_qualified']
+                                                  if report['new_qualified'] else None)
+        print('Firecrawl efficiency: ' + json.dumps(report), flush=True)
     print("\nDaily Job Scout complete" + (" (dry run)" if dry_run else ""))
     print(f"Sources searched: {run_result.get('sources_searched', 0)}")
     print(f"Jobs discovered: {run_result.get('fetched', 0)}")
@@ -949,12 +988,34 @@ def daily(args, store, preferences):
                 store.delete_dead_unprotected(job.id)
                 validator.record_removed(job, result)
     search_args = argparse.Namespace(
-        source="core", query=None, location=None, page=1, results=args.results,
+        source="all", query=None, location=None, page=1, results=args.results,
         limit=args.limit, daily_mode=True,
         link_validator=validator, dry_run=args.dry_run,
         sources_config=getattr(args, "sources_config", None),
     )
+    # Paid smart discovery is an explicitly enabled stage of the canonical daily
+    # workflow. A dry run never invokes it or any Firecrawl account API.
+    from firecrawl_state import config as firecrawl_config
+    firecrawl_settings = firecrawl_config()
+    firecrawl_result = None
+    if not args.dry_run and firecrawl_settings['enabled'] and firecrawl_settings['daily_enabled']:
+        from firecrawl_discovery import run_discovery
+        from google_tracker import Config
+        try:
+            remote = GoogleTracker(config=Config.from_environment())
+            remote.scout()  # Fresh identities when Sheets is reachable.
+        except Exception:
+            remote = None
+        firecrawl_result = run_discovery(store, preferences, tracker=remote)
     result = search(search_args, store, preferences)
+    if firecrawl_result is not None:
+        run_result = getattr(search_args, 'run_result', {})
+        run_result['firecrawl'] = firecrawl_result
+        for job_id in firecrawl_result.get('new_job_ids', []):
+            if job_id not in run_result.setdefault('new_job_ids', []):
+                run_result['new_job_ids'].append(job_id)
+        run_result['newly_discovered'] = len(run_result.get('new_job_ids', []))
+        search_args.run_result = run_result
     manual_indeed = ManualIndeedSummary()
     if not args.dry_run:
         manual_indeed = process_manual_indeed_rows(
@@ -1092,6 +1153,8 @@ def build_parser():
     find.add_argument("--results", type=int, default=20)
     find.add_argument('--dry-run', action='store_true',
                       help='Discover using a temporary database copy; no tracker writes or resumes')
+    find.add_argument('--unified', action='store_true', help='All-source search plus explicitly enabled Firecrawl; no resumes')
+    find.add_argument('--sync-only', action='store_true', help='With --unified, retry pending publication without discovery')
     find.add_argument('--audit-dir',type=Path,help='Save discovery and canonical tracker readback evidence locally')
     find.add_argument(
         "--limit", type=int, default=100,
@@ -1200,12 +1263,17 @@ def build_parser():
     return parser
 
 
-def main():
-    args = build_parser().parse_args()
+def main(argv=None):
+    args = build_parser().parse_args(argv)
     try:
         load_local_environment()
         load_local_environment(PROJECT_ROOT / ".env.google-sheets.local")
         preferences = load_preferences(args.preferences)
+        if getattr(args, 'unified', False) and args.dry_run:
+            from unified_search import plan
+            return plan(args, preferences)
+        if getattr(args, 'sync_only', False) and not getattr(args, 'unified', False):
+            raise ValueError('--sync-only requires --unified')
         if args.function is daily:
             # JobStore initialization can write schema changes, so check first.
             validate_candidate_profile_for_ai(preferences)

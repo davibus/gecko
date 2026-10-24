@@ -25,6 +25,10 @@ not a Google Sheet write. See tracker.md for completion guards and readback.
 
 ## Source of truth
 
+User-confirmed correction, October 22, 2026: TravelPass Group / Reservation Counter
+employment ran August 2020 through April 2022. August 2021 is incorrect. Preserve
+this correction in the master archive and all future resume documents.
+
 The permanent Gecko authorities are:
 
 - Content: `input/master-resume/master-resume-v4.docx`

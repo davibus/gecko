@@ -19,6 +19,15 @@ See `docs/current-tracker-columns.md` (repository-relative) for the verified 36-
 
 ## Current tracker authority — October 20, 2026
 
+October 22 user update: Enough Data now receives an automatic content review for
+new jobs. Yes requires pertinent job-specific duties, requirements, skills or
+outcomes sufficient to tailor a resume; missing, irrelevant, random or unusable
+text is No. Use the cached review in description_readiness.py, not a word-count
+threshold. Preserve prior manual decisions and all resume-generation safeguards.
+This supersedes the older manual-only Enough Data wording above. Formula and
+format extension must recognize renamed Gecko/FC word-count columns and reach
+the final job row; never copy another job's literal readiness answer.
+
 Dave explicitly requested the existing Gecko Job Tracker Google Sheet become the
 primary tracker, with dashboard and Sheet edits synchronized and all jobs/resumes
 preserved. This supersedes earlier SQLite-only/export-only restrictions below.
@@ -107,3 +116,14 @@ This standing rule applies to every application, including batches and resumed d
 
 ## Recruiting message consent — October 21, 2026
 Dave's standing instruction: select No whenever any company asks permission to send recruiting text/SMS messages or recruiting-message updates. Apply automatically to all current and future applications, including PerfectServe and Opiniion. This supersedes earlier employer-specific Yes answers, including Five Star. Do not treat this as refusal of ordinary application email correspondence or required account verification messages.
+
+## Automatic application submission — user instruction October 23, 2026
+
+Dave explicitly instructed: "From now on, automatically submit the application when it's finished."
+This supersedes the October 21 mandatory review handoff and earlier stop-before-submit instructions for requested job applications, including the current batch.
+Complete supported answers, attach and verify the exact matching tailored resume, then automatically submit when the application is complete. Do not ask for another submission approval. Keep incomplete or unverified applications pending and report the exact blocker; never invent answers or repeat confirmed submissions.
+After employer confirmation, record Applied and the actual America/Denver Applied Date together in the current authoritative tracker and verify readback. Preserve Previous Applied Date and unrelated fields. A click, dispatch, or prepared draft alone is not proof of submission. Existing recruiting SMS No and factual-accuracy rules continue to apply.
+
+## Direct Playwright attachment verification — October 23, 2026
+Dave explicitly instructed: "Don't require a preview or content check before submission anymore."
+For direct Playwright applications, a preview/download/content comparison is no longer a submission prerequisite. Verify the exact matching local file, its selected browser filename/size and successful upload. Retain factual-answer checks, exact job identity, duplicate prevention and employer-confirmation requirements. This supersedes older preview/content-check gates for this workflow. OpenClaw remains stopped.

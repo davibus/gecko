@@ -1,0 +1,1910 @@
+[
+  {
+    "title": "Marketing Product Manager (contract)",
+    "salary": {
+      "max": 67,
+      "min": 59,
+      "kind": "posted",
+      "period": "hour",
+      "currency": "USD",
+      "formatted": "$59 - $67 an hour"
+    },
+    "expired": false,
+    "job_key": "abc431f7d53aa30e",
+    "snippet": "Marketing Product Manager (Contract) Please note that this is a contract role providing services to Microsoft through external staffing partners of Allegis Global Solutions. If you are selected for this role, you will be employed by AGS and will not be an employee of Microsoft. Summary: We are se...",
+    "employer": {
+      "key": "e3a48f8a4a788271",
+      "url": "https://www.indeed.com/cmp/Microsoft",
+      "name": "Microsoft"
+    },
+    "language": "en",
+    "location": {
+      "city": "Remote",
+      "latitude": 25,
+      "formatted": "Remote",
+      "longitude": -40,
+      "postal_code": null,
+      "region_code": null,
+      "country_code": "US"
+    },
+    "reposted": false,
+    "apply_url": "https://us.microsoft.talentnet.community/jobs/d36ba671-2364-4c1f-90c8-8c860112317e",
+    "listed_at": "2026-10-21T01:43:40Z",
+    "posted_at": "2026-10-20T05:00:00Z",
+    "attributes": [
+      {
+        "key": "2W9N5",
+        "label": "Audience analysis"
+      },
+      {
+        "key": "38QD2",
+        "label": "Marketing project management"
+      },
+      {
+        "key": "4UEV6",
+        "label": "Project development phase management"
+      },
+      {
+        "key": "575XF",
+        "label": "New product launch strategy"
+      },
+      {
+        "key": "7JVYX",
+        "label": "Bachelor's degree in communications"
+      },
+      {
+        "key": "7KV6C",
+        "label": "Health savings account"
+      },
+      {
+        "key": "8KMN2",
+        "label": "Product marketing"
+      },
+      {
+        "key": "8SPFG",
+        "label": "Market segmentation (product management technique)"
+      },
+      {
+        "key": "8WBU8",
+        "label": "Marketing"
+      },
+      {
+        "key": "9PQEB",
+        "label": "5 years"
+      },
+      {
+        "key": "9R88Q",
+        "label": "Product positioning strategy"
+      },
+      {
+        "key": "9TE9M",
+        "label": "AD&D insurance"
+      },
+      {
+        "key": "9WEJR",
+        "label": "Qualitative research"
+      },
+      {
+        "key": "AUZAS",
+        "label": "Presentations for conferences or internal meetings"
+      },
+      {
+        "key": "BEB22",
+        "label": "AI tools proficiency"
+      },
+      {
+        "key": "BGDXX",
+        "label": "Bachelor's degree in business"
+      },
+      {
+        "key": "BY3JM",
+        "label": "Vendor coordination"
+      },
+      {
+        "key": "C4MUU",
+        "label": "Process design"
+      },
+      {
+        "key": "C75TM",
+        "label": "Customer segmentation analysis"
+      },
+      {
+        "key": "CFRGS",
+        "label": "Disability insurance"
+      },
+      {
+        "key": "DP9CS",
+        "label": "Scalable systems"
+      },
+      {
+        "key": "DSQF7",
+        "label": "Remote"
+      },
+      {
+        "key": "EVG68",
+        "label": "Marketing product development"
+      },
+      {
+        "key": "EY33Q",
+        "label": "Health insurance"
+      },
+      {
+        "key": "FQJ2X",
+        "label": "Dental insurance"
+      },
+      {
+        "key": "FRSE4",
+        "label": "Bachelor's degree in marketing"
+      },
+      {
+        "key": "FVKX2",
+        "label": "401(k)"
+      },
+      {
+        "key": "G85UP",
+        "label": "Flexible spending account"
+      },
+      {
+        "key": "GEYN2",
+        "label": "Collaboration with product development teams"
+      },
+      {
+        "key": "HFDVW",
+        "label": "Bachelor's degree"
+      },
+      {
+        "key": "HW4J4",
+        "label": "Paid time off"
+      },
+      {
+        "key": "KFTUZ",
+        "label": "Family leave"
+      },
+      {
+        "key": "KNNHD",
+        "label": "Brand messaging"
+      },
+      {
+        "key": "MK4GC",
+        "label": "US work authorization"
+      },
+      {
+        "key": "MYXED",
+        "label": "Vendor relationship management"
+      },
+      {
+        "key": "NJXCK",
+        "label": "Contract"
+      },
+      {
+        "key": "NPHPU",
+        "label": "Parental leave"
+      },
+      {
+        "key": "PH3DA",
+        "label": "User journey mapping"
+      },
+      {
+        "key": "QCDHT",
+        "label": "Communications"
+      },
+      {
+        "key": "QXB7R",
+        "label": "Employee assistance program"
+      },
+      {
+        "key": "QXQ2T",
+        "label": "Managing projects"
+      },
+      {
+        "key": "RN4N5",
+        "label": "Marketing analytics"
+      },
+      {
+        "key": "RZAT2",
+        "label": "Vision insurance"
+      },
+      {
+        "key": "SVBAH",
+        "label": "Brand positioning"
+      },
+      {
+        "key": "UB7SC",
+        "label": "Senior level"
+      },
+      {
+        "key": "UR2ED",
+        "label": "Business"
+      },
+      {
+        "key": "VGR92",
+        "label": "Research findings presentation"
+      },
+      {
+        "key": "VJ583",
+        "label": "Go-to-market strategy"
+      },
+      {
+        "key": "VRKKC",
+        "label": "Marketing positioning"
+      },
+      {
+        "key": "VVNH5",
+        "label": "Cross-functional team management"
+      },
+      {
+        "key": "VYQTQ",
+        "label": "Quantitative research"
+      },
+      {
+        "key": "WSBNK",
+        "label": "Communication skills"
+      },
+      {
+        "key": "WZ42A",
+        "label": "Project stakeholder communication"
+      },
+      {
+        "key": "XMYTE",
+        "label": "Market research experience within technology industry"
+      },
+      {
+        "key": "Y2WS5",
+        "label": "Life insurance"
+      },
+      {
+        "key": "Y3M6U",
+        "label": "Stakeholder relationship building"
+      },
+      {
+        "key": "Y8657",
+        "label": "Cross-functional communication"
+      },
+      {
+        "key": "YRE9P",
+        "label": "Commercial"
+      },
+      {
+        "key": "ZN6XN",
+        "label": "Stakeholder management"
+      }
+    ],
+    "source_url": "https://www.indeed.com/viewjob?jk=abc431f7d53aa30e",
+    "attribution": "Source: Indeed (indeed.com)",
+    "source_name": "Microsoft"
+  },
+  {
+    "title": "Senior Marketing Analytics Specialist",
+    "salary": {
+      "max": 90,
+      "min": 86,
+      "kind": "posted",
+      "period": "hour",
+      "currency": "USD",
+      "formatted": "$86 - $90 an hour"
+    },
+    "expired": false,
+    "job_key": "fca2087834fe230a",
+    "snippet": "Location: 100% Remote (Must work regular business hours aligned to the EST time zone) Position Type: Full-Time, 1-Year W2 Contract Pay Rate: $86.00/hr - $90.00/hr Cella is seeking a Senior Marketing Analytics Specialist to lead sophisticated analytical initiatives for a global healthcare leader. ...",
+    "employer": {
+      "key": "245c6c2624c9aaca",
+      "url": "https://www.indeed.com/cmp/Cella-4",
+      "name": "CELLA"
+    },
+    "language": "en",
+    "location": {
+      "city": "Remote",
+      "latitude": 25,
+      "formatted": "Remote",
+      "longitude": -40,
+      "postal_code": null,
+      "region_code": null,
+      "country_code": "US"
+    },
+    "reposted": false,
+    "apply_url": "https://cellainc.com/jobs/detail/senior-marketing-analytics-specialist-pharma/1365611/",
+    "listed_at": "2026-10-22T03:39:10Z",
+    "posted_at": "2026-10-21T05:00:00Z",
+    "attributes": [
+      {
+        "key": "3GFNE",
+        "label": "Statistics"
+      },
+      {
+        "key": "5ZMCH",
+        "label": "Data Integration (Data management)"
+      },
+      {
+        "key": "7AG9W",
+        "label": "Predictive modeling analysis"
+      },
+      {
+        "key": "7FN9P",
+        "label": "Presentation software"
+      },
+      {
+        "key": "8AD9K",
+        "label": "Hourly pay"
+      },
+      {
+        "key": "8XT46",
+        "label": "SAS"
+      },
+      {
+        "key": "9PQEB",
+        "label": "5 years"
+      },
+      {
+        "key": "9TE9M",
+        "label": "AD&D insurance"
+      },
+      {
+        "key": "AZS3A",
+        "label": "R"
+      },
+      {
+        "key": "B9WZG",
+        "label": "Marketing company internal data"
+      },
+      {
+        "key": "CF3CP",
+        "label": "Full-time"
+      },
+      {
+        "key": "CFRGS",
+        "label": "Disability insurance"
+      },
+      {
+        "key": "DSQF7",
+        "label": "Remote"
+      },
+      {
+        "key": "E5NC7",
+        "label": "Customer email engagement analysis"
+      },
+      {
+        "key": "E7H9F",
+        "label": "Marketing mix modeling"
+      },
+      {
+        "key": "EAJR8",
+        "label": "SAS language"
+      },
+      {
+        "key": "EQH33",
+        "label": "W-2"
+      },
+      {
+        "key": "EXSNN",
+        "label": "Master's degree"
+      },
+      {
+        "key": "EY33Q",
+        "label": "Health insurance"
+      },
+      {
+        "key": "FGY89",
+        "label": "SQL"
+      },
+      {
+        "key": "FQJ2X",
+        "label": "Dental insurance"
+      },
+      {
+        "key": "FVKX2",
+        "label": "401(k)"
+      },
+      {
+        "key": "GGXEU",
+        "label": "Analysis skills"
+      },
+      {
+        "key": "H3ZFF",
+        "label": "Paid weekly"
+      },
+      {
+        "key": "HFDVW",
+        "label": "Bachelor's degree"
+      },
+      {
+        "key": "JM3BE",
+        "label": "Market research experience within healthcare industry"
+      },
+      {
+        "key": "JMGD7",
+        "label": "Pharmaceutical company experience"
+      },
+      {
+        "key": "JR749",
+        "label": "Marketing secondary data analysis"
+      },
+      {
+        "key": "MYXED",
+        "label": "Vendor relationship management"
+      },
+      {
+        "key": "N6XHV",
+        "label": "Media data analysis"
+      },
+      {
+        "key": "N8NDF",
+        "label": "Vendor communication"
+      },
+      {
+        "key": "NJXCK",
+        "label": "Contract"
+      },
+      {
+        "key": "NWNNW",
+        "label": "Marketing ROI analysis"
+      },
+      {
+        "key": "PMS5Q",
+        "label": "Day shift"
+      },
+      {
+        "key": "RN4N5",
+        "label": "Marketing analytics"
+      },
+      {
+        "key": "RZAT2",
+        "label": "Vision insurance"
+      },
+      {
+        "key": "S75M8",
+        "label": "Database marketing"
+      },
+      {
+        "key": "TM26V",
+        "label": "Predictive analytics projects"
+      },
+      {
+        "key": "U4G66",
+        "label": "Media campaign optimization"
+      },
+      {
+        "key": "UB3JE",
+        "label": "Digital marketing performance monitoring"
+      },
+      {
+        "key": "UB7SC",
+        "label": "Senior level"
+      },
+      {
+        "key": "UN5V2",
+        "label": "Cross-functional collaboration"
+      },
+      {
+        "key": "VGR92",
+        "label": "Research findings presentation"
+      },
+      {
+        "key": "WSBNK",
+        "label": "Communication skills"
+      },
+      {
+        "key": "X62BT",
+        "label": "Python"
+      },
+      {
+        "key": "Y2WS5",
+        "label": "Life insurance"
+      },
+      {
+        "key": "Y35RE",
+        "label": "Brand strategy"
+      },
+      {
+        "key": "Y8657",
+        "label": "Cross-functional communication"
+      },
+      {
+        "key": "YRE9P",
+        "label": "Commercial"
+      }
+    ],
+    "source_url": "https://www.indeed.com/viewjob?jk=fca2087834fe230a",
+    "attribution": "Source: Indeed (indeed.com)",
+    "source_name": "Cella"
+  },
+  {
+    "title": "Growth Marketing Analyst",
+    "salary": {
+      "max": 58000,
+      "min": 50000,
+      "kind": "posted",
+      "period": "year",
+      "currency": "USD",
+      "formatted": "$50,000 - $58,000 a year"
+    },
+    "expired": false,
+    "job_key": "068c9382153773a3",
+    "snippet": "*About Think Sensory* Think Sensory is an online education platform for therapists, educators, and parents supporting neurodivergent children. We offer continuing education for pediatric therapists and educators, self-paced courses, printable resources, and articles. Think Sensory is an AOTA Appr...",
+    "employer": {
+      "key": "87029277fff88595",
+      "url": null,
+      "name": null
+    },
+    "language": "en",
+    "location": {
+      "city": "Remote",
+      "latitude": 25,
+      "formatted": "Remote",
+      "longitude": -40,
+      "postal_code": null,
+      "region_code": null,
+      "country_code": "US"
+    },
+    "reposted": false,
+    "apply_url": "http://www.indeed.com/job/growth-marketing-analyst-068c9382153773a3",
+    "listed_at": "2026-10-19T13:38:58Z",
+    "posted_at": "2026-10-19T13:38:58Z",
+    "attributes": [
+      {
+        "key": "2W9N5",
+        "label": "Audience analysis"
+      },
+      {
+        "key": "386VH",
+        "label": "Social media advertising campaigns"
+      },
+      {
+        "key": "4CKS3",
+        "label": "Customer communication"
+      },
+      {
+        "key": "5DH8C",
+        "label": "Economics"
+      },
+      {
+        "key": "5K9JU",
+        "label": "Social media engagement tracking"
+      },
+      {
+        "key": "6HWVK",
+        "label": "Customer retention strategy"
+      },
+      {
+        "key": "6KR63",
+        "label": "Statistics"
+      },
+      {
+        "key": "6ZG3Z",
+        "label": "Choose your own hours"
+      },
+      {
+        "key": "8G9AU",
+        "label": "Bachelor's degree in statistics"
+      },
+      {
+        "key": "8WBU8",
+        "label": "Marketing"
+      },
+      {
+        "key": "8YXNF",
+        "label": "Startup experience"
+      },
+      {
+        "key": "9KY78",
+        "label": "Media performance reporting"
+      },
+      {
+        "key": "A384U",
+        "label": "Spreadsheets"
+      },
+      {
+        "key": "B9WZG",
+        "label": "Marketing company internal data"
+      },
+      {
+        "key": "BA2V8",
+        "label": "Bachelor's degree in psychology"
+      },
+      {
+        "key": "BEB22",
+        "label": "AI tools proficiency"
+      },
+      {
+        "key": "BGDXX",
+        "label": "Bachelor's degree in business"
+      },
+      {
+        "key": "CE9PJ",
+        "label": "Performance Reporting"
+      },
+      {
+        "key": "CF3CP",
+        "label": "Full-time"
+      },
+      {
+        "key": "DDCUU",
+        "label": "Bachelor's degree in economics"
+      },
+      {
+        "key": "DSQF7",
+        "label": "Remote"
+      },
+      {
+        "key": "E5NC7",
+        "label": "Customer email engagement analysis"
+      },
+      {
+        "key": "EHN34",
+        "label": "Lead Conversion"
+      },
+      {
+        "key": "FKBAN",
+        "label": "Small business experience"
+      },
+      {
+        "key": "FRSE4",
+        "label": "Bachelor's degree in marketing"
+      },
+      {
+        "key": "GGXEU",
+        "label": "Analysis skills"
+      },
+      {
+        "key": "GPT6T",
+        "label": "Sales conversion rate (success metric)"
+      },
+      {
+        "key": "HFDVW",
+        "label": "Bachelor's degree"
+      },
+      {
+        "key": "J6AP7",
+        "label": "Customer service through social media"
+      },
+      {
+        "key": "J8PDM",
+        "label": "Attention to detail"
+      },
+      {
+        "key": "K6SAM",
+        "label": "Children"
+      },
+      {
+        "key": "KEPBX",
+        "label": "Customer engagement"
+      },
+      {
+        "key": "KT5PW",
+        "label": "Psychology"
+      },
+      {
+        "key": "M5H9A",
+        "label": "New customer acquisition"
+      },
+      {
+        "key": "MCHMV",
+        "label": "Math"
+      },
+      {
+        "key": "MK4YE",
+        "label": "Forecasting"
+      },
+      {
+        "key": "N6XHV",
+        "label": "Media data analysis"
+      },
+      {
+        "key": "N7Y8Z",
+        "label": "Pediatrics"
+      },
+      {
+        "key": "Q277D",
+        "label": "Data-driven problem-solving"
+      },
+      {
+        "key": "RN4N5",
+        "label": "Marketing analytics"
+      },
+      {
+        "key": "RZWSA",
+        "label": "Website analysis"
+      },
+      {
+        "key": "TSD8Q",
+        "label": "Bachelor's degree in accounting"
+      },
+      {
+        "key": "TWX3Y",
+        "label": "Bachelor's degree in mathematics"
+      },
+      {
+        "key": "UN5V2",
+        "label": "Cross-functional collaboration"
+      },
+      {
+        "key": "UR2ED",
+        "label": "Business"
+      },
+      {
+        "key": "UXH7Y",
+        "label": "Professional development assistance"
+      },
+      {
+        "key": "VGR92",
+        "label": "Research findings presentation"
+      },
+      {
+        "key": "VNGYS",
+        "label": "Lead generation activity metrics tracking"
+      },
+      {
+        "key": "WKTY5",
+        "label": "Accounting"
+      },
+      {
+        "key": "WSBNK",
+        "label": "Communication skills"
+      },
+      {
+        "key": "WZ9TD",
+        "label": "Flexible schedule"
+      },
+      {
+        "key": "Y4JG9",
+        "label": "Entry level"
+      },
+      {
+        "key": "Y8657",
+        "label": "Cross-functional communication"
+      },
+      {
+        "key": "YK3PG",
+        "label": "Campaign performance reporting"
+      },
+      {
+        "key": "YMH53",
+        "label": "Conversion rate optimization (CRO)"
+      }
+    ],
+    "source_url": "https://www.indeed.com/viewjob?jk=068c9382153773a3",
+    "attribution": "Source: Indeed (indeed.com)",
+    "source_name": "Indeed"
+  },
+  {
+    "title": "Technical Marketing Manager",
+    "salary": {
+      "max": 144352,
+      "min": 84206,
+      "kind": "posted",
+      "period": "year",
+      "currency": "USD",
+      "formatted": "$84,206 - $144,352 a year"
+    },
+    "expired": false,
+    "job_key": "21811f8b4e9a2594",
+    "snippet": "Technical Marketing Manager Team: Siemens, Data Centers & AI Factories, Marketing & Communications Location: U.S. Remote (access to a major U.S. airport) Transform the everyday with us! At Siemens, we combine the real and digital worlds to enable sustainable progress. Our global, diverse team put...",
+    "employer": {
+      "key": "04859a4685a9d49a",
+      "url": "https://www.indeed.com/cmp/Siemens",
+      "name": "Siemens"
+    },
+    "language": "en",
+    "location": {
+      "city": "Buffalo Grove",
+      "latitude": 42.15141,
+      "formatted": "Buffalo Grove, IL",
+      "longitude": -87.95979,
+      "postal_code": null,
+      "region_code": "IL",
+      "country_code": "US"
+    },
+    "reposted": false,
+    "apply_url": "https://jobs.siemens.com/externaljobs/JobDetail/525877?source=Indeed",
+    "listed_at": "2026-10-20T03:22:50Z",
+    "posted_at": "2026-10-19T05:00:00Z",
+    "attributes": [
+      {
+        "key": "38QD2",
+        "label": "Marketing project management"
+      },
+      {
+        "key": "5YDKN",
+        "label": "Content creation for technical audiences"
+      },
+      {
+        "key": "6FSU9",
+        "label": "Sales collateral development"
+      },
+      {
+        "key": "6GES3",
+        "label": "Promoting products"
+      },
+      {
+        "key": "6XNCP",
+        "label": "Computer Science"
+      },
+      {
+        "key": "7ANPX",
+        "label": "Software product demonstrations"
+      },
+      {
+        "key": "8KMN2",
+        "label": "Product marketing"
+      },
+      {
+        "key": "8WBU8",
+        "label": "Marketing"
+      },
+      {
+        "key": "8Y4Z7",
+        "label": "Product marketing strategy"
+      },
+      {
+        "key": "9H5ZH",
+        "label": "Technical documentation"
+      },
+      {
+        "key": "9MDRF",
+        "label": "Visual storytelling"
+      },
+      {
+        "key": "AFFE9",
+        "label": "Engineering"
+      },
+      {
+        "key": "B4JBZ",
+        "label": "Sales training instructional design"
+      },
+      {
+        "key": "BEB22",
+        "label": "AI tools proficiency"
+      },
+      {
+        "key": "CF3CP",
+        "label": "Full-time"
+      },
+      {
+        "key": "DSQF7",
+        "label": "Remote"
+      },
+      {
+        "key": "FNVHB",
+        "label": "Sales presentations"
+      },
+      {
+        "key": "FRSE4",
+        "label": "Bachelor's degree in marketing"
+      },
+      {
+        "key": "GEYN2",
+        "label": "Collaboration with product development teams"
+      },
+      {
+        "key": "GQQG5",
+        "label": "B2B business model"
+      },
+      {
+        "key": "H2YKN",
+        "label": "Bachelor's degree in engineering"
+      },
+      {
+        "key": "H5WHZ",
+        "label": "Solution architecture design"
+      },
+      {
+        "key": "JT9DE",
+        "label": "Product management"
+      },
+      {
+        "key": "KGXRW",
+        "label": "Technical presentations (as sales engineering task)"
+      },
+      {
+        "key": "N5YKS",
+        "label": "Brand storytelling"
+      },
+      {
+        "key": "NGW4T",
+        "label": "Data analytics"
+      },
+      {
+        "key": "NTT75",
+        "label": "Organizational skills"
+      },
+      {
+        "key": "PERR8",
+        "label": "Developing new training programs"
+      },
+      {
+        "key": "S2NTG",
+        "label": "Technical training"
+      },
+      {
+        "key": "U27V5",
+        "label": "Benchmarking"
+      },
+      {
+        "key": "UB7SC",
+        "label": "Senior level"
+      },
+      {
+        "key": "UJD54",
+        "label": "Technical writing experience within technology"
+      },
+      {
+        "key": "VBXYJ",
+        "label": "Bachelor's degree in computer science"
+      },
+      {
+        "key": "VJ583",
+        "label": "Go-to-market strategy"
+      },
+      {
+        "key": "VVNH5",
+        "label": "Cross-functional team management"
+      },
+      {
+        "key": "W3PMJ",
+        "label": "Leadership"
+      },
+      {
+        "key": "WK257",
+        "label": "Content strategy alignment"
+      },
+      {
+        "key": "Y54VV",
+        "label": "Professional development training"
+      },
+      {
+        "key": "Y6B2U",
+        "label": "Generative AI"
+      },
+      {
+        "key": "Y8657",
+        "label": "Cross-functional communication"
+      },
+      {
+        "key": "YRE9P",
+        "label": "Commercial"
+      },
+      {
+        "key": "ZWNY7",
+        "label": "Marketing collateral creation"
+      }
+    ],
+    "source_url": "https://www.indeed.com/viewjob?jk=21811f8b4e9a2594",
+    "attribution": "Source: Indeed (indeed.com)",
+    "source_name": "Siemens"
+  },
+  {
+    "title": "Senior Manager, SEO/AEO (AI Search)",
+    "salary": {
+      "max": 150000,
+      "min": 100000,
+      "kind": "posted",
+      "period": "year",
+      "currency": "USD",
+      "formatted": "$100,000 - $150,000 a year"
+    },
+    "expired": false,
+    "job_key": "d4d47ac21de7584f",
+    "snippet": "Reports to: Eric Siu, CEO Type: Full-time, client-facing player-coach. Not a people-manager seat. Clients: an assigned book of Single Grain SEO/AEO accounts Location: Full-time, remote, with at least 4 hours of US time-zone overlap Comp: $100,000\u2013$150,000 USD / year One-liner Get Single Grain cli...",
+    "employer": {
+      "key": "fa27eded8ef3e2c6",
+      "url": "https://www.indeed.com/cmp/Single-Grain",
+      "name": "Single Grain"
+    },
+    "language": "en",
+    "location": {
+      "city": "Los Angeles",
+      "latitude": 34.053387,
+      "formatted": "Los Angeles, CA 90017",
+      "longitude": -118.26538,
+      "postal_code": "90017",
+      "region_code": "CA",
+      "country_code": "US"
+    },
+    "reposted": false,
+    "apply_url": "https://careers.singlegrain.com/jobs/724851-senior-manager-seo-aeo-ai-search",
+    "listed_at": "2026-10-22T05:37:15Z",
+    "posted_at": "2026-10-21T05:00:00Z",
+    "attributes": [
+      {
+        "key": "3VHG5",
+        "label": "Conversion rate tracking"
+      },
+      {
+        "key": "5STP8",
+        "label": "Work from home stipend"
+      },
+      {
+        "key": "CA8R9",
+        "label": "Leading organic search traffic initiatives"
+      },
+      {
+        "key": "CF3CP",
+        "label": "Full-time"
+      },
+      {
+        "key": "D5G3V",
+        "label": "SEO error detection and correction"
+      },
+      {
+        "key": "DMKN3",
+        "label": "Research"
+      },
+      {
+        "key": "DSQF7",
+        "label": "Remote"
+      },
+      {
+        "key": "EV2FP",
+        "label": "Prompt engineering"
+      },
+      {
+        "key": "EY33Q",
+        "label": "Health insurance"
+      },
+      {
+        "key": "FFZ8X",
+        "label": "Unlimited paid time off"
+      },
+      {
+        "key": "FQJ2X",
+        "label": "Dental insurance"
+      },
+      {
+        "key": "K3PAY",
+        "label": "401(k) 4% Match"
+      },
+      {
+        "key": "QBKYJ",
+        "label": "Content implementation"
+      },
+      {
+        "key": "RN4N5",
+        "label": "Marketing analytics"
+      },
+      {
+        "key": "RZAT2",
+        "label": "Vision insurance"
+      },
+      {
+        "key": "SENX8",
+        "label": "401(k) matching"
+      },
+      {
+        "key": "TX6QF",
+        "label": "AI-driven automation"
+      },
+      {
+        "key": "UB7SC",
+        "label": "Senior level"
+      },
+      {
+        "key": "V4B8Q",
+        "label": "Account management"
+      },
+      {
+        "key": "W45WN",
+        "label": "Managing clients in a search marketing role"
+      },
+      {
+        "key": "WF7VF",
+        "label": "Content review"
+      },
+      {
+        "key": "WZHX7",
+        "label": "SEO content performance reports"
+      },
+      {
+        "key": "XA6MB",
+        "label": "Marketing"
+      },
+      {
+        "key": "Y2WS5",
+        "label": "Life insurance"
+      },
+      {
+        "key": "Y62YD",
+        "label": "ChatGPT"
+      },
+      {
+        "key": "Z3BTZ",
+        "label": "Senior leadership"
+      },
+      {
+        "key": "ZK3HH",
+        "label": "Analytics"
+      }
+    ],
+    "source_url": "https://www.indeed.com/viewjob?jk=d4d47ac21de7584f",
+    "attribution": "Source: Indeed (indeed.com)",
+    "source_name": "Single Grain"
+  },
+  {
+    "title": "Senior Analyst, Decision Science (Client Marketing)",
+    "salary": {
+      "max": 129000,
+      "min": 105000,
+      "kind": "posted",
+      "period": "year",
+      "currency": "USD",
+      "formatted": "$105,000 - $129,000 a year"
+    },
+    "expired": false,
+    "job_key": "0ca1161fefa25629",
+    "snippet": "Our Story TopDog Law is a nationally scaling personal injury firm that owns the client experience end to end, from marketing and intake through litigation. We've grown 2-3x year over year for three years running, and we're now building the operations, systems, and teams to scale without sacrifici...",
+    "employer": {
+      "key": "ffa0b7231fd7f9f1",
+      "url": "https://www.indeed.com/cmp/Topdog-Law",
+      "name": "TopDog Law"
+    },
+    "language": "en",
+    "location": {
+      "city": "Remote",
+      "latitude": 25,
+      "formatted": "Remote",
+      "longitude": -40,
+      "postal_code": null,
+      "region_code": null,
+      "country_code": "US"
+    },
+    "reposted": false,
+    "apply_url": "https://ats.rippling.com/topdoglaw/jobs/1df36400-0917-4d8a-978c-3f502aaa2931?jobSite=Indeed",
+    "listed_at": "2026-10-19T15:20:07Z",
+    "posted_at": "2026-10-19T15:20:00Z",
+    "attributes": [
+      {
+        "key": "2EMK6",
+        "label": "Performance dashboard reports"
+      },
+      {
+        "key": "2X6TU",
+        "label": "Web analytics reporting"
+      },
+      {
+        "key": "3GFNE",
+        "label": "Statistics"
+      },
+      {
+        "key": "3JGNJ",
+        "label": "Data quality checks"
+      },
+      {
+        "key": "4MPYW",
+        "label": "Stakeholder engagement"
+      },
+      {
+        "key": "57DKX",
+        "label": "Customer behavior analysis"
+      },
+      {
+        "key": "637RG",
+        "label": "Reputation management"
+      },
+      {
+        "key": "6BJZ9",
+        "label": "Machine learning/AI-based analysis"
+      },
+      {
+        "key": "6K3WM",
+        "label": "Business intelligence"
+      },
+      {
+        "key": "6SUNH",
+        "label": "Data analysis reporting"
+      },
+      {
+        "key": "7KV6C",
+        "label": "Health savings account"
+      },
+      {
+        "key": "89FH5",
+        "label": "Automation"
+      },
+      {
+        "key": "9PQEB",
+        "label": "5 years"
+      },
+      {
+        "key": "AEWY8",
+        "label": "Data quality assurance"
+      },
+      {
+        "key": "AXDT9",
+        "label": "Dashboard creation"
+      },
+      {
+        "key": "B4PMT",
+        "label": "Customer satisfaction tracking"
+      },
+      {
+        "key": "B9WZG",
+        "label": "Marketing company internal data"
+      },
+      {
+        "key": "BPD9T",
+        "label": "Business intelligence report generation"
+      },
+      {
+        "key": "BX5FE",
+        "label": "Dashboard creation support"
+      },
+      {
+        "key": "C75TM",
+        "label": "Customer segmentation analysis"
+      },
+      {
+        "key": "CF3CP",
+        "label": "Full-time"
+      },
+      {
+        "key": "CFRGS",
+        "label": "Disability insurance"
+      },
+      {
+        "key": "DR8ZP",
+        "label": "Technical report writing"
+      },
+      {
+        "key": "DSQF7",
+        "label": "Remote"
+      },
+      {
+        "key": "E5NC7",
+        "label": "Customer email engagement analysis"
+      },
+      {
+        "key": "EY33Q",
+        "label": "Health insurance"
+      },
+      {
+        "key": "FGY89",
+        "label": "SQL"
+      },
+      {
+        "key": "FPHQ5",
+        "label": "Data quality management"
+      },
+      {
+        "key": "FQJ2X",
+        "label": "Dental insurance"
+      },
+      {
+        "key": "GDJYK",
+        "label": "Salesforce Cloud"
+      },
+      {
+        "key": "GGXEU",
+        "label": "Analysis skills"
+      },
+      {
+        "key": "GP7RC",
+        "label": "Business intelligence tools"
+      },
+      {
+        "key": "GUHBD",
+        "label": "Machine intelligence"
+      },
+      {
+        "key": "HW4J4",
+        "label": "Paid time off"
+      },
+      {
+        "key": "JAX7R",
+        "label": "Client retention"
+      },
+      {
+        "key": "JQFGM",
+        "label": "Decision making"
+      },
+      {
+        "key": "NPHPU",
+        "label": "Parental leave"
+      },
+      {
+        "key": "Q277D",
+        "label": "Data-driven problem-solving"
+      },
+      {
+        "key": "RN4N5",
+        "label": "Marketing analytics"
+      },
+      {
+        "key": "RYRAU",
+        "label": "A/B testing"
+      },
+      {
+        "key": "RZAT2",
+        "label": "Vision insurance"
+      },
+      {
+        "key": "S5MGH",
+        "label": "CRM system proficiency"
+      },
+      {
+        "key": "SENX8",
+        "label": "401(k) matching"
+      },
+      {
+        "key": "TEMFA",
+        "label": "Root cause analysis"
+      },
+      {
+        "key": "TX6QF",
+        "label": "AI-driven automation"
+      },
+      {
+        "key": "UB7SC",
+        "label": "Senior level"
+      },
+      {
+        "key": "UJYXC",
+        "label": "Query management"
+      },
+      {
+        "key": "VGR92",
+        "label": "Research findings presentation"
+      },
+      {
+        "key": "WSBNK",
+        "label": "Communication skills"
+      },
+      {
+        "key": "XA6MB",
+        "label": "Marketing"
+      },
+      {
+        "key": "XSRRY",
+        "label": "Marketing controlled experiments research"
+      },
+      {
+        "key": "Y2WS5",
+        "label": "Life insurance"
+      },
+      {
+        "key": "YK3PG",
+        "label": "Campaign performance reporting"
+      },
+      {
+        "key": "YWSVH",
+        "label": "Segmentation analysis"
+      }
+    ],
+    "source_url": "https://www.indeed.com/viewjob?jk=0ca1161fefa25629",
+    "attribution": "Source: Indeed (indeed.com)",
+    "source_name": "TopDog Law LLC"
+  },
+  {
+    "title": "Affiliate Marketing Manager",
+    "salary": null,
+    "expired": false,
+    "job_key": "5701142e55bfbafc",
+    "snippet": "Are you obsessed with data, partner success, taking action, and changing the game? If you have a whole lot of hustle and a touch of nerd, come work with Pattern! We want you to use your skills to push one of the fastest-growing companies headquartered in the US to the top of the list. Pattern acc...",
+    "employer": {
+      "key": "943f3d992e240194",
+      "url": "https://www.indeed.com/cmp/Pattern-3",
+      "name": "Pattern"
+    },
+    "language": "en",
+    "location": {
+      "city": "Lehi",
+      "latitude": 40.430107,
+      "formatted": "Lehi, UT 84043",
+      "longitude": -111.872086,
+      "postal_code": "84043",
+      "region_code": "UT",
+      "country_code": "US"
+    },
+    "reposted": false,
+    "apply_url": "https://jobs.lever.co/pattern/f6ff91b9-7f38-41c6-9dcf-f221a9276483",
+    "listed_at": "2026-10-21T00:44:35Z",
+    "posted_at": "2026-10-20T05:00:00Z",
+    "attributes": [
+      {
+        "key": "AWHEP",
+        "label": "Paid holidays"
+      },
+      {
+        "key": "B3Q3K",
+        "label": "Networking through cold outreach"
+      },
+      {
+        "key": "CBX59",
+        "label": "Affiliate marketing business model"
+      },
+      {
+        "key": "CE9PJ",
+        "label": "Performance Reporting"
+      },
+      {
+        "key": "CF3CP",
+        "label": "Full-time"
+      },
+      {
+        "key": "DMKN3",
+        "label": "Research"
+      },
+      {
+        "key": "DN563",
+        "label": "Mid-level"
+      },
+      {
+        "key": "FFZ8X",
+        "label": "Unlimited paid time off"
+      },
+      {
+        "key": "FQJ2X",
+        "label": "Dental insurance"
+      },
+      {
+        "key": "FTRGN",
+        "label": "Brand partnerships"
+      },
+      {
+        "key": "HDVV7",
+        "label": "Presentation skills"
+      },
+      {
+        "key": "HSN74",
+        "label": "Budget planning"
+      },
+      {
+        "key": "KNNHD",
+        "label": "Brand messaging"
+      },
+      {
+        "key": "M8PZR",
+        "label": "Data reporting support"
+      },
+      {
+        "key": "MB9UW",
+        "label": "Client management"
+      },
+      {
+        "key": "PAXZC",
+        "label": "Hybrid work"
+      },
+      {
+        "key": "Q277D",
+        "label": "Data-driven problem-solving"
+      },
+      {
+        "key": "QXQ2T",
+        "label": "Managing projects"
+      },
+      {
+        "key": "RZAT2",
+        "label": "Vision insurance"
+      },
+      {
+        "key": "SENX8",
+        "label": "401(k) matching"
+      },
+      {
+        "key": "UN5V2",
+        "label": "Cross-functional collaboration"
+      },
+      {
+        "key": "V4B8Q",
+        "label": "Account management"
+      },
+      {
+        "key": "VKZJU",
+        "label": "Marketing agency experience"
+      },
+      {
+        "key": "W6GUJ",
+        "label": "2 years"
+      },
+      {
+        "key": "Y2WS5",
+        "label": "Life insurance"
+      },
+      {
+        "key": "Y8657",
+        "label": "Cross-functional communication"
+      }
+    ],
+    "source_url": "https://www.indeed.com/viewjob?jk=5701142e55bfbafc",
+    "attribution": "Source: Indeed (indeed.com)",
+    "source_name": "Pattern"
+  },
+  {
+    "title": "Senior Content Marketing Manager",
+    "salary": null,
+    "expired": false,
+    "job_key": "84cb4accaebdfcc9",
+    "snippet": "A little about us\u2026Fleetio is a modern software platform that helps thousands of organizations worldwide manage their fleet operations. Transportation technology is a hot market, and we\u2019re leading the charge with raving fans and new customers signing up every day. We raised $450M in our Series D f...",
+    "employer": {
+      "key": "5325756630e28f58",
+      "url": "https://www.indeed.com/cmp/Fleetio",
+      "name": "Fleetio"
+    },
+    "language": "en",
+    "location": {
+      "city": "Remote",
+      "latitude": 25,
+      "formatted": "Remote",
+      "longitude": -40,
+      "postal_code": null,
+      "region_code": null,
+      "country_code": "US"
+    },
+    "reposted": false,
+    "apply_url": "https://job-boards.greenhouse.io/fleetio/jobs/5271172007",
+    "listed_at": "2026-10-21T23:56:52Z",
+    "posted_at": "2026-10-21T05:00:00Z",
+    "attributes": [
+      {
+        "key": "286T9",
+        "label": "Cross-platform strategy"
+      },
+      {
+        "key": "2PBRM",
+        "label": "Editorial project management"
+      },
+      {
+        "key": "38QD2",
+        "label": "Marketing project management"
+      },
+      {
+        "key": "4MPYW",
+        "label": "Stakeholder engagement"
+      },
+      {
+        "key": "4X33Z",
+        "label": "SEO content optimization"
+      },
+      {
+        "key": "58XG4",
+        "label": "Increasing user engagement"
+      },
+      {
+        "key": "59H5U",
+        "label": "7 years"
+      },
+      {
+        "key": "5RZJQ",
+        "label": "Report writing"
+      },
+      {
+        "key": "6XT6J",
+        "label": "Stock options"
+      },
+      {
+        "key": "7JSMS",
+        "label": "Webinars"
+      },
+      {
+        "key": "7KV6C",
+        "label": "Health savings account"
+      },
+      {
+        "key": "AUZAS",
+        "label": "Presentations for conferences or internal meetings"
+      },
+      {
+        "key": "B2A9C",
+        "label": "Content editing"
+      },
+      {
+        "key": "CFRGS",
+        "label": "Disability insurance"
+      },
+      {
+        "key": "DSQF7",
+        "label": "Remote"
+      },
+      {
+        "key": "EY33Q",
+        "label": "Health insurance"
+      },
+      {
+        "key": "FQJ2X",
+        "label": "Dental insurance"
+      },
+      {
+        "key": "FV375",
+        "label": "Email content marketing"
+      },
+      {
+        "key": "G2HXN",
+        "label": "Social media platforms"
+      },
+      {
+        "key": "G85UP",
+        "label": "Flexible spending account"
+      },
+      {
+        "key": "GQQG5",
+        "label": "B2B business model"
+      },
+      {
+        "key": "GQRMR",
+        "label": "Online blogs"
+      },
+      {
+        "key": "HW4J4",
+        "label": "Paid time off"
+      },
+      {
+        "key": "J3WBP",
+        "label": "Content creation for professionals"
+      },
+      {
+        "key": "JTNCR",
+        "label": "Industry trends"
+      },
+      {
+        "key": "K3PAY",
+        "label": "401(k) 4% Match"
+      },
+      {
+        "key": "KBN4Z",
+        "label": "Content performance analytics"
+      },
+      {
+        "key": "KKXTQ",
+        "label": "Webinars for digital marketing"
+      },
+      {
+        "key": "N23SR",
+        "label": "Content marketing SEO projects"
+      },
+      {
+        "key": "N5YKS",
+        "label": "Brand storytelling"
+      },
+      {
+        "key": "NPHPU",
+        "label": "Parental leave"
+      },
+      {
+        "key": "NTT75",
+        "label": "Organizational skills"
+      },
+      {
+        "key": "NWQM9",
+        "label": "Snacks provided"
+      },
+      {
+        "key": "PRQW8",
+        "label": "Participating in conferences"
+      },
+      {
+        "key": "Q32YB",
+        "label": "Cornerstone OnDemand"
+      },
+      {
+        "key": "Q4TNU",
+        "label": "Marketing-led sales enablement"
+      },
+      {
+        "key": "RZAT2",
+        "label": "Vision insurance"
+      },
+      {
+        "key": "SENX8",
+        "label": "401(k) matching"
+      },
+      {
+        "key": "TX6QF",
+        "label": "AI-driven automation"
+      },
+      {
+        "key": "UB7SC",
+        "label": "Senior level"
+      },
+      {
+        "key": "UXH7Y",
+        "label": "Professional development assistance"
+      },
+      {
+        "key": "VNGYS",
+        "label": "Lead generation activity metrics tracking"
+      },
+      {
+        "key": "WK257",
+        "label": "Content strategy alignment"
+      },
+      {
+        "key": "WSBNK",
+        "label": "Communication skills"
+      },
+      {
+        "key": "XVMR3",
+        "label": "Inbound marketing"
+      },
+      {
+        "key": "ZN6XN",
+        "label": "Stakeholder management"
+      }
+    ],
+    "source_url": "https://www.indeed.com/viewjob?jk=84cb4accaebdfcc9",
+    "attribution": "Source: Indeed (indeed.com)",
+    "source_name": "Fleetio"
+  },
+  {
+    "title": "Senior Manager, Paid Media (AI-First)",
+    "salary": {
+      "max": 150000,
+      "min": 100000,
+      "kind": "posted",
+      "period": "year",
+      "currency": "USD",
+      "formatted": "$100,000 - $150,000 a year"
+    },
+    "expired": false,
+    "job_key": "9806a1e32c9ac8de",
+    "snippet": "Reports to: Eric Siu, CEO Type: Full-time, hands-on player-coach. Client-facing. Not a people-manager seat. Clients: an assigned book of Single Grain paid media accounts (Google, Meta, LinkedIn, TikTok, programmatic) Location: Full-time, remote (United States or Latin America; at least 4 hours of...",
+    "employer": {
+      "key": "fa27eded8ef3e2c6",
+      "url": "https://www.indeed.com/cmp/Single-Grain",
+      "name": "Single Grain"
+    },
+    "language": "en",
+    "location": {
+      "city": "Los Angeles",
+      "latitude": 34.053387,
+      "formatted": "Los Angeles, CA 90017",
+      "longitude": -118.26538,
+      "postal_code": "90017",
+      "region_code": "CA",
+      "country_code": "US"
+    },
+    "reposted": false,
+    "apply_url": "https://careers.singlegrain.com/jobs/724852-senior-manager-paid-media-ai-first",
+    "listed_at": "2026-10-22T05:37:16Z",
+    "posted_at": "2026-10-21T05:00:00Z",
+    "attributes": [
+      {
+        "key": "2AJ72",
+        "label": "LinkedIn"
+      },
+      {
+        "key": "386VH",
+        "label": "Social media advertising campaigns"
+      },
+      {
+        "key": "3DEH5",
+        "label": "Marketing ROI (MROI) improvement"
+      },
+      {
+        "key": "5STP8",
+        "label": "Work from home stipend"
+      },
+      {
+        "key": "9KY78",
+        "label": "Media performance reporting"
+      },
+      {
+        "key": "ANHQ8",
+        "label": "Automation software"
+      },
+      {
+        "key": "CE9PJ",
+        "label": "Performance Reporting"
+      },
+      {
+        "key": "CF3CP",
+        "label": "Full-time"
+      },
+      {
+        "key": "CPSNA",
+        "label": "Managing budgets in a search marketing role"
+      },
+      {
+        "key": "D2GED",
+        "label": "Digital marketing budget management"
+      },
+      {
+        "key": "D866K",
+        "label": "English"
+      },
+      {
+        "key": "DSQF7",
+        "label": "Remote"
+      },
+      {
+        "key": "EY33Q",
+        "label": "Health insurance"
+      },
+      {
+        "key": "FFZ8X",
+        "label": "Unlimited paid time off"
+      },
+      {
+        "key": "FPZUB",
+        "label": "Lead generation performance metrics"
+      },
+      {
+        "key": "FQJ2X",
+        "label": "Dental insurance"
+      },
+      {
+        "key": "GQQG5",
+        "label": "B2B business model"
+      },
+      {
+        "key": "K3PAY",
+        "label": "401(k) 4% Match"
+      },
+      {
+        "key": "KA6A2",
+        "label": "Programmatic advertising media campaign management"
+      },
+      {
+        "key": "NSEJ7",
+        "label": "B2B"
+      },
+      {
+        "key": "QW9Y4",
+        "label": "Management reporting"
+      },
+      {
+        "key": "RDKHS",
+        "label": "TikTok"
+      },
+      {
+        "key": "RTQUX",
+        "label": "Client growth strategy"
+      },
+      {
+        "key": "RZAT2",
+        "label": "Vision insurance"
+      },
+      {
+        "key": "SENX8",
+        "label": "401(k) matching"
+      },
+      {
+        "key": "T6E2B",
+        "label": "Process improvement planning"
+      },
+      {
+        "key": "TX6QF",
+        "label": "AI-driven automation"
+      },
+      {
+        "key": "UB7SC",
+        "label": "Senior level"
+      },
+      {
+        "key": "V4B8Q",
+        "label": "Account management"
+      },
+      {
+        "key": "W45WN",
+        "label": "Managing clients in a search marketing role"
+      },
+      {
+        "key": "W7GE5",
+        "label": "Paid search marketing"
+      },
+      {
+        "key": "XSRRY",
+        "label": "Marketing controlled experiments research"
+      },
+      {
+        "key": "Y2WS5",
+        "label": "Life insurance"
+      },
+      {
+        "key": "YK3PG",
+        "label": "Campaign performance reporting"
+      },
+      {
+        "key": "Z3BTZ",
+        "label": "Senior leadership"
+      },
+      {
+        "key": "ZECH5",
+        "label": "Search engine marketing (SEM) strategy development"
+      },
+      {
+        "key": "ZQGAD",
+        "label": "Paid search advertising campaigns"
+      }
+    ],
+    "source_url": "https://www.indeed.com/viewjob?jk=9806a1e32c9ac8de",
+    "attribution": "Source: Indeed (indeed.com)",
+    "source_name": "Single Grain"
+  }
+]

@@ -1,0 +1,13 @@
+{"event": "resuming", "usage": {"search_credits": 12, "extraction_credits": 57, "provider_confirmed_credits": 12, "estimated_or_reserved_credits": 57, "total_credits_accounted": 69, "estimated_account_balance": 3892, "balance_observed_at": "2026-10-22T12:09:50.032635+00:00", "billing_complete": false, "hard_ceiling_exact": false}}
+Traceback (most recent call last):
+  File "C:\gecko_main\reports\search-test\20261022-firecrawl-repair\continue_search.py", line 38, in <module>
+    report['firecrawl'] = run_discovery(store, load_preferences(), history=history,
+                          ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        client=FirecrawlClient(history=history, settings=settings), tracker=remote, publish=False)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\gecko_main\job-scout\firecrawl_discovery.py", line 398, in run_discovery
+    public = public_listing(row['original_url'], public_cache)
+  File "C:\gecko_main\job-scout\firecrawl_postings.py", line 121, in public_listing
+    raw.metadata['_retrieved_via'] = 'public-ats-api'
+    ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'metadata'

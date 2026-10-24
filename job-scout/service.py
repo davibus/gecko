@@ -46,6 +46,8 @@ class SearchSummary:
     jooble_excluded: int = 0
     rejected_history_excluded: int = 0
     missing_content_excluded: int = 0
+    match_excluded: int = 0
+    match_pending: int = 0
     dead_url_excluded: int = 0
     source_results_limited: int = 0
     url_review_excluded: int = 0
@@ -237,6 +239,13 @@ def _discover_listings(
                     summary.updated += 1
             record(raw,'previously known' if was_existing else 'duplicate within run',
                    matched_id=duplicate.id,cross_source=raw.source.casefold() not in duplicate_sources)
+            continue
+        from resume_match import check as check_resume_match, explanation as match_explanation
+        match = check_resume_match(job)
+        if not match['accepted']:
+            summary.match_excluded += 1
+            summary.match_pending += int(match['status'] == 'pending')
+            record(raw, match_explanation(match), match=match)
             continue
         job_id = store.save(job)
         job.id = job_id

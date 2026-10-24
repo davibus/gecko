@@ -1,0 +1,134 @@
+{
+  "status": "verified",
+  "synced_at": "2026-10-22T12:09:15.736575+00:00",
+  "changes": [
+    {
+      "id": "2887",
+      "before": {
+        "Salary": "USD 119000 - 150000 per yearly"
+      },
+      "changes": {
+        "Salary": "$119,000 - $150,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "USD 119000 - 150000 per yearly",
+        "original_salary": "USD 119000 - 150000 per yearly",
+        "formatted_salary": "$119,000 - $150,000"
+      }
+    },
+    {
+      "id": "2896",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$93,000 - $128,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$93,000 — $128,000 USD",
+        "original_salary": "",
+        "formatted_salary": "$93,000 - $128,000"
+      }
+    },
+    {
+      "id": "2898",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$100,000 - $120,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$100,000 - $120,000 per year",
+        "original_salary": "",
+        "formatted_salary": "$100,000 - $120,000"
+      }
+    },
+    {
+      "id": "2899",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$100,000 - $120,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$100,000 - $120,000 per year",
+        "original_salary": "",
+        "formatted_salary": "$100,000 - $120,000"
+      }
+    },
+    {
+      "id": "2900",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$100,000 - $120,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$100,000 - $120,000 per year",
+        "original_salary": "",
+        "formatted_salary": "$100,000 - $120,000"
+      }
+    },
+    {
+      "id": "2901",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$100,000 - $120,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$100,000 - $120,000 per year",
+        "original_salary": "",
+        "formatted_salary": "$100,000 - $120,000"
+      }
+    },
+    {
+      "id": "2902",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$100,000 - $120,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$100,000 - $120,000 per year",
+        "original_salary": "",
+        "formatted_salary": "$100,000 - $120,000"
+      }
+    },
+    {
+      "id": "2909",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$102,500 - $184,500"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$102,500 - $184,500 USD",
+        "original_salary": "",
+        "formatted_salary": "$102,500 - $184,500"
+      }
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "pipeline": {
+    "raw_retrieved": 9,
+    "rss_retrieved": 0,
+    "rss_unique": 0,
+    "rss_duplicates_removed": 0,
+    "successful_feeds": 0,
+    "failed_feeds": 0,
+    "feed_results": [],
+    "api_retrieved": 0,
+    "source_backend": "",
+    "fetched": 9,
+    "normalized": 9,
+    "added": 8,
+    "updated": 1,
+    "duplicates": 1,
+    "cross_provider_duplicates": 1,
+    "unique_available": 0,
+    "unique_imported": 0,
+    "filtered_by_role": 0,
+    "deterministic_rejects": 0,
+    "deterministic_reject_reasons": {},
+    "jooble_excluded": 0,
+    "rejected_history_excluded": 0,
+    "missing_content_excluded": 0,
+    "dead_url_excluded": 0,
+    "source_results_limited": 0,
+    "url_review_excluded": 0,
+    "url_validated": 9,
+    "new_job_ids": [
+      2905,
+      2906,
+      2907,
+      2908,
+      2909,
+      2910,
+      2911,
+      2912
+    ],
+    "existing_job_ids": [
+      2746
+    ],
+    "changed_job_ids": [],
+    "eligibility_includes_usa": 0,
+    "eligibility_worldwide": 0,
+    "example_jobs": [],
+    "backend_qualifying": {},
+    "backend_added": {}
+  },
+  "record_decisions": [
+    {
+      "source": "lever",
+      "source_job_id": "f69c16ec-6255-45b1-aae3-b3fdca3ee109",
+      "url": "https://jobs.lever.co/silverbackstrategies/f69c16ec-6255-45b1-aae3-b3fdca3ee109",
+      "company": "Silverback Strategies",
+      "title": "SEO Manager (Remote)",
+      "reason": "new unique",
+      "job_id": 2905
+    },
+    {
+      "source": "lever",
+      "source_job_id": "69b74430-00a5-472e-971a-ddf82f2afd98",
+      "url": "https://jobs.lever.co/silverbackstrategies/69b74430-00a5-472e-971a-ddf82f2afd98",
+      "company": "Silverback Strategies",
+      "title": "Senior SEO Manager (Remote)",
+      "reason": "new unique",
+      "job_id": 2906
+    },
+    {
+      "source": "lever",
+      "source_job_id": "9db89bca-c4db-4044-89a3-b9e10c75bf9e",
+      "url": "https://jobs.lever.co/silverbackstrategies/9db89bca-c4db-4044-89a3-b9e10c75bf9e",
+      "company": "Silverback Strategies",
+      "title": "Paid Media Manager (Remote)",
+      "reason": "new unique",
+      "job_id": 2907
+    },
+    {
+      "source": "lever",
+      "source_job_id": "03f3e75c-6fd0-4903-b85e-ba73858d551d",
+      "url": "https://jobs.lever.co/veeva/03f3e75c-6fd0-4903-b85e-ba73858d551d",
+      "company": "Veeva Systems",
+      "title": "Director of Marketing - Falcon MLR",
+      "reason": "new unique",
+      "job_id": 2908
+    },
+    {
+      "source": "lever",
+      "source_job_id": "f6ff91b9-7f38-41c6-9dcf-f221a9276483",
+      "url": "https://jobs.lever.co/pattern/f6ff91b9-7f38-41c6-9dcf-f221a9276483",
+      "company": "Pattern",
+      "title": "Affiliate Marketing Manager",
+      "reason": "previously known",
+      "matched_id": 2746,
+      "cross_source": true
+    },
+    {
+      "source": "lever",
+      "source_job_id": "acded4ba-2f4e-4562-8091-30fa5b661b8a",
+      "url": "https://jobs.lever.co/mendix/acded4ba-2f4e-4562-8091-30fa5b661b8a",
+      "company": "Mendix",
+      "title": "Content Marketing Manager - Industrial B2B",
+      "reason": "new unique",
+      "job_id": 2909
+    },
+    {
+      "source": "lever",
+      "source_job_id": "ffc6ee03-bb50-4f16-a6eb-1b54ef9c436d",
+      "url": "https://jobs.lever.co/anchorage/ffc6ee03-bb50-4f16-a6eb-1b54ef9c436d",
+      "company": "Anchorage Digital",
+      "title": "Senior Product Marketing Manager, Stablecoins - Infrastructure",
+      "reason": "new unique",
+      "job_id": 2910
+    },
+    {
+      "source": "lever",
+      "source_job_id": "d1c8a283-b9b4-4e4b-bb09-5f7bbea3bbb2",
+      "url": "https://jobs.lever.co/elk-marketing/d1c8a283-b9b4-4e4b-bb09-5f7bbea3bbb2",
+      "company": "elk Marketing",
+      "title": "Paid Media Strategist",
+      "reason": "new unique",
+      "job_id": 2911
+    },
+    {
+      "source": "lever",
+      "source_job_id": "aae85f80-72bc-4a47-b584-215166bec5c2",
+      "url": "https://jobs.lever.co/veeva/aae85f80-72bc-4a47-b584-215166bec5c2",
+      "company": "Veeva Systems",
+      "title": "Director of Marketing - Falcon MLR",
+      "reason": "new unique",
+      "job_id": 2912
+    }
+  ],
+  "queries_pages": [
+    {
+      "kind": "full feed",
+      "status": "completed",
+      "parsed": 4699
+    }
+  ],
+  "board_errors": [],
+  "page_exclusions": [],
+  "collection_limits": [],
+  "firecrawl_requests": 0,
+  "errors": "",
+  "health": {
+    "status": "success",
+    "found": 9,
+    "detail": ""
+  }
+}

@@ -10,6 +10,40 @@ import codex_runner as runner
 
 
 class NativeRunnerTests(unittest.TestCase):
+    def test_timeout_cleanup_does_not_wait_for_inherited_output_pipes(self):
+        import subprocess
+        process = MagicMock(pid=1234)
+        process.communicate.side_effect = subprocess.TimeoutExpired('codex', 240)
+        with patch.object(runner.shutil, 'which', return_value='codex.exe'), \
+             patch.object(runner.subprocess, 'Popen', return_value=process), \
+             patch.object(runner.subprocess, 'run') as terminate:
+            with self.assertRaisesRegex(RuntimeError, 'timed out'):
+                runner.CodexJsonClient().complete(model=runner.MODEL, system='JSON', payload={})
+        self.assertEqual(process.communicate.call_count, 1)
+        process.wait.assert_called_once_with(timeout=5)
+        if runner.os.name == 'nt':
+            self.assertEqual(terminate.call_args.kwargs['timeout'], 10)
+
+    def test_draft_allows_more_relevant_bullets_but_keeps_minimum(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            listing = Path(d) / 'job.md'
+            listing.write_text('Paid media management role')
+            evidence = [{'id': f'E{i}', 'job': 0, 'quote': f'Distinct fact {i}'} for i in range(4)]
+            for count, available in ((4, 4), (1, 4), (1, 1)):
+                with self.subTest(count=count, available=available):
+                    plan = {'listing': str(listing), 'evidence': evidence[:available],
+                            'resume': {'selected_evidence_ids': [e['id'] for e in evidence[:min(2, available)]], 'relevant_metric_ids': []}}
+                    answer = {'summary': 'Paid media leader with source-supported campaign management, client reporting, and marketing analysis experience.',
+                              'selected_evidence_ids': [e['id'] for e in evidence[:count]]}
+                    with patch('gecko_v2.source_text', return_value='Master facts'), patch.object(runner.CodexJsonClient, 'complete', return_value=answer):
+                        if count == 1 and available > 1:
+                            with self.assertRaisesRegex(ValueError, 'at least 2'):
+                                runner.draft_resume(plan)
+                        else:
+                            runner.draft_resume(plan)
+                            self.assertEqual(len(plan['resume']['selected_evidence_ids']), count)
+
     def test_review_receives_master_and_unselected_supporting_evidence(self):
         plan={'job':{},'requirements':{},'resume':{'selected_evidence_ids':['E001']},
               'evidence':[{'id':'E001','quote':'Selected bullet'},{'id':'E002','quote':'Summary support'}]}

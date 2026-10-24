@@ -1,0 +1,234 @@
+{
+  "pipeline": {
+    "raw_retrieved": 17,
+    "rss_retrieved": 0,
+    "rss_unique": 0,
+    "rss_duplicates_removed": 0,
+    "successful_feeds": 0,
+    "failed_feeds": 0,
+    "feed_results": [],
+    "api_retrieved": 0,
+    "source_backend": "",
+    "fetched": 17,
+    "normalized": 17,
+    "added": 17,
+    "updated": 0,
+    "duplicates": 0,
+    "cross_provider_duplicates": 0,
+    "unique_available": 0,
+    "unique_imported": 0,
+    "filtered_by_role": 0,
+    "deterministic_rejects": 0,
+    "deterministic_reject_reasons": {},
+    "jooble_excluded": 0,
+    "rejected_history_excluded": 0,
+    "missing_content_excluded": 0,
+    "dead_url_excluded": 0,
+    "source_results_limited": 0,
+    "url_review_excluded": 0,
+    "url_validated": 17,
+    "new_job_ids": [
+      2888,
+      2889,
+      2890,
+      2891,
+      2892,
+      2893,
+      2894,
+      2895,
+      2896,
+      2897,
+      2898,
+      2899,
+      2900,
+      2901,
+      2902,
+      2903,
+      2904
+    ],
+    "existing_job_ids": [],
+    "changed_job_ids": [],
+    "eligibility_includes_usa": 0,
+    "eligibility_worldwide": 0,
+    "example_jobs": [],
+    "backend_qualifying": {},
+    "backend_added": {}
+  },
+  "record_decisions": [
+    {
+      "source": "greenhouse",
+      "source_job_id": "5460669008",
+      "url": "https://job-boards.greenhouse.io/cresta/jobs/5460669008",
+      "company": "Cresta",
+      "title": "Senior Technical Product Marketing Manager, AI Agent",
+      "reason": "new unique",
+      "job_id": 2888
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "5460644008",
+      "url": "https://job-boards.greenhouse.io/cresta/jobs/5460644008",
+      "company": "Cresta",
+      "title": "Senior Product Marketing Manager, Vertical Solutions",
+      "reason": "new unique",
+      "job_id": 2889
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "5458612008",
+      "url": "https://job-boards.greenhouse.io/cresta/jobs/5458612008",
+      "company": "Cresta",
+      "title": "Senior Product Marketing Manager, Healthcare",
+      "reason": "new unique",
+      "job_id": 2890
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "8311121",
+      "url": "https://job-boards.greenhouse.io/dept/jobs/8311121",
+      "company": "DEPT",
+      "title": "Account Coordinator, Paid Search",
+      "reason": "new unique",
+      "job_id": 2891
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "5271172007",
+      "url": "https://job-boards.greenhouse.io/fleetio/jobs/5271172007",
+      "company": "Fleetio",
+      "title": "Senior Content Marketing Manager",
+      "reason": "new unique",
+      "job_id": 2892
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "8279632",
+      "url": "https://jobs.dropbox.com/listing/8279632?gh_jid=8279632",
+      "company": "Dropbox",
+      "title": "Senior Manager, Lifecycle Marketing",
+      "reason": "new unique",
+      "job_id": 2893
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "8279631",
+      "url": "https://jobs.dropbox.com/listing/8279631?gh_jid=8279631",
+      "company": "Dropbox",
+      "title": "Senior Manager, Lifecycle Marketing",
+      "reason": "new unique",
+      "job_id": 2894
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "8267923",
+      "url": "https://www.pinterestcareers.com/jobs/?gh_jid=8267923",
+      "company": "Pinterest",
+      "title": "Brand Marketing Manager",
+      "reason": "new unique",
+      "job_id": 2895
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "8811944002",
+      "url": "https://job-boards.greenhouse.io/gomotive/jobs/8811944002",
+      "company": "Motive",
+      "title": "Senior Customer Marketing Specialist",
+      "reason": "new unique",
+      "job_id": 2896
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "6230587004",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230587004",
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "reason": "new unique",
+      "job_id": 2897
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "6230586004",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230586004",
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "reason": "new unique",
+      "job_id": 2898
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "6230585004",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230585004",
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "reason": "new unique",
+      "job_id": 2899
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "6230584004",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230584004",
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "reason": "new unique",
+      "job_id": 2900
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "6230583004",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230583004",
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "reason": "new unique",
+      "job_id": 2901
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "6230582004",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230582004",
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "reason": "new unique",
+      "job_id": 2902
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "8268329",
+      "url": "https://www.pinterestcareers.com/jobs/?gh_jid=8268329",
+      "company": "Pinterest",
+      "title": "Integrated Marketing Lead, UCAN Programming & Industry",
+      "reason": "new unique",
+      "job_id": 2903
+    },
+    {
+      "source": "greenhouse",
+      "source_job_id": "4458625009",
+      "url": "https://job-boards.greenhouse.io/oura/jobs/4458625009",
+      "company": "Oura",
+      "title": "Senior Retail Marketing Manager, LATAM",
+      "reason": "new unique",
+      "job_id": 2904
+    }
+  ],
+  "queries_pages": [
+    {
+      "kind": "full feed",
+      "status": "completed",
+      "parsed": 7032
+    }
+  ],
+  "board_errors": [
+    {
+      "company": "Ashley Digital",
+      "error": "Request failed for https://boards-api.greenhouse.io/v1/boards/residenthome/jobs: HTTP Error 404: Not Found | {\"status\": 404, \"error\": \"Job not found\"}"
+    }
+  ],
+  "page_exclusions": [],
+  "collection_limits": [],
+  "firecrawl_requests": 0,
+  "errors": "[{\"company\": \"Ashley Digital\", \"error\": \"Request failed for https://boards-api.greenhouse.io/v1/boards/residenthome/jobs: HTTP Error 404: Not Found | {\\\"status\\\": 404, \\\"error\\\": \\\"Job not found\\\"}\"}]",
+  "health": {
+    "status": "partial failure",
+    "found": 17,
+    "detail": "[{\"company\": \"Ashley Digital\", \"error\": \"Request failed for https://boards-api.greenhouse.io/v1/boards/residenthome/jobs: HTTP Error 404: Not Found | {\\\"status\\\": 404, \\\"error\\\": \\\"Job not found\\\"}\"}]"
+  }
+}

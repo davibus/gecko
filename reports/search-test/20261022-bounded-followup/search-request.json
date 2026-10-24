@@ -1,0 +1,8 @@
+{
+  "query": "(\"paid media manager\" OR \"paid search specialist\" OR \"marketing analytics manager\" OR \"PPC manager\") (\"remote\" OR \"Utah\") (site:jobs.lever.co OR site:job-boards.greenhouse.io OR site:jobs.ashbyhq.com)",
+  "limit": 15,
+  "sources": [
+    "web"
+  ],
+  "country": "us"
+}

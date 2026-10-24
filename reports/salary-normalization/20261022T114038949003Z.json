@@ -1,0 +1,38 @@
+{
+  "status": "verified",
+  "synced_at": "2026-10-22T11:40:56.761784+00:00",
+  "changes": [
+    {
+      "id": "2883",
+      "before": {
+        "Salary": "$ 96,113"
+      },
+      "changes": {
+        "Salary": "$96,113"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "$ 96,113",
+        "original_salary": "$ 96,113",
+        "formatted_salary": "$96,113"
+      }
+    },
+    {
+      "id": "2884",
+      "before": {
+        "Salary": "USD 90000-115000 per year"
+      },
+      "changes": {
+        "Salary": "$90,000 - $115,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "USD 90000-115000 per year",
+        "original_salary": "USD 90000-115000 per year",
+        "formatted_salary": "$90,000 - $115,000"
+      }
+    }
+  ]
+}

@@ -5,6 +5,7 @@ from urllib.parse import urlencode, urljoin, urlsplit, parse_qs
 import re
 import time
 
+from preferences import load_preferences
 from .base import JobSource, ProviderError
 from .firecrawl import FirecrawlClient
 from .indeed import _structured_listings, extract_indeed_job_key, application_method_from_page
@@ -44,7 +45,7 @@ class IndeedSearchProvider(JobSource):
         self.fetch = fetch or self.firecrawl.document
         self.custom_fetch = fetch is not None
         self.max_pages, self.max_jobs = max_pages, max_jobs
-        self.queries = queries or ['digital marketing','paid search','performance marketing','marketing analytics']
+        self.queries = queries or load_preferences()['target_roles']
         self.locations = locations or ['Utah','Remote']
         self.errors, self.exclusions, self.acquisition_events = [], [], []
         self.seen_jobs, self.seen_pages = set(), set()
@@ -54,17 +55,9 @@ class IndeedSearchProvider(JobSource):
 
     def retrieve(self, url):
         if self.custom_fetch:return self.fetch(url)
-        for attempt in range(3):
-            time.sleep(max(0,7.0-(time.monotonic()-self.last_request)))
-            self.last_request=time.monotonic()
-            try:return self.fetch(url)
-            except ProviderError as exc:
-                if 'HTTP 429' not in str(exc) or attempt==2:raise
-                self.acquisition_events.append({'url':url,'status':'rate-limit wait','seconds':60,'attempt':attempt+1})
-                time.sleep(60)
-                # Retry only a throttled read, after the cooldown; never auth/403 failures.
-                self.firecrawl.cache.pop(url,None)
-                self.firecrawl.blocked=''
+        # The shared ledger owns pacing, cache reuse and failure reservations.
+        # A provider wrapper must never erase its cooldown or retry a paid call.
+        return self.fetch(url)
 
     def configured(self):
         return self.custom_fetch or self.firecrawl.configured()

@@ -36,6 +36,9 @@ def save_run(tracker,run_id,fields):
     with tracker.connection() as con, con:
         con.execute('INSERT INTO workspace_runs VALUES(?,?,?,?)',
                     (run_id,stamp(),'daily',json.dumps(fields)))
+    if any(key.startswith('Firecrawl ') for key in fields):
+        from firecrawl_discovery import queue_report
+        queue_report(fields)
     return None,1
 
 

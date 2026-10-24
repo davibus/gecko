@@ -46,6 +46,8 @@ class AdzunaProvider(JobSource):
             salary = ""
             if salary_min or salary_max:
                 salary = " - ".join(f"${number:,.0f}" for number in (salary_min, salary_max) if number)
+                if str(item.get('salary_is_predicted', '')).strip().lower() in {'1', 'true'}:
+                    salary = 'Estimated ' + salary
             yield RawListing(
                 source=self.name,
                 source_job_id=str(item.get("id", "")),

@@ -1,0 +1,20 @@
+Manual Indeed intake:
+{
+  "scanned": 0,
+  "processed": 0,
+  "duplicates": 0,
+  "failures": 0,
+  "skipped": 0,
+  "removed": 0,
+  "declined_preserved": 0,
+  "rejected": 0,
+  "removed_rows": [],
+  "new_job_ids": []
+}
+Link validation:
+  checked: 0
+  valid: 0
+  removed_dead: 0
+  temporary_failure: 0
+  protected_dead: 0
+DAILY REVIEW: No new qualifying jobs were discovered in this run.

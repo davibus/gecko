@@ -48,14 +48,72 @@ def posting_identity(url: str):
     return ('url',host,parts.path,parts.query)
 
 
+def posting_aliases(job: JobListing) -> set[tuple]:
+    """Retain source and resolved URLs as evidence for the same saved posting."""
+    urls = [job.url, job.canonical_url, job.original_url,
+            job.authoritative_url, job.url_redirect_url]
+    if job.enrichment_status == 'succeeded':
+        urls.append(job.enriched_source_url)
+    urls.extend(link.get('url', '') for link in job.source_links)
+    return {posting_identity(url) for url in urls if str(url or '').strip()}
+
+
 def infer_work_arrangement(raw: RawListing) -> str:
-    # Keep this field structured: descriptive text may mention remote work without
-    # making the specific opening remote.
-    value = f"{raw.remote_type} {raw.location}".lower()
-    if "hybrid" in value:
+    # Provider fields take priority. Only explicit, job-specific declarations in
+    # a title or description are fallback evidence, not generic remote benefits.
+    def arrangement(value):
+        value = clean_text(value).casefold()
+        if re.search(r"\b(?:not (?:a )?remote|no remote|remote (?:work )?(?:is )?not (?:available|allowed|permitted))\b", value):
+            return "on-site"
+        if re.search(r"\bhybrid\b", value):
+            return "hybrid"
+        if re.search(r"\b(?:on[ -]?site|in[ -]office)\b", value):
+            return "on-site"
+        if re.search(r"\b(?:remote|telecommut(?:e|ing)|work[ -]from[ -]home)\b", value):
+            return "remote"
+        return None
+
+    structured = arrangement(f"{raw.remote_type} {raw.location}")
+    if structured:
+        return structured
+    description = clean_text(raw.description)
+    declarations = re.findall(
+        r"\b(?:location|work arrangement|workplace type|work location|job classification)\s*:\s*"
+        r"((?:(?:fully|100%)\s+)?(?:remote|hybrid|on[ -]?site|in[ -]office|"
+        r"not remote|no remote|work[ -]from[ -]home)\b[^.;\n]{0,45})",
+        description, re.I,
+    )
+    # Keep role-specific denials and hybrid/on-site requirements ahead of an
+    # otherwise remote title or location declaration.
+    declarations += re.findall(
+        r"\b(?:this (?:role|position|job) (?:is|requires)|work arrangement is)\s+"
+        r"((?:not\s+)?(?:a\s+)?(?:fully\s+)?(?:remote|hybrid|on[ -]?site|in[ -]office)\b)",
+        description, re.I,
+    )
+    # Some provider snippets start with the exact role header followed by its
+    # arrangement, e.g. "Manager of Paid Search Remote As the Manager ...".
+    header = re.sub(r'[\u200b-\u200d\ufeff]', '', description)
+    header = re.sub(r'^(?:position|job title|title)\s*:\s*', '', header, flags=re.I)
+    header_marker = re.match(
+        re.escape(clean_text(raw.title)) + r'\s*[-–—|:]*\s*(remote|hybrid|on[ -]?site)\b',
+        header, re.I,
+    )
+    if header_marker:
+        declarations.append(header_marker[1])
+    declared = {arrangement(value) for value in declarations} - {None}
+    if "hybrid" in declared:
         return "hybrid"
-    if any(term in value for term in ("remote", "telecommute", "work from home")):
+    if "on-site" in declared:
+        return "on-site"
+    if "remote" in declared:
         return "remote"
+    title = clean_text(raw.title)
+    title_marker = re.search(
+        r"(?:^|[-–—(|])\s*((?:fully\s+)?(?:remote|hybrid|on[ -]?site|in[ -]office)\b[^|)]{0,30})",
+        title, re.I,
+    )
+    if title_marker:
+        return arrangement(title_marker[1]) or "unknown"
     return "on-site" if raw.location else "unknown"
 
 
@@ -72,6 +130,11 @@ def normalize(raw: RawListing, discovered: str | None = None) -> JobListing:
         employment_type=employment_type,
         salary=clean_text(raw.salary),
         source=clean_text(raw.source),
+        found_using=("Firecrawl" if str(raw.metadata.get("_discovered_via", "")).casefold()
+                     in {"firecrawl", "firecrawl-search", "indeed-results-page"}
+                     or (not raw.metadata.get("_discovered_via")
+                         and str(raw.metadata.get("_retrieved_via", "")).casefold() == "firecrawl")
+                     else "Gecko"),
         source_job_id=clean_text(raw.source_job_id),
         url=raw.url.strip(),
         date_posted=clean_text(raw.date_posted)[:10],

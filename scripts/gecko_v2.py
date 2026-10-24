@@ -227,6 +227,50 @@ def normalize_resume_format(plan: dict) -> None:
     plan["resume"]["core_strengths"] = select_core_strengths(listing, source)
     plan["resume"]["tools_platforms"] = select_tools_platforms(listing, source)
     plan["resume"].pop("skills", None)
+    # Selected Results already displays these accomplishments. Keep each claim
+    # once, while retaining every employment role represented in the plan.
+    evidence = {item['id']: item for item in plan['evidence']}
+    selected = list(plan['resume']['selected_evidence_ids'])
+    results = list(plan['resume'].get('selected_results_ids', []))
+    mandatory = set(plan['resume'].get('relevant_metric_ids', []))
+    def repeats(left, right):
+        if evidence[left]['job'] != evidence[right]['job']:
+            return False
+        a, b = evidence[left]['quote'], evidence[right]['quote']
+        same_revenue = all(re.search(r'\$9(?: million|,000,000)', text, re.I) for text in (a, b))
+        same_accounts = all(re.search(r'75\+? Google Ads', text) for text in (a, b))
+        same_roas = all('1.5' in text and '3.5' in text and 'roas' in text.lower() for text in (a, b))
+        same_database_reporting = all('database' in text.lower() and 'report' in text.lower() for text in (a, b))
+        same_annual_kpis = all(re.search(r'\b(?:annual|yearly)\b', text, re.I) and 'projection' in text.lower() and 'kpi' in text.lower() for text in (a, b))
+        same_retail_partners = all("650" in text and re.search(r"retail|partner", text, re.I) for text in (a, b))
+        same_looker_kpis = all("looker" in text.lower() and "kpi" in text.lower() for text in (a, b))
+        return (_near_duplicate(a, b) or same_revenue or same_accounts or same_roas
+                or same_database_reporting or same_annual_kpis or same_retail_partners or same_looker_kpis)
+    unique_results = []
+    for eid in sorted(results, key=lambda value: value not in mandatory):
+        if not any(repeats(eid, prior) for prior in unique_results):
+            unique_results.append(eid)
+    results = unique_results
+    for eid in list(selected):
+        duplicates = [rid for rid in results
+                      if repeats(rid, eid)]
+        if not duplicates:
+            continue
+        if eid in mandatory and eid not in results:
+            results = [rid for rid in results if rid not in duplicates]
+            continue
+        if sum(evidence[other]['job'] == evidence[eid]['job'] for other in selected) > 1:
+            selected.remove(eid)
+        else:
+            results = [rid for rid in results if rid not in duplicates]
+    for eid in list(selected):
+        if eid in mandatory:
+            continue
+        earlier = selected[:selected.index(eid)]
+        if any(repeats(eid, prior) for prior in earlier):
+            selected.remove(eid)
+    plan['resume']['selected_evidence_ids'] = selected
+    plan['resume']['selected_results_ids'] = results
 
 
 def document_format_issues(plan: dict, doc: Document) -> list[str]:
@@ -420,7 +464,7 @@ def _mixed_archive_jobs(lines: list[str]) -> list[dict]:
     i = 0
     while i < len(lines):
         line = lines[i]
-        if line == "EDUCATION, ENTREPRENEURSHIP & RECOGNITION":
+        if line == "EDUCATION, ENTREPRENEURSHIP & RECOGNITION" or line.casefold().startswith("variations of specialization"):
             break
         following = next((j for j in range(i + 1, len(lines)) if lines[j]), None)
         text = _bullet_text(line) if _is_bullet(line) else normalized(line)
@@ -632,6 +676,12 @@ def relevant_metric_ids(listing: str, evidence: list[dict]) -> list[str]:
 
 def polish_quote(quote: str) -> str:
     """Apply small grammar edits without changing facts or product names."""
+    if quote.startswith('I created this website two years ago. Built it on a headless system using REACT and Next.js.'):
+        return ('Built a headless retail website with React and Next.js, connecting Shopify directly '
+                'to manufacturer databases through GraphQL. Automated order and shipping updates, '
+                'reducing ongoing oversight to approximately 10 minutes per week.')
+    if quote.endswith("growth across the United States, Canada, and the"):
+        quote = quote.removesuffix("the United States, Canada, and the") + "the United States and Canada."
     for old, new in (("Setup ", "Set up "), ("Created a inventory", "Created an inventory"),
                      ("I helped convert", "Helped convert"),
                      ("marketingnvironment", "marketing environment")):
@@ -649,6 +699,9 @@ def _near_duplicate(left: str, right: str) -> bool:
 def master_identity() -> dict[str, str]:
     lines = [line.strip() for line in master_lines() if line.strip()]
     education = next(_bullet_text(line) for line in lines if "Brigham Young University" in line)
+    degree = next((_bullet_text(line) for line in lines if "Business Management Degree" in line), "")
+    if degree:
+        education += "; " + degree
     cert_start = next(i for i, line in enumerate(lines) if line.casefold() == "certifications") + 1
     certs = []
     for line in lines[cert_start:]:
@@ -764,6 +817,10 @@ def select_summary_focus_evidence(plan: dict) -> None:
                 and len(item["quote"].split()) <= 55
                 and not re.search(r"\b(?:I|my|we|our)\b", item["quote"])
                 and not re.search(r"marketing environment|B2C e,|Digital Marketing Manager$|web-scraping priorities", item["quote"])]
+        if not pool:
+            pool = [item for item in evidence if item["job"] == index
+                    and len(polish_quote(item["quote"]).split()) <= 55
+                    and not re.search(r"\b(?:I|my|we|our)\b", polish_quote(item["quote"]))]
         ranked = sorted(pool, key=lambda item: (
             item["id"] in mandatory,
             5 * len(words(item["quote"]) & focus) + len(words(item["quote"]) & listing),
@@ -776,7 +833,7 @@ def select_summary_focus_evidence(plan: dict) -> None:
             chosen.append(item)
             if sum(len(item['quote'].split()) for item in chosen) >= 90:
                 break
-        if len(chosen) < 2:
+        if not chosen:
             raise ValueError("Insufficient distinct source-backed accomplishments for job history")
         selected.extend(item["id"] for item in chosen)
     # Source-required anchors stay in the document even if concision filters
@@ -1177,6 +1234,8 @@ def generate_two_page_resume(plan: dict, path: Path, scratch: Path) -> dict:
     if any(issue != report.get('density_issue') for issue in report.get('issues', [])):
         return report
     candidates = _additional_evidence(plan) if report.get('page_two_bottom_gap_pt', 0) > 36 else []
+    evidence_by_id = {item['id']: item for item in plan['evidence']}
+    candidates.sort(key=lambda eid: len(polish_quote(evidence_by_id[eid]['quote']).split()))
     for eid in candidates:
         if report.get('page_two_bottom_gap_pt', 0) <= 36:
             break
@@ -1184,6 +1243,10 @@ def generate_two_page_resume(plan: dict, path: Path, scratch: Path) -> dict:
             continue
         previous = list(plan['resume']['selected_evidence_ids'])
         plan['resume']['selected_evidence_ids'].append(eid)
+        normalize_resume_format(plan)
+        if eid not in plan['resume']['selected_evidence_ids']:
+            plan['resume']['selected_evidence_ids'] = previous
+            continue
         make_resume(plan, path)
         trial = native_qa(plan, path, scratch)
         if trial.get('word_pages') is None or trial.get('pdf_pages') is None:

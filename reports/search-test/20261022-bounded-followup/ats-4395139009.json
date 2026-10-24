@@ -1,0 +1,51 @@
+{
+  "url": "https://job-boards.greenhouse.io/mytechnologyinc/jobs/4395139009",
+  "api_url": "https://boards-api.greenhouse.io/v1/boards/mytechnologyinc/jobs/4395139009",
+  "data": {
+    "absolute_url": "https://job-boards.greenhouse.io/mytechnologyinc/jobs/4395139009",
+    "data_compliance": [
+      {
+        "type": "gdpr",
+        "requires_consent": false,
+        "requires_processing_consent": false,
+        "requires_retention_consent": false,
+        "retention_period": null,
+        "demographic_data_consent_applies": false
+      }
+    ],
+    "internal_job_id": 4228695009,
+    "location": {
+      "name": "Remote"
+    },
+    "metadata": null,
+    "id": 4395139009,
+    "updated_at": "2026-09-03T16:04:14-04:00",
+    "requisition_id": "9",
+    "title": "Marketing Analytics Manager",
+    "company_name": "My Technology, Inc.",
+    "first_published": "2026-09-03T16:04:07-04:00",
+    "language": "en",
+    "application_deadline": null,
+    "content": "&lt;p class=&quot;p1&quot;&gt;MyPrize is the fastest growing free-to-play social gaming and social markets platform in the world, redefining how people play, watch, and connect with one another and with gaming and markets online. Pioneering multiplayer experiences where users can join forces with creators, streamers, and friends, MyPrize provides a platform built for shared moments and massive communities.&lt;/p&gt;\n&lt;p class=&quot;p1&quot;&gt;MyPrize transcends boundaries, giving players and fans what they have been desperately craving: an all-in-one platform that combines the best of online gaming, live streaming, and social markets, powered by MyPrize&#39;s proprietary AI personalization engine. With SOC 2 Type 1 certification, MyPrize maintains institutional-grade security while building the future of online entertainment.&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;\n&lt;p class=&quot;p1&quot;&gt;We&#39;re seeking a Marketing Analytics Manager to join our growing Analytics team full time. This is an exciting opportunity to be the first embedded analytics hire at MyPrize, building the foundational attribution and reporting infrastructure that connects marketing investment to player value.&lt;/p&gt;\n&lt;p class=&quot;p1&quot;&gt;&lt;strong&gt;The Role:&lt;/strong&gt;&lt;/p&gt;\n&lt;p class=&quot;p1&quot;&gt;As Marketing Analytics Manager at MyPrize, you&#39;ll own measurement of acquisition efficiency and marketing ROI across paid, organic, and lifecycle channels, connecting media spend to player value so marketing investment decisions are evidence-based.&lt;/p&gt;\n&lt;p class=&quot;p1&quot;&gt;You&#39;ll be the first embedded analytics hire, working directly with the Head of Analytics to stand up the function&#39;s foundational attribution and reporting infrastructure.&lt;/p&gt;\n&lt;p class=&quot;p1&quot;&gt;&lt;strong&gt;What you will do at MyPrize:&lt;/strong&gt;&lt;/p&gt;\n&lt;ul class=&quot;ul1&quot;&gt;\n&lt;li class=&quot;li1&quot;&gt;&lt;strong&gt;Paid Social Analytics &amp;amp; Optimization:&lt;/strong&gt; Monitor and optimize paid social campaigns across Meta Ads Manager and TikTok Ads Manager \u2014 audience segmentation, budget allocation, and A/B testing \u2014 and flag data-feed or tracking issues that affect measurement accuracy.&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;&lt;strong&gt;Paid Search Agency Collaboration:&lt;/strong&gt; Serve as the analytics point of contact for paid search agencies, translating performance and player-value trends into budget, bid-strategy, and keyword recommendations, and flagging quality-score optimization opportunities.&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;&lt;strong&gt;Affiliate &amp;amp; Creator Reporting:&lt;/strong&gt; Own partner- and creator-level performance reporting, including postback/S2S tracking accuracy and payout reconciliation, and partner with growth marketing on incrementality testing to separate genuine lift from last-click credit.&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;&lt;strong&gt;Data Analysis &amp;amp; Performance Reporting:&lt;/strong&gt; Build and maintain a de-duplicated attribution table spanning Paid, Affiliate, and Creator, consolidating spreadsheet reporting into a warehouse-backed source of truth, with BI dashboards and a shared metric dictionary linking spend to player value (CAC, LTV, ROAS, etc).&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;&lt;strong&gt;Cross-Platform Strategy, Budget Pacing &amp;amp; Forecasting:&lt;/strong&gt; Develop cohesive budget-pacing forecasts across Paid Social, Paid Search, Affiliate, and Creator with the Head of Analytics and FP&amp;amp;A, supporting CAC payback tracking and evaluating lifecycle-channel (email/SMS/push) integration.&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p class=&quot;p3&quot;&gt;&lt;strong&gt;What you bring to MyPrize:&lt;/strong&gt;&lt;/p&gt;\n&lt;ul class=&quot;ul1&quot;&gt;\n&lt;li class=&quot;li1&quot;&gt;Bachelor&#39;s degree in Data Science, Marketing, Economics, Business Administration, Statistics, or a related field preferred.&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;3-5+ years in marketing/growth or paid media analytics, with hands-on measurement experience across Meta Ads Manager, TikTok Ads Manager, and Google Ads \u2014 ideally in mobile gaming, iGaming, or a subscription/app-based consumer product.&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Proficiency in GA4 (Google Analytics 4).&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Advanced Excel skills, including pivot tables, VLOOKUP/XLOOKUP, complex formulas, and data modeling to derive actionable insights and build ad hoc reporting.&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Proficiency with a modern BI/visualization tool (Metabase, Looker, or similar).&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Strong SQL; experience with Python and large datasets a plus.&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Direct experience with affiliate tracking/attribution platforms (e.g., Impact, Everflow, CJ Affiliate, Tune/HasOffers) and mobile measurement partners (e.g., AppsFlyer, Branch, Adjust).&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Experience building de-duplicated, multi-touch or waterfall attribution across overlapping channels \u2014 specifically reconciling paid, affiliate, and creator claims on the same conversion.&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Professional background from a top-tier marketing/media agency, a high-growth gaming or consumer app company, or a paid marketing platform/tool provider.&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Comfortable working with ambiguous, evolving data infrastructure \u2014 this is a build-from-near-scratch environment, not a mature, fully-instrumented stack.&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Strong organizational and project-management skills, with the ability to manage multiple concurrent workstreams and deadlines.&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Excellent written and verbal communication skills.&lt;/li&gt;\n&lt;li class=&quot;li3&quot;&gt;Adaptable and able to thrive in a fast-paced environment.&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p class=&quot;p3&quot;&gt;&lt;strong&gt;Gold Stars:&lt;/strong&gt;&lt;/p&gt;\n&lt;ul class=&quot;ul1&quot;&gt;\n&lt;li class=&quot;li1&quot;&gt;Experience in a regulated gaming/sweepstakes environment.&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Experience reporting on creator/influencer partnership codes, payouts, or contracts.&lt;/li&gt;\n&lt;li class=&quot;li3&quot;&gt;Familiarity with ad platform APIs (Meta Marketing API, Google Ads API, TikTok Ads API).&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p class=&quot;p1&quot;&gt;&lt;strong&gt;Benefits and Perks:&lt;/strong&gt;&lt;/p&gt;\n&lt;ul class=&quot;ul1&quot;&gt;\n&lt;li class=&quot;li1&quot;&gt;Remote-first company with hybrid offices in NYC &amp;amp; Miami&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Equity&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;401K&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Comprehensive insurance plans: Health, Dental, and Vision&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Flexible Spending Account&lt;/li&gt;\n&lt;li class=&quot;li1&quot;&gt;Flexible Vacation Policy&lt;/li&gt;\n&lt;/ul&gt;",
+    "departments": [
+      {
+        "id": 4070192009,
+        "name": "Analytics ",
+        "child_ids": [],
+        "parent_id": null
+      }
+    ],
+    "offices": [
+      {
+        "id": 4037983009,
+        "name": "Remote",
+        "location": "Remote",
+        "child_ids": [],
+        "parent_id": null
+      }
+    ],
+    "ai_disclaimer": null,
+    "include_ai_disclaimer": null,
+    "ai_opt_out_request_url": "http://app9.greenhouse.io/ai_opt_out_request/job_post/4395139009/ai_opt_out"
+  }
+}

@@ -784,7 +784,10 @@ def _persist_queue_retrieval(job, result: DescriptionRetrievalResult, store: Job
 def _archive_listing(
     job, item: QueueRow, store: JobStore, *, persist_retrieval: bool = True,
 ) -> tuple[Path, tuple[RetrievalAttempt, ...]]:
-    saved = _saved_listing(item, known_urls=tuple(
+    get_document = getattr(store, 'get_job_document', None) if store is not None else None
+    cached_document = get_document(job.id) if callable(get_document) and job.id is not None else None
+    complete_cached = isinstance(cached_document, dict) and cached_document.get('status') == 'complete'
+    saved = None if complete_cached else _saved_listing(item, known_urls=tuple(
         str(link.get("url") or "") for link in job.source_links
     ), known_job_number=_job_number(job))
     if saved:
@@ -816,7 +819,7 @@ def _archive_listing(
                         str(link.get("url") or "") for link in job.source_links
                     ))) or _archive_has_live_source_id(item, meta["job_number"], number)):
             raise ValueError(f"Archived listing URL differs from the live job: {path.name}")
-        if description_is_sufficient(_archived_description(existing)):
+        if not complete_cached and description_is_sufficient(_archived_description(existing)):
             if f"**Scout ID:**" in existing and f"**Scout ID:** {job.id}" not in existing:
                 # A sheet reset can assign a new row ID to the same source job.
                 # Keep the old archive intact and bind a scratch copy to the
@@ -834,7 +837,13 @@ def _archive_listing(
             )
             return path, (attempt,)
     original_url = _original_source_url(job, item)
-    if str(job.source_job_id or '').startswith('manual-') and description_is_sufficient(job.description):
+    if complete_cached:
+        result = DescriptionRetrievalResult(
+            status='succeeded', description=cached_document['full_description_markdown'],
+            source_url=cached_document['source_url'], authoritative_url=job.authoritative_url or job.url,
+            attempts=[RetrievalAttempt('durable complete job description', cached_document['source_url'], 'accepted',
+                                       'original employer source; no additional scrape')])
+    elif str(job.source_job_id or '').startswith('manual-') and description_is_sufficient(job.description):
         result = DescriptionRetrievalResult(
             status='succeeded', description=job.description, source_url=original_url,
             attempts=[RetrievalAttempt('user-pasted job description', original_url, 'accepted', 'manual intake')],
@@ -1110,6 +1119,20 @@ def _finish_generation(
     return Artifacts(final, listing, existing, attempts)
 
 
+def sync_completed_resume_to_primary_sheet(tracker: GoogleTracker) -> None:
+    """Publish each verified local completion while the parent run holds its lock."""
+    from sqlite_tracker import SQLiteTracker
+    if not isinstance(tracker, SQLiteTracker):
+        return
+    import sheet_sync
+    if sheet_sync.enabled():
+        try:
+            sheet_sync.sync()
+        except Exception as error:
+            sheet_sync.record_error(error)
+            raise
+
+
 def record_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTracker) -> None:
     """Record the validated resume through the canonical tracker integration."""
     if not artifacts.resume.is_file() or artifacts.resume.stat().st_size <= 0:
@@ -1121,6 +1144,7 @@ def record_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTracker)
         completion_marker=COMPLETION_MARKER,
         require_approved=True,
     ))
+    sync_completed_resume_to_primary_sheet(tracker)
 
 
 def record_local_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTracker) -> None:
@@ -1133,6 +1157,7 @@ def record_local_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTr
         artifacts.resume, artifacts.listing, item.scout_id, item.row, tracker,
         require_approved=True,
     ))
+    sync_completed_resume_to_primary_sheet(tracker)
 
 
 def _log(logger, message: str) -> None:

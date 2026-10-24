@@ -15,6 +15,16 @@ from test_daily_report import FakeSheets
 
 
 class DailyRunHistoryTests(unittest.TestCase):
+    def test_unavailable_optional_metric_round_trips_as_blank(self):
+        fake, tracker = self.tracker()
+        fields = {'Run Date': '2026-10-23', 'Run ID': 'null-metric',
+                  'Jobs by Source': {}, 'Firecrawl credits per new qualified job': None}
+        block = build_block(fields)
+        self.assertEqual(next(row[1] for row in block
+                              if row[0] == 'Firecrawl credits per new qualified job'), '')
+        self.assertEqual(write_history(tracker, fields)[0], 3)
+        self.assertEqual(write_history(tracker, fields), (None, 0))
+
     def tracker(self):
         fake = FakeSheets()
         tracker = SimpleNamespace(api=fake,

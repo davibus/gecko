@@ -1,0 +1,50 @@
+[
+  {
+    "source": "adzuna",
+    "source_job_id": "5937790287",
+    "url": "https://www.adzuna.com/land/ad/5937790287?se=FiN0sw_O8RGy64MPQcTPmQ&utm_medium=api&utm_source=b4f3e3f8&v=A52004B4D651BF1AE45259553F4B599BC38AAED9",
+    "title": "Senior Digital Marketing Analytics Professional",
+    "company": "Humana",
+    "location": "Bonnie, Utah County",
+    "description": "Become a part of our caring community CenterWell is seeking a Senior Associate, Digital Marketing to develop and execute data-driven strategies across website, email, SMS, SEO, and organic social channels. This role supports digital lifecycle campaign development, content and website optimization, audience segmentation, performance measurement, and reporting while partnering with creative, analytics, brand, agencies, and other cross-functional teams. The ideal candidate has 4 years of digital m\u2026",
+    "employment_type": "",
+    "salary": "Estimated $99,923 - $99,923",
+    "date_posted": "2026-10-22T07:15:15Z",
+    "remote_type": "",
+    "category": "",
+    "tags": [],
+    "metadata": {
+      "title": "Senior Digital Marketing Analytics Professional",
+      "id": "5937790287",
+      "salary_max": 99922.94,
+      "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiRmlOMHN3X084Ukd5NjRNUFFjVFBtUSIsImkiOiI1OTM3NzkwMjg3In0.pP0hd_b4NBy7EqxzKtnuxX4FLAM0JdkgODxLLNaXckE",
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "salary_min": 99922.94,
+      "longitude": -111.88763,
+      "latitude": 40.72693,
+      "salary_is_predicted": "1",
+      "category": {
+        "__CLASS__": "Adzuna::API::Response::Category",
+        "label": "PR, Advertising & Marketing Jobs",
+        "tag": "pr-advertising-marketing-jobs"
+      },
+      "redirect_url": "https://www.adzuna.com/land/ad/5937790287?se=FiN0sw_O8RGy64MPQcTPmQ&utm_medium=api&utm_source=b4f3e3f8&v=A52004B4D651BF1AE45259553F4B599BC38AAED9",
+      "company": {
+        "__CLASS__": "Adzuna::API::Response::Company",
+        "display_name": "Humana"
+      },
+      "location": {
+        "display_name": "Bonnie, Utah County",
+        "__CLASS__": "Adzuna::API::Response::Location",
+        "area": [
+          "US",
+          "Utah",
+          "Utah County",
+          "Bonnie"
+        ]
+      },
+      "created": "2026-10-22T07:15:15Z",
+      "description": "Become a part of our caring community CenterWell is seeking a Senior Associate, Digital Marketing to develop and execute data-driven strategies across website, email, SMS, SEO, and organic social channels. This role supports digital lifecycle campaign development, content and website optimization, audience segmentation, performance measurement, and reporting while partnering with creative, analytics, brand, agencies, and other cross-functional teams. The ideal candidate has 4 years of digital m\u2026"
+    }
+  }
+]

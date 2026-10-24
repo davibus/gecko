@@ -1,0 +1,21 @@
+{
+  "tracker_id": 2880,
+  "description_characters": 3585,
+  "retrieved_via": "Firecrawl",
+  "found_using": "Gecko",
+  "verified": true,
+  "sync": {
+    "status": "synced",
+    "synced_at": "2026-10-22T10:58:04.581643+00:00",
+    "rows": 1149,
+    "cells_written": 1,
+    "jobs_added_to_sheet": 0,
+    "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit"
+  },
+  "backup": {
+    "backend": "sqlite",
+    "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T045809441662.sqlite3",
+    "integrity": "ok",
+    "google_sheets_accessed": false
+  }
+}

@@ -167,7 +167,23 @@ def post_json(
         with urlopen(request, timeout=25) as response:
             raw = response.read(5_000_000)
     except HTTPError as error:
-        raise ProviderError(f"Request failed for {error_label}: HTTP {error.code}") from error
+        # Preserve bounded, redacted provider diagnostics so callers can distinguish
+        # account failures from a target website which the service cannot fetch.
+        detail = ""
+        provider_code = ""
+        try:
+            failure = json.loads(error.read(8192))
+            if isinstance(failure, dict):
+                provider_code = str(failure.get('code') or '')
+                detail = safe_error(str(failure.get('error') or failure.get('message') or ''))[:600]
+        except (ValueError, OSError):
+            pass
+        exc = ProviderError(f"Request failed for {error_label}: HTTP {error.code}" +
+                            (f" | {provider_code}: {detail}" if provider_code or detail else ""))
+        exc.http_status = error.code
+        exc.provider_code = provider_code
+        exc.provider_detail = detail
+        raise exc from error
     except (URLError, TimeoutError) as error:
         reason = getattr(error, "reason", type(error).__name__)
         raise ProviderError(f"Request failed for {error_label}: {reason}") from error

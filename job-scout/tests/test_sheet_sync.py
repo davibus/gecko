@@ -20,7 +20,10 @@ class SyncTests(unittest.TestCase):
     def test_reordered_columns_write_description_by_name_and_preserve_resume_and_formula(self):
         self._check_formula_sync(reordered=True)
 
-    def _check_formula_sync(self, reordered):
+    def test_salary_formatting_is_verified_and_cached(self):
+        self._check_formula_sync(reordered=False, format_salary=True)
+
+    def _check_formula_sync(self, reordered, format_salary=False):
         import sheet_sync
         from sqlite_tracker import SCHEMA
         with TemporaryDirectory() as temp:
@@ -30,6 +33,11 @@ class SyncTests(unittest.TestCase):
                      if reordered else local_headers)
             original={'ID':1,'Job Description':'old','# Words':1,
                       'Resume Link':'file:///existing.docx','User Column':'keep my value'}
+            if format_salary:
+                local_headers.append('Salary')
+                if headers is not local_headers:
+                    headers.append('Salary')
+                original['Salary']='USD 100000 - 120000 per year'
             local={**original,'Job Description':'two words'}
             with closing(sqlite3.connect(db)) as con, con:
                 con.executescript(SCHEMA)
@@ -48,22 +56,28 @@ class SyncTests(unittest.TestCase):
             remote.config.spreadsheet_id='test'
             remote.scout.side_effect=lambda:snapshot()
             remote.tab.side_effect=lambda *a,**kw:snapshot(True)
-            remote._sheet_properties.return_value=[{'title':'Job List','gridProperties':{'columnCount':5,'rowCount':100,'frozenRowCount':1}}]
+            remote._sheet_properties.return_value=[{'title':'Job List','gridProperties':{'columnCount':len(headers),'rowCount':100,'frozenRowCount':1}}]
             remote.url.return_value='test'
             def write(**kwargs):
-                self.assertEqual(kwargs['body']['data'],[{'range':"'Job List'!E2" if reordered else "'Job List'!B2",'values':[['two words']]}])
+                expected=[{'range':"'Job List'!E2" if reordered else "'Job List'!B2",'values':[['two words']]}]
+                if format_salary:expected.append({'range':"'Job List'!F2",'values':[['$100,000 - $120,000']]})
+                self.assertEqual(kwargs['body']['data'],expected)
                 remote_data.update({'Job Description':'two words','# Words':2})
+                if format_salary:remote_data['Salary']='$100,000 - $120,000'
                 return Mock(execute=lambda:{})
             remote.api.values.return_value.batchUpdate.side_effect=write
-            with patch.object(sheet_sync,'DATABASE',db),patch.object(sheet_sync,'STATE',state), \
+            with patch.object(sheet_sync,'DATABASE',db),patch.object(sheet_sync,'STATE',state),patch.object(sheet_sync,'ROOT',root), \
                     patch.object(sheet_sync,'STATUS',root/'status.json'), \
                     patch('google_tracker.load_environment'),patch('google_tracker.Config.from_environment'), \
+                    patch('sheet_ranges.extend_job_list',return_value={'requests':0,'formulas_filled':0}), \
                     patch('google_tracker.GoogleTracker',return_value=remote):
                 result=sheet_sync.sync()
-            self.assertEqual(result['cells_written'],1)
+            self.assertEqual(result['cells_written'],2 if format_salary else 1)
             with closing(sqlite3.connect(db)) as con:
                 saved,formulas=con.execute("SELECT values_json,formulas_json FROM workspace_records").fetchone()
-                self.assertEqual(json.loads(saved),{**local,'# Words':2})
+                wanted={**local,'# Words':2}
+                if format_salary:wanted['Salary']='$100,000 - $120,000'
+                self.assertEqual(json.loads(saved),wanted)
                 self.assertEqual(json.loads(formulas),{'# Words':formula})
                 self.assertEqual(json.loads(con.execute("SELECT headers_json FROM workspace_datasets").fetchone()[0]),headers)
 

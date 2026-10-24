@@ -1,0 +1,18 @@
+{
+  "status": "synced",
+  "synced_at": "2026-10-22T11:17:26.972929+00:00",
+  "rows": 1151,
+  "cells_written": 0,
+  "jobs_added_to_sheet": 0,
+  "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit",
+  "range_extension": {
+    "requests": 0,
+    "formulas_filled": 0
+  },
+  "backup": {
+    "backend": "sqlite",
+    "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T051727570759.sqlite3",
+    "integrity": "ok",
+    "google_sheets_accessed": false
+  }
+}

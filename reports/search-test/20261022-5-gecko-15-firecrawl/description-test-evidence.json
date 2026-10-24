@@ -1,0 +1,40 @@
+{
+  "baseline": {
+    "run": 51,
+    "failures": [
+      "tests.test_google_tracker.GoogleTrackerTests.test_manual_approval_fills_only_blank_apply_cell",
+      "tests.test_google_tracker.GoogleTrackerTests.test_response_rows_are_applied_only_and_updates_touch_response_only",
+      "tests.test_google_tracker.GoogleTrackerTests.test_scout_mark_preserves_apply_and_manual_fields"
+    ],
+    "errors": [
+      "tests.test_google_tracker.GoogleTrackerTests.test_array_formula_output_and_anchor_are_preserved",
+      "tests.test_google_tracker.GoogleTrackerTests.test_custom_column_and_reordered_headers_survive_managed_write",
+      "tests.test_google_tracker.GoogleTrackerTests.test_highlight_scout_found_on_colors_only_matching_id_cells",
+      "tests.test_google_tracker.GoogleTrackerTests.test_managed_formula_is_skipped_and_other_cell_updates",
+      "tests.test_google_tracker.GoogleTrackerTests.test_manual_approval_overrides_no_for_verified_qualifying_row",
+      "tests.test_google_tracker.GoogleTrackerTests.test_marking_resume_does_not_downgrade_applied_status",
+      "tests.test_google_tracker.GoogleTrackerTests.test_rediscovery_preserves_lifecycle_and_unknown_manual_status",
+      "tests.test_google_tracker.GoogleTrackerTests.test_scout_upsert_preserves_nonqualifying_apply_and_does_not_duplicate"
+    ]
+  },
+  "after_fix": {
+    "run": 51,
+    "failures": [
+      "tests.test_google_tracker.GoogleTrackerTests.test_manual_approval_fills_only_blank_apply_cell",
+      "tests.test_google_tracker.GoogleTrackerTests.test_response_rows_are_applied_only_and_updates_touch_response_only",
+      "tests.test_google_tracker.GoogleTrackerTests.test_scout_mark_preserves_apply_and_manual_fields"
+    ],
+    "errors": [
+      "tests.test_google_tracker.GoogleTrackerTests.test_array_formula_output_and_anchor_are_preserved",
+      "tests.test_google_tracker.GoogleTrackerTests.test_custom_column_and_reordered_headers_survive_managed_write",
+      "tests.test_google_tracker.GoogleTrackerTests.test_highlight_scout_found_on_colors_only_matching_id_cells",
+      "tests.test_google_tracker.GoogleTrackerTests.test_managed_formula_is_skipped_and_other_cell_updates",
+      "tests.test_google_tracker.GoogleTrackerTests.test_manual_approval_overrides_no_for_verified_qualifying_row",
+      "tests.test_google_tracker.GoogleTrackerTests.test_marking_resume_does_not_downgrade_applied_status",
+      "tests.test_google_tracker.GoogleTrackerTests.test_rediscovery_preserves_lifecycle_and_unknown_manual_status",
+      "tests.test_google_tracker.GoogleTrackerTests.test_scout_upsert_preserves_nonqualifying_apply_and_does_not_duplicate"
+    ]
+  },
+  "new_failures": 0,
+  "focused_tests_passed": 30
+}

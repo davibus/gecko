@@ -1,0 +1,225 @@
+{
+  "retrieved": {
+    "Gecko": 5,
+    "Firecrawl": 15
+  },
+  "firecrawl_credits": 29,
+  "results": [
+    {
+      "retrieved_by": "Gecko",
+      "company": "Globalchannelmanagement",
+      "title": "Remote AI Marketing Project Manager",
+      "url": "https://www.adzuna.com/land/ad/5937359468?se=2Lz6mQXO8RGF68UScRttYQ&utm_medium=api&utm_source=b4f3e3f8&v=ADF39DC53A155826E3B6490DEDF2FF85ACC81BD8",
+      "location": "New York City, New York",
+      "outcome": "filtered",
+      "reason": "generic non-marketing manager/production role"
+    },
+    {
+      "retrieved_by": "Gecko",
+      "company": "Tek Ninjas",
+      "title": "Field Marketing Manager - SLED",
+      "url": "https://www.adzuna.com/details/5937236056?utm_medium=api&utm_source=b4f3e3f8",
+      "location": "US",
+      "outcome": "filtered",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "retrieved_by": "Gecko",
+      "company": "TekWissen LLC",
+      "title": "E-Commerce & Retail Marketing Manager",
+      "url": "https://www.adzuna.com/details/5937235836?utm_medium=api&utm_source=b4f3e3f8",
+      "location": "US",
+      "outcome": "filtered",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "retrieved_by": "Gecko",
+      "company": "AIT Global inc.",
+      "title": "656 - Product Marketing Manager, Staff",
+      "url": "https://www.adzuna.com/details/5937235436?utm_medium=api&utm_source=b4f3e3f8",
+      "location": "US",
+      "outcome": "filtered",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "retrieved_by": "Gecko",
+      "company": "DivIHN Integration Inc",
+      "title": "Field Marketing Manager - SLED",
+      "url": "https://www.adzuna.com/details/5937234879?utm_medium=api&utm_source=b4f3e3f8",
+      "location": "US",
+      "outcome": "filtered",
+      "reason": "non-remote role outside preferred locations"
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "Wpromote",
+      "title": "Senior Paid Search Manager",
+      "url": "https://jobs.lever.co/wpromote/859d0ced-47af-4fd8-8458-34c78742f2e0",
+      "location": "Remote, United States",
+      "outcome": "already tracked",
+      "scout_id": 2397,
+      "reason": "Existing listing preserved"
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "Wpromote",
+      "title": "Paid Search Manager (B2B)",
+      "url": "https://jobs.lever.co/wpromote/af0f35a1-d0e7-42bb-a90d-38042d803f7d",
+      "location": "Remote, United States",
+      "outcome": "already tracked",
+      "scout_id": 688,
+      "reason": "Existing listing preserved"
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "LiveKit",
+      "title": "Demand Generation Manager",
+      "url": "https://jobs.ashbyhq.com/livekit/0ce55391-93e3-4927-9cf2-3244756a7e2e",
+      "location": "United States",
+      "outcome": "already tracked",
+      "scout_id": 2696,
+      "reason": "Existing listing preserved"
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "Pattern",
+      "title": "Digital Marketing Manager",
+      "url": "https://jobs.lever.co/pattern/7c7ecd7f-c704-46d2-97b3-e4f5b06e5d44",
+      "location": "Lehi, UT, US",
+      "outcome": "already tracked",
+      "scout_id": 692,
+      "reason": "Existing listing preserved"
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "Appspace",
+      "title": "Digital Marketing Manager - Americas",
+      "url": "https://job-boards.greenhouse.io/appspace/jobs/6096866004",
+      "location": "Tampa, Florida, United States Remote",
+      "outcome": "already tracked",
+      "scout_id": 1227,
+      "reason": "Existing listing preserved"
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "DataGrail",
+      "title": "Senior Demand Generation Manager",
+      "url": "https://job-boards.greenhouse.io/datagrail/jobs/7981433003",
+      "location": "Remote - United States",
+      "outcome": "already tracked",
+      "scout_id": 1266,
+      "reason": "Existing listing preserved"
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "1Password",
+      "title": "Performance Marketing Manager",
+      "url": "https://jobs.ashbyhq.com/1password/e7e5ae95-00d2-4d8a-ba85-8146be106300",
+      "location": "Remote (United States \\| Canada)",
+      "outcome": "already tracked",
+      "scout_id": 2867,
+      "reason": "Existing listing preserved"
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "LumiMeds",
+      "title": "Performance Marketing Manager (Growth & Lifecycle) - Remote",
+      "url": "https://job-boards.greenhouse.io/lumimeds/jobs/4173615009",
+      "location": "United States",
+      "outcome": "already tracked",
+      "scout_id": 1383,
+      "reason": "Existing listing preserved"
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "Coinbase",
+      "title": "Senior Performance Marketing Manager, Global Paid Social & Mobile UA",
+      "url": "https://www.coinbase.com/careers/positions/8192485?gh_jid=8192485",
+      "location": "Remote - USA",
+      "outcome": "added",
+      "scout_id": 2876,
+      "reason": "new unique",
+      "tracker_id": 2876
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "Prenuvo",
+      "title": " Performance Marketing Manager",
+      "url": "https://app.careerpuck.com/job-board/prenuvo/job/4737722005?gh_jid=4737722005",
+      "location": "Remote, USA",
+      "outcome": "already tracked",
+      "scout_id": 2780,
+      "reason": "Existing listing preserved"
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "Grafana Labs",
+      "title": "Demand Generation Program Manager | United States | Remote",
+      "url": "https://job-boards.greenhouse.io/grafanalabs/jobs/6115634004",
+      "location": "United States (Remote)",
+      "outcome": "already tracked",
+      "scout_id": 2381,
+      "reason": "Existing listing preserved"
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "Upstart",
+      "title": "Senior Performance Marketing Manager, HELOC Growth",
+      "url": "https://careers.upstart.com/jobs/senior-performance-marketing-manager-heloc-growth?gh_jid=7858792",
+      "location": "Remote - United States",
+      "outcome": "added",
+      "scout_id": 2877,
+      "reason": "new unique",
+      "tracker_id": 2877
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "AirGarage",
+      "title": "Performance Marketing Manager",
+      "url": "https://jobs.ashbyhq.com/airgarage/bd2deb3a-38d1-4b1b-8544-7f0d55e07e47",
+      "location": "United States",
+      "outcome": "added",
+      "scout_id": 2878,
+      "reason": "new unique",
+      "tracker_id": 2878
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "PayNearMe",
+      "title": "Sr. Marketing Manager (Demand Generation)",
+      "url": "https://job-boards.greenhouse.io/paynearmeinc/jobs/4395382009",
+      "location": "Remote",
+      "outcome": "added",
+      "scout_id": 2879,
+      "reason": "new unique",
+      "tracker_id": 2879
+    },
+    {
+      "retrieved_by": "Firecrawl",
+      "company": "Mural",
+      "title": "Performance Marketing Manager ",
+      "url": "https://jobs.ashbyhq.com/mural/c5c3f1cb-eaea-4bc5-ba85-82829040edf0",
+      "location": "United States",
+      "outcome": "already tracked",
+      "scout_id": 2819,
+      "reason": "Existing listing preserved"
+    }
+  ],
+  "before_sync": {
+    "status": "synced",
+    "synced_at": "2026-10-22T10:49:59.214663+00:00",
+    "rows": 1144,
+    "cells_written": 0,
+    "jobs_added_to_sheet": 0,
+    "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit"
+  },
+  "after_sync": {
+    "status": "synced",
+    "synced_at": "2026-10-22T10:50:43.954496+00:00",
+    "rows": 1148,
+    "cells_written": 54,
+    "jobs_added_to_sheet": 4,
+    "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit"
+  },
+  "verified_primary_readback": true
+}

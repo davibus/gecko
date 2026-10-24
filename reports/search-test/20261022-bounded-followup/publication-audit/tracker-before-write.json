@@ -1,0 +1,199 @@
+{
+  "worksheet": "Job List",
+  "sheet_id": 1274044170,
+  "affected_jobs": [
+    {
+      "row": 1186,
+      "job_id": 2883,
+      "source": "adzuna",
+      "source_job_id": "5934060747",
+      "url": "https://www.adzuna.com/details/5934060747?utm_medium=api&utm_source=b4f3e3f8",
+      "new": true
+    },
+    {
+      "row": 1187,
+      "job_id": 2884,
+      "source": "lever",
+      "source_job_id": "d68c46f4-805c-45e6-80ec-69046dcfe137",
+      "url": "https://jobs.lever.co/silverbackstrategies/d68c46f4-805c-45e6-80ec-69046dcfe137",
+      "new": true
+    }
+  ],
+  "before": {
+    "1186": {},
+    "1187": {}
+  },
+  "expected": [
+    {
+      "row": 1186,
+      "field": "Scout ID",
+      "value": 2883
+    },
+    {
+      "row": 1186,
+      "field": "Source",
+      "value": "adzuna"
+    },
+    {
+      "row": 1186,
+      "field": "Company",
+      "value": "Carhartt"
+    },
+    {
+      "row": 1186,
+      "field": "Job Title",
+      "value": "Paid Media Strategist"
+    },
+    {
+      "row": 1186,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1186,
+      "field": "Location",
+      "value": "Dearborn, Wayne County"
+    },
+    {
+      "row": 1186,
+      "field": "Work Arrangement",
+      "value": "remote"
+    },
+    {
+      "row": 1186,
+      "field": "Employment Type",
+      "value": "['full-time']"
+    },
+    {
+      "row": 1186,
+      "field": "Salary",
+      "value": "$ 96,113"
+    },
+    {
+      "row": 1186,
+      "field": "Date Posted",
+      "value": "2026-10-19"
+    },
+    {
+      "row": 1186,
+      "field": "Date Found",
+      "value": "2026-10-22"
+    },
+    {
+      "row": 1186,
+      "field": "Last Seen",
+      "value": "2026-10-22"
+    },
+    {
+      "row": 1186,
+      "field": "Job URL",
+      "value": "https://www.adzuna.com/details/5934060747?utm_medium=api&utm_source=b4f3e3f8"
+    },
+    {
+      "row": 1186,
+      "field": "Found Using",
+      "value": "Gecko"
+    },
+    {
+      "row": 1186,
+      "field": "Job Description",
+      "value": "Position Details: Title: Paid Media Strategist Department: Digital Marketing Reports to: Digital Marketing Manager Location: Dearborn Job Classification: Remote FLSA Status: Exempt Job Band: Professional Job Summary The Paid Media Strategist will lead Carhartt\u2019s digital media strategy across direct-to-consumer businesses, including Carhartt.com and other owned ecommerce properties. This role is responsible for developing and optimizing paid media plans across key channels (paid social, affiliate, display, video, audio, and content partnerships) to drive consideration, traffic, customer acquisition, and revenue in alignment with business goals. Key responsibilities include driving performance through media strategy, audience development, measurement, and optimization while collaborating with creative teams, agencies, and cross-functional partners to deliver impactful, results-driven campaigns. A strategic mindset, analytical rigor, hands-on leadership, and the ability to innovate in a fast-paced environment are essential. Inspired by Hard Work At Carhartt, the values of hard work\u2014dependability, honesty, and trust\u2014are rooted in the legacy of our founder, Hamilton Carhartt. His commitment to serving hardworking people continues to inspire everything we do. Guided by his legacy and our mission\u2014We serve and protect all hardworking people by building durable products\u2014we remain dedicated to upholding these principles in every decision we make and every product we create. Associate Responsibilities Lead media strategy development and execution of seasonal and evergreen paid media campaigns, ensuring alignment with business objectives, KPIs, and budget guidance to deliver strong performance and actionable consumer insights. Collaborate with internal marketing and creative teams to develop best-in-class content and messaging that resonates with target audiences across paid media channels. Manage day-to-day relationships with media agency and platform partners, ensuring campaigns are executed efficiently and effectively. Drive performance by leading projections, managing media investments against revenue targets, and optimizing channel mix, audiences, bidding strategies, and placements to improve traffic, ROI, and customer acquisition. Analyze and report channel performance and campaign results, providing actionable insights and recommendations to stakeholders through regular business reviews and performance updates. Partner closely with D2C merchandising, analytics, and marketing teams to align media strategies with product priorities, business objectives, and customer needs. Assess the full consumer journey for effectiveness, ensuring strong alignment between media, messaging, audience targeting, and landing page experiences. Proactively identify new media opportunities, technologies, audience strategies, and industry trends to elevate Carhartt\u2019s digital media performance and maintain a competitive edge. Manage paid media budgets, forecasting, invoicing, and reconciliation processes to ensure investments align with performance goals and maximize returns. Required Education Bachelor's Degree Required in Marketing, Advertising or Related Field; or equivalent years of related experience Required Skills & Experience 5+ years of digital marketing experience, including: 3+ years of experience driving performance through paid media channels; agency experience is a plus. 3+ years of budget management, forecasting, and ROI evaluation experience. Hands-on experience with analytics and measurement platforms (Adobe Analytics, GA4, Measured, Meta, etc.). Strong analytical skills with the ability to optimize and report on digital marketing performance. Advanced Microsoft Excel proficiency. Experience managing media agencies and cross-functional stakeholders. Ability to execute under tight deadlines and within budget parameters. Strong written and verbal communication skills. Exceptional organization and attention to detail. Ecommerce, apparel, consumer products, or performance marketing experience preferred. Experience supporting omnichannel marketing strategies, including retail or store-related initiatives. Experience with emerging media channels, retail media networks, or local media activation. Familiarity with brand marketing and upper-funnel media measurement methodologies. Experience leveraging AI tools and generative AI platforms to improve marketing workflows, content development, campaign planning, creative testing, and performance optimization. Physical Requirements and Working Conditions This position has a Remote location: Associate will have no regular requirement to be on-site. Travel on-site is limited to special events. Carhartt is a tobacco free workplace. #LI-REMOTE"
+    },
+    {
+      "row": 1186,
+      "field": "Notes",
+      "value": "Bounded 20-listing Gecko test; four-day posting window. Contract jobs included; posted starting annual base above $120,000 excluded. Full description saved; unknown/estimated pay is not a confirmed salary. No resume or application started."
+    },
+    {
+      "row": 1187,
+      "field": "Scout ID",
+      "value": 2884
+    },
+    {
+      "row": 1187,
+      "field": "Source",
+      "value": "lever"
+    },
+    {
+      "row": 1187,
+      "field": "Company",
+      "value": "Silverback Strategies"
+    },
+    {
+      "row": 1187,
+      "field": "Job Title",
+      "value": "Senior Paid Media Manager (Remote)"
+    },
+    {
+      "row": 1187,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1187,
+      "field": "Location",
+      "value": "Remote"
+    },
+    {
+      "row": 1187,
+      "field": "Work Arrangement",
+      "value": "remote"
+    },
+    {
+      "row": 1187,
+      "field": "Employment Type",
+      "value": "full-time"
+    },
+    {
+      "row": 1187,
+      "field": "Salary",
+      "value": "USD 90000-115000 per year"
+    },
+    {
+      "row": 1187,
+      "field": "Date Posted",
+      "value": "2026-10-22"
+    },
+    {
+      "row": 1187,
+      "field": "Date Found",
+      "value": "2026-10-22"
+    },
+    {
+      "row": 1187,
+      "field": "Last Seen",
+      "value": "2026-10-22"
+    },
+    {
+      "row": 1187,
+      "field": "Job URL",
+      "value": "https://jobs.lever.co/silverbackstrategies/d68c46f4-805c-45e6-80ec-69046dcfe137"
+    },
+    {
+      "row": 1187,
+      "field": "Found Using",
+      "value": "Firecrawl"
+    },
+    {
+      "row": 1187,
+      "field": "Job Description",
+      "value": "Silverback Strategies is a performance marketing agency built to help marketers grow and capitalize on change. Ad Age, Inc Magazine, The Washington Post, The Washingtonian, and The Washington Business Journal have recognized Silverback as one of the best places to work. We hire the best and help them get better. Silverbackers are supported, challenged and inspired by their peers. Regardless of title or tenure, every Silverbacker plays a role in helping our agency get better. This is a place where you can make a difference. Today, we\u2019re ready to add another Senior Paid Media Manager to our team. Our new Senior Paid Media Manager will serve as a premier subject matter expert in all things related to Paid Media. You will act as a true paid channel expert, developing and managing a portfolio of Paid Media accounts and marketing campaigns, building great relationships, managing projects and deliverables, and growing accounts. You\u2019ll work on a team of other Paid Media Specialists and Managers, but as the Sr. Manager, will be expected to go \u201cabove and beyond\u201d to exemplify excellence in your work & contribute to internal initiatives like developing media best practices, disseminating industry updates, and enhancing Silverback\u2019s overall media product. You\u2019ll serve as a role model and mentor to your peers, and in some cases, will even directly manage 1-2 junior teammates. The Senior Paid Media Manager is expected to work cross-functionally, finding opportunities to enhance our clients' overall digital programs through Paid initiatives and complementary strategies with other services. You'll collaborate internally with teammates in Creative, Measurement, SEO, and Client Services functions. You\u2019ll be the true face of Paid Media for your assigned clients, and will spearhead the kickoff, development, tactical execution, and ongoing testing, optimization, and overall success of your clients\u2019 media strategies & performance. Here\u2019s what we expect from our Senior Paid Media Manager. \u2014What You'll Do\u2014 - Responsible for driving the strategy, innovation, and performance of multiple client Paid Media strategies - Fully \u201cown\u201d the success of a portfolio of a few (3-5) client accounts - Plan, implement, and audit paid media campaigns & strategies that align with client KPIs and marketing goals - Successfully plan & execute campaigns in both Search and Social paid media platforms (Google, Meta, LinkedIn, TikTok) - Pioneer testing and deployment of \u201coutside the box\u201d media channels & tools - Collaborate closely with internal teammates in our Creative and Measurement teams to drive successful creative strategy/performance & analytics measurement, tag management, etc - Collaborate cross-functionally whenever appropriate (i.e. on multiservice clients) with counterparts in SEO to drive successful cross-channel marketing strategy for clients - Regularly create, analyze, and present insightful and actionable Paid Media performance reports directly to clients - Leverage various tools to carry out analysis and to maximize efficiency and effectiveness of Paid Media accounts - Serve as the lead point of contact for all things Paid Media for your \u201cowned\u201d clients; lead biweekly and ad hoc client calls to build & maintain strong client relationships - Successfully retain & even grow your assigned client portfolio through best-in-class communication, storytelling, presentation, and relationship building - Accurately communicate project timelines to clients; manage client expectations and proactively update clients as things change - Understand the client\u2019s industry, audience and goals and stay on top of industry changes, trends, and best practices - Play a close role in sales enablement, including but not limited to identifying upsell/cross-sell opportunities and contributing to sales pitches, client onboardings/kickoffs, etc - Effectively delegate support tasks as appropriate to junior teammates; manage quality assurance for teammates\u2019 work & ensure clients are receiving high-quality deliverables 100% of the time - In some cases, directly manage (i.e. act as the dedicated people manager) for 1-2 Paid Media teammates (Managers, Specialists, or Associates) - Contribute to the overall success of the Media department through proactive involvement in product development, process improvement, and direct collaboration with the Associate Directors and Senior Director of Paid Media \u2014What We\u2019re Looking For\u2014 - 5+ years of experience (minimum) managing Paid Search AND Social campaigns. (Main platforms are Google, Meta, LinkedIn, and TikTok) - Previous agency experience is a must-have! - Experience serving as the main point of contact on client engagements (at least 3+ years of client-facing experience); strong comfortability being client-facing - Strong experience driving/leading paid media account strategy - Strong testing & innovation mentality - Experience collaborating with Creative resources and contributing to creative briefs + driving paid social performance creative - Advanced proficiency with Google Analytics 4 and Google Sheets/Excel - Experience with Google Tag Manager and Supermetrics is a plus! - Strong analytical skills, technical knowledge and attention to detail - Excellent written and verbal communication skills - Eagerness to deliver under tight deadlines - Genuine curiosity that will guide the research to inform your technical work - Outstanding time management and organization skills - The ability to accept constructive criticism in a professional manner and to learn from edits - Comfort with constant personal and professional growth \u2014Why Silverback?\u2014 - Silverback isn\u2019t for everybody. If you\u2019re an A player, you will get paid more, learn more and grow faster with support from a smart and fun team. If you\u2019re a B player, you will be miserable. - Make an impact: We\u2019re a small agency. Everybody has the opportunity to drive change and impact. - Get paid: We hire the best and pay them generously. - Do cool sh*t: From media to SEO to measurement, learn the cutting edge of what works. \u2014Benefits & Perks\u2014 - Unlimited PTO - Comprehensive health, dental, and vision plans - Virtual Team Events and a fun, casual, inclusive company culture - Company-paid ClassPass membership - 12 weeks of Paid Parental Leave - Summer Fridays - 401(k) with Employer Match \u2014Work Environment\u2014 - We\u2019re a fully remote agency with employees working across the continental United States. At Silverback, you'll be part of a remote work culture that emphasizes smooth, productive online communication. - We at Silverback pride ourselves on being an extremely tight-knit team. We boast an unparalleled culture of collaboration, empathy, and a truly \"work hard, play hard\" mentality. - Ad Age, Inc. Magazine and The Washington Post have named Silverback one of the best places to work in the Country and our CEO is a DIGIDAY Top Boss. Apply today & discover for yourself what makes Silverback Strategies such a special place to work. We can't wait to hear from you! Silverback Strategies is an equal opportunity employer. If you believe you meet the qualifications for the position, then we invite you to apply. We celebrate the free flow of conversation, ideas and opinions at Silverback, but actions such as bullying, discrimination, harassment or retaliation of any kind are strictly prohibited in our workplace. We are committed to providing a safe, open and accommodating environment that allows all of our team members to thrive. Employment decisions are made without regard to age, color, disability, family, genetic information, origin, race, religion, sex. For more information, we invite you to visit eeoc.gov."
+    },
+    {
+      "row": 1187,
+      "field": "Notes",
+      "value": "Bounded 20-listing Gecko test; four-day posting window. Contract jobs included; posted starting annual base above $120,000 excluded. Full description saved; unknown/estimated pay is not a confirmed salary. No resume or application started."
+    },
+    {
+      "row": 1186,
+      "field": "Last Updated",
+      "value": "2026-10-22T05:40:26-06:00 | Gecko"
+    },
+    {
+      "row": 1187,
+      "field": "Last Updated",
+      "value": "2026-10-22T05:40:26-06:00 | Gecko"
+    }
+  ],
+  "skipped": []
+}

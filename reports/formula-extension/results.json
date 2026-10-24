@@ -1,0 +1,33 @@
+{
+  "extension": {
+    "requests": 0,
+    "formulas_filled": 0
+  },
+  "content_reviews_saved": 20,
+  "last_job_row": 1194,
+  "word_count_columns": [
+    "# (Gecko) Words",
+    "# (FC) Job Desc Words",
+    "Total Words"
+  ],
+  "all_word_formulas_verified": true,
+  "sync": {
+    "status": "synced",
+    "synced_at": "2026-10-22T13:07:26.220728+00:00",
+    "rows": 1193,
+    "cells_written": 1,
+    "jobs_added_to_sheet": 0,
+    "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit",
+    "range_extension": {
+      "requests": 0,
+      "formulas_filled": 0
+    },
+    "salaries_normalized": 0
+  },
+  "backup": {
+    "backend": "sqlite",
+    "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T070727547054.sqlite3",
+    "integrity": "ok",
+    "google_sheets_accessed": false
+  }
+}

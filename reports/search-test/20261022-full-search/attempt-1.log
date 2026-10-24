@@ -1,0 +1,34 @@
+{"mode": "full manual discovery", "daily_credit_cap": 200, "remaining_accounted_today": 176, "window_hours": 96, "contracts": true, "maximum_starting_base": 120000}
+{"backup_before": {"backend": "sqlite", "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T054819922192.sqlite3", "integrity": "ok", "google_sheets_accessed": false}}
+EARLY FILTERS {"source": "remotive", "fetched": 2, "already_known": 2, "passed_cheap_checks": 0}
+remotive: collected 0; checking 0 candidate URLs
+EARLY FILTERS {"source": "remote-careers", "fetched": 0, "passed_cheap_checks": 0}
+remote-careers: collected 0; checking 0 candidate URLs
+EARLY FILTERS {"source": "adzuna", "fetched": 17, "outside_four_days": 3, "same_source_duplicate": 3, "already_known": 2, "filter: non-remote role outside preferred locations": 5, "filter: outside target role families": 2, "passed_cheap_checks": 2}
+adzuna: collected 2; checking 2 candidate URLs
+EARLY FILTERS {"source": "jobicy", "fetched": 188, "filter: outside target role families": 65, "filter: unrelated role family": 39, "already_known": 13, "filter: starting annual base salary above $120,000": 6, "outside_four_days": 62, "passed_cheap_checks": 3}
+jobicy: collected 3; checking 3 candidate URLs
+adzuna: processed 2; new=1; existing=0; review=1; dead=0
+EARLY FILTERS {"source": "remoteok", "fetched": 99, "filter: outside target role families": 2, "filter: unrelated role family": 3, "outside_four_days": 93, "already_known": 1, "passed_cheap_checks": 0}
+remoteok: collected 0; checking 0 candidate URLs
+remotive: processed 0; new=0; existing=0; review=0; dead=0
+EARLY FILTERS {"source": "usajobs", "fetched": 9, "filter: outside target role families": 9, "passed_cheap_checks": 0}
+usajobs: collected 0; checking 0 candidate URLs
+EARLY FILTERS {"source": "greenhouse", "fetched": 7033, "outside_four_days": 6295, "filter: outside target role families": 301, "filter: unrelated role family": 122, "already_known": 228, "filter: generic non-marketing manager/production role": 15, "filter: non-remote role outside preferred locations": 18, "filter: non-marketing data science": 36, "filter: excluded title/seniority": 1, "passed_cheap_checks": 17}
+greenhouse: collected 17; checking 17 candidate URLs
+EARLY FILTERS {"source": "ashby", "fetched": 3130, "outside_four_days": 2739, "already_known": 175, "filter: outside target role families": 164, "filter: starting annual base salary above $120,000": 5, "filter: unrelated role family": 40, "filter: generic non-marketing manager/production role": 2, "filter: excluded title/seniority": 1, "filter: non-marketing data science": 1, "passed_cheap_checks": 3}
+ashby: collected 3; checking 3 candidate URLs
+EARLY FILTERS {"source": "workable", "fetched": 5526, "outside_four_days": 2924, "same_source_duplicate": 2171, "already_known": 321, "filter: outside target role families": 81, "filter: unrelated role family": 19, "filter: generic non-marketing manager/production role": 3, "passed_cheap_checks": 7}
+workable: collected 7; checking 7 candidate URLs
+EARLY FILTERS {"source": "weworkremotely", "fetched": 127, "filter: outside target role families": 12, "filter: unrelated role family": 5, "already_known": 17, "outside_four_days": 91, "same_source_duplicate": 1, "passed_cheap_checks": 1}
+weworkremotely: collected 1; checking 1 candidate URLs
+EARLY FILTERS {"source": "workingnomads", "fetched": 43, "filter: outside target role families": 1, "filter: unrelated role family": 4, "outside_four_days": 38, "passed_cheap_checks": 0}
+workingnomads: collected 0; checking 0 candidate URLs
+EARLY FILTERS {"source": "lever", "fetched": 4699, "outside_four_days": 4366, "filter: outside target role families": 116, "already_known": 190, "filter: unrelated role family": 11, "filter: generic non-marketing manager/production role": 3, "filter: non-remote role outside preferred locations": 2, "filter: excluded title/seniority": 1, "filter: excluded employment type": 1, "passed_cheap_checks": 9}
+lever: collected 9; checking 9 candidate URLs
+EARLY FILTERS {"source": "themuse", "fetched": 40796, "outside_four_days": 1756, "filter: outside target role families": 179, "filter: unrelated role family": 39, "filter: generic non-marketing manager/production role": 4, "filter: excluded employment type": 5, "same_source_duplicate": 38813, "passed_cheap_checks": 0}
+themuse: collected 0; checking 0 candidate URLs
+EARLY FILTERS {"source": "glassdoor", "fetched": 0, "passed_cheap_checks": 0}
+glassdoor: collected 0; checking 0 candidate URLs
+EARLY FILTERS {"source": "ziprecruiter", "fetched": 0, "passed_cheap_checks": 0}
+ziprecruiter: collected 0; checking 0 candidate URLs

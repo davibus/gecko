@@ -68,6 +68,8 @@ class JobListing:
     indeed_application_method: str = ""
     indeed_application_verified_on: str = ""
     id: int | None = None
+    found_using: str = ""
+    details: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

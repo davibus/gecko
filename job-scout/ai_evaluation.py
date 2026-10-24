@@ -23,7 +23,7 @@ class Evaluation:
     scoring_model: str
     relevance: str
     triage_reason: str
-    match_score: int | None = None
+    match_score: int | float | None = None
     apply_decision: str = "No"
     score_reason: str = ""
     evaluated_at: str = ""
@@ -141,6 +141,33 @@ class JobEvaluator:
         results: dict[int, Evaluation] = {}
         metrics = EvaluationMetrics(disabled=not self.enabled)
         if dry_run or not self.enabled:
+            return results, metrics
+        # Daily/dashboard scoring must use the same evidence and cutoff as
+        # discovery, rather than producing a second unconstrained AI score.
+        from resume_match import settings, assess, record, explanation, POLICY
+        if settings()['enabled']:
+            from codex_runner import MODEL
+            candidates = [job for job in jobs if job is not None and job.id is not None]
+            reviews = assess([record(job, str(job.id)) for job in candidates])
+            for job in candidates:
+                review = reviews[str(job.id)]
+                if review['status'] == 'pending':
+                    metrics.failures += 1
+                    continue
+                accepted = review['accepted']
+                evaluation = Evaluation(
+                    description_hash=description_hash(self._description(job)),
+                    profile_hash=hashlib.sha256((review['master_sha256'] + POLICY).encode()).hexdigest(),
+                    triage_model=MODEL, scoring_model=MODEL,
+                    relevance='strong' if accepted else 'reject', triage_reason=review['reason'],
+                    match_score=review['score'], apply_decision='Yes' if accepted else 'No',
+                    score_reason=explanation(review),
+                    evaluated_at=datetime.now(timezone.utc).isoformat(timespec='seconds'))
+                self.store.save_job_evaluation(job.id, evaluation.to_dict())
+                results[job.id] = evaluation
+                metrics.cached_unchanged += int(bool(review.get('cached')))
+                metrics.full_score_calls += int(not review.get('cached'))
+                metrics.Apply_Yes += int(accepted)
             return results, metrics
         for job in jobs:
             if job is None or job.id is None:

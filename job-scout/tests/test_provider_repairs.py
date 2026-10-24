@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 import sys
 import unittest
+from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -23,21 +24,30 @@ def document():
 
 
 class ProviderRepairTests(unittest.TestCase):
+    def client(self):
+        from firecrawl_state import History, config, utcnow
+        directory = TemporaryDirectory(); self.addCleanup(directory.cleanup)
+        settings = config(); settings['enabled'] = True
+        history = History(Path(directory.name) / 'firecrawl.sqlite', settings)
+        history.record_balance({'remainingCredits': 5000}, now=utcnow())
+        return FirecrawlClient(history=history, settings=settings)
+
     @patch.dict(os.environ, {"FIRECRAWL_API_KEY": "test-secret"})
     @patch("sources.firecrawl.post_json")
     def test_public_html_is_cached_and_uses_basic_proxy(self, post):
         post.return_value = {"success": True, "data": {"rawHtml": document(), "metadata": {"statusCode": 200}}}
-        client = FirecrawlClient()
+        client = self.client()
         self.assertEqual(client.document("https://example.com/job").body.decode(), document())
         client.document("https://example.com/job")
         self.assertEqual(post.call_count, 1)
         self.assertEqual(post.call_args.args[1]["proxy"], "basic")
-        self.assertEqual(post.call_args.args[1]["maxAge"], 0)
+        self.assertEqual(post.call_args.args[1]["maxAge"], 86400000)
+        self.assertEqual(post.call_args.args[1]['parsers'], [])
 
     @patch.dict(os.environ, {"FIRECRAWL_API_KEY": "test-secret"})
     @patch("sources.firecrawl.post_json", side_effect=ProviderError("Firecrawl HTTP 402"))
     def test_payment_failure_stops_repeated_requests(self, post):
-        client = FirecrawlClient()
+        client = self.client()
         for number in range(3):
             with self.assertRaises(ProviderError):
                 client.document(f"https://example.com/{number}")
@@ -48,7 +58,7 @@ class ProviderRepairTests(unittest.TestCase):
     def test_failed_page_is_not_a_valid_document(self, post):
         post.return_value = {"success": True, "data": {"rawHtml": "Denied", "metadata": {"statusCode": 403}}}
         with self.assertRaisesRegex(ProviderError, "403"):
-            FirecrawlClient().document("https://example.com/job")
+            self.client().document("https://example.com/job")
 
     @patch("sources.web.get_bytes", side_effect=ProviderError("HTTP Error 404"))
     def test_expired_individual_pages_are_excluded_and_cached(self, fetch):

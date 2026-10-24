@@ -1,0 +1,91 @@
+{
+  "pipeline": {
+    "raw_retrieved": 3,
+    "rss_retrieved": 0,
+    "rss_unique": 0,
+    "rss_duplicates_removed": 0,
+    "successful_feeds": 0,
+    "failed_feeds": 0,
+    "feed_results": [],
+    "api_retrieved": 0,
+    "source_backend": "",
+    "fetched": 3,
+    "normalized": 3,
+    "added": 2,
+    "updated": 1,
+    "duplicates": 1,
+    "cross_provider_duplicates": 1,
+    "unique_available": 0,
+    "unique_imported": 0,
+    "filtered_by_role": 0,
+    "deterministic_rejects": 0,
+    "deterministic_reject_reasons": {},
+    "jooble_excluded": 0,
+    "rejected_history_excluded": 0,
+    "missing_content_excluded": 0,
+    "dead_url_excluded": 0,
+    "source_results_limited": 0,
+    "url_review_excluded": 0,
+    "url_validated": 3,
+    "new_job_ids": [
+      2886,
+      2887
+    ],
+    "existing_job_ids": [
+      1259
+    ],
+    "changed_job_ids": [],
+    "eligibility_includes_usa": 0,
+    "eligibility_worldwide": 0,
+    "example_jobs": [],
+    "backend_qualifying": {},
+    "backend_added": {}
+  },
+  "record_decisions": [
+    {
+      "source": "jobicy",
+      "source_job_id": "156221",
+      "url": "https://jobicy.com/jobs/156221-senior-field-marketing-manager-events",
+      "company": "Harness",
+      "title": "Senior Field Marketing Manager, Events",
+      "reason": "new unique",
+      "job_id": 2886
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "156119",
+      "url": "https://jobicy.com/jobs/156119-marketing-campaign-manager",
+      "company": "Cordance",
+      "title": "Marketing Campaign Manager",
+      "reason": "previously known",
+      "matched_id": 1259,
+      "cross_source": true
+    },
+    {
+      "source": "jobicy",
+      "source_job_id": "155761",
+      "url": "https://jobicy.com/jobs/155761-b2b-event-marketing-manager-6-month-contract",
+      "company": "Instacart",
+      "title": "B2B Event Marketing Manager (6-Month Contract)",
+      "reason": "new unique",
+      "job_id": 2887
+    }
+  ],
+  "queries_pages": [
+    {
+      "kind": "full feed",
+      "status": "completed",
+      "parsed": 188
+    }
+  ],
+  "board_errors": [],
+  "page_exclusions": [],
+  "collection_limits": [],
+  "firecrawl_requests": 0,
+  "errors": "",
+  "health": {
+    "status": "success",
+    "found": 3,
+    "detail": ""
+  }
+}

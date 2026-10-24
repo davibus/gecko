@@ -1,0 +1,21 @@
+# Google Ads Specialist
+
+- **Company:** Therapy Flow
+- **Job Number:** 0ba5c5d06aef728a
+- **Scout ID:** 2951
+- **URL:** https://www.indeed.com/viewjob?jk=0ba5c5d06aef728a
+- **Source:** indeed
+- **Salary:** $55,000 - $80,000
+
+## Job description (tracker description/listing field)
+
+Therapy Flow is seeking a creative, analytical, and tech-savvy Google Ads and Landing Page Specialist to join our team. This role is crucial for driving our digital marketing efforts by building and launching effective Google Ad campaigns and creating optimized landing pages within the GoHighLevel CRM. You will work closely with our clients digital marketing manager to develop strategies that enhance our clients speed to result and overall campaign efficacy. About Therapy Flow We provide tools, education and services for mental health private practice owners that want to grow! Our mission is to simplify success for private practice owners! Description Who We Are Therapy Flow is a leading tool, education, and service company serving mental health private practices. We exist to simplify and improve the private practice ownership process for mental health providers. Our Core Values: Integrity First Deliver WOW Through Service Create Community Excellence through Education Lead with Passion Invest in Simplicity If our culture does not deeply resonate with you, please do not apply. Responsibilities Design, build, and launch Google Ad campaigns tailored to our clients audience, ensuring alignment with their marketing strategies and goals. Develop and optimize landing pages within the GoHighLevel CRM to maximize conversion rates from various digital marketing campaigns. Setting up conversion tracking using GTM, as well as blending conversion events like forms and phone calls via GHL. Conduct keyword research, ad copywriting, and A/B testing to optimize campaign performance. Stay up-to-date with industry trends, best practices, and platform updates to maintain a competitive edge. Collaborate with internal teams to align paid media efforts with overall marketing initiatives and business goals. Track and report on key performance metrics, including CTR, CPC, conversion rate, and revenue attribution. Monitor and analyze the performance of ads and landing pages, using data to drive decisions and improve campaign effectiveness. Provide insights and reports on campaign performance to the leadership and clients and suggest improvements. Foster a positive and innovative environment within the team, promoting our core values. What You'll Need to Succeed 3+ years of experience in digital marketing, with a strong focus on Google Ads and landing page creation. In-depth knowledge of Google Ads platform, including Google Analytics, Google Tag Manager, and other relevant tools. Proven track record of creating and optimizing ads and landing pages for local business lead gen and maximum ROI. Excellent analytical skills to measure and optimize campaign effectiveness. Proficiency in GoHighLevel CRM or similar platforms for landing page creation. Proficient in setting up conversion tracking via GTM. Strong communication skills, both written and verbal, to articulate campaign strategies and results. Ability to work in a fast-paced environment and manage multiple projects simultaneously. Strong organizational skills and attention to detail. Passion for digital marketing and a continuous learning mindset. High self-accountability and commitment to integrity. What We Offer Competitive Benefit and Compensation Offerings Ongoing Training and Development Opportunities Flexible, Unlimited, and “Responsible” Time Off Policy Remote Work Environment How To Apply If you are interested in this position, please submit your application and a Loom (https://www.loom.com/) video with a 90-second introduction on this page (https://jobs.gusto.com/postings/therapy-flow-google-ads-specialist-77e5e57c-f4e3-4ed3-9214-70714be588cb). We look forward to hearing from you! Job Types: Full-time Expected Hours: 40+ per week Salary $55,000 - $80,000 per year
+
+## Structured job information
+
+Target position: Google Ads Specialist
+Company: Therapy Flow
+Location: Remote, US
+Work Arrangement: remote
+Employment Type: ['full-time']
+Salary: $55,000 - $80,000

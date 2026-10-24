@@ -1,0 +1,57 @@
+{
+  "verified": true,
+  "changed_ids": [
+    2876,
+    2877,
+    2878,
+    2879
+  ],
+  "jobs": [
+    {
+      "job_id": 2876,
+      "company": "Coinbase",
+      "description_characters": 5260
+    },
+    {
+      "job_id": 2877,
+      "company": "Upstart",
+      "description_characters": 8576
+    },
+    {
+      "job_id": 2878,
+      "company": "AirGarage",
+      "description_characters": 12149
+    },
+    {
+      "job_id": 2879,
+      "company": "PayNearMe",
+      "description_characters": 7032
+    },
+    {
+      "job_id": 2880,
+      "company": "AIT Global inc.",
+      "description_characters": 3585,
+      "already_present": true
+    }
+  ],
+  "sync": {
+    "status": "synced",
+    "synced_at": "2026-10-22T11:03:28.833984+00:00",
+    "rows": 1149,
+    "cells_written": 4,
+    "jobs_added_to_sheet": 0,
+    "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit"
+  },
+  "backup_before": {
+    "backend": "sqlite",
+    "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T050308626542.sqlite3",
+    "integrity": "ok",
+    "google_sheets_accessed": false
+  },
+  "backup_after": {
+    "backend": "sqlite",
+    "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T050331949831.sqlite3",
+    "integrity": "ok",
+    "google_sheets_accessed": false
+  }
+}

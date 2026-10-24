@@ -1,0 +1,190 @@
+{
+  "result": {
+    "requests": 49,
+    "formulas_filled": 35
+  },
+  "second_pass": {
+    "requests": 0,
+    "formulas_filled": 0
+  },
+  "changed_formulas": [
+    {
+      "row": 1146,
+      "field": "Ready to Apply?",
+      "formula": "=IF(AND(LOWER(TRIM(INDEX(1146:1146,1,MATCH(\"Qualifies to Apply?\",$1:$1,0))))=\"yes\",UPPER(TRIM(INDEX(1146:1146,1,MATCH(\"Resume Created\",$1:$1,0))))=\"X\"),\"X\",\"\")"
+    },
+    {
+      "row": 1146,
+      "field": "Create Resume",
+      "formula": "=IF(AND(LOWER(TRIM(INDEX(1146:1146,1,MATCH(\"Qualifies to Apply?\",$1:$1,0))))=\"yes\",UPPER(TRIM(INDEX(1146:1146,1,MATCH(\"Resume Created\",$1:$1,0))))<>\"X\",LOWER(TRIM(INDEX(1146:1146,1,MATCH(\"Enough Data\",$1:$1,0))))=\"yes\"),\"Yes\",\"No\")"
+    },
+    {
+      "row": 1146,
+      "field": "# Words",
+      "formula": "=IF(TRIM(AG1146)=\"\",0,COUNTA(SPLIT(TRIM(REGEXREPLACE(AG1146,\"\\s+\",\" \")),\" \")))"
+    },
+    {
+      "row": 1146,
+      "field": "# Job Desc Words",
+      "formula": "=IF(TRIM(AH1146)=\"\",0,COUNTA(SPLIT(TRIM(REGEXREPLACE(AH1146,\"\\s+\",\" \")),\" \")))"
+    },
+    {
+      "row": 1146,
+      "field": "Total Words",
+      "formula": "=AK1146+AJ1146"
+    },
+    {
+      "row": 1147,
+      "field": "Ready to Apply?",
+      "formula": "=IF(AND(LOWER(TRIM(INDEX(1147:1147,1,MATCH(\"Qualifies to Apply?\",$1:$1,0))))=\"yes\",UPPER(TRIM(INDEX(1147:1147,1,MATCH(\"Resume Created\",$1:$1,0))))=\"X\"),\"X\",\"\")"
+    },
+    {
+      "row": 1147,
+      "field": "Create Resume",
+      "formula": "=IF(AND(LOWER(TRIM(INDEX(1147:1147,1,MATCH(\"Qualifies to Apply?\",$1:$1,0))))=\"yes\",UPPER(TRIM(INDEX(1147:1147,1,MATCH(\"Resume Created\",$1:$1,0))))<>\"X\",LOWER(TRIM(INDEX(1147:1147,1,MATCH(\"Enough Data\",$1:$1,0))))=\"yes\"),\"Yes\",\"No\")"
+    },
+    {
+      "row": 1147,
+      "field": "# Words",
+      "formula": "=IF(TRIM(AG1147)=\"\",0,COUNTA(SPLIT(TRIM(REGEXREPLACE(AG1147,\"\\s+\",\" \")),\" \")))"
+    },
+    {
+      "row": 1147,
+      "field": "# Job Desc Words",
+      "formula": "=IF(TRIM(AH1147)=\"\",0,COUNTA(SPLIT(TRIM(REGEXREPLACE(AH1147,\"\\s+\",\" \")),\" \")))"
+    },
+    {
+      "row": 1147,
+      "field": "Total Words",
+      "formula": "=AK1147+AJ1147"
+    },
+    {
+      "row": 1148,
+      "field": "Ready to Apply?",
+      "formula": "=IF(AND(LOWER(TRIM(INDEX(1148:1148,1,MATCH(\"Qualifies to Apply?\",$1:$1,0))))=\"yes\",UPPER(TRIM(INDEX(1148:1148,1,MATCH(\"Resume Created\",$1:$1,0))))=\"X\"),\"X\",\"\")"
+    },
+    {
+      "row": 1148,
+      "field": "Create Resume",
+      "formula": "=IF(AND(LOWER(TRIM(INDEX(1148:1148,1,MATCH(\"Qualifies to Apply?\",$1:$1,0))))=\"yes\",UPPER(TRIM(INDEX(1148:1148,1,MATCH(\"Resume Created\",$1:$1,0))))<>\"X\",LOWER(TRIM(INDEX(1148:1148,1,MATCH(\"Enough Data\",$1:$1,0))))=\"yes\"),\"Yes\",\"No\")"
+    },
+    {
+      "row": 1148,
+      "field": "# Words",
+      "formula": "=IF(TRIM(AG1148)=\"\",0,COUNTA(SPLIT(TRIM(REGEXREPLACE(AG1148,\"\\s+\",\" \")),\" \")))"
+    },
+    {
+      "row": 1148,
+      "field": "# Job Desc Words",
+      "formula": "=IF(TRIM(AH1148)=\"\",0,COUNTA(SPLIT(TRIM(REGEXREPLACE(AH1148,\"\\s+\",\" \")),\" \")))"
+    },
+    {
+      "row": 1148,
+      "field": "Total Words",
+      "formula": "=AK1148+AJ1148"
+    },
+    {
+      "row": 1149,
+      "field": "Ready to Apply?",
+      "formula": "=IF(AND(LOWER(TRIM(INDEX(1149:1149,1,MATCH(\"Qualifies to Apply?\",$1:$1,0))))=\"yes\",UPPER(TRIM(INDEX(1149:1149,1,MATCH(\"Resume Created\",$1:$1,0))))=\"X\"),\"X\",\"\")"
+    },
+    {
+      "row": 1149,
+      "field": "Create Resume",
+      "formula": "=IF(AND(LOWER(TRIM(INDEX(1149:1149,1,MATCH(\"Qualifies to Apply?\",$1:$1,0))))=\"yes\",UPPER(TRIM(INDEX(1149:1149,1,MATCH(\"Resume Created\",$1:$1,0))))<>\"X\",LOWER(TRIM(INDEX(1149:1149,1,MATCH(\"Enough Data\",$1:$1,0))))=\"yes\"),\"Yes\",\"No\")"
+    },
+    {
+      "row": 1149,
+      "field": "# Words",
+      "formula": "=IF(TRIM(AG1149)=\"\",0,COUNTA(SPLIT(TRIM(REGEXREPLACE(AG1149,\"\\s+\",\" \")),\" \")))"
+    },
+    {
+      "row": 1149,
+      "field": "# Job Desc Words",
+      "formula": "=IF(TRIM(AH1149)=\"\",0,COUNTA(SPLIT(TRIM(REGEXREPLACE(AH1149,\"\\s+\",\" \")),\" \")))"
+    },
+    {
+      "row": 1149,
+      "field": "Total Words",
+      "formula": "=AK1149+AJ1149"
+    },
+    {
+      "row": 1150,
+      "field": "Ready to Apply?",
+      "formula": "=IF(AND(LOWER(TRIM(INDEX(1150:1150,1,MATCH(\"Qualifies to Apply?\",$1:$1,0))))=\"yes\",UPPER(TRIM(INDEX(1150:1150,1,MATCH(\"Resume Created\",$1:$1,0))))=\"X\"),\"X\",\"\")"
+    },
+    {
+      "row": 1150,
+      "field": "Create Resume",
+      "formula": "=IF(AND(LOWER(TRIM(INDEX(1150:1150,1,MATCH(\"Qualifies to Apply?\",$1:$1,0))))=\"yes\",UPPER(TRIM(INDEX(1150:1150,1,MATCH(\"Resume Created\",$1:$1,0))))<>\"X\",LOWER(TRIM(INDEX(1150:1150,1,MATCH(\"Enough Data\",$1:$1,0))))=\"yes\"),\"Yes\",\"No\")"
+    },
+    {
+      "row": 1150,
+      "field": "# Words",
+      "formula": "=IF(TRIM(AG1150)=\"\",0,COUNTA(SPLIT(TRIM(REGEXREPLACE(AG1150,\"\\s+\",\" \")),\" \")))"
+    },
+    {
+      "row": 1150,
+      "field": "# Job Desc Words",
+      "formula": "=IF(TRIM(AH1150)=\"\",0,COUNTA(SPLIT(TRIM(REGEXREPLACE(AH1150,\"\\s+\",\" \")),\" \")))"
+    },
+    {
+      "row": 1150,
+      "field": "Total Words",
+      "formula": "=AK1150+AJ1150"
+    },
+    {
+      "row": 1151,
+      "field": "Ready to Apply?",
+      "formula": "=IF(AND(LOWER(TRIM(INDEX(1151:1151,1,MATCH(\"Qualifies to Apply?\",$1:$1,0))))=\"yes\",UPPER(TRIM(INDEX(1151:1151,1,MATCH(\"Resume Created\",$1:$1,0))))=\"X\"),\"X\",\"\")"
+    },
+    {
+      "row": 1151,
+      "field": "Create Resume",
+      "formula": "=IF(AND(LOWER(TRIM(INDEX(1151:1151,1,MATCH(\"Qualifies to Apply?\",$1:$1,0))))=\"yes\",UPPER(TRIM(INDEX(1151:1151,1,MATCH(\"Resume Created\",$1:$1,0))))<>\"X\",LOWER(TRIM(INDEX(1151:1151,1,MATCH(\"Enough Data\",$1:$1,0))))=\"yes\"),\"Yes\",\"No\")"
+    },
+    {
+      "row": 1151,
+      "field": "# Words",
+      "formula": "=IF(TRIM(AG1151)=\"\",0,COUNTA(SPLIT(TRIM(REGEXREPLACE(AG1151,\"\\s+\",\" \")),\" \")))"
+    },
+    {
+      "row": 1151,
+      "field": "# Job Desc Words",
+      "formula": "=IF(TRIM(AH1151)=\"\",0,COUNTA(SPLIT(TRIM(REGEXREPLACE(AH1151,\"\\s+\",\" \")),\" \")))"
+    },
+    {
+      "row": 1151,
+      "field": "Total Words",
+      "formula": "=AK1151+AJ1151"
+    },
+    {
+      "row": 1152,
+      "field": "Ready to Apply?",
+      "formula": "=IF(AND(LOWER(TRIM(INDEX(1152:1152,1,MATCH(\"Qualifies to Apply?\",$1:$1,0))))=\"yes\",UPPER(TRIM(INDEX(1152:1152,1,MATCH(\"Resume Created\",$1:$1,0))))=\"X\"),\"X\",\"\")"
+    },
+    {
+      "row": 1152,
+      "field": "Create Resume",
+      "formula": "=IF(AND(LOWER(TRIM(INDEX(1152:1152,1,MATCH(\"Qualifies to Apply?\",$1:$1,0))))=\"yes\",UPPER(TRIM(INDEX(1152:1152,1,MATCH(\"Resume Created\",$1:$1,0))))<>\"X\",LOWER(TRIM(INDEX(1152:1152,1,MATCH(\"Enough Data\",$1:$1,0))))=\"yes\"),\"Yes\",\"No\")"
+    },
+    {
+      "row": 1152,
+      "field": "# Words",
+      "formula": "=IF(TRIM(AG1152)=\"\",0,COUNTA(SPLIT(TRIM(REGEXREPLACE(AG1152,\"\\s+\",\" \")),\" \")))"
+    },
+    {
+      "row": 1152,
+      "field": "# Job Desc Words",
+      "formula": "=IF(TRIM(AH1152)=\"\",0,COUNTA(SPLIT(TRIM(REGEXREPLACE(AH1152,\"\\s+\",\" \")),\" \")))"
+    },
+    {
+      "row": 1152,
+      "field": "Total Words",
+      "formula": "=AK1152+AJ1152"
+    }
+  ],
+  "filters_off": true,
+  "frozen_rows": 1,
+  "verified": true
+}

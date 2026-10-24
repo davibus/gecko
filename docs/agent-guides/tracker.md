@@ -81,6 +81,30 @@ tabs, and verify values by readback. Never import Sheet edits into SQLite.
 
 ## Current field and write rules
 
+- October 22 resume-match admission: new discovery and tracker publication require
+  a validated score of at least 80 against the current Word master, plus at least
+  70% responsibilities and required-skills alignment. Unknown/failed reviews stay
+  pending. Existing jobs and manual decisions are preserved. See
+  `docs/resume-match-filter.md` for weights, evidence validation and cache behavior.
+
+- October 22 user update: new jobs automatically receive **Enough Data** = Yes
+  only after a content review finds pertinent, job-specific information sufficient
+  to tailor a resume. Missing, irrelevant, random or generic-only descriptions are
+  No. This supersedes older manual-only wording. Use `description_readiness.py`
+  and its cached, source-supported review; never treat word count as the decision
+  or start resume generation from it. Existing manual decisions remain preserved.
+- Extend the existing formulas, validation and formatting for Enough Data and the
+  renamed Gecko/FC word-count columns through the last job row. Enough Data is a
+  saved automatic content-review value, not a fabricated spreadsheet formula.
+
+- Contract jobs, including short-term contracts, are eligible for consideration
+  (Dave's preference, October 22, 2026). Do not exclude a job solely for being a
+  contract; retain role, location, fee, rejection, and availability checks.
+- Skip new listings whose posted starting annual base salary is above $120,000;
+  exactly $120,000 is allowed (October 22, 2026). Do not add excluded jobs to
+  the tracker/Sheet. Compare the
+  lower end, not the top of the range. Unknown/estimated pay and upper-only
+  figures do not establish a starting salary. Do not remove existing jobs.
 - Resolve current fields by unique names and jobs by stable ID/source/canonical
   URL (Indeed jk where applicable). A row number alone is not a durable identity.
   Use the existing tracker interface and transactions; verify every write by
@@ -91,7 +115,10 @@ tabs, and verify values by readback. Never import Sheet edits into SQLite.
   including the tool and America/Denver date/time. Detailed findings belong in
   Notes. A pull, backup, export, or instruction sync must not fabricate dates.
 - Apply? = Yes requires Utah or explicit remote work and every eligibility guard.
-  Do not infer remote work from listing prose or approve unknown locations.
+  Explicit job-specific declarations such as `Location: Remote` or a remote title
+  marker are valid fallback evidence when provider fields omit the arrangement.
+  Generic remote-team experience or benefits are not evidence; preserve explicit
+  on-site/hybrid requirements and do not approve unknown locations.
   A confirmed mandatory fee is Cost = x, forces Apply? = No, and blocks resumes;
   blank/unknown Cost does not. Preserve manual decisions and rejected, expired,
   duplicate, applied, and invalid-URL exclusions.

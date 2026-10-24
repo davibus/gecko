@@ -1,0 +1,199 @@
+{
+  "worksheet": "Job List",
+  "sheet_id": 1274044170,
+  "affected_jobs": [
+    {
+      "row": 1184,
+      "job_id": 2881,
+      "source": "adzuna",
+      "source_job_id": "5937236056",
+      "url": "https://www.adzuna.com/details/5937236056?utm_medium=api&utm_source=b4f3e3f8",
+      "new": true
+    },
+    {
+      "row": 1185,
+      "job_id": 2882,
+      "source": "adzuna",
+      "source_job_id": "5937234879",
+      "url": "https://www.adzuna.com/details/5937234879?utm_medium=api&utm_source=b4f3e3f8",
+      "new": true
+    }
+  ],
+  "before": {
+    "1184": {},
+    "1185": {}
+  },
+  "expected": [
+    {
+      "row": 1184,
+      "field": "Scout ID",
+      "value": 2881
+    },
+    {
+      "row": 1184,
+      "field": "Source",
+      "value": "adzuna"
+    },
+    {
+      "row": 1184,
+      "field": "Company",
+      "value": "Tek Ninjas"
+    },
+    {
+      "row": 1184,
+      "field": "Job Title",
+      "value": "Field Marketing Manager - SLED"
+    },
+    {
+      "row": 1184,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1184,
+      "field": "Location",
+      "value": "US"
+    },
+    {
+      "row": 1184,
+      "field": "Work Arrangement",
+      "value": "remote"
+    },
+    {
+      "row": 1184,
+      "field": "Employment Type",
+      "value": "contract"
+    },
+    {
+      "row": 1184,
+      "field": "Salary",
+      "value": "$124,800 - $124,800"
+    },
+    {
+      "row": 1184,
+      "field": "Date Posted",
+      "value": "2026-10-21"
+    },
+    {
+      "row": 1184,
+      "field": "Date Found",
+      "value": "2026-10-22"
+    },
+    {
+      "row": 1184,
+      "field": "Last Seen",
+      "value": "2026-10-22"
+    },
+    {
+      "row": 1184,
+      "field": "Job URL",
+      "value": "https://www.adzuna.com/details/5937236056?utm_medium=api&utm_source=b4f3e3f8"
+    },
+    {
+      "row": 1184,
+      "field": "Found Using",
+      "value": "Gecko"
+    },
+    {
+      "row": 1184,
+      "field": "Job Description",
+      "value": "**Job Title: Field Marketing Manager - SLED** **Duration: 3+ months** **Location: Remote** **About the Role** Client is seeking a Field Marketing Contractor to support our SLED (State, Local, and Education) business. This role will focus on executing marketing programs already planned for 2H, ensuring events and campaigns run smoothly, and partnering closely with the SLED sales team to support ongoing business priorities. This is an execution-focused role that helps keep day-to-day field marketing activities moving. You'll work with the Field Marketing team, Sales, Marketing Operations, and Engineering, and Channel teams to coordinate events, manage logistics, and support marketing requests that help drive pipeline and customer engagement. **What You'll Do** - Execute existing SLED field marketing programs and campaigns planned for the second half of the year. - Support the planning and execution of tradeshows, customer events, partner events, executive dinners, and webinars. - Partner with the SLED sales team to prioritize and execute marketing requests that align with business needs. - Coordinate event logistics, vendor management, registrations, and onsite execution as needed. - Work with Marketing Operations and Corporate Marketing to ensure campaigns are launched and supported successfully. - Help drive event attendance through invitations, communications, and follow-up activities. - Track program metrics and provide basic reporting on event and campaign performance. - Manage day-to-day field marketing activities while ensuring a high-quality experience for customers and internal stakeholders. - Support budget tracking and purchase order processes as needed. **What You'll Bring** - 2 - 6+ years of field marketing, event marketing, or regional marketing experience in B2B technology - Experience supporting SLED or Public Sector sales organizations is preferred. - Strong event execution and project management skills with excellent attention to detail. - Ability to manage multiple priorities and adapt quickly in a fast-paced environment. - Experience working cross-functionally with Sales, Marketing, and Channel teams. - Familiarity with Salesforce, Tableau, Goldcast (or similar event platforms), procurement/contract platforms, Google Workspace - Strong communication and organizational skills. - Ability to work independently while collaborating effectively with a distributed team. **About TekNinjas** TekNinjas is a global IT staffing partner placing skilled professionals with leading enterprises and system integrators across the US, Canada, UK, India, and the EU. We focus on the right fit - not just the fast fill - and stay engaged with our consultants well beyond the start date. We're the **right partners in your success.** _TekNinjas is an Equal Opportunity Employer._"
+    },
+    {
+      "row": 1184,
+      "field": "Notes",
+      "value": "Contract jobs included at Dave\u2019s request on October 22. Remote, short-term contract. Full source description retrieved and saved; no resume or application started. Similar SLED role appears through another staffing agency; employer identity is not confirmed."
+    },
+    {
+      "row": 1185,
+      "field": "Scout ID",
+      "value": 2882
+    },
+    {
+      "row": 1185,
+      "field": "Source",
+      "value": "adzuna"
+    },
+    {
+      "row": 1185,
+      "field": "Company",
+      "value": "DivIHN Integration Inc"
+    },
+    {
+      "row": 1185,
+      "field": "Job Title",
+      "value": "Field Marketing Manager - SLED"
+    },
+    {
+      "row": 1185,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1185,
+      "field": "Location",
+      "value": "US"
+    },
+    {
+      "row": 1185,
+      "field": "Work Arrangement",
+      "value": "remote"
+    },
+    {
+      "row": 1185,
+      "field": "Employment Type",
+      "value": "contract"
+    },
+    {
+      "row": 1185,
+      "field": "Salary",
+      "value": "$122,720 - $122,720"
+    },
+    {
+      "row": 1185,
+      "field": "Date Posted",
+      "value": "2026-10-21"
+    },
+    {
+      "row": 1185,
+      "field": "Date Found",
+      "value": "2026-10-22"
+    },
+    {
+      "row": 1185,
+      "field": "Last Seen",
+      "value": "2026-10-22"
+    },
+    {
+      "row": 1185,
+      "field": "Job URL",
+      "value": "https://www.adzuna.com/details/5937234879?utm_medium=api&utm_source=b4f3e3f8"
+    },
+    {
+      "row": 1185,
+      "field": "Found Using",
+      "value": "Gecko"
+    },
+    {
+      "row": 1185,
+      "field": "Job Description",
+      "value": "**For further inquiries about this opportunity, please contact our Talent Specialist, Praveen at (217) 279 2607.** **Title: Field Marketing Manager - SLED** **Duration: 3 Months** **Location: Remote** **Only W2 candidates are eligible for this position. Third-party or C2C candidates will not be considered.** **About the Role** Client is seeking a Field Marketing Contractor to support our SLED (State, Local, and Education) business. This role will focus on executing marketing programs already planned for 2H, ensuring events and campaigns run smoothly, and partnering closely with the SLED sales team to support ongoing business priorities. This is an execution-focused role that helps keep day-to-day field marketing activities moving. You'll work with the Field Marketing team, Sales, Marketing Operations, and Engineering, and Channel teams to coordinate events, manage logistics, and support marketing requests that help drive pipeline and customer engagement. **What You'll Do** - Execute existing SLED field marketing programs and campaigns planned for the second half of the year. - Support the planning and execution of tradeshows, customer events, partner events, executive dinners, and webinars. - Partner with the SLED sales team to prioritize and execute marketing requests that align with business needs. - Coordinate event logistics, vendor management, registrations, and onsite execution as needed. - Work with Marketing Operations and Corporate Marketing to ensure campaigns are launched and supported successfully. - Help drive event attendance through invitations, communications, and follow-up activities. - Track program metrics and provide basic reporting on event and campaign performance. - Manage day-to-day field marketing activities while ensuring a high-quality experience for customers and internal stakeholders. - Support budget tracking and purchase order processes as needed. **What You'll Bring** - 2 to 6+ years of field marketing, event marketing, or regional marketing experience in B2B technology - Experience supporting SLED or Public Sector sales organizations is preferred. - Strong event execution and project management skills with excellent attention to detail. - Ability to manage multiple priorities and adapt quickly in a fast-paced environment. - Experience working cross-functionally with Sales, Marketing, and Channel teams. - Familiarity with Salesforce, Tableau, Goldcast (or similar event platforms), procurement/contract platforms, Google Workspace - Strong communication and organizational skills. - Ability to work independently while collaborating effectively with a distributed team. **About us:** _**DivIHN**, the 'IT Asset Performance Services' organization, provides Professional Consulting, Custom Projects, and Professional Resource Augmentation services to clients in the Mid-West and beyond. The strategic characteristics of the organization are Standardization, Specialization, and Collaboration._ _DivIHN is an equal opportunity employer. DivIHN does not and shall not discriminate against any employee or qualified applicant on the basis of race, color, religion (creed), gender, gender expression, age, national origin (ancestry), disability, marital status, sexual orientation, or military status._"
+    },
+    {
+      "row": 1185,
+      "field": "Notes",
+      "value": "Contract jobs included at Dave\u2019s request on October 22. Remote, short-term contract. Full source description retrieved and saved; no resume or application started. Similar SLED role appears through another staffing agency; employer identity is not confirmed."
+    },
+    {
+      "row": 1184,
+      "field": "Last Updated",
+      "value": "2026-10-22T05:11:45-06:00 | Gecko"
+    },
+    {
+      "row": 1185,
+      "field": "Last Updated",
+      "value": "2026-10-22T05:11:45-06:00 | Gecko"
+    }
+  ],
+  "skipped": []
+}

@@ -1,0 +1,36 @@
+{"mode": "full manual discovery", "daily_credit_cap": 200, "remaining_accounted_today": 176, "window_hours": 96, "contracts": true, "maximum_starting_base": 120000}
+{"backup_before": {"backend": "sqlite", "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T055640170314.sqlite3", "integrity": "ok", "google_sheets_accessed": false}}
+Recovered staged job 2885 from the interrupted attempt
+EARLY FILTERS {"source": "jobicy", "fetched": 188, "filter: outside target role families": 65, "filter: unrelated role family": 39, "already_known": 13, "filter: starting annual base salary above $120,000": 6, "outside_four_days": 62, "passed_cheap_checks": 3}
+jobicy: collected 3; checking 3 candidate URLs
+remotive: collected 0; checking 0 candidate URLs
+EARLY FILTERS {"source": "remotive", "fetched": 2, "already_known": 2, "passed_cheap_checks": 0}
+EARLY FILTERS {"source": "remoteok", "fetched": 99, "filter: outside target role families": 2, "filter: unrelated role family": 3, "outside_four_days": 93, "already_known": 1, "passed_cheap_checks": 0}
+remoteok: collected 0; checking 0 candidate URLs
+EARLY FILTERS {"source": "adzuna", "fetched": 17, "outside_four_days": 3, "same_source_duplicate": 3, "already_known": 3, "filter: non-remote role outside preferred locations": 5, "filter: outside target role families": 2, "passed_cheap_checks": 1}
+adzuna: collected 1; checking 1 candidate URLs
+adzuna: processed 1; new=0; existing=0; review=1; dead=0
+remotive: processed 0; new=0; existing=0; review=0; dead=0
+EARLY FILTERS {"source": "usajobs", "fetched": 10, "filter: outside target role families": 10, "passed_cheap_checks": 0}
+usajobs: collected 0; checking 0 candidate URLs
+jobicy: processed 3; new=2; existing=1; review=0; dead=0
+remoteok: processed 0; new=0; existing=0; review=0; dead=0
+usajobs: processed 0; new=0; existing=0; review=0; dead=0
+EARLY FILTERS {"source": "greenhouse", "fetched": 7032, "outside_four_days": 6293, "filter: outside target role families": 301, "filter: unrelated role family": 123, "already_known": 228, "filter: generic non-marketing manager/production role": 15, "filter: non-remote role outside preferred locations": 18, "filter: non-marketing data science": 36, "filter: excluded title/seniority": 1, "passed_cheap_checks": 17}
+greenhouse: collected 17; checking 17 candidate URLs
+EARLY FILTERS {"source": "ashby", "fetched": 3130, "outside_four_days": 2739, "already_known": 175, "filter: outside target role families": 164, "filter: starting annual base salary above $120,000": 5, "filter: unrelated role family": 40, "filter: generic non-marketing manager/production role": 2, "filter: excluded title/seniority": 1, "filter: non-marketing data science": 1, "passed_cheap_checks": 3}
+ashby: collected 3; checking 3 candidate URLs
+EARLY FILTERS {"source": "weworkremotely", "fetched": 127, "filter: outside target role families": 12, "filter: unrelated role family": 5, "already_known": 17, "outside_four_days": 91, "same_source_duplicate": 1, "passed_cheap_checks": 1}
+weworkremotely: collected 1; checking 1 candidate URLs
+EARLY FILTERS {"source": "workingnomads", "fetched": 43, "filter: outside target role families": 1, "filter: unrelated role family": 4, "outside_four_days": 38, "passed_cheap_checks": 0}
+workingnomads: collected 0; checking 0 candidate URLs
+greenhouse: processed 17; new=17; existing=0; review=0; dead=0
+EARLY FILTERS {"source": "workable", "fetched": 5521, "outside_four_days": 2923, "same_source_duplicate": 2167, "already_known": 321, "filter: outside target role families": 81, "filter: unrelated role family": 19, "filter: generic non-marketing manager/production role": 3, "passed_cheap_checks": 7}
+workable: collected 7; checking 7 candidate URLs
+EARLY FILTERS {"source": "lever", "fetched": 4699, "outside_four_days": 4366, "already_known": 190, "filter: outside target role families": 116, "filter: unrelated role family": 11, "filter: generic non-marketing manager/production role": 3, "filter: non-remote role outside preferred locations": 2, "filter: excluded title/seniority": 1, "filter: excluded employment type": 1, "passed_cheap_checks": 9}
+lever: collected 9; checking 9 candidate URLs
+lever: processed 9; new=8; existing=1; review=0; dead=0
+ashby: processed 3; new=3; existing=0; review=0; dead=0
+workable: processed 7; new=7; existing=0; review=0; dead=0
+weworkremotely: processed 1; new=0; existing=0; review=0; dead=0
+workingnomads: processed 0; new=0; existing=0; review=0; dead=0

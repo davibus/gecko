@@ -1,0 +1,3159 @@
+{
+  "sync": {
+    "status": "synced",
+    "synced_at": "2026-10-22T11:28:59.890233+00:00",
+    "rows": 1151,
+    "cells_written": 627,
+    "jobs_added_to_sheet": 0,
+    "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit",
+    "range_extension": {
+      "requests": 0,
+      "formulas_filled": 0
+    },
+    "salaries_normalized": 573,
+    "salary_audit": "C:\\gecko_main\\reports\\salary-normalization\\20261022T112844755612Z.json"
+  },
+  "salary_cells_changed": 573,
+  "notes_appended": 54,
+  "counts": {
+    "already standard": 630,
+    "multiple conflicting salary ranges": 49,
+    "no unambiguous salary amount": 472
+  },
+  "review": [
+    {
+      "id": 467,
+      "company": "Sanctuary Computer Inc",
+      "salary": "| Salary<br> <br>$80k - $150k | Remote<br>Location<br> <br>Worldwide |\nSep 18, 2026 - Sanctuary Computer Inc is hiring a remote Senior Shopify Developer. \ud83d\udcb8 Salary: $80k - $150k. \ud83d\udccdLocation: Worldwide.\nOur pay scale ranges from $40/hr to $120/hr pending seniority (& team leadership experience), and our projects are rarely less than 8 full time weeks at 40 hours per week.",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 469,
+      "company": "Lemon.io",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 470,
+      "company": "Lemon.io",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 472,
+      "company": "A.Team",
+      "salary": "| Salary<br> <br>$90 - $150 /hou.. | Remote<br>Location<br> <br>AmericasEuropeIsrael |\nSep 16, 2026 - A.Team is hiring a remote Senior Independent Software Developer. \ud83d\udcb8 Salary: $90 - $150 /hour. \ud83d\udccdLocation: Americas, Europe, Israel.\n- High-paying, meaningful missions with the most audacious companies sent your way; generally $90-$150+/hr, with vetted, fascinating clients doing work that matters.\n- Keep 100% of what you earn: if you charge $120/hr, you get $120/hr. A\u00b7Team makes money by charging a small, flat, transparent platform fee on _top_ of your rate.",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 478,
+      "company": "Unio Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 692,
+      "company": "Pattern",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 693,
+      "company": "airSlate",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 697,
+      "company": "Lever Implementation Training Environment",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 698,
+      "company": "Smart Working Solutions",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 702,
+      "company": "Findem",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 711,
+      "company": "United Tech",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 712,
+      "company": "Lever Education",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 713,
+      "company": "ABC Industries",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 714,
+      "company": "RainFocus",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 716,
+      "company": "Pattern",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 847,
+      "company": "HealthCare",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1021,
+      "company": "TSMG",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1169,
+      "company": "CoralTree Hospitality",
+      "salary": "USD $140,000.00/Yr. - USD $155,000.00/Yr.\nPay Range: $140,000 - $155,000/year plus manager incentive program. This is the pay range we reasonably expect to pay for this position. Individual compensation decisions are based on a variety of factors.",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1182,
+      "company": "Crypto Banter",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1194,
+      "company": "Nabla",
+      "salary": "SalaryUSD 140k\u2013180k / yr",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1201,
+      "company": "LaunchDarkly",
+      "salary": "SalaryUSD 145k\u2013235k / yr",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1203,
+      "company": "DeleteMe",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1211,
+      "company": "ActiveCampaign",
+      "salary": "SalaryUSD 192,400\u2013264,600 / yr",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1212,
+      "company": "Help Scout",
+      "salary": "SalaryUSD 198k\u2013218k / yr",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1215,
+      "company": "Engine",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1222,
+      "company": "Addepar",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1227,
+      "company": "Appspace",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1230,
+      "company": "B12",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1238,
+      "company": "Bitwarden",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1240,
+      "company": "BarkleyOKRP",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1245,
+      "company": "Checkr",
+      "salary": "$196,000 - $230,000USD\n$166,000 - $195,000USD",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1246,
+      "company": "Checkr",
+      "salary": "$298,000 - $351,000USD\n$252,000 - $297,000USD",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1247,
+      "company": "Checkr",
+      "salary": "$167,000 - $196,000USD\n$141,000 - $166,000USD",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1248,
+      "company": "Cobalt",
+      "salary": "Cobalt is committed to fair and equitable compensation practices. The salary range for this role is ($110,00 - $130,000) + equity + benefits. A candidate\u2019s salary is determined by various factors including, but not limited to, relevant work experience, skills, and certifications.\u00a0 The salary range may differ in other states and may be impacted by proximity to major metropolitan cities.",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1259,
+      "company": "Cordance",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1261,
+      "company": "Crossmedia",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1272,
+      "company": "Dropbox",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1280,
+      "company": "DEPT",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1281,
+      "company": "DEPT",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1285,
+      "company": "DEPT",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1286,
+      "company": "DEPT",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1287,
+      "company": "DEPT",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1292,
+      "company": "DEPT",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1307,
+      "company": "Ethos Life",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1309,
+      "company": "Fleetio",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1310,
+      "company": "Fleetio",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1311,
+      "company": "Fleetio",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1320,
+      "company": "Grafana Labs",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1326,
+      "company": "Glean",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1333,
+      "company": "Glean",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1348,
+      "company": "iCapital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1349,
+      "company": "iCapital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1353,
+      "company": "Intercom",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1355,
+      "company": "Jack Morton Worldwide",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1358,
+      "company": "Keeper Security",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1381,
+      "company": "Mercury",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1383,
+      "company": "Lumimeds",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1384,
+      "company": "Lumimeds",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1387,
+      "company": "Motive",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1396,
+      "company": "Mozilla",
+      "salary": "$165,000 - $220,000CAD\n$149,000 - $199,000CAD",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1400,
+      "company": "Nutrafol",
+      "salary": "$80 - $100USD",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1403,
+      "company": "OpenTable",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1404,
+      "company": "OpenTable",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1407,
+      "company": "Ping Identity",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1408,
+      "company": "Pinterest",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1413,
+      "company": "PlayStation Global",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1418,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1431,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1441,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1447,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1448,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1472,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1477,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1478,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1480,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1490,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1495,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1499,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1506,
+      "company": "Medsien",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1507,
+      "company": "Redwood Software",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1512,
+      "company": "ScaleOps",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1514,
+      "company": "ScaleOps",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1515,
+      "company": "ScaleOps",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1516,
+      "company": "ScaleOps",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1517,
+      "company": "Samsara",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1582,
+      "company": "Veeam Software",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1585,
+      "company": "Veeam Software",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1589,
+      "company": "Veeam Software",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1597,
+      "company": "Wiz",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1619,
+      "company": "Ampd Energy",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1620,
+      "company": "Analytic Partners",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1626,
+      "company": "Bounteous",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1632,
+      "company": "Drivetrain",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1633,
+      "company": "Drivetrain",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1635,
+      "company": "Dijital Team",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1636,
+      "company": "Dijital Team",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1637,
+      "company": "Ekimetrics",
+      "salary": "\u00b7Salary From \u00a380,000 + Bonus 20% + Corporate bonus\n\u00a375,000 - \u00a390,000 a year",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1638,
+      "company": "Ekimetrics",
+      "salary": "$140,000 - $140,000 a year\nA reasonable estimate of the base salary for our NYC office is between $140,000 and $157,500.",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1639,
+      "company": "Ekimetrics",
+      "salary": "$75,000 - $80,000 a year\nA reasonable estimate of the base salary for our NYC office is between $75,000 and $80,000.",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1644,
+      "company": "EnableComp",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1647,
+      "company": "Express Chipping Inc",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1649,
+      "company": "Express Chipping Inc",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1652,
+      "company": "Galvanick",
+      "salary": "The base pay for this position ranges from $140,000/year in our lowest geographic market up to $200,000/year in our highest geographic market.",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1654,
+      "company": "GR0",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1657,
+      "company": "Gurobi Optimization",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1659,
+      "company": "HighLevel",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1660,
+      "company": "HighLevel",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1661,
+      "company": "HighLevel",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1669,
+      "company": "Legend",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1671,
+      "company": "Meds",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1678,
+      "company": "Mendix",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1689,
+      "company": "Oxylabs",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1694,
+      "company": "Pendulum",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1695,
+      "company": "Pattern",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1698,
+      "company": "Pattern",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1700,
+      "company": "Pattern",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1701,
+      "company": "Pattern",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1703,
+      "company": "Right Side Up",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1704,
+      "company": "Right Side Up",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1705,
+      "company": "Right Side Up",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1706,
+      "company": "Right Side Up",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1707,
+      "company": "Right Side Up",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1708,
+      "company": "Right Side Up",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1710,
+      "company": "Right Side Up",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1711,
+      "company": "Right Side Up",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1712,
+      "company": "Right Side Up",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1716,
+      "company": "Rover.com",
+      "salary": "- In the Greater Seattle area the first-year salary range is $153,430-$190,766. In\u00a0Washington State outside of the Seattle area the first- year salary range is is $139,482-$182,724. In California the first- year salary range is $139,482-$205,000",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1720,
+      "company": "Shield AI",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1721,
+      "company": "Shield AI",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1722,
+      "company": "Shield AI",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1723,
+      "company": "Shield AI",
+      "salary": "Compensation range for in-office San Mateo, CA is $132,000 - $198,000\n$120,000 - $180,000 a year",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1727,
+      "company": "Snappr",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1728,
+      "company": "Snappr",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1729,
+      "company": "Snappr",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1732,
+      "company": "Kobie Marketing",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1739,
+      "company": "Sonar",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1745,
+      "company": "Sonar",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1746,
+      "company": "Sonar",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1750,
+      "company": "United Tech",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1751,
+      "company": "United Tech",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1754,
+      "company": "United Tech",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1755,
+      "company": "United Tech",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1756,
+      "company": "Trackforce",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1759,
+      "company": "vivenu GmbH",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1774,
+      "company": "Wing Assistant",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1777,
+      "company": "Wing Assistant",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1794,
+      "company": "Veeva Systems",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1797,
+      "company": "Acorns",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1798,
+      "company": "Acorns",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1801,
+      "company": "Atlas",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1802,
+      "company": "Atlas",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1807,
+      "company": "Audiohook",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1808,
+      "company": "BiOptimizers",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1810,
+      "company": "Benevity",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1812,
+      "company": "Benevity",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1813,
+      "company": "Benevity",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1818,
+      "company": "Directive",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1820,
+      "company": "Directive",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1829,
+      "company": "Directive",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1830,
+      "company": "Directive",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1832,
+      "company": "Directive",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1833,
+      "company": "Directive",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1847,
+      "company": "Goodlord",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1848,
+      "company": "Goodlord",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1850,
+      "company": "G2",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1851,
+      "company": "G2",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1855,
+      "company": "G2",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1861,
+      "company": "Morning Consult",
+      "salary": "The expected salary range for this position is $81,700 \u2013 $130,000, with a midpoint of $105,800. In most cases, we target the midpoint for new hire compensation. This role is eligible for an equity grant. Please see an overview of Morning Consult's benefits on our Career Page.",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1862,
+      "company": "Morning Consult",
+      "salary": "The expected salary range for this position is $172,900 \u2013 $290,800, with a midpoint of $231,900.",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1863,
+      "company": "Morning Consult",
+      "salary": "The expected salary range for this position is $172,900 \u2013 $290,800, with a midpoint of $231,900.",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1882,
+      "company": "Harvey",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1894,
+      "company": "Range",
+      "salary": "Base salary range: $100,000 \u2013 $170,000\n- Base Salary Compensation: $169,541.00 - $210,000.00",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1910,
+      "company": "XDS",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1923,
+      "company": "ActivTrak",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1925,
+      "company": "AlgaeCal",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1928,
+      "company": "Channel Factory",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1929,
+      "company": "Clearstory",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1933,
+      "company": "Future Publishing",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1936,
+      "company": "Pareto Publishing",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1937,
+      "company": "Pareto Publishing",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1938,
+      "company": "Right Hook Digital",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1939,
+      "company": "RocketAMS",
+      "salary": "Trainee (Level 1): $900 AUD/month (40 hours per week)\nLevel 2 (Full-Time): $1,000 \u2013 $1,200 AUD/month (40 hours per week)",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 1940,
+      "company": "RocketAMS",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1945,
+      "company": "INFUSE",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1946,
+      "company": "Oportun",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1947,
+      "company": "C4Media Inc.",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1949,
+      "company": "SimpleTiger",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1950,
+      "company": "OnTheGoSystems",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1951,
+      "company": "UTTR",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1952,
+      "company": "xoangels",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1955,
+      "company": "DesignFiles",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1956,
+      "company": "Hello There Collective",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1962,
+      "company": "Veeam Software",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1986,
+      "company": "Instructure",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 1993,
+      "company": "CrewBloom",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2170,
+      "company": "Chime",
+      "salary": "SalaryUSD 150k / yr\nThe base salary offered for this role and level of experience will begin at $150,000 and up to $208,000. Full-time employees are also eligible for a bonus, competitive equity package, and benefits. The actual base salary offered may be higher, depending on your location, skills, qualifications, and experience.",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2171,
+      "company": "Stripe",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2177,
+      "company": "Sweat Pants Agency",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2192,
+      "company": "UpBound",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2193,
+      "company": "UpBound",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2195,
+      "company": "Stripe",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2196,
+      "company": "Keyfactor, Inc.",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2197,
+      "company": "Paired",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2198,
+      "company": "Valsoft Corporation",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2199,
+      "company": "SILAC Insurance Company",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2210,
+      "company": "Veriff",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2229,
+      "company": "Zoom",
+      "salary": "$108,009 per year - estimated\nSalary Range or On Target Earnings: Minimum: $76,800.00 Maximum: $186,200.00 In addition to the base salary and/or OTE listed Zoom has a Total Direct Compensation philosophy that takes into consideration; base salary, bonus and equity value.",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2238,
+      "company": "Chili Piper",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2239,
+      "company": "Canonical",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2240,
+      "company": "Podium",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2241,
+      "company": "Filevine",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2242,
+      "company": "HealthCare",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2244,
+      "company": "Dodge Construction Network",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2245,
+      "company": "Rockstar",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2251,
+      "company": "Logicstics",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2260,
+      "company": "Grant Thornton",
+      "salary": "$97,739 per year - estimated\nThe base salary range for this position is between $104,000 and $156,000.",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2271,
+      "company": "Twilio",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2272,
+      "company": "Twilio",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2273,
+      "company": "Twilio",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2274,
+      "company": "Twilio",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2275,
+      "company": "Twilio",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2276,
+      "company": "Twilio",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2277,
+      "company": "Mozilla",
+      "salary": "$70,000 - $93,000CAD\n$63,000 - $84,000CAD",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2278,
+      "company": "Mozilla",
+      "salary": "$102,000 - $136,300USD\n$94,000 - $125,000USD\n$87,000 - $99,000USD",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2282,
+      "company": "Veeam Software",
+      "salary": "$103,920 - $173,280USD\n$95,260 - $158,840USD\n$86,600 - $144,400USD\n$75,342 - $125,628USD",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2283,
+      "company": "Veeam Software",
+      "salary": "$211,440 - $392,760USD\n$193,820 - $360,030USD\n$176,200 - $327,300USD\n$153,294 - $284,751USD",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2284,
+      "company": "Keeper Security",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2299,
+      "company": "Motive",
+      "salary": "$97,000 - $121,000USD\n$93,000 - $116,000USD\n$84,000 - $105,000USD",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2300,
+      "company": "Modern Health",
+      "salary": "$101,500 - $119,400USD\n$92,000 - $107,460USD\n$81,200 - $95,520USD",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2302,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2303,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2304,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2305,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2306,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2307,
+      "company": "Follett Software, LLC",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2311,
+      "company": "Dropbox",
+      "salary": "$275,400\u2014$372,600 USD\n$247,900\u2014$335,300 USD\n$220,300\u2014$298,100 USD",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2312,
+      "company": "Fleetio",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2318,
+      "company": "Machinify",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2321,
+      "company": "Veeam Software",
+      "salary": "$146,760 - $272,520USD\n$134,530 - $249,810USD\n$122,300 - $227,100USD\n$106,401 - $197,577USD",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2323,
+      "company": "MinIO",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2329,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2330,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2331,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2332,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2333,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2334,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2335,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2336,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2337,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2338,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2339,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2340,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2341,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2342,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2343,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2344,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2345,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2346,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2347,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2348,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2349,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2350,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2351,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2352,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2353,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2354,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2355,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2356,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2357,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2358,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2359,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2360,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2361,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2362,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2363,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2364,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2365,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2366,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2367,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2368,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2369,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2370,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2371,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2372,
+      "company": "Power Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2373,
+      "company": "Array",
+      "salary": "Pay transparency: $160,000 + for base salary, depending on experience. Full time employee compensation includes an Incentive Stock Option (ISO) grant, subject to Board approval.\n- $100/month to subsidize wifi/cell phone expenses",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2374,
+      "company": "Array",
+      "salary": "Pay transparency: $160,000 + for base salary, depending on experience. Full time employee compensation includes an Incentive Stock Option (ISO) grant, subject to Board approval.\n- $100/month to subsidize wifi/cell phone expenses",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2378,
+      "company": "Mozilla",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2379,
+      "company": "Mozilla",
+      "salary": "$195,000 - $260,000USD\n$179,000 - $239,000USD\n$166,000 - $221,000USD",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2386,
+      "company": "ScaleOps",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2387,
+      "company": "Wiz",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2389,
+      "company": "Underscore Marketing",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2390,
+      "company": "Appspace",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2392,
+      "company": "Express Chipping Inc",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2394,
+      "company": "Legend",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2402,
+      "company": "Pattern",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2403,
+      "company": "Pattern",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2405,
+      "company": "Right Side Up",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2407,
+      "company": "Oxylabs",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2408,
+      "company": "Right Side Up",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2410,
+      "company": "BAMKO",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2411,
+      "company": "United Tech",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2412,
+      "company": "United Tech",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2413,
+      "company": "Express Chipping Inc",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2414,
+      "company": "Saviynt",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2419,
+      "company": "Wing Assistant",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2420,
+      "company": "Wing Assistant",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2421,
+      "company": "Wing Assistant",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2423,
+      "company": "Wing Assistant",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2424,
+      "company": "United Tech",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2425,
+      "company": "Wing Assistant",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2426,
+      "company": "Colibri Group",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2430,
+      "company": "Paired",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2431,
+      "company": "Valsoft Corporation",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2432,
+      "company": "Uptalent.io",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2434,
+      "company": "CrewBloom",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2435,
+      "company": "UN/COMMON",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2438,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2439,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2440,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2441,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2442,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2443,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2444,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2445,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2446,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2447,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2448,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2449,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2450,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2451,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2452,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2453,
+      "company": "Sweat Pants Agency",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2454,
+      "company": "Paired",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2457,
+      "company": "Workana",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2458,
+      "company": "Workana",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2460,
+      "company": "Azumo",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2462,
+      "company": "HireHawk",
+      "salary": "Compensation: $1,800 - $2,000",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2463,
+      "company": "Valsoft Corporation",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2464,
+      "company": "Workana",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2465,
+      "company": "Flosum",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2466,
+      "company": "HireHawk",
+      "salary": "Compensation: $1,800 - $2,000",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2467,
+      "company": "HireHawk",
+      "salary": "Compensation: $1,800 - $2,000",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2468,
+      "company": "HireHawk",
+      "salary": "Compensation: $1,800 - $2,000",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2469,
+      "company": "Future Publishing",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2470,
+      "company": "TP-Link Systems Inc.",
+      "salary": "Salary range: $73,500 - $100,00 annually",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2472,
+      "company": "HireHawk",
+      "salary": "Compensation: $1,800 - $2,000",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2474,
+      "company": "RR Digital",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2476,
+      "company": "Valsoft Corporation",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2478,
+      "company": "AutoLeap",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2480,
+      "company": "ICBD",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2482,
+      "company": "Uptalent.io",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2484,
+      "company": "AutoLeap",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2485,
+      "company": "UN/COMMON",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2486,
+      "company": "Paired",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2487,
+      "company": "Rockstar",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2488,
+      "company": "Valsoft Corporation",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2489,
+      "company": "Workana",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2490,
+      "company": "Prime System Solutions",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2491,
+      "company": "Paired",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2492,
+      "company": "Jam+",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2493,
+      "company": "Akkadian Labs",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2494,
+      "company": "Valsoft Corporation",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2497,
+      "company": "Paired",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2498,
+      "company": "HireHawk",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2500,
+      "company": "Facilities Management Express",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2501,
+      "company": "Avomind",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2502,
+      "company": "Avomind",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2503,
+      "company": "Paired",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2505,
+      "company": "Uptalent.io",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2506,
+      "company": "Avomind",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2507,
+      "company": "Sidetrade",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2508,
+      "company": "Uptalent.io",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2509,
+      "company": "Uptalent.io",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2512,
+      "company": "Sidetrade",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2513,
+      "company": "Workana",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2514,
+      "company": "HireHawk",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2515,
+      "company": "Skylight",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2518,
+      "company": "Flosum",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2519,
+      "company": "Flosum",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2520,
+      "company": "Flosum",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2521,
+      "company": "Flosum",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2522,
+      "company": "HireHawk",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2524,
+      "company": "Avomind",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2526,
+      "company": "Workana",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2528,
+      "company": "Avomind",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2529,
+      "company": "Avomind",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2530,
+      "company": "Valsoft Corporation",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2531,
+      "company": "Valsoft Corporation",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2533,
+      "company": "Avomind",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2534,
+      "company": "Uptalent.io",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2535,
+      "company": "Uptalent.io",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2536,
+      "company": "Uptalent.io",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2537,
+      "company": "Uptalent.io",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2538,
+      "company": "Avomind",
+      "salary": "Not stated",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2546,
+      "company": "Paired",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2547,
+      "company": "Rockstar",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2549,
+      "company": "PlayStation Global",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2550,
+      "company": "Avomind",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2551,
+      "company": "Right Hook Digital",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2552,
+      "company": "Azumo",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2557,
+      "company": "Defense Unicorns",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2558,
+      "company": "Defense Unicorns",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2559,
+      "company": "Precision Medicine Group",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2560,
+      "company": "Wing Assistant",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2563,
+      "company": "Veeva Systems",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2564,
+      "company": "Veeva Systems",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2565,
+      "company": "Veeva Systems",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2587,
+      "company": "Veeva Systems",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2591,
+      "company": "Veeva Systems",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2592,
+      "company": "Veeva Systems",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2613,
+      "company": "Xero",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2614,
+      "company": "G2",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2617,
+      "company": "Deepgram",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2618,
+      "company": "Deepgram",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2627,
+      "company": "Harvey",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2628,
+      "company": "Harvey",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2629,
+      "company": "1Password",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2630,
+      "company": "1Password",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2634,
+      "company": "Morning Consult",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2638,
+      "company": "Cogent Security",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2639,
+      "company": "Cogent Security",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2640,
+      "company": "Absorb",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2641,
+      "company": "Absorb",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2642,
+      "company": "Stryker Digital",
+      "salary": "$60K \u2013 $80K \u2022 $100k+ OTE",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2648,
+      "company": "OpenRouter",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2653,
+      "company": "Directive",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2654,
+      "company": "Directive",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2658,
+      "company": "Directive",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2662,
+      "company": "Directive",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2664,
+      "company": "Benevity",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2665,
+      "company": "Xero",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2666,
+      "company": "Xero",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2667,
+      "company": "Xero",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2674,
+      "company": "Thumbtack",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2676,
+      "company": "DeepJudge",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2677,
+      "company": "DeepJudge",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2678,
+      "company": "Directive",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2680,
+      "company": "Nash",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2681,
+      "company": "Benevity",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2683,
+      "company": "Xero",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2687,
+      "company": "Cogent Security",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2691,
+      "company": "Whippy",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2692,
+      "company": "Fireworks",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2693,
+      "company": "Vanta",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2694,
+      "company": "Xero",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2695,
+      "company": "Cogent Security",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2700,
+      "company": "Stryker Digital",
+      "salary": "$60K \u2013 $80K \u2022 $100k+ OTE",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2702,
+      "company": "Cogent Security",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2703,
+      "company": "Dandy",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2711,
+      "company": "Constructor",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2715,
+      "company": "Dandy",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2716,
+      "company": "Sanity",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2717,
+      "company": "1Password",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2722,
+      "company": "Constructor",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2725,
+      "company": "Nash",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2726,
+      "company": "Dash0",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2727,
+      "company": "Cogent Security",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2743,
+      "company": "Proof",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2745,
+      "company": "CampusWorks, Inc.",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2746,
+      "company": "Pattern",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2749,
+      "company": "DEPT",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2751,
+      "company": "Wiz",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2752,
+      "company": "Parsley Health",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2753,
+      "company": "SupplyHouse.com",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2754,
+      "company": "Power Digital",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2755,
+      "company": "Silverback Strategies",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2756,
+      "company": "Silverback Strategies",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2757,
+      "company": "Colibri Group",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2758,
+      "company": "Silverback Strategies",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2759,
+      "company": "Silverback Strategies",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2760,
+      "company": "Silverback Strategies",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2761,
+      "company": "Silverback Strategies",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2762,
+      "company": "Cin7",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2763,
+      "company": "Gurobi Optimization",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2765,
+      "company": "Xero",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2767,
+      "company": "Paired",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2768,
+      "company": "ClickHouse",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2770,
+      "company": "Studio McGee",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2773,
+      "company": "Studio McGee",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2774,
+      "company": "BambooHR",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2777,
+      "company": "Bed Bath & Beyond",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2778,
+      "company": "Squire & Company PC-",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2781,
+      "company": "Veeam Software",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2782,
+      "company": "Tines",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2786,
+      "company": "iMarket Solutions",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2796,
+      "company": "Swire Coca-Cola",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2798,
+      "company": "Extra Space Management, Inc",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2799,
+      "company": "1-800 Contacts",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2801,
+      "company": "ArchWell Health",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2804,
+      "company": "Tecnica Group USA",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2808,
+      "company": "efficiently",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2811,
+      "company": "Modern Health",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2813,
+      "company": "Procurify",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2814,
+      "company": "Absorb",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2815,
+      "company": "Absorb",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2816,
+      "company": "Xero",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2818,
+      "company": "Freebird",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2822,
+      "company": "CLICK HERE DIGITAL",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2826,
+      "company": "BairesDev",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2832,
+      "company": "Moving Traffic Media",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2837,
+      "company": "GoTo",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2839,
+      "company": "iMarket Solutions",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2841,
+      "company": "Leland",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2842,
+      "company": "KUBER ASTRO SOLUTION PVT. LTD.",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2846,
+      "company": "Invest with Roots",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2847,
+      "company": "Craft & Communicate",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2850,
+      "company": "infisical",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2851,
+      "company": "BairesDev",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2855,
+      "company": "EnableComp",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2860,
+      "company": "Eight Sleep",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2863,
+      "company": "Wiz",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2864,
+      "company": "elk Marketing",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2866,
+      "company": "1Password",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2867,
+      "company": "1Password",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2868,
+      "company": "1Password",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    },
+    {
+      "id": 2869,
+      "company": "Decentralized Masters",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2870,
+      "company": "Savvy Talent",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2871,
+      "company": "Savvy Talent",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2872,
+      "company": "Right Hook Digital",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2873,
+      "company": "Workana",
+      "salary": "",
+      "reason": "no unambiguous salary amount"
+    },
+    {
+      "id": 2875,
+      "company": "Pendo",
+      "salary": "",
+      "reason": "multiple conflicting salary ranges"
+    }
+  ],
+  "backup_after": {
+    "backend": "sqlite",
+    "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T053004502969.sqlite3",
+    "integrity": "ok",
+    "google_sheets_accessed": false
+  },
+  "verified": true,
+  "second_pass_changes": 0
+}

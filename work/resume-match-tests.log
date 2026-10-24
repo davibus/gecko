@@ -1,0 +1,122 @@
+.................lever: collected 4; checking 1 candidate URLs
+greenhouse: collected 0; checking 0 candidate URLs
+lever: processed 4; new=1; existing=0; review=0; dead=0
+greenhouse: processed 0; new=0; existing=0; review=0; dead=0
+
+Job Scout source summary
+lever: success (4 found)
+greenhouse: no results (0 found)
+Duplicates removed: 3
+Previously seen: 0
+Rejected by Gecko filters: 0
+Below resume-match policy: 0; match review pending: 0
+New unique jobs saved locally: 1
+.lever: collected 4; checking 1 candidate URLs
+greenhouse: collected 0; checking 0 candidate URLs
+lever: processed 4; new=0; existing=1; review=0; dead=0
+greenhouse: processed 0; new=0; existing=0; review=0; dead=0
+
+Job Scout source summary
+lever: success (4 found)
+greenhouse: no results (0 found)
+Duplicates removed: 4
+Previously seen: 1
+Rejected by Gecko filters: 0
+Below resume-match policy: 0; match review pending: 0
+New unique jobs saved locally: 0
+.lever: collected 4; checking 1 candidate URLs
+greenhouse: collected 0; checking 0 candidate URLs
+lever: processed 4; new=1; existing=0; review=0; dead=0
+greenhouse: processed 0; new=0; existing=0; review=0; dead=0
+
+Job Scout source summary
+lever: success (4 found)
+greenhouse: no results (0 found)
+Duplicates removed: 3
+Previously seen: 0
+Rejected by Gecko filters: 0
+Below resume-match policy: 0; match review pending: 0
+New unique jobs saved locally: 1
+.lever: collected 4; checking 1 candidate URLs
+greenhouse: collected 0; checking 0 candidate URLs
+lever: processed 4; new=1; existing=0; review=0; dead=0
+greenhouse: processed 0; new=0; existing=0; review=0; dead=0
+
+Job Scout source summary
+lever: success (4 found)
+greenhouse: no results (0 found)
+Duplicates removed: 3
+Previously seen: 0
+Rejected by Gecko filters: 0
+Below resume-match policy: 0; match review pending: 0
+New unique jobs saved locally: 1
+.lever: collected 4; checking 1 candidate URLs
+greenhouse: collected 0; checking 0 candidate URLs
+lever: processed 4; new=0; existing=1; review=0; dead=0
+greenhouse: processed 0; new=0; existing=0; review=0; dead=0
+
+Job Scout source summary
+lever: success (4 found)
+greenhouse: no results (0 found)
+Duplicates removed: 4
+Previously seen: 1
+Rejected by Gecko filters: 0
+Below resume-match policy: 0; match review pending: 0
+New unique jobs saved locally: 0
+..lever: collected 4; checking 1 candidate URLs
+greenhouse: collected 0; checking 0 candidate URLs
+lever: processed 4; new=1; existing=0; review=0; dead=0
+greenhouse: processed 0; new=0; existing=0; review=0; dead=0
+
+Job Scout source summary
+lever: success (4 found)
+greenhouse: no results (0 found)
+Duplicates removed: 3
+Previously seen: 0
+Rejected by Gecko filters: 0
+Below resume-match policy: 0; match review pending: 0
+New unique jobs saved locally: 1
+lever: collected 4; checking 1 candidate URLs
+greenhouse: collected 0; checking 0 candidate URLs
+lever: processed 4; new=0; existing=1; review=0; dead=0
+greenhouse: processed 0; new=0; existing=0; review=0; dead=0
+
+Job Scout source summary
+lever: success (4 found)
+greenhouse: no results (0 found)
+Duplicates removed: 4
+Previously seen: 1
+Rejected by Gecko filters: 0
+Below resume-match policy: 0; match review pending: 0
+New unique jobs saved locally: 0
+..lever: collected 4; checking 1 candidate URLs
+greenhouse: collected 0; checking 0 candidate URLs
+lever: processed 4; new=1; existing=0; review=0; dead=0
+greenhouse: processed 0; new=0; existing=0; review=0; dead=0
+
+Job Scout source summary
+lever: success (4 found)
+greenhouse: no results (0 found)
+Duplicates removed: 3
+Previously seen: 0
+Rejected by Gecko filters: 0
+Below resume-match policy: 0; match review pending: 0
+New unique jobs saved locally: 1
+.lever: collected 4; checking 1 candidate URLs
+greenhouse: collected 0; checking 0 candidate URLs
+lever: processed 4; new=1; existing=0; review=0; dead=0
+greenhouse: processed 0; new=0; existing=0; review=0; dead=0
+
+Job Scout source summary
+lever: success (4 found)
+greenhouse: no results (0 found)
+Duplicates removed: 3
+Previously seen: 0
+Rejected by Gecko filters: 0
+Below resume-match policy: 0; match review pending: 0
+New unique jobs saved locally: 1
+....................................
+----------------------------------------------------------------------
+Ran 62 tests in 14.979s
+
+OK

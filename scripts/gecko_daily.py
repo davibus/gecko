@@ -49,6 +49,12 @@ def counts_from_output(output: str) -> dict[str, int | str]:
     """Use only the existing daily command's labeled, final summary lines."""
     result: dict[str, int | str] = {name: "Unavailable" for name in COUNT_LABELS.values()}
     for line in output.splitlines():
+        if line.startswith('Firecrawl efficiency: '):
+            payload = json.loads(line.removeprefix('Firecrawl efficiency: '))
+            for key, value in payload.items():
+                result['Firecrawl ' + key.replace('_', ' ')] = (
+                    json.dumps(value, sort_keys=True) if isinstance(value, (dict, list))
+                    else 'Unavailable' if value is None else value)
         for label, name in COUNT_LABELS.items():
             match = re.fullmatch(rf"{re.escape(label)}:\s*(\d+)", line.strip())
             if match:

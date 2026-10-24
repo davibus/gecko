@@ -1,0 +1,89 @@
+{
+  "pipeline": {
+    "raw_retrieved": 3,
+    "rss_retrieved": 0,
+    "rss_unique": 0,
+    "rss_duplicates_removed": 0,
+    "successful_feeds": 0,
+    "failed_feeds": 0,
+    "feed_results": [],
+    "api_retrieved": 0,
+    "source_backend": "",
+    "fetched": 3,
+    "normalized": 3,
+    "added": 3,
+    "updated": 0,
+    "duplicates": 0,
+    "cross_provider_duplicates": 0,
+    "unique_available": 0,
+    "unique_imported": 0,
+    "filtered_by_role": 0,
+    "deterministic_rejects": 0,
+    "deterministic_reject_reasons": {},
+    "jooble_excluded": 0,
+    "rejected_history_excluded": 0,
+    "missing_content_excluded": 0,
+    "dead_url_excluded": 0,
+    "source_results_limited": 0,
+    "url_review_excluded": 0,
+    "url_validated": 3,
+    "new_job_ids": [
+      2913,
+      2914,
+      2915
+    ],
+    "existing_job_ids": [],
+    "changed_job_ids": [],
+    "eligibility_includes_usa": 0,
+    "eligibility_worldwide": 0,
+    "example_jobs": [],
+    "backend_qualifying": {},
+    "backend_added": {}
+  },
+  "record_decisions": [
+    {
+      "source": "ashby",
+      "source_job_id": "b973625b-32d5-4871-a4b5-239b4ae8e9fe",
+      "url": "https://jobs.ashbyhq.com/xero/b973625b-32d5-4871-a4b5-239b4ae8e9fe",
+      "company": "Xero",
+      "title": "Product Marketing Manager - AB Platform",
+      "reason": "new unique",
+      "job_id": 2913
+    },
+    {
+      "source": "ashby",
+      "source_job_id": "4af87705-4834-4ea8-b558-7933b98215dd",
+      "url": "https://jobs.ashbyhq.com/xero/4af87705-4834-4ea8-b558-7933b98215dd",
+      "company": "Xero",
+      "title": "Product Marketing Manager - AB Platform",
+      "reason": "new unique",
+      "job_id": 2914
+    },
+    {
+      "source": "ashby",
+      "source_job_id": "ae0bf8c6-f327-48de-9902-9f509667d02d",
+      "url": "https://jobs.ashbyhq.com/ashby/ae0bf8c6-f327-48de-9902-9f509667d02d",
+      "company": "Ashby",
+      "title": "Snr. Marketing Manager, Enterprise ABM - EMEA",
+      "reason": "new unique",
+      "job_id": 2915
+    }
+  ],
+  "queries_pages": [
+    {
+      "kind": "full feed",
+      "status": "completed",
+      "parsed": 3130
+    }
+  ],
+  "board_errors": [],
+  "page_exclusions": [],
+  "collection_limits": [],
+  "firecrawl_requests": 0,
+  "errors": "",
+  "health": {
+    "status": "success",
+    "found": 3,
+    "detail": ""
+  }
+}

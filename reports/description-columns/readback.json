@@ -1,0 +1,73 @@
+{
+  "sync": {
+    "status": "synced",
+    "synced_at": "2026-10-22T12:06:26.563322+00:00",
+    "rows": 1153,
+    "cells_written": 0,
+    "jobs_added_to_sheet": 0,
+    "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit",
+    "range_extension": {
+      "requests": 0,
+      "formulas_filled": 0
+    },
+    "salaries_normalized": 0
+  },
+  "headers": [
+    "ID",
+    "Company",
+    "Job Title",
+    "Applied",
+    "Applied Date",
+    "Found Using",
+    "Source",
+    "Ready to Apply?",
+    "Qualifies to Apply?",
+    "Cover Letter",
+    "Create Resume",
+    "Resume Created",
+    "Cost",
+    "Previous Notes",
+    "Apply or on Company Website (If Indeed)",
+    "Response",
+    "Location",
+    "Work Arrangement",
+    "Employment Type",
+    "Salary",
+    "Company Website",
+    "Job URL",
+    "Resume Link",
+    "Resume Created Date",
+    "Cover Letter Link",
+    "Cover Letter Created Date",
+    "Last Updated",
+    "Date Posted",
+    "Date Found",
+    "Last Seen",
+    "Personal priority",
+    "Previous Applied Date",
+    "Notes",
+    "Gecko Job Description",
+    "FireCrawl Job Description",
+    "Enough Data",
+    "# Words",
+    "# Job Desc Words",
+    "Total Words",
+    "CV Created Date"
+  ],
+  "existing_sheet_content_unchanged": true,
+  "legacy_column_recreated": false,
+  "local_rows_verified": 1152,
+  "backup_before": {
+    "backend": "sqlite",
+    "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T060606139784.sqlite3",
+    "integrity": "ok",
+    "google_sheets_accessed": false
+  },
+  "backup_after": {
+    "backend": "sqlite",
+    "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T060633421157.sqlite3",
+    "integrity": "ok",
+    "google_sheets_accessed": false
+  },
+  "verified": true
+}

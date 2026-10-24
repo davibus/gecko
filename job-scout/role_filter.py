@@ -15,7 +15,7 @@ def _title_text(title: str) -> str:
 # These phrases identify the role families Dave actually wants to review.  The
 # This gate keeps discovery focused on the configured role families.
 DIRECT_MARKETING_PHRASES = (
-    "performance marketing", "paid search", "paid media", "ppc", "sem",
+    "performance marketing", "paid search", "paid media", "ppc", "sem", "google ads",
     "search marketing", "digital marketing", "growth marketing",
     "marketing analytics", "marketing analyst", "marketing data",
     "ecommerce marketing", "e commerce marketing", "demand generation",
@@ -80,7 +80,7 @@ def role_filter_reason(title: str) -> tuple[bool, str]:
         if re.search(pattern, value):
             return False, "unrelated role family"
 
-    if any(phrase in value for phrase in DIRECT_MARKETING_PHRASES):
+    if any(re.search(rf"\b{re.escape(phrase)}\b", value) for phrase in DIRECT_MARKETING_PHRASES):
         return True, "target digital/performance marketing family"
 
     for pattern in GENERIC_MANAGER_PATTERNS:

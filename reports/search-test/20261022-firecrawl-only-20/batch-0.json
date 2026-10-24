@@ -1,0 +1,671 @@
+{
+  "success": true,
+  "data": {
+    "alexandria": [
+      {
+        "provider": "greenhouse-io",
+        "capability": "jobs/job",
+        "error": {
+          "code": "not_found",
+          "message": "The workflow could not find that resource.",
+          "status": 404
+        },
+        "alexandriaId": "4fe3354db58c86164dd3f4aec0d40cbd4f62833e1b482eed80f6371c768a3be9",
+        "providerRequestId": "d676abdb-ebe4-4ab5-8127-9b1c139e54d4",
+        "workflowRunId": "d676abdb-ebe4-4ab5-8127-9b1c139e54d4"
+      },
+      {
+        "provider": "greenhouse-io",
+        "capability": "jobs/job",
+        "error": {
+          "code": "not_found",
+          "message": "The workflow could not find that resource.",
+          "status": 404
+        },
+        "alexandriaId": "4fe3354db58c86164dd3f4aec0d40cbd4f62833e1b482eed80f6371c768a3be9",
+        "providerRequestId": "2731cdc2-4e00-429d-bdee-544f0871397f",
+        "workflowRunId": "2731cdc2-4e00-429d-bdee-544f0871397f"
+      },
+      {
+        "provider": "greenhouse-io",
+        "capability": "jobs/job",
+        "error": {
+          "code": "not_found",
+          "message": "The workflow could not find that resource.",
+          "status": 404
+        },
+        "alexandriaId": "4fe3354db58c86164dd3f4aec0d40cbd4f62833e1b482eed80f6371c768a3be9",
+        "providerRequestId": "77730ccc-d0bd-4afc-a13d-16c369bb0e83",
+        "workflowRunId": "77730ccc-d0bd-4afc-a13d-16c369bb0e83"
+      },
+      {
+        "provider": "greenhouse-io",
+        "capability": "jobs/job",
+        "data": {
+          "absolute_url": "https://job-boards.greenhouse.io/atticor/jobs/5249313007",
+          "application_deadline": null,
+          "apply_url": "https://job-boards.greenhouse.io/atticor/jobs/5249313007",
+          "board_token": "atticor",
+          "board_url": "https://job-boards.greenhouse.io/atticor",
+          "company_name": "Atticor",
+          "content_html": "<div class=\"content-intro\"><p>Atticor is an AI-powered legal services platform redefining how lawyers deliver justice to injured people.<br><br>Great lawyers serve their clients best when they can focus on legal practice, not on troubleshooting their case management system, tracking medical records, dealing with accounting headaches, or managing marketing campaigns. Atticor handles the complex machinery of the modern legal business, liberating top-tier lawyers to do what they do best: practice law.<br><br>Atticor was built by legal entrepreneurs who revolutionized mass claims litigation at scale and built technology and operational infrastructure that has served over 1.5 million clients and generated over $3 billion in gross recoveries, comprising a Case Acquisition Engine, Decision Infrastructure, Agentic AI Workflow &amp; Operations, and an Institutional-Grade Backbone.</p></div><p>&nbsp;</p>\n<div>\n<p class=\"x_MsoNormal\"><strong><span data-olk-copy-source=\"MessageBody\">Purpose: </span></strong>We’re looking for an analytical, results-driven <strong>Paid Search Manager</strong> with deep experience in <strong>performance marketing</strong> and <strong>high-value lead generation</strong>. This person will own paid search strategy, execution, and performance across multiple brands and DMAs while balancing hands-on account management.</p>\n</div>\n<div>\n<p class=\"x_MsoNormal\">The ideal candidate understands not only how to optimize the accounts, but how those metrics ladder up to meaningful business outcomes (qualified intakes but ultimately signed clients). Experience with <strong>Local Services Ads (LSA)</strong> is required, along with a strong understanding of how search, LSA, and paid social interplay within a multi-channel performance ecosystem.</p>\n</div>\n<div>\n<p class=\"x_MsoNormal\">This is a full-time, remote position; candidates in the Chicagoland area and capable of easily visiting our Chicago office are a plus. The compensation for the position, depending on experience, is an annual base salary of $120,000 to $135,000 per year, plus a year-end discretionary bonus and benefits.&nbsp;</p>\n</div>\n<div>\n<p class=\"x_MsoNormal\"><strong>Key Responsibilities:&nbsp;</strong></p>\n</div>\n<ul type=\"disc\">\n<li class=\"x_MsoNormal\"><strong>Strategy &amp; Execution</strong></li>\n<ul type=\"circle\">\n<li class=\"x_MsoNormal\">Own end-to-end paid search strategy across Google Ads, LSAs and Bing Ads for multiple brands and markets</li>\n<li class=\"x_MsoNormal\">Build, monitor, and optimize campaigns to achieve lead volume, cost-per-lead, and signed-case efficiency goals</li>\n<li class=\"x_MsoNormal\">Leverage keyword, audience, and creative testing frameworks to improve quality and conversion performance</li>\n<li class=\"x_MsoNormal\">Develop and maintain robust negative keyword lists and segmentation strategies across brands</li>\n<li class=\"x_MsoNormal\">Manage and optimize Local Services Ads (LSAs) — including profile health, dispute management, and budget pacing</li>\n</ul>\n<li class=\"x_MsoNormal\"><strong>Agency Management</strong></li>\n<ul type=\"circle\">\n<li class=\"x_MsoNormal\">Collaborate with external paid search agencies as needed; hold them accountable to performance goals, testing cadence, and spend efficiency.</li>\n<li class=\"x_MsoNormal\">Audit campaigns regularly to ensure strategic alignment and technical excellence (bidding, ad copy, extensions, tracking)</li>\n<li class=\"x_MsoNormal\">Facilitate weekly performance reviews and quarterly business reviews with agency partners</li>\n<li class=\"x_MsoNormal\">Consolidate insights across agencies into unified dashboards and performance reports</li>\n</ul>\n<li class=\"x_MsoNormal\"><strong>Cross-Channel &amp; Analytics Integration</strong></li>\n<ul type=\"circle\">\n<li class=\"x_MsoNormal\">Collaborate with analytics, BI, and marketing teams to align attribution, tracking, and offline conversion imports</li>\n<li class=\"x_MsoNormal\">Partner with the creative team to develop ad copy and landing page variants optimized for lead quality</li>\n<li class=\"x_MsoNormal\">Contribute to budgeting, forecasting, and media-mix planning across DMAs and practice areas</li>\n<li class=\"x_MsoNormal\">Identify and implement automation or AI-driven bidding solutions that improve performance consistency</li>\n</ul>\n</ul>\n<div>\n<p class=\"x_MsoNormal\"><strong>Qualifications:</strong></p>\n</div>\n<ul type=\"disc\">\n<li class=\"x_MsoNormal\">5+ years of experience in Paid Search or Performance Marketing (agency or in-house)</li>\n<li class=\"x_MsoNormal\">Proven success managing <strong>high-value lead gen</strong> campaigns (legal, financial, healthcare, or other high-CPL verticals preferred)</li>\n<li class=\"x_MsoNormal\">Expert-level proficiency in <strong>Google Ads</strong>, <strong>Bing Ads</strong>, and <strong>Local Services Ads</strong></li>\n<li class=\"x_MsoNormal\">Deep familiarity with tracking, attribution, and CRM integrations (GA4, CallRail, Salesforce, HubSpot, or similar)</li>\n<li class=\"x_MsoNormal\">Strong analytical and Excel/Sheets skills; experience with <strong>Sigma</strong>, <strong>Looker</strong>, or other BI tools a plus</li>\n<li class=\"x_MsoNormal\">Exceptional communication and vendor-management skills</li>\n<li class=\"x_MsoNormal\">Google Ads and/or Bing Ads certifications strongly preferred</li>\n</ul>\n<div>\n<p class=\"x_MsoNormal\"><strong>What Success in the Role Looks Like:</strong></p>\n</div>\n<ul type=\"disc\">\n<li class=\"x_MsoNormal\">Continuous improvement in cost-per-lead and signed-client efficiency</li>\n<li class=\"x_MsoNormal\">Clear accountability and transparency in agency performance</li>\n<li class=\"x_MsoNormal\">Well-documented testing and optimization roadmap with measurable outcomes</li>\n<li class=\"x_MsoNormal\">Integration of offline and downstream metrics into paid search optimization</li>\n</ul>\n<p class=\"x_MsoNormal\">&nbsp;</p>\n<p>&nbsp;</p><div class=\"content-conclusion\"><p>Atticor is an Equal Opportunity Employer. For California residents, you will receive our CCPA information on your application confirmation page.</p></div>",
+          "content_text": "Atticor is an AI-powered legal services platform redefining how lawyers deliver justice to injured people.\nGreat lawyers serve their clients best when they can focus on legal practice, not on troubleshooting their case management system, tracking medical records, dealing with accounting headaches, or managing marketing campaigns. Atticor handles the complex machinery of the modern legal business, liberating top-tier lawyers to do what they do best: practice law.\nAtticor was built by legal entrepreneurs who revolutionized mass claims litigation at scale and built technology and operational infrastructure that has served over 1.5 million clients and generated over $3 billion in gross recoveries, comprising a Case Acquisition Engine, Decision Infrastructure, Agentic AI Workflow & Operations, and an Institutional-Grade Backbone.\nPurpose: We’re looking for an analytical, results-driven Paid Search Manager with deep experience in performance marketing and high-value lead generation. This person will own paid search strategy, execution, and performance across multiple brands and DMAs while balancing hands-on account management.\nThe ideal candidate understands not only how to optimize the accounts, but how those metrics ladder up to meaningful business outcomes (qualified intakes but ultimately signed clients). Experience with Local Services Ads (LSA) is required, along with a strong understanding of how search, LSA, and paid social interplay within a multi-channel performance ecosystem.\nThis is a full-time, remote position; candidates in the Chicagoland area and capable of easily visiting our Chicago office are a plus. The compensation for the position, depending on experience, is an annual base salary of $120,000 to $135,000 per year, plus a year-end discretionary bonus and benefits.\nKey Responsibilities:\n- Strategy & Execution\n- Own end-to-end paid search strategy across Google Ads, LSAs and Bing Ads for multiple brands and markets\n- Build, monitor, and optimize campaigns to achieve lead volume, cost-per-lead, and signed-case efficiency goals\n- Leverage keyword, audience, and creative testing frameworks to improve quality and conversion performance\n- Develop and maintain robust negative keyword lists and segmentation strategies across brands\n- Manage and optimize Local Services Ads (LSAs) — including profile health, dispute management, and budget pacing\n- Agency Management\n- Collaborate with external paid search agencies as needed; hold them accountable to performance goals, testing cadence, and spend efficiency.\n- Audit campaigns regularly to ensure strategic alignment and technical excellence (bidding, ad copy, extensions, tracking)\n- Facilitate weekly performance reviews and quarterly business reviews with agency partners\n- Consolidate insights across agencies into unified dashboards and performance reports\n- Cross-Channel & Analytics Integration\n- Collaborate with analytics, BI, and marketing teams to align attribution, tracking, and offline conversion imports\n- Partner with the creative team to develop ad copy and landing page variants optimized for lead quality\n- Contribute to budgeting, forecasting, and media-mix planning across DMAs and practice areas\n- Identify and implement automation or AI-driven bidding solutions that improve performance consistency\nQualifications:\n- 5+ years of experience in Paid Search or Performance Marketing (agency or in-house)\n- Proven success managing high-value lead gen campaigns (legal, financial, healthcare, or other high-CPL verticals preferred)\n- Expert-level proficiency in Google Ads, Bing Ads, and Local Services Ads\n- Deep familiarity with tracking, attribution, and CRM integrations (GA4, CallRail, Salesforce, HubSpot, or similar)\n- Strong analytical and Excel/Sheets skills; experience with Sigma, Looker, or other BI tools a plus\n- Exceptional communication and vendor-management skills\n- Google Ads and/or Bing Ads certifications strongly preferred\nWhat Success in the Role Looks Like:\n- Continuous improvement in cost-per-lead and signed-client efficiency\n- Clear accountability and transparency in agency performance\n- Well-documented testing and optimization roadmap with measurable outcomes\n- Integration of offline and downstream metrics into paid search optimization\nAtticor is an Equal Opportunity Employer. For California residents, you will receive our CCPA information on your application confirmation page.",
+          "departments": [
+            {
+              "child_ids": [],
+              "id": 4059194007,
+              "name": "Marketing",
+              "parent_id": null
+            }
+          ],
+          "first_published": "2026-10-02T11:32:20-04:00",
+          "id": 5249313007,
+          "internal_job_id": 4685999007,
+          "language": "en",
+          "location": "Remote",
+          "metadata": [],
+          "observed_at_ms": 1792672472115,
+          "offices": [
+            {
+              "child_ids": [],
+              "id": 4022358007,
+              "location": "Remote",
+              "name": "Remote",
+              "parent_id": null
+            }
+          ],
+          "pay_ranges": [],
+          "questions": [
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "first_name",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "First Name",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "last_name",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Last Name",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "email",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Email",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "phone",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Phone",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "resume",
+                  "type": "input_file",
+                  "values": []
+                },
+                {
+                  "name": "resume_text",
+                  "type": "textarea",
+                  "values": []
+                }
+              ],
+              "label": "Resume/CV",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "cover_letter",
+                  "type": "input_file",
+                  "values": []
+                },
+                {
+                  "name": "cover_letter_text",
+                  "type": "textarea",
+                  "values": []
+                }
+              ],
+              "label": "Cover Letter",
+              "required": false
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_13046808007",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Website",
+              "required": false
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_12995773007",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "LinkedIn Profile",
+              "required": false
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_12995774007",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "Yes",
+                      "value": "1"
+                    },
+                    {
+                      "label": "No",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ],
+              "label": "Are you legally authorized to work in the United States?",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_12995775007",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "Yes",
+                      "value": "1"
+                    },
+                    {
+                      "label": "No",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ],
+              "label": "Will you now or in the future require sponsorship for employment visa status?",
+              "required": true
+            }
+          ],
+          "requisition_id": "1267",
+          "source": "greenhouse.io",
+          "title": "Paid Search Manager",
+          "updated_at": "2026-10-02T11:34:26-04:00"
+        },
+        "workflow": {
+          "version": "2.0.8",
+          "digest": "sha256:ae63d01ee7a5fc55fc67dd20554c303318a44a42f554ff9e33604068513e9935"
+        },
+        "records": 1,
+        "upstreamStatus": 200,
+        "alexandriaId": "4fe3354db58c86164dd3f4aec0d40cbd4f62833e1b482eed80f6371c768a3be9",
+        "providerRequestId": "c1af1c36-be05-4980-a907-7250fadbb5e9",
+        "workflowRunId": "c1af1c36-be05-4980-a907-7250fadbb5e9"
+      },
+      {
+        "provider": "greenhouse-io",
+        "capability": "jobs/job",
+        "data": {
+          "absolute_url": "https://job-boards.greenhouse.io/realchemistry/jobs/5454003008",
+          "application_deadline": null,
+          "apply_url": "https://job-boards.greenhouse.io/realchemistry/jobs/5454003008",
+          "board_token": "realchemistry",
+          "board_url": "https://job-boards.greenhouse.io/realchemistry",
+          "company_name": "Real Chemistry",
+          "content_html": "<div class=\"content-intro\"><p>At Real Chemistry, making the world a healthier place isn’t just an aspiration—it’s our everyday reality. Our drive to transform healthcare is informed by our blend of deep scientific expertise, human-centred creativity, and AI-driven insights, fostering a unique environment where innovation thrives and our people are impact-obsessed. As a global agency, we provide a full suite of services across healthcare communications and marketing to our clients, including top players in the pharmaceutical and biotech industries.</p>\n<p>Our #LifeatRealChem culture is rooted in our people—we believe we are best together and are committed to excellence for both our clients and colleagues. Whether you're a seasoned professional or just starting your career, if you share our passion for healthcare and connection, we invite you to explore our opportunities.</p>\n<p>Discover your purpose. Embrace innovation. Experience #LifeatRealChem.</p></div><p><span data-contrast=\"auto\">Real Chemistry is looking for a </span><strong><span data-contrast=\"auto\">Manager, Paid Search</span></strong><span data-contrast=\"auto\"> to join our growing Biddable Media team!</span><span data-ccp-props=\"{}\">&nbsp;</span></p>\n<p><span data-contrast=\"auto\">A Manager, Paid Search is responsible for the end-to-end execution, performance, and day-to-day management of paid search campaigns across assigned accounts. This individual translates client objectives into tactical campaign strategies, owns campaign optimization and budget management, identifies opportunities for account growth, and communicates performance insights and recommendations to clients and internal stakeholders. The Manager also coordinates day-to-day projects and begins developing leadership skills by delegating work, overseeing campaign execution, and mentoring junior team members.</span><span data-ccp-props=\"{}\">&nbsp;</span></p>\n<p>This is a hybrid role, based in any of our&nbsp;US&nbsp;offices—including New York City, Boston, Chicago, Carmel, Lambertville, or San Francisco—or remotely within the US, depending on team and business needs.&nbsp;</p>\n<p><strong><span data-contrast=\"auto\">What You'll Do</span></strong><span data-ccp-props=\"{}\">&nbsp;</span></p>\n<ul>\n<li><span data-contrast=\"auto\">Own the day-to-day execution and performance of paid search campaigns across Google Ads, Microsoft Ads, and supporting search technologies, from planning and setup through launch, optimization, and reporting.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Develop tactical paid search strategies aligned with client objectives, audience strategies, KPIs, and broader integrated media plans. Contribute to campaign forecasts, planning inputs, and supporting data analysis.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Oversee flawless campaign launches, including campaign setup, trafficking, quality assurance, tracking, tagging, and delivery requirements.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Own campaign pacing, budget management, and ongoing optimization, monitoring real-time performance and making data-driven adjustments to meet client KPIs and improve account performance.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Track campaign spend, maintain accurate budget forecasts, and actualize budgets monthly while proactively identifying and communicating pacing or delivery risks.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Troubleshoot platform, tracking, attribution, trafficking, and reporting issues using strong platform expertise and analytical problem-solving skills.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Translate campaign data into clear performance narratives, actionable insights, and optimization recommendations that connect results to client objectives.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Proactively identify and recommend account evolutions, testing opportunities, and platform innovations that improve campaign effectiveness and support account growth.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Communicate account status, campaign performance, and recommendations directly to clients and vendors; participate actively in client meetings and lead day-to-day discussions with support from senior leadership as appropriate.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Develop paid search strategies, performance recommendations, and presentations for internal and external stakeholders.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Coordinate day-to-day account projects and collaborate with Integrated Media, Analytics, Strategy, Ad Operations, Creative, and Client Experience teams to deliver campaign objectives and manage cross-functional dependencies.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Delegate and oversee campaign responsibilities assigned to Associates and Senior Associates, breaking down projects into manageable tasks and ensuring deliverables are accurate and timely.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Mentor and train junior team members on platform execution, campaign processes, and best practices while continuing to develop people leadership capabilities.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Contribute to process improvements, documentation, training materials, automation initiatives, and emerging platform capabilities that strengthen team efficiency and performance.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n</ul>\n<p><strong><span data-contrast=\"auto\">This Position Is a Perfect Fit for You If</span></strong><span data-contrast=\"auto\"> </span><span data-ccp-props=\"{}\">&nbsp;</span></p>\n<ul>\n<li>Our Company values,&nbsp;<strong>Best Together, Impact Obsessed, Excellence Expected, Evolve Always, and Accountability with an \"I\"</strong>, genuinely resonate with how you work and lead.&nbsp;</li>\n<li>You&nbsp;demonstrate&nbsp;the&nbsp;<strong>Real Chemistry Can</strong>&nbsp;mindset by approaching challenges with optimism, accountability, creativity, and a solutions-oriented attitude, always looking for ways to make a meaningful impact for our clients, colleagues, and communities.&nbsp;</li>\n<li>You are adaptable, resilient, and comfortable adjusting your scope, responsibilities, and priorities in a fast-paced, evolving environment. As our business grows and changes, so do we.&nbsp;&nbsp;</li>\n<li>You are proactive, driven, and resourceful, with strong prioritization skills, intellectual curiosity, and a desire to&nbsp;leverage&nbsp;data to inform decisions and drive outcomes.&nbsp;&nbsp;</li>\n<li>You are energized by innovation and the transformative potential of AI, actively exploring&nbsp;new technologies,&nbsp;identifying&nbsp;opportunities to work smarter, and championing practical, responsible AI adoption that drives meaningful business impact.&nbsp;</li>\n</ul>\n<p><strong><span data-contrast=\"auto\">What You Should Have</span></strong><span data-contrast=\"auto\"> </span><span data-ccp-props=\"{}\">&nbsp;</span></p>\n<ul>\n<li><span data-contrast=\"auto\">3+ years of professional experience managing digital media campaigns, with significant hands-on experience in paid search.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Strong expertise in Google Ads, Microsoft Ads, and paid search campaign management.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Experience managing campaigns end to end, including planning, setup, launch, optimization, reporting, and performance analysis.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Strong understanding of bidding strategies, keyword management, audience targeting, attribution, conversion optimization, and campaign measurement.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Demonstrated ability to monitor campaign performance, manage budgets and pacing, and optimize toward established KPIs.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Experience developing forecasts, tracking spend, and maintaining accurate monthly budget actualization.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Ability to troubleshoot platform, tracking, tagging, attribution, and reporting issues.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Experience translating campaign data into meaningful insights, performance narratives, and optimization recommendations.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Strong client communication, presentation, analytical, critical-thinking, and problem-solving skills.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Demonstrated project-management, organizational, and prioritization capabilities, including coordinating deliverables across multiple accounts and teams.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Experience delegating tasks, overseeing campaign workstreams, or mentoring and training junior team members.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Proficiency in Microsoft Excel, PowerPoint, and relevant reporting and analytics platforms.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Experience with bid management, analytics, and attribution tools is preferred.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n<li><span data-contrast=\"auto\">Pharmaceutical and healthcare marketing experience is preferred but not required.</span><span data-ccp-props=\"{}\">&nbsp;</span></li>\n</ul>\n<p>&nbsp;</p>\n<p><strong>Pay Range:</strong> $<span data-teams=\"true\">60,000-$80,000</span></p>\n<p>The anticipated salary range for this position is listed above. Consistent with applicable law, compensation will be determined based on job-related, non-discriminatory factors including but not limited to experience, skills, qualifications, geographic location, and internal parity.&nbsp;</p><div class=\"content-conclusion\"><p>Real Chemistry is proud to be Great Place to Work®&nbsp;certified; check out what our people shared about our culture and workplace on our Great Places to Work Profile&nbsp;<u><a href=\"https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.greatplacetowork.com%2Fcertified-company%2F7038366&amp;data=05%7C02%7Cclehmar%40realchemistry.com%7C1f18aaed4326491b3efc08ddd690f025%7C6fa5bfc4f95843f8bb395d382689654b%7C0%7C0%7C638902640185888156%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=pwvaCn37QXkjVQ0p6u92Oz4FA4j5NQZoNJL0ffy01qs%3D&amp;reserved=0\">here</a>.</u></p>\n<p>We believe we can do our best when feeling our best, which is why we’ve put together a benefits program designed to give you the support you and your family need at every stage of life. Real Chemistry offers a comprehensive benefit program and perks, tailored to your region. Globally, this includes offices in our key markets with free snacks to keep you running all day long, generous holiday and paid time off, options for private medical, dental, and vison plans, and support in saving for the future. Other perks include mental wellness coaching and support&nbsp;and&nbsp;access to more than 13,000 online classes with LinkedIn Learning.&nbsp;&nbsp;Learn more about our great benefits and perks and search specific offerings in your region at:&nbsp;<a href=\"https://www.realchemistrybenefits.com\">www.realchemistrybenefits.com</a>.</p>\n<p><span data-olk-copy-source=\"MessageBody\">At Real Chemistry, we believe we're at our best when we're connected. Our Real Hybrid and Regional Teams (Real HART) approach is designed to foster collaboration, learning, innovation, and meaningful relationships while providing flexibility where appropriate.&nbsp;</span>Because our workforce spans multiple countries, regions, and client needs, work arrangements may vary by role and location. Some positions offer hybrid or remote flexibility, while others require regular in-office presence. For example, certain teams and regions, including some of our UK operations, have office-based requirements. Your recruiter will discuss the specific expectations for the role you're pursuing during the interview process and keep you informed throughout the hiring journey.&nbsp;For employees located within a one-hour commute of a Real Chemistry office, we require in-person attendance two days per week, either from a Real Chemistry office or when working onsite with clients. Employees in regions without a nearby office may work remotely and come together throughout the year for collaboration, culture-building, learning, and team connection opportunities.&nbsp;While these guidelines reflect our current workplace model, we understand that everyone’s circumstances are unique. If you require additional flexibility, we welcome an open conversation with your recruiter and our HR team to discuss your needs and determine what may be possible.</p>\n<p>Real Chemistry is an Equal Opportunity employer. We continually strive to build and sustain an inclusive and equitable work environment where our employees feel empowered to leverage all they bring from their personal lived experience and professional expertise, to make our team the best in the industry. We encourage motivated and qualified applicants to apply without regard to race, color, religion, sex (including pregnancy), sexual orientation, gender identity/expression, ethnic or national origin, age, physical or mental disability, genetic information, marital information, or any other characteristic protected by federal, state, or local employment discrimination laws where Real Chemistry operates. Should you require accommodations throughout the interview process please let your recruiter know.</p>\n<p>*Notice: Real Chemistry and its affiliates' names are being misused by scammers through messaging services, fake websites, and apps. Do not share personal or financial information or make payments to any unverified sources claiming to be connected to Real Chemistry. We are working to stop these unauthorized activities and protect our community. Read more&nbsp;<u><a href=\"https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.realchemistry.com%2Fscam-alert&amp;data=05%7C02%7Cclehmar%40realchemistry.com%7C1f18aaed4326491b3efc08ddd690f025%7C6fa5bfc4f95843f8bb395d382689654b%7C0%7C0%7C638902640185967986%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=vBa1KYjD6TUHgTF3FdPRQZvM8E8WUgHZqu9yHevh1%2BI%3D&amp;reserved=0\">here</a></u>.</p></div>",
+          "content_text": "At Real Chemistry, making the world a healthier place isn’t just an aspiration—it’s our everyday reality. Our drive to transform healthcare is informed by our blend of deep scientific expertise, human-centred creativity, and AI-driven insights, fostering a unique environment where innovation thrives and our people are impact-obsessed. As a global agency, we provide a full suite of services across healthcare communications and marketing to our clients, including top players in the pharmaceutical and biotech industries.\nOur #LifeatRealChem culture is rooted in our people—we believe we are best together and are committed to excellence for both our clients and colleagues. Whether you're a seasoned professional or just starting your career, if you share our passion for healthcare and connection, we invite you to explore our opportunities.\nDiscover your purpose. Embrace innovation. Experience #LifeatRealChem.\nReal Chemistry is looking for a Manager, Paid Search to join our growing Biddable Media team!\nA Manager, Paid Search is responsible for the end-to-end execution, performance, and day-to-day management of paid search campaigns across assigned accounts. This individual translates client objectives into tactical campaign strategies, owns campaign optimization and budget management, identifies opportunities for account growth, and communicates performance insights and recommendations to clients and internal stakeholders. The Manager also coordinates day-to-day projects and begins developing leadership skills by delegating work, overseeing campaign execution, and mentoring junior team members.\nThis is a hybrid role, based in any of our US offices—including New York City, Boston, Chicago, Carmel, Lambertville, or San Francisco—or remotely within the US, depending on team and business needs.\nWhat You'll Do\n- Own the day-to-day execution and performance of paid search campaigns across Google Ads, Microsoft Ads, and supporting search technologies, from planning and setup through launch, optimization, and reporting.\n- Develop tactical paid search strategies aligned with client objectives, audience strategies, KPIs, and broader integrated media plans. Contribute to campaign forecasts, planning inputs, and supporting data analysis.\n- Oversee flawless campaign launches, including campaign setup, trafficking, quality assurance, tracking, tagging, and delivery requirements.\n- Own campaign pacing, budget management, and ongoing optimization, monitoring real-time performance and making data-driven adjustments to meet client KPIs and improve account performance.\n- Track campaign spend, maintain accurate budget forecasts, and actualize budgets monthly while proactively identifying and communicating pacing or delivery risks.\n- Troubleshoot platform, tracking, attribution, trafficking, and reporting issues using strong platform expertise and analytical problem-solving skills.\n- Translate campaign data into clear performance narratives, actionable insights, and optimization recommendations that connect results to client objectives.\n- Proactively identify and recommend account evolutions, testing opportunities, and platform innovations that improve campaign effectiveness and support account growth.\n- Communicate account status, campaign performance, and recommendations directly to clients and vendors; participate actively in client meetings and lead day-to-day discussions with support from senior leadership as appropriate.\n- Develop paid search strategies, performance recommendations, and presentations for internal and external stakeholders.\n- Coordinate day-to-day account projects and collaborate with Integrated Media, Analytics, Strategy, Ad Operations, Creative, and Client Experience teams to deliver campaign objectives and manage cross-functional dependencies.\n- Delegate and oversee campaign responsibilities assigned to Associates and Senior Associates, breaking down projects into manageable tasks and ensuring deliverables are accurate and timely.\n- Mentor and train junior team members on platform execution, campaign processes, and best practices while continuing to develop people leadership capabilities.\n- Contribute to process improvements, documentation, training materials, automation initiatives, and emerging platform capabilities that strengthen team efficiency and performance.\nThis Position Is a Perfect Fit for You If\n- Our Company values, Best Together, Impact Obsessed, Excellence Expected, Evolve Always, and Accountability with an \"I\", genuinely resonate with how you work and lead.\n- You demonstrate the Real Chemistry Can mindset by approaching challenges with optimism, accountability, creativity, and a solutions-oriented attitude, always looking for ways to make a meaningful impact for our clients, colleagues, and communities.\n- You are adaptable, resilient, and comfortable adjusting your scope, responsibilities, and priorities in a fast-paced, evolving environment. As our business grows and changes, so do we.\n- You are proactive, driven, and resourceful, with strong prioritization skills, intellectual curiosity, and a desire to leverage data to inform decisions and drive outcomes.\n- You are energized by innovation and the transformative potential of AI, actively exploring new technologies, identifying opportunities to work smarter, and championing practical, responsible AI adoption that drives meaningful business impact.\nWhat You Should Have\n- 3+ years of professional experience managing digital media campaigns, with significant hands-on experience in paid search.\n- Strong expertise in Google Ads, Microsoft Ads, and paid search campaign management.\n- Experience managing campaigns end to end, including planning, setup, launch, optimization, reporting, and performance analysis.\n- Strong understanding of bidding strategies, keyword management, audience targeting, attribution, conversion optimization, and campaign measurement.\n- Demonstrated ability to monitor campaign performance, manage budgets and pacing, and optimize toward established KPIs.\n- Experience developing forecasts, tracking spend, and maintaining accurate monthly budget actualization.\n- Ability to troubleshoot platform, tracking, tagging, attribution, and reporting issues.\n- Experience translating campaign data into meaningful insights, performance narratives, and optimization recommendations.\n- Strong client communication, presentation, analytical, critical-thinking, and problem-solving skills.\n- Demonstrated project-management, organizational, and prioritization capabilities, including coordinating deliverables across multiple accounts and teams.\n- Experience delegating tasks, overseeing campaign workstreams, or mentoring and training junior team members.\n- Proficiency in Microsoft Excel, PowerPoint, and relevant reporting and analytics platforms.\n- Experience with bid management, analytics, and attribution tools is preferred.\n- Pharmaceutical and healthcare marketing experience is preferred but not required.\nPay Range: $60,000-$80,000\nThe anticipated salary range for this position is listed above. Consistent with applicable law, compensation will be determined based on job-related, non-discriminatory factors including but not limited to experience, skills, qualifications, geographic location, and internal parity.\nReal Chemistry is proud to be Great Place to Work® certified; check out what our people shared about our culture and workplace on our Great Places to Work Profile here.\nWe believe we can do our best when feeling our best, which is why we’ve put together a benefits program designed to give you the support you and your family need at every stage of life. Real Chemistry offers a comprehensive benefit program and perks, tailored to your region. Globally, this includes offices in our key markets with free snacks to keep you running all day long, generous holiday and paid time off, options for private medical, dental, and vison plans, and support in saving for the future. Other perks include mental wellness coaching and support and access to more than 13,000 online classes with LinkedIn Learning. Learn more about our great benefits and perks and search specific offerings in your region at: www.realchemistrybenefits.com.\nAt Real Chemistry, we believe we're at our best when we're connected. Our Real Hybrid and Regional Teams (Real HART) approach is designed to foster collaboration, learning, innovation, and meaningful relationships while providing flexibility where appropriate. Because our workforce spans multiple countries, regions, and client needs, work arrangements may vary by role and location. Some positions offer hybrid or remote flexibility, while others require regular in-office presence. For example, certain teams and regions, including some of our UK operations, have office-based requirements. Your recruiter will discuss the specific expectations for the role you're pursuing during the interview process and keep you informed throughout the hiring journey. For employees located within a one-hour commute of a Real Chemistry office, we require in-person attendance two days per week, either from a Real Chemistry office or when working onsite with clients. Employees in regions without a nearby office may work remotely and come together throughout the year for collaboration, culture-building, learning, and team connection opportunities. While these guidelines reflect our current workplace model, we understand that everyone’s circumstances are unique. If you require additional flexibility, we welcome an open conversation with your recruiter and our HR team to discuss your needs and determine what may be possible.\nReal Chemistry is an Equal Opportunity employer. We continually strive to build and sustain an inclusive and equitable work environment where our employees feel empowered to leverage all they bring from their personal lived experience and professional expertise, to make our team the best in the industry. We encourage motivated and qualified applicants to apply without regard to race, color, religion, sex (including pregnancy), sexual orientation, gender identity/expression, ethnic or national origin, age, physical or mental disability, genetic information, marital information, or any other characteristic protected by federal, state, or local employment discrimination laws where Real Chemistry operates. Should you require accommodations throughout the interview process please let your recruiter know.\n*Notice: Real Chemistry and its affiliates' names are being misused by scammers through messaging services, fake websites, and apps. Do not share personal or financial information or make payments to any unverified sources claiming to be connected to Real Chemistry. We are working to stop these unauthorized activities and protect our community. Read more here.",
+          "departments": [
+            {
+              "child_ids": [],
+              "id": 4069015008,
+              "name": "Paid Media",
+              "parent_id": 4057145008
+            }
+          ],
+          "first_published": "2026-10-19T11:53:13-04:00",
+          "id": 5454003008,
+          "internal_job_id": 4562582008,
+          "language": "en",
+          "location": "Remote - USA",
+          "metadata": [],
+          "observed_at_ms": 1792672472187,
+          "offices": [
+            {
+              "child_ids": [],
+              "id": 4049415008,
+              "location": "Remote - USA",
+              "name": "Remote USA",
+              "parent_id": 4049414008
+            }
+          ],
+          "pay_ranges": [],
+          "questions": [
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "first_name",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "First Name",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "last_name",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Last Name",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "preferred_name",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Preferred First Name",
+              "required": false
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "email",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Email",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "phone",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Phone",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "resume",
+                  "type": "input_file",
+                  "values": []
+                },
+                {
+                  "name": "resume_text",
+                  "type": "textarea",
+                  "values": []
+                }
+              ],
+              "label": "Resume/CV",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "cover_letter",
+                  "type": "input_file",
+                  "values": []
+                },
+                {
+                  "name": "cover_letter_text",
+                  "type": "textarea",
+                  "values": []
+                }
+              ],
+              "label": "Cover Letter",
+              "required": false
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_18990219008",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "What is your city of residence?",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_18990220008",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "What is your state of residence?",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_18990221008",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "What is your country of residence?",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_18990222008",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "A Real Chemistry recruiter reached out to me",
+                      "value": "45955405008"
+                    },
+                    {
+                      "label": "I saw a job posting on LinkedIn",
+                      "value": "45955406008"
+                    },
+                    {
+                      "label": "I saw an ad for Real Chemistry on LinkedIn",
+                      "value": "45955407008"
+                    },
+                    {
+                      "label": "I applied directly through Real Chemistry's website",
+                      "value": "45955408008"
+                    },
+                    {
+                      "label": "I saw a job posting on Glassdoor",
+                      "value": "45955409008"
+                    },
+                    {
+                      "label": "I saw a job posting on Indeed",
+                      "value": "45955410008"
+                    },
+                    {
+                      "label": "I am a Current Employee",
+                      "value": "45955411008"
+                    },
+                    {
+                      "label": "I am a Former Employee or Contractor",
+                      "value": "45955412008"
+                    },
+                    {
+                      "label": "I saw Real Chemistry's Social Media",
+                      "value": "45955413008"
+                    }
+                  ]
+                }
+              ],
+              "label": "How did you hear about us?",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_18990223008",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "If you were referred by a current employee or client, please include their name here: ",
+              "required": false
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_18990224008",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "Yes",
+                      "value": "1"
+                    },
+                    {
+                      "label": "No",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ],
+              "label": "Have you previously been employed by Real Chemistry?",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_18990225008",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "When is your earliest availability to start this new position? ",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_18990226008",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "Yes",
+                      "value": "1"
+                    },
+                    {
+                      "label": "No",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ],
+              "label": "Are you legally authorized to work in the U.S.?  ",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_18990227008",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "Yes",
+                      "value": "1"
+                    },
+                    {
+                      "label": "No",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ],
+              "label": "Will you now or in the future require visa sponsorship for employment at Real Chemistry? (e.g., H-1B, O-1, TN, etc)) ",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_18990228008",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "If you require sponsorship, please specify the type of visa you would need. ",
+              "required": false
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_18990229008",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "Yes",
+                      "value": "1"
+                    },
+                    {
+                      "label": "No",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ],
+              "label": "Are you willing to undergo a background check, in accordance with local laws/regulations? * (Please note that selecting \"No\" will prevent you from being considered for the role.)",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_18990230008",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "Yes",
+                      "value": "1"
+                    },
+                    {
+                      "label": "No",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ],
+              "label": "Are you bound by a continuing confidentiality or patent agreement or any agreements that contain a restrictive covenant including a non-compete, non-solicitation or non-disclosure?",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_18990231008",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "Yes",
+                      "value": "1"
+                    },
+                    {
+                      "label": "No",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ],
+              "label": "Are your salary expectations aligned with the posted range for this role?",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_18990232008",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Please link your LinkedIn profile:",
+              "required": false
+            }
+          ],
+          "requisition_id": "REQ8898",
+          "source": "greenhouse.io",
+          "title": "Manager, Paid Search",
+          "updated_at": "2026-10-19T11:53:13-04:00"
+        },
+        "workflow": {
+          "version": "2.0.8",
+          "digest": "sha256:ae63d01ee7a5fc55fc67dd20554c303318a44a42f554ff9e33604068513e9935"
+        },
+        "records": 1,
+        "upstreamStatus": 200,
+        "alexandriaId": "4fe3354db58c86164dd3f4aec0d40cbd4f62833e1b482eed80f6371c768a3be9",
+        "providerRequestId": "d45ada86-844f-4334-a983-d50d0ba9602d",
+        "workflowRunId": "d45ada86-844f-4334-a983-d50d0ba9602d"
+      }
+    ],
+    "creditsCost": 10
+  },
+  "requestId": "44b64a08-c8dd-41b9-a2f2-e4ae5b07ccf3",
+  "scrape_id": "01a1639b-0534-742d-a23b-f82fc3148f4f",
+  "feedbackTool": {
+    "name": "firecrawl_feedback",
+    "when": "After task completion, within 20 minutes of your last Alexandria call. Free, optional, refunds 1 credit, No job ID needed.",
+    "arguments": {
+      "endpoint": "alexandria",
+      "rating": "<good | partial | bad>",
+      "requestedWebsite": {
+        "url": "<website the user needed data from>",
+        "requestedFunctionality": "<what they needed from it>"
+      },
+      "objective": "<underlying goal of the task>",
+      "rationale": "<why this rating, from observed results>",
+      "providerFeedback": "<optional [{name, issue, why}]: providers that were missing, thin, or unavailable>",
+      "capabilityFeedback": "<optional [{name, provider, issue, why, requestedFunctionality?}]: capabilities that were missing, wrong, or failed>"
+    }
+  }
+}

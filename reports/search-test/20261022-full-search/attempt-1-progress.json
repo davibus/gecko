@@ -1,0 +1,638 @@
+{
+  "remotive": {
+    "counts": {
+      "fetched": 2,
+      "already_known": 2,
+      "passed_cheap_checks": 0
+    },
+    "errors": []
+  },
+  "remote-careers": {
+    "counts": {
+      "fetched": 0,
+      "passed_cheap_checks": 0
+    },
+    "errors": [
+      {
+        "url": "https://apply.remote.com/jobs/010651de-9f5a-4443-9248-56bb8a2f6dc7",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/02856f59-84b1-4634-a508-05082b509e4f",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/0109d079-6735-43ee-ace7-4bf39d37ad2b",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/02ef4dff-72b8-4289-9497-8cb8856b6968",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/03cb74fd-5115-4d64-a400-d5b8d9034bc4",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/15b23d94-cae1-490f-9d6e-806d3309a8cc",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/16778c83-8995-4003-886a-1b6e262eaf93",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/1c6e6ac9-5ef5-4357-97f6-ffdc485ac6e8",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/1d580702-331f-40b9-994b-bc56f3023fd7",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/21377fa1-ef9f-40a3-bc24-4a8b602d5e19",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/2782e924-1848-4d56-8733-0453fa35056e",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/24fa9a11-e801-4168-abb8-53c1b00c320b",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/340a9752-885a-46a1-8329-be9e42c21470",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/34293d65-5a1b-4c65-b095-17a0da0af906",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/380be4ef-7a24-4fc9-b06d-acdec58d51bb",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/3fa54bb8-f45f-41c7-9d51-8460f936192e",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/4ab729a5-e034-4fd3-8fee-e114757eabf1",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/4e00a0fb-6565-42eb-bada-705394b94546",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/59f63aa0-c43a-4799-adde-59aa3816cc38",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/5ae89c8c-9c24-4650-bde4-cc28c2f3ccfa",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/60e33d15-ec42-433c-b964-a4e758052036",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/679ab3cc-71e3-4a23-b4ee-7646132fb995",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/700bb10e-3aaa-4cf8-ae4d-1ec6e2291160",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/765480ce-d94c-43fc-879c-9b1d5bab9111",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/773811e3-3830-4d6e-a137-3166a36e81d5",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/7c07f678-d631-4bff-b737-d670b8bd3cb5",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/82aa9fad-7246-4af8-8014-b7f48819df5e",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/83659595-7881-4509-8757-a2c00b58affc",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/9b504ff4-ba2d-4eae-8423-67124728c8df",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/9f9e6a18-f44a-497c-9ae9-7745a8eefa2f",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/a0032907-5bda-4833-b461-28fd982f4f12",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/a0b3d7b3-7a31-4a69-b8a4-cc6a455af46f",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/a67929d2-7843-49d1-9c6f-2d7482eca901",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/aafbac95-c9df-416e-ac98-2eefc59a81b6",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/b4ae4564-738a-46de-9ee1-bc725f906e0e",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/b9299933-d841-4fdd-8b34-7e714e010ee7",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/bb05278b-9554-43eb-a67f-1840a05649de",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/bca9ffa9-8329-4521-9c27-f209a0175d67",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/bfecba20-2e69-4ac0-a40b-17b7bdabea37",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/c2101144-fbd7-40ea-b955-87434ecf69f4",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/c25ccc33-480d-4035-95a4-412f3f4646f6",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/c4664116-f2a2-4876-ac3e-9ed2d00a1fc0",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/c4d74343-f96d-472c-8676-9bda939182d5",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/dde0c4ec-a210-4f0e-be0c-79f2761dbbba",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/de06dc96-8f28-458a-99d6-6eb70ab4dcb0",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/ea657c7f-1f8d-4741-88c9-bebc97be1d8b",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/eaddb247-0a85-46b2-8d02-f57632ede8f6",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/f11c3c9c-660f-4416-8199-da5546896bef",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/f5e1d99a-5562-4725-9e64-ab1b342000e1",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/fb9e4132-8ecb-4d13-a061-f77763eb3501",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/fe8481e4-3401-4050-8730-7174c49cf203",
+        "error": "no structured public JobPosting data"
+      },
+      {
+        "url": "https://apply.remote.com/jobs/ff5380c4-7005-4ef5-989a-2730fbcc263f",
+        "error": "no structured public JobPosting data"
+      }
+    ]
+  },
+  "adzuna": {
+    "counts": {
+      "fetched": 17,
+      "outside_four_days": 3,
+      "same_source_duplicate": 3,
+      "already_known": 2,
+      "filter: non-remote role outside preferred locations": 5,
+      "filter: outside target role families": 2,
+      "passed_cheap_checks": 2
+    },
+    "errors": []
+  },
+  "jobicy": {
+    "counts": {
+      "fetched": 188,
+      "filter: outside target role families": 65,
+      "filter: unrelated role family": 39,
+      "already_known": 13,
+      "filter: starting annual base salary above $120,000": 6,
+      "outside_four_days": 62,
+      "passed_cheap_checks": 3
+    },
+    "errors": []
+  },
+  "remoteok": {
+    "counts": {
+      "fetched": 99,
+      "filter: outside target role families": 2,
+      "filter: unrelated role family": 3,
+      "outside_four_days": 93,
+      "already_known": 1,
+      "passed_cheap_checks": 0
+    },
+    "errors": []
+  },
+  "usajobs": {
+    "counts": {
+      "fetched": 9,
+      "filter: outside target role families": 9,
+      "passed_cheap_checks": 0
+    },
+    "errors": []
+  },
+  "greenhouse": {
+    "counts": {
+      "fetched": 7033,
+      "outside_four_days": 6295,
+      "filter: outside target role families": 301,
+      "filter: unrelated role family": 122,
+      "already_known": 228,
+      "filter: generic non-marketing manager/production role": 15,
+      "filter: non-remote role outside preferred locations": 18,
+      "filter: non-marketing data science": 36,
+      "filter: excluded title/seniority": 1,
+      "passed_cheap_checks": 17
+    },
+    "errors": [
+      {
+        "company": "Ashley Digital",
+        "error": "Request failed for https://boards-api.greenhouse.io/v1/boards/residenthome/jobs: HTTP Error 404: Not Found | {\"status\": 404, \"error\": \"Job not found\"}"
+      }
+    ]
+  },
+  "ashby": {
+    "counts": {
+      "fetched": 3130,
+      "outside_four_days": 2739,
+      "already_known": 175,
+      "filter: outside target role families": 164,
+      "filter: starting annual base salary above $120,000": 5,
+      "filter: unrelated role family": 40,
+      "filter: generic non-marketing manager/production role": 2,
+      "filter: excluded title/seniority": 1,
+      "filter: non-marketing data science": 1,
+      "passed_cheap_checks": 3
+    },
+    "errors": []
+  },
+  "workable": {
+    "counts": {
+      "fetched": 5526,
+      "outside_four_days": 2924,
+      "same_source_duplicate": 2171,
+      "already_known": 321,
+      "filter: outside target role families": 81,
+      "filter: unrelated role family": 19,
+      "filter: generic non-marketing manager/production role": 3,
+      "passed_cheap_checks": 7
+    },
+    "errors": []
+  },
+  "weworkremotely": {
+    "counts": {
+      "fetched": 127,
+      "filter: outside target role families": 12,
+      "filter: unrelated role family": 5,
+      "already_known": 17,
+      "outside_four_days": 91,
+      "same_source_duplicate": 1,
+      "passed_cheap_checks": 1
+    },
+    "errors": []
+  },
+  "workingnomads": {
+    "counts": {
+      "fetched": 43,
+      "filter: outside target role families": 1,
+      "filter: unrelated role family": 4,
+      "outside_four_days": 38,
+      "passed_cheap_checks": 0
+    },
+    "errors": []
+  },
+  "lever": {
+    "counts": {
+      "fetched": 4699,
+      "outside_four_days": 4366,
+      "filter: outside target role families": 116,
+      "already_known": 190,
+      "filter: unrelated role family": 11,
+      "filter: generic non-marketing manager/production role": 3,
+      "filter: non-remote role outside preferred locations": 2,
+      "filter: excluded title/seniority": 1,
+      "filter: excluded employment type": 1,
+      "passed_cheap_checks": 9
+    },
+    "errors": []
+  },
+  "themuse": {
+    "counts": {
+      "fetched": 40796,
+      "outside_four_days": 1756,
+      "filter: outside target role families": 179,
+      "filter: unrelated role family": 39,
+      "filter: generic non-marketing manager/production role": 4,
+      "filter: excluded employment type": 5,
+      "same_source_duplicate": 38813,
+      "passed_cheap_checks": 0
+    },
+    "errors": [
+      {
+        "query": "Paid Search Manager",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Paid Search Manager",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Paid Search Specialist",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Paid Search Specialist",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "PPC Manager",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "PPC Manager",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "SEM Manager",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "SEM Manager",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Digital Marketing Manager",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Digital Marketing Manager",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Performance Marketing Manager",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Performance Marketing Manager",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Paid Media Manager",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Paid Media Manager",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Search Marketing Manager",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Search Marketing Manager",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Marketing Analytics Manager",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Marketing Analytics Manager",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Digital Marketing Analyst",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Digital Marketing Analyst",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Growth Marketing Manager",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Growth Marketing Manager",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "E-Commerce Marketing Manager",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "E-Commerce Marketing Manager",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Demand Generation Manager",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Demand Generation Manager",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Senior Paid Search Strategist",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Senior Paid Search Strategist",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Director of Digital Marketing",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Director of Digital Marketing",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Director of Performance Marketing",
+        "location": "Remote",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      },
+      {
+        "query": "Director of Performance Marketing",
+        "location": "Utah",
+        "error": "Request failed for https://www.themuse.com/api/public/jobs: HTTP Error 400: Bad Request | {\"code\": 400, \"error\": \"Value `page` is too high\"}"
+      }
+    ]
+  },
+  "glassdoor": {
+    "counts": {
+      "fetched": 0,
+      "passed_cheap_checks": 0
+    },
+    "errors": [
+      {
+        "query": "Paid Search Manager",
+        "location": "Remote",
+        "error": "[{'url': 'https://www.glassdoor.com/job-listing/jv?jl=1010265441362', 'error': 'Request failed for https://www.glassdoor.com/job-listing/jv: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/paid-search-account-manager-google-ads-grow-enrollments-JV_KO0,38_KE39,55.htm?jl=1009751163290', 'error': 'Request failed for https://www.glassdoor.com/job-listing/paid-search-account-manager-google-ads-grow-enrollments-JV_KO0,38_KE39,55.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/manager-paid-search-retail-media-kraft-heinz-JV_KO0,32_KE33,44.htm?jl=1010042705215', 'error': 'Request failed for https://www.glassdoor.com/job-listing/manager-paid-search-retail-media-kraft-heinz-JV_KO0,32_KE33,44.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/senior-paid-search-manager-south-mission-media-JV_KO0,26_KE27,46.htm?jl=1009846033114', 'error': 'Request failed for https://www.glassdoor.com/job-listing/senior-paid-search-manager-south-mission-media-JV_KO0,26_KE27,46.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/growth-manager-paid-search-paid-social-tnt-growth-JV_KO0,38_KE39,49.htm?jl=1010097341685', 'error': 'Request failed for https://www.glassdoor.com/job-listing/growth-manager-paid-search-paid-social-tnt-growth-JV_KO0,38_KE39,49.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/senior-paid-search-manager-lead-gen-b2b-wpromote-llc-JV_KO0,39_KE40,52.htm?jl=1009920337345', 'error': 'Request failed for https://www.glassdoor.com/job-listing/senior-paid-search-manager-lead-gen-b2b-wpromote-llc-JV_KO0,39_KE40,52.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/paid-search-campaign-manager-rollo-JV_KO0,28_KE29,34.htm?jl=1010108345712', 'error': 'Request failed for https://www.glassdoor.com/job-listing/paid-search-campaign-manager-rollo-JV_KO0,28_KE29,34.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/paid-search-specialist-comfrt-JV_KO0,22_KE23,29.htm?jl=1010150537811', 'error': 'Request failed for https://www.glassdoor.com/job-listing/paid-search-specialist-comfrt-JV_KO0,22_KE23,29.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/search-engine-marketing-manager-sem-yelp-JV_KO0,35_KE36,40.htm?jl=1009787220230', 'error': 'Request failed for https://www.glassdoor.com/job-listing/search-engine-marketing-manager-sem-yelp-JV_KO0,35_KE36,40.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/paid-search-manager-salvo-media-JV_KO0,19_KE20,31.htm?jl=1010021757864', 'error': 'Request failed for https://www.glassdoor.com/job-listing/paid-search-manager-salvo-media-JV_KO0,19_KE20,31.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/paid-search-manager-roku-JV_IC1148170_KO0,19_KE20,24.htm?jl=1010038479067', 'error': 'Request failed for https://www.glassdoor.com/job-listing/paid-search-manager-roku-JV_IC1148170_KO0,19_KE20,24.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/paid-search-manager-moroch-partners-JV_KO0,19_KE20,35.htm?jl=1009999403303', 'error': 'Request failed for https://www.glassdoor.com/job-listing/paid-search-manager-moroch-partners-JV_KO0,19_KE20,35.htm: HTTP Error 403: Forbidden'}, {'url': 'https://glassdoor.com/job-listing/manager-paid-search-hz-JV_IC1153899_KO0,19_KE20,22.htm?jl=2855838827', 'error': 'Request failed for https://glassdoor.com/job-listing/manager-paid-search-hz-JV_IC1153899_KO0,19_KE20,22.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/paid-search-social-media-manager-junior-marketing-manager-pyramid-consulting-inc-JV_IC1140494_KO0,57_KE58,80.htm?jl=1009805134715', 'error': 'Request failed for https://www.glassdoor.com/job-listing/paid-search-social-media-manager-junior-marketing-manager-pyramid-consulting-inc-JV_IC1140494_KO0,57_KE58,80.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/senior-manager-retail-paid-search-nestl%C3%A9-usa-JV_IC1130337_KO0,33_KE34,44.htm?jl=1009630808435', 'error': 'Request failed for https://www.glassdoor.com/job-listing/senior-manager-retail-paid-search-nestl%C3%A9-usa-JV_IC1130337_KO0,33_KE34,44.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/search-engine-marketing-manager-voltage-search-media-JV_KO0,31_KE32,52.htm?jl=1009616616208', 'error': 'Request failed for https://www.glassdoor.com/job-listing/search-engine-marketing-manager-voltage-search-media-JV_KO0,31_KE32,52.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/paid-search-associate-morgan-and-morgan-JV_IC1132200_KO0,21_KE22,39.htm?jl=1009876599685', 'error': 'Request failed for https://www.glassdoor.com/job-listing/paid-search-associate-morgan-and-morgan-JV_IC1132200_KO0,21_KE22,39.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/paid-search-manager-green-line-digital-JV_KO0,19_KE20,38.htm?jl=1009466061245', 'error': 'Request failed for https://www.glassdoor.com/job-listing/paid-search-manager-green-line-digital-JV_KO0,19_KE20,38.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/associate-paid-search-groupm-JV_IC1155583_KO0,21_KE22,28.htm?jl=1007957092835', 'error': 'Request failed for https://www.glassdoor.com/job-listing/associate-paid-search-groupm-JV_IC1155583_KO0,21_KE22,28.htm: HTTP Error 403: Forbidden'}, {'url': 'https://www.glassdoor.com/job-listing/paid-search-manager-orange-media-group-JV_IC1128969_KO0,19_KE20,38.htm?jl=1009524833145', 'error': 'Request failed for https://www.glassdoor.com/job-listing/paid-search-manager-orange-media-group-JV_IC1128969_KO0,19_KE20,38.htm: HTTP Error 403: Forbidden'}]"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/jv?jl=1010265441362",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/jv: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/paid-search-account-manager-google-ads-grow-enrollments-JV_KO0,38_KE39,55.htm?jl=1009751163290",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/paid-search-account-manager-google-ads-grow-enrollments-JV_KO0,38_KE39,55.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/manager-paid-search-retail-media-kraft-heinz-JV_KO0,32_KE33,44.htm?jl=1010042705215",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/manager-paid-search-retail-media-kraft-heinz-JV_KO0,32_KE33,44.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/senior-paid-search-manager-south-mission-media-JV_KO0,26_KE27,46.htm?jl=1009846033114",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/senior-paid-search-manager-south-mission-media-JV_KO0,26_KE27,46.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/growth-manager-paid-search-paid-social-tnt-growth-JV_KO0,38_KE39,49.htm?jl=1010097341685",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/growth-manager-paid-search-paid-social-tnt-growth-JV_KO0,38_KE39,49.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/senior-paid-search-manager-lead-gen-b2b-wpromote-llc-JV_KO0,39_KE40,52.htm?jl=1009920337345",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/senior-paid-search-manager-lead-gen-b2b-wpromote-llc-JV_KO0,39_KE40,52.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/paid-search-campaign-manager-rollo-JV_KO0,28_KE29,34.htm?jl=1010108345712",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/paid-search-campaign-manager-rollo-JV_KO0,28_KE29,34.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/paid-search-specialist-comfrt-JV_KO0,22_KE23,29.htm?jl=1010150537811",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/paid-search-specialist-comfrt-JV_KO0,22_KE23,29.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/search-engine-marketing-manager-sem-yelp-JV_KO0,35_KE36,40.htm?jl=1009787220230",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/search-engine-marketing-manager-sem-yelp-JV_KO0,35_KE36,40.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/paid-search-manager-salvo-media-JV_KO0,19_KE20,31.htm?jl=1010021757864",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/paid-search-manager-salvo-media-JV_KO0,19_KE20,31.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/paid-search-manager-roku-JV_IC1148170_KO0,19_KE20,24.htm?jl=1010038479067",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/paid-search-manager-roku-JV_IC1148170_KO0,19_KE20,24.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/paid-search-manager-moroch-partners-JV_KO0,19_KE20,35.htm?jl=1009999403303",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/paid-search-manager-moroch-partners-JV_KO0,19_KE20,35.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://glassdoor.com/job-listing/manager-paid-search-hz-JV_IC1153899_KO0,19_KE20,22.htm?jl=2855838827",
+        "error": "Request failed for https://glassdoor.com/job-listing/manager-paid-search-hz-JV_IC1153899_KO0,19_KE20,22.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/paid-search-social-media-manager-junior-marketing-manager-pyramid-consulting-inc-JV_IC1140494_KO0,57_KE58,80.htm?jl=1009805134715",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/paid-search-social-media-manager-junior-marketing-manager-pyramid-consulting-inc-JV_IC1140494_KO0,57_KE58,80.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/senior-manager-retail-paid-search-nestl%C3%A9-usa-JV_IC1130337_KO0,33_KE34,44.htm?jl=1009630808435",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/senior-manager-retail-paid-search-nestl%C3%A9-usa-JV_IC1130337_KO0,33_KE34,44.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/search-engine-marketing-manager-voltage-search-media-JV_KO0,31_KE32,52.htm?jl=1009616616208",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/search-engine-marketing-manager-voltage-search-media-JV_KO0,31_KE32,52.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/paid-search-associate-morgan-and-morgan-JV_IC1132200_KO0,21_KE22,39.htm?jl=1009876599685",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/paid-search-associate-morgan-and-morgan-JV_IC1132200_KO0,21_KE22,39.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/paid-search-manager-green-line-digital-JV_KO0,19_KE20,38.htm?jl=1009466061245",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/paid-search-manager-green-line-digital-JV_KO0,19_KE20,38.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/associate-paid-search-groupm-JV_IC1155583_KO0,21_KE22,28.htm?jl=1007957092835",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/associate-paid-search-groupm-JV_IC1155583_KO0,21_KE22,28.htm: HTTP Error 403: Forbidden"
+      },
+      {
+        "url": "https://www.glassdoor.com/job-listing/paid-search-manager-orange-media-group-JV_IC1128969_KO0,19_KE20,38.htm?jl=1009524833145",
+        "error": "Request failed for https://www.glassdoor.com/job-listing/paid-search-manager-orange-media-group-JV_IC1128969_KO0,19_KE20,38.htm: HTTP Error 403: Forbidden"
+      }
+    ]
+  },
+  "ziprecruiter": {
+    "counts": {
+      "fetched": 0,
+      "passed_cheap_checks": 0
+    },
+    "errors": [
+      {
+        "query": "E-Commerce Marketing Manager",
+        "location": "Utah",
+        "error": "[{'url': 'https://ziprecruiter.com/jobs/texas/aledo/email-marketing-manager', 'error': 'Request failed for https://ziprecruiter.com/jobs/texas/aledo/email-marketing-manager: HTTP Error 403: Forbidden'}]"
+      },
+      {
+        "url": "https://ziprecruiter.com/jobs/texas/aledo/email-marketing-manager",
+        "error": "Request failed for https://ziprecruiter.com/jobs/texas/aledo/email-marketing-manager: HTTP Error 403: Forbidden"
+      }
+    ]
+  }
+}

@@ -49,10 +49,19 @@ class CodexJsonClient:
             stdout, stderr = process.communicate(prompt,timeout=240)
         except subprocess.TimeoutExpired:
             if os.name=='nt':
-                subprocess.run(['taskkill.exe','/PID',str(process.pid),'/T','/F'],capture_output=True,creationflags=subprocess.CREATE_NO_WINDOW)
+                try:
+                    subprocess.run(['taskkill.exe','/PID',str(process.pid),'/T','/F'],capture_output=True,
+                                   creationflags=subprocess.CREATE_NO_WINDOW,timeout=10)
+                except (OSError, subprocess.TimeoutExpired):
+                    process.kill()
             else:
                 process.kill()
-            process.communicate()
+            # Descendants can retain inherited pipes after the CLI exits. A
+            # second communicate() would wait forever on its reader threads.
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                process.kill()
             raise RuntimeError('Pinned Codex inference timed out; no fallback was used.')
         if process.returncode:
             failure = (stdout + '\n' + stderr).lower()
@@ -128,7 +137,9 @@ def draft_resume(plan):
         system=('Create a tailored resume using the job description, master resume and established instructions. '
                 'Return JSON with summary (a concise professional paragraph) and selected_evidence_ids (ordered list). '
                 'Treat the master as a bank of experience: select the most relevant facts, omit redundant material, '
-                'and never invent experience to satisfy a posting. Select 2 or 3 distinct accomplishment IDs per included job. '
+                'and never invent experience to satisfy a posting. Select at least 2 distinct accomplishment IDs per included job, '
+                'adding further relevant, nonredundant evidence when useful; there is no fixed bullet ceiling. '
+                'If a job has only one source accomplishment, preserve that one without inventing a second. '
                 'Preserve all included jobs and required accomplishment anchors. Distinguish go-to-market from Google Tag Manager. '
                 'The summary should emphasize relevant supported experience naturally, without generic filler or unsupported claims. '
                 'Do not evaluate or generate requirement-to-evidence mappings; produce resume content.'),
@@ -147,8 +158,10 @@ def draft_resume(plan):
     for eid in selected:
         job = evidence[eid]['job']
         counts[job] = counts.get(job,0) + 1
-    if set(counts) != included_jobs or any(count not in (2,3) for count in counts.values()):
-        raise ValueError('Codex must preserve each included job with 2–3 distinct accomplishments.')
+    minimums = {job: min(2, sum(item['job'] == job for item in evidence.values()))
+                for job in included_jobs}
+    if set(counts) != included_jobs or any(count < minimums[job] for job, count in counts.items()):
+        raise ValueError('Codex must preserve each included job with at least 2 distinct accomplishments.')
     if not set(plan['resume'].get('relevant_metric_ids',[])).issubset(set(selected)|set(plan['resume'].get('selected_results_ids',[]))):
         raise ValueError('Codex omitted a required source-supported accomplishment.')
     plan['resume']['summary'] = summary.strip()

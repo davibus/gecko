@@ -1,0 +1,551 @@
+{
+  "success": true,
+  "data": {
+    "alexandria": [
+      {
+        "provider": "greenhouse-io",
+        "capability": "jobs/job",
+        "error": {
+          "code": "not_found",
+          "message": "The workflow could not find that resource.",
+          "status": 404
+        },
+        "alexandriaId": "298481ad59153111ad8af13c589c492f9788e3be5f28a69d2570200908471d33",
+        "providerRequestId": "5cf60693-e907-45fb-b279-c429ff53542b",
+        "workflowRunId": "5cf60693-e907-45fb-b279-c429ff53542b"
+      },
+      {
+        "provider": "greenhouse-io",
+        "capability": "jobs/job",
+        "data": {
+          "absolute_url": "https://job-boards.greenhouse.io/zetaglobal/jobs/6185722004",
+          "application_deadline": null,
+          "apply_url": "https://job-boards.greenhouse.io/zetaglobal/jobs/6185722004",
+          "board_token": "zetaglobal",
+          "board_url": "https://job-boards.greenhouse.io/zetaglobal",
+          "company_name": "Zeta Global",
+          "content_html": "<p></p>\n<p><strong>WHO WE ARE&nbsp;</strong></p>\n<p>Zeta Global (NYSE: ZETA) is the AI-Powered Marketing Cloud that leverages advanced artificial intelligence (AI) and trillions of consumer signals to make it easier for marketers to acquire, grow, and retain customers more efficiently. Through the Zeta Marketing Platform (ZMP), our vision is to make sophisticated marketing simple by unifying identity, intelligence, and omnichannel activation into a single platform – powered by one of the industry’s largest proprietary databases and AI. Our enterprise customers across multiple verticals are empowered to personalize experiences with consumers at an individual level across every channel, delivering better results for marketing programs. Zeta was founded in 2007 by David A. Steinberg and John Sculley and is headquartered in New York City with offices around the world. To learn more, go to <a href=\"https://www.zetaglobal.com\">www.zetaglobal.com</a>.</p>\n<p><strong>THE ROLE</strong></p>\n<p>We are seeking a Paid Search Associate Director who can confidently lead client relationships while also rolling up their sleeves to execute campaigns. This role requires a balance of strategic vision and hands-on management. You’ll be responsible for guiding client strategy, overseeing performance, and ensuring flawless execution of paid search campaigns from end to end.<br><br>The ideal candidate thrives in a client-facing role, can distill data into actionable insights, and knows how to turn strategy into measurable results.&nbsp;<em>Depending on your location, this role could be hybrid (NYC, Nashville, LA, San Francisco, Miami) or remote.</em></p>\n<p><strong>RESPONSIBILITIES</strong></p>\n<ul>\n<li><strong>Client Strategy &amp; Leadership</strong></li>\n<ul>\n<li>Serve as the primary client contact for paid search strategy and performance discussions.</li>\n<li>Develop and present strategic roadmaps, testing plans, and growth opportunities tailored to client goals.</li>\n<li>Proactively identify areas for optimization and innovation across accounts.</li>\n</ul>\n<li><strong>Campaign Management &amp; Execution</strong></li>\n<ul>\n<li>Oversee end-to-end execution of paid search campaigns, including account setup, budget pacing, optimization, and reporting.</li>\n<li>Actively manage campaigns and monitor performance across&nbsp;<strong>Google Ads, Google Ads Editor, Microsoft Ads, and SA360.</strong></li>\n<li><strong>Establish testing frameworks and innovation pipelines to continuously improve results.</strong></li>\n<li>Translate insights into actionable next steps that drive measurable client impact.</li>\n</ul>\n<li><strong>Team Collaboration &amp; Mentorship</strong></li>\n<ul>\n<li>Collaborate with internal teams to ensure campaign execution aligns with client objectives.</li>\n<li>Provide mentorship and guidance to junior team members, ensuring best practices are consistently applied.</li>\n</ul>\n<li><strong>Analysis &amp; Reporting</strong></li>\n<ul>\n<li>Deliver clear, data-driven performance reports and insights to clients – diving into the “why” behind the data.</li>\n<li>Recommend testing strategies, budget allocation shifts, and bid strategy adjustments based on performance trends.</li>\n<li>Ensure accuracy, consistency, and timeliness of reporting.</li>\n</ul>\n</ul>\n<p><strong>QUALIFICATIONS</strong></p>\n<ul>\n<li>5+ years of relevant paid search experience.</li>\n<li>Hands-on experience in managing monthly campaign budgets of $500k+.</li>\n<li>Experience with Google Ads, SA360, Microsoft Ads, and Google Ads Editor.</li>\n<li>Meticulous attention to detail.</li>\n</ul>\n<p><strong>Preferred but not required:</strong></p>\n<ul>\n<li>Experience with GA4.</li>\n<li>Experience with Shopping, Vehicle Ads, and Performance Max campaigns.</li>\n<li>Google Ads and Microsoft Ads certification.</li>\n</ul>\n<p><strong>BENEFITS &amp; PERKS</strong></p>\n<ul>\n<li>Unlimited PTO</li>\n<li>Excellent medical, dental, and vision coverage</li>\n<li>Employee Equity</li>\n<li>Employee Discounts, Virtual Wellness Classes, and Pet Insurance And more!!</li>\n</ul>\n<p><strong>SALARY RANGE</strong></p>\n<p>The salary range for this role is $80,000 - $120,000, depending on location and experience.&nbsp;</p>\n<p><strong>PEOPLE &amp; CULTURE AT ZETA</strong></p>\n<p>Zeta considers applicants for employment without regard to, and does not discriminate on the basis of an individual’s sex, race, color, religion, age, disability, status as a veteran, or national or ethnic origin; nor does Zeta discriminate on the basis of sexual orientation, gender identity or expression.&nbsp;&nbsp;</p>\n<p>We’re committed to building a workplace culture of trust and belonging, so everyone feels invited to bring their whole selves to work. We provide a forum for employees to celebrate, support and advocate for one another. Learn more about our commitment to diversity, equity and inclusion here:&nbsp; <a id=\"menur45rm\" class=\"fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn\" href=\"https://zetaglobal.com/blog/a-look-into-zetas-ergs/\" target=\"_blank\">https://zetaglobal.com/blog/a-look-into-zetas-ergs/</a>&nbsp;</p>\n<p><strong>ZETA IN THE NEWS!</strong></p>\n<p><a href=\"https://zetaglobal.com/press/?cat=press-releases\">https://zetaglobal.com/press/?cat=press-releases</a>&nbsp;</p>\n<p>#LI-MR1</p>\n<p>#LI-Remote</p>\n<p></p>",
+          "content_text": "WHO WE ARE\nZeta Global (NYSE: ZETA) is the AI-Powered Marketing Cloud that leverages advanced artificial intelligence (AI) and trillions of consumer signals to make it easier for marketers to acquire, grow, and retain customers more efficiently. Through the Zeta Marketing Platform (ZMP), our vision is to make sophisticated marketing simple by unifying identity, intelligence, and omnichannel activation into a single platform – powered by one of the industry’s largest proprietary databases and AI. Our enterprise customers across multiple verticals are empowered to personalize experiences with consumers at an individual level across every channel, delivering better results for marketing programs. Zeta was founded in 2007 by David A. Steinberg and John Sculley and is headquartered in New York City with offices around the world. To learn more, go to www.zetaglobal.com.\nTHE ROLE\nWe are seeking a Paid Search Associate Director who can confidently lead client relationships while also rolling up their sleeves to execute campaigns. This role requires a balance of strategic vision and hands-on management. You’ll be responsible for guiding client strategy, overseeing performance, and ensuring flawless execution of paid search campaigns from end to end.\nThe ideal candidate thrives in a client-facing role, can distill data into actionable insights, and knows how to turn strategy into measurable results. Depending on your location, this role could be hybrid (NYC, Nashville, LA, San Francisco, Miami) or remote.\nRESPONSIBILITIES\n- Client Strategy & Leadership\n- Serve as the primary client contact for paid search strategy and performance discussions.\n- Develop and present strategic roadmaps, testing plans, and growth opportunities tailored to client goals.\n- Proactively identify areas for optimization and innovation across accounts.\n- Campaign Management & Execution\n- Oversee end-to-end execution of paid search campaigns, including account setup, budget pacing, optimization, and reporting.\n- Actively manage campaigns and monitor performance across Google Ads, Google Ads Editor, Microsoft Ads, and SA360.\n- Establish testing frameworks and innovation pipelines to continuously improve results.\n- Translate insights into actionable next steps that drive measurable client impact.\n- Team Collaboration & Mentorship\n- Collaborate with internal teams to ensure campaign execution aligns with client objectives.\n- Provide mentorship and guidance to junior team members, ensuring best practices are consistently applied.\n- Analysis & Reporting\n- Deliver clear, data-driven performance reports and insights to clients – diving into the “why” behind the data.\n- Recommend testing strategies, budget allocation shifts, and bid strategy adjustments based on performance trends.\n- Ensure accuracy, consistency, and timeliness of reporting.\nQUALIFICATIONS\n- 5+ years of relevant paid search experience.\n- Hands-on experience in managing monthly campaign budgets of $500k+.\n- Experience with Google Ads, SA360, Microsoft Ads, and Google Ads Editor.\n- Meticulous attention to detail.\nPreferred but not required:\n- Experience with GA4.\n- Experience with Shopping, Vehicle Ads, and Performance Max campaigns.\n- Google Ads and Microsoft Ads certification.\nBENEFITS & PERKS\n- Unlimited PTO\n- Excellent medical, dental, and vision coverage\n- Employee Equity\n- Employee Discounts, Virtual Wellness Classes, and Pet Insurance And more!!\nSALARY RANGE\nThe salary range for this role is $80,000 - $120,000, depending on location and experience.\nPEOPLE & CULTURE AT ZETA\nZeta considers applicants for employment without regard to, and does not discriminate on the basis of an individual’s sex, race, color, religion, age, disability, status as a veteran, or national or ethnic origin; nor does Zeta discriminate on the basis of sexual orientation, gender identity or expression.\nWe’re committed to building a workplace culture of trust and belonging, so everyone feels invited to bring their whole selves to work. We provide a forum for employees to celebrate, support and advocate for one another. Learn more about our commitment to diversity, equity and inclusion here: https://zetaglobal.com/blog/a-look-into-zetas-ergs/\nZETA IN THE NEWS!\nhttps://zetaglobal.com/press/?cat=press-releases\n#LI-MR1\n#LI-Remote",
+          "departments": [
+            {
+              "child_ids": [],
+              "id": 4078584004,
+              "name": "Media Activation",
+              "parent_id": null
+            }
+          ],
+          "first_published": "2026-09-17T16:15:51-04:00",
+          "id": 6185722004,
+          "internal_job_id": 5212214004,
+          "language": "en",
+          "location": "Remote - United States",
+          "metadata": [],
+          "observed_at_ms": 1792672487489,
+          "offices": [
+            {
+              "child_ids": [],
+              "id": 4047522004,
+              "location": null,
+              "name": "Remote - US",
+              "parent_id": null
+            }
+          ],
+          "pay_ranges": [],
+          "questions": [
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "first_name",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "First Name",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "last_name",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Last Name",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "preferred_name",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Preferred First Name",
+              "required": false
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "email",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Email",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "phone",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Phone",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "resume",
+                  "type": "input_file",
+                  "values": []
+                },
+                {
+                  "name": "resume_text",
+                  "type": "textarea",
+                  "values": []
+                }
+              ],
+              "label": "Resume/CV",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_19917479004",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "LinkedIn Profile",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_19917480004",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Where do you currently reside?",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_19917481004",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Desired Salary",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_19917482004",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "Yes",
+                      "value": "1"
+                    },
+                    {
+                      "label": "No",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ],
+              "label": "Do you have any familial or close personal relationships with a current Zeta employee?",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_19917483004",
+                  "type": "textarea",
+                  "values": []
+                }
+              ],
+              "label": "How did you hear about this opportunity?",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_19917484004",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "Yes",
+                      "value": "1"
+                    },
+                    {
+                      "label": "No",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ],
+              "label": "Are you able to work in the United States?",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_19917485004",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "Yes",
+                      "value": "1"
+                    },
+                    {
+                      "label": "No",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ],
+              "label": "Will you now or in the future require sponsorship for Employment Visa status?",
+              "required": true
+            }
+          ],
+          "requisition_id": "JR101990",
+          "source": "greenhouse.io",
+          "title": "Associate Director, Paid Search",
+          "updated_at": "2026-10-20T15:23:04-04:00"
+        },
+        "workflow": {
+          "version": "2.0.8",
+          "digest": "sha256:ae63d01ee7a5fc55fc67dd20554c303318a44a42f554ff9e33604068513e9935"
+        },
+        "records": 1,
+        "upstreamStatus": 200,
+        "alexandriaId": "298481ad59153111ad8af13c589c492f9788e3be5f28a69d2570200908471d33",
+        "providerRequestId": "01863c6a-c30f-4c84-9a46-0e6e104fab8d",
+        "workflowRunId": "01863c6a-c30f-4c84-9a46-0e6e104fab8d"
+      },
+      {
+        "provider": "greenhouse-io",
+        "capability": "jobs/job",
+        "data": {
+          "absolute_url": "https://job-boards.greenhouse.io/newengeninc/jobs/4239408009",
+          "application_deadline": null,
+          "apply_url": "https://job-boards.greenhouse.io/newengeninc/jobs/4239408009",
+          "board_token": "newengeninc",
+          "board_url": "https://job-boards.greenhouse.io/newengeninc",
+          "company_name": "New Engen, Inc.",
+          "content_html": "<h2>WHY NEW ENGEN?&nbsp;</h2>\n<p>At New Engen, we help brands grow—not just bigger, but smarter. We’re a digital marketing agency built to drive meaningful impact across the entire customer journey, blending media, creative, analytics, influencer, and retail strategies into performance-driven campaigns.</p>\n<p>Some clients partner with us through long-term agency relationships. Others tap into specialized solutions—like Donut Studios, our in-house creative studio for platform-native and short-form content, or Acorn Creator Suite, our influencer marketing solution built for retail impact. While each solution brings its own focus and flavor, they’re all part of how we deliver for our clients, together, as one team.</p>\n<p>We’re a collaborative group of strategists, creatives, analysts, and makers who are all in on helping brands—and each other—thrive. We work hard, stay humble, and build with purpose.</p>\n<h2>WHAT YOU'LL DO&nbsp;</h2>\n<p class=\"p1\"><strong>Lead Paid Search Performance<br></strong>Own performance and execution across a portfolio of high-impact Paid Search accounts, including enterprise clients. Lead day-to-day account management, ensuring campaigns are optimized effectively and performance goals are consistently achieved.</p>\n<p class=\"p1\"><strong>Serve as a Strategic Client Partner<br></strong>Act as a primary point of contact for assigned clients, leading meetings, presenting campaign performance, and translating client objectives into clear direction for internal teams. Build trusted client relationships while ensuring expectations and business goals remain aligned.</p>\n<p class=\"p1\"><strong>Guide Team Execution<br></strong>Provide guidance and oversight to team members, promoting high-quality execution, strong quality assurance practices, and consistent delivery across accounts. Support the team’s success by providing direction, coaching, and accountability throughout campaign execution.</p>\n<p class=\"p1\"><strong>Drive Cross-Functional Collaboration<br></strong>Partner closely with Analytics, Strategy, and other media teams to develop integrated solutions that maximize performance across channels. Balance multiple stakeholders and competing priorities while maintaining strong communication and alignment in a fast-paced environment.</p>\n<p class=\"p1\"><strong>Maintain Operational Excellence<br></strong>Stay closely connected to campaign execution by stepping in hands-on when needed to ensure continuity across accounts. Monitor workstreams, manage competing priorities, and help maintain operational excellence across the business.</p>\n<h2>WHAT YOU BRING</h2>\n<ul>\n<li>Deep, hands-on experience with Google Search, with a strong understanding of campaign builds, optimization, and performance management</li>\n<li>Proven ability to manage and optimize complex Paid Search accounts, ideally within an agency or multi-client environment</li>\n<li>Strong client-facing experience, including leading calls, presenting performance, and building trust with stakeholders</li>\n<li>Ability to manage multiple priorities and stakeholders, staying organized and effective in fast-paced environments</li>\n<li>Experience guiding or mentoring team members, providing direction and feedback to support strong execution</li>\n<li>Confidence operating both strategically and tactically, with the ability to step into execution as needed</li>\n<li>Strong communication and presentation skills, with the ability to clearly articulate performance, insights, and next step</li>\n<li>\n<p><em><strong>Location: Hybrid in Seattle or New York City (2x/week in office) preferred; open to remote candidates based in Denver.</strong></em></p>\n</li>\n</ul>\n<h2>PERKS &amp; BENEFITS</h2>\n<ul>\n<li>Hybrid work environment with flexible hours</li>\n<li>Unlimited PTO + company holidays</li>\n<li>Comprehensive medical, dental, vision, and disability coverage</li>\n<li>Life &amp; AD&amp;D insurance</li>\n<li>401(k) with company match</li>\n<li>Paid parental leave &amp; family support</li>\n<li>Pet care perks &amp; insurance</li>\n<li>Commuter &amp; transit benefits</li>\n<li>Exclusive employee discounts</li>\n</ul>\n<p>Salary Range: $95,000-115,000 USD annual</p>\n<p>&nbsp;</p><div class=\"content-conclusion\"><p>Compensation for each opportunity is determined based on the applicable labor market, the scope and structure of the role or engagement, and the individual’s qualifications and experience.</p>\n<p>New Engen is proud to have offices in Seattle, New York, and Northwest Arkansas, each one anchoring teams that drive creativity, collaboration, and culture. But great work isn’t limited to those zip codes. We also support a distributed team of remote employees across the country, giving people the flexibility to do their best work wherever they are.</p>\n<p>We currently hire full-time employees in the following states: Arkansas, California, Colorado, Florida, Georgia, Illinois, Michigan, Missouri, Nevada, New Jersey, New York, North Carolina, Oregon, Pennsylvania, South Carolina, Tennessee, Texas, Virginia, Washington, and Wisconsin</p>\n<p>Let’s Build What’s Next Together — If you’re passionate about media and eager to make a meaningful impact with a team that’s all in, we’d love to hear from you.</p>\n<p><span style=\"font-size: 10pt;\"><strong>Important Notice About Job Openings:</strong></span></p>\n<p><span style=\"font-size: 10pt;\"><em>Please be aware of fraudulent job postings, consulting engagements, solicitations, or employment offers from suspicious sources. These attempts are often designed to steal your personal information or trick you into paying fees for recruitment or training services.</em></span></p>\n<p><span style=\"font-size: 10pt;\"><em>New Engen does NOT charge any application, processing, or training fees at any stage of the recruitment or hiring process.</em></span></p>\n<p><em>All legitimate job openings will be posted directly on our careers page. Communication about these roles will come exclusively from New Engen Recruitment through our ATS, Greenhouse. We will never conduct recruiting outreach through unsolicited text messages or from the @newengen.online domain.</em></p>\n<p><span style=\"font-size: 10pt;\"><em>If you have any concerns about the authenticity of any message claiming to be from New Engen, please contact us immediately at peopleteam@newengen.com before taking any further action.</em></span></p>\n<p><span style=\"font-size: 10pt;\"><em>We take your security seriously and are here to support you, ensuring your job search is a safe, positive experience.</em></span></p></div>",
+          "content_text": "WHY NEW ENGEN?\nAt New Engen, we help brands grow—not just bigger, but smarter. We’re a digital marketing agency built to drive meaningful impact across the entire customer journey, blending media, creative, analytics, influencer, and retail strategies into performance-driven campaigns.\nSome clients partner with us through long-term agency relationships. Others tap into specialized solutions—like Donut Studios, our in-house creative studio for platform-native and short-form content, or Acorn Creator Suite, our influencer marketing solution built for retail impact. While each solution brings its own focus and flavor, they’re all part of how we deliver for our clients, together, as one team.\nWe’re a collaborative group of strategists, creatives, analysts, and makers who are all in on helping brands—and each other—thrive. We work hard, stay humble, and build with purpose.\nWHAT YOU'LL DO\nLead Paid Search Performance\nOwn performance and execution across a portfolio of high-impact Paid Search accounts, including enterprise clients. Lead day-to-day account management, ensuring campaigns are optimized effectively and performance goals are consistently achieved.\nServe as a Strategic Client Partner\nAct as a primary point of contact for assigned clients, leading meetings, presenting campaign performance, and translating client objectives into clear direction for internal teams. Build trusted client relationships while ensuring expectations and business goals remain aligned.\nGuide Team Execution\nProvide guidance and oversight to team members, promoting high-quality execution, strong quality assurance practices, and consistent delivery across accounts. Support the team’s success by providing direction, coaching, and accountability throughout campaign execution.\nDrive Cross-Functional Collaboration\nPartner closely with Analytics, Strategy, and other media teams to develop integrated solutions that maximize performance across channels. Balance multiple stakeholders and competing priorities while maintaining strong communication and alignment in a fast-paced environment.\nMaintain Operational Excellence\nStay closely connected to campaign execution by stepping in hands-on when needed to ensure continuity across accounts. Monitor workstreams, manage competing priorities, and help maintain operational excellence across the business.\nWHAT YOU BRING\n- Deep, hands-on experience with Google Search, with a strong understanding of campaign builds, optimization, and performance management\n- Proven ability to manage and optimize complex Paid Search accounts, ideally within an agency or multi-client environment\n- Strong client-facing experience, including leading calls, presenting performance, and building trust with stakeholders\n- Ability to manage multiple priorities and stakeholders, staying organized and effective in fast-paced environments\n- Experience guiding or mentoring team members, providing direction and feedback to support strong execution\n- Confidence operating both strategically and tactically, with the ability to step into execution as needed\n- Strong communication and presentation skills, with the ability to clearly articulate performance, insights, and next step\n-\nLocation: Hybrid in Seattle or New York City (2x/week in office) preferred; open to remote candidates based in Denver.\nPERKS & BENEFITS\n- Hybrid work environment with flexible hours\n- Unlimited PTO + company holidays\n- Comprehensive medical, dental, vision, and disability coverage\n- Life & AD&D insurance\n- 401(k) with company match\n- Paid parental leave & family support\n- Pet care perks & insurance\n- Commuter & transit benefits\n- Exclusive employee discounts\nSalary Range: $95,000-115,000 USD annual\nCompensation for each opportunity is determined based on the applicable labor market, the scope and structure of the role or engagement, and the individual’s qualifications and experience.\nNew Engen is proud to have offices in Seattle, New York, and Northwest Arkansas, each one anchoring teams that drive creativity, collaboration, and culture. But great work isn’t limited to those zip codes. We also support a distributed team of remote employees across the country, giving people the flexibility to do their best work wherever they are.\nWe currently hire full-time employees in the following states: Arkansas, California, Colorado, Florida, Georgia, Illinois, Michigan, Missouri, Nevada, New Jersey, New York, North Carolina, Oregon, Pennsylvania, South Carolina, Tennessee, Texas, Virginia, Washington, and Wisconsin\nLet’s Build What’s Next Together — If you’re passionate about media and eager to make a meaningful impact with a team that’s all in, we’d love to hear from you.\nImportant Notice About Job Openings:\nPlease be aware of fraudulent job postings, consulting engagements, solicitations, or employment offers from suspicious sources. These attempts are often designed to steal your personal information or trick you into paying fees for recruitment or training services.\nNew Engen does NOT charge any application, processing, or training fees at any stage of the recruitment or hiring process.\nAll legitimate job openings will be posted directly on our careers page. Communication about these roles will come exclusively from New Engen Recruitment through our ATS, Greenhouse. We will never conduct recruiting outreach through unsolicited text messages or from the @newengen.online domain.\nIf you have any concerns about the authenticity of any message claiming to be from New Engen, please contact us immediately at peopleteam@newengen.com before taking any further action.\nWe take your security seriously and are here to support you, ensuring your job search is a safe, positive experience.",
+          "departments": [
+            {
+              "child_ids": [],
+              "id": 4031257009,
+              "name": "Media",
+              "parent_id": null
+            }
+          ],
+          "first_published": "2026-05-07T22:29:41-04:00",
+          "id": 4239408009,
+          "internal_job_id": 4139884009,
+          "language": "en",
+          "location": "Seattle, WA & New York City & Denver, CO",
+          "metadata": [],
+          "observed_at_ms": 1792672487388,
+          "offices": [
+            {
+              "child_ids": [],
+              "id": 4030803009,
+              "location": null,
+              "name": "Hybrid - Seattle Office",
+              "parent_id": null
+            },
+            {
+              "child_ids": [],
+              "id": 4068168009,
+              "location": "7 W 18th St 4th floor New York, NY 10011",
+              "name": "Hybrid - Union Square Office",
+              "parent_id": null
+            }
+          ],
+          "pay_ranges": [],
+          "questions": [
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "first_name",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "First Name",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "last_name",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Last Name",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "email",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Email",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "phone",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "Phone",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "resume",
+                  "type": "input_file",
+                  "values": []
+                },
+                {
+                  "name": "resume_text",
+                  "type": "textarea",
+                  "values": []
+                }
+              ],
+              "label": "Resume/CV",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "cover_letter",
+                  "type": "input_file",
+                  "values": []
+                },
+                {
+                  "name": "cover_letter_text",
+                  "type": "textarea",
+                  "values": []
+                }
+              ],
+              "label": "Cover Letter",
+              "required": false
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_6029575009",
+                  "type": "input_text",
+                  "values": []
+                }
+              ],
+              "label": "LinkedIn Profile",
+              "required": false
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_6029576009",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "Yes",
+                      "value": "1"
+                    },
+                    {
+                      "label": "No",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ],
+              "label": "Will you now or in the future require New Engen to commence (“sponsor”) an immigration case or otherwise rely on temporary employment authorization in order to work for New Engen (for example: F-1 OPT, STEM OPT, CPT, H-1B, TN, O-1, E-3, or any other employment-based immigration status)? If you are currently working under F-1 OPT, STEM OPT, CPT, or any other visa-based work authorization, please answer “Yes.”\n",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_6029577009",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "Yes",
+                      "value": "1"
+                    },
+                    {
+                      "label": "No",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ],
+              "label": "This role is hybrid for candidates based in Seattle or New York City, with an expectation of working in-office 2 days per week. We are also open to remote candidates based in the Denver area. Are you currently based in one of these locations, or willing to relocate?",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_6029578009",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "Yes",
+                      "value": "1"
+                    },
+                    {
+                      "label": "No",
+                      "value": "0"
+                    }
+                  ]
+                }
+              ],
+              "label": "I acknowledge the compensation range for this role and confirm it aligns with my expectations.",
+              "required": true
+            },
+            {
+              "description": null,
+              "fields": [
+                {
+                  "name": "question_6029592009",
+                  "type": "multi_value_single_select",
+                  "values": [
+                    {
+                      "label": "No experience",
+                      "value": "14419315009"
+                    },
+                    {
+                      "label": "0-2 years",
+                      "value": "14419316009"
+                    },
+                    {
+                      "label": "3-5 years",
+                      "value": "14419317009"
+                    },
+                    {
+                      "label": "6+ years",
+                      "value": "14419318009"
+                    }
+                  ]
+                }
+              ],
+              "label": "How many years of hands-on experience do you have directly managing and optimizing Google Search campaigns in-platform (e.g., Google Ads, SA360)?",
+              "required": true
+            }
+          ],
+          "requisition_id": "NE-26-097",
+          "source": "greenhouse.io",
+          "title": "Senior Manager, Paid Search",
+          "updated_at": "2026-10-16T13:42:55-04:00"
+        },
+        "workflow": {
+          "version": "2.0.8",
+          "digest": "sha256:ae63d01ee7a5fc55fc67dd20554c303318a44a42f554ff9e33604068513e9935"
+        },
+        "records": 1,
+        "upstreamStatus": 200,
+        "alexandriaId": "298481ad59153111ad8af13c589c492f9788e3be5f28a69d2570200908471d33",
+        "providerRequestId": "e53bdbf4-4995-486e-a4cf-3d5820d5322a",
+        "workflowRunId": "e53bdbf4-4995-486e-a4cf-3d5820d5322a"
+      },
+      {
+        "provider": "greenhouse-io",
+        "capability": "jobs/job",
+        "error": {
+          "code": "not_found",
+          "message": "The workflow could not find that resource.",
+          "status": 404
+        },
+        "alexandriaId": "298481ad59153111ad8af13c589c492f9788e3be5f28a69d2570200908471d33",
+        "providerRequestId": "a150f792-91b8-4f82-8793-f1de185b06ed",
+        "workflowRunId": "a150f792-91b8-4f82-8793-f1de185b06ed"
+      },
+      {
+        "provider": "greenhouse-io",
+        "capability": "jobs/job",
+        "error": {
+          "code": "not_found",
+          "message": "The workflow could not find that resource.",
+          "status": 404
+        },
+        "alexandriaId": "298481ad59153111ad8af13c589c492f9788e3be5f28a69d2570200908471d33",
+        "providerRequestId": "ce9b3dea-3844-4dfb-ac0c-2db26595e07f",
+        "workflowRunId": "ce9b3dea-3844-4dfb-ac0c-2db26595e07f"
+      }
+    ],
+    "creditsCost": 10
+  },
+  "requestId": "2135e7d7-928b-40cb-9cdb-9aa78f127f44",
+  "scrape_id": "01a1639b-5450-71ad-834c-ff57ebbe2683",
+  "feedbackTool": {
+    "name": "firecrawl_feedback",
+    "when": "After task completion, within 20 minutes of your last Alexandria call. Free, optional, refunds 1 credit, No job ID needed.",
+    "arguments": {
+      "endpoint": "alexandria",
+      "rating": "<good | partial | bad>",
+      "requestedWebsite": {
+        "url": "<website the user needed data from>",
+        "requestedFunctionality": "<what they needed from it>"
+      },
+      "objective": "<underlying goal of the task>",
+      "rationale": "<why this rating, from observed results>",
+      "providerFeedback": "<optional [{name, issue, why}]: providers that were missing, thin, or unavailable>",
+      "capabilityFeedback": "<optional [{name, provider, issue, why, requestedFunctionality?}]: capabilities that were missing, wrong, or failed>"
+    }
+  }
+}

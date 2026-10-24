@@ -1,21 +1,18 @@
 {
   "target_roles": [
-    "Paid Search Manager",
-    "Paid Search Specialist",
-    "PPC Manager",
-    "SEM Manager",
-    "Digital Marketing Manager",
-    "Performance Marketing Manager",
-    "Paid Media Manager",
-    "Search Marketing Manager",
-    "Marketing Analytics Manager",
-    "Digital Marketing Analyst",
-    "Growth Marketing Manager",
-    "E-Commerce Marketing Manager",
-    "Demand Generation Manager",
-    "Senior Paid Search Strategist",
-    "Director of Digital Marketing",
-    "Director of Performance Marketing"
+    "Paid media",
+    "Paid search",
+    "PPC",
+    "SEM",
+    "Digital marketing",
+    "Performance marketing",
+    "Growth marketing",
+    "Marketing analytics",
+    "E-commerce marketing",
+    "Demand generation",
+    "Marketing operations",
+    "Marketing technology",
+    "Google Ads"
   ],
   "preferred_locations": [
     "remote",
@@ -30,7 +27,8 @@
   "preferred_employment_types": [
     "full-time",
     "full time",
-    "permanent"
+    "permanent",
+    "contract"
   ],
   "excluded_seniority": [
     "intern",
@@ -42,10 +40,11 @@
   ],
   "deterministic_filters": {
     "excluded_title_terms": ["intern", "internship", "entry level", "entry-level", "junior", "associate"],
-    "allowed_employment_types": ["full-time", "full time", "permanent"],
+    "allowed_employment_types": ["full-time", "full time", "permanent", "contract"],
     "allowed_work_arrangements": ["remote", "hybrid", "on-site", "unknown"],
     "require_preferred_location_for_non_remote": true,
     "minimum_annual_salary": 0,
+    "maximum_starting_annual_base_salary": 120000,
     "excluded_categories": []
   },
   "ai_evaluation": {

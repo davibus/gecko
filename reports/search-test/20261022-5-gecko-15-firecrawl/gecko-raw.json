@@ -1,0 +1,218 @@
+[
+  {
+    "source": "adzuna",
+    "source_job_id": "5937359468",
+    "url": "https://www.adzuna.com/land/ad/5937359468?se=2Lz6mQXO8RGF68UScRttYQ&utm_medium=api&utm_source=b4f3e3f8&v=ADF39DC53A155826E3B6490DEDF2FF85ACC81BD8",
+    "title": "Remote AI Marketing Project Manager",
+    "company": "Globalchannelmanagement",
+    "location": "New York City, New York",
+    "description": "Job Description Job Description Remote AI Marketing Project Manager needs 5\u20137 years of project/program management experience Requires: Significant experience leading complex, cross-functional technology, data, digital, automation, or AI-enabled initiatives from definition through implementation. Demonstrated ability to manage multiple concurrent workstreams with competing priorities, changing requirements, and distributed teams. Strong project planning, dependency management, risk and issue man\u2026",
+    "employment_type": "",
+    "salary": "$123,068 - $123,068",
+    "date_posted": "2026-10-21T23:27:41Z",
+    "remote_type": "",
+    "category": "",
+    "tags": [],
+    "metadata": {
+      "id": "5937359468",
+      "salary_min": 123068.01,
+      "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTkzNzM1OTQ2OCIsInMiOiIyTHo2bVFYTzhSR0Y2OFVTY1J0dFlRIn0.etTx719nS5gSiZsprwDIE0xl8tMyaQu-6zT5ywgRsb0",
+      "company": {
+        "display_name": "Globalchannelmanagement",
+        "__CLASS__": "Adzuna::API::Response::Company"
+      },
+      "salary_max": 123068.01,
+      "category": {
+        "__CLASS__": "Adzuna::API::Response::Category",
+        "label": "IT Jobs",
+        "tag": "it-jobs"
+      },
+      "description": "Job Description Job Description Remote AI Marketing Project Manager needs 5\u20137 years of project/program management experience Requires: Significant experience leading complex, cross-functional technology, data, digital, automation, or AI-enabled initiatives from definition through implementation. Demonstrated ability to manage multiple concurrent workstreams with competing priorities, changing requirements, and distributed teams. Strong project planning, dependency management, risk and issue man\u2026",
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "salary_is_predicted": "1",
+      "redirect_url": "https://www.adzuna.com/land/ad/5937359468?se=2Lz6mQXO8RGF68UScRttYQ&utm_medium=api&utm_source=b4f3e3f8&v=ADF39DC53A155826E3B6490DEDF2FF85ACC81BD8",
+      "title": "Remote AI Marketing Project Manager",
+      "created": "2026-10-21T23:27:41Z",
+      "location": {
+        "__CLASS__": "Adzuna::API::Response::Location",
+        "area": [
+          "US",
+          "New York",
+          "New York City"
+        ],
+        "display_name": "New York City, New York"
+      }
+    }
+  },
+  {
+    "source": "adzuna",
+    "source_job_id": "5937236056",
+    "url": "https://www.adzuna.com/details/5937236056?utm_medium=api&utm_source=b4f3e3f8",
+    "title": "Field Marketing Manager - SLED",
+    "company": "Tek Ninjas",
+    "location": "US",
+    "description": "Job Title: Field Marketing Manager - SLED Duration: 3 months Location: Remote About the Role Client is seeking a Field Marketing Contractor to support our SLED (State, Local, and Education) business. This role will focus on executing marketing programs already planned for 2H, ensuring events and campaigns run smoothly, and partnering closely with the SLED sales team to support ongoing business priorities. This is an execution-focused role that helps keep day-to-day field marketing activities mo\u2026",
+    "employment_type": "",
+    "salary": "$124,800 - $124,800",
+    "date_posted": "2026-10-21T21:34:45Z",
+    "remote_type": "",
+    "category": "",
+    "tags": [],
+    "metadata": {
+      "created": "2026-10-21T21:34:45Z",
+      "redirect_url": "https://www.adzuna.com/details/5937236056?utm_medium=api&utm_source=b4f3e3f8",
+      "title": "Field Marketing Manager - SLED",
+      "location": {
+        "area": [
+          "US"
+        ],
+        "display_name": "US",
+        "__CLASS__": "Adzuna::API::Response::Location"
+      },
+      "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiMkx6Nm1RWE84UkdGNjhVU2NSdHRZUSIsImkiOiI1OTM3MjM2MDU2In0.w4zyOZAjfJmr6i3Mwnc2qBjLURIv9by16cJRDCwGENk",
+      "category": {
+        "label": "PR, Advertising & Marketing Jobs",
+        "tag": "pr-advertising-marketing-jobs",
+        "__CLASS__": "Adzuna::API::Response::Category"
+      },
+      "salary_max": 124800,
+      "company": {
+        "__CLASS__": "Adzuna::API::Response::Company",
+        "display_name": "Tek Ninjas"
+      },
+      "id": "5937236056",
+      "salary_min": 124800,
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "description": "Job Title: Field Marketing Manager - SLED Duration: 3 months Location: Remote About the Role Client is seeking a Field Marketing Contractor to support our SLED (State, Local, and Education) business. This role will focus on executing marketing programs already planned for 2H, ensuring events and campaigns run smoothly, and partnering closely with the SLED sales team to support ongoing business priorities. This is an execution-focused role that helps keep day-to-day field marketing activities mo\u2026",
+      "salary_is_predicted": "0"
+    }
+  },
+  {
+    "source": "adzuna",
+    "source_job_id": "5937235836",
+    "url": "https://www.adzuna.com/details/5937235836?utm_medium=api&utm_source=b4f3e3f8",
+    "title": "E-Commerce & Retail Marketing Manager",
+    "company": "TekWissen LLC",
+    "location": "US",
+    "description": "Overview: TekWissen is a global workforce management provider headquartered in Ann Arbor, Michigan that offers strategic talent solutions tour clients worldwide. Client Technology is a global data storage and technology company that develops solutions for storing, managing, and protecting digital information. Headquartered in Fremont, California, Client is known for its hard disk drives (HDDs), storage systems, and data storage technologies used across cloud, enterprise, edge, and consumer appl\u2026",
+    "employment_type": "",
+    "salary": "$91,686 - $91,686",
+    "date_posted": "2026-10-21T21:34:35Z",
+    "remote_type": "",
+    "category": "",
+    "tags": [],
+    "metadata": {
+      "location": {
+        "__CLASS__": "Adzuna::API::Response::Location",
+        "display_name": "US",
+        "area": [
+          "US"
+        ]
+      },
+      "created": "2026-10-21T21:34:35Z",
+      "title": "E-Commerce & Retail Marketing Manager",
+      "redirect_url": "https://www.adzuna.com/details/5937235836?utm_medium=api&utm_source=b4f3e3f8",
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "salary_is_predicted": "0",
+      "description": "Overview: TekWissen is a global workforce management provider headquartered in Ann Arbor, Michigan that offers strategic talent solutions tour clients worldwide. Client Technology is a global data storage and technology company that develops solutions for storing, managing, and protecting digital information. Headquartered in Fremont, California, Client is known for its hard disk drives (HDDs), storage systems, and data storage technologies used across cloud, enterprise, edge, and consumer appl\u2026",
+      "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiMkx6Nm1RWE84UkdGNjhVU2NSdHRZUSIsImkiOiI1OTM3MjM1ODM2In0.67AGj93DRoa1vPc0OwIOGgBat_0J6PBHXc329vYAo8A",
+      "company": {
+        "__CLASS__": "Adzuna::API::Response::Company",
+        "display_name": "TekWissen LLC"
+      },
+      "salary_max": 91686,
+      "category": {
+        "__CLASS__": "Adzuna::API::Response::Category",
+        "tag": "retail-jobs",
+        "label": "Retail Jobs"
+      },
+      "salary_min": 91686,
+      "id": "5937235836"
+    }
+  },
+  {
+    "source": "adzuna",
+    "source_job_id": "5937235436",
+    "url": "https://www.adzuna.com/details/5937235436?utm_medium=api&utm_source=b4f3e3f8",
+    "title": "656 - Product Marketing Manager, Staff",
+    "company": "AIT Global inc.",
+    "location": "US",
+    "description": "Job Title: Product Marketing Manager, Staff Location: Remote (San Jose, CA) JOB DESCRIPTION: This role will focus on the supplier and network, developing strategies and programs to drive acquisition and retention, partnering across Marketing, Product, Sales, and Customer Success. You will be the voice of the customer in roadmap discussions, create differentiated positioning and messaging, and orchestrate effective GTM launches. You'll lead the GTM strategy for acquisition, retention and enablem\u2026",
+    "employment_type": "",
+    "salary": "$312,000",
+    "date_posted": "2026-10-21T21:34:17Z",
+    "remote_type": "",
+    "category": "",
+    "tags": [],
+    "metadata": {
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "salary_is_predicted": "0",
+      "description": "Job Title: Product Marketing Manager, Staff Location: Remote (San Jose, CA) JOB DESCRIPTION: This role will focus on the supplier and network, developing strategies and programs to drive acquisition and retention, partnering across Marketing, Product, Sales, and Customer Success. You will be the voice of the customer in roadmap discussions, create differentiated positioning and messaging, and orchestrate effective GTM launches. You'll lead the GTM strategy for acquisition, retention and enablem\u2026",
+      "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTkzNzIzNTQzNiIsInMiOiIyTHo2bVFYTzhSR0Y2OFVTY1J0dFlRIn0.Tf6r0bNjJa2Z1_SXzjMK0w0vuEI9n35KINfpmX6qNRk",
+      "category": {
+        "__CLASS__": "Adzuna::API::Response::Category",
+        "label": "PR, Advertising & Marketing Jobs",
+        "tag": "pr-advertising-marketing-jobs"
+      },
+      "company": {
+        "display_name": "AIT Global inc.",
+        "__CLASS__": "Adzuna::API::Response::Company"
+      },
+      "salary_min": 312000,
+      "id": "5937235436",
+      "location": {
+        "area": [
+          "US"
+        ],
+        "display_name": "US",
+        "__CLASS__": "Adzuna::API::Response::Location"
+      },
+      "created": "2026-10-21T21:34:17Z",
+      "title": "656 - Product Marketing Manager, Staff",
+      "redirect_url": "https://www.adzuna.com/details/5937235436?utm_medium=api&utm_source=b4f3e3f8"
+    }
+  },
+  {
+    "source": "adzuna",
+    "source_job_id": "5937234879",
+    "url": "https://www.adzuna.com/details/5937234879?utm_medium=api&utm_source=b4f3e3f8",
+    "title": "Field Marketing Manager - SLED",
+    "company": "DivIHN Integration Inc",
+    "location": "US",
+    "description": "For further inquiries about this opportunity, please contact our Talent Specialist, Praveen at (217) 279 2607. Title: Field Marketing Manager - SLED Duration: 3 Months Location: Remote Only W2 candidates are eligible for this position. Third-party or C2C candidates will not be considered. About the Role Client is seeking a Field Marketing Contractor to support our SLED (State, Local, and Education) business. This role will focus on executing marketing programs already planned for 2H, ensuring e\u2026",
+    "employment_type": "",
+    "salary": "$122,720 - $122,720",
+    "date_posted": "2026-10-21T21:33:59Z",
+    "remote_type": "",
+    "category": "",
+    "tags": [],
+    "metadata": {
+      "id": "5937234879",
+      "salary_min": 122720,
+      "company": {
+        "__CLASS__": "Adzuna::API::Response::Company",
+        "display_name": "DivIHN Integration Inc"
+      },
+      "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTkzNzIzNDg3OSIsInMiOiIyTHo2bVFYTzhSR0Y2OFVTY1J0dFlRIn0.AKj3SfSx1Vs0bQkJH0X_YM-bw8uhFdCEOK7SlDfDXl8",
+      "salary_max": 122720,
+      "category": {
+        "tag": "pr-advertising-marketing-jobs",
+        "label": "PR, Advertising & Marketing Jobs",
+        "__CLASS__": "Adzuna::API::Response::Category"
+      },
+      "__CLASS__": "Adzuna::API::Response::Job",
+      "salary_is_predicted": "0",
+      "description": "For further inquiries about this opportunity, please contact our Talent Specialist, Praveen at (217) 279 2607. Title: Field Marketing Manager - SLED Duration: 3 Months Location: Remote Only W2 candidates are eligible for this position. Third-party or C2C candidates will not be considered. About the Role Client is seeking a Field Marketing Contractor to support our SLED (State, Local, and Education) business. This role will focus on executing marketing programs already planned for 2H, ensuring e\u2026",
+      "redirect_url": "https://www.adzuna.com/details/5937234879?utm_medium=api&utm_source=b4f3e3f8",
+      "title": "Field Marketing Manager - SLED",
+      "created": "2026-10-21T21:33:59Z",
+      "location": {
+        "display_name": "US",
+        "area": [
+          "US"
+        ],
+        "__CLASS__": "Adzuna::API::Response::Location"
+      }
+    }
+  }
+]

@@ -1,0 +1,790 @@
+{
+  "started_at": "2026-10-22T12:08:52.897623+00:00",
+  "ordinary_baseline_max_id": 2884,
+  "ordinary": [
+    {
+      "id": 2885,
+      "company": "Maximus",
+      "title": "Digital Marketing Specialist",
+      "source": "adzuna",
+      "url": "https://www.adzuna.com/details/5937216525?utm_medium=api&utm_source=b4f3e3f8",
+      "included": true,
+      "reason": "Original JobPosting proves Salt Lake City, UT; full description verified"
+    },
+    {
+      "id": 2886,
+      "company": "Harness",
+      "title": "Senior Field Marketing Manager, Events",
+      "source": "jobicy",
+      "url": "https://jobicy.com/jobs/156221-senior-field-marketing-manager-events",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2887,
+      "company": "Instacart",
+      "title": "B2B Event Marketing Manager (6-Month Contract)",
+      "source": "jobicy",
+      "url": "https://jobicy.com/jobs/155761-b2b-event-marketing-manager-6-month-contract",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2888,
+      "company": "Cresta",
+      "title": "Senior Technical Product Marketing Manager, AI Agent",
+      "source": "greenhouse",
+      "url": "https://job-boards.greenhouse.io/cresta/jobs/5460669008",
+      "included": false,
+      "reason": "starting annual base salary above $120,000"
+    },
+    {
+      "id": 2889,
+      "company": "Cresta",
+      "title": "Senior Product Marketing Manager, Vertical Solutions",
+      "source": "greenhouse",
+      "url": "https://job-boards.greenhouse.io/cresta/jobs/5460644008",
+      "included": false,
+      "reason": "starting annual base salary above $120,000"
+    },
+    {
+      "id": 2890,
+      "company": "Cresta",
+      "title": "Senior Product Marketing Manager, Healthcare",
+      "source": "greenhouse",
+      "url": "https://job-boards.greenhouse.io/cresta/jobs/5458612008",
+      "included": false,
+      "reason": "starting annual base salary above $120,000"
+    },
+    {
+      "id": 2891,
+      "company": "DEPT",
+      "title": "Account Coordinator, Paid Search",
+      "source": "greenhouse",
+      "url": "https://job-boards.greenhouse.io/dept/jobs/8311121",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2892,
+      "company": "Fleetio",
+      "title": "Senior Content Marketing Manager",
+      "source": "greenhouse",
+      "url": "https://job-boards.greenhouse.io/fleetio/jobs/5271172007",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2893,
+      "company": "Dropbox",
+      "title": "Senior Manager, Lifecycle Marketing",
+      "source": "greenhouse",
+      "url": "https://jobs.dropbox.com/listing/8279632?gh_jid=8279632",
+      "included": false,
+      "reason": "remote role restricted outside United States"
+    },
+    {
+      "id": 2894,
+      "company": "Dropbox",
+      "title": "Senior Manager, Lifecycle Marketing",
+      "source": "greenhouse",
+      "url": "https://jobs.dropbox.com/listing/8279631?gh_jid=8279631",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2895,
+      "company": "Pinterest",
+      "title": "Brand Marketing Manager",
+      "source": "greenhouse",
+      "url": "https://www.pinterestcareers.com/jobs/?gh_jid=8267923",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2896,
+      "company": "Motive",
+      "title": "Senior Customer Marketing Specialist",
+      "source": "greenhouse",
+      "url": "https://job-boards.greenhouse.io/gomotive/jobs/8811944002",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2897,
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "source": "greenhouse",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230587004",
+      "included": false,
+      "reason": "Location/remote eligibility needs review"
+    },
+    {
+      "id": 2898,
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "source": "greenhouse",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230586004",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2899,
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "source": "greenhouse",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230585004",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2900,
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "source": "greenhouse",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230584004",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2901,
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "source": "greenhouse",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230583004",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2902,
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "source": "greenhouse",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230582004",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2903,
+      "company": "Pinterest",
+      "title": "Integrated Marketing Lead, UCAN Programming & Industry",
+      "source": "greenhouse",
+      "url": "https://www.pinterestcareers.com/jobs/?gh_jid=8268329",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2904,
+      "company": "Oura",
+      "title": "Senior Retail Marketing Manager, LATAM",
+      "source": "greenhouse",
+      "url": "https://job-boards.greenhouse.io/oura/jobs/4458625009",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2905,
+      "company": "Silverback Strategies",
+      "title": "SEO Manager (Remote)",
+      "source": "lever",
+      "url": "https://jobs.lever.co/silverbackstrategies/f69c16ec-6255-45b1-aae3-b3fdca3ee109",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2906,
+      "company": "Silverback Strategies",
+      "title": "Senior SEO Manager (Remote)",
+      "source": "lever",
+      "url": "https://jobs.lever.co/silverbackstrategies/69b74430-00a5-472e-971a-ddf82f2afd98",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2907,
+      "company": "Silverback Strategies",
+      "title": "Paid Media Manager (Remote)",
+      "source": "lever",
+      "url": "https://jobs.lever.co/silverbackstrategies/9db89bca-c4db-4044-89a3-b9e10c75bf9e",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2908,
+      "company": "Veeva Systems",
+      "title": "Director of Marketing - Falcon MLR",
+      "source": "lever",
+      "url": "https://jobs.lever.co/veeva/03f3e75c-6fd0-4903-b85e-ba73858d551d",
+      "included": false,
+      "reason": "remote role restricted outside United States"
+    },
+    {
+      "id": 2909,
+      "company": "Mendix",
+      "title": "Content Marketing Manager - Industrial B2B",
+      "source": "lever",
+      "url": "https://jobs.lever.co/mendix/acded4ba-2f4e-4562-8091-30fa5b661b8a",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2910,
+      "company": "Anchorage Digital",
+      "title": "Senior Product Marketing Manager, Stablecoins - Infrastructure",
+      "source": "lever",
+      "url": "https://jobs.lever.co/anchorage/ffc6ee03-bb50-4f16-a6eb-1b54ef9c436d",
+      "included": true,
+      "reason": "passed deterministic filters"
+    },
+    {
+      "id": 2911,
+      "company": "elk Marketing",
+      "title": "Paid Media Strategist",
+      "source": "lever",
+      "url": "https://jobs.lever.co/elk-marketing/d1c8a283-b9b4-4e4b-bb09-5f7bbea3bbb2",
+      "included": false,
+      "reason": "remote role restricted outside United States"
+    },
+    {
+      "id": 2912,
+      "company": "Veeva Systems",
+      "title": "Director of Marketing - Falcon MLR",
+      "source": "lever",
+      "url": "https://jobs.lever.co/veeva/aae85f80-72bc-4a47-b584-215166bec5c2",
+      "included": false,
+      "reason": "remote role restricted outside United States"
+    },
+    {
+      "id": 2913,
+      "company": "Xero",
+      "title": "Product Marketing Manager - AB Platform",
+      "source": "ashby",
+      "url": "https://jobs.ashbyhq.com/xero/b973625b-32d5-4871-a4b5-239b4ae8e9fe",
+      "included": false,
+      "reason": "remote role restricted outside United States"
+    },
+    {
+      "id": 2914,
+      "company": "Xero",
+      "title": "Product Marketing Manager - AB Platform",
+      "source": "ashby",
+      "url": "https://jobs.ashbyhq.com/xero/4af87705-4834-4ea8-b558-7933b98215dd",
+      "included": false,
+      "reason": "remote role restricted outside United States"
+    },
+    {
+      "id": 2915,
+      "company": "Ashby",
+      "title": "Snr. Marketing Manager, Enterprise ABM - EMEA",
+      "source": "ashby",
+      "url": "https://jobs.ashbyhq.com/ashby/ae0bf8c6-f327-48de-9902-9f509667d02d",
+      "included": false,
+      "reason": "remote role restricted outside United States"
+    },
+    {
+      "id": 2916,
+      "company": "Workana",
+      "title": "Criador(a) de V\u00eddeos com Intelig\u00eancia Artificial (IA) | Remoto | 20 horas semana",
+      "source": "workable",
+      "url": "https://apply.workable.com/j/4A062E134B",
+      "included": false,
+      "reason": "outside target role families"
+    },
+    {
+      "id": 2917,
+      "company": "Workana",
+      "title": "Vendedor(a) B2B | Servi\u00e7os Cont\u00e1beis e Financeiros | 20 horas semanais",
+      "source": "workable",
+      "url": "https://apply.workable.com/j/D4B01D3E4A",
+      "included": false,
+      "reason": "outside target role families"
+    },
+    {
+      "id": 2918,
+      "company": "Savvy Talent",
+      "title": "Social & Community Marketing Manager",
+      "source": "workable",
+      "url": "https://apply.workable.com/j/AEA5513316",
+      "included": false,
+      "reason": "Location/remote eligibility needs review"
+    },
+    {
+      "id": 2919,
+      "company": "Jump 450 Media",
+      "title": "Recruiter, Performance Marketing",
+      "source": "workable",
+      "url": "https://apply.workable.com/j/24A56482D9",
+      "included": false,
+      "reason": "Location/remote eligibility needs review"
+    },
+    {
+      "id": 2920,
+      "company": "HireHawk",
+      "title": "Email and Lifecycle Marketing Specialist (Remote) | Philippines",
+      "source": "workable",
+      "url": "https://apply.workable.com/j/ED8A4F793D",
+      "included": false,
+      "reason": "remote role restricted outside United States"
+    },
+    {
+      "id": 2921,
+      "company": "Skylight",
+      "title": "Director of Performance Marketing, Calendar",
+      "source": "workable",
+      "url": "https://apply.workable.com/j/3D6576CE77",
+      "included": false,
+      "reason": "starting annual base salary above $120,000"
+    },
+    {
+      "id": 2922,
+      "company": "Workana",
+      "title": "Head of Marketing Operations & Growth",
+      "source": "workable",
+      "url": "https://apply.workable.com/j/6A3C380E7D",
+      "included": false,
+      "reason": "Location/remote eligibility needs review"
+    }
+  ],
+  "resumes_generated": 0,
+  "applications_submitted": 0,
+  "backup_before": {
+    "backend": "sqlite",
+    "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T060917166549.sqlite3",
+    "integrity": "ok",
+    "google_sheets_accessed": false
+  },
+  "ordinary_publication": {
+    "rows": 1172,
+    "added": 0,
+    "updated": 0,
+    "jooble_excluded": 0,
+    "rejected_excluded": 0,
+    "salary_excluded": 0,
+    "written_rows": [],
+    "added_ids": [],
+    "skipped": [],
+    "readback_verified": true,
+    "managed_cells_written": 0
+  },
+  "firecrawl": {
+    "status": "paused",
+    "day": "2026-10-22",
+    "search_queries": 1,
+    "search_results": 30,
+    "candidate_urls": 30,
+    "previously_seen": 0,
+    "excluded_age": 3,
+    "excluded_irrelevant": 2,
+    "unknown_dates": 21,
+    "pages_scraped": 12,
+    "successful_scrapes": 7,
+    "failed_scrapes": 5,
+    "new_qualified": 0,
+    "new_job_ids": [],
+    "queries": [
+      {
+        "search_credits": 6,
+        "parent_key": "0dd87070c4e5282ad16ab7157a4702a90c6a645c0c3a558a2f3a09717f4ce0ca",
+        "kind": "breadth",
+        "depth": 1,
+        "payload": {
+          "query": "(\"Digital Marketing Manager\" OR \"Director of Digital Marketing\") job Utah",
+          "limit": 30,
+          "sources": [
+            "web"
+          ],
+          "country": "US",
+          "highlights": false,
+          "domainTools": false,
+          "tbs": "cdr:1,cd_min:10/18/2026,cd_max:10/22/2026"
+        },
+        "requested_limit": 30,
+        "previously_seen": 0,
+        "new_candidates": 28,
+        "work_key": "0dd87070c4e5282ad16ab7157a4702a90c6a645c0c3a558a2f3a09717f4ce0ca",
+        "query": "(\"Digital Marketing Manager\" OR \"Director of Digital Marketing\") job Utah",
+        "results": 30,
+        "qualified": 0,
+        "duplicates": 0,
+        "credits": 42,
+        "duplicate_rate": 0.0
+      }
+    ],
+    "sources": {},
+    "stop_reason": "Request failed for Firecrawl scrape: HTTP 403",
+    "query_coverage": {
+      "configured": 16,
+      "completed": 1,
+      "uncovered_queries": [
+        "(\"Marketing Analytics Manager\" OR \"Digital Marketing Analyst\") job remote",
+        "(\"Growth Marketing Manager\") job Utah",
+        "(\"E-Commerce Marketing Manager\") job Utah",
+        "(\"Paid Search Manager\" OR \"Paid Search Specialist\" OR \"PPC Manager\" OR \"SEM Manager\" OR \"Search Marketing Manager\" OR \"Senior Paid Search Strategist\") job remote",
+        "(\"Paid Media Manager\") job remote",
+        "(\"Digital Marketing Manager\" OR \"Director of Digital Marketing\") job remote",
+        "(\"Marketing Analytics Manager\" OR \"Digital Marketing Analyst\") job Utah",
+        "(\"Paid Search Manager\" OR \"Paid Search Specialist\" OR \"PPC Manager\" OR \"SEM Manager\" OR \"Search Marketing Manager\" OR \"Senior Paid Search Strategist\") job Utah",
+        "(\"Paid Media Manager\") job Utah",
+        "(\"E-Commerce Marketing Manager\") job remote",
+        "(\"Performance Marketing Manager\" OR \"Director of Performance Marketing\") job remote",
+        "(\"Demand Generation Manager\") job Utah",
+        "(\"Performance Marketing Manager\" OR \"Director of Performance Marketing\") job Utah",
+        "(\"Growth Marketing Manager\") job remote",
+        "(\"Demand Generation Manager\") job remote"
+      ],
+      "expansion_requests": 0,
+      "pagination_supported": false,
+      "expansion_methods": [
+        "larger_result_limit",
+        "temporary_domain_exclusions"
+      ],
+      "requested_depths": [
+        30
+      ]
+    },
+    "pagination": {
+      "supported": false,
+      "mode": "adaptive_expansion",
+      "expansion_requests": 0
+    },
+    "duplicate_rate": 0.0,
+    "source_efficiency": {
+      "www.indeed.com": {
+        "new_qualified": 0,
+        "pages_checked": 2,
+        "extraction_credits_accounted": 6
+      },
+      "jmjphillip.com": {
+        "new_qualified": 0,
+        "pages_checked": 1,
+        "extraction_credits_accounted": 3
+      },
+      "hiringcafe.com": {
+        "new_qualified": 0,
+        "pages_checked": 1,
+        "extraction_credits_accounted": 3
+      },
+      "www.glassdoor.com": {
+        "new_qualified": 0,
+        "pages_checked": 1,
+        "extraction_credits_accounted": 3
+      },
+      "www.jobtarget.com": {
+        "new_qualified": 0,
+        "pages_checked": 1,
+        "extraction_credits_accounted": 3
+      },
+      "karlateaz.com": {
+        "new_qualified": 0,
+        "pages_checked": 1,
+        "extraction_credits_accounted": 3
+      },
+      "en.talent.com": {
+        "new_qualified": 0,
+        "pages_checked": 1,
+        "extraction_credits_accounted": 3
+      },
+      "www.ihiremarketing.com": {
+        "new_qualified": 0,
+        "pages_checked": 1,
+        "extraction_credits_accounted": 3
+      },
+      "www.linkedin.com": {
+        "new_qualified": 0,
+        "pages_checked": 1,
+        "extraction_credits_accounted": 3
+      },
+      "jobs.edinburghcityfc.com": {
+        "new_qualified": 0,
+        "pages_checked": 1,
+        "extraction_credits_accounted": 3
+      },
+      "lensa.com": {
+        "new_qualified": 0,
+        "pages_checked": 1,
+        "extraction_credits_accounted": 3
+      }
+    },
+    "top_queries": [],
+    "search_credits": 12,
+    "extraction_credits": 57,
+    "provider_confirmed_credits": 12,
+    "estimated_or_reserved_credits": 57,
+    "total_credits_accounted": 69,
+    "estimated_account_balance": 3892,
+    "balance_observed_at": "2026-10-22T12:09:50.032635+00:00",
+    "billing_complete": false,
+    "hard_ceiling_exact": false,
+    "credits_per_new_qualified_job": null,
+    "next_day_opportunity": "Reuse pending/cache entries; rotate least-covered configured roles before repeating searches."
+  },
+  "firecrawl_publication": {
+    "rows": 1172,
+    "added": 0,
+    "updated": 0,
+    "jooble_excluded": 0,
+    "rejected_excluded": 0,
+    "salary_excluded": 0,
+    "written_rows": [],
+    "added_ids": [],
+    "skipped": [],
+    "readback_verified": true,
+    "managed_cells_written": 0
+  },
+  "sync": {
+    "status": "synced",
+    "synced_at": "2026-10-22T12:12:17.501676+00:00",
+    "rows": 1172,
+    "cells_written": 0,
+    "jobs_added_to_sheet": 0,
+    "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit",
+    "range_extension": {
+      "requests": 0,
+      "formulas_filled": 0
+    },
+    "salaries_normalized": 0
+  },
+  "verified_jobs": [
+    {
+      "id": 2886,
+      "company": "Harness",
+      "title": "Senior Field Marketing Manager, Events",
+      "found_using": "Gecko",
+      "url": "https://jobicy.com/jobs/156221-senior-field-marketing-manager-events",
+      "description_column": "Gecko Job Description",
+      "description_characters": 7128
+    },
+    {
+      "id": 2887,
+      "company": "Instacart",
+      "title": "B2B Event Marketing Manager (6-Month Contract)",
+      "found_using": "Gecko",
+      "url": "https://jobicy.com/jobs/155761-b2b-event-marketing-manager-6-month-contract",
+      "description_column": "Gecko Job Description",
+      "description_characters": 4540
+    },
+    {
+      "id": 2891,
+      "company": "DEPT",
+      "title": "Account Coordinator, Paid Search",
+      "found_using": "Gecko",
+      "url": "https://job-boards.greenhouse.io/dept/jobs/8311121",
+      "description_column": "Gecko Job Description",
+      "description_characters": 7248
+    },
+    {
+      "id": 2892,
+      "company": "Fleetio",
+      "title": "Senior Content Marketing Manager",
+      "found_using": "Gecko",
+      "url": "https://job-boards.greenhouse.io/fleetio/jobs/5271172007",
+      "description_column": "Gecko Job Description",
+      "description_characters": 7436
+    },
+    {
+      "id": 2894,
+      "company": "Dropbox",
+      "title": "Senior Manager, Lifecycle Marketing",
+      "found_using": "Gecko",
+      "url": "https://jobs.dropbox.com/listing/8279631?gh_jid=8279631",
+      "description_column": "Gecko Job Description",
+      "description_characters": 4615
+    },
+    {
+      "id": 2895,
+      "company": "Pinterest",
+      "title": "Brand Marketing Manager",
+      "found_using": "Gecko",
+      "url": "https://weworkremotely.com/remote-jobs/pinterest-brand-marketing-manager",
+      "description_column": "Gecko Job Description",
+      "description_characters": 6468
+    },
+    {
+      "id": 2896,
+      "company": "Motive",
+      "title": "Senior Customer Marketing Specialist",
+      "found_using": "Gecko",
+      "url": "https://job-boards.greenhouse.io/gomotive/jobs/8811944002",
+      "description_column": "Gecko Job Description",
+      "description_characters": 8908
+    },
+    {
+      "id": 2898,
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "found_using": "Gecko",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230586004",
+      "description_column": "Gecko Job Description",
+      "description_characters": 5524
+    },
+    {
+      "id": 2899,
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "found_using": "Gecko",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230585004",
+      "description_column": "Gecko Job Description",
+      "description_characters": 5524
+    },
+    {
+      "id": 2900,
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "found_using": "Gecko",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230584004",
+      "description_column": "Gecko Job Description",
+      "description_characters": 5524
+    },
+    {
+      "id": 2901,
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "found_using": "Gecko",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230583004",
+      "description_column": "Gecko Job Description",
+      "description_characters": 5524
+    },
+    {
+      "id": 2902,
+      "company": "Launch Potato",
+      "title": "Senior CRO, Affiliate Marketing",
+      "found_using": "Gecko",
+      "url": "https://job-boards.greenhouse.io/launch2/jobs/6230582004",
+      "description_column": "Gecko Job Description",
+      "description_characters": 5524
+    },
+    {
+      "id": 2903,
+      "company": "Pinterest",
+      "title": "Integrated Marketing Lead, UCAN Programming & Industry",
+      "found_using": "Gecko",
+      "url": "https://www.pinterestcareers.com/jobs/?gh_jid=8268329",
+      "description_column": "Gecko Job Description",
+      "description_characters": 7846
+    },
+    {
+      "id": 2904,
+      "company": "Oura",
+      "title": "Senior Retail Marketing Manager, LATAM",
+      "found_using": "Gecko",
+      "url": "https://job-boards.greenhouse.io/oura/jobs/4458625009",
+      "description_column": "Gecko Job Description",
+      "description_characters": 6797
+    },
+    {
+      "id": 2905,
+      "company": "Silverback Strategies",
+      "title": "SEO Manager (Remote)",
+      "found_using": "Gecko",
+      "url": "https://jobs.lever.co/silverbackstrategies/f69c16ec-6255-45b1-aae3-b3fdca3ee109",
+      "description_column": "Gecko Job Description",
+      "description_characters": 6609
+    },
+    {
+      "id": 2906,
+      "company": "Silverback Strategies",
+      "title": "Senior SEO Manager (Remote)",
+      "found_using": "Gecko",
+      "url": "https://jobs.lever.co/silverbackstrategies/69b74430-00a5-472e-971a-ddf82f2afd98",
+      "description_column": "Gecko Job Description",
+      "description_characters": 6524
+    },
+    {
+      "id": 2907,
+      "company": "Silverback Strategies",
+      "title": "Paid Media Manager (Remote)",
+      "found_using": "Gecko",
+      "url": "https://jobs.lever.co/silverbackstrategies/9db89bca-c4db-4044-89a3-b9e10c75bf9e",
+      "description_column": "Gecko Job Description",
+      "description_characters": 7422
+    },
+    {
+      "id": 2909,
+      "company": "Mendix",
+      "title": "Content Marketing Manager - Industrial B2B",
+      "found_using": "Gecko",
+      "url": "https://jobs.lever.co/mendix/acded4ba-2f4e-4562-8091-30fa5b661b8a",
+      "description_column": "Gecko Job Description",
+      "description_characters": 7268
+    },
+    {
+      "id": 2910,
+      "company": "Anchorage Digital",
+      "title": "Senior Product Marketing Manager, Stablecoins - Infrastructure",
+      "found_using": "Gecko",
+      "url": "https://jobs.lever.co/anchorage/ffc6ee03-bb50-4f16-a6eb-1b54ef9c436d",
+      "description_column": "Gecko Job Description",
+      "description_characters": 8905
+    },
+    {
+      "id": 2885,
+      "company": "Maximus",
+      "title": "Digital Marketing Specialist",
+      "found_using": "Gecko",
+      "url": "https://www.adzuna.com/details/5937216525?utm_medium=api&utm_source=b4f3e3f8",
+      "description_column": "Gecko Job Description",
+      "description_characters": 5420
+    }
+  ],
+  "new_job_ids": [
+    2886,
+    2887,
+    2891,
+    2892,
+    2894,
+    2895,
+    2896,
+    2898,
+    2899,
+    2900,
+    2901,
+    2902,
+    2903,
+    2904,
+    2905,
+    2906,
+    2907,
+    2909,
+    2910,
+    2885
+  ],
+  "new_unique_jobs": 20,
+  "credit_usage": {
+    "search_credits": 12,
+    "extraction_credits": 57,
+    "provider_confirmed_credits": 12,
+    "estimated_or_reserved_credits": 57,
+    "total_credits_accounted": 69,
+    "estimated_account_balance": 3892,
+    "balance_observed_at": "2026-10-22T12:09:50.032635+00:00",
+    "billing_complete": false,
+    "hard_ceiling_exact": false
+  },
+  "status": "ordinary_verified_firecrawl_paused",
+  "finished_at": "2026-10-22T12:16:52.303304+00:00",
+  "backup_after": {
+    "backend": "sqlite",
+    "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T061648104883.sqlite3",
+    "integrity": "ok",
+    "google_sheets_accessed": false
+  },
+  "new_credits_accounted_this_request": 45,
+  "final_sync": {
+    "status": "synced",
+    "synced_at": "2026-10-22T12:16:44.861268+00:00",
+    "rows": 1173,
+    "cells_written": 18,
+    "jobs_added_to_sheet": 1,
+    "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit",
+    "range_extension": {
+      "requests": 7,
+      "formulas_filled": 5
+    },
+    "salaries_normalized": 1,
+    "salary_audit": "C:\\gecko_main\\reports\\salary-normalization\\20261022T121628675416Z.json"
+  },
+  "limitations": [
+    "Firecrawl API HTTP 403 paused extraction; only 1 of 16 base query groups completed. No retries of the failed request.",
+    "Five regional Launch Potato postings have distinct employer job IDs; they may represent regional variants of the same role."
+  ]
+}

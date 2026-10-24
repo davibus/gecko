@@ -19,6 +19,13 @@ See `docs/current-tracker-columns.md` (repository-relative) for the verified 36-
 
 ## Current tracker authority — October 20, 2026
 
+October 22 user update: new jobs receive automatic Enough Data content review
+through description_readiness.py. Yes means pertinent job-specific information
+supports a tailored resume; missing, irrelevant, random or unusable text is No.
+This supersedes the older manual-only rule. Preserve existing manual decisions;
+copy formulas/formatting for renamed word-count columns, never another job's
+literal readiness answer. See the current tracker guide for details.
+
 Dave explicitly requested the existing Gecko Job Tracker Google Sheet become the
 primary tracker, with dashboard and Sheet edits synchronized and all jobs/resumes
 preserved. This supersedes earlier SQLite-only/export-only restrictions below.

@@ -17,7 +17,7 @@ from typing import Any
 from urllib.parse import quote, unquote, urlsplit
 from zoneinfo import ZoneInfo
 
-from normalize import canonicalize_url, posting_identity
+from normalize import canonicalize_url, posting_identity, posting_aliases
 from rejected_jobs import (
     REJECTED_HEADERS,
     REJECTED_TAB,
@@ -287,8 +287,9 @@ class GoogleTracker:
         rows = []
         for number, values_row in enumerate(values[1:], 2):
             if any(value not in (None, "") for value in values_row):
-                rows.append((number, {name: values_row[index - 1] if index <= len(values_row) else ""
-                                      for name, index in headers.items()}))
+                from description_columns import add_read_alias
+                rows.append((number, add_read_alias({name: values_row[index - 1] if index <= len(values_row) else ""
+                                      for name, index in headers.items()}, headers)))
         return Tab(title, matches[0]["sheetId"], headers, rows,
                    matches[0].get("gridProperties", {}).get("rowCount", 1000),
                    tuple(names), {
@@ -492,9 +493,12 @@ class GoogleTracker:
 
     def scout(self, *, value_render_option: str = "UNFORMATTED_VALUE") -> Tab:
         tab = self.tab(self.config.scout_tab, value_render_option=value_render_option)
+        from description_columns import DESCRIPTION_COLUMNS
         for canonical, aliases in SCOUT_HEADER_ALIASES.items():
             matches = list({column: (name, column) for name, column in tab.headers.items()
                 if _header_key(name) in {_header_key(alias) for alias in aliases}}.values())
+            if not matches and canonical in DESCRIPTION_COLUMNS:
+                continue  # older single-description Sheets remain supported
             if len(matches) != 1:
                 labels = ", ".join(repr(alias) for alias in aliases)
                 detail = "missing" if not matches else "ambiguous"
@@ -707,9 +711,14 @@ class GoogleTracker:
             return [], {}
         allowed = (set(APPLICATION_FIELDS) | {"Index", "Resume #", "Applied", "Contacted"}
                    if tab.title == self.config.application_tab else
-                   set(SCOUT_FIELDS) | {"Apply?", "Resume Created", "Resume Created Date", "Notes", "Response", LAST_RUN_HEADER}
+                   set(SCOUT_FIELDS) | {"Apply?", "Resume Created", "Resume Created Date", "Notes", "Response", "Found Using", "Job Description", "Cost", "Company Website", "Enough Data", LAST_RUN_HEADER}
                    if tab.title == self.config.scout_tab else set(REJECTED_HEADERS)
                    if tab.title == REJECTED_TAB else set())
+        from description_columns import DESCRIPTION_COLUMNS
+        allowed.update(DESCRIPTION_COLUMNS)
+        if tab.title == self.config.scout_tab:
+            from resume_match import SCORE_COLUMNS
+            allowed.update(['Match Score', *SCORE_COLUMNS.values()])
         unexpected = {field for _, field in proposed} - allowed
         if unexpected:
             raise ValueError("Unmanaged Google Sheets fields: " + ", ".join(sorted(unexpected)))
@@ -764,6 +773,11 @@ class GoogleTracker:
                 raise RuntimeError(f"Google Sheets is missing managed header {field!r}")
             value = "" if raw_value is None else raw_value
             old = current.get(row, {}).get(field, "")
+            if getattr(self, 'fill_blanks_only', False) and str(old or '').strip():
+                continue  # A manual value may have appeared since planning.
+            if field == "Found Using" and str(old or "").strip():
+                # First discovery and every manual value survive rediscovery.
+                continue
             if old == value:
                 continue
             cell = f"{_col(column)}{row} ({field})"
@@ -977,9 +991,10 @@ class GoogleTracker:
         return matches[0] if matches else None
 
     def upsert_scout(self, jobs: list, *, append_only: bool = False,
-                     discovery_notes=None,audit_dir=None) -> dict:
+                     discovery_notes=None,audit_dir=None, fill_blanks_only=False) -> dict:
         self.skipped_writes=[]
         self.discovery_writes=discovery_notes is not None
+        self.fill_blanks_only = fill_blanks_only
         tab = self.scout()
         if discovery_notes is not None and not {'Notes',LAST_RUN_HEADER}.issubset(tab.headers):
             raise RuntimeError('Discovery requires unique Notes and Last Updated headers')
@@ -992,7 +1007,31 @@ class GoogleTracker:
         by_url = {posting_identity(str(data.get("Job URL") or "")): row for row, data in tab.rows
                    if data.get("Job URL")}
         original_rows = {row for row, _ in tab.rows}
+        jobs = list(jobs)
+        # Shared Google/SQLite publication gate also covers saved discovery outboxes.
+        # Existing rows remain untouched by the new admission policy.
+        from resume_match import settings as match_settings, assess as assess_matches, record as match_record, explanation as match_explanation, spreadsheet_scores
+        match_reviews = {}
+        if match_settings()['enabled']:
+            match_reviews = assess_matches([match_record(job, str(index)) for index, job in enumerate(jobs)
+                if str(job.id) not in by_id and posting_identity(best_job_url(job)) not in by_url])
+        match_exclusions = []
+        admitted = []
+        matches_by_object = {}
+        for index, job in enumerate(jobs):
+            match = match_reviews.get(str(index))
+            if match is not None and not match['accepted']:
+                match_exclusions.append({'job_id': job.id, 'reason': match_explanation(match), 'status': match['status']})
+                continue
+            if match is not None:
+                matches_by_object[id(job)] = match
+            admitted.append(job)
+        jobs = admitted
+        from description_readiness import assess, job_records
+        readiness = assess(job_records([job for job in jobs
+            if str(job.id) not in by_id and posting_identity(best_job_url(job)) not in by_url])) if 'Enough Data' in tab.headers else {}
         added = updated = excluded = rejected = 0
+        salary_excluded = 0
         planned: dict[int, dict[str, Any]] = {}
         row_jobs={}
         identity_skips=[]
@@ -1011,9 +1050,7 @@ class GoogleTracker:
             id_row = by_id.get(str(job.id))
             if id_row and not row:
                 id_data = next(data for number, data in tab.rows if number == id_row)
-                candidate_urls = {posting_identity(value) for value in (
-                    job.url, job.canonical_url, job.authoritative_url, url,
-                    *(link.get('url', '') for link in job.source_links)) if value}
+                candidate_urls = posting_aliases(job) | {posting_identity(url)}
                 if posting_identity(str(id_data.get('Job URL') or '')) not in candidate_urls:
                     if discovery_notes is not None:
                         identity_skips.append({'job_id':job.id,'reason':'numeric ID belongs to another posting'})
@@ -1022,6 +1059,14 @@ class GoogleTracker:
                 row = id_row
             if row and append_only:
                 continue
+            if not row:
+                from hard_filters import salary_exclusion_reason
+                from preferences import load_preferences
+                salary_reason = salary_exclusion_reason(job, load_preferences())
+                if salary_reason:
+                    salary_excluded += 1
+                    identity_skips.append({'job_id': job.id, 'reason': salary_reason})
+                    continue
             existing = next((data for number, data in tab.rows if number == row), {})
             if discovery_notes is not None and _normal(existing.get('Apply?')) in REJECT_STATUSES:
                 rejected += 1
@@ -1084,16 +1129,55 @@ class GoogleTracker:
                         and not application_fee_required(existing.get("Cost")):
                     values.pop("Apply?", None)
             managed_fields = set(SCOUT_FIELDS) | {"Apply?"}
+            if row not in original_rows and str(job.id) in readiness:
+                values['Enough Data'] = readiness[str(job.id)]['value']
+                managed_fields.add('Enough Data')
+            if "Found Using" in tab.headers and row not in original_rows and job.found_using:
+                values["Found Using"] = planned.get(row, {}).get("Found Using", job.found_using)
+                managed_fields.add("Found Using")
+            from description_columns import description_column, DESCRIPTION_COLUMNS
+            if ((row not in original_rows or fill_blanks_only)
+                    and any(h in tab.headers for h in ('Job Description', *DESCRIPTION_COLUMNS))):
+                from job_extraction import sheet_description
+                description = max((job.description or "", job.enriched_description or ""), key=len)
+                target = description_column(tab.headers, job.found_using or 'Gecko')
+                values[target] = sheet_description(description)
+                managed_fields.add(target)
+            if (row not in original_rows or fill_blanks_only) and job.details:
+                fields = job.details.get('fields', {})
+                if fields.get('application_fee_required') is True and fields.get('application_fee_evidence'):
+                    values['Cost'] = 'x'; values['Apply?'] = 'No'; managed_fields.add('Cost')
+                if fields.get('company_website') and 'Company Website' in tab.headers:
+                    values['Company Website'] = fields['company_website']; managed_fields.add('Company Website')
             if discovery_notes is not None:
                 if (marked(existing.get('Applied')) or resume_already_created(existing.get('Resume Created'))
                         or str(existing.get('Resume Link') or '').strip()):
                     if not application_fee_required(existing.get('Cost')) and not is_expired_indeed(existing.get(INDEED_APPLICATION_HEADER)):
                         values.pop('Apply?',None)
                 note=discovery_notes.get(job.id,'')
+                if row not in original_rows and str(job.id) in readiness:
+                    review=readiness[str(job.id)]
+                    note += ('\n' if note else '') + 'Enough Data content review: ' + review['value'] + ' — ' + review['reason']
                 if note:
                     old_note=str(existing.get('Notes') or '')
                     values['Notes']=old_note+'\n'+note if old_note else note
                     managed_fields.add('Notes')
+            if row not in original_rows and id(job) in matches_by_object and 'Notes' in tab.headers:
+                values['Notes'] = str(values.get('Notes') or '') + '\n' + match_explanation(matches_by_object[id(job)])
+                managed_fields.add('Notes')
+            if row not in original_rows and id(job) in matches_by_object:
+                scores = {name: value for name, value in spreadsheet_scores(matches_by_object[id(job)]).items()
+                          if name in tab.headers}
+                values.update(scores)
+                managed_fields.update(scores)
+            if fill_blanks_only and existing:
+                for field, value in (('Company', job.company), ('Job Title', job.title), ('Date Posted', job.date_posted)):
+                    values[field] = value
+                enrichable = {'Location', 'Work Arrangement', 'Employment Type', 'Salary',
+                              'Job Description', 'Company Website', 'Company', 'Job Title', 'Date Posted', 'Cost', 'Notes'}
+                enrichable.update(DESCRIPTION_COLUMNS)
+                values = {key: value for key, value in values.items()
+                          if key in enrichable and not str(existing.get(key) or '').strip()}
             row_jobs[row]={'job_id':job.id,'source':job.source,'source_job_id':job.source_job_id,
                           'url':url,'new':row not in original_rows}
             planned[row] = {key: value for key, value in values.items()
@@ -1158,7 +1242,8 @@ class GoogleTracker:
                         f"{_col(column)}{row} ({field}); expected {value!r}, got {actual!r}"
                     )
         result={"rows": len(tab.rows), "added": added, "updated": updated,
-                "jooble_excluded": excluded, "rejected_excluded": rejected}
+                "jooble_excluded": excluded, "rejected_excluded": rejected,
+                "salary_excluded": salary_excluded, "match_excluded": match_exclusions}
         if discovery_notes is not None:
             after=self.scout(value_render_option='FORMULA')
             written=sorted({row for row,_ in expected})

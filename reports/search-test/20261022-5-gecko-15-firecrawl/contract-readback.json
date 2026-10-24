@@ -1,0 +1,65 @@
+{
+  "verified": true,
+  "results": [
+    {
+      "company": "Tek Ninjas",
+      "ids": [
+        2881
+      ],
+      "outcome": "added",
+      "decisions": [
+        {
+          "source": "adzuna",
+          "source_job_id": "5937236056",
+          "url": "https://www.adzuna.com/details/5937236056?utm_medium=api&utm_source=b4f3e3f8",
+          "company": "Tek Ninjas",
+          "title": "Field Marketing Manager - SLED",
+          "reason": "new unique",
+          "job_id": 2881
+        }
+      ],
+      "tracker_id": 2881,
+      "description_characters": 2820
+    },
+    {
+      "company": "DivIHN Integration Inc",
+      "ids": [
+        2882
+      ],
+      "outcome": "added",
+      "decisions": [
+        {
+          "source": "adzuna",
+          "source_job_id": "5937234879",
+          "url": "https://www.adzuna.com/details/5937234879?utm_medium=api&utm_source=b4f3e3f8",
+          "company": "DivIHN Integration Inc",
+          "title": "Field Marketing Manager - SLED",
+          "reason": "new unique",
+          "job_id": 2882
+        }
+      ],
+      "tracker_id": 2882,
+      "description_characters": 3270
+    }
+  ],
+  "sync": {
+    "status": "synced",
+    "synced_at": "2026-10-22T11:12:02.077712+00:00",
+    "rows": 1151,
+    "cells_written": 34,
+    "jobs_added_to_sheet": 2,
+    "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit"
+  },
+  "backup_before": {
+    "backend": "sqlite",
+    "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T051136730419.sqlite3",
+    "integrity": "ok",
+    "google_sheets_accessed": false
+  },
+  "backup_after": {
+    "backend": "sqlite",
+    "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T051204935992.sqlite3",
+    "integrity": "ok",
+    "google_sheets_accessed": false
+  }
+}

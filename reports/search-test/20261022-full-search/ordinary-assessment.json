@@ -1,0 +1,344 @@
+[
+  {
+    "id": 2885,
+    "company": "Maximus",
+    "title": "Digital Marketing Specialist",
+    "source": "adzuna",
+    "url": "https://www.adzuna.com/details/5937216525?utm_medium=api&utm_source=b4f3e3f8",
+    "included": false,
+    "reason": "Location/remote eligibility needs review"
+  },
+  {
+    "id": 2886,
+    "company": "Harness",
+    "title": "Senior Field Marketing Manager, Events",
+    "source": "jobicy",
+    "url": "https://jobicy.com/jobs/156221-senior-field-marketing-manager-events",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2887,
+    "company": "Instacart",
+    "title": "B2B Event Marketing Manager (6-Month Contract)",
+    "source": "jobicy",
+    "url": "https://jobicy.com/jobs/155761-b2b-event-marketing-manager-6-month-contract",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2888,
+    "company": "Cresta",
+    "title": "Senior Technical Product Marketing Manager, AI Agent",
+    "source": "greenhouse",
+    "url": "https://job-boards.greenhouse.io/cresta/jobs/5460669008",
+    "included": false,
+    "reason": "starting annual base salary above $120,000"
+  },
+  {
+    "id": 2889,
+    "company": "Cresta",
+    "title": "Senior Product Marketing Manager, Vertical Solutions",
+    "source": "greenhouse",
+    "url": "https://job-boards.greenhouse.io/cresta/jobs/5460644008",
+    "included": false,
+    "reason": "starting annual base salary above $120,000"
+  },
+  {
+    "id": 2890,
+    "company": "Cresta",
+    "title": "Senior Product Marketing Manager, Healthcare",
+    "source": "greenhouse",
+    "url": "https://job-boards.greenhouse.io/cresta/jobs/5458612008",
+    "included": false,
+    "reason": "starting annual base salary above $120,000"
+  },
+  {
+    "id": 2891,
+    "company": "DEPT",
+    "title": "Account Coordinator, Paid Search",
+    "source": "greenhouse",
+    "url": "https://job-boards.greenhouse.io/dept/jobs/8311121",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2892,
+    "company": "Fleetio",
+    "title": "Senior Content Marketing Manager",
+    "source": "greenhouse",
+    "url": "https://job-boards.greenhouse.io/fleetio/jobs/5271172007",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2893,
+    "company": "Dropbox",
+    "title": "Senior Manager, Lifecycle Marketing",
+    "source": "greenhouse",
+    "url": "https://jobs.dropbox.com/listing/8279632?gh_jid=8279632",
+    "included": false,
+    "reason": "remote role restricted outside United States"
+  },
+  {
+    "id": 2894,
+    "company": "Dropbox",
+    "title": "Senior Manager, Lifecycle Marketing",
+    "source": "greenhouse",
+    "url": "https://jobs.dropbox.com/listing/8279631?gh_jid=8279631",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2895,
+    "company": "Pinterest",
+    "title": "Brand Marketing Manager",
+    "source": "greenhouse",
+    "url": "https://www.pinterestcareers.com/jobs/?gh_jid=8267923",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2896,
+    "company": "Motive",
+    "title": "Senior Customer Marketing Specialist",
+    "source": "greenhouse",
+    "url": "https://job-boards.greenhouse.io/gomotive/jobs/8811944002",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2897,
+    "company": "Launch Potato",
+    "title": "Senior CRO, Affiliate Marketing",
+    "source": "greenhouse",
+    "url": "https://job-boards.greenhouse.io/launch2/jobs/6230587004",
+    "included": false,
+    "reason": "Location/remote eligibility needs review"
+  },
+  {
+    "id": 2898,
+    "company": "Launch Potato",
+    "title": "Senior CRO, Affiliate Marketing",
+    "source": "greenhouse",
+    "url": "https://job-boards.greenhouse.io/launch2/jobs/6230586004",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2899,
+    "company": "Launch Potato",
+    "title": "Senior CRO, Affiliate Marketing",
+    "source": "greenhouse",
+    "url": "https://job-boards.greenhouse.io/launch2/jobs/6230585004",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2900,
+    "company": "Launch Potato",
+    "title": "Senior CRO, Affiliate Marketing",
+    "source": "greenhouse",
+    "url": "https://job-boards.greenhouse.io/launch2/jobs/6230584004",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2901,
+    "company": "Launch Potato",
+    "title": "Senior CRO, Affiliate Marketing",
+    "source": "greenhouse",
+    "url": "https://job-boards.greenhouse.io/launch2/jobs/6230583004",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2902,
+    "company": "Launch Potato",
+    "title": "Senior CRO, Affiliate Marketing",
+    "source": "greenhouse",
+    "url": "https://job-boards.greenhouse.io/launch2/jobs/6230582004",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2903,
+    "company": "Pinterest",
+    "title": "Integrated Marketing Lead, UCAN Programming & Industry",
+    "source": "greenhouse",
+    "url": "https://www.pinterestcareers.com/jobs/?gh_jid=8268329",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2904,
+    "company": "Oura",
+    "title": "Senior Retail Marketing Manager, LATAM",
+    "source": "greenhouse",
+    "url": "https://job-boards.greenhouse.io/oura/jobs/4458625009",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2905,
+    "company": "Silverback Strategies",
+    "title": "SEO Manager (Remote)",
+    "source": "lever",
+    "url": "https://jobs.lever.co/silverbackstrategies/f69c16ec-6255-45b1-aae3-b3fdca3ee109",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2906,
+    "company": "Silverback Strategies",
+    "title": "Senior SEO Manager (Remote)",
+    "source": "lever",
+    "url": "https://jobs.lever.co/silverbackstrategies/69b74430-00a5-472e-971a-ddf82f2afd98",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2907,
+    "company": "Silverback Strategies",
+    "title": "Paid Media Manager (Remote)",
+    "source": "lever",
+    "url": "https://jobs.lever.co/silverbackstrategies/9db89bca-c4db-4044-89a3-b9e10c75bf9e",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2908,
+    "company": "Veeva Systems",
+    "title": "Director of Marketing - Falcon MLR",
+    "source": "lever",
+    "url": "https://jobs.lever.co/veeva/03f3e75c-6fd0-4903-b85e-ba73858d551d",
+    "included": false,
+    "reason": "remote role restricted outside United States"
+  },
+  {
+    "id": 2909,
+    "company": "Mendix",
+    "title": "Content Marketing Manager - Industrial B2B",
+    "source": "lever",
+    "url": "https://jobs.lever.co/mendix/acded4ba-2f4e-4562-8091-30fa5b661b8a",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2910,
+    "company": "Anchorage Digital",
+    "title": "Senior Product Marketing Manager, Stablecoins - Infrastructure",
+    "source": "lever",
+    "url": "https://jobs.lever.co/anchorage/ffc6ee03-bb50-4f16-a6eb-1b54ef9c436d",
+    "included": true,
+    "reason": "passed deterministic filters"
+  },
+  {
+    "id": 2911,
+    "company": "elk Marketing",
+    "title": "Paid Media Strategist",
+    "source": "lever",
+    "url": "https://jobs.lever.co/elk-marketing/d1c8a283-b9b4-4e4b-bb09-5f7bbea3bbb2",
+    "included": false,
+    "reason": "remote role restricted outside United States"
+  },
+  {
+    "id": 2912,
+    "company": "Veeva Systems",
+    "title": "Director of Marketing - Falcon MLR",
+    "source": "lever",
+    "url": "https://jobs.lever.co/veeva/aae85f80-72bc-4a47-b584-215166bec5c2",
+    "included": false,
+    "reason": "remote role restricted outside United States"
+  },
+  {
+    "id": 2913,
+    "company": "Xero",
+    "title": "Product Marketing Manager - AB Platform",
+    "source": "ashby",
+    "url": "https://jobs.ashbyhq.com/xero/b973625b-32d5-4871-a4b5-239b4ae8e9fe",
+    "included": false,
+    "reason": "remote role restricted outside United States"
+  },
+  {
+    "id": 2914,
+    "company": "Xero",
+    "title": "Product Marketing Manager - AB Platform",
+    "source": "ashby",
+    "url": "https://jobs.ashbyhq.com/xero/4af87705-4834-4ea8-b558-7933b98215dd",
+    "included": false,
+    "reason": "remote role restricted outside United States"
+  },
+  {
+    "id": 2915,
+    "company": "Ashby",
+    "title": "Snr. Marketing Manager, Enterprise ABM - EMEA",
+    "source": "ashby",
+    "url": "https://jobs.ashbyhq.com/ashby/ae0bf8c6-f327-48de-9902-9f509667d02d",
+    "included": false,
+    "reason": "remote role restricted outside United States"
+  },
+  {
+    "id": 2916,
+    "company": "Workana",
+    "title": "Criador(a) de V\u00eddeos com Intelig\u00eancia Artificial (IA) | Remoto | 20 horas semana",
+    "source": "workable",
+    "url": "https://apply.workable.com/j/4A062E134B",
+    "included": false,
+    "reason": "outside target role families"
+  },
+  {
+    "id": 2917,
+    "company": "Workana",
+    "title": "Vendedor(a) B2B | Servi\u00e7os Cont\u00e1beis e Financeiros | 20 horas semanais",
+    "source": "workable",
+    "url": "https://apply.workable.com/j/D4B01D3E4A",
+    "included": false,
+    "reason": "outside target role families"
+  },
+  {
+    "id": 2918,
+    "company": "Savvy Talent",
+    "title": "Social & Community Marketing Manager",
+    "source": "workable",
+    "url": "https://apply.workable.com/j/AEA5513316",
+    "included": false,
+    "reason": "Location/remote eligibility needs review"
+  },
+  {
+    "id": 2919,
+    "company": "Jump 450 Media",
+    "title": "Recruiter, Performance Marketing",
+    "source": "workable",
+    "url": "https://apply.workable.com/j/24A56482D9",
+    "included": false,
+    "reason": "Location/remote eligibility needs review"
+  },
+  {
+    "id": 2920,
+    "company": "HireHawk",
+    "title": "Email and Lifecycle Marketing Specialist (Remote) | Philippines",
+    "source": "workable",
+    "url": "https://apply.workable.com/j/ED8A4F793D",
+    "included": false,
+    "reason": "remote role restricted outside United States"
+  },
+  {
+    "id": 2921,
+    "company": "Skylight",
+    "title": "Director of Performance Marketing, Calendar",
+    "source": "workable",
+    "url": "https://apply.workable.com/j/3D6576CE77",
+    "included": false,
+    "reason": "starting annual base salary above $120,000"
+  },
+  {
+    "id": 2922,
+    "company": "Workana",
+    "title": "Head of Marketing Operations & Growth",
+    "source": "workable",
+    "url": "https://apply.workable.com/j/6A3C380E7D",
+    "included": false,
+    "reason": "Location/remote eligibility needs review"
+  }
+]

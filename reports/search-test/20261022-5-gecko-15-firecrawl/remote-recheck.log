@@ -1,0 +1,279 @@
+{"source_job_id": "5937235436", "company": "AIT Global inc.", "title": "656 - Product Marketing Manager, Staff", "work_arrangement": "remote", "employment_type": "", "passed_filters": true, "filter_reason": "passed deterministic filters", "full_description": false}
+{"source_job_id": "5937234879", "company": "DivIHN Integration Inc", "title": "Field Marketing Manager - SLED", "work_arrangement": "remote", "employment_type": "contract", "passed_filters": false, "filter_reason": "excluded employment type", "full_description": false}
+{"source_job_id": "5937235836", "company": "TekWissen LLC", "title": "E-Commerce & Retail Marketing Manager", "work_arrangement": "on-site", "employment_type": "", "passed_filters": false, "filter_reason": "non-remote role outside preferred locations", "full_description": false}
+{"source_job_id": "5937236056", "company": "Tek Ninjas", "title": "Field Marketing Manager - SLED", "work_arrangement": "remote", "employment_type": "contract", "passed_filters": false, "filter_reason": "excluded employment type", "full_description": false}
+{"source_job_id": "5937359468", "company": "Globalchannelmanagement", "title": "Remote AI Marketing Project Manager", "work_arrangement": "remote", "employment_type": "", "passed_filters": false, "filter_reason": "generic non-marketing manager/production role", "full_description": false}
+{
+  "job_scout_worksheet": {
+    "rows": 1178,
+    "added": 1,
+    "updated": 0
+  },
+  "google_sheets": {
+    "spreadsheet_id": "sqlite:C:\\gecko_main\\job-scout\\data\\jobs.sqlite3"
+  }
+}
+{
+  "rows": [
+    {
+      "source_job_id": "5937359468",
+      "company": "Globalchannelmanagement",
+      "title": "Remote AI Marketing Project Manager",
+      "work_arrangement": "remote",
+      "employment_type": "",
+      "passed_filters": false,
+      "filter_reason": "generic non-marketing manager/production role",
+      "full_description": false,
+      "retrieval": {
+        "status": "failed",
+        "description": "",
+        "source_url": "",
+        "attempts": [
+          {
+            "method": "stored enriched description",
+            "url": "",
+            "outcome": "insufficient",
+            "detail": "0 characters; minimum 600"
+          },
+          {
+            "method": "stored description",
+            "url": "https://www.adzuna.com/land/ad/5937359468?se=2Lz6mQXO8RGF68UScRttYQ&utm_medium=api&utm_source=b4f3e3f8&v=ADF39DC53A155826E3B6490DEDF2FF85ACC81BD8",
+            "outcome": "insufficient",
+            "detail": "500 characters; minimum 600"
+          },
+          {
+            "method": "authoritative search or re-resolution",
+            "url": "",
+            "outcome": "authoritative_url_not_found",
+            "detail": "No authoritative employer or ATS posting was verified by search."
+          },
+          {
+            "method": "original aggregator URL",
+            "url": "https://www.adzuna.com/land/ad/5937359468?se=2Lz6mQXO8RGF68UScRttYQ&v=ADF39DC53A155826E3B6490DEDF2FF85ACC81BD8",
+            "outcome": "failed",
+            "detail": "Request failed for https://www.adzuna.com/land/ad/5937359468: HTTP Error 403: Forbidden"
+          }
+        ],
+        "authoritative_url": "",
+        "error": "No source produced a complete description of at least 600 characters."
+      },
+      "outcome": "filtered"
+    },
+    {
+      "source_job_id": "5937236056",
+      "company": "Tek Ninjas",
+      "title": "Field Marketing Manager - SLED",
+      "work_arrangement": "remote",
+      "employment_type": "contract",
+      "passed_filters": false,
+      "filter_reason": "excluded employment type",
+      "full_description": false,
+      "retrieval": {
+        "status": "failed",
+        "description": "",
+        "source_url": "",
+        "attempts": [
+          {
+            "method": "stored enriched description",
+            "url": "",
+            "outcome": "insufficient",
+            "detail": "0 characters; minimum 600"
+          },
+          {
+            "method": "stored description",
+            "url": "https://www.adzuna.com/details/5937236056?utm_medium=api&utm_source=b4f3e3f8",
+            "outcome": "insufficient",
+            "detail": "500 characters; minimum 600"
+          },
+          {
+            "method": "authoritative search or re-resolution",
+            "url": "",
+            "outcome": "authoritative_url_not_found",
+            "detail": "No authoritative employer or ATS posting was verified by search."
+          },
+          {
+            "method": "original aggregator URL",
+            "url": "https://www.adzuna.com/details/5937236056",
+            "outcome": "failed",
+            "detail": "Request failed for https://www.adzuna.com/details/5937236056: HTTP Error 403: Forbidden"
+          }
+        ],
+        "authoritative_url": "",
+        "error": "No source produced a complete description of at least 600 characters."
+      },
+      "outcome": "filtered"
+    },
+    {
+      "source_job_id": "5937235836",
+      "company": "TekWissen LLC",
+      "title": "E-Commerce & Retail Marketing Manager",
+      "work_arrangement": "on-site",
+      "employment_type": "",
+      "passed_filters": false,
+      "filter_reason": "non-remote role outside preferred locations",
+      "full_description": false,
+      "retrieval": {
+        "status": "failed",
+        "description": "",
+        "source_url": "",
+        "attempts": [
+          {
+            "method": "stored enriched description",
+            "url": "",
+            "outcome": "insufficient",
+            "detail": "0 characters; minimum 600"
+          },
+          {
+            "method": "stored description",
+            "url": "https://www.adzuna.com/details/5937235836?utm_medium=api&utm_source=b4f3e3f8",
+            "outcome": "insufficient",
+            "detail": "500 characters; minimum 600"
+          },
+          {
+            "method": "authoritative search or re-resolution",
+            "url": "",
+            "outcome": "authoritative_url_not_found",
+            "detail": "No authoritative employer or ATS posting was verified by search."
+          },
+          {
+            "method": "original aggregator URL",
+            "url": "https://www.adzuna.com/details/5937235836",
+            "outcome": "failed",
+            "detail": "Request failed for https://www.adzuna.com/details/5937235836: HTTP Error 403: Forbidden"
+          }
+        ],
+        "authoritative_url": "",
+        "error": "No source produced a complete description of at least 600 characters."
+      },
+      "outcome": "filtered"
+    },
+    {
+      "source_job_id": "5937235436",
+      "company": "AIT Global inc.",
+      "title": "656 - Product Marketing Manager, Staff",
+      "work_arrangement": "remote",
+      "employment_type": "",
+      "passed_filters": true,
+      "filter_reason": "passed deterministic filters",
+      "full_description": false,
+      "retrieval": {
+        "status": "failed",
+        "description": "",
+        "source_url": "",
+        "attempts": [
+          {
+            "method": "stored enriched description",
+            "url": "",
+            "outcome": "insufficient",
+            "detail": "0 characters; minimum 600"
+          },
+          {
+            "method": "stored description",
+            "url": "https://www.adzuna.com/details/5937235436?utm_medium=api&utm_source=b4f3e3f8",
+            "outcome": "insufficient",
+            "detail": "500 characters; minimum 600"
+          },
+          {
+            "method": "authoritative search or re-resolution",
+            "url": "",
+            "outcome": "authoritative_url_not_found",
+            "detail": "No authoritative employer or ATS posting was verified by search."
+          },
+          {
+            "method": "original aggregator URL",
+            "url": "https://www.adzuna.com/details/5937235436",
+            "outcome": "failed",
+            "detail": "Request failed for https://www.adzuna.com/details/5937235436: HTTP Error 403: Forbidden"
+          }
+        ],
+        "authoritative_url": "",
+        "error": "No source produced a complete description of at least 600 characters."
+      },
+      "availability": {
+        "status": "valid",
+        "url": "https://www.adzuna.com/details/5937235436?utm_medium=api&utm_source=b4f3e3f8",
+        "final_url": "https://www.adzuna.com/details/5937235436?utm_medium=api&utm_source=b4f3e3f8",
+        "reason": "Listing loaded",
+        "http_status": 200
+      },
+      "outcome": "added",
+      "scout_ids": [
+        2880
+      ],
+      "tracker_id": 2880
+    },
+    {
+      "source_job_id": "5937234879",
+      "company": "DivIHN Integration Inc",
+      "title": "Field Marketing Manager - SLED",
+      "work_arrangement": "remote",
+      "employment_type": "contract",
+      "passed_filters": false,
+      "filter_reason": "excluded employment type",
+      "full_description": false,
+      "retrieval": {
+        "status": "failed",
+        "description": "",
+        "source_url": "",
+        "attempts": [
+          {
+            "method": "stored enriched description",
+            "url": "",
+            "outcome": "insufficient",
+            "detail": "0 characters; minimum 600"
+          },
+          {
+            "method": "stored description",
+            "url": "https://www.adzuna.com/details/5937234879?utm_medium=api&utm_source=b4f3e3f8",
+            "outcome": "insufficient",
+            "detail": "500 characters; minimum 600"
+          },
+          {
+            "method": "authoritative search or re-resolution",
+            "url": "",
+            "outcome": "authoritative_url_not_found",
+            "detail": "No authoritative employer or ATS posting was verified by search."
+          },
+          {
+            "method": "original aggregator URL",
+            "url": "https://www.adzuna.com/details/5937234879",
+            "outcome": "failed",
+            "detail": "Request failed for https://www.adzuna.com/details/5937234879: HTTP Error 403: Forbidden"
+          }
+        ],
+        "authoritative_url": "",
+        "error": "No source produced a complete description of at least 600 characters."
+      },
+      "outcome": "filtered"
+    }
+  ],
+  "before_sync": {
+    "status": "synced",
+    "synced_at": "2026-10-22T10:55:20.840438+00:00",
+    "rows": 1148,
+    "cells_written": 0,
+    "jobs_added_to_sheet": 0,
+    "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit"
+  },
+  "after_sync": {
+    "status": "synced",
+    "synced_at": "2026-10-22T10:55:56.344243+00:00",
+    "rows": 1149,
+    "cells_written": 16,
+    "jobs_added_to_sheet": 1,
+    "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit"
+  },
+  "backup_before": {
+    "backend": "sqlite",
+    "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T045521299097.sqlite3",
+    "integrity": "ok",
+    "google_sheets_accessed": false
+  },
+  "backup_after": {
+    "backend": "sqlite",
+    "backup": "C:\\gecko_main\\reports\\sqlite-backups\\20261022T045602386181.sqlite3",
+    "integrity": "ok",
+    "google_sheets_accessed": false
+  },
+  "verified": true
+}

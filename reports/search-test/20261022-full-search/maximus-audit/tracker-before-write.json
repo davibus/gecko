@@ -1,0 +1,105 @@
+{
+  "worksheet": "Job List",
+  "sheet_id": 1274044170,
+  "affected_jobs": [
+    {
+      "row": 1207,
+      "job_id": 2885,
+      "source": "adzuna",
+      "source_job_id": "5937216525",
+      "url": "https://www.adzuna.com/details/5937216525?utm_medium=api&utm_source=b4f3e3f8",
+      "new": true
+    }
+  ],
+  "before": {
+    "1207": {}
+  },
+  "expected": [
+    {
+      "row": 1207,
+      "field": "Scout ID",
+      "value": 2885
+    },
+    {
+      "row": 1207,
+      "field": "Source",
+      "value": "adzuna"
+    },
+    {
+      "row": 1207,
+      "field": "Company",
+      "value": "Maximus"
+    },
+    {
+      "row": 1207,
+      "field": "Job Title",
+      "value": "Digital Marketing Specialist"
+    },
+    {
+      "row": 1207,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1207,
+      "field": "Location",
+      "value": "Salt Lake City, UT, UT, US"
+    },
+    {
+      "row": 1207,
+      "field": "Work Arrangement",
+      "value": "on-site"
+    },
+    {
+      "row": 1207,
+      "field": "Employment Type",
+      "value": "full-time"
+    },
+    {
+      "row": 1207,
+      "field": "Salary",
+      "value": "Estimated $71,925 - $71,925"
+    },
+    {
+      "row": 1207,
+      "field": "Date Posted",
+      "value": "2026-10-21"
+    },
+    {
+      "row": 1207,
+      "field": "Date Found",
+      "value": "2026-10-22"
+    },
+    {
+      "row": 1207,
+      "field": "Last Seen",
+      "value": "2026-10-22"
+    },
+    {
+      "row": 1207,
+      "field": "Job URL",
+      "value": "https://www.adzuna.com/details/5937216525?utm_medium=api&utm_source=b4f3e3f8"
+    },
+    {
+      "row": 1207,
+      "field": "Found Using",
+      "value": "Gecko"
+    },
+    {
+      "row": 1207,
+      "field": "Gecko Job Description",
+      "value": "Accountabilities\n\n1. Executing and optimising paid search and paid social campaigns in line with best practices and advertising standards. Creating complex workflows and nudge journeys, managing contact records and subscription preferences in line with GDPR.\n\n2. Implementing effective tracking across all new and existing digital channels, creating tracking pixels, conversion events and UTMs to measure campaign effectiveness and ROI/ROAS, ensuring compliant user tracking and consent.\n\n3. Building, monitoring and updating customer-facing websites, ensuring content is relevant and up to date and optimised for UX, SEO and AIO. Creating, embedding and developing lead generation forms, managing the integration with HubSpot and user consent preferences.\n\n4. Designing and executing automated email journeys to manage lead quality, pre-qualify leads through automated eligibility checks and personalised journeys, and move customers through every stage of the marketing funnel and drive offline conversion rates.\n\n5. Evaluating and driving digital marketing performance, identifying opportunities for A/B testing and conversion optimisations, testing new digital channels and AI opportunities in line with changes in user behaviour and preferences, and reporting on channel performance and effectiveness.\n\n6. Supporting the implementation and management of customer-facing technologies. Automating responses to customer queries, comments and reviews. Forecasting lead volumes, target cost per acquisition and expected offline conversion rates to meet contractual requirements.\n\n7. Supporting with digital analytics, tracking and reporting in line with GDPR, managing consent preferences and cookie compliance using tools such as Adobe/Google Analytics, Google Tag Manager, Search Console, HotJar and Cookie Consent Management platforms.\n\nKey Internal Stakeholders & Relationships\n\n- Operational Leadership Teams\n\n- Policy and Strategic Engagement, and Integrated Communications Teams\n\n- Global Comms and Marketing teams\n\nKey External Stakeholders & Relationships\n\n- Marketing agencies \n\n- Print management companies\n\n- Chartered Institute for Marketing (CIM)\n\n- Technology and Martech providers (Meta, Google, Hubspot etc)\n\nEssential\n\n- Extensive experience executing high-performing paid digital marketing campaigns across channels such as web, email, social media, display and search, with experience using platforms such as Meta Ads Manager, TikTok Ads Manager, Google Ads, Microsoft Ads, AEM, WordPress etc.\n\n- Strong, hands-on experience with digital analytics and tracking and consent, including the use of tools such as Adobe/Google Analytics, Google Tag Manager, implementing conversion pixels/events/goals, and creating UTMs\n\n- Experience designing and building automated email campaigns and personalised workflows journeys. Working knowledge of GDPR, consent management and data governance in a digital marketing context\n\n- Experience managing and updating customer-facing websites or digital content, with knowledge and experience in UX best practices, SEO and AI search optimisation, and WCAG accessibility standards and accessibility best practice.\n\n- Solid experience maintaining marketing technologies and maximising their use.\n\nDesirable\n\n- Experience using A/B testing or conversion optimisation techniques to improve digital performance.\n\nMaximus Competencies\n\n- Embraces Respect\n\n- Partners Effectively\n\n- Creates Innovative Solutions\n\n- Focuses on the Customer\n\n- Demonstrates Compassion\n\n- Takes Responsibility & Acts with Integrity\n\nIndividual competencies\n\n- Strategic Business Acumen\n\n- Exceptional Communication\n\n- Data-Driven Decision Making,\n\n- Growth-Orientated Mindsets\n\n- Solution focused\n\n- Detail-Oriented\n\n- Proactive and Agile Execution\n\n- Results Drivel\n\n- Adaptive Leadership\n\n- Learning Agility\n\n- Emotionally Intelligent Leadership\n\nTravel Requirements\n\n- Very limited travel\n\nEEO Statement \n \n \u2022 MAXIMUS is committed to developing, maintaining and supporting a culture of diversity, equity and inclusion throughout the recruitment process. We know that feeling included has a dramatic impact on personal wellbeing and are working to ensure that no job applicant receives less favourable treatment due to any personal characteristic. Advertisements for posts will include sufficiently clear and accurate information to enable potential applicants to assess their own suitability for the post. \u2022 We are a Disability Confident Leader, thanks to our commitment to the recruitment, retention and career development of people with disabilities and long-term conditions. The Disability Confident scheme includes a guaranteed interview for any applicant with a disability who meets the minimum requirements for a job. When you complete your job application you will find a question asking you if you would like to apply under the Disability Confident Guaranteed Interview Scheme. If you feel that you have a disability and apply under this scheme, providing that you meet the essential criteria for the job, you will then be invited for interview. Your Guaranteed Interview application will only be shared with the hiring manager and the local resourcing team. \u2022 Where reasonable, MAXIMUS will review and consider adjustments for those applicants who express a requirement for them during the recruitment process. \n\nMinimum Salary \n \n \u00a3 \n\n38,000.00 \n\nMaximum Salary \n \n \u00a3 \n\n45,500.00 \n\n-"
+    },
+    {
+      "row": 1207,
+      "field": "Notes",
+      "value": "Original JobPosting explicitly identifies Salt Lake City, UT, US (postal code 84101). Full description verified. Adzuna pay is an estimate, not confirmed employer base salary. No resume or application started."
+    },
+    {
+      "row": 1207,
+      "field": "Last Updated",
+      "value": "2026-10-22T06:16:18-06:00 | Gecko"
+    }
+  ],
+  "skipped": []
+}

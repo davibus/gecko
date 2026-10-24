@@ -1,0 +1,520 @@
+{
+  "settings": {
+    "enabled": true,
+    "minimum_score": 80
+  },
+  "checks": [
+    {
+      "id": "4",
+      "title": "Manager, Paid Search",
+      "result": {
+        "id": "job",
+        "sufficient": true,
+        "reason": "Posting provides substantive duties and qualifications. Master directly supports paid search execution and leadership; monthly actualization and some tool proficiency remain partially verified.",
+        "blockers": [],
+        "categories": {
+          "responsibilities": [
+            {
+              "requirement": "Experience managing campaigns end to end, including planning, setup, launch, optimization, reporting, and performance analysis.",
+              "support": 1,
+              "evidence": [
+                "Leads account activation, campaign builds and structures, keyword and negative-keyword strategy, ad copy, audience segmentation, bid testing, budget pacing"
+              ],
+              "reason": "Demonstrated campaign lifecycle ownership, with reporting and analysis documented throughout."
+            },
+            {
+              "requirement": "Develop tactical paid search strategies aligned with client objectives, audience strategies, KPIs, and broader integrated media plans.",
+              "support": 1,
+              "evidence": [
+                "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation"
+              ],
+              "reason": "Client-led campaign and channel planning directly supports tactical strategy development."
+            },
+            {
+              "requirement": "Oversee flawless campaign launches, including campaign setup, trafficking, quality assurance, tracking, tagging, and delivery requirements.",
+              "support": 1,
+              "evidence": [
+                "Leads account activation, campaign builds and structures"
+              ],
+              "reason": "Activation ownership plus documented QA and GA4/GTM configuration support launch execution."
+            },
+            {
+              "requirement": "Own campaign pacing, budget management, and ongoing optimization",
+              "support": 1,
+              "evidence": [
+                "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing"
+              ],
+              "reason": "Pacing measurement and extensive budget optimization directly support ongoing delivery management."
+            },
+            {
+              "requirement": "Track campaign spend, maintain accurate budget forecasts, and actualize budgets monthly",
+              "support": 0.5,
+              "evidence": [
+                "Created annual projections and KPI reporting with senior leadership"
+              ],
+              "reason": "Forecasting and budget oversight are demonstrated; monthly actualization is not explicit."
+            },
+            {
+              "requirement": "proactively identifying and communicating pacing or delivery risks.",
+              "support": 0.5,
+              "evidence": [
+                "Created custom scripts for continuous, automated monitoring of client marketing efforts"
+              ],
+              "reason": "Monitoring and client reporting transfer to risk alerts; explicit risk communication is unverified."
+            },
+            {
+              "requirement": "Troubleshoot platform, tracking, attribution, trafficking, and reporting issues using strong platform expertise and analytical problem-solving skills.",
+              "support": 1,
+              "evidence": [
+                "Iteratively diagnosed and repaired integration, document-layout, data-consistency, and Windows execution issues."
+              ],
+              "reason": "Troubleshooting plus demonstrated tracking, attribution, and reporting systems support this work."
+            },
+            {
+              "requirement": "Translate campaign data into clear performance narratives, actionable insights, and optimization recommendations that connect results to client objectives.",
+              "support": 1,
+              "evidence": [
+                "Converted analytical findings into executive summaries, recommended actions, and next-period watch lists."
+              ],
+              "reason": "Direct evidence of turning marketing analysis into clear recommendations and narratives."
+            },
+            {
+              "requirement": "Proactively identify and recommend account evolutions, testing opportunities, and platform innovations",
+              "support": 1,
+              "evidence": [
+                "Analyzed Google Ads audience performance to identify audiences and strategies to test and apply across other platforms"
+              ],
+              "reason": "Identifies testing opportunities and applies platform insights to account growth."
+            },
+            {
+              "requirement": "Communicate account status, campaign performance, and recommendations directly to clients and vendors",
+              "support": 0.5,
+              "evidence": [
+                "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings"
+              ],
+              "reason": "Client presentations are established; direct vendor performance discussions are not explicit."
+            },
+            {
+              "requirement": "Coordinate day-to-day account projects and collaborate with Integrated Media, Analytics, Strategy, Ad Operations, Creative, and Client Experience teams",
+              "support": 1,
+              "evidence": [
+                "Consulted on SEO best practices and on-page optimization and coordinated marketing priorities with web, operations, creative, and other stakeholders"
+              ],
+              "reason": "Comparable cross-functional coordination supports campaign dependencies and project delivery."
+            },
+            {
+              "requirement": "Delegate and oversee campaign responsibilities assigned to Associates and Senior Associates",
+              "support": 1,
+              "evidence": [
+                "Led an eight-person e-commerce team responsible for paid search, customer acquisition, campaign delivery, website performance, and growth"
+              ],
+              "reason": "Team ownership directly supports delegation and oversight of campaign deliverables."
+            },
+            {
+              "requirement": "Mentor and train junior team members on platform execution, campaign processes, and best practices",
+              "support": 1,
+              "evidence": [
+                "Built the PPC team and trained team members on the scalable system created for the organization (QoQ)"
+              ],
+              "reason": "Direct evidence of building and training a PPC team."
+            },
+            {
+              "requirement": "Contribute to process improvements, documentation, training materials, automation initiatives, and emerging platform capabilities",
+              "support": 1,
+              "evidence": [
+                "Developed a repeatable Google Ads account-management system that maintained consistent service quality across clients regardless of spend"
+              ],
+              "reason": "Repeatable systems, documented workflows, team training, and automation support process improvement."
+            }
+          ],
+          "required": [
+            {
+              "requirement": "Strong expertise in Google Ads, Microsoft Ads, and paid search campaign management.",
+              "support": 1,
+              "evidence": [
+                "Managed PPC efforts across Google Ads and Microsoft/Bing Ads"
+              ],
+              "reason": "Direct platform management is documented at substantial account and spending scale."
+            },
+            {
+              "requirement": "Strong understanding of bidding strategies, keyword management, audience targeting, attribution, conversion optimization, and campaign measurement.",
+              "support": 1,
+              "evidence": [
+                "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing"
+              ],
+              "reason": "Hands-on direction of these disciplines directly establishes the required technical knowledge."
+            },
+            {
+              "requirement": "Strong client communication, presentation, analytical, critical-thinking, and problem-solving skills.",
+              "support": 1,
+              "evidence": [
+                "translating complex analysis into practical business recommendations"
+              ],
+              "reason": "Client consulting, analytical investment recommendations, and presentations demonstrate these skills."
+            },
+            {
+              "requirement": "Demonstrated project-management, organizational, and prioritization capabilities",
+              "support": 1,
+              "evidence": [
+                "Applied project-by-project cost-benefit analysis to prioritize growth initiatives, marketplace opportunities, product investments, and operational improvements"
+              ],
+              "reason": "Demonstrates prioritization and project decisions across multiple business functions."
+            },
+            {
+              "requirement": "Proficiency in Microsoft Excel, PowerPoint, and relevant reporting and analytics platforms.",
+              "support": 0.5,
+              "evidence": [
+                "Used advanced Excel formulas and VS Code to create upload-ready XLSX files for Google Ads Editor"
+              ],
+              "reason": "Excel and analytics proficiency are demonstrated; PowerPoint has only inventory-level evidence."
+            },
+            {
+              "requirement": "You are adaptable, resilient, and comfortable adjusting your scope, responsibilities, and priorities in a fast-paced, evolving environment.",
+              "support": 1,
+              "evidence": [
+                "Oversaw project management in an ever-changing environment"
+              ],
+              "reason": "Changing project environments and broad transformation responsibilities support adaptability."
+            },
+            {
+              "requirement": "championing practical, responsible AI adoption that drives meaningful business impact.",
+              "support": 1,
+              "evidence": [
+                "Uses structured OpenAI workflows to prioritize supported findings, with application checks that reject unsupported evidence."
+              ],
+              "reason": "Built practical AI workflows with explicit evidence and output controls."
+            }
+          ],
+          "seniority": [
+            {
+              "requirement": "3+ years of professional experience managing digital media campaigns, with significant hands-on experience in paid search.",
+              "support": 1,
+              "evidence": [
+                "Director of E-Commerce/Marketing \u2013 LifeSpan Fitness - Salt Lake City, UT \t\tJune 2013 -Aug 2016"
+              ],
+              "reason": "This dated role alone exceeds three years and explicitly includes hands-on paid search management."
+            }
+          ],
+          "industry": [],
+          "preferred": [
+            {
+              "requirement": "Experience with bid management, analytics, and attribution tools is preferred.",
+              "support": 1,
+              "evidence": [
+                "used machine-learning models and the Google Ads API to support budgets, bids, ad copy, keyword decisions, and other optimizations"
+              ],
+              "reason": "Direct bid tooling plus documented analytics platforms and attribution modeling meet this preference."
+            },
+            {
+              "requirement": "Pharmaceutical and healthcare marketing experience is preferred but not required.",
+              "support": 0.5,
+              "evidence": [
+                "Marketing Strategist/Analyst - 1-800-Contacts - Draper, UT"
+              ],
+              "reason": "Vision-care marketing is relevant healthcare exposure; pharmaceutical marketing is unverified."
+            }
+          ]
+        },
+        "score": 91.47,
+        "accepted": true,
+        "status": "reviewed",
+        "failed_rules": [],
+        "category_percentages": {
+          "responsibilities": 89.29,
+          "required": 92.86,
+          "seniority": 100.0,
+          "industry": null,
+          "preferred": 75.0
+        },
+        "policy": "master-evidence-v2",
+        "master_sha256": "76d5ee209409429f1eb7a4ac0abdefcaf8f81baef52214e3a58df9a94d7159b4",
+        "runner": {
+          "model": "gpt-6.1-sol",
+          "effort": "medium",
+          "verified": true,
+          "session_id": "01a16554-d347-7e92-ade6-10a4af8bcfde",
+          "verified_at": "2026-10-22T20:37:33.437187+00:00"
+        },
+        "job": {
+          "id": "job",
+          "title": "Manager, Paid Search",
+          "company": "realchemistry",
+          "url": "https://job-boards.greenhouse.io/realchemistry/jobs/5454003008"
+        },
+        "cached": true
+      }
+    },
+    {
+      "id": "17",
+      "title": "Architect, Software Engineering (Adobe AEP Architect)",
+      "result": {
+        "id": "job",
+        "sufficient": true,
+        "reason": "Complete duties and qualifications support assessment. Adobe solution delivery, architect tenure, DAM expertise, and travel willingness remain unverified; missing evidence does not prove absence.",
+        "blockers": [],
+        "categories": {
+          "responsibilities": [
+            {
+              "requirement": "Represent Adobe Services as a key Architect on customer accounts, defining solution architecture and leading implementation for Adobe Solutions",
+              "support": 0.5,
+              "evidence": [
+                "Designed the company's information architecture and ERP-system flow and implemented systems to increase productivity, efficiency, transparency, and collaboration"
+              ],
+              "reason": "Demonstrates systems architecture and implementation; Adobe solution delivery is unverified."
+            },
+            {
+              "requirement": "Bring knowledge of digital experience and marketing technology to align solution architecture to business strategy",
+              "support": 1,
+              "evidence": [
+                "Combined commercial requirements with technical implementation decisions across product discovery, cart behavior, checkout handoff, and customer support."
+              ],
+              "reason": "Directly connects commercial goals with digital experience and technical design."
+            },
+            {
+              "requirement": "Identify key business drivers and technology capabilities required to achieve optimal state",
+              "support": 1,
+              "evidence": [
+                "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+              ],
+              "reason": "Identifies business priorities and develops strategies grounded in client needs."
+            },
+            {
+              "requirement": "Understand the current state of solution architecture and assess marketing capabilities",
+              "support": 1,
+              "evidence": [
+                "Assessed inefficient legacy rule-based systems built using the Google Ads API and how newer Google machine-learning capabilities had made those systems outdated"
+              ],
+              "reason": "Evaluated existing marketing systems against newer capabilities."
+            },
+            {
+              "requirement": "Recommend the future state of application architecture across customer engagements",
+              "support": 0.5,
+              "evidence": [
+                "Designed reusable data contracts and separated integrations, calculations, AI handling, presentation, and persistence."
+              ],
+              "reason": "Demonstrates application architecture; advisory delivery across customer engagements is partial."
+            },
+            {
+              "requirement": "Work with customer teams and drive the dialogue to establish use cases, goals, objectives, and architecture to meet business requirements",
+              "support": 0.5,
+              "evidence": [
+                "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation"
+              ],
+              "reason": "Direct client requirements discovery; customer architecture workshops are unverified."
+            },
+            {
+              "requirement": "Ensure alignment between business strategy, information technology roadmap, and technical and tactical deployment teams",
+              "support": 0.5,
+              "evidence": [
+                "Directed digital marketing and e-commerce for a large B2B distributor, coordinating execution and reporting across marketing, sales, operations, finance, IT, and product teams"
+              ],
+              "reason": "Strong business and technical coordination; formal IT roadmap alignment is unverified."
+            },
+            {
+              "requirement": "Engage and present recommendations to technical leads and leadership teams",
+              "support": 1,
+              "evidence": [
+                "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+              ],
+              "reason": "Explicitly presents findings and strategies to executives and cross-functional teams."
+            },
+            {
+              "requirement": "Work closely with and act as a liaison between key business, and IT experts during entire engagement",
+              "support": 1,
+              "evidence": [
+                "Served as a technology, marketing, cultural-change, team, and thought leader while coordinating with IT, Operations, Finance, Product Development, HR, Sales, and other department heads"
+              ],
+              "reason": "Demonstrates sustained coordination between business functions and IT."
+            },
+            {
+              "requirement": "Grow Adobe's architecture practice and share on-the-ground customer feedback with product engineering and product managers to improve product capabilities",
+              "support": 0.5,
+              "evidence": [
+                "Developed a repeatable Google Ads account-management system that maintained consistent service quality across clients regardless of spend; the system was adopted across the agency"
+              ],
+              "reason": "Built an adopted practice; formal customer feedback into product engineering is unverified."
+            },
+            {
+              "requirement": "drive professional services process improvements and efficiency while holding our high standards of delivery quality.",
+              "support": 1,
+              "evidence": [
+                "Consolidated work that had been divided among five agencies into a comprehensive, scalable in-house PPC strategy"
+              ],
+              "reason": "Demonstrates service transformation and scalable process improvement."
+            },
+            {
+              "requirement": "help develop a culture of innovation and technology excellence here at Adobe and serve as a strong champion for change!",
+              "support": 1,
+              "evidence": [
+                "Lifted the company up from a very non-digital, traditional B2B distributor to a functional digital environment"
+              ],
+              "reason": "Led organizational technology adoption and digital change."
+            }
+          ],
+          "required": [
+            {
+              "requirement": "Deep technical and business expertise in digital marketing use cases and strategies across content, data, and customer journeys\u2014including CMS, analytics, personalization, e-commerce, DAM, and mobile engagement.",
+              "support": 0.5,
+              "evidence": [
+                "Combined a custom React storefront with Shopify commerce services, product discovery, customer accounts, marketing measurement, search-engine optimization, and operational tooling."
+              ],
+              "reason": "Strong commerce, content, analytics, and journey expertise; DAM and full breadth are unverified."
+            },
+            {
+              "requirement": "Track record of delivering successful Enterprise or Solution/ Application integrations, with digital marketing tools and systems related to big data, analytics, testing &amp; optimization, personalization, and activation",
+              "support": 0.5,
+              "evidence": [
+                "Built automated weekly reporting across 10+ channels using Python, Databricks, SQL, blended Excel data, and Funnel.io to improve accuracy and decision speed"
+              ],
+              "reason": "Delivered marketing data integrations; personalization and activation integration breadth is partial."
+            },
+            {
+              "requirement": "Proven ability to engage with management and project stakeholders, build consensus, and deliver impactful solutions in customer-facing environments.",
+              "support": 1,
+              "evidence": [
+                "Conducted comprehensive market research, persuaded management to add new services, and oversaw their development and implementation."
+              ],
+              "reason": "Shows stakeholder persuasion and implementation of business-facing solutions."
+            },
+            {
+              "requirement": "Skilled in identifying business challenges and aligning proposed solutions with measurable success criteria.",
+              "support": 1,
+              "evidence": [
+                "Created business goals, yearly projections, and KPI's with senior management"
+              ],
+              "reason": "Established measurable business goals and success criteria with leadership."
+            },
+            {
+              "requirement": "Proficient in breaking down intricate ideas for diverse audiences, including both technical and non-technical customers throughout the organization.",
+              "support": 0.5,
+              "evidence": [
+                "Known for learning quickly, building scalable systems, translating complex analysis into practical business recommendations"
+              ],
+              "reason": "Shows clear translation of complexity; communication across all customer audiences is partial."
+            },
+            {
+              "requirement": "Exceptional analytical and problem-solving capabilities, with a talent for deriving clear insights and conclusions from customer interviews and data.",
+              "support": 0.5,
+              "evidence": [
+                "Used regression models, prior-year/prior-period data, holdouts, geo-promotional tests, scale-up/down analysis, and budget reallocation scenarios to forecast investment outcomes"
+              ],
+              "reason": "Strong data-based analysis and conclusions; customer interview analysis is unverified."
+            },
+            {
+              "requirement": "Demonstrated success in developing established methodologies for architectural design, technical diagrams, capability maps, and strategic roadmaps.",
+              "support": 0.5,
+              "evidence": [
+                "Designed reusable data contracts and separated integrations, calculations, AI handling, presentation, and persistence."
+              ],
+              "reason": "Demonstrates structured architectural design; diagrams, capability maps, and roadmaps unverified."
+            },
+            {
+              "requirement": "Strong leadership and decision-making skills in fast-paced, dynamic environments.",
+              "support": 1,
+              "evidence": [
+                "Applied project-by-project cost-benefit analysis to prioritize growth initiatives, marketplace opportunities, product investments, and operational improvements"
+              ],
+              "reason": "Shows leadership decisions and prioritization across changing business initiatives."
+            },
+            {
+              "requirement": "Effective multitasker with the ability to prioritize across multiple engagements simultaneously.",
+              "support": 1,
+              "evidence": [
+                "Managed 75+ Google Ads accounts with more than $276,000 in combined monthly spend while advising clients on channel allocation, campaign structure, and growth priorities"
+              ],
+              "reason": "Direct evidence of concurrent client management and investment prioritization."
+            },
+            {
+              "requirement": "Collaborative great teammate known for encouraging trust and driving toward efficient solutions.",
+              "support": 1,
+              "evidence": [
+                "Builds and develops teams, documents lessons learned, resolves issues, respectfully challenges assumptions, takes ownership of setbacks"
+              ],
+              "reason": "Demonstrates constructive teamwork, accountability, and collaborative problem solving."
+            },
+            {
+              "requirement": "Highly curious and quick to learn new technologies and concepts.",
+              "support": 1,
+              "evidence": [
+                "Uses AI to build on foundational expertise, expand output, and accelerate content production, website and application development, analysis, and marketing workflows."
+              ],
+              "reason": "Demonstrates adoption and practical application of emerging technologies."
+            },
+            {
+              "requirement": "Excellent written and verbal communication skills.",
+              "support": 1,
+              "evidence": [
+                "Created setup documentation, architecture guides, a product case study, portfolio copy, and a demonstration script."
+              ],
+              "reason": "Demonstrates technical writing and structured presentation communication."
+            },
+            {
+              "requirement": "Experienced in negotiation and conflict resolution.",
+              "support": 0.5,
+              "evidence": [
+                "Conducted customer lifetime value (LTV) analysis, affiliate commission analysis and discount negotiation, and AI-assisted promotion performance analysis using Namogoo"
+              ],
+              "reason": "Explicit negotiation evidence; conflict resolution experience is less directly established."
+            },
+            {
+              "requirement": "Willingness to travel up to 40%",
+              "support": 0,
+              "evidence": [],
+              "reason": "Travel willingness is not documented."
+            }
+          ],
+          "seniority": [
+            {
+              "requirement": "3+ years of experience as a solution or application architect, systems integrator, or senior consultant.",
+              "support": 0.5,
+              "evidence": [
+                "Designed the company's information architecture and ERP-system flow and implemented systems to increase productivity, efficiency, transparency, and collaboration"
+              ],
+              "reason": "Relevant architecture and integration work is established; three years in this scope is unverified."
+            }
+          ],
+          "industry": [
+            {
+              "requirement": "Past experience working in a world-class consulting or technology organization.",
+              "support": 0.5,
+              "evidence": [
+                "SEM Manager/Project Manager - The Infinite Agency - Dallas, TX"
+              ],
+              "reason": "Agency consulting experience is documented; the specified organizational standing is unverified."
+            }
+          ],
+          "preferred": []
+        },
+        "score": 69.05,
+        "accepted": false,
+        "status": "reviewed",
+        "failed_rules": [
+          "Score below 80"
+        ],
+        "category_percentages": {
+          "responsibilities": 79.17,
+          "required": 71.43,
+          "seniority": 50.0,
+          "industry": 50.0,
+          "preferred": null
+        },
+        "policy": "master-evidence-v2",
+        "master_sha256": "76d5ee209409429f1eb7a4ac0abdefcaf8f81baef52214e3a58df9a94d7159b4",
+        "runner": {
+          "model": "gpt-6.1-sol",
+          "effort": "medium",
+          "verified": true,
+          "session_id": "01a16555-56c0-7652-94a6-5c7250bbf4c9",
+          "verified_at": "2026-10-22T20:38:13.142667+00:00"
+        },
+        "job": {
+          "id": "job",
+          "title": "Architect, Software Engineering (Adobe AEP Architect)",
+          "company": "dept",
+          "url": "https://job-boards.greenhouse.io/dept/jobs/8247146"
+        },
+        "cached": true
+      }
+    }
+  ]
+}

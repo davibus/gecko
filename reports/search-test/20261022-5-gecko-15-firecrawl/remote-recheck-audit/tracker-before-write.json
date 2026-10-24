@@ -1,0 +1,100 @@
+{
+  "worksheet": "Job List",
+  "sheet_id": 1274044170,
+  "affected_jobs": [
+    {
+      "row": 1183,
+      "job_id": 2880,
+      "source": "adzuna",
+      "source_job_id": "5937235436",
+      "url": "https://www.adzuna.com/details/5937235436?utm_medium=api&utm_source=b4f3e3f8",
+      "new": true
+    }
+  ],
+  "before": {
+    "1183": {}
+  },
+  "expected": [
+    {
+      "row": 1183,
+      "field": "Scout ID",
+      "value": 2880
+    },
+    {
+      "row": 1183,
+      "field": "Source",
+      "value": "adzuna"
+    },
+    {
+      "row": 1183,
+      "field": "Company",
+      "value": "AIT Global inc."
+    },
+    {
+      "row": 1183,
+      "field": "Job Title",
+      "value": "656 - Product Marketing Manager, Staff"
+    },
+    {
+      "row": 1183,
+      "field": "Apply?",
+      "value": "Yes"
+    },
+    {
+      "row": 1183,
+      "field": "Location",
+      "value": "US"
+    },
+    {
+      "row": 1183,
+      "field": "Work Arrangement",
+      "value": "remote"
+    },
+    {
+      "row": 1183,
+      "field": "Salary",
+      "value": "$312,000"
+    },
+    {
+      "row": 1183,
+      "field": "Date Posted",
+      "value": "2026-10-21"
+    },
+    {
+      "row": 1183,
+      "field": "Date Found",
+      "value": "2026-10-22"
+    },
+    {
+      "row": 1183,
+      "field": "Last Seen",
+      "value": "2026-10-22"
+    },
+    {
+      "row": 1183,
+      "field": "Job URL",
+      "value": "https://www.adzuna.com/details/5937235436?utm_medium=api&utm_source=b4f3e3f8"
+    },
+    {
+      "row": 1183,
+      "field": "Found Using",
+      "value": "Gecko"
+    },
+    {
+      "row": 1183,
+      "field": "Job Description",
+      "value": "Job Title: Product Marketing Manager, Staff Location: Remote (San Jose, CA) JOB DESCRIPTION: This role will focus on the supplier and network, developing strategies and programs to drive acquisition and retention, partnering across Marketing, Product, Sales, and Customer Success. You will be the voice of the customer in roadmap discussions, create differentiated positioning and messaging, and orchestrate effective GTM launches. You'll lead the GTM strategy for acquisition, retention and enablem\u2026"
+    },
+    {
+      "row": 1183,
+      "field": "Notes",
+      "value": "Bounded recheck of October 22 Gecko test. Explicit remote-work evidence recognized; description and employment terms checked. No resume or application requested."
+    },
+    {
+      "row": 1183,
+      "field": "Last Updated",
+      "value": "2026-10-22T04:55:27-06:00 | Gecko"
+    }
+  ],
+  "skipped": []
+}

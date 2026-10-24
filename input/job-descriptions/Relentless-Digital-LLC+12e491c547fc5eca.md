@@ -1,0 +1,21 @@
+# PPC Strategist - Remote
+
+- **Company:** Relentless Digital LLC
+- **Job Number:** 12e491c547fc5eca
+- **Scout ID:** 2947
+- **URL:** https://www.indeed.com/viewjob?jk=12e491c547fc5eca
+- **Source:** indeed
+- **Salary:** $50,000 - $65,000
+
+## Job description (tracker description/listing field)
+
+About Us Relentless Digital is a fast-growing digital marketing agency built for HVAC, plumbing, and electrical contractors. We don’t do cookie-cutter. Our results speak for themselves, and our core values drive every decision we make. We specialize in Google Business Profile management, SEO, paid media, and marketing automation—serving blue-collar businesses with white-glove service. Accolades: 2025 Inc Best Workplaces #217 on the 2024 Inc. 5000 list 98% Client Retention Rate Our Core Values: Be relentless. Lead with integrity. Make it happen. Make an impact. Bold yet humble. About the Role We are seeking a highly analytical and results-driven PPC Strategist to help manage our clients Google Ads campaigns, focusing exclusively on high-quality lead generation . The ideal candidate has a proven track record of maximizing ROI by optimizing bidding strategies, conducting in-depth keyword research, writing compelling ad copy, and meticulously segmenting audiences to drive qualified leads for our home services clients. Key Responsibilities Campaign Management: Manage all facets of Google Ads campaigns, including daily budget oversight, bid management, negative keyword lists, and campaign settings. Optimization & Testing: Implement A/B testing protocols for ad copy, headlines, descriptions, and extensions to continuously improve Click-Through Rates (CTR) and Quality Score. Perform ongoing testing of landing pages (in collaboration with the web team) to optimize conversion rates. Utilize conversion data and CRM data to understand the full-funnel performance of leads and optimize campaigns for high quality leads. Conduct quarterly strategic calls with account managers and clients to review performance, discuss market trends, and collaboratively plan the next quarter's PPC strategy and budget allocation. Reporting: Distribute weekly and monthly performance reports, presenting key insights, strategic recommendations, and clear next steps to our account management team. Collaboration: Work closely with the account managers, sales, and web development teams to ensure alignment on messaging, landing page experience, and lead qualification processes. Required Qualifications 2+ years of direct, hands-on experience managing Google Ads campaigns focused on Lead Generation . Minimum 2 years of experience working specifically at a digital marketing or PPC agency. Proven experience managing campaigns for non-e-commerce businesses, with a strong emphasis on driving form submissions, calls, or appointments (Lead Generation, not solely e-commerce). Expert-level proficiency in Google Ads interface and Google Ads Editor. Demonstrated experience with advanced bidding strategies and Conversion Tracking implementation. Strong analytical skills with the ability to interpret complex data and make data-driven decisions. Preferred Qualifications Experience managing PPC campaigns for Home Service businesses (e.g., HVAC, plumbing, roofing, cleaning, etc.) or similar local service-based industries. Google Ads Certification (Search, Display, Measurement). Experience with other PPC platforms (e.g., Microsoft Ads). Familiarity with CRM systems (e.g., Salesforce, HubSpot, GHL). What We Offer Competitive salary based on experience 10 PTO days in year 1, 15 PTO days in year 2 Paid holidays and health/dental insurance Simple IRA with 3% company match Leadership opportunity in a high-growth, award-winning agency Autonomy, flexibility, and a no-BS work environment Ready to Build Something Great? Apply below if you're ready to make a real impact in the home service marketing space. Requirements Work Hours: 40 to 40 hours work Required Education: High school or equivalent Required Experience: Experienced(2) years Pay: $50,000.00 - $65,000.00 per year
+
+## Structured job information
+
+Target position: PPC Strategist - Remote
+Company: Relentless Digital LLC
+Location: Remote, US
+Work Arrangement: remote
+Employment Type: ['full-time']
+Salary: $50,000 - $65,000

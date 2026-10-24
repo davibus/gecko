@@ -1,0 +1,129 @@
+{
+  "pipeline": {
+    "raw_retrieved": 7,
+    "rss_retrieved": 0,
+    "rss_unique": 0,
+    "rss_duplicates_removed": 0,
+    "successful_feeds": 0,
+    "failed_feeds": 0,
+    "feed_results": [],
+    "api_retrieved": 0,
+    "source_backend": "",
+    "fetched": 7,
+    "normalized": 7,
+    "added": 7,
+    "updated": 0,
+    "duplicates": 0,
+    "cross_provider_duplicates": 0,
+    "unique_available": 0,
+    "unique_imported": 0,
+    "filtered_by_role": 0,
+    "deterministic_rejects": 0,
+    "deterministic_reject_reasons": {},
+    "jooble_excluded": 0,
+    "rejected_history_excluded": 0,
+    "missing_content_excluded": 0,
+    "dead_url_excluded": 0,
+    "source_results_limited": 0,
+    "url_review_excluded": 0,
+    "url_validated": 7,
+    "new_job_ids": [
+      2916,
+      2917,
+      2918,
+      2919,
+      2920,
+      2921,
+      2922
+    ],
+    "existing_job_ids": [],
+    "changed_job_ids": [],
+    "eligibility_includes_usa": 0,
+    "eligibility_worldwide": 0,
+    "example_jobs": [],
+    "backend_qualifying": {},
+    "backend_added": {}
+  },
+  "record_decisions": [
+    {
+      "source": "workable",
+      "source_job_id": "4A062E134B",
+      "url": "https://apply.workable.com/j/4A062E134B",
+      "company": "Workana",
+      "title": "Criador(a) de V\u00eddeos com Intelig\u00eancia Artificial (IA) | Remoto | 20 horas semana",
+      "reason": "new unique",
+      "job_id": 2916
+    },
+    {
+      "source": "workable",
+      "source_job_id": "D4B01D3E4A",
+      "url": "https://apply.workable.com/j/D4B01D3E4A",
+      "company": "Workana",
+      "title": "Vendedor(a) B2B | Servi\u00e7os Cont\u00e1beis e Financeiros | 20 horas semanais",
+      "reason": "new unique",
+      "job_id": 2917
+    },
+    {
+      "source": "workable",
+      "source_job_id": "AEA5513316",
+      "url": "https://apply.workable.com/j/AEA5513316",
+      "company": "Savvy Talent",
+      "title": "Social & Community Marketing Manager",
+      "reason": "new unique",
+      "job_id": 2918
+    },
+    {
+      "source": "workable",
+      "source_job_id": "24A56482D9",
+      "url": "https://apply.workable.com/j/24A56482D9",
+      "company": "Jump 450 Media",
+      "title": "Recruiter, Performance Marketing",
+      "reason": "new unique",
+      "job_id": 2919
+    },
+    {
+      "source": "workable",
+      "source_job_id": "ED8A4F793D",
+      "url": "https://apply.workable.com/j/ED8A4F793D",
+      "company": "HireHawk",
+      "title": "Email and Lifecycle Marketing Specialist (Remote) | Philippines",
+      "reason": "new unique",
+      "job_id": 2920
+    },
+    {
+      "source": "workable",
+      "source_job_id": "3D6576CE77",
+      "url": "https://apply.workable.com/j/3D6576CE77",
+      "company": "Skylight",
+      "title": "Director of Performance Marketing, Calendar",
+      "reason": "new unique",
+      "job_id": 2921
+    },
+    {
+      "source": "workable",
+      "source_job_id": "6A3C380E7D",
+      "url": "https://apply.workable.com/j/6A3C380E7D",
+      "company": "Workana",
+      "title": "Head of Marketing Operations & Growth",
+      "reason": "new unique",
+      "job_id": 2922
+    }
+  ],
+  "queries_pages": [
+    {
+      "kind": "full feed",
+      "status": "completed",
+      "parsed": 5521
+    }
+  ],
+  "board_errors": [],
+  "page_exclusions": [],
+  "collection_limits": [],
+  "firecrawl_requests": 0,
+  "errors": "",
+  "health": {
+    "status": "success",
+    "found": 7,
+    "detail": ""
+  }
+}

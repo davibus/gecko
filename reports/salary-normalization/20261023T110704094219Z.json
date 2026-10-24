@@ -1,0 +1,2888 @@
+{
+  "status": "verified",
+  "synced_at": "2026-10-23T11:07:27.379031+00:00",
+  "changes": [
+    {
+      "id": "692",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "711",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "716",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "847",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1203",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1215",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1227",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1230",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1238",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1240",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1248",
+      "before": {
+        "Salary": "Cobalt is committed to fair and equitable compensation practices. The salary range for this role is ($110,00 - $130,000) + equity + benefits. A candidate’s salary is determined by various factors including, but not limited to, relevant work experience, skills, and certifications.  The salary range may differ in other states and may be impacted by proximity to major metropolitan cities."
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Cobalt is committed to fair and equitable compensation practices. The salary range for this role is ($110,00 - $130,000) + equity + benefits. A candidate’s salary is determined by various factors including, but not limited to, relevant work experience, skills, and certifications.  The salary range may differ in other states and may be impacted by proximity to major metropolitan cities.",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1259",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1309",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1310",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1311",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1326",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1358",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1383",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1400",
+      "before": {
+        "Salary": "$80 - $100USD"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "$80 - $100USD",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1431",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1447",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1448",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1472",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1477",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1478",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1480",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1490",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1499",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1597",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1619",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1626",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1635",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1636",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1647",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1649",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1654",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1657",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1669",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1695",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1700",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1703",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1704",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1705",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1706",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1707",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1708",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1711",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1712",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1732",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1750",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1751",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1754",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1755",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1774",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1777",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1801",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1802",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1807",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1810",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1812",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1813",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1925",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1929",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1933",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1936",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1940",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1945",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "1951",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2197",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2198",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2240",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2241",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2242",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2244",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2251",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2271",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2272",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2284",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2302",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2303",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2304",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2305",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2306",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2307",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2318",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2332",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2333",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2334",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2335",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2336",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2337",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2338",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2339",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2340",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2341",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2342",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2343",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2344",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2345",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2346",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2347",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2348",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2349",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2350",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2351",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2352",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2353",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2354",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2355",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2356",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2357",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2363",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2364",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2365",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2366",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2367",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2386",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2387",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2389",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2392",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2394",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2402",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2403",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2405",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2408",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2410",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2411",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2412",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2413",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2414",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2419",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2424",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2426",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2430",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2431",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2434",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2438",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2439",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2440",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2441",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2442",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2443",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2444",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2445",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2446",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2447",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2448",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2449",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2450",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2451",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2452",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2453",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2457",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2458",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2460",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2462",
+      "before": {
+        "Salary": "Compensation: $1,800 - $2,000"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Compensation: $1,800 - $2,000",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2464",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2465",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2466",
+      "before": {
+        "Salary": "Compensation: $1,800 - $2,000"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Compensation: $1,800 - $2,000",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2467",
+      "before": {
+        "Salary": "Compensation: $1,800 - $2,000"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Compensation: $1,800 - $2,000",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2468",
+      "before": {
+        "Salary": "Compensation: $1,800 - $2,000"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Compensation: $1,800 - $2,000",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2469",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2470",
+      "before": {
+        "Salary": "Salary range: $73,500 - $100,00 annually"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Salary range: $73,500 - $100,00 annually",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2472",
+      "before": {
+        "Salary": "Compensation: $1,800 - $2,000"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Compensation: $1,800 - $2,000",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2478",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2480",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2482",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2484",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2485",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2487",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2489",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2490",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2491",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2494",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2498",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2500",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2501",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2502",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2503",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2505",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2506",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2507",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2512",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2513",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2518",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2519",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2520",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2521",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2524",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2526",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2528",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2529",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2530",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2531",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2533",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2534",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2535",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2536",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2537",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2538",
+      "before": {
+        "Salary": "Not stated"
+      },
+      "changes": {
+        "Salary": ""
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "Not stated",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2854",
+      "before": {
+        "Salary": "USD 74000-90000 per YEAR"
+      },
+      "changes": {
+        "Salary": "$74,000 - $90,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "USD 74000-90000 per YEAR",
+        "original_salary": "USD 74000-90000 per YEAR",
+        "formatted_salary": "$74,000 - $90,000"
+      }
+    },
+    {
+      "id": "2945",
+      "before": {
+        "Salary": "USD 80000-92000 per YEAR"
+      },
+      "changes": {
+        "Salary": "$80,000 - $92,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "USD 80000-92000 per YEAR",
+        "original_salary": "USD 80000-92000 per YEAR",
+        "formatted_salary": "$80,000 - $92,000"
+      }
+    },
+    {
+      "id": "2946",
+      "before": {
+        "Salary": "USD 10000-20000 per MONTH",
+        "Notes": "Enough Data content review: Yes — Specifies Meta advertising responsibilities for D2C ecommerce clients, ROAS objectives, creative collaboration, and relevant experience requirements.\nResume match: 81.17/100; minimum 80. Posting provides substantive duties and qualifications. Master supports performance marketing and B2C commerce; Meta-specific tenure and tool depth remain unverified."
+      },
+      "changes": {
+        "Salary": "$120,000 - $240,000",
+        "Notes": "Enough Data content review: Yes — Specifies Meta advertising responsibilities for D2C ecommerce clients, ROAS objectives, creative collaboration, and relevant experience requirements.\nResume match: 81.17/100; minimum 80. Posting provides substantive duties and qualifications. Master supports performance marketing and B2C commerce; Meta-specific tenure and tool depth remain unverified.\n\nSalary details: Estimated annual equivalent of USD 10000-20000 per MONTH using 12 months/year. This is an annualized rate, not guaranteed yearly earnings."
+      },
+      "evidence": {
+        "reason": "annualized",
+        "source": "Salary",
+        "evidence": "USD 10000-20000 per MONTH",
+        "original_salary": "USD 10000-20000 per MONTH",
+        "formatted_salary": "$120,000 - $240,000"
+      }
+    },
+    {
+      "id": "2947",
+      "before": {
+        "Salary": "USD 50000-65000 per YEAR"
+      },
+      "changes": {
+        "Salary": "$50,000 - $65,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "USD 50000-65000 per YEAR",
+        "original_salary": "USD 50000-65000 per YEAR",
+        "formatted_salary": "$50,000 - $65,000"
+      }
+    },
+    {
+      "id": "2951",
+      "before": {
+        "Salary": "USD 55000-80000 per YEAR"
+      },
+      "changes": {
+        "Salary": "$55,000 - $80,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "USD 55000-80000 per YEAR",
+        "original_salary": "USD 55000-80000 per YEAR",
+        "formatted_salary": "$55,000 - $80,000"
+      }
+    }
+  ]
+}

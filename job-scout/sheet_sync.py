@@ -105,6 +105,10 @@ def sync(*, bootstrap=None):
     """Caller holds run_lock: one writer across dashboard, discovery and sync."""
     from google_tracker import GoogleTracker, Config, _col, load_environment
     load_environment()
+    # Drain durable Firecrawl jobs/reports before reading the shared Sheet. This
+    # runs on existing idle retries too and never calls a paid discovery API.
+    from firecrawl_discovery import flush_pending
+    flush_pending()
     remote = GoogleTracker(config=Config.from_environment())
     initial = bootstrap is not None
     state = bootstrap if initial else json.loads(STATE.read_text(encoding="utf-8"))
@@ -131,6 +135,9 @@ def sync(*, bootstrap=None):
         local_index = index_rows([(r["slot"], json.loads(r["values_json"])) for r in records])
         local_rows = {key: data for key, (_, data) in local_index.items()}
         local_headers = json.loads(con.execute("SELECT headers_json FROM workspace_datasets WHERE name='Job List'").fetchone()[0])
+        from description_columns import adopt_split_schema
+        base_rows, local_rows, local_headers = adopt_split_schema(
+            state['rows'], local_rows, remote_rows, local_headers, sheet.header_values)
         headers = sync_headers(sheet.header_values, local_headers)
         if any(text(data.get("")).strip() for data in local_rows.values()):
             raise ValueError("An unnamed local column contains data; give it a name before syncing.")
@@ -138,12 +145,44 @@ def sync(*, bootstrap=None):
         if any(any(text(v).strip() for v in raw[physical_width:])
                for raw in (sheet.raw_rows or {}).values()):
             raise ValueError("An unnamed Sheet column contains data; give it a name before syncing.")
-        merged = merge_rows(state["rows"], local_rows, remote_rows, headers)
-        updates, appended = [], 0
+        merged = merge_rows(base_rows, local_rows, remote_rows, headers)
+        if 'Enough Data' in headers:
+            from description_columns import description_value
+            from description_readiness import assess
+            new_records=[{'id':key,'company':data.get('Company',''),'title':data.get('Job Title',''),
+                          'description':description_value(data)} for key,data in merged.items()
+                         if key not in base_rows and not text(data.get('Enough Data')).strip()]
+            for key,review in assess(new_records).items():
+                merged[key]['Enough Data']=review['value']
+                previous=text(merged[key].get('Notes'))
+                merged[key]['Notes']=previous+ ('\n' if previous else '')+'Enough Data content review: '+review['value']+' — '+review['reason']
+        # Normalize the display, retaining raw discovery pay for eligibility.
+        salary_changes = []
+        if 'Salary' in headers:
+            from salary_format import normalize_salary_row
+            for key, data in merged.items():
+                protected = formula_index.get(key, (0, {}))[1]
+                if text(protected.get('Salary')).startswith('='):
+                    continue
+                changes, evidence = normalize_salary_row(data)
+                if ('Notes' in changes and ('Notes' not in headers
+                        or text(protected.get('Notes')).startswith('='))):
+                    continue
+                if changes:
+                    salary_changes.append({'id': key, 'before': {h:data.get(h,'') for h in changes},
+                                           'changes': changes, 'evidence': evidence})
+                    data.update(changes)
+        salary_audit = None
+        if salary_changes:
+            stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
+            salary_audit = ROOT / 'reports/salary-normalization' / (stamp + '.json')
+            save_json(salary_audit, {'status':'planned','changes':salary_changes})
+        updates, appended, appended_rows = [], 0, []
         next_row = max((r for r, _ in sheet.rows), default=1) + 1
         for key, data in merged.items():
             row = remote_index[key][0] if key in remote_index else next_row
             if key not in remote_index:
+                appended_rows.append(row)
                 next_row += 1
                 appended += 1
             for col, field in enumerate(headers, 1):
@@ -175,6 +214,11 @@ def sync(*, bootstrap=None):
                 remote.api.batchUpdate(spreadsheetId=remote.config.spreadsheet_id, body={"requests": requests}).execute()
             remote.api.values().batchUpdate(spreadsheetId=remote.config.spreadsheet_id,
                 body={"valueInputOption": "RAW", "data": updates}).execute()
+        from sheet_ranges import extend_job_list
+        range_extension = extend_job_list(remote, remote.scout(), appended_rows)
+        # Newly filled Sheet formulas own their recalculated outputs too.
+        refreshed_formulas = remote.tab(sheet.title, value_render_option="FORMULA")
+        formula_index = index_rows(refreshed_formulas.rows)
         verified = remote.scout()
         if list(verified.header_values[:len(headers)]) != headers:
             raise RuntimeError("Google Sheet columns changed during synchronization; local data and baseline are preserved for retry.")
@@ -214,7 +258,12 @@ def sync(*, bootstrap=None):
         con.execute("UPDATE workspace_datasets SET headers_json=? WHERE name='Job List'", (json.dumps(headers),))
         con.commit()
         save_json(STATE, {"spreadsheet_id": remote.config.spreadsheet_id, "rows": merged, "synced_at": timestamp})
-        result = {"status": "synced", "synced_at": timestamp, "rows": len(merged), "cells_written": len(updates), "jobs_added_to_sheet": appended, "url": remote.url()}
+        if salary_audit:
+            save_json(salary_audit, {'status':'verified','synced_at':timestamp,'changes':salary_changes})
+        result = {"status": "synced", "synced_at": timestamp, "rows": len(merged), "cells_written": len(updates), "jobs_added_to_sheet": appended, "url": remote.url(), "range_extension": range_extension}
+        result['salaries_normalized'] = len(salary_changes)
+        if salary_audit:
+            result['salary_audit'] = str(salary_audit)
         save_json(STATUS, result)
         return result
     finally:

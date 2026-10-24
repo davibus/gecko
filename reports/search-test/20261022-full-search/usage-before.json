@@ -1,0 +1,11 @@
+{
+  "search_credits": 6,
+  "extraction_credits": 18,
+  "provider_confirmed_credits": 6,
+  "estimated_or_reserved_credits": 18,
+  "total_credits_accounted": 24,
+  "estimated_account_balance": 3944,
+  "balance_observed_at": "2026-10-22T11:32:22.848018+00:00",
+  "billing_complete": false,
+  "hard_ceiling_exact": false
+}

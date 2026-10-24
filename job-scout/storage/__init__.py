@@ -16,6 +16,7 @@ JOB_COLUMNS = (
     "salary", "source", "source_job_id", "url", "canonical_url", "date_posted",
     "date_discovered", "last_seen", "description", "category", "tags_json", "status",
     "indeed_application_method", "indeed_application_verified_on",
+    "found_using",
 )
 ENRICHMENT_COLUMNS = (
     "job_id", "original_description", "original_url", "enriched_description",
@@ -59,6 +60,7 @@ class JobStore:
                 tags_json TEXT NOT NULL DEFAULT '[]', status TEXT NOT NULL DEFAULT 'new',
                 indeed_application_method TEXT NOT NULL DEFAULT '',
                 indeed_application_verified_on TEXT NOT NULL DEFAULT '',
+                found_using TEXT NOT NULL DEFAULT '',
                 UNIQUE(source, source_job_id)
             );
             CREATE TABLE IF NOT EXISTS source_links (
@@ -90,6 +92,13 @@ class JobStore:
             CREATE TABLE IF NOT EXISTS scout_state (
                 key TEXT PRIMARY KEY,
                 value INTEGER NOT NULL
+            );
+            CREATE TABLE IF NOT EXISTS job_documents (
+                job_id INTEGER PRIMARY KEY REFERENCES jobs(id) ON DELETE CASCADE,
+                source_url TEXT NOT NULL, extracted_at TEXT NOT NULL,
+                full_description TEXT NOT NULL, original_description TEXT NOT NULL,
+                raw_markdown TEXT NOT NULL, raw_html TEXT NOT NULL,
+                fields_json TEXT NOT NULL, status TEXT NOT NULL, issues_json TEXT NOT NULL
             );
             CREATE TABLE IF NOT EXISTS ai_evaluation_cache (
                 description_hash TEXT NOT NULL,
@@ -140,6 +149,7 @@ class JobStore:
                     tags_json TEXT NOT NULL DEFAULT '[]', status TEXT NOT NULL DEFAULT 'new',
                     indeed_application_method TEXT NOT NULL DEFAULT '',
                     indeed_application_verified_on TEXT NOT NULL DEFAULT '',
+                    found_using TEXT NOT NULL DEFAULT '',
                     UNIQUE(source, source_job_id)
                 )
             """)
@@ -179,6 +189,8 @@ class JobStore:
             self.connection.execute("ALTER TABLE jobs ADD COLUMN indeed_application_method TEXT NOT NULL DEFAULT ''")
         if "indeed_application_verified_on" not in columns:
             self.connection.execute("ALTER TABLE jobs ADD COLUMN indeed_application_verified_on TEXT NOT NULL DEFAULT ''")
+        if "found_using" not in columns:
+            self.connection.execute("ALTER TABLE jobs ADD COLUMN found_using TEXT NOT NULL DEFAULT ''")
         self._rebuild_canonical_table("jobs", JOB_COLUMNS)
         self._rebuild_canonical_table("enrichments", ENRICHMENT_COLUMNS)
         self._create_schema()
@@ -203,6 +215,7 @@ class JobStore:
             description=row["description"] or "", category=row["category"] or "",
             tags=json.loads(row["tags_json"] or "[]"), status=row["status"],
             source_links=list(links),
+            found_using=row["found_using"] or "",
             indeed_application_method=row["indeed_application_method"] or "",
             indeed_application_verified_on=row["indeed_application_verified_on"] or "",
         )
@@ -239,7 +252,39 @@ class JobStore:
             }
             for column, attribute in mapping.items():
                 setattr(job, attribute, resolution[column])
+        document = self.get_job_document(job_id)
+        if document:
+            job.details = document
+            if document['status'] == 'complete':
+                job.description = document['full_description_markdown']
+                job.original_description = document['original_description']
         return job
+
+    def get_job_document(self, job_id):
+        row = self.connection.execute('SELECT * FROM job_documents WHERE job_id=?', (job_id,)).fetchone()
+        if not row:
+            return None
+        return {'status': row['status'], 'issues': json.loads(row['issues_json']),
+                'fields': json.loads(row['fields_json']), 'source_url': row['source_url'],
+                'full_description_markdown': row['full_description'],
+                'original_description': row['original_description'], 'raw_markdown': row['raw_markdown'],
+                'raw_html': row['raw_html'], 'extracted_at': row['extracted_at']}
+
+    def save_job_document(self, job_id, document):
+        from datetime import datetime, timezone
+        if not self.connection.execute('SELECT 1 FROM jobs WHERE id=?', (job_id,)).fetchone():
+            raise ValueError('Job document requires a stable existing Gecko job ID')
+        existing = self.get_job_document(job_id)
+        if existing and existing['status'] == 'complete':
+            return  # Completed original evidence is immutable during rediscovery.
+        original = document['original_description']
+        if not isinstance(original, str):
+            original = json.dumps(original, ensure_ascii=False)
+        self.connection.execute('INSERT OR REPLACE INTO job_documents VALUES(?,?,?,?,?,?,?,?,?,?)',
+            (job_id, document['source_url'], datetime.now(timezone.utc).isoformat(),
+             document['full_description_markdown'], original, document['raw_markdown'], document['raw_html'],
+             json.dumps(document['fields'], ensure_ascii=False), document['status'], json.dumps(document['issues'])))
+        self.connection.commit()
 
     def highest_scout_id(self) -> int:
         row = self.connection.execute(
@@ -272,8 +317,8 @@ class JobStore:
             cursor = self.connection.execute("""
                 INSERT INTO jobs (id,company,title,location,work_arrangement,employment_type,salary,
                     source,source_job_id,url,canonical_url,date_posted,date_discovered,last_seen,
-                    description,category,tags_json,status,indeed_application_method,indeed_application_verified_on)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                    description,category,tags_json,status,indeed_application_method,indeed_application_verified_on,found_using)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                 RETURNING id
             """, (
                 job_id, job.company, job.title, job.location, job.work_arrangement,
@@ -282,6 +327,7 @@ class JobStore:
                 job.last_seen or job.date_discovered, job.description, job.category,
                 json.dumps(job.tags), job.status, job.indeed_application_method,
                 job.indeed_application_verified_on,
+                job.found_using,
             ))
             saved_id = int(cursor.fetchone()[0])
             for link in job.source_links:
@@ -295,8 +341,8 @@ class JobStore:
         cursor = self.connection.execute("""
             INSERT INTO jobs (company,title,location,work_arrangement,employment_type,salary,source,
                 source_job_id,url,canonical_url,date_posted,date_discovered,last_seen,description,
-                category,tags_json,status,indeed_application_method,indeed_application_verified_on)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                category,tags_json,status,indeed_application_method,indeed_application_verified_on,found_using)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
             ON CONFLICT(source, source_job_id) DO UPDATE SET
                 company=excluded.company,title=excluded.title,location=excluded.location,
                 work_arrangement=excluded.work_arrangement,employment_type=excluded.employment_type,
@@ -317,6 +363,7 @@ class JobStore:
             job.description, job.category, json.dumps(job.tags), job.status,
             job.indeed_application_method,
             job.indeed_application_verified_on,
+            job.found_using,
         ))
         job_id = int(cursor.fetchone()[0])
         for link in job.source_links:

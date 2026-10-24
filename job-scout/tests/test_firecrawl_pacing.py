@@ -2,55 +2,64 @@ import os
 import sys
 import unittest
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from unittest.mock import patch
 from urllib.error import HTTPError
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from sources import firecrawl as f
 from sources.base import ProviderError
+from firecrawl_state import History, config, utcnow
 
 class PacingTests(unittest.TestCase):
     def setUp(self):
         self.clock=100.0
         self.waits=[]
+        directory=TemporaryDirectory();self.addCleanup(directory.cleanup)
+        self.settings=config();self.settings['enabled']=True
+        self.history=History(Path(directory.name)/'history.sqlite',self.settings)
+        self.history.record_balance({'remainingCredits':5000},now=utcnow())
         self.patches=[patch.dict(os.environ, FIRECRAWL_API_KEY='test'),patch.object(f,'_NEXT_REQUEST',0.0),patch.object(f.time,'monotonic',side_effect=lambda:self.clock),patch.object(f.time,'sleep',side_effect=self.sleep)]
         for p in self.patches:p.start();self.addCleanup(p.stop)
     def sleep(self,seconds):
         self.waits.append(seconds);self.clock+=seconds
+    def client(self):
+        return f.FirecrawlClient(history=self.history,settings=self.settings)
+    def payload(self,key='1'):
+        return {'url':'https://example.com/'+key,'formats':['rawHtml'],'proxy':'basic','parsers':[]}
     def limited(self,retry='20'):
         exc=ProviderError('Request failed for Firecrawl scrape: HTTP 429')
         exc.__cause__=HTTPError('https://api.firecrawl.dev',429,'limited',{'Retry-After':retry},None)
         return exc
     @patch.object(f,'post_json')
-    def test_retry_after_recovers(self,post):
+    def test_rate_limit_is_not_retried_without_billing_evidence(self,post):
         post.side_effect=[self.limited(),{'success':True,'data':{'ok':True}}]
-        self.assertEqual(f.FirecrawlClient().call('scrape',{}),{'ok':True})
-        self.assertEqual(post.call_count,2)
-        self.assertGreaterEqual(self.waits[0],20)
+        with self.assertRaises(ProviderError):self.client().call('scrape',self.payload())
+        self.assertEqual(post.call_count,1)
     @patch.object(f,'post_json')
     def test_shared_pacing_between_clients(self,post):
         post.return_value={'success':True,'data':{}}
-        f.FirecrawlClient().call('search',{})
-        f.FirecrawlClient().call('scrape',{})
+        self.client().call('scrape',self.payload('1'))
+        self.client().call('scrape',self.payload('2'))
         self.assertEqual(self.waits,[f.MIN_INTERVAL])
     @patch.object(f,'post_json')
     def test_retries_are_bounded(self,post):
         post.side_effect=self.limited('1')
-        c=f.FirecrawlClient()
+        c=self.client()
         for _ in range(2):
-            with self.assertRaises(ProviderError):c.call('scrape',{})
-        self.assertEqual(post.call_count,3)
+            with self.assertRaises(ProviderError):c.call('scrape',self.payload())
+        self.assertEqual(post.call_count,1)
     @patch.object(f,'post_json')
     def test_long_cooldown_is_not_shortened(self,post):
         post.side_effect=self.limited('120')
-        with self.assertRaises(ProviderError):f.FirecrawlClient().call('scrape',{})
+        with self.assertRaises(ProviderError):self.client().call('scrape',self.payload())
         self.assertEqual(post.call_count,1)
-        with self.assertRaises(ProviderError):f.FirecrawlClient().call('search',{})
+        with self.assertRaises(ProviderError):self.client().call('scrape',self.payload())
         self.assertEqual(post.call_count,1)
     @patch.object(f,'post_json')
     def test_auth_errors_do_not_retry(self,post):
         post.side_effect=ProviderError('Firecrawl HTTP 401')
-        c=f.FirecrawlClient()
+        c=self.client()
         for _ in range(2):
-            with self.assertRaises(ProviderError):c.call('scrape',{})
+            with self.assertRaises(ProviderError):c.call('scrape',self.payload())
         self.assertEqual(post.call_count,1)
 if __name__=='__main__':unittest.main()

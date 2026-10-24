@@ -1,0 +1,172 @@
+{
+  "mode": "User-authorized uncapped Firecrawl-only 20-job run; separate from automatic daily admission limits",
+  "search_credits": 40,
+  "other_calls": [
+    {
+      "file": "indeed-search.json",
+      "reported_credits": 20
+    },
+    {
+      "file": "indeed-batch-0.json",
+      "reported_credits": 50
+    },
+    {
+      "file": "indeed-batch-1.json",
+      "reported_credits": 50
+    },
+    {
+      "file": "indeed-batch-2.json",
+      "reported_credits": 50
+    },
+    {
+      "file": "more-search.json",
+      "reported_credits": 15
+    },
+    {
+      "file": "replacements.json",
+      "reported_credits": 25
+    },
+    {
+      "file": "employer-original-dates.json",
+      "reported_credits": 15
+    },
+    {
+      "file": "batch-0.json",
+      "reported_credits": 10
+    },
+    {
+      "file": "batch-1.json",
+      "reported_credits": 10
+    },
+    {
+      "file": "batch-2.json",
+      "reported_credits": 25
+    },
+    {
+      "file": "batch-3.json",
+      "reported_credits": 25
+    },
+    {
+      "file": "employer-05a39abd0dfb5437.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-0a74a099f7a2bf8e.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-0ca1161fefa25629.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-21811f8b4e9a2594.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-239c4ac176746b28.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-2e245d0e1151ace9.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-3af54cce23d872d9.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-3e3baf61a0b959cc.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-45ecc5c9ab366609.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-547234419d1fdbb6.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-5701142e55bfbafc.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-5cac41e1ed2a12c3.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-67f9bf7ba4640aaf.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-6cb76570e2dce43f.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-6e6a7041208d6cbd.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-6fd5dae7c26f6604.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-704036dc656dad48.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-8408cd9a0b482a9c.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-96fc46852ef3281a.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-9806a1e32c9ac8de.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-a36beb2929e4fd23.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-bf579883c6d565e8.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-c4666f015b36af1b.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-cef0302b96e7130e.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-d21fa1f70f214488.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-d43b4425c2410435.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-d4d47ac21de7584f.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-da6d662422e5110d.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-fc2c0758c591cd65.json",
+      "reported_credits": 1
+    },
+    {
+      "file": "employer-fdf27fc25ce4bd47.json",
+      "reported_credits": 1
+    }
+  ],
+  "total_reported_credits": 365,
+  "calls_without_reported_cost": []
+}

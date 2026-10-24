@@ -1,0 +1,9 @@
+{
+  "value": "Yes",
+  "reason": "Specifies lifecycle campaign execution, HubSpot ownership, segmentation, funnel measurement, testing, and relevant qualifications.",
+  "status": "reviewed",
+  "evidence": [
+    "Own segmentation and lifecycle stage definitions in HubSpot, ensuring clean handoffs between marketing, sales, and customer success.",
+    "Run A/B tests on messaging, timing, and channel to continuously improve conversion rates at each lifecycle stage."
+  ]
+}
