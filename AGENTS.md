@@ -1,5 +1,19 @@
 # Gecko Main — essential instructions
 
+## Database maintenance policy — October 27, 2026
+
+Read `docs/database-maintenance.md` for backups, event history, compaction and
+Git cleanup. Use verified compressed recovery points in `C:\gecko-backups`:
+seven daily dates and four weekly dates without duplicate snapshot copies,
+plus pre-maintenance recovery. Routine event history is bounded metadata, never
+full job-row snapshots. Preserve all actual records and sync/review evidence.
+This supersedes historical per-run backup and unbounded event-log instructions.
+Retained report snapshots use `job-scout/preferences/retained-artifacts.json` and
+the verified external archive reader. Follow the maintenance guide before Git
+object reclamation; keep prior receipts and recovery references until verified
+external restoration supports their replacement. Never prune discovery billing,
+pending candidates, caches or identity state merely because they are large.
+
 ## Current application browser rule — October 26, 2026
 
 Use ONE dedicated Chrome window with ONE tab TOTAL. Reuse the same Gecko-owned

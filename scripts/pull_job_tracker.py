@@ -107,9 +107,8 @@ def import_snapshot(snapshot_path, db_path, *, apply=False):
         if not apply:
             return summary
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
-        backup = snapshot_path.parent / ("jobs-before-pull-" + stamp + ".sqlite3")
-        with closing(sqlite3.connect(backup)) as destination:
-            connection.backup(destination)
+        from database_maintenance import backup_database
+        backup = Path(backup_database(db_path)['backup'])
         connection.execute("BEGIN IMMEDIATE")
         # Replan under the write lock in case another local job changed.
         updates, conflicts, unmatched = plan(connection, records)

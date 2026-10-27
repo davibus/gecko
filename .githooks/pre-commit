@@ -1,0 +1,3 @@
+#!/bin/sh
+# Use Gecko's configured native Windows Python; do not launch the runner.
+exec .tools/dashboard-python/Scripts/python.exe scripts/check_git_artifacts.py

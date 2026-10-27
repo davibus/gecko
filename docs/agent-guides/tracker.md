@@ -1,5 +1,10 @@
 # Current tracker, discovery, and resume queue
 
+Database maintenance: follow `docs/database-maintenance.md` (October 27, 2026).
+Routine `workspace_events` contain bounded metadata and manual-rebase field
+fingerprints, not full rows. Preserve records, durable evidence, baselines,
+conflict detection, atomic completion, formula and frozen-header safeguards.
+
 Current incremental daily discovery: see `docs/incremental-discovery.md` for
 durable identity admission, pending retries, explicit broad discovery and metrics.
 

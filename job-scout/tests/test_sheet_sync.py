@@ -72,6 +72,12 @@ class SyncTests(unittest.TestCase):
                     patch('sheet_ranges.extend_job_list',return_value={'requests':0,'formulas_filled':0}), \
                     patch('google_tracker.GoogleTracker',return_value=remote):
                 result=sheet_sync.sync()
+                with closing(sqlite3.connect(db)) as check:
+                    events_before=check.execute('SELECT count(*) FROM workspace_events').fetchone()[0]
+                again=sheet_sync.sync()
+                self.assertEqual(again['cells_written'],0)
+                with closing(sqlite3.connect(db)) as check:
+                    self.assertEqual(check.execute('SELECT count(*) FROM workspace_events').fetchone()[0],events_before)
             self.assertEqual(result['cells_written'],2 if format_salary else 1)
             with closing(sqlite3.connect(db)) as con:
                 saved,formulas=con.execute("SELECT values_json,formulas_json FROM workspace_records").fetchone()

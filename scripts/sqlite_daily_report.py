@@ -43,12 +43,6 @@ def save_run(tracker,run_id,fields):
 
 
 def backup_workspace():
-    tracker = SQLiteTracker()
-    folder = ROOT/'reports/sqlite-backups'
-    folder.mkdir(parents=True,exist_ok=True)
-    path = folder/(datetime.now().strftime('%Y%m%dT%H%M%S%f')+'.sqlite3')
-    with tracker.connection() as source, sqlite3.connect(path) as target:
-        source.backup(target)
-        if target.execute('PRAGMA integrity_check').fetchone()[0] != 'ok':
-            raise RuntimeError('SQLite backup integrity check failed')
-    return {'backend':'sqlite','backup':str(path),'integrity':'ok','google_sheets_accessed':False}
+    from database_maintenance import backup_database
+    result = backup_database(SQLiteTracker().path)
+    return dict(result, backend='sqlite', google_sheets_accessed=False)

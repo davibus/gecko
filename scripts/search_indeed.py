@@ -33,9 +33,8 @@ def import_new(listings, tracker, report_dir):
     with tracker.connection() as con:
         archived_ids={str(row[0]) for row in con.execute("SELECT id FROM workspace_jobs WHERE archived=1")}
     result={'added_ids':[],'existing':[],'excluded':[]}
-    if not (report_dir/'before.sqlite3').exists():
-        with tracker.connection() as live, closing(sqlite3.connect(report_dir/'before.sqlite3')) as backup:
-            live.backup(backup)
+    from database_maintenance import backup_database
+    backup_database(tracker.path)
     with JobStore(tracker.path) as store:
         store.observe_scout_id(max((int(d['Scout ID']) for _,d in before.rows if str(d.get('Scout ID','')).isdigit()),default=0))
         known=store.all()

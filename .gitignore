@@ -62,3 +62,24 @@ job-scout/data/firecrawl_discovery.lock
 
 # Local candidate match evidence contains excerpts from the personal master.
 /job-scout/data/resume-match/
+
+# Runtime databases and consistent recovery copies live outside Git.
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.sqlite3-*
+*.db
+*.db-*
+*.sqlite.gz
+*.sqlite3.gz
+/reports/sqlite-backups/
+/reports/database-maintenance/
+*.partial
+
+# Retained feed snapshots have verified external archives and small manifests.
+/reports/discovery/**/source-*.json
+/reports/discovery/**/additional-source-rows.json
+# Maintenance audits and temporary Git indexes are local runtime artifacts.
+/reports/storage-maintenance/
+*.bundle
+*.git-backup.zip

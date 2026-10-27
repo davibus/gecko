@@ -117,15 +117,24 @@ def main():
         if report.get('exact_values_verified') is not True:
             raise RuntimeError('Migration has not passed verification')
         with run_lock():
+            from database_maintenance import backup_database, load_catalog, BACKUPS, verify_point, inspect_database
             check_folder = folder/'activation-readback'
             check_folder.mkdir(exist_ok=True)
             fresh = capture(check_folder)
             previous = json.loads((folder/'sheet-snapshot.json').read_text(encoding='utf-8'))
             if fresh['datasets'] != previous['datasets']:
                 raise RuntimeError('Sheet changed since the migration snapshot; cutover stopped')
-            with sqlite3.connect(DATABASE) as live, sqlite3.connect(folder/'before.sqlite3') as backup:
-                if list(live.iterdump()) != list(backup.iterdump()):
+            if report.get('recovery'):
+                point=next(p for p in load_catalog(BACKUPS) if str(BACKUPS/p['file'])==report['recovery']['backup'])
+                verify_point(BACKUPS,point)
+                if inspect_database(DATABASE)!=point['tables']:
                     raise RuntimeError('Discovery database changed since backup; cutover stopped')
+            else:
+                # Historical migration candidates retain their original proof.
+                with sqlite3.connect(DATABASE) as live, sqlite3.connect(folder/'before.sqlite3') as backup:
+                    if list(live.iterdump()) != list(backup.iterdump()):
+                        raise RuntimeError('Discovery database changed since backup; cutover stopped')
+            backup_database(DATABASE,force=True,reason='before-migration-activation')
             with sqlite3.connect(folder/'candidate.sqlite3') as candidate, sqlite3.connect(DATABASE) as live:
                 candidate.backup(live)
                 if live.execute('PRAGMA integrity_check').fetchone()[0] != 'ok':
@@ -145,8 +154,8 @@ def main():
     if not args.apply:
         print('Read-only snapshot: '+str(folder))
         return
-    with sqlite3.connect(DATABASE) as source, sqlite3.connect(folder/'before.sqlite3') as backup:
-        source.backup(backup)
+    from database_maintenance import backup_database
+    recovery=backup_database(DATABASE,force=True,reason='before-tracker-migration')
     # Build in a separate file. The live discovery database stays untouched until
     # all records, identities and the integrity check have passed.
     candidate = folder/'candidate.sqlite3'
@@ -154,7 +163,8 @@ def main():
         source.backup(target)
     report = import_snapshot(snapshot,candidate)
     report['snapshot_sha256'] = hashlib.sha256((folder/'sheet-snapshot.json').read_bytes()).hexdigest()
-    report['backup'] = str(folder/'before.sqlite3')
+    report['backup'] = recovery['backup']
+    report['recovery'] = recovery
     (folder/'verification.json').write_text(json.dumps(report,indent=2))
     print(json.dumps({**report,'candidate':str(candidate),'activation':'pending'},indent=2))
 

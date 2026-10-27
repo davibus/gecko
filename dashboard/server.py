@@ -48,25 +48,7 @@ def now():
     return datetime.now(TZ).isoformat(timespec='seconds')
 
 
-def version(data):
-    return hashlib.sha256(json.dumps(data, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
-
-
-def notes_parts(value):
-    text, meta, history = [], {}, []
-    for line in str(value or '').splitlines():
-        if line.startswith(PREFIX):
-            try:
-                item = json.loads(line[len(PREFIX):])
-                if not isinstance(item, dict):
-                    raise ValueError()
-                meta.update({k: item[k] for k in ('follow_up', 'stage', 'applied_at', 'deadline', 'website') if k in item})
-                history.append(item)
-                continue
-            except (ValueError, TypeError):
-                pass
-        text.append(line)
-    return '\n'.join(text), meta, history
+from tracker_revisions import version, notes_parts
 
 
 def append_event(notes, event):

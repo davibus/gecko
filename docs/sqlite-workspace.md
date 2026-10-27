@@ -1,5 +1,10 @@
 # Gecko local database workspace
 
+Current maintenance policy: `docs/database-maintenance.md` supersedes the old
+per-run `reports/sqlite-backups` and full-row event-history descriptions below.
+Verified compressed backups belong in `C:\gecko-backups` with daily/weekly
+retention; runtime databases and recovery copies must remain outside Git.
+
 ## Columns follow names, not positions
 
 Users may move whole columns freely without asking for code or instruction updates.

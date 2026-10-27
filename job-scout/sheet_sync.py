@@ -241,7 +241,9 @@ def sync(*, bootstrap=None):
                 old_formulas = json.loads(con.execute(
                     "SELECT formulas_json FROM workspace_records WHERE dataset='Job List' AND slot=?",
                     (slot,)).fetchone()[0])
-                if (set(before) == set(cleaned) and old_formulas == saved_formulas
+                # before contains compatibility read aliases, not extra cells.
+                # Comparing key sets caused every idle sync to rewrite every row.
+                if (old_formulas == saved_formulas
                         and all(text(before.get(h, "")) == text(cleaned[h]) for h in headers)):
                     continue
                 con.execute("UPDATE workspace_records SET values_json=?,formulas_json=?,revision=revision+1 WHERE dataset='Job List' AND slot=?", (json.dumps(cleaned), json.dumps(saved_formulas), slot))
@@ -254,7 +256,9 @@ def sync(*, bootstrap=None):
                     slot = con.execute("SELECT COALESCE(MAX(slot),1)+1 FROM workspace_records WHERE dataset='Job List'").fetchone()[0]
                     con.execute("INSERT INTO workspace_records(dataset,slot,values_json) VALUES('Job List',?,?)", (slot, json.dumps(cleaned)))
                 con.execute("UPDATE workspace_records SET formulas_json=? WHERE dataset='Job List' AND slot=?", (json.dumps(saved_formulas), slot))
-            con.execute("INSERT INTO workspace_events(at,dataset,slot,action,after_json) VALUES(?,'Job List',?,'sheet-sync',?)", (timestamp, slot, json.dumps(cleaned)))
+            from database_maintenance import log_event
+            log_event(con, timestamp, 'Job List', slot, 'sheet-sync',
+                      before=before if key in local_index else None, after=cleaned)
         con.execute("UPDATE workspace_datasets SET headers_json=? WHERE name='Job List'", (json.dumps(headers),))
         con.commit()
         save_json(STATE, {"spreadsheet_id": remote.config.spreadsheet_id, "rows": merged, "synced_at": timestamp})
@@ -379,8 +383,9 @@ def complete_resume(scout_id, resume_url, *, local_tracker, identity):
         con.execute("UPDATE workspace_records SET values_json=?,revision=revision+1 WHERE dataset='Job List' AND slot=?",
                     (json.dumps(updated), slot))
         now = datetime.now(timezone.utc).isoformat()
-        con.execute("INSERT INTO workspace_events(at,dataset,slot,action,before_json,after_json) VALUES(?,'Job List',?,'resume-completion',?,?)",
-                    (now, slot, json.dumps(cached), json.dumps(updated)))
+        from database_maintenance import log_event
+        log_event(con, now, 'Job List', slot, 'resume-completion',
+                  before={h:cached.get(h) for h in values}, after=values)
         con.commit()
         state['rows'][key].update(values)
         save_json(STATE, state)

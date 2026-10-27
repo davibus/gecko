@@ -4,6 +4,7 @@ from pathlib import Path
 import sqlite3
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from pull_job_tracker import import_snapshot, rows_from_snapshot
 
@@ -13,6 +14,10 @@ class TrackerPullTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
+        import database_maintenance as maintenance
+        original_backup=maintenance.backup_database
+        backup_patch=patch.object(maintenance,'backup_database',side_effect=lambda db:original_backup(db,folder=self.root/'backups'))
+        backup_patch.start();self.addCleanup(backup_patch.stop)
         self.db = self.root / 'jobs.sqlite3'
         with closing(sqlite3.connect(self.db)) as c:
             c.execute('CREATE TABLE jobs (id INTEGER PRIMARY KEY, source TEXT, company TEXT, '

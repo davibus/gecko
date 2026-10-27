@@ -37,7 +37,11 @@ class JobStore:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.connection = sqlite3.connect(self.path)
         self.connection.row_factory = sqlite3.Row
-        self._migrate()
+        try:
+            self._migrate()
+        except Exception:
+            self.connection.close()
+            raise
 
     def close(self):
         self.connection.close()
@@ -175,6 +179,14 @@ class JobStore:
         self.connection.execute(f"ALTER TABLE {temporary} RENAME TO {table}")
 
     def _migrate(self):
+        # Guard schema changes BEFORE any DDL or canonical-table rebuild. New
+        # empty databases need no recovery point; ordinary opens take no backup.
+        existing = self._columns('jobs')
+        if existing and (existing != set(JOB_COLUMNS) or
+                         self._columns('enrichments') - set(ENRICHMENT_COLUMNS)):
+            from database_maintenance import backup_database, BACKUPS, ROOT
+            folder = BACKUPS if self.path.resolve().is_relative_to(ROOT) else self.path.parent/'gecko-recovery'
+            backup_database(self.path, folder=folder, force=True, reason='before-job-store-schema-migration')
         self.connection.execute("PRAGMA foreign_keys=OFF")
         self._create_schema()
         columns = self._columns("jobs")

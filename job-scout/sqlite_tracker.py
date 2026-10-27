@@ -15,6 +15,7 @@ from types import SimpleNamespace
 from google_tracker import GoogleTracker, Tab
 from tracker_schema import resolve_headers, SCOUT_TAB, REJECTED_TAB
 from tracker_backend import DATABASE
+from database_maintenance import log_event
 
 
 SCHEMA = """
@@ -202,8 +203,7 @@ class SQLiteTracker(GoogleTracker):
                 con.execute('INSERT INTO workspace_records(dataset,slot,values_json) VALUES(?,?,?) '
                             'ON CONFLICT(dataset,slot) DO UPDATE SET values_json=excluded.values_json,revision=revision+1',
                             (dataset,slot,json.dumps(after,ensure_ascii=False)))
-                con.execute('INSERT INTO workspace_events(at,dataset,slot,action,before_json,after_json) VALUES(?,?,?,?,?,?)',
-                            (stamp(),dataset,slot,'update',json.dumps(before),json.dumps(after)))
+                log_event(con, stamp(), dataset, slot, 'update', before=before, after=after)
         self.before_writes = None
         return {'updatedRecords':len(grouped)}
 

@@ -1,0 +1,372 @@
+{
+  "schema": 1,
+  "artifacts": {
+    "reports/tracker-pull/20261013/jobs-before-pull-20261013T143507717157Z.sqlite3": {
+      "archive": "followup-20261027T1520/retained/93a5ecd58490c17e812c239175b3d4360e957fdf7c2c9377777a232319e1b968.gz",
+      "archive_sha256": "2bff67f1d90ebfbe502f836c0c2a89e3ab3d9fd02fb865a8e8c12d2613103f00",
+      "sha256": "93a5ecd58490c17e812c239175b3d4360e957fdf7c2c9377777a232319e1b968",
+      "bytes": 6299648,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "93a5ecd58490c17e812c239175b3d4360e957fdf7c2c9377777a232319e1b968",
+      "restoration_verified": true
+    },
+    "reports/tracker-pull/20261013-0910/jobs-before-pull-20261013T151445748572Z.sqlite3": {
+      "archive": "followup-20261027T1520/retained/5f13e0ca90764294722296707b121f73acdfc296db545b66aa53ff8e525ca14e.gz",
+      "archive_sha256": "11da3bfdb3f775fe196873ed4ff080ba3ff3ea94741acf92036f002997987974",
+      "sha256": "5f13e0ca90764294722296707b121f73acdfc296db545b66aa53ff8e525ca14e",
+      "bytes": 19292160,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "5f13e0ca90764294722296707b121f73acdfc296db545b66aa53ff8e525ca14e",
+      "restoration_verified": true
+    },
+    "reports/tracker-pull/20261013-1715/jobs-before-pull-20261013T231521498340Z.sqlite3": {
+      "archive": "followup-20261027T1520/retained/7ecc85d8916d39b52e6a36895ced4e0b5ce34a423d41947f0bb28a36a9ef3231.gz",
+      "archive_sha256": "b2a869bd297e466fd1de86a03f4f8c4f8700c2e97bcf385fc622027f0a0611cf",
+      "sha256": "7ecc85d8916d39b52e6a36895ced4e0b5ce34a423d41947f0bb28a36a9ef3231",
+      "bytes": 20762624,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "7ecc85d8916d39b52e6a36895ced4e0b5ce34a423d41947f0bb28a36a9ef3231",
+      "restoration_verified": true
+    },
+    "reports/tracker-pull/20261014T111451716837Z/jobs-before-pull-20261014T111527518504Z.sqlite3": {
+      "archive": "followup-20261027T1520/retained/890e6bdb5a6cf267de027c894f927917d51af5e8dc9904c613b7098b0a054861.gz",
+      "archive_sha256": "43c8a5815fba206ec3e31ef9c0ec77a88d620f13c14c1baf12cfa84b1d74e186",
+      "sha256": "890e6bdb5a6cf267de027c894f927917d51af5e8dc9904c613b7098b0a054861",
+      "bytes": 21102592,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "890e6bdb5a6cf267de027c894f927917d51af5e8dc9904c613b7098b0a054861",
+      "restoration_verified": true
+    },
+    "reports/tracker-pull/20261014T111451716837Z/jobs-before-pull-20261014T112017897543Z.sqlite3": {
+      "archive": "followup-20261027T1520/retained/d771510bf068634eb5149858e46b17e4d3f9c8ae4383f07f2be6861732913690.gz",
+      "archive_sha256": "5478cf66cd081cfa98b02ff6e392d819e00dcc7f4546a343efe0ba78290f9050",
+      "sha256": "d771510bf068634eb5149858e46b17e4d3f9c8ae4383f07f2be6861732913690",
+      "bytes": 21102592,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "d771510bf068634eb5149858e46b17e4d3f9c8ae4383f07f2be6861732913690",
+      "restoration_verified": true
+    },
+    "reports/tracker-pull/20261014T112140193726Z/jobs-before-pull-20261014T112300297167Z.sqlite3": {
+      "archive": "followup-20261027T1520/retained/4adfbe2be3768f3539b9a95f652cc38cc664b9e9b2edbec17cde47aa1b95efd9.gz",
+      "archive_sha256": "ac2d25e1b09f0ce4cdf8fbca91c4400369bd9864912e60dfeb9fad73a427cb8a",
+      "sha256": "4adfbe2be3768f3539b9a95f652cc38cc664b9e9b2edbec17cde47aa1b95efd9",
+      "bytes": 21102592,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "4adfbe2be3768f3539b9a95f652cc38cc664b9e9b2edbec17cde47aa1b95efd9",
+      "restoration_verified": true
+    },
+    "reports/tracker-pull/20261016T110700155982Z/jobs-before-pull-20261016T110706090851Z.sqlite3": {
+      "archive": "followup-20261027T1520/retained/84ffc96ec2042c423b46abeff10a464a234a09a590f2e58ccb553a326950c295.gz",
+      "archive_sha256": "b01c5e716c6d187bfe97dcb543c58665aa9b7a258632c71619a549a4943bb44c",
+      "sha256": "84ffc96ec2042c423b46abeff10a464a234a09a590f2e58ccb553a326950c295",
+      "bytes": 21336064,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "84ffc96ec2042c423b46abeff10a464a234a09a590f2e58ccb553a326950c295",
+      "restoration_verified": true
+    },
+    "reports/tracker-pull/20261016T111619465149Z/jobs-before-pull-20261016T111626558150Z.sqlite3": {
+      "archive": "followup-20261027T1520/retained/6bfe74eac5dd65164ac537fd023946a220054ed35324a8b2b4911387f68c0828.gz",
+      "archive_sha256": "a3aebca1e278b7a72b7781a2d02bbe9643d33e19c83df49059a4bb5048f08ca3",
+      "sha256": "6bfe74eac5dd65164ac537fd023946a220054ed35324a8b2b4911387f68c0828",
+      "bytes": 21336064,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "6bfe74eac5dd65164ac537fd023946a220054ed35324a8b2b4911387f68c0828",
+      "restoration_verified": true
+    },
+    "reports/tracker-layout-update/20261020T110351Z/before.sqlite3": {
+      "archive": "followup-20261027T1520/retained/92abadae5552dd42a76744237520ffcd1dbe4eba02648b0146bf2ec4e02a26a2.gz",
+      "archive_sha256": "067594dc83dcf44c75c8614374c55e436b2dac96c5c54ced114ab9000694103f",
+      "sha256": "92abadae5552dd42a76744237520ffcd1dbe4eba02648b0146bf2ec4e02a26a2",
+      "bytes": 128692224,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "92abadae5552dd42a76744237520ffcd1dbe4eba02648b0146bf2ec4e02a26a2",
+      "restoration_verified": true
+    },
+    "reports/tracker-layout-update/20261020T120927Z/before.sqlite3": {
+      "archive": "followup-20261027T1520/retained/1d505dc062d01275bad474d462eaab5cda57db323ac56fc3011415751d1ea202.gz",
+      "archive_sha256": "42e8702acb013b91b0e30506a231c4c2cf00cb3a14c61d843dd57cb04b6496c1",
+      "sha256": "1d505dc062d01275bad474d462eaab5cda57db323ac56fc3011415751d1ea202",
+      "bytes": 265969664,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "1d505dc062d01275bad474d462eaab5cda57db323ac56fc3011415751d1ea202",
+      "restoration_verified": true
+    },
+    "reports/sheets-primary-cutover/20261020T100009Z/before-merge.sqlite3": {
+      "archive": "followup-20261027T1520/retained/73be2fbaeb75e7e08258f53ded20883dc8a83dd0e41b2a3aece74eb3d6a263f4.gz",
+      "archive_sha256": "f48322651c2adb398ffac7ff09c8e7af7aa15f25448934e5f1dcf28ab11abdbd",
+      "sha256": "73be2fbaeb75e7e08258f53ded20883dc8a83dd0e41b2a3aece74eb3d6a263f4",
+      "bytes": 42897408,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "73be2fbaeb75e7e08258f53ded20883dc8a83dd0e41b2a3aece74eb3d6a263f4",
+      "restoration_verified": true
+    },
+    "reports/sheets-primary-cutover/20261020T100009Z/before.sqlite3": {
+      "archive": "followup-20261027T1520/retained/73be2fbaeb75e7e08258f53ded20883dc8a83dd0e41b2a3aece74eb3d6a263f4.gz",
+      "archive_sha256": "f48322651c2adb398ffac7ff09c8e7af7aa15f25448934e5f1dcf28ab11abdbd",
+      "sha256": "73be2fbaeb75e7e08258f53ded20883dc8a83dd0e41b2a3aece74eb3d6a263f4",
+      "bytes": 42897408,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "73be2fbaeb75e7e08258f53ded20883dc8a83dd0e41b2a3aece74eb3d6a263f4",
+      "restoration_verified": true
+    },
+    "reports/search-test/20261022-5-gecko-15-firecrawl/before.sqlite3": {
+      "archive": "followup-20261027T1520/retained/f717ababd69c6063023bae897260f7e2876b7b3ac3f8d6fc81a2c3c52172bcd2.gz",
+      "archive_sha256": "618f2c251aec68b4d4186a6c88e8ae5eba8acf7394e4a61438c11712fb8ce4c7",
+      "sha256": "f717ababd69c6063023bae897260f7e2876b7b3ac3f8d6fc81a2c3c52172bcd2",
+      "bytes": 446279680,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "f717ababd69c6063023bae897260f7e2876b7b3ac3f8d6fc81a2c3c52172bcd2",
+      "restoration_verified": true
+    },
+    "reports/repopulation/20261011/active-db-before-restoration.sqlite3": {
+      "archive": "followup-20261027T1520/retained/d0f458bd61879575864caa45ab1da1d608e65fdea64bf4930b9a388c4714c95b.gz",
+      "archive_sha256": "33ff854039412d027f77cdbebaa32f43b965df5cbc08aaf506682a93d95bb583",
+      "sha256": "d0f458bd61879575864caa45ab1da1d608e65fdea64bf4930b9a388c4714c95b",
+      "bytes": 294912,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "d0f458bd61879575864caa45ab1da1d608e65fdea64bf4930b9a388c4714c95b",
+      "restoration_verified": true
+    },
+    "reports/repopulation/20261011/historical-working-copy.sqlite3": {
+      "archive": "followup-20261027T1520/retained/4145f6658c225a86508f6c4780d8dc6fd64d7af2e8aef83ddd0a0f47e0d1c465.gz",
+      "archive_sha256": "812aa09df6fd6f15e178ed376900e5f4883d816decc2a3872758e6cbb51bdebc",
+      "sha256": "4145f6658c225a86508f6c4780d8dc6fd64d7af2e8aef83ddd0a0f47e0d1c465",
+      "bytes": 9191424,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "4145f6658c225a86508f6c4780d8dc6fd64d7af2e8aef83ddd0a0f47e0d1c465",
+      "restoration_verified": true
+    },
+    "reports/qualifies-column-rename/20261020T104255Z/before.sqlite3": {
+      "archive": "followup-20261027T1520/retained/5aa7accecf7988cebd583f2542cfb99bb897097fdac1367e33c441426353d963.gz",
+      "archive_sha256": "c4400afd466a35ec610e520ecda12ac04c53187bcfbd64f71767d47553336d9b",
+      "sha256": "5aa7accecf7988cebd583f2542cfb99bb897097fdac1367e33c441426353d963",
+      "bytes": 70221824,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "5aa7accecf7988cebd583f2542cfb99bb897097fdac1367e33c441426353d963",
+      "restoration_verified": true
+    },
+    "reports/notes-column-backfill/20261020T105025Z/before.sqlite3": {
+      "archive": "followup-20261027T1520/retained/6d7cf1921d4c56e7eb6d4832f9a662216f758e3772254c23fd2db2957902f700.gz",
+      "archive_sha256": "a05cca2894fd052052d1b725ea0414148771057eaaf81b336811418eadd3dad1",
+      "sha256": "6d7cf1921d4c56e7eb6d4832f9a662216f758e3772254c23fd2db2957902f700",
+      "bytes": 84598784,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "6d7cf1921d4c56e7eb6d4832f9a662216f758e3772254c23fd2db2957902f700",
+      "restoration_verified": true
+    },
+    "reports/indeed-search/20261016T054024841091/before.sqlite3": {
+      "archive": "followup-20261027T1520/retained/32973aa67ce5fcf6d16f1386b8c36b7102f66b035ca9cadf59c8a50487a25d85.gz",
+      "archive_sha256": "e9a2c82f05c842f87b08218bb997ee033c51e0603b396e65eddb8b2aed2078a7",
+      "sha256": "32973aa67ce5fcf6d16f1386b8c36b7102f66b035ca9cadf59c8a50487a25d85",
+      "bytes": 39084032,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "32973aa67ce5fcf6d16f1386b8c36b7102f66b035ca9cadf59c8a50487a25d85",
+      "restoration_verified": true
+    },
+    "reports/indeed-search/20261016T054240838283/before.sqlite3": {
+      "archive": "followup-20261027T1520/retained/4084b3125e041487ce66091e41f91b9052140ccaa9ce695f76ababb54e5d2059.gz",
+      "archive_sha256": "0cb0672630fe88b5490fd8fa866e7cf1ba5a4bb9f071e363ee4ede4a704fee40",
+      "sha256": "4084b3125e041487ce66091e41f91b9052140ccaa9ce695f76ababb54e5d2059",
+      "bytes": 39124992,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "4084b3125e041487ce66091e41f91b9052140ccaa9ce695f76ababb54e5d2059",
+      "restoration_verified": true
+    },
+    "reports/enough-data-review/20261020T112616Z/before.sqlite3": {
+      "archive": "followup-20261027T1520/retained/adf58f456b120eba5d0a74e1ce4a39dfa73fd16ab0d06579e577a39c3486c15d.gz",
+      "archive_sha256": "e3d537c40dc29cc28bfb9cded7dd0531bbdf5707ea8ddf176f0c83307239884e",
+      "sha256": "adf58f456b120eba5d0a74e1ce4a39dfa73fd16ab0d06579e577a39c3486c15d",
+      "bytes": 187002880,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "adf58f456b120eba5d0a74e1ce4a39dfa73fd16ab0d06579e577a39c3486c15d",
+      "restoration_verified": true
+    },
+    "reports/discovery-live/20261013T161002/production-before.sqlite3": {
+      "archive": "followup-20261027T1520/retained/cceed4d2bbe88e4bc7f98f40c2f460ca6b59abfc66072b1c63fd6b6db68d0d2d.gz",
+      "archive_sha256": "eba5707f419978976e40a4fb8573677d8604d5bb8ac21f930b3d440b167a1123",
+      "sha256": "cceed4d2bbe88e4bc7f98f40c2f460ca6b59abfc66072b1c63fd6b6db68d0d2d",
+      "bytes": 19456000,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "cceed4d2bbe88e4bc7f98f40c2f460ca6b59abfc66072b1c63fd6b6db68d0d2d",
+      "restoration_verified": true
+    },
+    "reports/description-notes-realignment/20261020T113415Z/before.sqlite3": {
+      "archive": "followup-20261027T1520/retained/35fca206f0369040ca1754a86ba6bb8ae14354f811bd243777db8542586bde39.gz",
+      "archive_sha256": "fb8584d59c0d61b2ba685c078df262c1ca82e28825b79202055b00a1c8fbc99a",
+      "sha256": "35fca206f0369040ca1754a86ba6bb8ae14354f811bd243777db8542586bde39",
+      "bytes": 205983744,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "35fca206f0369040ca1754a86ba6bb8ae14354f811bd243777db8542586bde39",
+      "restoration_verified": true
+    },
+    "reports/description-column-backfill/20261020T103551Z/before.sqlite3": {
+      "archive": "followup-20261027T1520/retained/c12cba8109ace72ff09180cf6e1b11279337f85db328f07cb5255f2fc4f757bf.gz",
+      "archive_sha256": "2506322a8752150a547f1950399e3d1667dfd4da96d40f00b146d06d6bdc1245",
+      "sha256": "c12cba8109ace72ff09180cf6e1b11279337f85db328f07cb5255f2fc4f757bf",
+      "bytes": 42921984,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "c12cba8109ace72ff09180cf6e1b11279337f85db328f07cb5255f2fc4f757bf",
+      "restoration_verified": true
+    },
+    "reports/create-resume-from-enough-data/20261020T115213Z/before.sqlite3": {
+      "archive": "followup-20261027T1520/retained/85199b1b1f7950a1bf89bd32d7fbcc8d04a7f900e686afb270635c8bdfd96a5e.gz",
+      "archive_sha256": "9c21023241b3fede7c21f7a707285af6312ef76c3236a2f076b840465394e428",
+      "sha256": "85199b1b1f7950a1bf89bd32d7fbcc8d04a7f900e686afb270635c8bdfd96a5e",
+      "bytes": 227299328,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "85199b1b1f7950a1bf89bd32d7fbcc8d04a7f900e686afb270635c8bdfd96a5e",
+      "restoration_verified": true
+    },
+    "reports/create-resume-from-enough-data/20261020T115342Z/before.sqlite3": {
+      "archive": "followup-20261027T1520/retained/0227450eee268d52d60708d471cf1c6177978ca09b1a20e59017538768ad80ad.gz",
+      "archive_sha256": "9c28b50df108d24f55f5fbba0337ea410f08e6e8e92dfca74405b02ffaaac513",
+      "sha256": "0227450eee268d52d60708d471cf1c6177978ca09b1a20e59017538768ad80ad",
+      "bytes": 246251520,
+      "purpose": "Completed historical operation; exact compressed copy retains every table, older notes, identities and evidence. No active reader of original; generic verified restore remains available.",
+      "sqlite_integrity": "ok",
+      "restored_sha256": "0227450eee268d52d60708d471cf1c6177978ca09b1a20e59017538768ad80ad",
+      "restoration_verified": true
+    },
+    "reports/discovery/recovery-20261025/additional-source-rows.json": {
+      "archive": "followup-20261027T1520/retained/03694dc11af589ed2aaf50ae79f75a0d2dacb5a0a0b1c18cb33c0cdbe2470229.gz",
+      "archive_sha256": "14e120fd4b0cfab1311ebe243d063d05477482e66a2c8925efa5b8f5c117162e",
+      "sha256": "03694dc11af589ed2aaf50ae79f75a0d2dacb5a0a0b1c18cb33c0cdbe2470229",
+      "bytes": 410215594,
+      "purpose": "Saved employer feed / recovery evidence; reused by work/extend_gecko_coverage.py without repeat retrieval or credit spending",
+      "restored_sha256": "03694dc11af589ed2aaf50ae79f75a0d2dacb5a0a0b1c18cb33c0cdbe2470229",
+      "restoration_verified": true
+    },
+    "reports/discovery/recovery-20261025/source-greenhouse.json": {
+      "archive": "followup-20261027T1520/retained/851879570a942f38164e5f8c9030e6d55a1143b68ea0f581a86e1afb73d71d5f.gz",
+      "archive_sha256": "6abdeab4df6559b90ea6107f2645ea7e04d4ad4fea1084bcf3305cf9f60ef8c1",
+      "sha256": "851879570a942f38164e5f8c9030e6d55a1143b68ea0f581a86e1afb73d71d5f",
+      "bytes": 165660849,
+      "purpose": "Saved employer feed / recovery evidence; reused by work/extend_gecko_coverage.py without repeat retrieval or credit spending",
+      "restored_sha256": "851879570a942f38164e5f8c9030e6d55a1143b68ea0f581a86e1afb73d71d5f",
+      "restoration_verified": true
+    },
+    "reports/discovery/recovery-20261025/source-lever.json": {
+      "archive": "followup-20261027T1520/retained/8cef48f0b13d7f8301b93efecdc433f4269121c5218f0cadac601a60afd6855e.gz",
+      "archive_sha256": "8c045f59768b3e073c0629bc391361cd57cc0e4db4f44aea16e5d8cceb0cc640",
+      "sha256": "8cef48f0b13d7f8301b93efecdc433f4269121c5218f0cadac601a60afd6855e",
+      "bytes": 115290430,
+      "purpose": "Saved employer feed / recovery evidence; reused by work/extend_gecko_coverage.py without repeat retrieval or credit spending",
+      "restored_sha256": "8cef48f0b13d7f8301b93efecdc433f4269121c5218f0cadac601a60afd6855e",
+      "restoration_verified": true
+    },
+    "reports/discovery/recovery-20261025/source-ashby.json": {
+      "archive": "followup-20261027T1520/retained/b3ab37463ad43b0dfc6f024bcf940ecb41daee94bc7109e78b7edc0d78c931ee.gz",
+      "archive_sha256": "f77a1ce3019d952f83c435ef8cec6d689ccf2eacd370daccec83e98a42ac920c",
+      "sha256": "b3ab37463ad43b0dfc6f024bcf940ecb41daee94bc7109e78b7edc0d78c931ee",
+      "bytes": 84858642,
+      "purpose": "Saved employer feed / recovery evidence; reused by work/extend_gecko_coverage.py without repeat retrieval or credit spending",
+      "restored_sha256": "b3ab37463ad43b0dfc6f024bcf940ecb41daee94bc7109e78b7edc0d78c931ee",
+      "restoration_verified": true
+    },
+    "reports/discovery/recovery-20261025/source-workable.json": {
+      "archive": "followup-20261027T1520/retained/bfcbe7e9286f65f31dbd5b39753140e7da9cf74829c44157d7d6cb6eea5b9fb6.gz",
+      "archive_sha256": "3d049395907fcdc23611c13bc541d5db2453486e37cc5e6ffd6baed0cb995d7b",
+      "sha256": "bfcbe7e9286f65f31dbd5b39753140e7da9cf74829c44157d7d6cb6eea5b9fb6",
+      "bytes": 63115330,
+      "purpose": "Saved employer feed / recovery evidence; reused by work/extend_gecko_coverage.py without repeat retrieval or credit spending",
+      "restored_sha256": "bfcbe7e9286f65f31dbd5b39753140e7da9cf74829c44157d7d6cb6eea5b9fb6",
+      "restoration_verified": true
+    },
+    "reports/discovery/recovery-20261025/source-adzuna.json": {
+      "archive": "followup-20261027T1520/additional-feeds/retained/3094adcb032a8e15aa5e922f9803f315218693ffabd7167ad788007ae8080322.gz",
+      "archive_sha256": "fec8b96b1f4d8df07ea6e9ec3d52ae30a1864313d431eec9811b662812c6f915",
+      "sha256": "3094adcb032a8e15aa5e922f9803f315218693ffabd7167ad788007ae8080322",
+      "bytes": 11905021,
+      "purpose": "Remaining saved feed response; preserve exact evidence and cached reuse while removing generated source snapshots from tracking",
+      "restored_sha256": "3094adcb032a8e15aa5e922f9803f315218693ffabd7167ad788007ae8080322",
+      "restoration_verified": true
+    },
+    "reports/discovery/recovery-20261025/source-jobicy.json": {
+      "archive": "followup-20261027T1520/additional-feeds/retained/4977ada617665b4730f5631065db1117dc0110821dd393083a904a82cdd5c983.gz",
+      "archive_sha256": "3785473e317c0c1fb3e5c03743c4bc19a77659fb27c9d91646c8914491504a27",
+      "sha256": "4977ada617665b4730f5631065db1117dc0110821dd393083a904a82cdd5c983",
+      "bytes": 3244990,
+      "purpose": "Remaining saved feed response; preserve exact evidence and cached reuse while removing generated source snapshots from tracking",
+      "restored_sha256": "4977ada617665b4730f5631065db1117dc0110821dd393083a904a82cdd5c983",
+      "restoration_verified": true
+    },
+    "reports/discovery/recovery-20261025/source-remoteok.json": {
+      "archive": "followup-20261027T1520/additional-feeds/retained/406aae031f05e05aa0b5f03b89b1fb21844529e815c98bbfadbf77f71493c9d6.gz",
+      "archive_sha256": "b2efdb59bb90630c8d492eb5fd41b0b89afd94d9f9d6f134e24ac795416e4d65",
+      "sha256": "406aae031f05e05aa0b5f03b89b1fb21844529e815c98bbfadbf77f71493c9d6",
+      "bytes": 1345199,
+      "purpose": "Remaining saved feed response; preserve exact evidence and cached reuse while removing generated source snapshots from tracking",
+      "restored_sha256": "406aae031f05e05aa0b5f03b89b1fb21844529e815c98bbfadbf77f71493c9d6",
+      "restoration_verified": true
+    },
+    "reports/discovery/recovery-20261025/source-remotive.json": {
+      "archive": "followup-20261027T1520/additional-feeds/retained/bce741224a936cf3740ca140e6e438f55f2c5d312ecc1dbe8d3f038339b2ab5c.gz",
+      "archive_sha256": "d506707457980c4bf422e574eedc9440368a2488f9cf68d6b221e14bfd58891d",
+      "sha256": "bce741224a936cf3740ca140e6e438f55f2c5d312ecc1dbe8d3f038339b2ab5c",
+      "bytes": 6932,
+      "purpose": "Remaining saved feed response; preserve exact evidence and cached reuse while removing generated source snapshots from tracking",
+      "restored_sha256": "bce741224a936cf3740ca140e6e438f55f2c5d312ecc1dbe8d3f038339b2ab5c",
+      "restoration_verified": true
+    },
+    "reports/discovery/recovery-20261025/source-themuse.json": {
+      "archive": "followup-20261027T1520/additional-feeds/retained/8b02d754320b63c1227cd1725f2430fed04129625d3645c2f03b19fc55ca511a.gz",
+      "archive_sha256": "7af8d6569f5baf650e75ed683053f3e38dbe3b8adc9420fb28ba99dcecca9470",
+      "sha256": "8b02d754320b63c1227cd1725f2430fed04129625d3645c2f03b19fc55ca511a",
+      "bytes": 6840,
+      "purpose": "Remaining saved feed response; preserve exact evidence and cached reuse while removing generated source snapshots from tracking",
+      "restored_sha256": "8b02d754320b63c1227cd1725f2430fed04129625d3645c2f03b19fc55ca511a",
+      "restoration_verified": true
+    },
+    "reports/discovery/recovery-20261025/source-usajobs.json": {
+      "archive": "followup-20261027T1520/additional-feeds/retained/6556f3867c3f523ab536c50b39d246cd8a7251b10eb83784190640135f610bdc.gz",
+      "archive_sha256": "85171d7d98eb564f2debd50918e063905822e28d69de3b79c0d0abef291e5c8d",
+      "sha256": "6556f3867c3f523ab536c50b39d246cd8a7251b10eb83784190640135f610bdc",
+      "bytes": 8607998,
+      "purpose": "Remaining saved feed response; preserve exact evidence and cached reuse while removing generated source snapshots from tracking",
+      "restored_sha256": "6556f3867c3f523ab536c50b39d246cd8a7251b10eb83784190640135f610bdc",
+      "restoration_verified": true
+    },
+    "reports/discovery/recovery-20261025/source-weworkremotely.json": {
+      "archive": "followup-20261027T1520/additional-feeds/retained/64141a7482cd6361c88a2104a9c3fa7beb0cefe95613412cd24d2a033f24d7ff.gz",
+      "archive_sha256": "75eb2b8a47e72962a8ee1b50a7aee9b8c32d11e81880a2c2b4d34d8d74f3d27d",
+      "sha256": "64141a7482cd6361c88a2104a9c3fa7beb0cefe95613412cd24d2a033f24d7ff",
+      "bytes": 995553,
+      "purpose": "Remaining saved feed response; preserve exact evidence and cached reuse while removing generated source snapshots from tracking",
+      "restored_sha256": "64141a7482cd6361c88a2104a9c3fa7beb0cefe95613412cd24d2a033f24d7ff",
+      "restoration_verified": true
+    },
+    "reports/discovery/recovery-20261025/source-workingnomads.json": {
+      "archive": "followup-20261027T1520/additional-feeds/retained/8c4d80688beb37653ffd66b9a43ecc548eb95bd21055d2bcaafdc9fa576f406e.gz",
+      "archive_sha256": "4fb665bf3318e55ef7289bb51ade33679825605071ed099031875d8fb8e74ca1",
+      "sha256": "8c4d80688beb37653ffd66b9a43ecc548eb95bd21055d2bcaafdc9fa576f406e",
+      "bytes": 391320,
+      "purpose": "Remaining saved feed response; preserve exact evidence and cached reuse while removing generated source snapshots from tracking",
+      "restored_sha256": "8c4d80688beb37653ffd66b9a43ecc548eb95bd21055d2bcaafdc9fa576f406e",
+      "restoration_verified": true
+    }
+  }
+}

@@ -9,7 +9,7 @@ from urllib.parse import urlsplit
 from normalize import canonicalize_url, posting_identity
 from tracker_schema import resolve_headers
 
-FIELDS = ['Company', 'Job Title', 'Source', 'Location', 'Salary', 'Work Arrangement', 'Employment Type', 'Personal priority', 'Notes', 'Date Posted']
+from tracker_revisions import MANUAL_FIELDS as FIELDS
 
 
 def publish_upload_copy(source, fields, job_id, root):
@@ -116,13 +116,14 @@ def save(tracker, payload, stamp):
         if attachment:
             con.execute('CREATE TABLE IF NOT EXISTS workspace_manual_resumes(job_id INTEGER PRIMARY KEY REFERENCES jobs(id),token TEXT NOT NULL UNIQUE,filename TEXT NOT NULL)')
             con.execute('INSERT INTO workspace_manual_resumes VALUES(?,?,?)',(job_id,attachment['token'],attachment['name']))
-        con.execute("INSERT INTO workspace_events(at,dataset,slot,action,after_json) VALUES(?,'Job List',?,'manual-intake',?)",(stamp,slot,raw))
+        from database_maintenance import log_event
+        log_event(con, stamp, 'Job List', slot, 'manual-intake', after=fields)
         assert json.loads(con.execute("SELECT values_json FROM workspace_records WHERE dataset='Job List' AND slot=?",(slot,)).fetchone()[0])==fields
     return {'id':str(job_id),'applied':applied}
 
 
 def attachment_rebase(tracker, slot, payload, original, fields):
-    """Recover the exact old form from audit history; merge only nonconflicting edits."""
+    """Recover verified field fingerprints; merge only nonconflicting edits."""
     from dashboard import server as s
     from tracker_schema import resolve_headers
     with tracker.connection() as con:
@@ -136,21 +137,36 @@ def attachment_rebase(tracker, slot, payload, original, fields):
             try:
                 candidate=json.loads(raw)
                 if not isinstance(candidate,dict):continue
+                if candidate.get('version')==payload.get('version') and 'hashes' in candidate:
+                    base=candidate;break
                 for alias,col in resolve_headers(headers).items():candidate[alias]=candidate.get(headers[col-1],'')
                 if s.version(candidate)==payload.get('version'):
                     base=candidate;break
             except (ValueError,TypeError):continue
         if base is not None:break
-    if base is None or base.get('Job URL')!=original.get('Job URL'):
+    def digest(value):
+        return hashlib.sha256(str(value or '').encode()).hexdigest()
+    fingerprints=base.get('hashes') if base else None
+    if base is None or (fingerprints.get('Job URL')!=digest(original.get('Job URL')) if fingerprints else base.get('Job URL')!=original.get('Job URL')):
         raise ValueError('This job changed. Your uploaded resume is kept; reopen the job before saving.')
     changes={}
     for key,value in fields.items():
         if key not in payload:continue
-        before=str(base.get(key) or '')
         current=str(original.get(key) or '')
-        if key=='Notes':before=s.notes_parts(before)[0];current=s.notes_parts(current)[0]
-        if value==before.strip():continue
-        if current!=before and value!=current.strip():
+        if key=='Notes':current=s.notes_parts(current)[0]
+        if fingerprints:
+            before_hash=fingerprints.get(key)
+            if before_hash is None:
+                raise ValueError('This job changed. Your uploaded resume is kept; reopen the job before saving.')
+            unchanged=digest(value)==before_hash
+            concurrent=digest(current)!=before_hash
+        else:
+            before=str(base.get(key) or '')
+            if key=='Notes':before=s.notes_parts(before)[0]
+            unchanged=value==before.strip()
+            concurrent=current!=before
+        if unchanged:continue
+        if concurrent and value!=current.strip():
             raise ValueError(key+' was edited elsewhere. Your uploaded resume is kept; review that field before saving.')
         changes[key]=value
     if 'description' in payload and str(payload.get('description') or '')!=str(description[0] or '' if description else ''):
@@ -219,7 +235,8 @@ def update(tracker, payload, stamp, url, fields, attachment=None):
         if attachment:
             con.execute('CREATE TABLE IF NOT EXISTS workspace_manual_resumes(job_id INTEGER PRIMARY KEY REFERENCES jobs(id),token TEXT NOT NULL UNIQUE,filename TEXT NOT NULL)')
             con.execute('INSERT INTO workspace_manual_resumes VALUES(?,?,?) ON CONFLICT(job_id) DO UPDATE SET token=excluded.token,filename=excluded.filename',(job_id,attachment['token'],attachment['name']))
-        con.execute("INSERT INTO workspace_events(at,dataset,slot,action,before_json,after_json) VALUES(?,'Job List',?,'manual-edit',?,?)",(stamp,slot,stored['values_json'],json.dumps(after)))
+        from database_maintenance import log_event
+        log_event(con, stamp, 'Job List', slot, 'manual-edit', before=raw, after=after)
     _,verified=s.find_job(tracker.scout(),job_id)
     if any(verified.get(k,'')!=v for k,v in changes.items()):
         raise RuntimeError('Saved job readback did not match. Check it before retrying.')

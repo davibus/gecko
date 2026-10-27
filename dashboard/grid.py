@@ -43,8 +43,9 @@ def change_column(tracker, payload):
             updated = headers + [name]
         resolve_headers(updated)
         con.execute("UPDATE workspace_datasets SET headers_json=? WHERE name='Job List'",(json.dumps(updated),))
-        con.execute('INSERT INTO workspace_events(at,dataset,action,before_json,after_json) VALUES(?,?,?,?,?)',
-                    (stamp(),'Job List','rename-column' if old else 'add-column',json.dumps(headers),json.dumps(updated)))
+        from database_maintenance import log_event
+        log_event(con, stamp(), 'Job List', None, 'rename-column' if old else 'add-column',
+                  before={'headers':headers}, after={'headers':updated})
     return columns(tracker)
 
 def cell_changes(tracker, data, changes):

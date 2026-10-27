@@ -18,6 +18,7 @@ from sources.acquisition import acquire
 from sources.base import SearchRequest
 from sources.config import load_source_config
 from query_provenance import remember
+from retained_artifacts import available as retained_available, read_json as read_retained_json
 
 
 def targeted_muse(requests):
@@ -180,8 +181,8 @@ class Coverage(Recovery):
             for name,provider in providers.items():
                 if name not in FREE_SOURCES or not provider.configured():continue
                 path=OUT/('source-'+name+'.json')
-                if path.exists():
-                    batch=[RawListing(**r) for r in json.loads(path.read_text(encoding='utf-8'))]
+                if retained_available(path):
+                    batch=[RawListing(**r) for r in read_retained_json(path)]
                     collected.extend(batch)
                     self.coverage[name]={**previous.get(name,{}),'status':previous.get(name,{}).get('status','success'),
                                          'candidates':len(batch),'reused_saved_source_response':True}

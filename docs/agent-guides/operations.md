@@ -1,5 +1,10 @@
 # Gecko execution and workspace preferences
 
+Database maintenance: follow `docs/database-maintenance.md` (October 27, 2026).
+The existing runner now makes changed-data daily compressed backups outside
+the repository, with verified restoration and bounded daily/weekly retention.
+Significant migrations/destructive maintenance require an extra recovery point.
+
 ## Columns follow names, not positions
 
 Users may move whole columns freely without asking for code or instruction updates.

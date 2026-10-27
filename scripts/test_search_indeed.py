@@ -84,6 +84,12 @@ class ProviderTests(unittest.TestCase):
 
 
 class ImportTests(SQLiteTrackerTests):
+    def setUp(self):
+        super().setUp()
+        import database_maintenance as maintenance
+        original_backup=maintenance.backup_database
+        backup_patch=patch.object(maintenance,'backup_database',side_effect=lambda db:original_backup(db,folder=Path(self.temp.name)/'backups'))
+        backup_patch.start();self.addCleanup(backup_patch.stop)
     def test_archived_job_is_not_restored(self):
         raw=RawListing(source='indeed',source_job_id='1111111111111111',url='https://www.indeed.com/viewjob?jk=1111111111111111',title='Digital Marketing Manager',company='Different Employer',location='Lehi, Utah',employment_type='full-time',description='Detailed verified description')
         with patch('search_indeed.description_is_sufficient',return_value=True):
