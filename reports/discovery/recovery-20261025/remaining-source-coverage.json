@@ -1,0 +1,40 @@
+{
+  "indeed": {
+    "status": "partial failure",
+    "new_candidate_encounters": 52,
+    "known_skipped": 1,
+    "errors": [
+      {
+        "query": "site:indeed.com/viewjob \"SEM\" remote United States",
+        "error": "Request failed for https://api.search.brave.com/res/v1/web/search: HTTP Error 402: Payment Required | {\"type\": \"ErrorResponse\", \"error\": {\"id\": \"52ce5f05-7a81-42be-aa4d-369492c3aeec\", \"status\": 402, \"detail\": \"Prepaid credit balance is insufficient for this request. Top up to continue.\", \"meta\": {\"plan\": \"Search\", \"current_balance_units\": 5000, \"min_request_cost_units\": 10000, \"component\": \"rate_limiter\"}, \"code\": \"CREDIT_EXHAUSTED\"}, \"time\": 1792980574}"
+      }
+    ],
+    "paid_requests": 0
+  },
+  "linkedin": {
+    "status": "blocked shared index",
+    "reason": "Request failed for https://api.search.brave.com/res/v1/web/search: HTTP Error 402: Payment Required | {\"type\": \"ErrorResponse\", \"error\": {\"id\": \"52ce5f05-7a81-42be-aa4d-369492c3aeec\", \"status\": 402, \"detail\": \"Prepaid credit balance is insufficient for this request. Top up to continue.\", \"meta\": {\"plan\": \"Search\", \"current_balance_units\": 5000, \"min_request_cost_units\": 10000, \"component\": \"rate_limiter\"}, \"code\": \"CREDIT_EXHAUSTED\"}, \"time\": 1792980574}"
+  },
+  "glassdoor": {
+    "status": "blocked shared index",
+    "reason": "Request failed for https://api.search.brave.com/res/v1/web/search: HTTP Error 402: Payment Required | {\"type\": \"ErrorResponse\", \"error\": {\"id\": \"52ce5f05-7a81-42be-aa4d-369492c3aeec\", \"status\": 402, \"detail\": \"Prepaid credit balance is insufficient for this request. Top up to continue.\", \"meta\": {\"plan\": \"Search\", \"current_balance_units\": 5000, \"min_request_cost_units\": 10000, \"component\": \"rate_limiter\"}, \"code\": \"CREDIT_EXHAUSTED\"}, \"time\": 1792980574}"
+  },
+  "ziprecruiter": {
+    "status": "blocked shared index",
+    "reason": "Request failed for https://api.search.brave.com/res/v1/web/search: HTTP Error 402: Payment Required | {\"type\": \"ErrorResponse\", \"error\": {\"id\": \"52ce5f05-7a81-42be-aa4d-369492c3aeec\", \"status\": 402, \"detail\": \"Prepaid credit balance is insufficient for this request. Top up to continue.\", \"meta\": {\"plan\": \"Search\", \"current_balance_units\": 5000, \"min_request_cost_units\": 10000, \"component\": \"rate_limiter\"}, \"code\": \"CREDIT_EXHAUSTED\"}, \"time\": 1792980574}"
+  },
+  "remote-careers": {
+    "status": "free index checked",
+    "candidate_ids": 49,
+    "known_skipped": 0,
+    "paid_requests": 0,
+    "reason": "Detail requests require candidate-level admission; paid full_feed adapter was not invoked"
+  },
+  "web-careers": {
+    "status": "authorized index checked through targeted ATS queries",
+    "queries": 13,
+    "results": 256,
+    "paid_requests": 0,
+    "reason": "Used index-only discovery; legacy paid-first document helper was not invoked"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "entry": {
+    "url": "https://jobs.gusto.com/postings/coalmarch-marketing-account-strategist-f27e58b1-68c5-4eaa-8c5f-ebd71d266048",
+    "title": "Account Strategist at Coalmarch Marketing - Gusto",
+    "description": "Coalmarch is a digital marketing agency that helps field service companies — specifically in the pest control and green industries — generate leads and grow ...",
+    "position": 27,
+    "actual_query": "\"digital marketing\" remote site:jobs.gusto.com"
+  },
+  "data": {
+    "markdown": "## 410 Error\n\n# Oh no! This job posting is no longer available.\n\n![Job posting no longer available illustration](https://static.gusto.com/backgrounds/404-illustration.gif)",
+    "rawHtml": "<!DOCTYPE html><html style=\"height:100%;\" lang=\"en\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><style rel=\"stylesheet\" type=\"text/css\">@charset \"utf-8\";\r\n\r\n@font-face { font-family: GCentra; font-weight: 400; font-style: normal; font-display: swap; src: url(\"https://assets.gusto.com/static/fonts/centra/gcentra-book.woff2\") format(\"woff2\"), url(\"https://assets.gusto.com/static/fonts/centra/gcentra-book.woff\") format(\"woff\"); }\r\n\r\n@font-face { font-family: GCentra; font-weight: 600; font-style: normal; font-display: swap; src: url(\"https://assets.gusto.com/static/fonts/centra/gcentra-medium.woff2\") format(\"woff2\"), url(\"https://assets.gusto.com/static/fonts/centra/gcentra-medium.woff\") format(\"woff\"); }\r\n\r\n.error-page { font-family: GCentra, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; height: 100%; margin: 0px; padding: 100px 0px 0px; position: absolute; width: 100%; text-align: center; color: rgb(0, 0, 0); }\r\n\r\n.error-page .image-wrapper { height: 340px; margin-top: -100px; overflow: hidden; position: relative; z-index: -1; width: 100%; }\r\n\r\n.error-page .image-404 { display: block; margin-left: -450px; position: relative; left: 50%; width: 900px; }\r\n\r\na img { border: 0px; }\r\n\r\n.error-page h1 { font-size: 1.8em; font-weight: 600; line-height: 1.2em; }\r\n\r\n.error-page h2 { color: rgb(244, 93, 72); font-size: 1em; font-weight: 600; text-transform: uppercase; }\r\n\r\n@media (min-width: 768px) {\r\n  .error-page .image-wrapper { height: 400px; }\r\n  .error-page .image-404 { margin-left: -525px; width: 1050px; }\r\n  .error-page h1 { font-size: 3em; }\r\n  .error-page .hero-text { margin: auto; width: 50%; }\r\n}</style>\n    \n    <title>410 Error - Job Posting No Longer Available</title>\n    <link rel=\"icon\" type=\"image/x-icon\" href=\"https://assets.gusto.com/static/favicon/gusto-favicon.ico\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n    \n  </head>\n\n  <body class=\"error-page\">\n    <div class=\"hero-text\">\n      <h2>410 Error</h2>\n      <h1>Oh no! This job posting is no longer available.</h1>\n    </div>\n    <div class=\"image-wrapper\">\n      <img src=\"https://static.gusto.com/backgrounds/404-illustration.gif\" class=\"img-responsive center-block image-404\" alt=\"Job posting no longer available illustration\">\n    </div>\n  \n\n</body></html>",
+    "metadata": {
+      "viewport": "width=device-width, initial-scale=1",
+      "language": "en",
+      "title": "410 Error - Job Posting No Longer Available",
+      "favicon": "https://assets.gusto.com/static/favicon/gusto-favicon.ico",
+      "scrapeId": "01a1736c-abb8-775b-ab5a-44d517d88edf",
+      "sourceURL": "https://jobs.gusto.com/postings/coalmarch-marketing-account-strategist-f27e58b1-68c5-4eaa-8c5f-ebd71d266048",
+      "url": "https://jobs.gusto.com/postings/coalmarch-marketing-account-strategist-f27e58b1-68c5-4eaa-8c5f-ebd71d266048",
+      "statusCode": 410,
+      "error": "Gone",
+      "contentType": "text/html; charset=utf-8",
+      "timezone": "America/New_York",
+      "proxyUsed": "basic",
+      "cacheState": "miss",
+      "indexId": "4752e572-4ad4-4254-b7e6-b83b18f6ca1d",
+      "creditsUsed": 1,
+      "concurrencyLimited": false
+    }
+  }
+}

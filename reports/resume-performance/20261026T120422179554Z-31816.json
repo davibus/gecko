@@ -1,0 +1,142 @@
+{
+  "started_at": "2026-10-26T12:04:21.925801+00:00",
+  "totals": {
+    "wall_seconds": 0.2533,
+    "active_seconds": 0.2533,
+    "review_wait_seconds": 0.0,
+    "phases_seconds": {
+      "source_loading": 0.0,
+      "tailoring": 0.0,
+      "document_creation": 0.0,
+      "word_pdf_validation": 0.0,
+      "fitting_retries": 0.0,
+      "factual_review": 0.0,
+      "review_wait": 0.0,
+      "tracker_sync": 0.0334
+    },
+    "counts": {
+      "source_loading": 0,
+      "tailoring": 0,
+      "document_creation": 0,
+      "word_pdf_validation": 0,
+      "fitting_retries": 0,
+      "factual_review": 0,
+      "review_wait": 0,
+      "tracker_sync": 4
+    }
+  },
+  "resumes": [
+    {
+      "id": 2501,
+      "company": "Batch Company 0",
+      "outcome": "completed",
+      "wall_seconds": 0.0126,
+      "active_seconds": 0.0126,
+      "review_wait_seconds": 0.0,
+      "phases_seconds": {
+        "source_loading": 0.0,
+        "tailoring": 0.0,
+        "document_creation": 0.0,
+        "word_pdf_validation": 0.0,
+        "fitting_retries": 0.0,
+        "factual_review": 0.0,
+        "review_wait": 0.0,
+        "tracker_sync": 0.0087
+      },
+      "counts": {
+        "source_loading": 0,
+        "tailoring": 0,
+        "document_creation": 0,
+        "word_pdf_validation": 0,
+        "fitting_retries": 0,
+        "factual_review": 0,
+        "review_wait": 0,
+        "tracker_sync": 1
+      }
+    },
+    {
+      "id": 2502,
+      "company": "Batch Company 1",
+      "outcome": "completed",
+      "wall_seconds": 0.0118,
+      "active_seconds": 0.0118,
+      "review_wait_seconds": 0.0,
+      "phases_seconds": {
+        "source_loading": 0.0,
+        "tailoring": 0.0,
+        "document_creation": 0.0,
+        "word_pdf_validation": 0.0,
+        "fitting_retries": 0.0,
+        "factual_review": 0.0,
+        "review_wait": 0.0,
+        "tracker_sync": 0.0074
+      },
+      "counts": {
+        "source_loading": 0,
+        "tailoring": 0,
+        "document_creation": 0,
+        "word_pdf_validation": 0,
+        "fitting_retries": 0,
+        "factual_review": 0,
+        "review_wait": 0,
+        "tracker_sync": 1
+      }
+    },
+    {
+      "id": 2503,
+      "company": "Batch Company 2",
+      "outcome": "completed",
+      "wall_seconds": 0.0159,
+      "active_seconds": 0.0159,
+      "review_wait_seconds": 0.0,
+      "phases_seconds": {
+        "source_loading": 0.0,
+        "tailoring": 0.0,
+        "document_creation": 0.0,
+        "word_pdf_validation": 0.0,
+        "fitting_retries": 0.0,
+        "factual_review": 0.0,
+        "review_wait": 0.0,
+        "tracker_sync": 0.0098
+      },
+      "counts": {
+        "source_loading": 0,
+        "tailoring": 0,
+        "document_creation": 0,
+        "word_pdf_validation": 0,
+        "fitting_retries": 0,
+        "factual_review": 0,
+        "review_wait": 0,
+        "tracker_sync": 1
+      }
+    },
+    {
+      "id": 2504,
+      "company": "Batch Company 3",
+      "outcome": "completed",
+      "wall_seconds": 0.013,
+      "active_seconds": 0.013,
+      "review_wait_seconds": 0.0,
+      "phases_seconds": {
+        "source_loading": 0.0,
+        "tailoring": 0.0,
+        "document_creation": 0.0,
+        "word_pdf_validation": 0.0,
+        "fitting_retries": 0.0,
+        "factual_review": 0.0,
+        "review_wait": 0.0,
+        "tracker_sync": 0.0075
+      },
+      "counts": {
+        "source_loading": 0,
+        "tailoring": 0,
+        "document_creation": 0,
+        "word_pdf_validation": 0,
+        "fitting_retries": 0,
+        "factual_review": 0,
+        "review_wait": 0,
+        "tracker_sync": 1
+      }
+    }
+  ]
+}

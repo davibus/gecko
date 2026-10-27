@@ -1,0 +1,54 @@
+{
+  "id": 3046,
+  "company": "Jobgether",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/11HqvFMYgIpW5_LvquWNh7HNiJBpxLE0u/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Head-of-Marketing+00501.docx",
+  "started_at": "2026-10-26T16:38:28.504114+00:00",
+  "completed_at": "2026-10-26T16:39:47.708193+00:00",
+  "elapsed_seconds": 79.204091,
+  "generation_seconds": 24.939639499993064,
+  "delivery_seconds": 5.211491499998374,
+  "tracker_seconds": 20.00710899999831,
+  "readback": {
+    "Scout ID": 3046,
+    "Company": "Jobgether",
+    "Job Title": "Head of Marketing",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/11HqvFMYgIpW5_LvquWNh7HNiJBpxLE0u/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1312",
+  "hyperlink_target": "https://docs.google.com/document/d/11HqvFMYgIpW5_LvquWNh7HNiJBpxLE0u/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 79.2041,
+    "active_seconds": 57.1772,
+    "review_wait_seconds": 22.0269,
+    "phases_seconds": {
+      "source_loading": 0.0417,
+      "tailoring": 1.0575,
+      "document_creation": 2.6457,
+      "word_pdf_validation": 9.8797,
+      "fitting_retries": 0.4282,
+      "factual_review": 0.0,
+      "review_wait": 22.0269,
+      "tracker_sync": 20.0064,
+      "drive_delivery": 5.2066
+    },
+    "counts": {
+      "source_loading": 87,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

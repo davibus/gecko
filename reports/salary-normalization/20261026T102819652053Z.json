@@ -1,0 +1,478 @@
+{
+  "status": "verified",
+  "synced_at": "2026-10-26T10:28:59.042359+00:00",
+  "changes": [
+    {
+      "id": "2981",
+      "before": {
+        "Salary": "USD 75,000–95,000 per year"
+      },
+      "changes": {
+        "Salary": "$75,000 - $95,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "USD 75,000–95,000 per year",
+        "original_salary": "USD 75,000–95,000 per year",
+        "formatted_salary": "$75,000 - $95,000"
+      }
+    },
+    {
+      "id": "2982",
+      "before": {
+        "Salary": "USD 85,000–100,000 per year"
+      },
+      "changes": {
+        "Salary": "$85,000 - $100,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "USD 85,000–100,000 per year",
+        "original_salary": "USD 85,000–100,000 per year",
+        "formatted_salary": "$85,000 - $100,000"
+      }
+    },
+    {
+      "id": "2983",
+      "before": {
+        "Salary": "$ 115,000–130,000"
+      },
+      "changes": {
+        "Salary": "$115,000 - $130,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "$ 115,000–130,000",
+        "original_salary": "$ 115,000–130,000",
+        "formatted_salary": "$115,000 - $130,000"
+      }
+    },
+    {
+      "id": "2988",
+      "before": {
+        "Salary": "$ 115,000–140,000 per year"
+      },
+      "changes": {
+        "Salary": "$115,000 - $140,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "$ 115,000–140,000 per year",
+        "original_salary": "$ 115,000–140,000 per year",
+        "formatted_salary": "$115,000 - $140,000"
+      }
+    },
+    {
+      "id": "2989",
+      "before": {
+        "Salary": "$ 90,000–105,000"
+      },
+      "changes": {
+        "Salary": "$90,000 - $105,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "$ 90,000–105,000",
+        "original_salary": "$ 90,000–105,000",
+        "formatted_salary": "$90,000 - $105,000"
+      }
+    },
+    {
+      "id": "2992",
+      "before": {
+        "Salary": "EGP 62,500–87,500 per month",
+        "Notes": "Schedule: This is a **full-time remote position** with standard hours from **Monday to Friday, 11 am to 7 pm Sydney, Australia Time**\nRemote eligibility: EG\nGecko incremental discovery 2026-10-25T19:11:07.773912-06:00\nEnough Data content review: Yes — Contains clear Google Ads responsibilities, performance goals, technical tools and experience requirements specific to healthcare local lead generation, sufficient to guide honest resume tailoring.\nResume match: 66.85/100; minimum 60. All three required: overall >= 60/100, responsibilities >= 50%, required skills >= 50%. Detailed duties and qualifications support review. Locality conflicts between Egypt and the Philippines; residency, schedule availability, certification currency and specialist healthcare compliance remain unverified, not proven absent.\nLocation review: source applicantLocationRequirements=EG (Egypt). U.S./Utah eligibility is not established; keep ineligible/pending. Match score does not override location."
+      },
+      "changes": {
+        "Salary": "",
+        "Notes": "Schedule: This is a **full-time remote position** with standard hours from **Monday to Friday, 11 am to 7 pm Sydney, Australia Time**\nRemote eligibility: EG\nGecko incremental discovery 2026-10-25T19:11:07.773912-06:00\nEnough Data content review: Yes — Contains clear Google Ads responsibilities, performance goals, technical tools and experience requirements specific to healthcare local lead generation, sufficient to guide honest resume tailoring.\nResume match: 66.85/100; minimum 60. All three required: overall >= 60/100, responsibilities >= 50%, required skills >= 50%. Detailed duties and qualifications support review. Locality conflicts between Egypt and the Philippines; residency, schedule availability, certification currency and specialist healthcare compliance remain unverified, not proven absent.\nLocation review: source applicantLocationRequirements=EG (Egypt). U.S./Utah eligibility is not established; keep ineligible/pending. Match score does not override location.\n\nOriginal source text (no reliable annual pay extracted):\nEGP 62,500–87,500 per month"
+      },
+      "evidence": {
+        "reason": "salary text moved to Notes; amount left blank",
+        "original_salary": "EGP 62,500–87,500 per month",
+        "formatted_salary": ""
+      }
+    },
+    {
+      "id": "2996",
+      "before": {
+        "Salary": "USD 100000 - 121000 per yearly"
+      },
+      "changes": {
+        "Salary": "$100,000 - $121,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "USD 100000 - 121000 per yearly",
+        "original_salary": "USD 100000 - 121000 per yearly",
+        "formatted_salary": "$100,000 - $121,000"
+      }
+    },
+    {
+      "id": "2998",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$82,988 - $99,586 EUR"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "EUR 82,988 - EUR 99,586",
+        "original_salary": "",
+        "formatted_salary": "$82,988 - $99,586 EUR"
+      }
+    },
+    {
+      "id": "2999",
+      "before": {
+        "Salary": "USD 101000 - 148500 per yearly"
+      },
+      "changes": {
+        "Salary": "$101,000 - $148,500"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "USD 101000 - 148500 per yearly",
+        "original_salary": "USD 101000 - 148500 per yearly",
+        "formatted_salary": "$101,000 - $148,500"
+      }
+    },
+    {
+      "id": "3004",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$55,000 - $72,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "55,000 - 72,000 USD",
+        "original_salary": "",
+        "formatted_salary": "$55,000 - $72,000"
+      }
+    },
+    {
+      "id": "3007",
+      "before": {
+        "Salary": "$75K – $100K"
+      },
+      "changes": {
+        "Salary": "$75,000 - $100,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "$75K – $100K",
+        "original_salary": "$75K – $100K",
+        "formatted_salary": "$75,000 - $100,000"
+      }
+    },
+    {
+      "id": "3013",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$105,000 - $115,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$105,000–$115,000",
+        "original_salary": "",
+        "formatted_salary": "$105,000 - $115,000"
+      }
+    },
+    {
+      "id": "3014",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$90,000 - $110,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$90,000–$110,000 per year",
+        "original_salary": "",
+        "formatted_salary": "$90,000 - $110,000"
+      }
+    },
+    {
+      "id": "3017",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$69,000 - $81,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$69,000  —  $81,000 USD",
+        "original_salary": "",
+        "formatted_salary": "$69,000 - $81,000"
+      }
+    },
+    {
+      "id": "3018",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$69,000 - $81,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$69,000  —  $81,000 USD",
+        "original_salary": "",
+        "formatted_salary": "$69,000 - $81,000"
+      }
+    },
+    {
+      "id": "3019",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$69,000 - $81,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$69,000  —  $81,000 USD",
+        "original_salary": "",
+        "formatted_salary": "$69,000 - $81,000"
+      }
+    },
+    {
+      "id": "3021",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$55,000 - $72,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "55,000 - 72,000 USD",
+        "original_salary": "",
+        "formatted_salary": "$55,000 - $72,000"
+      }
+    },
+    {
+      "id": "3023",
+      "before": {
+        "Salary": "",
+        "Notes": "\nGecko incremental discovery 2026-10-25T20:32:47.001473-06:00\nEnough Data content review: Yes — The description provides pertinent campaign strategy, content development, performance analysis, team leadership, and experience requirements specific enough to guide honest resume tailoring.\nResume match: 79.89/100; minimum 60. All three required: overall >= 60/100, responsibilities >= 50%, required skills >= 50%. Complete duties and qualifications support review. Scientific education, sector experience and English fluency are unverified; missing evidence does not establish absence."
+      },
+      "changes": {
+        "Salary": "$100,000 - $130,000",
+        "Notes": "\nGecko incremental discovery 2026-10-25T20:32:47.001473-06:00\nEnough Data content review: Yes — The description provides pertinent campaign strategy, content development, performance analysis, team leadership, and experience requirements specific enough to guide honest resume tailoring.\nResume match: 79.89/100; minimum 60. All three required: overall >= 60/100, responsibilities >= 50%, required skills >= 50%. Complete duties and qualifications support review. Scientific education, sector experience and English fluency are unverified; missing evidence does not establish absence.\n\nSalary details: Provider estimate; not confirmed employer base pay."
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$100,000 - $130,000",
+        "original_salary": "",
+        "formatted_salary": "$100,000 - $130,000"
+      }
+    },
+    {
+      "id": "3024",
+      "before": {
+        "Salary": "",
+        "Notes": "\nGecko incremental discovery 2026-10-25T20:33:28.417461-06:00\nEnough Data content review: Yes — The description provides specific marketing campaign responsibilities and qualifications covering strategy, content development, campaign measurement, team leadership, and relevant industry experience, sufficient to guide honest resume tailoring.\nResume match: 79.89/100; minimum 60. All three required: overall >= 60/100, responsibilities >= 50%, required skills >= 50%. Complete duties and qualifications support assessment. Scientific education and biotech experience are unverified; both are preferred, not mandatory blockers."
+      },
+      "changes": {
+        "Salary": "$100,000 - $130,000",
+        "Notes": "\nGecko incremental discovery 2026-10-25T20:33:28.417461-06:00\nEnough Data content review: Yes — The description provides specific marketing campaign responsibilities and qualifications covering strategy, content development, campaign measurement, team leadership, and relevant industry experience, sufficient to guide honest resume tailoring.\nResume match: 79.89/100; minimum 60. All three required: overall >= 60/100, responsibilities >= 50%, required skills >= 50%. Complete duties and qualifications support assessment. Scientific education and biotech experience are unverified; both are preferred, not mandatory blockers.\n\nSalary details: Provider estimate; not confirmed employer base pay."
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$100,000 - $130,000",
+        "original_salary": "",
+        "formatted_salary": "$100,000 - $130,000"
+      }
+    },
+    {
+      "id": "3028",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$110,000 - $130,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$110-130k",
+        "original_salary": "",
+        "formatted_salary": "$110,000 - $130,000"
+      }
+    },
+    {
+      "id": "3032",
+      "before": {
+        "Salary": "$115K – $170K • Offers Equity"
+      },
+      "changes": {
+        "Salary": "$115,000 - $170,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "$115K – $170K",
+        "original_salary": "$115K – $170K • Offers Equity",
+        "formatted_salary": "$115,000 - $170,000"
+      }
+    },
+    {
+      "id": "3033",
+      "before": {
+        "Salary": "",
+        "Notes": "\nGecko incremental discovery 2026-10-25T20:45:34.705529-06:00\nEnough Data content review: Yes — The description provides clear, role-specific responsibilities and qualifications covering digital growth strategy, website ownership, organic discovery, conversion experimentation, measurement, and specialist leadership, sufficient to guide honest resume tailoring.\nResume match: 69.26/100; minimum 60. All three required: overall >= 60/100, responsibilities >= 50%, required skills >= 50%. Complete duties and qualifications. Strong marketing, analytics and AI evidence; agent-led growth and SaaS experience remain unverified."
+      },
+      "changes": {
+        "Salary": "$170,000 - $210,000",
+        "Notes": "\nGecko incremental discovery 2026-10-25T20:45:34.705529-06:00\nEnough Data content review: Yes — The description provides clear, role-specific responsibilities and qualifications covering digital growth strategy, website ownership, organic discovery, conversion experimentation, measurement, and specialist leadership, sufficient to guide honest resume tailoring.\nResume match: 69.26/100; minimum 60. All three required: overall >= 60/100, responsibilities >= 50%, required skills >= 50%. Complete duties and qualifications. Strong marketing, analytics and AI evidence; agent-led growth and SaaS experience remain unverified.\n\nSalary details: Provider estimate; not confirmed employer base pay."
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$170,000 - $210,000 per year",
+        "original_salary": "",
+        "formatted_salary": "$170,000 - $210,000"
+      }
+    },
+    {
+      "id": "3034",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$115,000 - $125,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$115,000–$125,000 per year",
+        "original_salary": "",
+        "formatted_salary": "$115,000 - $125,000"
+      }
+    },
+    {
+      "id": "3047",
+      "before": {
+        "Salary": "",
+        "Notes": "\nGecko incremental discovery 2026-10-25T21:10:27.984697-06:00\nEnough Data content review: Yes — The description provides substantive duties and qualifications specific to the stated SEO and content marketing role, including B2B content strategy, technical SEO, client reporting, and relevant tools, sufficient to guide honest resume tailoring.\nResume match: 69.31/100; minimum 60. All three required: overall >= 60/100, responsibilities >= 50%, required skills >= 50%. Complete duties and qualifications support review. Strong transferable marketing, technical SEO and content evidence; dedicated SEO tenure, link building and several tools remain unverified."
+      },
+      "changes": {
+        "Salary": "$83,200 - $104,000",
+        "Notes": "\nGecko incremental discovery 2026-10-25T21:10:27.984697-06:00\nEnough Data content review: Yes — The description provides substantive duties and qualifications specific to the stated SEO and content marketing role, including B2B content strategy, technical SEO, client reporting, and relevant tools, sufficient to guide honest resume tailoring.\nResume match: 69.31/100; minimum 60. All three required: overall >= 60/100, responsibilities >= 50%, required skills >= 50%. Complete duties and qualifications support review. Strong transferable marketing, technical SEO and content evidence; dedicated SEO tenure, link building and several tools remain unverified.\n\nSalary details: Estimated annual equivalent of $40 - 50/ hour using 40 hours/week × 52 weeks/year. This is an annualized rate, not guaranteed yearly earnings."
+      },
+      "evidence": {
+        "reason": "annualized",
+        "source": "Job Description",
+        "evidence": "$40 - 50/ hour",
+        "original_salary": "",
+        "formatted_salary": "$83,200 - $104,000"
+      }
+    },
+    {
+      "id": "3048",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$117,200 - $157,500"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$117,200 to $157,500",
+        "original_salary": "",
+        "formatted_salary": "$117,200 - $157,500"
+      }
+    },
+    {
+      "id": "3050",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$120,000 - $150,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$120,000–$150,000",
+        "original_salary": "",
+        "formatted_salary": "$120,000 - $150,000"
+      }
+    },
+    {
+      "id": "3053",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$80,000 - $90,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$80,000–$90,000",
+        "original_salary": "",
+        "formatted_salary": "$80,000 - $90,000"
+      }
+    },
+    {
+      "id": "3054",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$90,000 - $125,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$90,000–$125,000 USD",
+        "original_salary": "",
+        "formatted_salary": "$90,000 - $125,000"
+      }
+    },
+    {
+      "id": "3056",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$22,000 - $28,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$22,000 to $28,000",
+        "original_salary": "",
+        "formatted_salary": "$22,000 - $28,000"
+      }
+    }
+  ]
+}

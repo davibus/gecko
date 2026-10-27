@@ -1,0 +1,22 @@
+[
+  {
+    "id": "fe8481e4-3401-4050-8730-7174c49cf203",
+    "title": "Senior Marketing Manager, Lifecycle Marketing - Messaging Channels",
+    "status": "excluded before detail retrieval",
+    "reason": "EMEA-only source location"
+  },
+  {
+    "id": "bb05278b-9554-43eb-a67f-1840a05649de",
+    "title": "Senior Marketing Manager",
+    "status": "free employer API detail recovered",
+    "keys": [
+      "job"
+    ]
+  },
+  {
+    "id": "380be4ef-7a24-4fc9-b06d-acdec58d51bb",
+    "title": "Principal, Marketing Analytics",
+    "status": "excluded before detail retrieval",
+    "reason": "EMEA-only source location"
+  }
+]

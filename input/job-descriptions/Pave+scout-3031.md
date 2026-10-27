@@ -1,0 +1,78 @@
+# Marketing Communications Lead
+
+- **Company:** Pave
+- **Job Number:** scout-3031
+- **Scout ID:** 3031
+- **URL:** https://job-boards.greenhouse.io/paveakatroveinformationtechnologies/jobs/4742002005
+- **Source:** greenhouse
+- **Salary:** 
+
+## Job description (tracker description/listing field)
+
+<div class="content-intro"><h3><span style="font-weight: 400; color: #4065ff;"><strong>Who We Are</strong></span></h3>
+<p><span style="font-size: 12pt;">At Pave, we're building the industry’s leading compensation platform, combining the world's largest real-time compensation dataset with deep expertise in AI and machine learning. Our platform is perfecting the art and science of pay to give 9,000+ companies unparalleled confidence in every compensation decision.</span></p>
+<p><span style="font-size: 12pt;">Top tier companies like OpenAI, McDonald’s, Instacart, Atlassian, Affirm, Ericsson, Synopsys, Stripe, Doordash, Fanatics, Databricks, and Waymo use Pave, transforming every pay decision into a competitive advantage. $190+ billion in total compensation spend is managed in our workflows, and 80% of <a href="https://www.forbes.com/lists/ai50/">Forbes AI 50</a> use Pave to benchmark compensation.</span></p>
+<p><span style="font-size: 12pt;">The future of pay is real-time &amp; predictive, and we’re making it happen right now. We’ve raised $175M in funding from leading investors like Andreessen Horowitz (a16z), Index Ventures, Y Combinator, Insight Partners, Atomico, Venture Partners, and Craft Ventures.</span></p></div><h3><span style="color: rgb(64, 101, 255); font-size: 14pt;">The Marketing Team @ Pave</span></h3>
+<p>Marketing at Pave builds the brand energy and demand that fuel the business. We take our real-time compensation data and turn it into campaigns, stories, and market-moving moments that earn attention, create pipeline, and make Pave the first name people think of in compensation.</p>
+<p>We work shoulder to shoulder across the business, but primarily with revenue and product teams, to ensure we are supporting what’s built and what’s sold.&nbsp; We sharpen positioning, launch products with impact, and give sellers content that opens doors and helps close deals. We're accountable for results: qualified leads, revenue influence, and a brand people seek out.</p>
+<p>We move fast, test boldly, and let the data tell us what's working so we can double down. We celebrate every win together, and we believe great marketing should be as fun to make as it is to read.</p>
+<h3><span style="color: rgb(64, 101, 255); font-size: 14pt;"><strong>What You'll Do</strong></span></h3>
+<ul>
+<li><strong>Leadership:</strong> You will be a critical member of the marketing team and a strong, trusted voice across the business. You will have a track record of influencing and activating work streams within marketing and beyond</li>
+<li><strong>Marketing communications:</strong> You will own Pave's external communications strategy and operating rhythm across our critical channels. You will be the point of contact for reactive communications, moving quickly on market moments while managing reputational risk. You will also prepare executives for media and speaking opportunities</li>
+<li><strong>Brand marketing:</strong> You will work with internal and external creative teams to make our brand world-class, unique, differentiated, and beloved. You will establish Pave as a known, trusted, and loved brand among all our stakeholders, including our internal teams, customers, prospects, and partners. You will ensure a consistent voice, a steady cadence, and measurable impact</li>
+<li><strong>Public relations:</strong> You will hire and engage the right PR resources to grow our earned media position. You will use the valuable data we have to activate stories that directly or indirectly strengthen Pave's position in the marketplace. You will track our reach and take steps to grow it. You will also mobilize internal resources to support these narratives</li>
+<li><strong>Thought leadership:</strong> Pave has access to critical data on one of the most important topics in the world: compensation. You will think creatively about how we shape our own points of view and bring them to market through internal, external, analyst, and media partners</li>
+<li><strong>Website:</strong> You will own the marketing website, including its roadmap and evolution. You will monitor its performance and take the steps needed to ensure it serves our customers and prospects</li>
+<li><strong>Customer stories:</strong> Shining a light on how customers get their jobs done with Pave is a critical part of our GTM. You will find and tell the stories that set Pave apart, from customer impact to product innovation to our point of view on the future of compensation. You will partner with Sales, Product, Customer Success, and Marketing to turn them into stronger narratives</li>
+<li><strong>Development:</strong> You will lead and develop members of the marketing team. You will determine the right mix of in-house talent, agencies, and freelancers to scale high-quality output. Your thoughtful approach will help activate the talents and growth of everyone on the team</li>
+<li><strong>Measurement:</strong> You will define and track communications metrics, including share of voice and brand awareness. You will report on results and ROI to marketing leadership, and you will manage agency partnerships and the communications budget.</li>
+<li><strong>Budget management:</strong> You will own and manage a budget so that we are responsible with our spend and successful at creating impact</li>
+</ul>
+<h3><span style="color: rgb(64, 101, 255); font-size: 14pt;"><strong>What You'll Bring</strong></span></h3>
+<ul>
+<li>7+ years overall experience in Marketing, Demand Growth and or within a similar field</li>
+<li>Proven experience in marketing communications, PR, or brand marketing, ideally at a B2B technology company, with a track record of owning external communications end to end. Please review the section titled “What you’ll bring” to understand the type of person who we are looking for&nbsp;</li>
+<li>Experience leading and developing a team, and managing agencies and freelancers across multiple projects at once</li>
+<li>Strong storytelling and messaging skills, with experience developing content and thought leadership across the buyer journey and overseeing content development and approval processes</li>
+<li>Experience with media relations, executive communications, and reputation or crisis communications</li>
+<li>Fluency in marketing channel metrics and quantitative and qualitative research, with the ability to translate communications results into business value</li>
+<li>Excellent project management, written and verbal communication, resourcefulness, and problem-solving skills, with a bias for action and accountability</li>
+<li>Bachelor’s degree in Marketing, Communications, Journalism, or a related field preferred</li>
+<li>Some of the intangibles that we’ll be looking for include a strong curiosity, a bias for action, an ability to solve problems, and a passion for working with the entire Pave team</li>
+</ul>
+<h3><span style="color: rgb(64, 101, 255); font-size: 14pt;"><strong>Compensation, It's What We Do.</strong></span></h3>
+<p><span style="font-size: 12pt;">At Pave, we believe compensation should be as thoughtful as the people we hire. This role is structured as a B2B contract engagement — and your total rewards package includes meaningful equity, flexible PTO, and region-specific benefits designed around your life, not just your role. Your level and compensation are determined by your experience and how you show up throughout the interview process. We're always happy to walk you through how we think about leveling — just ask.</span></p>
+<p><span style="font-size: 12pt;">Targeted cash compensation for this role:&nbsp;<br>$160,000-$170,000 Base + Equity</span></p>
+<h3><span style="font-size: 14pt;"><strong><span style="color: rgb(64, 101, 255);">Benefits @ Pave</span></strong></span></h3>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><span style="font-size: 12pt;">At Pave, growth isn't a perk — it's the point. As you develop, your role expands, your responsibilities deepen, and your compensation reflects the impact you're making.</span></p>
+<h3><span style="color: rgb(64, 101, 255); font-size: 14pt;"><strong>What we offer</strong></span></h3>
+<ul class="[li_&amp;]:mb-0 [li_&amp;]:mt-1 [li_&amp;]:gap-1 [&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc flex flex-col gap-1 pl-8 mb-3">
+<li class="whitespace-normal break-words pl-2" style="font-size: 12pt;"><span style="font-size: 12pt;"><strong>Your Health, Fully Covered:</strong> Comprehensive medical, dental, and vision coverage for you and your family, with a range of options designed to meet you where you are.</span></li>
+<li class="whitespace-normal break-words pl-2" style="font-size: 12pt;"><span style="font-size: 12pt;"><strong>Time That's Actually Yours:</strong> Flexible PTO and the freedom to work from anywhere in the world for up to a month — because life doesn't pause, and neither should you.</span></li>
+<li class="whitespace-normal break-words pl-2" style="font-size: 12pt;"><span style="font-size: 12pt;"><strong>Fuel for the Work:</strong> Lunch and dinner stipends plus fully stocked kitchens, so you can stay energized without thinking twice about it.</span></li>
+<li class="whitespace-normal break-words pl-2" style="font-size: 12pt;"><span style="font-size: 12pt;"><strong>Room to Keep Growing:</strong> A quarterly education stipend to invest in the skills and knowledge that matter most to you.</span></li>
+<li class="whitespace-normal break-words pl-2" style="font-size: 12pt;"><span style="font-size: 12pt;"><strong>Support When It Matters Most:</strong> Robust parental leave so you can be fully present for the moments that count.</span></li>
+<li class="whitespace-normal break-words pl-2" style="font-size: 12pt;"><span style="font-size: 12pt;"><strong>Getting Here, Made Easier:</strong> A commuter stipend to support the in-person collaboration that makes great work happen.</span></li>
+</ul><div class="content-conclusion"><h3><span style="color: rgb(64, 101, 255);"><strong>Life @ Pave&nbsp;</strong></span></h3>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><span style="font-size: 12pt;">Founded in 2019 with a clear purpose and a team that has never wavered from it, Pave has grown into a global force in compensation management — giving thousands of companies the tools to take <strong>control, build confidence, and earn credibility</strong> in every pay decision they make. And we're just getting started. Headquartered in San Francisco's Financial District, with regional hubs in New York City's Flatiron District, Salt Lake City, Kraków (Poland), and the United Kingdom — wherever you're based, you'll find the same thing: people who genuinely care about the work, each other, and the customers that rely on Pave.</span></p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><span style="font-size: 12pt;">We run a hybrid culture that brings teams together in person 4 days a week — and every Friday, the whole company gathers for our Team Sync: breakfast, new hire welcomes, product updates, fireside chats, and yes, the occasional Kahoot. It's one of the things people notice when they join us — that we truly enjoy spending time together.</span></p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><span style="font-size: 12pt;">Our culture is shaped by five values we live every day:</span></p>
+<ul class="[li_&amp;]:mb-0 [li_&amp;]:mt-1 [li_&amp;]:gap-1 [&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc flex flex-col gap-1 pl-8 mb-3">
+<li class="whitespace-normal break-words pl-2" style="font-size: 12pt;"><span style="font-size: 12pt;"><span style="color: rgb(64, 101, 255);"><strong>Be Intellectually Honest</strong></span> — Truth over comfort. We face reality clearly and speak directly, even when it's hard.</span></li>
+<li class="whitespace-normal break-words pl-2" style="font-size: 12pt;"><span style="font-size: 12pt;"><span style="color: rgb(64, 101, 255);"><strong>Play to Win</strong></span> — We're not here to participate. We're here to be the #1 compensation platform in the world, and we act like it.</span></li>
+<li class="whitespace-normal break-words pl-2" style="font-size: 12pt;"><span style="font-size: 12pt;"><span style="color: rgb(64, 101, 255);"><strong>Uphold the Pave Platinum Standard</strong></span> — We hold ourselves to the highest bar — for our customers, our data, and each other.</span></li>
+<li class="whitespace-normal break-words pl-2" style="font-size: 12pt;"><span style="font-size: 12pt;"><span style="color: rgb(64, 101, 255);"><strong>One Team</strong></span> — We win and lose together. Titles don't drive decisions here — shared goals do.</span></li>
+<li class="whitespace-normal break-words pl-2" style="font-size: 12pt;"><span style="font-size: 12pt;"><span style="color: rgb(64, 101, 255);"><strong>Hug of Jawn</strong></span> — Hard to define, impossible to miss. Ask your recruiter.</span></li>
+</ul>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><span style="font-size: 12pt;"><strong>Our Vision:</strong> Unlock a labor market built on trust.</span></p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><span style="font-size: 12pt;"><strong>Our Mission:</strong> Build confidence in every compensation decision.</span></p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><span style="font-size: 12pt;">We build software that transforms how companies pay their people — and we believe the team behind that software deserves the same thoughtfulness. If you're ready to help shape the future of compensation alongside people who are smart, humble, and genuinely motivated by the problem we're solving, we'd love to meet you.&nbsp;<br></span></p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><span style="font-size: 12pt;"><em>Still deliberating? Just apply! We're always excited to meet people who are eager to contribute.<br><br><strong>Pave uses automated tools, including AI-based fraud detection, to verify applicant identity and protect the integrity of our hiring process.</strong><br></em></span></p></div>
+
+## Structured job information
+
+Target position: Marketing Communications Lead
+Company: Pave
+Location: Salt Lake City, UT
+Work Arrangement: on-site

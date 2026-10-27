@@ -1,0 +1,54 @@
+{
+  "id": 3050,
+  "company": "Jobgether",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1wOoq03DPuNanS-3wBa1MLrz_QRYuDa32/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Growth-Marketing-Manager+00490.docx",
+  "started_at": "2026-10-26T16:14:31.120633+00:00",
+  "completed_at": "2026-10-26T16:17:03.710534+00:00",
+  "elapsed_seconds": 152.589911,
+  "generation_seconds": 33.40392030001385,
+  "delivery_seconds": 6.015691500011599,
+  "tracker_seconds": 41.59603450002032,
+  "readback": {
+    "Scout ID": 3050,
+    "Company": "Jobgether",
+    "Job Title": "Growth Marketing Manager",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1wOoq03DPuNanS-3wBa1MLrz_QRYuDa32/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1301",
+  "hyperlink_target": "https://docs.google.com/document/d/1wOoq03DPuNanS-3wBa1MLrz_QRYuDa32/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 152.59,
+    "active_seconds": 95.9811,
+    "review_wait_seconds": 56.6089,
+    "phases_seconds": {
+      "source_loading": 0.0523,
+      "tailoring": 1.1229,
+      "document_creation": 3.237,
+      "word_pdf_validation": 8.5077,
+      "fitting_retries": 0.4226,
+      "factual_review": 0.0,
+      "review_wait": 56.6089,
+      "tracker_sync": 41.5951,
+      "drive_delivery": 6.0095
+    },
+    "counts": {
+      "source_loading": 87,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

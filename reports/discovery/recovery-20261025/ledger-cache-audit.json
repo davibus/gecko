@@ -1,0 +1,9 @@
+{
+  "outcomes": {
+    "no unique full posting": 237,
+    "query provenance not recorded; await free feed evidence": 28,
+    "already known": 52,
+    "incomplete/expired/access challenge": 59
+  },
+  "recoverable_records": 70
+}

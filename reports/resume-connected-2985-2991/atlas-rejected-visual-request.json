@@ -1,0 +1,25 @@
+{
+  "request_id": "4e3ef3b8efe24a5891b4f87156846c84",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Atlas-HXM+Senior-Director,-Marketing-Operations+00445.docx",
+  "pdf": "C:\\gecko_main\\scratch\\Atlas-HXM+scout-2987\\word-export.pdf",
+  "sha256": "ef25d85ee293dfd97502b4932b7a6c50a0a9b57f817b753e0453d08474f56ab3",
+  "pdf_sha256": "55731b30f398a3a1fee6034f55021f639121b2bcbc923f383a43097bcd666125",
+  "images": [
+    "C:\\gecko_main\\scratch\\Atlas-HXM+scout-2987\\visual-4e3ef3b8efe24a5891b4f87156846c84-page-1.png",
+    "C:\\gecko_main\\scratch\\Atlas-HXM+scout-2987\\visual-4e3ef3b8efe24a5891b4f87156846c84-page-2.png"
+  ],
+  "decision_path": "C:\\gecko_main\\scratch\\Atlas-HXM+scout-2987\\visual-review-4e3ef3b8efe24a5891b4f87156846c84.json",
+  "required_checks": [
+    "Both pages readable; no clipping or overlap",
+    "Employment headings and dates align",
+    "Complete sections and appropriate page-two density",
+    "Established PDF layout preserved"
+  ],
+  "decision_example": {
+    "request_id": "4e3ef3b8efe24a5891b4f87156846c84",
+    "sha256": "ef25d85ee293dfd97502b4932b7a6c50a0a9b57f817b753e0453d08474f56ab3",
+    "pdf_sha256": "55731b30f398a3a1fee6034f55021f639121b2bcbc923f383a43097bcd666125",
+    "approved": true,
+    "reason": "Describe checks performed"
+  }
+}

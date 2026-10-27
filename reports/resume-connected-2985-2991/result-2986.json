@@ -1,0 +1,57 @@
+{
+  "id": 2986,
+  "company": "Allure Security Talent",
+  "status": "complete",
+  "elapsed_seconds": 343.975256,
+  "timings": {
+    "wall_seconds": 231.6154,
+    "active_seconds": 166.9985,
+    "review_wait_seconds": 64.6169,
+    "phases_seconds": {
+      "source_loading": 0.2382,
+      "tailoring": 79.8797,
+      "document_creation": 7.0027,
+      "word_pdf_validation": 24.2069,
+      "fitting_retries": 2.4169,
+      "factual_review": 0.0,
+      "review_wait": 64.6169,
+      "tracker_sync": 0.0,
+      "drive_delivery": 15.2231
+    },
+    "counts": {
+      "source_loading": 102,
+      "tailoring": 2,
+      "document_creation": 4,
+      "word_pdf_validation": 4,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 0,
+      "master_parses": 1,
+      "fitting_attempts": 4,
+      "native_attempts": 4,
+      "restored_trials": 2,
+      "drive_delivery": 1
+    }
+  },
+  "prior_completion_attempt": {
+    "status": "blocked",
+    "reason": "Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)",
+    "elapsed_seconds": 231.61260610001045
+  },
+  "link": "https://docs.google.com/document/d/1odB9doLHjeYp4chsAzt3n2Zhy2YAp_l7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Allure-Security-Talent+Marketing-Manager,-Campaigns+00444.docx",
+  "started_at": "2026-10-26T13:40:41.412457+00:00",
+  "completed_at": "2026-10-26T13:46:25.387699+00:00",
+  "retry_tracker_seconds": 34.47689999997965,
+  "hyperlink_range": "'Job List'!Z1239",
+  "hyperlink_target": "https://docs.google.com/document/d/1odB9doLHjeYp4chsAzt3n2Zhy2YAp_l7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "readback": {
+    "Scout ID": 2986,
+    "Company": "Allure Security Talent",
+    "Job Title": "Marketing Manager, Campaigns",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1odB9doLHjeYp4chsAzt3n2Zhy2YAp_l7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  }
+}

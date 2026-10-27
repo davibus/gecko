@@ -1,0 +1,834 @@
+[
+  {
+    "location": "remote",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid media",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "utah",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid media",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "salt lake city",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid media",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "lehi",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid media",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "draper",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid media",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "provo",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid media",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "orem",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid media",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "midvale",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid media",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "remote",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid search",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "utah",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid search",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "salt lake city",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid search",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "lehi",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid search",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "draper",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid search",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "provo",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid search",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "orem",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid search",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "midvale",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Paid search",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "remote",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "PPC",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "utah",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "PPC",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "salt lake city",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "PPC",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "lehi",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "PPC",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "draper",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "PPC",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "provo",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "PPC",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "orem",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "PPC",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "midvale",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "PPC",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "remote",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "SEM",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "utah",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "SEM",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "salt lake city",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "SEM",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "lehi",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "SEM",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "draper",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "SEM",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "provo",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "SEM",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "orem",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "SEM",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "midvale",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "SEM",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "remote",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Digital marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "utah",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Digital marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "salt lake city",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Digital marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "lehi",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Digital marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "draper",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Digital marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "provo",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Digital marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "orem",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Digital marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "midvale",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Digital marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "remote",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Performance marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "utah",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Performance marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "salt lake city",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Performance marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "lehi",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Performance marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "draper",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Performance marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "provo",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Performance marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "orem",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Performance marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "midvale",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Performance marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "remote",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Growth marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "utah",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Growth marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "salt lake city",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Growth marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "lehi",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Growth marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "draper",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Growth marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "provo",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Growth marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "orem",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Growth marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "midvale",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Growth marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "remote",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing analytics",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "utah",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing analytics",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "salt lake city",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing analytics",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "lehi",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing analytics",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "draper",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing analytics",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "provo",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing analytics",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "orem",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing analytics",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "midvale",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing analytics",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "remote",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "E-commerce marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "utah",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "E-commerce marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "salt lake city",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "E-commerce marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "lehi",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "E-commerce marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "draper",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "E-commerce marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "provo",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "E-commerce marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "orem",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "E-commerce marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "midvale",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "E-commerce marketing",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "remote",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Demand generation",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "utah",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Demand generation",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "salt lake city",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Demand generation",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "lehi",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Demand generation",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "draper",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Demand generation",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "provo",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Demand generation",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "orem",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Demand generation",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "midvale",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Demand generation",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "remote",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing operations",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "utah",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing operations",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "salt lake city",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing operations",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "lehi",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing operations",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "draper",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing operations",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "provo",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing operations",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "orem",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing operations",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "midvale",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing operations",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "remote",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing technology",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "utah",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing technology",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "salt lake city",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing technology",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "lehi",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing technology",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "draper",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing technology",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "provo",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing technology",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "orem",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing technology",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "midvale",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Marketing technology",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "remote",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Google Ads",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "utah",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Google Ads",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "salt lake city",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Google Ads",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "lehi",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Google Ads",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "draper",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Google Ads",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "provo",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Google Ads",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "orem",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Google Ads",
+    "results": 1,
+    "page_count": 1
+  },
+  {
+    "location": "midvale",
+    "category": "Marketing",
+    "page": 0,
+    "role_filter": "Google Ads",
+    "results": 1,
+    "page_count": 1
+  }
+]

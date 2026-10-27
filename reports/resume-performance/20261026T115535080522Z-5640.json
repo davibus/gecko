@@ -1,0 +1,58 @@
+{
+  "started_at": "2026-10-26T11:55:35.053145+00:00",
+  "totals": {
+    "wall_seconds": 0.0269,
+    "active_seconds": 0.0269,
+    "review_wait_seconds": 0.0,
+    "phases_seconds": {
+      "source_loading": 0.0,
+      "tailoring": 0.0,
+      "document_creation": 0.0,
+      "word_pdf_validation": 0.0,
+      "fitting_retries": 0.0,
+      "factual_review": 0.0,
+      "review_wait": 0.0,
+      "tracker_sync": 0.0182
+    },
+    "counts": {
+      "source_loading": 0,
+      "tailoring": 0,
+      "document_creation": 0,
+      "word_pdf_validation": 0,
+      "fitting_retries": 0,
+      "factual_review": 0,
+      "review_wait": 0,
+      "tracker_sync": 2
+    }
+  },
+  "resumes": [
+    {
+      "id": 901,
+      "company": "Manual Company",
+      "outcome": "completed",
+      "wall_seconds": 0.0212,
+      "active_seconds": 0.0212,
+      "review_wait_seconds": 0.0,
+      "phases_seconds": {
+        "source_loading": 0.0,
+        "tailoring": 0.0,
+        "document_creation": 0.0,
+        "word_pdf_validation": 0.0,
+        "fitting_retries": 0.0,
+        "factual_review": 0.0,
+        "review_wait": 0.0,
+        "tracker_sync": 0.0182
+      },
+      "counts": {
+        "source_loading": 0,
+        "tailoring": 0,
+        "document_creation": 0,
+        "word_pdf_validation": 0,
+        "fitting_retries": 0,
+        "factual_review": 0,
+        "review_wait": 0,
+        "tracker_sync": 2
+      }
+    }
+  ]
+}

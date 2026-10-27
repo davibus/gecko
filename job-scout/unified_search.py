@@ -52,6 +52,14 @@ def _sheet_report_fields(fields):
 
 def plan(args, preferences):
     settings = config()
+    if not getattr(args, 'broad_discovery', False):
+        from incremental_discovery import FREE_SOURCES
+        print(json.dumps({'mode': 'incremental-plan', 'free_identity_sources': FREE_SOURCES,
+                          'roles': preferences['target_roles'], 'broad_firecrawl_searches': False,
+                          'paid_retrieval': 'only unseen eligible incomplete exact postings',
+                          'network_requests': 0, 'database_writes': 0, 'spreadsheet_writes': 0,
+                          'resumes_generated': 0, 'applications_submitted': 0}, indent=2))
+        return 0
     print(json.dumps({'mode': 'unified-search-plan', 'internal_sources': 'all configured providers',
                      'roles': preferences['target_roles'], 'firecrawl_enabled': settings['enabled'] and settings['daily_enabled'],
                      'firecrawl_queries': build_queries(preferences), 'budget': settings,
@@ -118,6 +126,33 @@ def run(args, store, preferences):
         started = datetime.now(ZONE)
         report = {'run_id': 'search:' + started.strftime('%Y%m%dT%H%M%S') + '-' + uuid4().hex[:8],
                   'day': started.date().isoformat(), 'warnings': [], 'resumes_generated': 0, 'applications_submitted': 0}
+        report_path = REPORTS / (report['run_id'].replace(':', '-') + '.json')
+        report.update(status='running', new_job_ids=[], new_unique_jobs=0, published_job_ids=[])
+        _save(report_path, report)
+        if getattr(args, 'publish_as_found', False):
+            import os
+            import subprocess
+            log = REPORTS / (report['run_id'].replace(':', '-') + '-status.log')
+            with log.open('a', encoding='utf-8') as output:
+                subprocess.Popen([sys.executable, str(ROOT / 'scripts/watch_gecko_search.py'),
+                    '--report', str(report_path), '--worker-pid', str(os.getpid())],
+                    stdout=output, stderr=output, cwd=ROOT,
+                    creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
+        def publish_job(job_id):
+            if job_id not in report['new_job_ids']:
+                report['new_job_ids'].append(job_id)
+            report['new_unique_jobs'] = len(report['new_job_ids'])
+            pending = _pending()
+            pending['job_ids'] = list(dict.fromkeys(pending['job_ids'] + [job_id]))
+            _save(PENDING, pending)
+            _save(report_path, report)
+            try:
+                deliver(store)
+                report['published_job_ids'].append(job_id)
+                print('Published new matching job ' + str(job_id) + ' (' + str(len(report['published_job_ids'])) + '/20 target)', flush=True)
+            except Exception as exc:
+                report['warnings'].append('Live publication pending for ' + str(job_id) + ': ' + safe_error(exc))
+            _save(report_path, report)
         preexisting_ids = {job.id for job in store.all()}
         # Adopt the primary tracker before deduplication; conflicts must stop.
         try:
@@ -127,7 +162,11 @@ def run(args, store, preferences):
         ordinary = argparse.Namespace(**vars(args))
         ordinary.unified = False; ordinary.source = 'all'; ordinary.defer_tracker_sync = True
         ordinary.safe_discovery = True
+        ordinary.broad_discovery = True
+        ordinary._broad_internal = True
         ordinary.adopt_primary_ids = True
+        if getattr(args, 'publish_as_found', False):
+            ordinary.on_discovery_job = publish_job
         internal_code = scout.search(ordinary, store, preferences)
         report['gecko'] = ordinary.run_result
         ids = list(dict.fromkeys(ordinary.run_result['new_job_ids'] + ordinary.run_result['existing_job_ids']))
@@ -150,7 +189,8 @@ def run(args, store, preferences):
                     remote = GoogleTracker(config=Config.from_environment()); remote.scout()
                 except Exception:
                     remote = None
-                report['firecrawl'] = run_discovery(store, preferences, tracker=remote, publish=False)
+                options = {'on_saved': publish_job} if getattr(args, 'publish_as_found', False) else {}
+                report['firecrawl'] = run_discovery(store, preferences, tracker=remote, publish=False, **options)
                 ids += report['firecrawl'].get('new_job_ids', [])
         except Exception as exc:
             # Firecrawl access/billing/availability cannot cancel internal jobs.

@@ -1,0 +1,41 @@
+{
+  "id": 2953,
+  "company": "PlanetArt",
+  "title": "Sr. Paid Search Marketing Manager (PPC)",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+PlanetArt+Sr.-Paid-Search-Marketing-Manager-(PPC)+00414.docx",
+  "listing": "C:\\gecko_main\\input\\job-descriptions\\PlanetArt+83D74FBC3F.md",
+  "images": [
+    "C:\\gecko_main\\scratch\\PlanetArt+83D74FBC3F\\final-page-1.png",
+    "C:\\gecko_main\\scratch\\PlanetArt+83D74FBC3F\\final-page-2.png"
+  ],
+  "sha256": "3d67051825c917463886ba2b60c2977710c395ba967a35e7240e45c9c2d6852b",
+  "qa": {
+    "status": "pass",
+    "word_pages": 2,
+    "pdf_pages": 2,
+    "issues": [],
+    "remaining_weaknesses": [
+      "provide consumers with unmatched tools and content and an unparalleled end-to-end customer",
+      "experience that result in high-quality, meaningful finished products and memorable celebrations of life events.",
+      "support the company’s Marketing Department.",
+      "identify trends and insights in order to achieve maximum ROI.",
+      "Optimize landing pages and the sales funnel.",
+      "Strong analytical skills.",
+      "Bachelor’s Degree."
+    ],
+    "native_validation": "C:\\gecko_main\\scratch\\PlanetArt+83D74FBC3F\\validation-status.json",
+    "word_output": "Word validation mode: Direct interactive session\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\gecko_main\\scratch\\PlanetArt+83D74FBC3F\\validation-status.json",
+    "page_two_bottom_gap_pt": 13.54,
+    "page_two_text_boundary_pt": 757.45,
+    "density_issue": "",
+    "content_exhaustion_reason": ""
+  },
+  "readback": {
+    "Scout ID": 2953,
+    "Company": "PlanetArt",
+    "Job Title": "Sr. Paid Search Marketing Manager (PPC)",
+    "Resume Created": "X",
+    "Resume Link": "file:///C:/gecko_main/output/resumes/Dave-Call%2BPlanetArt%2BSr.-Paid-Search-Marketing-Manager-%28PPC%29%2B00414.docx",
+    "Resume Created Date": "2026-10-25"
+  }
+}

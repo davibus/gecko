@@ -1,0 +1,54 @@
+{
+  "id": 3054,
+  "company": "Jobgether",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1gES-0VsK2KePnUMOqccaRHm0iHxLvGFu/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Demand-Generation-Manager+00494.docx",
+  "started_at": "2026-10-26T16:24:52.951490+00:00",
+  "completed_at": "2026-10-26T16:30:06.250992+00:00",
+  "elapsed_seconds": 313.299528,
+  "generation_seconds": 26.12721569999121,
+  "delivery_seconds": 7.638893700001063,
+  "tracker_seconds": 19.647657599998638,
+  "readback": {
+    "Scout ID": 3054,
+    "Company": "Jobgether",
+    "Job Title": "Demand Generation Manager",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1gES-0VsK2KePnUMOqccaRHm0iHxLvGFu/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1305",
+  "hyperlink_target": "https://docs.google.com/document/d/1gES-0VsK2KePnUMOqccaRHm0iHxLvGFu/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 313.2996,
+    "active_seconds": 58.947,
+    "review_wait_seconds": 254.3526,
+    "phases_seconds": {
+      "source_loading": 0.0447,
+      "tailoring": 1.1687,
+      "document_creation": 2.4546,
+      "word_pdf_validation": 7.7461,
+      "fitting_retries": 0.0657,
+      "factual_review": 0.0,
+      "review_wait": 254.3526,
+      "tracker_sync": 19.6467,
+      "drive_delivery": 7.6342
+    },
+    "counts": {
+      "source_loading": 66,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

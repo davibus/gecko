@@ -1,0 +1,35 @@
+{
+  "path": "C:\\gecko_main\\output\\resumes\\Dave-Call+Careerswift+Performance-Marketing-Specialist+00458.docx",
+  "metadata": {
+    "id": "1JAS-Xpftc5U5xcx8IQ0a8sowjAi6fB3g",
+    "title": "Dave-Call+Careerswift+Performance-Marketing-Specialist+00458.docx",
+    "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "size": "40401",
+    "url": "https://docs.google.com/document/d/1JAS-Xpftc5U5xcx8IQ0a8sowjAi6fB3g/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+    "file_or_folder": "file",
+    "created_time": null,
+    "modified_time": null,
+    "parent_ids": [
+      "1Noy8XUqlL5ufqA4aU9jZWdwpMYeCVmol"
+    ],
+    "drive_id": null,
+    "current_user_can_share": null,
+    "has_augmented_permissions": null,
+    "shared": false,
+    "permissions": [
+      {
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "mdavidcall@gmail.com",
+        "domain": null,
+        "displayName": "Dave Call",
+        "allowFileDiscovery": null
+      }
+    ],
+    "source_visibility_status": "permission_metadata_available"
+  },
+  "download": {
+    "sha256": "351e3bfd57e26125e4fe525c6d1ea5484b1cf2e0009beca367f77545328a609f",
+    "size": 40401
+  }
+}

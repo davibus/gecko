@@ -9,6 +9,10 @@ import os
 import re
 import subprocess
 import sys
+import math
+import statistics
+from copy import deepcopy
+from uuid import uuid4
 from urllib.parse import urlsplit
 from collections import Counter
 from pathlib import Path
@@ -26,6 +30,7 @@ import resume_summary
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'job-scout'))
 import resume_naming
 from resume_source import read_master_text
+import resume_performance as performance
 
 ROOT = Path(__file__).resolve().parents[1]
 MASTER = ROOT / "input" / "master-resume" / "master-resume-v4.docx"
@@ -198,6 +203,39 @@ def select_tools_platforms(listing: str, source: str) -> list[str]:
     return _select_catalog_entries(listing, source, TOOLS_PLATFORMS_CATALOG, maximum=16)
 
 
+def _validate_reviewed_tools(tools: list[str], source: str) -> None:
+    catalog = dict(TOOLS_PLATFORMS_CATALOG)
+    if not isinstance(tools, list) or not 8 <= len(tools) <= 16 or len(set(tools)) != len(tools):
+        raise ValueError('Select 8 to 16 distinct, canonical, master-supported tools.')
+    for tool in tools:
+        if tool not in catalog or not any(contains_term(source, marker) for marker in catalog[tool]):
+            raise ValueError(f'Unsupported or noncanonical reviewed tool: {tool}')
+
+
+def set_reviewed_tools(plan: dict, tools: list[str], rationale: str) -> None:
+    """Record a source-checked tool selection when the posting names capabilities, not products."""
+    if not rationale.strip():
+        raise ValueError('Reviewed tools require a relevance and factual rationale.')
+    _validate_reviewed_tools(tools, source_text())
+    plan['resume']['tools_platforms'] = list(tools)
+    plan['resume']['tools_review'] = {'tools': list(tools), 'rationale': rationale.strip(),
+        'source_sha256': source_fingerprint(),
+        'listing_sha256': hashlib.sha256(Path(plan['listing']).read_bytes()).hexdigest()}
+
+
+def tools_for_plan(plan: dict, listing: str, source: str) -> list[str]:
+    review = plan['resume'].get('tools_review')
+    if review is None:
+        return select_tools_platforms(listing, source)
+    tools = plan['resume'].get('tools_platforms')
+    if (review.get('tools') != tools or not review.get('rationale', '').strip()
+            or review.get('source_sha256') != source_fingerprint()
+            or review.get('listing_sha256') != hashlib.sha256(Path(plan['listing']).read_bytes()).hexdigest()):
+        raise ValueError('Reviewed tool selection is stale or changed; review the current sources.')
+    _validate_reviewed_tools(tools, source)
+    return list(tools)
+
+
 def _canonical_labels(catalog: tuple) -> set[str]:
     return {label for label, _ in catalog}
 
@@ -225,7 +263,7 @@ def normalize_resume_format(plan: dict) -> None:
     listing = Path(plan["listing"]).read_text(encoding="utf-8-sig")
     source = source_text()
     plan["resume"]["core_strengths"] = select_core_strengths(listing, source)
-    plan["resume"]["tools_platforms"] = select_tools_platforms(listing, source)
+    plan["resume"]["tools_platforms"] = tools_for_plan(plan, listing, source)
     plan["resume"].pop("skills", None)
     # Selected Results already displays these accomplishments. Keep each claim
     # once, while retaining every employment role represented in the plan.
@@ -331,9 +369,30 @@ def document_format_issues(plan: dict, doc: Document) -> list[str]:
     return issues
 
 
+@performance.timed('source_loading')
+def source_fingerprint() -> str:
+    try:
+        return hashlib.sha256(MASTER.read_bytes()).hexdigest()
+    except OSError as error:
+        raise OSError(f'Required Gecko master resume is missing or unreadable: {MASTER}') from error
+
+
+@performance.timed('source_loading')
 def master_lines() -> list[str]:
-    """Read the current master archive on every call."""
-    return read_master_text(MASTER).splitlines()
+    """Fingerprint live DOCX bytes; parse once per unchanged authority per batch."""
+    metrics = performance.CURRENT.get()
+    fingerprint = source_fingerprint()
+    cache_key = (str(MASTER.resolve()), fingerprint)
+    if metrics is not None and cache_key in metrics.sources:
+        return list(metrics.sources[cache_key])
+    lines = read_master_text(MASTER).splitlines()
+    if metrics is not None:
+        metrics.counts['master_parses'] = metrics.counts.get('master_parses', 0) + 1
+    if source_fingerprint() != fingerprint:
+        raise ValueError('Master changed while reading; retry with the current authority.')
+    if metrics is not None:
+        metrics.sources[cache_key] = tuple(lines)
+    return lines
 
 
 def source_text() -> str:
@@ -342,7 +401,7 @@ def source_text() -> str:
 
 
 def source_hashes() -> dict[str, str]:
-    read_master_text(MASTER)
+    master_lines()
     try:
         content = MASTER.read_bytes()
     except OSError as error:
@@ -365,6 +424,7 @@ def _is_job_header(line: str) -> bool:
     return bool(re.match(r"^.+ \| .+$", line)) and not re.match(r"^.+,\s*[A-Z]{2}\s*\|", line) and not _is_bullet(line)
 
 
+@performance.memoized
 def parsed_jobs() -> list[dict]:
     """Employment roles from PROFESSIONAL EXPERIENCE; consulting remains in source_text()."""
     lines = [line.strip() for line in master_lines()]
@@ -531,6 +591,7 @@ def _highlight_job(quote: str, jobs: list[dict]) -> int | None:
     return None
 
 
+@performance.memoized
 def extract_evidence(source: str) -> list[dict]:
     """Take results and work-history bullets from the canonical master archive only."""
     jobs = parsed_jobs()
@@ -565,6 +626,10 @@ def listing_metadata(listing: str, path: Path) -> dict[str, str]:
     headline = next((line.lstrip("# ").strip() for line in listing.splitlines() if line.startswith("# ")), "")
     company = field("Company") or (headline.split(" — ")[-1] if " — " in headline else "")
     title = headline.split(" — ")[0] if headline else ""
+    # Queue archives already carry their exact tracker title in the heading.
+    # Preserve a specialization separated by a dash instead of treating it as an employer.
+    if field("Scout ID").isdigit():
+        title = field("Job Title") or headline
     job_number = field("Job Key (Indeed jk)") or field("Job Number") or path.stem.split("+")[-1]
     if not company or not title or not job_number:
         raise ValueError("Listing needs a title, company, and job number; add metadata to the archived description.")
@@ -629,6 +694,7 @@ def _requirement_candidates(listing: str) -> list[tuple[str, str]]:
     return candidates
 
 
+@performance.memoized
 def requirements(listing: str, source: str, evidence: list[dict]) -> dict[str, list[dict]]:
     result = {name: [] for name in ("required_skills", "preferred_skills", "responsibilities", "tools", "seniority_signals", "industry_terminology", "ats_keywords")}
     for heading, candidate in _requirement_candidates(listing):
@@ -696,6 +762,7 @@ def _near_duplicate(left: str, right: str) -> bool:
     return bool(smaller and len(left_words & right_words) / smaller >= .6)
 
 
+@performance.memoized
 def master_identity() -> dict[str, str]:
     lines = [line.strip() for line in master_lines() if line.strip()]
     education = next(_bullet_text(line) for line in lines if "Brigham Young University" in line)
@@ -721,11 +788,68 @@ def master_identity() -> dict[str, str]:
     }
 
 
+def select_headline(listing: str, title: str) -> str:
+    """Rank the master examples for this posting; they are not a fixed title bank."""
+    lines = master_lines()
+    start = next((i for i, line in enumerate(lines)
+                  if line.strip().casefold() == "variations of specialization/main titles"), None)
+    if start is None:
+        raise ValueError("Master is missing Variations of Specialization/Main Titles; review the headline.")
+    candidates = []
+    for line in lines[start + 1:]:
+        if not line.strip():
+            continue
+        if not _is_bullet(line):
+            break
+        candidate = _bullet_text(line)
+        if candidate:
+            candidates.append(candidate)
+    if not candidates:
+        raise ValueError("Master headline examples are empty; review the headline.")
+    title_words, listing_words = words(title), words(listing)
+    def score(candidate: str) -> float:
+        terms = words(candidate)
+        phrase_matches = sum(contains_term(title, part.strip())
+                             for part in candidate.split("|"))
+        return (10 * len(terms & title_words) + 15 * phrase_matches
+                + len(terms & listing_words) / max(1, len(terms))
+                - .5 * len(terms - title_words))
+    return max(candidates, key=score)
+
+
+def set_reviewed_headline(plan: dict, headline: str, rationale: str) -> None:
+    """Record agent review for a new, source-supported job-specific headline."""
+    if not headline.strip() or any(c in headline for c in "\r\n\t") or not rationale.strip():
+        raise ValueError("A single-line headline and factual review rationale are required.")
+    plan["resume"]["headline"] = headline.strip()
+    plan["resume"]["headline_review"] = {
+        "headline": headline.strip(), "rationale": rationale.strip(),
+        "source_sha256": source_fingerprint(),
+        "listing_sha256": hashlib.sha256(Path(plan["listing"]).read_bytes()).hexdigest(),
+    }
+
+
+def verify_headline(plan: dict, listing: str) -> None:
+    headline = plan["resume"].get("headline", "")
+    if not headline.strip() or any(c in headline for c in "\r\n\t"):
+        raise ValueError("A job-specific single-line resume headline is required.")
+    review = plan["resume"].get("headline_review", {})
+    if review:
+        if (review.get("headline") == headline and review.get("rationale", "").strip()
+                and review.get("source_sha256") == source_fingerprint()
+                and review.get("listing_sha256") == hashlib.sha256(Path(plan["listing"]).read_bytes()).hexdigest()):
+            return
+        raise ValueError("Headline review is stale or the reviewed headline changed.")
+    if headline != select_headline(listing, plan["job"]["title"]):
+        raise ValueError("Review the custom headline with set_reviewed_headline before generation.")
+
+
 def master_jobs() -> list[dict[str, str]]:
     return [{"title": job["title"], "company": job["company"], "location": job["location"], "dates": job["dates"]}
             for job in parsed_jobs()]
 
 
+@performance.timed('tailoring')
 def create_plan(listing_path: Path, *, defer_summary: bool = False) -> dict:
     validate_required_sources()
     listing = listing_path.read_text(encoding="utf-8-sig")
@@ -786,7 +910,7 @@ def create_plan(listing_path: Path, *, defer_summary: bool = False) -> dict:
             "source_sha256": source_hashes(), "format_model_sha256": formatting_model_hash(),
             "format_model": FORMAT_MODEL.relative_to(ROOT).as_posix(),
             "requirements": reqs, "evidence": evidence,
-            "resume": {**master_identity(), "summary": summary,
+            "resume": {**master_identity(), "headline": select_headline(listing, meta["title"]), "summary": summary,
                        "summary_selection": summary_selection, "jobs": jobs,
                        "core_strengths": core_strengths, "tools_platforms": tools_platforms,
                        "selected_evidence_ids": selected,
@@ -879,13 +1003,16 @@ def verify_plan(plan: dict) -> None:
     listing = listing_path.read_text(encoding="utf-8-sig")
     if plan["resume"].get("core_strengths") != select_core_strengths(listing, source):
         raise ValueError("Core Strengths are stale, unsupported, or incorrectly capitalized; rebuild the plan.")
-    if plan["resume"].get("tools_platforms") != select_tools_platforms(listing, source):
+    if plan["resume"].get("tools_platforms") != tools_for_plan(plan, listing, source):
         raise ValueError("Tools & Platforms are stale, unsupported, or incorrectly capitalized; rebuild the plan.")
     format_issues = formatting_content_issues(
         plan["resume"]["core_strengths"], plan["resume"]["tools_platforms"])
     if format_issues:
         raise ValueError(" ".join(format_issues))
     identity = master_identity()
+    # A specialization headline is tailored positioning, not a historical job title.
+    identity.pop("headline", None)
+    verify_headline(plan, listing)
     if plan['resume'].get('codex_authored'):
         if plan['resume'].get('codex_reviewed_summary_sha256') != hashlib.sha256(plan['resume']['summary'].encode()).hexdigest():
             raise ValueError('Codex summary has not passed factual review or was changed after review.')
@@ -898,6 +1025,7 @@ def verify_plan(plan: dict) -> None:
         raise ValueError("Job history differs from the current master archive.")
 
 
+@performance.timed('document_creation')
 def make_resume(plan: dict, path: Path) -> None:
     normalize_resume_format(plan)
     verify_plan(plan)
@@ -1118,21 +1246,67 @@ def page_two_density(docx_path: Path, pdf: Path) -> dict:
                                   if gap > 36 else 'Text exceeds the normal bottom boundary.' if gap < -2 else '')}
 
 
+@performance.timed('word_pdf_validation')
 def native_qa(plan: dict, docx_path: Path, scratch: Path) -> dict:
     scratch.mkdir(parents=True, exist_ok=True)
     pdf = scratch / "word-export.pdf"
     status = scratch / "validation-status.json"
+    request_id = uuid4().hex
+    document_hash = hashlib.sha256(docx_path.read_bytes()).hexdigest()
+    # A timed-out worker can still finish later. Its writes must never replace
+    # a restored checkpoint or another attempt's evidence.
+    attempt = scratch / 'native-attempts' / request_id
+    attempt_pdf, attempt_status = attempt / 'word-export.pdf', attempt / 'validation-status.json'
     cmd = ["powershell.exe", "-NoProfile", "-NonInteractive", "-WindowStyle", "Hidden",
            "-ExecutionPolicy", "Bypass", "-File", str(ROOT / "scripts/validate_word_native.ps1"),
-           "-DocxPath", str(docx_path), "-PdfPath", str(pdf), "-ResultPath", str(status)]
+           "-DocxPath", str(docx_path.resolve()), "-PdfPath", str(attempt_pdf.resolve()),
+           "-ResultPath", str(attempt_status.resolve()), "-RequestId", request_id]
+    from word_validation_client import active_bridge_root
+    bridge_root = active_bridge_root()
+    if bridge_root:
+        cmd.extend(['-BridgeScratchRoot', str(bridge_root)])
     # The Word validator invokes Python to inspect its exported PDF. Keep that
     # child on this working runtime instead of a Windows Store alias on PATH.
     validation_env = dict(os.environ)
     validation_env['PATH'] = str(Path(sys.executable).parent) + os.pathsep + validation_env.get('PATH', '')
-    result = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, env=validation_env,
-                            creationflags=windows_creationflags())
+    # Batch-local cache only. A byte change in DOCX, plan, authorities or any
+    # validation/format implementation invalidates it. Visual review is separate.
+    metrics = performance.CURRENT.get()
+    version_paths = [Path(__file__), ROOT / 'scripts/validate_word_native.ps1',
+                     ROOT / 'scripts/word_validation_bridge.ps1', ROOT / 'scripts/word_bridge_common.ps1',
+                     ROOT / 'scripts/word_validation_client.py', ROOT / 'job-scout/resume_source.py']
+    cache_key = ('native', hashlib.sha256(docx_path.read_bytes()).hexdigest(),
+                 hashlib.sha256(json.dumps(plan, sort_keys=True).encode()).hexdigest(),
+                 source_fingerprint(), formatting_model_hash(), sys.version, fitz.VersionBind,
+                 tuple(hashlib.sha256(p.read_bytes()).hexdigest() for p in version_paths),
+                 str(docx_path.resolve()), str(scratch.resolve())) if metrics else None
+    cached = metrics.memo.get(cache_key) if metrics else None
+    if cached:
+        pdf.write_bytes(cached[0])
+        status.write_bytes(cached[1])
+        result = cached[2]
+        metrics.counts['validation_cache_hits'] = metrics.counts.get('validation_cache_hits', 0) + 1
+    else:
+        # Never read a previous attempt's status/PDF after an infrastructure error.
+        status.unlink(missing_ok=True)
+        pdf.unlink(missing_ok=True)
+        attempt.mkdir(parents=True, exist_ok=True)
+        result = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, env=validation_env,
+                                timeout=360, creationflags=windows_creationflags())
+        if attempt_status.is_file():
+            record = json.loads(attempt_status.read_text(encoding='utf-8-sig'))
+            if (record.get('request_id') == request_id and attempt_pdf.is_file()
+                    and record.get('status') in {'native-valid', 'native-invalid'}):
+                pdf.write_bytes(attempt_pdf.read_bytes())
+                status.write_bytes(attempt_status.read_bytes())
+        if metrics:
+            metrics.counts['native_attempts'] = metrics.counts.get('native_attempts', 0) + 1
     issues = inspect_docx(plan, docx_path)
+    if hashlib.sha256(docx_path.read_bytes()).hexdigest() != document_hash:
+        issues.append('DOCX changed during native validation; regenerate validation before review.')
     native = json.loads(status.read_text(encoding="utf-8-sig")) if status.exists() else {}
+    if not cached and native.get('request_id') != request_id:
+        native = {}
     if result.returncode or native.get("status") != "native-valid" or native.get("word_pages") != 2 or native.get("pdf_pages") != 2:
         issues.append("Native Word pagination did not confirm exactly two pages. " + (result.stderr.strip() or result.stdout.strip())[-500:])
     if pdf.exists():
@@ -1178,8 +1352,12 @@ def native_qa(plan: dict, docx_path: Path, scratch: Path) -> dict:
     report = {"status": "pass" if not issues else "fail", "word_pages": native.get("word_pages"),
               "pdf_pages": native.get("pdf_pages"), "issues": issues, "remaining_weaknesses": weaknesses,
               "native_validation": str(status), "word_output": result.stdout.strip(),
+              "word_bridge_root": str(bridge_root) if bridge_root else None,
               **density, "content_exhaustion_reason": plan['resume'].get('content_exhaustion_reason', '')}
     (scratch / "v2-qa.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    if (metrics and not cached and native.get('status') in {'native-valid', 'native-invalid'} and pdf.exists()
+            and hashlib.sha256(docx_path.read_bytes()).hexdigest() == document_hash):
+        metrics.memo[cache_key] = (pdf.read_bytes(), status.read_bytes(), result)
     return report
 
 
@@ -1215,48 +1393,153 @@ def _additional_evidence(plan: dict) -> list[str]:
             and evidence[eid]['job'] in active_jobs
             and len(words(evidence[eid]['quote']) & listing_terms) >= 3
             and not re.search(r'\b(?:I|my|we|our)\b', evidence[eid]['quote'])
-            and not re.search(r'marketing environment|B2C e,|Digital Marketing Manager$|web-scraping priorities|(?:and|the|in|with)$', evidence[eid]['quote'])
+            and not re.search(r'marketing environment|B2C e,|Digital Marketing Manager$|web-scraping priorities|(?:and|the|in|with|on key)$', evidence[eid]['quote'])
             and not any(_near_duplicate(evidence[eid]['quote'], evidence[used_id]['quote']) for used_id in used)]
 
 
+class ResumeCheckpoint:
+    """The plan and its exact DOCX/PDF/QA bytes are one indivisible checkpoint."""
+    def __init__(self, plan, path, scratch, report):
+        self.plan, self.report = deepcopy(plan), deepcopy(report)
+        self.files = {p: p.read_bytes() if p.is_file() else None for p in
+                      (path, scratch / 'word-export.pdf', scratch / 'validation-status.json',
+                       scratch / 'v2-qa.json', scratch / 'tailoring-plan.json')}
+
+    def restore(self, plan):
+        metrics = performance.CURRENT.get()
+        if metrics:
+            metrics.counts['restored_trials'] = metrics.counts.get('restored_trials', 0) + 1
+        plan.clear()
+        plan.update(deepcopy(self.plan))
+        for path, content in self.files.items():
+            if content is None:
+                path.unlink(missing_ok=True)
+            else:
+                temporary = path.with_name(path.name + '.restore.tmp')
+                temporary.write_bytes(content)
+                os.replace(temporary, path)
+        return deepcopy(self.report)
+
+
+def rendered_capacity(path: Path, pdf: Path) -> dict:
+    """Estimate adjustment sizes from the actual Word render, never font shrinking."""
+    if not pdf.is_file() or not path.is_file():
+        return {}
+    doc = Document(path)
+    section = doc.sections[-1]
+    with fitz.open(pdf) as rendered:
+        spans = [span for page in rendered for block in page.get_text('dict')['blocks']
+                 for line in block.get('lines', []) for span in line['spans']
+                 if len(span['text'].strip()) > 20 and abs(span['size'] - MODEL_BODY_SIZE) < .5]
+        widths = [(s['bbox'][2] - s['bbox'][0]) / len(s['text']) for s in spans]
+        overflow = 0.0
+        for page in list(rendered)[2:]:
+            blocks = [b for b in page.get_text('blocks') if normalized(str(b[4]))]
+            if blocks:
+                overflow += max(b[3] for b in blocks) - section.top_margin.pt
+        if len(rendered) > 2:
+            # Keep-together paragraphs can leave usable space on page two.
+            # Count that space before deciding how much evidence to remove.
+            second = rendered[1]
+            blocks = [b for b in second.get_text('blocks') if normalized(str(b[4]))]
+            if blocks:
+                overflow -= max(0, second.rect.height - section.bottom_margin.pt - max(b[3] for b in blocks))
+        return {'character_width_pt': statistics.median(widths) if widths else 4.6,
+                'line_pitch_pt': MODEL_BODY_SIZE * 1.15,
+                'bullet_width_pt': section.page_width.pt - section.left_margin.pt - section.right_margin.pt - 13,
+                'overflow_pt': max(0, overflow)}
+
+
+def evidence_height(plan: dict, eid: str, measurements: dict) -> float:
+    quote = next((item['quote'] for item in plan.get('evidence', []) if item['id'] == eid), '')
+    return (math.ceil(len(polish_quote(quote)) * measurements.get('character_width_pt', 4.6)
+                      / measurements.get('bullet_width_pt', 527))
+            * measurements.get('line_pitch_pt', 12.65) + 1)
+
+
+@performance.timed('fitting_retries')
 def generate_two_page_resume(plan: dict, path: Path, scratch: Path) -> dict:
-    """Fit two pages, then expand useful evidence until page two is substantially used."""
-    make_resume(plan, path)
-    report = native_qa(plan, path, scratch)
+    """Use measured capacity for grouped adjustments; restore rejected trials verbatim."""
+    def evaluate():
+        make_resume(plan, path)
+        if path.is_file():
+            (scratch / 'tailoring-plan.json').write_text(json.dumps(plan, indent=2, ensure_ascii=False), encoding='utf-8')
+        metrics = performance.CURRENT.get()
+        if metrics:
+            metrics.counts['fitting_attempts'] = metrics.counts.get('fitting_attempts', 0) + 1
+        return native_qa(plan, path, scratch)
+    report = evaluate()
     fallbacks = _third_bullet_fallbacks(plan)
     while max(report.get("word_pages") or 0, report.get("pdf_pages") or 0) > 2 and fallbacks:
-        plan["resume"]["selected_evidence_ids"].remove(fallbacks.pop(0))
-        make_resume(plan, path)
-        report = native_qa(plan, path, scratch)
+        measurements = rendered_capacity(path, scratch / 'word-export.pdf')
+        required = measurements.get('overflow_pt', 0)
+        removed = 0.0
+        # Preserve ranking, mandatory metrics and each role's first two bullets.
+        while fallbacks:
+            eid = fallbacks.pop(0)
+            removed += evidence_height(plan, eid, measurements)
+            plan["resume"]["selected_evidence_ids"].remove(eid)
+            if removed >= required:
+                break
+        report = evaluate()
     # Stop on native or structural failures; density alone can be repaired here.
     if report.get('word_pages') != 2 or report.get('pdf_pages') != 2:
         return report
     if any(issue != report.get('density_issue') for issue in report.get('issues', [])):
         return report
     candidates = _additional_evidence(plan) if report.get('page_two_bottom_gap_pt', 0) > 36 else []
-    evidence_by_id = {item['id']: item for item in plan['evidence']}
-    candidates.sort(key=lambda eid: len(polish_quote(evidence_by_id[eid]['quote']).split()))
-    for eid in candidates:
+    # The pool already ranks by relevance. Fill the measured budget with useful
+    # evidence in that order; smaller trials resolve an overestimate.
+    while candidates:
         if report.get('page_two_bottom_gap_pt', 0) <= 36:
             break
-        if eid not in _additional_evidence(plan):
-            continue
-        previous = list(plan['resume']['selected_evidence_ids'])
-        plan['resume']['selected_evidence_ids'].append(eid)
-        normalize_resume_format(plan)
-        if eid not in plan['resume']['selected_evidence_ids']:
-            plan['resume']['selected_evidence_ids'] = previous
-            continue
-        make_resume(plan, path)
-        trial = native_qa(plan, path, scratch)
-        if trial.get('word_pages') is None or trial.get('pdf_pages') is None:
-            return trial
-        if trial.get('word_pages') == 2 and trial.get('pdf_pages') == 2 and trial.get('page_two_bottom_gap_pt', float('inf')) < report['page_two_bottom_gap_pt']:
-            report = trial
-        else:
-            plan['resume']['selected_evidence_ids'] = previous
-            make_resume(plan, path)
-            report = native_qa(plan, path, scratch)
+        measurements = rendered_capacity(path, scratch / 'word-export.pdf')
+        budget = max(1, report['page_two_bottom_gap_pt'] - 22)
+        additions, estimated = [], 0.0
+        for eid in candidates:
+            height = evidence_height(plan, eid, measurements)
+            if estimated + height <= budget:
+                additions.append(eid)
+                estimated += height
+            if not measurements:  # No render measurements: conservative single trial.
+                additions = [eid]
+                break
+        if not additions:
+            # A near-full page may fit a concise bullet even when the conservative
+            # safety budget is smaller. Try the shortest remaining relevant item.
+            additions = [min(candidates, key=lambda eid: evidence_height(plan, eid, measurements))]
+        checkpoint = ResumeCheckpoint(plan, path, scratch, report)
+        trial_ids = list(additions)
+        while additions:
+            trial_ids = list(additions)
+            try:
+                for eid in additions:
+                    if eid in _additional_evidence(plan):
+                        plan['resume']['selected_evidence_ids'].append(eid)
+                normalize_resume_format(plan)
+                if plan == checkpoint.plan:
+                    break
+                trial = evaluate()
+            except Exception:
+                checkpoint.restore(plan)
+                raise
+            structural = [issue for issue in trial.get('issues', []) if issue != trial.get('density_issue')]
+            if (trial.get('word_pages') == 2 and trial.get('pdf_pages') == 2 and not structural
+                    and trial.get('page_two_bottom_gap_pt', float('inf')) < report['page_two_bottom_gap_pt']):
+                report = trial
+                break
+            report = checkpoint.restore(plan)
+            if trial.get('word_pages') is None or trial.get('pdf_pages') is None:
+                raise RuntimeError('Native validation failed during fitting; last valid artifacts restored.')
+            if len(additions) == 1:
+                additions = []
+                break
+            additions = additions[:max(1, len(additions) // 2)]
+        # Do not retry rejected evidence repeatedly. Recompute duplicate checks
+        # after accepting a group, since it may exclude overlapping candidates.
+        attempted = set(trial_ids)
+        remaining = _additional_evidence(plan)
+        candidates = [eid for eid in candidates if eid not in attempted and eid in remaining]
     return report
 
 

@@ -69,7 +69,7 @@ class UnifiedTests(unittest.TestCase):
         for p in patches: p.start(); self.addCleanup(p.stop)
 
     def run_search(self, **overrides):
-        args = scout.build_parser().parse_args(['search', '--source', 'all', '--unified'])
+        args = scout.build_parser().parse_args(['search', '--source', 'all', '--unified', '--broad-discovery'])
         for k,v in overrides.items(): setattr(args,k,v)
         with redirect_stdout(io.StringIO()): return scout.search(args, self.store, self.preferences)
 

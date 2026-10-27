@@ -1,0 +1,19 @@
+{
+  "changes": [
+    {
+      "id": 3008,
+      "employer": "PointClickCare",
+      "prior_kind": "additional new",
+      "corrected_kind": "pending recovered",
+      "reason": "Exact posting URL/ID was present in the starting discovery or successful retrieval cache"
+    },
+    {
+      "id": 3060,
+      "employer": "toast",
+      "prior_kind": "additional new",
+      "corrected_kind": "pending recovered",
+      "reason": "Exact posting URL/ID was present in the starting discovery or successful retrieval cache"
+    }
+  ],
+  "starting_identities": 2906
+}

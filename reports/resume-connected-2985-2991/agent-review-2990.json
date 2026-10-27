@@ -1,0 +1,63 @@
+{
+  "spec": {
+    "headline": "SEO & Content Strategy | Growth Analytics | Experimentation",
+    "headline_rationale": "Graphite prioritizes SEO/content projects, analytical growth recommendations, experimentation and client delivery. The master supports SEO/on-page consulting, SEO/SEM tools, content strategy, website work, analytics and testing. Do not invent AEO program ownership, programmatic-SEO results or Amplitude expertise.",
+    "summary": "Growth marketer who brings search analysis, content strategy and disciplined experimentation together. Consulted on SEO and on-page optimization, managed online marketing with SEO/SEM tools, and worked with web teams on site performance. Pairs keyword and competitive research with funnel testing, forecasting and cross-channel reporting built with Python, SQL and Tableau. Agency experience spans client strategy, scalable account processes and actionable performance recommendations, supported by hands-on website and automation work.",
+    "factual_review": "Reviewed the exact Graphite posting: its location section explicitly includes the United States, despite the tracker location field saying Argentina; preserve the existing tracker fields. Current v4 master supports summary through E001/E003/E005/E006/E008/E009/E021/E023/E044/E076/E078/E079/E081/E095/E106/E112/E113/E114. AEO specialization, programmatic SEO achievements and named tools absent from the master are not claimed.",
+    "selected_evidence_ids": [
+      "E001",
+      "E003",
+      "E005",
+      "E008",
+      "E006",
+      "E021",
+      "E023",
+      "E044",
+      "E043",
+      "E060",
+      "E066",
+      "E063",
+      "E078",
+      "E076",
+      "E079",
+      "E093",
+      "E095",
+      "E106",
+      "E112",
+      "E114",
+      "E113"
+    ],
+    "additional_evidence_ids": [
+      "E004",
+      "E009",
+      "E011",
+      "E020",
+      "E072",
+      "E080",
+      "E081",
+      "E082",
+      "E096",
+      "E109",
+      "E115",
+      "E116",
+      "E117"
+    ],
+    "tools_platforms": [
+      "Google Search Console",
+      "Google Analytics 4",
+      "Looker Studio",
+      "Excel",
+      "Python",
+      "SQL",
+      "Tableau",
+      "Google Ads",
+      "ChatGPT",
+      "Claude"
+    ],
+    "tools_rationale": "Prioritize canonical, master-supported search measurement, reporting, spreadsheet, analytical and AI tools for Graphite's SEO/content analytics work. Do not claim unsupported AEO platforms or Amplitude expertise."
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "ed415925b7e672ef7ed6d360d98d9100f2fa7c3485e0b9dac2267e4d36d6cd5a"
+}

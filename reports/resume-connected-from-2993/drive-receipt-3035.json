@@ -1,0 +1,35 @@
+{
+  "path": "C:\\gecko_main\\output\\resumes\\Dave-Call+Wayvia+Head-of-Marketing+00483.docx",
+  "metadata": {
+    "id": "1zBkL4i1eKhIIEGvd2X56jl-DQzLULeLb",
+    "title": "Dave-Call+Wayvia+Head-of-Marketing+00483.docx",
+    "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "size": "40576",
+    "url": "https://docs.google.com/document/d/1zBkL4i1eKhIIEGvd2X56jl-DQzLULeLb/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+    "file_or_folder": "file",
+    "created_time": null,
+    "modified_time": null,
+    "parent_ids": [
+      "1Noy8XUqlL5ufqA4aU9jZWdwpMYeCVmol"
+    ],
+    "drive_id": null,
+    "current_user_can_share": null,
+    "has_augmented_permissions": null,
+    "shared": false,
+    "permissions": [
+      {
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "mdavidcall@gmail.com",
+        "domain": null,
+        "displayName": "Dave Call",
+        "allowFileDiscovery": null
+      }
+    ],
+    "source_visibility_status": "permission_metadata_available"
+  },
+  "download": {
+    "sha256": "1b60950bc3fc2751f1ba3dd531d271bcbc97ffbdb795f409c9a2012d9e76389c",
+    "size": 40576
+  }
+}

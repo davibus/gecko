@@ -1,0 +1,164 @@
+{
+  "id": "job",
+  "sufficient": true,
+  "reason": "Complete duties and qualifications support assessment. Paid search experience is well documented; relocation willingness and travel availability are unverified.",
+  "blockers": [],
+  "categories": {
+    "responsibilities": [
+      {
+        "requirement": "Take ownership for the paid search results of a selection of PlanetArt businesses.",
+        "support": 1,
+        "evidence": [
+          "Directed PPC strategy for a company group that owned 32 additional companies across the western United States"
+        ],
+        "reason": "Demonstrates ownership of paid search strategy across multiple businesses."
+      },
+      {
+        "requirement": "Optimize and grow campaigns on Google Ads and Microsoft Ads - growing revenue and maximizing Return on Ad Spend.",
+        "support": 1,
+        "evidence": [
+          "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review"
+        ],
+        "reason": "Documents campaign optimization delivering volume growth and improved ROAS."
+      },
+      {
+        "requirement": "Initiate and execute tests.",
+        "support": 1,
+        "evidence": [
+          "Created custom attribution models, advanced bid strategies, bid tests/experiments, A/B tests, and multivariate testing frameworks"
+        ],
+        "reason": "Directly demonstrates paid media experimentation and testing."
+      },
+      {
+        "requirement": "Collect and analyze data, identify trends and insights in order to achieve maximum ROI.",
+        "support": 1,
+        "evidence": [
+          "Conducted advanced keyword research, channel analysis, trend monitoring, acquisition analysis, conversion-path and funnel analysis, landing-page optimization, and conversion-rate optimization"
+        ],
+        "reason": "Demonstrates analytical work identifying optimization opportunities across acquisition and conversion."
+      },
+      {
+        "requirement": "Manage campaign expenses and stay on budget.",
+        "support": 1,
+        "evidence": [
+          "Managed up to $30 million per month in paid media with a four-person team, supporting high-volume account operations and disciplined budget oversight"
+        ],
+        "reason": "Demonstrates substantial paid media budget management and expense oversight."
+      },
+      {
+        "requirement": "Optimize landing pages and the sales funnel.",
+        "support": 1,
+        "evidence": [
+          "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing"
+        ],
+        "reason": "Directly documents landing-page and conversion optimization supported by testing."
+      },
+      {
+        "requirement": "Work closely with our dedicated Google account team and try out all the new Google Betas – staying at the cutting edge of Search Engine Marketing.",
+        "support": 0.5,
+        "evidence": [
+          "Assessed inefficient legacy rule-based systems built using the Google Ads API and how newer Google machine-learning capabilities had made those systems outdated"
+        ],
+        "reason": "Shows evaluation of new Google capabilities; Google account-team and beta work are unverified."
+      }
+    ],
+    "required": [
+      {
+        "requirement": "Candidates must be local to or willing to relocate to the Pleasanton area as we operate on a hybrid work model (3 days onsite, 2 remote)",
+        "support": 0,
+        "evidence": [],
+        "reason": "Pleasanton residency, relocation willingness, and onsite availability are unverified."
+      },
+      {
+        "requirement": "Strong Google Ads and Microsoft Ads skills.",
+        "support": 1,
+        "evidence": [
+          "Managed PPC efforts across Google Ads and Microsoft/Bing Ads"
+        ],
+        "reason": "Direct management of both platforms establishes practical campaign skills."
+      },
+      {
+        "requirement": "Excellent understanding of marketing & customer acquisition.",
+        "support": 1,
+        "evidence": [
+          "Managed all paid search campaigns, outreach, lead generation, and customer acquisition for a large E-Commerce company in the United States, Canada, and the UK"
+        ],
+        "reason": "Demonstrates hands-on responsibility for marketing and customer acquisition."
+      },
+      {
+        "requirement": "Strong analytical skills.",
+        "support": 1,
+        "evidence": [
+          "Used regression models, prior-year/prior-period data, holdouts, geo-promotional tests, scale-up/down analysis, and budget reallocation scenarios to forecast investment outcomes"
+        ],
+        "reason": "Demonstrates advanced analysis, forecasting, and investment evaluation."
+      },
+      {
+        "requirement": "Excellent communication & teamwork skills.",
+        "support": 1,
+        "evidence": [
+          "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+        ],
+        "reason": "Documents collaborative strategy development and communication of findings."
+      },
+      {
+        "requirement": "Bachelor’s Degree.",
+        "support": 0.5,
+        "evidence": [
+          "Business Management Degree - Marketing Emphasis"
+        ],
+        "reason": "A BYU business degree is documented; its bachelor's designation is not explicit."
+      },
+      {
+        "requirement": "May require occasional travel.",
+        "support": 0,
+        "evidence": [],
+        "reason": "Travel availability is unverified."
+      }
+    ],
+    "seniority": [
+      {
+        "requirement": "5+ years of experience managing paid search marketing campaigns.",
+        "support": 1,
+        "evidence": [
+          "Managed all paid search campaigns, outreach, lead generation, and customer acquisition for a large E-Commerce company in the United States, Canada, and the UK"
+        ],
+        "reason": "Dated paid search management roles at LifeSpan, Infinite, and TravelPass total over five years."
+      }
+    ],
+    "industry": [],
+    "preferred": []
+  },
+  "score": 84.03,
+  "accepted": true,
+  "status": "reviewed",
+  "failed_rules": [],
+  "category_percentages": {
+    "responsibilities": 92.86,
+    "required": 64.29,
+    "seniority": 100.0,
+    "industry": null,
+    "preferred": null
+  },
+  "policy": "master-evidence-v2",
+  "thresholds": {
+    "minimum_score": 60,
+    "minimum_responsibilities_match": 50,
+    "minimum_required_skills_match": 50
+  },
+  "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+  "job": {
+    "id": "job",
+    "title": "Sr. Paid Search Marketing Manager (PPC)",
+    "company": "PlanetArt",
+    "url": "https://apply.workable.com/j/83D74FBC3F"
+  },
+  "description_sha256": "2444293bf163f941564fb5a29892645ec7942e5be2508dfe55cc52d941fdb41b",
+  "runner": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a174e7-9579-73f2-9a54-fb25c117f20a",
+    "verified_at": "2026-10-25T21:12:09.761260+00:00"
+  }
+}

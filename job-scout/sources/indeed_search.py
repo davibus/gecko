@@ -45,6 +45,8 @@ class IndeedSearchProvider(JobSource):
         self.fetch = fetch or self.firecrawl.document
         self.custom_fetch = fetch is not None
         self.max_pages, self.max_jobs = max_pages, max_jobs
+        if self.firecrawl.settings.get('usage_unlimited'):
+            self.max_pages = self.max_jobs = 2**31 - 1
         self.queries = queries or load_preferences()['target_roles']
         self.locations = locations or ['Utah','Remote']
         self.errors, self.exclusions, self.acquisition_events = [], [], []
@@ -119,6 +121,7 @@ class IndeedSearchProvider(JobSource):
                                 if exclusion:self.exclusions.append(exclusion)
                                 if error:self.errors.append(error)
                                 if listing:
+                                    listing.metadata['_query_used_to_find'] = query
                                     successes+=1
                                     yield listing
                         event.update(status='completed',cards=len(parsed.jobs),new_keys=len(selected),retrieved=successes)

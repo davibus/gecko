@@ -1,0 +1,114 @@
+{
+  "started_at": "2026-10-26T12:05:10.351779+00:00",
+  "totals": {
+    "wall_seconds": 0.1414,
+    "active_seconds": 0.1414,
+    "review_wait_seconds": 0.0,
+    "phases_seconds": {
+      "source_loading": 0.0,
+      "tailoring": 0.0,
+      "document_creation": 0.0,
+      "word_pdf_validation": 0.0,
+      "fitting_retries": 0.0,
+      "factual_review": 0.0,
+      "review_wait": 0.0,
+      "tracker_sync": 0.0142
+    },
+    "counts": {
+      "source_loading": 0,
+      "tailoring": 0,
+      "document_creation": 0,
+      "word_pdf_validation": 0,
+      "fitting_retries": 0,
+      "factual_review": 0,
+      "review_wait": 0,
+      "tracker_sync": 2
+    }
+  },
+  "resumes": [
+    {
+      "id": 47,
+      "company": "Resilient Company 0",
+      "outcome": "completed",
+      "wall_seconds": 0.0104,
+      "active_seconds": 0.0104,
+      "review_wait_seconds": 0.0,
+      "phases_seconds": {
+        "source_loading": 0.0,
+        "tailoring": 0.0,
+        "document_creation": 0.0,
+        "word_pdf_validation": 0.0,
+        "fitting_retries": 0.0,
+        "factual_review": 0.0,
+        "review_wait": 0.0,
+        "tracker_sync": 0.0076
+      },
+      "counts": {
+        "source_loading": 0,
+        "tailoring": 0,
+        "document_creation": 0,
+        "word_pdf_validation": 0,
+        "fitting_retries": 0,
+        "factual_review": 0,
+        "review_wait": 0,
+        "tracker_sync": 1
+      }
+    },
+    {
+      "id": 48,
+      "company": "Resilient Company 1",
+      "outcome": "failed",
+      "wall_seconds": 0.0056,
+      "active_seconds": 0.0056,
+      "review_wait_seconds": 0.0,
+      "phases_seconds": {
+        "source_loading": 0.0,
+        "tailoring": 0.0,
+        "document_creation": 0.0,
+        "word_pdf_validation": 0.0,
+        "fitting_retries": 0.0,
+        "factual_review": 0.0,
+        "review_wait": 0.0,
+        "tracker_sync": 0.0
+      },
+      "counts": {
+        "source_loading": 0,
+        "tailoring": 0,
+        "document_creation": 0,
+        "word_pdf_validation": 0,
+        "fitting_retries": 0,
+        "factual_review": 0,
+        "review_wait": 0,
+        "tracker_sync": 0
+      }
+    },
+    {
+      "id": 49,
+      "company": "Resilient Company 2",
+      "outcome": "completed",
+      "wall_seconds": 0.0098,
+      "active_seconds": 0.0098,
+      "review_wait_seconds": 0.0,
+      "phases_seconds": {
+        "source_loading": 0.0,
+        "tailoring": 0.0,
+        "document_creation": 0.0,
+        "word_pdf_validation": 0.0,
+        "fitting_retries": 0.0,
+        "factual_review": 0.0,
+        "review_wait": 0.0,
+        "tracker_sync": 0.0066
+      },
+      "counts": {
+        "source_loading": 0,
+        "tailoring": 0,
+        "document_creation": 0,
+        "word_pdf_validation": 0,
+        "fitting_retries": 0,
+        "factual_review": 0,
+        "review_wait": 0,
+        "tracker_sync": 1
+      }
+    }
+  ]
+}

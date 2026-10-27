@@ -1,0 +1,54 @@
+{
+  "id": 3001,
+  "company": "MyFitnessPal",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1GZPYKu4nxgT_So-ldmO86erYuSB0Z-u2/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+MyFitnessPal+Influencer-Marketing-Manager+00454.docx",
+  "started_at": "2026-10-26T14:46:55.485563+00:00",
+  "completed_at": "2026-10-26T14:49:33.691267+00:00",
+  "elapsed_seconds": 158.2057173999783,
+  "generation_seconds": 38.30314720000024,
+  "delivery_seconds": 38.14825940001174,
+  "tracker_seconds": 47.41695569999865,
+  "readback": {
+    "Scout ID": 3001,
+    "Company": "MyFitnessPal",
+    "Job Title": "Influencer Marketing Manager",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1GZPYKu4nxgT_So-ldmO86erYuSB0Z-u2/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1253",
+  "hyperlink_target": "https://docs.google.com/document/d/1GZPYKu4nxgT_So-ldmO86erYuSB0Z-u2/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 158.2057,
+    "active_seconds": 136.6212,
+    "review_wait_seconds": 21.5845,
+    "phases_seconds": {
+      "source_loading": 0.0449,
+      "tailoring": 0.5811,
+      "document_creation": 2.9601,
+      "word_pdf_validation": 10.9334,
+      "fitting_retries": 0.9722,
+      "factual_review": 0.0,
+      "review_wait": 21.5845,
+      "tracker_sync": 47.4161,
+      "drive_delivery": 38.1418
+    },
+    "counts": {
+      "source_loading": 110,
+      "tailoring": 2,
+      "document_creation": 4,
+      "word_pdf_validation": 4,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 4,
+      "native_attempts": 4,
+      "drive_delivery": 1,
+      "restored_trials": 2
+    }
+  }
+}

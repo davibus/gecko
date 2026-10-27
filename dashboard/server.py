@@ -85,6 +85,9 @@ def resume_path(data):
     if match:
         value = match.group(1)
     parsed = urlsplit(value)
+    if parsed.scheme == 'https':
+        from resume_delivery import local_path
+        return local_path(value)
     if parsed.scheme != 'file' or parsed.netloc not in ('', 'localhost'):
         return None
     local = unquote(parsed.path)

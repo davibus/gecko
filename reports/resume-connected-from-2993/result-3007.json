@@ -1,0 +1,53 @@
+{
+  "id": 3007,
+  "company": "Lunar Solar Group",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1E-NcTm19_8awSxgL5NejAGkXt42r-d70/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Lunar-Solar-Group+Senior-Manager,-Paid-Search+00460.docx",
+  "started_at": "2026-10-26T14:59:29.873417+00:00",
+  "completed_at": "2026-10-26T15:02:04.179418+00:00",
+  "elapsed_seconds": 154.306011,
+  "generation_seconds": 22.723571400012588,
+  "delivery_seconds": 19.6396509000042,
+  "tracker_seconds": 54.335577400022885,
+  "readback": {
+    "Scout ID": 3007,
+    "Company": "Lunar Solar Group",
+    "Job Title": "Senior Manager, Paid Search",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1E-NcTm19_8awSxgL5NejAGkXt42r-d70/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1259",
+  "hyperlink_target": "https://docs.google.com/document/d/1E-NcTm19_8awSxgL5NejAGkXt42r-d70/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 154.306,
+    "active_seconds": 113.7408,
+    "review_wait_seconds": 40.5652,
+    "phases_seconds": {
+      "source_loading": 0.0302,
+      "tailoring": 0.7467,
+      "document_creation": 1.5415,
+      "word_pdf_validation": 6.2554,
+      "fitting_retries": 0.0554,
+      "factual_review": 0.0,
+      "review_wait": 40.5652,
+      "tracker_sync": 54.3347,
+      "drive_delivery": 19.6322
+    },
+    "counts": {
+      "source_loading": 65,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1
+    }
+  }
+}

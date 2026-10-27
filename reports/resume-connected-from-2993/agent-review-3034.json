@@ -1,0 +1,67 @@
+{
+  "spec": {
+    "headline": "Commerce & Product Marketing | Content Development | Technical Delivery",
+    "headline_rationale": "Triple Whale needs launch coordination, creative content and translating platform work into value. Emphasize supported commerce operations, creative, research and technical collaboration; do not invent weekly SaaS drops or adoption metrics.",
+    "summary": "Commerce marketer and technical builder experienced in coordinating campaigns, content and business systems. Led an eight-person e-commerce team, worked across product, sales and operations, and developed content spanning email, websites, blogs and digital creative. Built a headless Shopify-connected retail site and AI-assisted marketing tools, pairing practical development with customer and competitive research. KPI reporting and conversion testing support clear prioritization, useful marketing recommendations and collaborative execution around complex products and digital experiences.",
+    "factual_review": "Read exact Triple Whale Product Marketing Manager Launches Core Platform job. E093/E060/E114/E109/E001/E078/E096/E095 and master AI project facts support summary. No invented weekly product drops, on-camera demos, SaaS launch ownership or adoption outcomes. Triple Whale appears in master tools but canonical reviewed tool catalog does not include it; omit rather than bypass.",
+    "selected_evidence_ids": [
+      "E001",
+      "E003",
+      "E005",
+      "E006",
+      "E008",
+      "E009",
+      "E018",
+      "E023",
+      "E044",
+      "E038",
+      "E060",
+      "E055",
+      "E063",
+      "E066",
+      "E076",
+      "E078",
+      "E079",
+      "E093",
+      "E095",
+      "E096",
+      "E109",
+      "E114",
+      "E113"
+    ],
+    "additional_evidence_ids": [
+      "E004",
+      "E010",
+      "E011",
+      "E020",
+      "E072",
+      "E080",
+      "E081",
+      "E082",
+      "E102",
+      "E105",
+      "E115",
+      "E116"
+    ],
+    "tools_platforms": [
+      "Shopify",
+      "Google Analytics 4",
+      "Looker Studio",
+      "Tableau",
+      "Excel",
+      "Python",
+      "SQL",
+      "JavaScript",
+      "ChatGPT",
+      "Claude",
+      "Codex"
+    ],
+    "tools_rationale": "Source-backed commerce, measurement and development tooling relevant to understanding and communicating platform capabilities.",
+    "source_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "description_sha256": "4a11df4741410f5ce6bb11e8a9945c64dd8eff1aead135124860f5bd6423fb37"
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "b5150e3f091b5d1f4d08b728ba55b4c2b8982dcf75476af60bdeb37d018b3c33"
+}

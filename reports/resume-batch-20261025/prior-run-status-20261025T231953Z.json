@@ -1,0 +1,44 @@
+{
+  "started_at": "2026-10-25T21:10:20.126034+00:00",
+  "completed": [
+    2953,
+    2954,
+    2957,
+    2959,
+    2960,
+    2961,
+    2962,
+    2963,
+    2964,
+    2965,
+    2966,
+    2967,
+    2968,
+    2969,
+    2970,
+    2971,
+    2972,
+    2973,
+    2975
+  ],
+  "blocked": [
+    {
+      "id": 2854,
+      "reason": "Resume match: pending/100; minimum 60. All three required: overall >= 60/100, responsibilities >= 50%, required skills >= 50%. Match review pending: Evidence is not in current master resume"
+    },
+    {
+      "id": 2955,
+      "reason": "Resume match: pending/100; minimum 60. All three required: overall >= 60/100, responsibilities >= 50%, required skills >= 50%. Match review pending: Evidence is not in current master resume"
+    },
+    {
+      "id": 2974,
+      "reason": "Cannot read Google Sheets metadata: [WinError 10054] An existing connection was forcibly closed by the remote host"
+    }
+  ],
+  "excluded": [],
+  "visual_pending": null,
+  "stage": "completed",
+  "current_id": 2975,
+  "detail": "Integrated Specialty Coverages, LLC",
+  "checked_at": "2026-10-25T23:19:46.616888+00:00"
+}

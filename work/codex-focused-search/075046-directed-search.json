@@ -1,0 +1,502 @@
+{
+  "payload": {
+    "query": "\"paid media\" remote United States site:job-boards.greenhouse.io",
+    "limit": 50,
+    "sources": [
+      "web"
+    ]
+  },
+  "results": [
+    {
+      "url": "https://job-boards.greenhouse.io/databricks/jobs/8638631002",
+      "title": "Director, Paid Media - Databricks",
+      "description": "# Director, Paid Media\nUnited States",
+      "position": 1
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/current/jobs/8548526002",
+      "title": "Job Application for Senior Paid Media Strategist (Freelance) at Current",
+      "description": "# Senior Paid Media Strategist (Freelance)\nRemote (US)",
+      "position": 2
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/scorpionenterprisesllc/jobs/5432878008",
+      "title": "Job Application for Paid Media Manager at Scorpion ... - Greenhouse",
+      "description": "# Paid Media Manager\nRemote - United States",
+      "position": 3
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/seatgeek/jobs/8201816",
+      "title": "Senior Paid Media Associate at SeatGeek",
+      "description": "# Senior Paid Media Associate\nRemote - United States\n\nRemote - United States",
+      "position": 4
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/mediaalpha/jobs/8721200002",
+      "title": "Job Application for Senior Director, Paid Media at MediaAlpha",
+      "description": "# Senior Director, Paid Media\nRemote - USA",
+      "position": 5
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/powerdigitalmarketing/jobs/5265565007",
+      "title": "Job Application for Paid Media Strategist, Fashion at Power Digital",
+      "description": "Paid Media Strategist, Fashion. Remote - United States. Apply. Who We Are: Power Digital is an AI-Native Growth Firm built at the intersection of world-class ...",
+      "position": 6
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/supplyhouse/jobs/6211915004",
+      "title": "Job Application for Paid Media Analyst at SupplyHouse.com - Greenhouse",
+      "description": "Paid Media Analyst · Remote employees are expected to work in a distraction-free environment. · Applicants must be currently authorized to work in the U.S. on a ...",
+      "position": 7
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/shopltk/jobs/7989105003",
+      "title": "Job Application for Paid Media Specialist (Contractor) at LTK USA",
+      "description": "Location: Remote. Reports to: Sr. Director, Partnership Media. Role is from October 12th - December 30th, 2026. #LI-CW1. About the role. The Paid Media ...",
+      "position": 8
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/givedirectly/jobs/4739969005",
+      "title": "Job Application for Growth Manager, Paid Media at GiveDirectly",
+      "description": "Non-profit experience is a plus, but not required. Experience managing a paid media budget of at least US$5M a year with a track record of strong performance ...",
+      "position": 9
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/clearlinktechnologiesllc/jobs/4710751006",
+      "title": "Job Application for Paid Media Specialist at Clearlink Technologies ...",
+      "description": "Who We're Looking For - RevOps/Paid Media Specialist. Clearlink is a remote-friendly company, prioritizing virtual and in-person collaboration.",
+      "position": 10
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/reddoorinteractive/jobs/7991530",
+      "title": "Digital Marketing Jobs San Diego & Remote | RDI - Red Door Interactive",
+      "description": "Paid Media. Paid Media Strategist. San Diego or Remote, depending on state. Apply Now · Manager, Paid Media. San Diego. Apply Now. Program Management. Client ...",
+      "position": 11
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/couriernewsroom/jobs/4396080009",
+      "title": "Senior Editor, Impact Content & Paid Media - Greenhouse",
+      "description": "Senior Editor, Impact Content & Paid Media. Remote (U.S.-based) | Full-Time | $70,000-$80,000. Join Courier Newsroom - an organization that drives ...",
+      "position": 12
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/cloudcontrolmedia/jobs/8261745",
+      "title": "Job Application for Paid Media Manager at CloudControlMedia",
+      "description": "We are looking for a passionate, agile, customer-driven Paid Media Manager who will be responsible for managing, reviewing, planning, and executing our clients' ...",
+      "position": 13
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/realchemistry/jobs/5410629008",
+      "title": "Jobs at Real Chemistry - Greenhouse",
+      "description": "Current openings ; Paid Media · Senior Analyst. Remote - USA ; Social Media · Social Content Creator. Remote - USA ; starpower · starpower - Senior Director, ...",
+      "position": 14
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/eulerity/jobs/4717334006",
+      "title": "Job Application for Paid Media Client Success Manager at Eulerity",
+      "description": "Paid Media Client Success Manager. New York, New York. Apply. New York, NY or Remote (US). Eulerity is an AI-native marketing automation platform, built with AI ...",
+      "position": 15
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/nysonian/jobs/4402413009",
+      "title": "Job Application for Director of Paid Media at Nysonian - Greenhouse",
+      "description": "# Director of Paid Media\nUnited States",
+      "position": 16
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/zetaglobal/jobs/6129732004",
+      "title": "Job Application for Senior Paid Social Manager at Zeta Global - Greenhouse",
+      "description": "Senior Paid Social Manager. Remote - United States ... You will leverage your knowledge of paid media to position campaigns for success and find creative ...",
+      "position": 17
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/axon/jobs/8038093003",
+      "title": "Job Application for Paid Media Manager at Axon - Greenhouse",
+      "description": "Build and own the annual paid media plan, including channel mix, audience strategy, and testing roadmap, and present results, insights, and recommendations to ...",
+      "position": 18
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/datagrail/jobs/7981433003",
+      "title": "Job Application for Senior Demand Generation Manager at DataGrail",
+      "description": "You'll lead paid media across channels like Google, LinkedIn, and YouTube and drive the event calendar, including trade shows, webinars, and executive ...",
+      "position": 19
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/mercury/jobs/6221007004",
+      "title": "Job Application for Head of Media at Mercury - Greenhouse",
+      "description": "Connect media to the broader marketing ecosystem — integrate paid media with brand, performance, community, content, lifecycle, and product marketing so ...",
+      "position": 20
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/sociallyin/jobs/5418102008",
+      "title": "Job Application for Director of Paid Social at Sociallyin - Greenhouse",
+      "description": "Director of Paid Social. Sociallyin | Atlanta, GA (Remote-friendly) | $80,000–$95,000. We're hiring a Director of Paid Social to own and grow our paid media ...",
+      "position": 21
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/powerdigitalmarketing/jobs/5094398007",
+      "title": "Job Application for Group Media Director, B2B at Power Digital",
+      "description": "The Group Media Director is responsible for leading a portfolio of high-value paid media accounts, driving performance, strategy, and growth across multiple ...",
+      "position": 22
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/powerdigitalmarketing/jobs/5209938007",
+      "title": "Associate Media Director, Paid Social & Programmatic - Greenhouse",
+      "description": "Who We Are: · 6-8+ years of Paid Media experience · Experience managing multiple paid media accounts with budgets ranging between $300K-$3MM per month.",
+      "position": 23
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/lendingtree/jobs/7838801",
+      "title": "Job Application for VP, Head of Paid Media at LendingTree - Greenhouse",
+      "description": "We are seeking a Head of Paid Media to lead this engine—owning strategy and execution across SEM, Paid Social, Programmatic, and Partner Marketing channels.",
+      "position": 24
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/themotleyfool/jobs/5151936007",
+      "title": "Job Application for Marketing Growth Operator at The Motley Fool",
+      "description": "This role sits on the team that grows our investing subscription services. We acquire subscribers through paid media at scale, and we win in part by being ...",
+      "position": 25
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/commonthreadcollective/jobs/5985959004",
+      "title": "Senior Paid Media Strategist - Greenhouse",
+      "description": "You operate as the lead media strategist for your client portfolio, combining deep Paid Media mastery to drive outcomes across the entire paid media ecosystem.",
+      "position": 26
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/appspace/jobs/6096866004",
+      "title": "Job Application for Digital Marketing Manager - Americas at Appspace",
+      "description": "# Digital Marketing Manager - Americas\nTampa, Florida, United States Remote",
+      "position": 27
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/code3/jobs/8224066",
+      "title": "Associate Director, Media Strategy & Client Partnerships - Greenhouse",
+      "description": "You should have: 5+ years of experience in digital marketing with a strong focus on DTC paid media strategy; including paid search, paid social, programmatic, ...",
+      "position": 28
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/later/jobs/8843618002",
+      "title": "Job Application for Account Supervisor, Social Media at Later",
+      "description": "Experience working across paid media, influencer marketing, creative, or production is a plus. Our approach to compensation: We take a market-based & data- ...",
+      "position": 29
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/upstart/jobs/8191461",
+      "title": "Senior Manager, Performance Marketing, Paid Social - - Upstart",
+      "description": "Experience developing or executing a paid media creative strategy, including messaging, format, testing, and performance analysis. Strong analytical skills ...",
+      "position": 30
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/1800contacts/jobs/8220686",
+      "title": "Job Application for Paid Media Manager at 1-800 Contacts",
+      "description": "Paid Media Manager. Draper, UT (Hybrid/Remote). Apply. Who we are. SeekWell is the parent company of 1-800 Contacts, Luna, and The Framery. Our goal is to make ...",
+      "position": 31
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/dept/jobs/8287903",
+      "title": "Creative Strategist, Retail Media - Creative - US Remote - Greenhouse",
+      "description": "WHAT YOU WILL BRING: · 2+ years in Creative Strategy or a related digital marketing role, with hands-on experience in paid media and creative testing · Deep ...",
+      "position": 32
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/edo/jobs/5148018007",
+      "title": "Job Application for Digital Marketing Manager at EDO - Greenhouse",
+      "description": "Paid Media & ABM: Plan, execute, and optimize targeted, full-funnel paid media campaigns across LinkedIn, Google Ads (display, SEM), and other potential ...",
+      "position": 33
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/sustainabletalent/jobs/4740375005?gh_jid=4740375005",
+      "title": "Senior Paid Media Manager, B2B & Developer Marketing supporting ...",
+      "description": "In this senior individual contributor role, you'll own paid media for NVIDIA's developer and enterprise programs end to end, from strategy and launch through ...",
+      "position": 34
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/later/jobs/8761453002",
+      "title": "Job Application for VP, Growth Marketing at Later - Greenhouse",
+      "description": "Direct paid media strategy across paid social, paid search, video, and display, holding the team accountable to efficiency targets. Guide SEO and AEO strategy ...",
+      "position": 35
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/neweratech/jobs/8796212002",
+      "title": "Job Application for Social Media Strategist at New Era Technology",
+      "description": "Collaborate cross-functionally with brand teams, medical affairs, paid media, search, web, and creative partners to define and enable organic social media ...",
+      "position": 36
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/toast/jobs/8261407",
+      "title": "Manager, Marketing Operations - Ad Tech Lead - - Toast",
+      "description": "2 days ago · Our Marketing Operations team is looking for a technically sharp, operationally minded Manager to own the infrastructure behind our paid media ...",
+      "position": 37
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/missionlane/jobs/8900061002",
+      "title": "Job Application for Manager, Paid Acquisition & Investment at Mission ...",
+      "description": "Remote, United States ... Mission Lane is in a stable, exciting phase of growth, making this a great moment to lead the execution of our paid media engine.",
+      "position": 38
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/swellmedia/jobs/4386551009",
+      "title": "Job Application for Associate Director, Performance Media at Swell Media",
+      "description": "Proven experience developing and executing paid media strategy. Experience managing significant media budgets. Strong client-facing and account management ...",
+      "position": 39
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/quillbot/jobs/8221990",
+      "title": "Senior Performance Marketing Specialist, Paid Media - Greenhouse",
+      "description": "Senior Performance Marketing Specialist, Paid Media ... Quillbot was founded in 2017 with a mission to help students and professionals strengthen their writing.",
+      "position": 40
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/careaccess/jobs/4378379009",
+      "title": "Job Application for Senior Manager, Integrated Media Strategy at Care ...",
+      "description": "Set the strategy for existing and emerging paid media channels, including ... Location: Remote within the United States. This role requires 100% of ...",
+      "position": 41
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/powerdigitalmarketing/jobs/5202071007",
+      "title": "Job Application for Paid Advertising Account Manager at Power Digital",
+      "description": "Paid Advertising Account Manager. Remote - United States. Apply. Who We Are: Power ... On top of their Paid Media knowledge, the Account Manager has an ...",
+      "position": 42
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/movableink?error=true",
+      "title": "Movable Ink Careers",
+      "description": "Paid media intelligence. Meet owned channels.. There's a new way to ... Movable Ink - Remote - United States. Senior Implementation Manager. Movable ...",
+      "position": 43
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/lindawernerassociates/jobs/5455917008",
+      "title": "Senior Paid Media Channel Manager (Enterprise Marketing) - Greenhouse",
+      "description": "Senior Paid Media Channel Manager (Enterprise Marketing). United States. Apply ... Location: Remote (NY preferred). Role type: Contract 12 Month Position ...",
+      "position": 44
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/pacvue/jobs/6189238004",
+      "title": "Job Application for Sr. Director, Demand Generation at Pacvue",
+      "description": "This role owns the demand engine end-to-end, the pipeline, the program budget, and distinct growth channels: paid media, lifecycle marketing and integrated ...",
+      "position": 45
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/nutrafol/jobs/4719481005",
+      "title": "Job Application for Senior Social Media Manager at Nutrafol",
+      "description": "Senior Social Media Manager. Remote (United States) ... Experience leading cross-functional campaigns and partnering with Creative, Brand, Paid Media, Influencer, ...",
+      "position": 46
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/realchemistry/jobs/5409493008",
+      "title": "Job Application for Associate Director, Social Media at Real Chemistry",
+      "description": "Associate Director, Social Media. Remote - USA. Apply ... Our team brings together healthcare knowledge, creative thinking, content development, paid media ...",
+      "position": 47
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/array/jobs/6210668004",
+      "title": "Job Application for Digital Marketing Manager at Array - Greenhouse",
+      "description": "Paid media — strategy and execution. Own Google Ads and LinkedIn end to end ... United States of America Canada. Will you now or in the future require ...",
+      "position": 48
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/powerdigitalmarketing/jobs/4797401007",
+      "title": "CPG Paid Advertising Strategist, Client Experience - Greenhouse",
+      "description": "CPG Paid Advertising Strategist, Client Experience. Remote - United States ... paid media; Full knowledge of the Power Circuit, adapting to the latest ...",
+      "position": 49
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/agencywithin/jobs/5249472007?utm_id=17678628&utm_source=Digital+Marketing+Jobs",
+      "title": "Job Application for Telehealth Paid Media Director at WITHIN",
+      "description": "Must currently live in New York City. · 8+ years of paid media or performance marketing experience, including significant agency experience and senior-level ...",
+      "position": 50
+    }
+  ],
+  "candidates": [
+    {
+      "url": "https://job-boards.greenhouse.io/couriernewsroom/jobs/4396080009",
+      "title": "Senior Editor, Impact Content & Paid Media - Greenhouse",
+      "description": "Senior Editor, Impact Content & Paid Media. Remote (U.S.-based) | Full-Time | $70,000-$80,000. Join Courier Newsroom - an organization that drives ...",
+      "position": 12,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/cloudcontrolmedia/jobs/8261745",
+      "title": "Job Application for Paid Media Manager at CloudControlMedia",
+      "description": "We are looking for a passionate, agile, customer-driven Paid Media Manager who will be responsible for managing, reviewing, planning, and executing our clients' ...",
+      "position": 13,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/realchemistry/jobs/5410629008",
+      "title": "Jobs at Real Chemistry - Greenhouse",
+      "description": "Current openings ; Paid Media · Senior Analyst. Remote - USA ; Social Media · Social Content Creator. Remote - USA ; starpower · starpower - Senior Director, ...",
+      "position": 14,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/nysonian/jobs/4402413009",
+      "title": "Job Application for Director of Paid Media at Nysonian - Greenhouse",
+      "description": "# Director of Paid Media\nUnited States",
+      "position": 16,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/axon/jobs/8038093003",
+      "title": "Job Application for Paid Media Manager at Axon - Greenhouse",
+      "description": "Build and own the annual paid media plan, including channel mix, audience strategy, and testing roadmap, and present results, insights, and recommendations to ...",
+      "position": 18,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/mercury/jobs/6221007004",
+      "title": "Job Application for Head of Media at Mercury - Greenhouse",
+      "description": "Connect media to the broader marketing ecosystem — integrate paid media with brand, performance, community, content, lifecycle, and product marketing so ...",
+      "position": 20,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/sociallyin/jobs/5418102008",
+      "title": "Job Application for Director of Paid Social at Sociallyin - Greenhouse",
+      "description": "Director of Paid Social. Sociallyin | Atlanta, GA (Remote-friendly) | $80,000–$95,000. We're hiring a Director of Paid Social to own and grow our paid media ...",
+      "position": 21,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/powerdigitalmarketing/jobs/5094398007",
+      "title": "Job Application for Group Media Director, B2B at Power Digital",
+      "description": "The Group Media Director is responsible for leading a portfolio of high-value paid media accounts, driving performance, strategy, and growth across multiple ...",
+      "position": 22,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/powerdigitalmarketing/jobs/5209938007",
+      "title": "Associate Media Director, Paid Social & Programmatic - Greenhouse",
+      "description": "Who We Are: · 6-8+ years of Paid Media experience · Experience managing multiple paid media accounts with budgets ranging between $300K-$3MM per month.",
+      "position": 23,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/lendingtree/jobs/7838801",
+      "title": "Job Application for VP, Head of Paid Media at LendingTree - Greenhouse",
+      "description": "We are seeking a Head of Paid Media to lead this engine—owning strategy and execution across SEM, Paid Social, Programmatic, and Partner Marketing channels.",
+      "position": 24,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/themotleyfool/jobs/5151936007",
+      "title": "Job Application for Marketing Growth Operator at The Motley Fool",
+      "description": "This role sits on the team that grows our investing subscription services. We acquire subscribers through paid media at scale, and we win in part by being ...",
+      "position": 25,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/code3/jobs/8224066",
+      "title": "Associate Director, Media Strategy & Client Partnerships - Greenhouse",
+      "description": "You should have: 5+ years of experience in digital marketing with a strong focus on DTC paid media strategy; including paid search, paid social, programmatic, ...",
+      "position": 28,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/later/jobs/8843618002",
+      "title": "Job Application for Account Supervisor, Social Media at Later",
+      "description": "Experience working across paid media, influencer marketing, creative, or production is a plus. Our approach to compensation: We take a market-based & data- ...",
+      "position": 29,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/dept/jobs/8287903",
+      "title": "Creative Strategist, Retail Media - Creative - US Remote - Greenhouse",
+      "description": "WHAT YOU WILL BRING: · 2+ years in Creative Strategy or a related digital marketing role, with hands-on experience in paid media and creative testing · Deep ...",
+      "position": 32,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/sustainabletalent/jobs/4740375005?gh_jid=4740375005",
+      "title": "Senior Paid Media Manager, B2B & Developer Marketing supporting ...",
+      "description": "In this senior individual contributor role, you'll own paid media for NVIDIA's developer and enterprise programs end to end, from strategy and launch through ...",
+      "position": 34,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/neweratech/jobs/8796212002",
+      "title": "Job Application for Social Media Strategist at New Era Technology",
+      "description": "Collaborate cross-functionally with brand teams, medical affairs, paid media, search, web, and creative partners to define and enable organic social media ...",
+      "position": 36,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/toast/jobs/8261407",
+      "title": "Manager, Marketing Operations - Ad Tech Lead - - Toast",
+      "description": "2 days ago · Our Marketing Operations team is looking for a technically sharp, operationally minded Manager to own the infrastructure behind our paid media ...",
+      "position": 37,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/missionlane/jobs/8900061002",
+      "title": "Job Application for Manager, Paid Acquisition & Investment at Mission ...",
+      "description": "Remote, United States ... Mission Lane is in a stable, exciting phase of growth, making this a great moment to lead the execution of our paid media engine.",
+      "position": 38,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/swellmedia/jobs/4386551009",
+      "title": "Job Application for Associate Director, Performance Media at Swell Media",
+      "description": "Proven experience developing and executing paid media strategy. Experience managing significant media budgets. Strong client-facing and account management ...",
+      "position": 39,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/quillbot/jobs/8221990",
+      "title": "Senior Performance Marketing Specialist, Paid Media - Greenhouse",
+      "description": "Senior Performance Marketing Specialist, Paid Media ... Quillbot was founded in 2017 with a mission to help students and professionals strengthen their writing.",
+      "position": 40,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/careaccess/jobs/4378379009",
+      "title": "Job Application for Senior Manager, Integrated Media Strategy at Care ...",
+      "description": "Set the strategy for existing and emerging paid media channels, including ... Location: Remote within the United States. This role requires 100% of ...",
+      "position": 41,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/powerdigitalmarketing/jobs/5202071007",
+      "title": "Job Application for Paid Advertising Account Manager at Power Digital",
+      "description": "Paid Advertising Account Manager. Remote - United States. Apply. Who We Are: Power ... On top of their Paid Media knowledge, the Account Manager has an ...",
+      "position": 42,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/lindawernerassociates/jobs/5455917008",
+      "title": "Senior Paid Media Channel Manager (Enterprise Marketing) - Greenhouse",
+      "description": "Senior Paid Media Channel Manager (Enterprise Marketing). United States. Apply ... Location: Remote (NY preferred). Role type: Contract 12 Month Position ...",
+      "position": 44,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/nutrafol/jobs/4719481005",
+      "title": "Job Application for Senior Social Media Manager at Nutrafol",
+      "description": "Senior Social Media Manager. Remote (United States) ... Experience leading cross-functional campaigns and partnering with Creative, Brand, Paid Media, Influencer, ...",
+      "position": 46,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/realchemistry/jobs/5409493008",
+      "title": "Job Application for Associate Director, Social Media at Real Chemistry",
+      "description": "Associate Director, Social Media. Remote - USA. Apply ... Our team brings together healthcare knowledge, creative thinking, content development, paid media ...",
+      "position": 47,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/powerdigitalmarketing/jobs/4797401007",
+      "title": "CPG Paid Advertising Strategist, Client Experience - Greenhouse",
+      "description": "CPG Paid Advertising Strategist, Client Experience. Remote - United States ... paid media; Full knowledge of the Power Circuit, adapting to the latest ...",
+      "position": 49,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/agencywithin/jobs/5249472007?utm_id=17678628&utm_source=Digital+Marketing+Jobs",
+      "title": "Job Application for Telehealth Paid Media Director at WITHIN",
+      "description": "Must currently live in New York City. · 8+ years of paid media or performance marketing experience, including significant agency experience and senior-level ...",
+      "position": 50,
+      "actual_query": "\"paid media\" remote United States site:job-boards.greenhouse.io"
+    }
+  ]
+}

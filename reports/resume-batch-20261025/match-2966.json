@@ -1,0 +1,333 @@
+{
+  "id": "job",
+  "sufficient": true,
+  "reason": "Complete duties and qualifications support assessment. Strong paid-media evidence; some tracking details and schedule flexibility remain unverified.",
+  "blockers": [],
+  "categories": {
+    "responsibilities": [
+      {
+        "requirement": "Building and maintaining Google Search campaigns",
+        "support": 1,
+        "evidence": [
+          "Set up and managed more than 75 Google Ads/AdWords accounts with combined monthly spend of more than $476,000"
+        ],
+        "reason": "Demonstrates hands-on Google campaign setup and ongoing account management."
+      },
+      {
+        "requirement": "Conducting keyword and search-term research",
+        "support": 1,
+        "evidence": [
+          "Conducted advanced keyword research, channel analysis, trend monitoring, acquisition analysis, conversion-path and funnel analysis"
+        ],
+        "reason": "Direct keyword research and search-performance analysis experience."
+      },
+      {
+        "requirement": "Managing branded and non-branded search campaigns",
+        "support": 1,
+        "evidence": [
+          "Analyzed maximum CPC versus smart bidding, brand CPC optimization, brand and non-brand target CPA"
+        ],
+        "reason": "Direct brand and non-brand search optimization evidence."
+      },
+      {
+        "requirement": "Writing and testing ad copy",
+        "support": 1,
+        "evidence": [
+          "Leads account activation, campaign builds and structures, keyword and negative-keyword strategy, ad copy, audience segmentation, bid testing"
+        ],
+        "reason": "Demonstrates campaign copy execution and testing within paid-search management."
+      },
+      {
+        "requirement": "Managing keyword match types and negative keywords",
+        "support": 1,
+        "evidence": [
+          "Identifies qualifying search terms for review, with proposed match type, scope, rationale, confidence, and historical affected traffic."
+        ],
+        "reason": "Demonstrates search-term evaluation, negative keywords, and match-type decisions."
+      },
+      {
+        "requirement": "Monitoring bids, budgets, and campaign pacing",
+        "support": 1,
+        "evidence": [
+          "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+        ],
+        "reason": "Direct campaign pacing and performance-monitoring experience."
+      },
+      {
+        "requirement": "Adjusting bidding and budgets based on performance",
+        "support": 1,
+        "evidence": [
+          "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review"
+        ],
+        "reason": "Direct evidence of bid and budget optimization improving business results."
+      },
+      {
+        "requirement": "Supporting Performance Max and other Google campaign types where appropriate",
+        "support": 1,
+        "evidence": [
+          "Worked closely with the Web Dev team and the content team to create custom landing pages and custom content for PMAX campaigns"
+        ],
+        "reason": "Direct Performance Max campaign support with creative and landing-page coordination."
+      },
+      {
+        "requirement": "Building and launching Meta campaigns",
+        "support": 1,
+        "evidence": [
+          "Managed all marketing platforms: Google Ads, Bing Ads, Amazon, Facebook, Instagram, and TikTok with a 400k/month budget"
+        ],
+        "reason": "Demonstrated Facebook and Instagram campaign management supports routine platform execution."
+      },
+      {
+        "requirement": "Managing prospecting and retargeting campaigns",
+        "support": 1,
+        "evidence": [
+          "Managed all paid search campaigns, outreach, lead generation, and customer acquisition for a large E-Commerce company in the United States, Canada, and the UK"
+        ],
+        "reason": "Direct acquisition management; broader campaign history also establishes remarketing."
+      },
+      {
+        "requirement": "Developing and maintaining campaign audiences",
+        "support": 1,
+        "evidence": [
+          "Analyzed Google Ads audience performance to identify audiences and strategies to test and apply across other platforms"
+        ],
+        "reason": "Direct audience development, testing, and cross-platform optimization."
+      },
+      {
+        "requirement": "Coordinating and testing ad creative and messaging",
+        "support": 1,
+        "evidence": [
+          "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing"
+        ],
+        "reason": "Demonstrates creative, messaging, and experimentation within campaign execution."
+      },
+      {
+        "requirement": "Reviewing performance across campaigns, ad sets, audiences, and ads",
+        "support": 1,
+        "evidence": [
+          "Managed Google Ads, Microsoft/Bing Ads, Amazon, Meta/Facebook, Instagram, and TikTok across an approximately $400,000 monthly advertising budget"
+        ],
+        "reason": "Hands-on Meta campaign ownership supports routine ad-set and ad performance review."
+      },
+      {
+        "requirement": "Identifying underperforming creative or targeting",
+        "support": 1,
+        "evidence": [
+          "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review"
+        ],
+        "reason": "Demonstrates analysis and testing to improve targeting and campaign efficiency."
+      },
+      {
+        "requirement": "Scaling campaigns that are performing efficiently",
+        "support": 1,
+        "evidence": [
+          "Increased monthly marketing volume from approximately $200,000 to $800,000 while improving ROAS from 1.5 to 3.5"
+        ],
+        "reason": "Direct evidence of substantial scaling alongside improved advertising efficiency."
+      },
+      {
+        "requirement": "Manage campaigns toward established revenue, lead generation, acquisition, or conversion goals",
+        "support": 1,
+        "evidence": [
+          "Managed approximately $400,000 in media budget that generated more than $9 million in revenue, representing approximately 35% of total company revenue"
+        ],
+        "reason": "Demonstrates campaign ownership tied to measurable revenue outcomes."
+      },
+      {
+        "requirement": "Identify underperforming campaigns, keywords, audiences, or ads",
+        "support": 1,
+        "evidence": [
+          "Evaluates nine categories: account structure, campaign performance, keywords, search-term waste, geography, devices, budget allocation, conversions, and landing-page opportunities."
+        ],
+        "reason": "Demonstrates systematic identification of campaign and targeting performance issues."
+      },
+      {
+        "requirement": "Conduct ongoing campaign tests",
+        "support": 1,
+        "evidence": [
+          "Created custom attribution models, advanced bid strategies, bid tests/experiments, A/B tests, and multivariate testing frameworks"
+        ],
+        "reason": "Direct campaign experimentation and testing-framework experience."
+      },
+      {
+        "requirement": "Document meaningful campaign changes",
+        "support": 0.5,
+        "evidence": [
+          "Builds and develops teams, documents lessons learned, resolves issues, respectfully challenges assumptions, takes ownership of setbacks"
+        ],
+        "reason": "Documentation is demonstrated; specific advertising change-log practice is unverified."
+      },
+      {
+        "requirement": "Identify opportunities to improve conversion rates and acquisition costs",
+        "support": 1,
+        "evidence": [
+          "designs A/B tests, multivariate tests, bid experiments, and click-to-call assessments to identify opportunities and improve acquisition efficiency."
+        ],
+        "reason": "Direct experimentation targeting conversion and acquisition efficiency."
+      },
+      {
+        "requirement": "You should be able to confirm that campaigns and conversions are tracking correctly, identify potential tracking issues",
+        "support": 1,
+        "evidence": [
+          "Implemented GA4 e-commerce and engagement tracking for product discovery, cart interactions, searches, filters, and contact intent"
+        ],
+        "reason": "Demonstrates hands-on conversion measurement implementation and validation controls."
+      },
+      {
+        "requirement": "Meta Pixel",
+        "support": 0,
+        "evidence": [],
+        "reason": "Meta campaign management does not establish Pixel implementation or troubleshooting."
+      },
+      {
+        "requirement": "Lead and form tracking",
+        "support": 0.5,
+        "evidence": [
+          "Implemented GA4 e-commerce and engagement tracking for product discovery, cart interactions, searches, filters, and contact intent"
+        ],
+        "reason": "Contact-intent tracking transfers; lead-form tracking is not explicitly demonstrated."
+      },
+      {
+        "requirement": "UTMs and campaign naming conventions",
+        "support": 0.5,
+        "evidence": [
+          "Created a PPC system under an MMC account for 32 different companies that Any Hour Group owned."
+        ],
+        "reason": "Multi-company campaign standardization transfers; explicit UTM use is unverified."
+      },
+      {
+        "requirement": "You will work closely with Marketing Managers and other internal stakeholders to understand current business priorities and translate them into paid media activity.",
+        "support": 1,
+        "evidence": [
+          "Consulted on SEO best practices and on-page optimization and coordinated marketing priorities with web, operations, creative, and other stakeholders"
+        ],
+        "reason": "Direct cross-functional coordination translating business priorities into marketing work."
+      },
+      {
+        "requirement": "Communicate proactively.",
+        "support": 0.5,
+        "evidence": [
+          "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+        ],
+        "reason": "Direct stakeholder communication; unsolicited update cadence is not specified."
+      }
+    ],
+    "required": [
+      {
+        "requirement": "Strong hands-on experience with Google Ads, particularly Google Search",
+        "support": 1,
+        "evidence": [
+          "Managed PPC efforts across Google Ads and Microsoft/Bing Ads"
+        ],
+        "reason": "Direct hands-on paid-search platform ownership."
+      },
+      {
+        "requirement": "Experience managing campaigns in Meta Ads Manager",
+        "support": 1,
+        "evidence": [
+          "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget"
+        ],
+        "reason": "Demonstrated Meta campaign ownership establishes routine campaign-platform capability."
+      },
+      {
+        "requirement": "Working knowledge of conversion tracking and attribution",
+        "support": 1,
+        "evidence": [
+          "Develops conversion tracking and attribution models; analyzes funnels, conversion paths, landing pages, and micro-conversions"
+        ],
+        "reason": "Direct conversion-tracking and attribution-model development."
+      },
+      {
+        "requirement": "Experience using Google Analytics 4",
+        "support": 1,
+        "evidence": [
+          "Setup custom reporting in GA4 using custom Google Tag Manager configurations"
+        ],
+        "reason": "Direct GA4 reporting and GTM configuration experience."
+      },
+      {
+        "requirement": "Strong attention to detail and organizational skills",
+        "support": 1,
+        "evidence": [
+          "Developed a repeatable Google Ads account-management system that maintained consistent service quality across clients regardless of spend"
+        ],
+        "reason": "Demonstrates organized, repeatable execution and quality control across accounts."
+      },
+      {
+        "requirement": "Comfortable taking ownership of day-to-day campaign management and optimization",
+        "support": 1,
+        "evidence": [
+          "Leads account activation, campaign builds and structures, keyword and negative-keyword strategy, ad copy, audience segmentation, bid testing, budget pacing, daily optimization"
+        ],
+        "reason": "Explicit ownership of daily campaign execution and optimization."
+      },
+      {
+        "requirement": "Ability to work flexible hours and/or extended hours as needed to accommodate client and project needs, as well as team members and projects in multiple time zones.",
+        "support": 0,
+        "evidence": [],
+        "reason": "Schedule flexibility and extended-hours availability are not documented."
+      },
+      {
+        "requirement": "Remote (US-based candidates only)",
+        "support": 1,
+        "evidence": [
+          "American Fork, UT"
+        ],
+        "reason": "Supplied location establishes US residence."
+      }
+    ],
+    "seniority": [
+      {
+        "requirement": "3-7 years of hands-on media buying experience required",
+        "support": 1,
+        "evidence": [
+          "Director of E-Commerce/Marketing – LifeSpan Fitness - Salt Lake City, UT \t\tJune 2013 -Aug 2016"
+        ],
+        "reason": "Dated paid-media leadership plus subsequent agency and in-house roles meet the experience floor."
+      },
+      {
+        "requirement": "Ability to manage campaigns across multiple brands or accounts",
+        "support": 1,
+        "evidence": [
+          "Managed 12 accounts, 32 campaigns, approximately 110,000 ad groups, and 1.6 million keywords with approximately $3.6 million in monthly spend for a single brand"
+        ],
+        "reason": "Direct large-scale multi-account campaign responsibility."
+      }
+    ],
+    "industry": [],
+    "preferred": []
+  },
+  "score": 90.16,
+  "accepted": true,
+  "status": "reviewed",
+  "failed_rules": [],
+  "category_percentages": {
+    "responsibilities": 88.46,
+    "required": 87.5,
+    "seniority": 100.0,
+    "industry": null,
+    "preferred": null
+  },
+  "policy": "master-evidence-v2",
+  "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+  "job": {
+    "id": "job",
+    "title": "Senior Digital Media Buyer",
+    "company": "Rise Collective",
+    "url": "https://rise-collective.pinpointhq.com/en/postings/39f7d92c-f55a-4213-b8c0-1c8281f01dda"
+  },
+  "description_sha256": "04fae0039b4a9c8b709dda18bed856dd76d3e95b3e55764d8b43789e9806810f",
+  "runner": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a1738b-df19-77d2-b02a-81bb66241efa",
+    "verified_at": "2026-10-25T14:53:06.599216+00:00"
+  },
+  "thresholds": {
+    "minimum_score": 60,
+    "minimum_responsibilities_match": 50,
+    "minimum_required_skills_match": 50
+  },
+  "cached": true
+}

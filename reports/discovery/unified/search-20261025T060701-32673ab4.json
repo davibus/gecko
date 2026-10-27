@@ -1,0 +1,13 @@
+{
+  "run_id": "search:20261025T060701-32673ab4",
+  "day": "2026-10-25",
+  "warnings": [],
+  "resumes_generated": 0,
+  "applications_submitted": 0,
+  "status": "interrupted_for_threshold_change",
+  "new_job_ids": [],
+  "new_unique_jobs": 0,
+  "published_job_ids": [],
+  "resume_match_minimum_before": 80,
+  "resume_match_minimum_after": 60
+}

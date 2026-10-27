@@ -1,0 +1,304 @@
+{
+  "id": "job",
+  "sufficient": true,
+  "reason": "Complete duties and qualifications support review. LinkedIn execution, specialist media channels, ABM and several tools remain unverified; missing evidence does not establish inability.",
+  "blockers": [],
+  "categories": {
+    "responsibilities": [
+      {
+        "requirement": "Plan, launch, and optimize campaigns across LinkedIn, Meta, content syndication, CTV, and podcasts/audio.",
+        "support": 0.5,
+        "evidence": [
+          "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget"
+        ],
+        "reason": "Meta execution is proven; LinkedIn, syndication, CTV buying and audio execution are unverified."
+      },
+      {
+        "requirement": "Build tactical strategies across TOFU, MOFU, and BOFU, and across 1:many, 1:few, and 1:1 programs.",
+        "support": 0.5,
+        "evidence": [
+          "Designed and interpreted funnel testing across reach, comparison, conversion, micro-conversion, purchase, and internal customer lifetime value"
+        ],
+        "reason": "Full-funnel strategy transfers; named-account and tiered ABM execution are unverified."
+      },
+      {
+        "requirement": "Translate Sales and Demand Gen goals into plans by stage, persona, and segment.",
+        "support": 0.5,
+        "evidence": [
+          "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation"
+        ],
+        "reason": "Goal-led campaign planning transfers; persona-based sales and ABM planning are less explicit."
+      },
+      {
+        "requirement": "Shape copy and creative strategy with Creative, Customer Marketing, and Product Marketing, so each audience gets the right message.",
+        "support": 1,
+        "evidence": [
+          "Worked closely with the Web Dev team and the content team to create custom landing pages and custom content for PMAX campaigns"
+        ],
+        "reason": "Demonstrates collaborative campaign-content and creative development."
+      },
+      {
+        "requirement": "You’ll own the creative pipeline for your channels, from requests and approvals through trafficking and rotation.",
+        "support": 0.5,
+        "evidence": [
+          "Developed affiliate-program strategy and created search/display ad copy using Adobe design software"
+        ],
+        "reason": "Creative production transfers; approval, trafficking and rotation ownership are unverified."
+      },
+      {
+        "requirement": "Run rigorous QA across copy, assets, campaign structure, audiences, and UTMs before anything goes live.",
+        "support": 0.5,
+        "evidence": [
+          "Leads account activation, campaign builds and structures, keyword and negative-keyword strategy, ad copy, audience segmentation"
+        ],
+        "reason": "Campaign activation and documented QA transfer; explicit asset and UTM checks are unverified."
+      },
+      {
+        "requirement": "Partner with our EMEA team to localize global campaigns for their markets.",
+        "support": 0.5,
+        "evidence": [
+          "Managed all paid search campaigns, outreach, lead generation, and customer acquisition for a large E-Commerce company in the United States, Canada, and the UK"
+        ],
+        "reason": "UK campaign delivery transfers; explicit EMEA localization and collaboration are unverified."
+      },
+      {
+        "requirement": "Track tasks, requests, and SLAs in Asana so work stays visible and on schedule.",
+        "support": 0.5,
+        "evidence": [
+          "Oversaw project management in an ever-changing environment"
+        ],
+        "reason": "Project coordination transfers; Asana and SLA tracking are unverified."
+      },
+      {
+        "requirement": "Own audience list hygiene and targeting across platforms.",
+        "support": 0.5,
+        "evidence": [
+          "Analyzed Google Ads audience performance to identify audiences and strategies to test and apply across other platforms"
+        ],
+        "reason": "Cross-platform audience targeting is supported; audience-list hygiene is unverified."
+      },
+      {
+        "requirement": "Build audiences from first- and third-party data.",
+        "support": 0.5,
+        "evidence": [
+          "Analyzed Google Ads audience performance to identify audiences and strategies to test and apply across other platforms"
+        ],
+        "reason": "Audience analysis transfers; first- and third-party audience construction is unverified."
+      },
+      {
+        "requirement": "Manage pixels and primary vs. secondary conversion architecture, so campaigns optimize toward the actions that matter most.",
+        "support": 0.5,
+        "evidence": [
+          "Configured GA4 and custom Google Tag Manager measurement/reporting"
+        ],
+        "reason": "Measurement implementation transfers; platform pixels and conversion prioritization are less explicit."
+      },
+      {
+        "requirement": "Manage budgets against lead volume, lead quality, conversion, pipeline, and ROI.",
+        "support": 0.5,
+        "evidence": [
+          "Evaluates ROI, ROAS, CPA, revenue, customer lifetime value, and channel performance"
+        ],
+        "reason": "Efficiency-led budget analysis is proven; lead-quality and pipeline budget management are less explicit."
+      },
+      {
+        "requirement": "Own pacing and anomaly detection, and keep documented budget pacing up to date.",
+        "support": 1,
+        "evidence": [
+          "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing"
+        ],
+        "reason": "Pacing dashboards and documented automated monitoring support routine pacing and anomaly detection."
+      },
+      {
+        "requirement": "Run structured tests on audiences, creative, landing pages, copy, and bidding.",
+        "support": 1,
+        "evidence": [
+          "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing"
+        ],
+        "reason": "Demonstrates testing and optimization across the requested campaign elements."
+      },
+      {
+        "requirement": "Run ongoing search query analysis and keyword optimization.",
+        "support": 1,
+        "evidence": [
+          "Identified search-term waste, relative CPA inefficiency, budget concentration, and geographic or device opportunities."
+        ],
+        "reason": "Demonstrates search-term evaluation alongside extensive keyword optimization work."
+      },
+      {
+        "requirement": "Lead weekly cross‑channel optimization syncs.",
+        "support": 1,
+        "evidence": [
+          "Led weekly marketing meetings and participated in weekly firm management meetings"
+        ],
+        "reason": "Weekly marketing leadership and multichannel expertise support optimization coordination."
+      },
+      {
+        "requirement": "Deliver weekly, monthly, and quarterly reporting that pairs results with clear recommendations.",
+        "support": 1,
+        "evidence": [
+          "Converted analytical findings into executive summaries, recommended actions, and next-period watch lists."
+        ],
+        "reason": "Actionable recurring reporting is established; reporting cadence is transferable."
+      },
+      {
+        "requirement": "Lead campaign hindsights that capture what drove results, what we learned, and what to do next.",
+        "support": 1,
+        "evidence": [
+          "Builds and develops teams, documents lessons learned, resolves issues, respectfully challenges assumptions"
+        ],
+        "reason": "Documented learning and analytical recommendations support campaign retrospectives."
+      },
+      {
+        "requirement": "Stay current on platform changes, privacy, and B2B trends.",
+        "support": 0.5,
+        "evidence": [
+          "Assessed inefficient legacy rule-based systems built using the Google Ads API and how newer Google machine-learning capabilities had made those systems outdated"
+        ],
+        "reason": "Platform evolution is demonstrated; ongoing privacy and B2B trend monitoring are less explicit."
+      }
+    ],
+    "required": [
+      {
+        "requirement": "Hands-on experience building and optimizing social campaigns within LinkedIn and Meta, ideally with a focus in lead generation",
+        "support": 0.5,
+        "evidence": [
+          "Managed all marketing platforms: Google Ads, Bing Ads, Amazon, Facebook, Instagram, and TikTok with a 400k/month budget"
+        ],
+        "reason": "Meta campaign management is proven; LinkedIn execution and social lead-generation focus are unverified."
+      },
+      {
+        "requirement": "Working knowledge of conversion tracking, including pixels, UTMs, and primary vs. secondary conversions",
+        "support": 0.5,
+        "evidence": [
+          "Implemented GA4 e-commerce and engagement tracking for product discovery, cart interactions, searches, filters, and contact intent"
+        ],
+        "reason": "Conversion instrumentation transfers; pixels, UTMs and conversion hierarchy are not explicit."
+      },
+      {
+        "requirement": "Experience managing budgets and pacing against goals, preferably optimizing towards leads, pipeline, cost efficiency, and ROI",
+        "support": 1,
+        "evidence": [
+          "Scaled monthly marketing volume from approximately $200K to $800K while improving ROAS from 1.5 to 3.5 through budget, bidding, audience, and conversion optimization"
+        ],
+        "reason": "Demonstrates goal-based budget optimization with improved efficiency and volume."
+      },
+      {
+        "requirement": "Experience running structured tests and turning results into clear recommendations",
+        "support": 1,
+        "evidence": [
+          "Used regression models, prior-year/prior-period data, holdouts, geo-promotional tests, scale-up/down analysis, and budget reallocation scenarios"
+        ],
+        "reason": "Demonstrates structured experimentation supporting investment recommendations."
+      },
+      {
+        "requirement": "Strong attention to detail, especially in QA",
+        "support": 1,
+        "evidence": [
+          "Used schemas and evidence identifiers to validate model responses and generated artifacts."
+        ],
+        "reason": "Demonstrates systematic validation and quality controls."
+      },
+      {
+        "requirement": "Outstanding analytical skills and strong experience in performance optimization",
+        "support": 1,
+        "evidence": [
+          "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review"
+        ],
+        "reason": "Quantified optimization results establish analytical performance improvement."
+      },
+      {
+        "requirement": "Clear writer who can create ad copy that works for different audiences and markets",
+        "support": 1,
+        "evidence": [
+          "Developed affiliate-program strategy and created search/display ad copy using Adobe design software"
+        ],
+        "reason": "Ad-copy production and documented multinational campaign work support this capability."
+      },
+      {
+        "requirement": "Self-starter who can flex between strategic thinking and tactical execution",
+        "support": 1,
+        "evidence": [
+          "Conceived and built Space Force, formerly Crush, an AI marketing command center"
+        ],
+        "reason": "Demonstrates independent concept development and hands-on implementation."
+      },
+      {
+        "requirement": "Strong project management, able to run several campaigns in parallel",
+        "support": 1,
+        "evidence": [
+          "Managed 12 accounts, 32 campaigns, approximately 110,000 ad groups, and 1.6 million keywords"
+        ],
+        "reason": "Demonstrates substantial concurrent campaign-management scope."
+      }
+    ],
+    "seniority": [
+      {
+        "requirement": "2-3 years of hands-on paid media experience, ideally within a media agency or performance‑focused environment",
+        "support": 1,
+        "evidence": [
+          "Director of E-Commerce/Marketing – LifeSpan Fitness - Salt Lake City, UT \t\tJune 2013 -Aug 2016"
+        ],
+        "reason": "Dated role exceeds three years and explicitly includes hands-on paid campaign management."
+      }
+    ],
+    "industry": [],
+    "preferred": [
+      {
+        "requirement": "Experience in a B2B or B2B SaaS environment",
+        "support": 1,
+        "evidence": [
+          "Managed all aspects of e-commerce and marketing at a very large distributor (B2B)"
+        ],
+        "reason": "Direct B2B marketing experience meets the stated alternative."
+      },
+      {
+        "requirement": "Experience with ad placements across YouTube, Display, DOOH, or LLMs",
+        "support": 1,
+        "evidence": [
+          "Managed 150+ campaigns across Google Ads, Microsoft Ads, Amazon, search, shopping, display, video, remarketing, mobile, social, local, and email"
+        ],
+        "reason": "Direct display campaign management meets a listed alternative; DOOH and LLM ads are unverified."
+      },
+      {
+        "requirement": "Experience with Hubspot, 6sense, Dreamdata, Asana, and/or Salesforce",
+        "support": 0,
+        "evidence": [],
+        "reason": "HubSpot and Salesforce are listed, but substantive use of these named tools is unverified."
+      }
+    ]
+  },
+  "score": 80.41,
+  "accepted": true,
+  "status": "reviewed",
+  "failed_rules": [],
+  "category_percentages": {
+    "responsibilities": 68.42,
+    "required": 88.89,
+    "seniority": 100.0,
+    "industry": null,
+    "preferred": 66.67
+  },
+  "policy": "master-evidence-v2",
+  "thresholds": {
+    "minimum_score": 60,
+    "minimum_responsibilities_match": 50,
+    "minimum_required_skills_match": 50
+  },
+  "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+  "job": {
+    "id": "job",
+    "title": "Performance Marketing Specialist, Paid Social & Media",
+    "company": "Constructor",
+    "url": "https://jobs.ashbyhq.com/constructor/5de35134-f0f0-4f4a-bad1-1b9990d19a85"
+  },
+  "description_sha256": "7230271a9f1126e582fbeb4511a9caf63fb8be22621c65705ff6b63fef9b1826",
+  "runner": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a1745d-46da-7f51-a360-0284819dfc3f",
+    "verified_at": "2026-10-25T18:42:11.501258+00:00"
+  },
+  "cached": true
+}

@@ -1,0 +1,54 @@
+{
+  "id": 3055,
+  "company": "Jobgether",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1gnqYQP2RjVoLfSan109CSjUHKjEKHsn2/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Content-Marketing-Manager+00495.docx",
+  "started_at": "2026-10-26T16:30:06.259791+00:00",
+  "completed_at": "2026-10-26T16:31:23.450254+00:00",
+  "elapsed_seconds": 77.190474,
+  "generation_seconds": 20.45798669999931,
+  "delivery_seconds": 5.615463599999202,
+  "tracker_seconds": 20.69290729999193,
+  "readback": {
+    "Scout ID": 3055,
+    "Company": "Jobgether",
+    "Job Title": "Content Marketing Manager",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1gnqYQP2RjVoLfSan109CSjUHKjEKHsn2/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1306",
+  "hyperlink_target": "https://docs.google.com/document/d/1gnqYQP2RjVoLfSan109CSjUHKjEKHsn2/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 77.1905,
+    "active_seconds": 52.6612,
+    "review_wait_seconds": 24.5293,
+    "phases_seconds": {
+      "source_loading": 0.0309,
+      "tailoring": 1.1113,
+      "document_creation": 1.0408,
+      "word_pdf_validation": 4.094,
+      "fitting_retries": 0.0045,
+      "factual_review": 0.0,
+      "review_wait": 24.5293,
+      "tracker_sync": 20.6915,
+      "drive_delivery": 5.6079
+    },
+    "counts": {
+      "source_loading": 48,
+      "tailoring": 2,
+      "document_creation": 1,
+      "word_pdf_validation": 1,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 1,
+      "native_attempts": 1,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

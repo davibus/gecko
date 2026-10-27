@@ -1,0 +1,287 @@
+{
+  "job": {
+    "url": "https://job-boards.greenhouse.io/toast/jobs/8261407",
+    "company": "Toast",
+    "title": "Manager, Marketing Operations - Ad Tech Lead",
+    "location": "Remote",
+    "arrangement": "hybrid",
+    "salary": "",
+    "posted": "2026-10-23",
+    "chars": 7944
+  },
+  "match": {
+    "id": "job",
+    "sufficient": true,
+    "reason": "Complete duties and qualifications support assessment. Offline conversions, UTM governance, CRM routing and Marketo depth remain unverified; missing evidence does not prove absent capability or credentials.",
+    "blockers": [],
+    "categories": {
+      "responsibilities": [
+        {
+          "requirement": "Own the full signal path for Paid",
+          "support": 0.5,
+          "evidence": [
+            "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+          ],
+          "reason": "Paid measurement infrastructure is demonstrated; complete pixel-to-pipeline ownership is unverified."
+        },
+        {
+          "requirement": "own event tracking, conversion signals, and audience data flows across ad platforms",
+          "support": 0.5,
+          "evidence": [
+            "Implements GA4 events for product-list impressions, product selection and views, cart interactions, searches, filters, contact clicks, calls to action, and successful login or registration."
+          ],
+          "reason": "Event implementation is demonstrated; cross-platform audience signal infrastructure is unverified."
+        },
+        {
+          "requirement": "manage and optimize Marketo paid program setup, scoring, audience segmentation, and integration with ad platforms",
+          "support": 0.5,
+          "evidence": [
+            "Installed Go High Level and trained employees on how to use it correctly."
+          ],
+          "reason": "Automation-platform implementation transfers partially; Marketo scoring and integrations are unverified."
+        },
+        {
+          "requirement": "manage CRM audience syncs and data pipelines between source systems and ad platforms using ETL systems",
+          "support": 0.5,
+          "evidence": [
+            "Built automated weekly reporting across 10+ channels using Python, Databricks, SQL, blended Excel data, and Funnel.io to improve accuracy and decision speed"
+          ],
+          "reason": "Multi-source pipelines are demonstrated; outbound CRM audience synchronization is unverified."
+        },
+        {
+          "requirement": "define and enforce naming conventions, UTM taxonomy, QA checklists, and bulk build processes",
+          "support": 0.5,
+          "evidence": [
+            "Used advanced Excel formulas and VS Code to create upload-ready XLSX files for Google Ads Editor"
+          ],
+          "reason": "Bulk campaign builds are demonstrated; UTM taxonomy and naming governance remain unverified."
+        },
+        {
+          "requirement": "manage connections between marketing tech systems (Marketo, Salesforce, ad platforms) and troubleshoot data discrepancies across the stack",
+          "support": 0.5,
+          "evidence": [
+            "Installed Go High Level. I then connected this to Service Titan, Power BI, and all the internal system that were using working closely with the Director of Marketing"
+          ],
+          "reason": "Comparable CRM/reporting integration is demonstrated; the named stack is only partially established."
+        },
+        {
+          "requirement": "build and maintain the launch playbook for new vendors, channels, and tests; own time-to-launch as a core metric and continuously shrink it",
+          "support": 0.5,
+          "evidence": [
+            "Developed a repeatable Google Ads account-management system that maintained consistent service quality across clients regardless of spend; the system was adopted across the agency"
+          ],
+          "reason": "Repeatable campaign operations transfer; launch-time ownership and vendor playbooks are unverified."
+        },
+        {
+          "requirement": "publish and follow a QA cadence (daily monitors, monthly tests, quarterly audits), and drive down time-to-detect on data issues",
+          "support": 0.5,
+          "evidence": [
+            "Created custom scripts for continuous, automated monitoring of client marketing efforts"
+          ],
+          "reason": "Automated monitoring transfers to the alerting suite; recurring audit ownership is unverified."
+        },
+        {
+          "requirement": "maintain and QA the data pipelines that feed performance dashboards",
+          "support": 1,
+          "evidence": [
+            "Created a customized reporting system using Python, Databricks, SQL, blended Excel data, and Funnel.io to automatically collect data weekly from more than 10 marketing channels"
+          ],
+          "reason": "Built multi-channel reporting infrastructure with documented accuracy improvements."
+        },
+        {
+          "requirement": "build, maintain, and refresh CRM-based audience lists for suppression, retargeting, and lookalike seeding across ad platforms",
+          "support": 0.5,
+          "evidence": [
+            "Analyzed Google Ads audience performance to identify audiences and strategies to test and apply across other platforms"
+          ],
+          "reason": "Audience strategy transfers partially; CRM list refreshes, suppression and seeding are unverified."
+        }
+      ],
+      "required": [
+        {
+          "requirement": "Hands-on experience with offline conversion tracking (Meta CAPI, Google Enhanced Conversions, or equivalent), including sending CRM-stage conversions back to platforms",
+          "support": 0,
+          "evidence": [],
+          "reason": "No documented offline conversion uploads, CAPI, enhanced conversions or CRM-stage feedback."
+        },
+        {
+          "requirement": "Experience with a marketing automation platform (Marketo, HubSpot, or similar)",
+          "support": 1,
+          "evidence": [
+            "Installed Go High Level and trained employees on how to use it correctly."
+          ],
+          "reason": "Hands-on implementation and training establish experience with a comparable automation platform."
+        },
+        {
+          "requirement": "Experience with CRM systems and lead routing logic (Salesforce or equivalent)",
+          "support": 0.5,
+          "evidence": [
+            "developed a Service Titan CRM program, bringing website delivery, marketing measurement, and customer-management systems into the same project scope"
+          ],
+          "reason": "CRM implementation is demonstrated; lead routing logic is unverified."
+        },
+        {
+          "requirement": "Experience managing data pipelines and integrations via Hightouch or similar ETL tools",
+          "support": 1,
+          "evidence": [
+            "Built automated weekly reporting across 10+ channels using Python, Databricks, SQL, blended Excel data, and Funnel.io to improve accuracy and decision speed"
+          ],
+          "reason": "Funnel.io and Databricks reporting pipelines demonstrate comparable data integration capability."
+        },
+        {
+          "requirement": "Strong UTM governance and tracking QA across multi-channel paid campaigns",
+          "support": 0.5,
+          "evidence": [
+            "Configured GA4 and custom Google Tag Manager measurement/reporting"
+          ],
+          "reason": "Tracking implementation supports QA capability; UTM governance is unverified."
+        },
+        {
+          "requirement": "Track record operating as an embedded technical partner to a Paid/growth team — driving requirements proactively rather than waiting on tickets",
+          "support": 1,
+          "evidence": [
+            "Built an in-house PPC structure for a company group spanning 32 businesses, including MCC consolidation, a scalable operating system, team buildout/training, and API integration"
+          ],
+          "reason": "Proactively built paid-media operations, team processes and technical infrastructure."
+        },
+        {
+          "requirement": "Ability to troubleshoot data discrepancies and communicate findings to cross-functional stakeholders",
+          "support": 1,
+          "evidence": [
+            "Known for learning quickly, building scalable systems, translating complex analysis into practical business recommendations, and improving marketing performance and operational efficiency."
+          ],
+          "reason": "Supported by documented reporting accuracy work, cross-functional leadership and analytical findings."
+        },
+        {
+          "requirement": "Strong attention to detail and a bias toward process and documentation",
+          "support": 1,
+          "evidence": [
+            "Maintained development instructions, an analytics tracking plan, Git workflow documentation, and a multi-stage deployment configuration."
+          ],
+          "reason": "Documented tracking plans and repeatable verification controls demonstrate disciplined processes."
+        }
+      ],
+      "seniority": [
+        {
+          "requirement": "5+ years in marketing operations, ad tech, or marketing analytics",
+          "support": 0.5,
+          "evidence": [
+            "Digital marketing and marketing technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce, professional services, and high-volume performance marketing"
+          ],
+          "reason": "Extensive relevant career is documented; five years in the specified functions is not explicit."
+        },
+        {
+          "requirement": "Experience managing infrastructure for paid spend at $10M+ a year across 3+ ad platforms",
+          "support": 0.5,
+          "evidence": [
+            "Managed up to $30 million per month in paid media with a four-person team at TravelPass Group, supporting high-volume account operations and disciplined budget oversight"
+          ],
+          "reason": "Spend scale is established; three-platform infrastructure at that scale is unverified."
+        }
+      ],
+      "industry": [
+        {
+          "requirement": "Experience working within a B2B SaaS environment",
+          "support": 0.5,
+          "evidence": [
+            "Extended the original product into an authenticated multi-client architecture."
+          ],
+          "reason": "Multi-client software development and separate B2B experience transfer; B2B SaaS employment is unverified."
+        }
+      ],
+      "preferred": [
+        {
+          "requirement": "Owned a cost efficiency metric as part of your function",
+          "support": 1,
+          "evidence": [
+            "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review"
+          ],
+          "reason": "Demonstrates ownership of measurable advertising efficiency improvements."
+        },
+        {
+          "requirement": "Part of the team or led the move to value-based bidding with measurable CAC or pipeline impact",
+          "support": 0.5,
+          "evidence": [
+            "Analyzed maximum CPC versus smart bidding, brand CPC optimization, brand and non-brand target CPA, incremental CPA during scale-ups and scale-downs"
+          ],
+          "reason": "Bidding and acquisition-cost analysis transfer; value-based bidding migration impact is unverified."
+        },
+        {
+          "requirement": "Proficiency with Marketo, including program setup, lead scoring, and ad platform integrations",
+          "support": 0,
+          "evidence": [],
+          "reason": "Marketo appears only in skills inventories; hands-on proficiency and lead scoring are unverified."
+        },
+        {
+          "requirement": "Working knowledge of Salesforce CRM, including lead routing, campaign attribution, and data hygiene",
+          "support": 0.5,
+          "evidence": [
+            "Built conversion and attribution models and designed A/B and multivariate tests across multiple levels of the marketing funnel"
+          ],
+          "reason": "Attribution capability transfers; Salesforce-specific routing and data hygiene are unverified."
+        },
+        {
+          "requirement": "Experience with a CDP or data warehouse tool (Segment, Snowflake, BigQuery)",
+          "support": 1,
+          "evidence": [
+            "Built automated weekly reporting across 10+ channels using Python, Databricks, SQL, blended Excel data, and Funnel.io to improve accuracy and decision speed"
+          ],
+          "reason": "Hands-on Databricks reporting demonstrates comparable data warehouse platform experience."
+        },
+        {
+          "requirement": "Familiarity with SQL for data QA and ad-hoc reporting",
+          "support": 1,
+          "evidence": [
+            "Built automated weekly reporting across 10+ channels using Python, Databricks, SQL, blended Excel data, and Funnel.io to improve accuracy and decision speed"
+          ],
+          "reason": "SQL reporting work explicitly improved data accuracy."
+        },
+        {
+          "requirement": "Experience with TikTok or other emerging ad platform integrations beyond Meta and Google",
+          "support": 0.5,
+          "evidence": [
+            "Managed all marketing platforms: Google Ads, Bing Ads, Amazon, Facebook, Instagram, and TikTok with a 400k/month budget"
+          ],
+          "reason": "TikTok campaign management is demonstrated; technical platform integration is unverified."
+        },
+        {
+          "requirement": "Prior experience in an embedded ops role supporting a paid media team",
+          "support": 1,
+          "evidence": [
+            "Built the PPC team and trained team members on the scalable system created for the organization (QoQ)"
+          ],
+          "reason": "Built operational systems and trained the paid-media team using them."
+        }
+      ]
+    },
+    "score": 60.44,
+    "accepted": false,
+    "status": "reviewed",
+    "failed_rules": [
+      "responsibilities alignment below 70%"
+    ],
+    "category_percentages": {
+      "responsibilities": 55.0,
+      "required": 75.0,
+      "seniority": 50.0,
+      "industry": 50.0,
+      "preferred": 68.75
+    },
+    "policy": "master-evidence-v2",
+    "master_sha256": "65eaa4541ae39b10bb87eac1480524265d2f54a7b353523baa6d92ced55dad01",
+    "job": {
+      "id": "job",
+      "title": "Manager, Marketing Operations - Ad Tech Lead",
+      "company": "Toast",
+      "url": "https://job-boards.greenhouse.io/toast/jobs/8261407"
+    },
+    "description_sha256": "94c459227b6b5739b7857c11a1d3a8c29fd7847505b4800b04f557764ac6890a",
+    "runner": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "verified": true,
+      "session_id": "01a17355-5d11-78a3-95cb-9e14700a5844",
+      "verified_at": "2026-10-25T13:53:11.544612+00:00"
+    }
+  }
+}

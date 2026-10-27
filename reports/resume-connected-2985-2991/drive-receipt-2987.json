@@ -1,0 +1,35 @@
+{
+  "path": "C:\\gecko_main\\output\\resumes\\Dave-Call+Atlas-HXM+Senior-Director,-Marketing-Operations+00445.docx",
+  "metadata": {
+    "id": "1w7uxT8iHGHK5ky0u4RjGHgo0a33AVBRe",
+    "title": "Dave-Call+Atlas-HXM+Senior-Director,-Marketing-Operations+00445.docx",
+    "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "size": "40579",
+    "url": "https://docs.google.com/document/d/1w7uxT8iHGHK5ky0u4RjGHgo0a33AVBRe/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+    "file_or_folder": "file",
+    "created_time": null,
+    "modified_time": null,
+    "parent_ids": [
+      "1Noy8XUqlL5ufqA4aU9jZWdwpMYeCVmol"
+    ],
+    "drive_id": null,
+    "current_user_can_share": null,
+    "has_augmented_permissions": null,
+    "shared": false,
+    "permissions": [
+      {
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "mdavidcall@gmail.com",
+        "domain": null,
+        "displayName": "Dave Call",
+        "allowFileDiscovery": null
+      }
+    ],
+    "source_visibility_status": "permission_metadata_available"
+  },
+  "download": {
+    "sha256": "0db25bb019aede6b10df9998f2969e0849a4d3bcdc7fc8140fddf1f1f26132f5",
+    "size": 40579
+  }
+}

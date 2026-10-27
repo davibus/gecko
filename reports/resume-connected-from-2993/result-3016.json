@@ -1,0 +1,54 @@
+{
+  "id": 3016,
+  "company": "Jobgether",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1A_wCMXt7aA3Jy02OF1HAk7kpseaX5wAB/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Senior-Demand-Generation-Manager-(Paid-Media)+00468.docx",
+  "started_at": "2026-10-26T15:19:08.314728+00:00",
+  "completed_at": "2026-10-26T15:20:43.048616+00:00",
+  "elapsed_seconds": 94.733903,
+  "generation_seconds": 33.463873100001365,
+  "delivery_seconds": 6.42119290001574,
+  "tracker_seconds": 19.145886899990728,
+  "readback": {
+    "Scout ID": 3016,
+    "Company": "Jobgether",
+    "Job Title": "Senior Demand Generation Manager (Paid Media)",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1A_wCMXt7aA3Jy02OF1HAk7kpseaX5wAB/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1268",
+  "hyperlink_target": "https://docs.google.com/document/d/1A_wCMXt7aA3Jy02OF1HAk7kpseaX5wAB/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 94.7339,
+    "active_seconds": 64.6457,
+    "review_wait_seconds": 30.0882,
+    "phases_seconds": {
+      "source_loading": 0.0636,
+      "tailoring": 1.1297,
+      "document_creation": 4.4698,
+      "word_pdf_validation": 14.9936,
+      "fitting_retries": 0.9068,
+      "factual_review": 0.0,
+      "review_wait": 30.0882,
+      "tracker_sync": 19.1449,
+      "drive_delivery": 6.4126
+    },
+    "counts": {
+      "source_loading": 104,
+      "tailoring": 2,
+      "document_creation": 4,
+      "word_pdf_validation": 4,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 4,
+      "native_attempts": 4,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

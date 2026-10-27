@@ -1,0 +1,38 @@
+{
+  "id": 2997,
+  "company": "Black Girl Ventures Foundation",
+  "status": "blocked",
+  "reason": "V2 QA failed: Page two is underfilled; add distinct, relevant evidence or document an evidence-exhaustion review.",
+  "elapsed_seconds": 24.064908699976513,
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\gecko_main\\scripts\\generate_apply_queue.py\", line 949, in generate\n    return _finish_generation(item, listing, attempts, force_recreate=force_recreate)\n  File \"C:\\gecko_main\\scripts\\generate_apply_queue.py\", line 1114, in _finish_generation\n    raise RuntimeError(\"V2 QA failed: \" + \"; \".join(qa[\"issues\"]))\nRuntimeError: V2 QA failed: Page two is underfilled; add distinct, relevant evidence or document an evidence-exhaustion review.\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\gecko_main\\work\\connected_resumes_2985_2991.py\", line 121, in main\n    artifacts=queue.generate(item,DEFAULT_DB,tracker=remote)\n  File \"C:\\gecko_main\\scripts\\generate_apply_queue.py\", line 953, in generate\n    raise QueueProcessingError(str(error), item, attempts) from error\ngenerate_apply_queue.QueueProcessingError: V2 QA failed: Page two is underfilled; add distinct, relevant evidence or document an evidence-exhaustion review.\n",
+  "timings": {
+    "wall_seconds": 24.0691,
+    "active_seconds": 24.0691,
+    "review_wait_seconds": 0.0,
+    "phases_seconds": {
+      "source_loading": 0.0323,
+      "tailoring": 0.5564,
+      "document_creation": 1.3951,
+      "word_pdf_validation": 5.4729,
+      "fitting_retries": 0.2775,
+      "factual_review": 0.0,
+      "review_wait": 0.0,
+      "tracker_sync": 0.0,
+      "drive_delivery": 0.0
+    },
+    "counts": {
+      "source_loading": 68,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 0,
+      "tracker_sync": 0,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 0
+    }
+  }
+}

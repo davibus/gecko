@@ -1,0 +1,54 @@
+{
+  "id": 3051,
+  "company": "Jobgether",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1eElOA3OHj9tciwhNCGjicPi5b2V282SE/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Business-Marketing-Lead+00491.docx",
+  "started_at": "2026-10-26T16:17:03.716494+00:00",
+  "completed_at": "2026-10-26T16:20:20.302681+00:00",
+  "elapsed_seconds": 196.586198,
+  "generation_seconds": 32.63201160001336,
+  "delivery_seconds": 5.211474000010639,
+  "tracker_seconds": 49.810305599996354,
+  "readback": {
+    "Scout ID": 3051,
+    "Company": "Jobgether",
+    "Job Title": "Business Marketing Lead",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1eElOA3OHj9tciwhNCGjicPi5b2V282SE/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1302",
+  "hyperlink_target": "https://docs.google.com/document/d/1eElOA3OHj9tciwhNCGjicPi5b2V282SE/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 196.5862,
+    "active_seconds": 103.9358,
+    "review_wait_seconds": 92.6504,
+    "phases_seconds": {
+      "source_loading": 0.2096,
+      "tailoring": 1.3074,
+      "document_creation": 2.6609,
+      "word_pdf_validation": 9.1842,
+      "fitting_retries": 0.8548,
+      "factual_review": 0.0,
+      "review_wait": 92.6504,
+      "tracker_sync": 49.8096,
+      "drive_delivery": 5.2061
+    },
+    "counts": {
+      "source_loading": 90,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

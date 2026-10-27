@@ -1,0 +1,264 @@
+{
+  "id": "job",
+  "sufficient": true,
+  "reason": "Complete duties and qualifications support evaluation. Strong paid-media, analytics and AI-building evidence; some specialist features, English level and call availability remain unverified.",
+  "blockers": [],
+  "categories": {
+    "responsibilities": [
+      {
+        "requirement": "Own a set of DTC accounts as the strategist, the buyer, and the client's direct point of contact.",
+        "support": 1,
+        "evidence": [
+          "Managed 75+ Google Ads accounts with more than $476,000 in combined monthly spend while advising clients on channel allocation, campaign structure, and growth priorities"
+        ],
+        "reason": "Demonstrates hands-on account ownership and direct strategic client advising."
+      },
+      {
+        "requirement": "You present the results, the plan, and the reasoning, and you are the one who answers when something is not working.",
+        "support": 1,
+        "evidence": [
+          "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+        ],
+        "reason": "Direct evidence of client presentations, strategy and consultative communication."
+      },
+      {
+        "requirement": "Audit before you touch anything.",
+        "support": 1,
+        "evidence": [
+          "Evaluates nine categories: account structure, campaign performance, keywords, search-term waste, geography, devices, budget allocation, conversions, and landing-page opportunities."
+        ],
+        "reason": "Demonstrates comprehensive account auditing; employer-specific review sequence transfers."
+      },
+      {
+        "requirement": "Then a Loom walking the client through what you found.",
+        "support": 0.5,
+        "evidence": [
+          "Built reporting pipelines using Funnel.io to consolidate data sources and presented performance data through Google Data Studio/Looker Studio"
+        ],
+        "reason": "Client performance presentations transfer; recorded Loom walkthroughs are unverified."
+      },
+      {
+        "requirement": "Run brand and non brand as different businesses.",
+        "support": 1,
+        "evidence": [
+          "Analyzed maximum CPC versus smart bidding, brand CPC optimization, brand and non-brand target CPA, incremental CPA during scale-ups and scale-downs"
+        ],
+        "reason": "Direct evidence of separate brand/nonbrand economics and bidding analysis."
+      },
+      {
+        "requirement": "Know what PMax is actually doing.",
+        "support": 0.5,
+        "evidence": [
+          "Analyzed max CPC versus smart bidding, brand CPC optimization, non-brand target CPA, Performance Max and Google Shopping mix, audience performance"
+        ],
+        "reason": "PMax and brand analysis are established; isolating branded PMax volume is unverified."
+      },
+      {
+        "requirement": "Auto applied recommendations, auto applied assets, and auto created sitelinks have cost our clients real money. We audit for them on a schedule.",
+        "support": 0.5,
+        "evidence": [
+          "Assessed inefficient legacy rule-based systems built using the Google Ads API and how newer Google machine-learning capabilities had made those systems outdated"
+        ],
+        "reason": "Automation scrutiny transfers; scheduled checks for these specific settings are unverified."
+      },
+      {
+        "requirement": "Merchant Center hygiene, product titles, disapprovals, promotions, and what the feed does to Shopping and PMax delivery.",
+        "support": 0.5,
+        "evidence": [
+          "Built a Google Merchant Center feed and product structured-data layer from a shared offer model"
+        ],
+        "reason": "Feed construction is demonstrated; disapproval and promotion operations are unverified."
+      },
+      {
+        "requirement": "GA4, GTM, Shopify goal imports versus a raw Google Ads tag, enhanced conversions, offline conversion imports for the lead gen accounts.",
+        "support": 0.5,
+        "evidence": [
+          "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+        ],
+        "reason": "GA4/GTM implementation is direct; enhanced conversions and offline imports are unverified."
+      },
+      {
+        "requirement": "When the numbers do not reconcile, you are the one who finds out why.",
+        "support": 1,
+        "evidence": [
+          "Preserved Google Ads, GA4, and Search Console measurement boundaries."
+        ],
+        "reason": "Demonstrates attention to source-specific measurement differences underlying reconciliation."
+      },
+      {
+        "requirement": "Creative, offer, AOV, landing page, checkout, tracking.",
+        "support": 0.5,
+        "evidence": [
+          "analyzes funnels, conversion paths, landing pages, and micro-conversions"
+        ],
+        "reason": "Funnel diagnosis transfers; explicit AOV and offer optimization evidence is limited."
+      },
+      {
+        "requirement": "Build the things the account needs. Landing pages, scripts, reporting, whatever removes the constraint.",
+        "support": 1,
+        "evidence": [
+          "Builds and connects websites, databases, reporting systems, and automated workflows using Python, SQL, JavaScript, VBA, APIs, and data visualization tools."
+        ],
+        "reason": "Direct evidence of building websites, reporting and custom automation."
+      },
+      {
+        "requirement": "We optimize to NC-CPA and NC-ROAS, not blended and not last click.",
+        "support": 0.5,
+        "evidence": [
+          "Evaluates ROI, ROAS, CPA, revenue, customer lifetime value, and channel performance using attribution analysis"
+        ],
+        "reason": "Acquisition economics transfer; explicit new-customer CPA/ROAS reporting is unverified."
+      },
+      {
+        "requirement": "We run geo holdouts. If a campaign is not incremental, we would rather know than keep the number.",
+        "support": 1,
+        "evidence": [
+          "Used regression models, prior-year/prior-period data, holdouts, geo-promotional tests, scale-up/down analysis, and budget reallocation scenarios"
+        ],
+        "reason": "Direct holdout and geographic testing evidence supports incrementality evaluation."
+      }
+    ],
+    "required": [
+      {
+        "requirement": "Shopping and PMax specifically, not just search.",
+        "support": 1,
+        "evidence": [
+          "Analyzed maximum CPC versus smart bidding, brand CPC optimization, brand and non-brand target CPA, incremental CPA during scale-ups and scale-downs, omnichannel brand holdouts, data-driven attribution (DDA), and the Performance Max/Google Shopping mix"
+        ],
+        "reason": "Direct evidence of substantive Performance Max and Shopping performance analysis."
+      },
+      {
+        "requirement": "Search, Shopping, PMax, Demand Gen, YouTube, Merchant Center, GA4, GTM.",
+        "support": 0.5,
+        "evidence": [
+          "Experience spans Google Ads, Microsoft Ads, Shopping, Display, YouTube, remarketing, Amazon, SEO/SEM"
+        ],
+        "reason": "Broad stack experience is supported elsewhere too; Demand Gen experience is unverified."
+      },
+      {
+        "requirement": "You should already be using Claude or equivalent as a working tool rather than a novelty, and you should be able to build and ship a landing page with it.",
+        "support": 1,
+        "evidence": [
+          "Used Cursor and Claude to create SEO-friendly websites across an eight-company group."
+        ],
+        "reason": "Demonstrated AI-assisted website delivery supports building deployable landing pages."
+      },
+      {
+        "requirement": "You can communicate your ideas in English at a native or near native level.",
+        "support": 0.5,
+        "evidence": [
+          "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation"
+        ],
+        "reason": "Client consulting supports communication; native or near-native English is unverified."
+      },
+      {
+        "requirement": "push back when a client is about to force the account into mediocrity, and raise a problem before it becomes a fire.",
+        "support": 1,
+        "evidence": [
+          "Builds and develops teams, documents lessons learned, resolves issues, respectfully challenges assumptions, takes ownership of setbacks"
+        ],
+        "reason": "Demonstrates constructive challenge, problem resolution and accountability."
+      },
+      {
+        "requirement": "You can work US Eastern business hours for client calls.",
+        "support": 0,
+        "evidence": [],
+        "reason": "Availability for Eastern business-hour calls is not documented."
+      },
+      {
+        "requirement": "You want to be told what to do this week.",
+        "support": 1,
+        "evidence": [
+          "Conceived, designed, and built Space Force, a personal marketing technology and portfolio project"
+        ],
+        "reason": "Self-directed product ownership supports the autonomy required by this exclusion."
+      }
+    ],
+    "seniority": [
+      {
+        "requirement": "Hands on Google Ads at meaningful spend on DTC and eCommerce, with results you can walk us through: CPA, ROAS, revenue, and what you actually changed to get them.",
+        "support": 1,
+        "evidence": [
+          "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review"
+        ],
+        "reason": "Demonstrates substantial commercial results and the specific optimization actions taken."
+      },
+      {
+        "requirement": "Budgets run from $5k/mo to well into six figures a month.",
+        "support": 1,
+        "evidence": [
+          "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget"
+        ],
+        "reason": "Documented advertising budget ownership meets the stated account-spend scope."
+      }
+    ],
+    "industry": [
+      {
+        "requirement": "DTC and eCommerce",
+        "support": 1,
+        "evidence": [
+          "Managed all paid search campaigns, outreach, lead generation, and customer acquisition for a large E-Commerce company in the United States, Canada, and the UK"
+        ],
+        "reason": "Direct consumer e-commerce acquisition experience supports the target business model."
+      }
+    ],
+    "preferred": [
+      {
+        "requirement": "Bing is a nice to have.",
+        "support": 1,
+        "evidence": [
+          "Managed PPC efforts across Google Ads and Microsoft/Bing Ads"
+        ],
+        "reason": "Direct hands-on Microsoft/Bing campaign management."
+      },
+      {
+        "requirement": "you have built or operated your own Shopify store",
+        "support": 1,
+        "evidence": [
+          "Developed and customized Vortex UTV, an online parts and accessories business"
+        ],
+        "reason": "Vortex's documented Shopify storefront and operating workflow meet the bonus capability."
+      },
+      {
+        "requirement": "you have run Meta at spend too.",
+        "support": 1,
+        "evidence": [
+          "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget"
+        ],
+        "reason": "Direct paid Meta management within a substantial advertising budget."
+      }
+    ]
+  },
+  "score": 81.43,
+  "accepted": true,
+  "status": "reviewed",
+  "failed_rules": [],
+  "category_percentages": {
+    "responsibilities": 75.0,
+    "required": 71.43,
+    "seniority": 100.0,
+    "industry": 100.0,
+    "preferred": 100.0
+  },
+  "policy": "master-evidence-v2",
+  "thresholds": {
+    "minimum_score": 60,
+    "minimum_responsibilities_match": 50,
+    "minimum_required_skills_match": 50
+  },
+  "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+  "job": {
+    "id": "job",
+    "title": "Senior Google Ads Buyer, DTC eCommerce (Remote)",
+    "company": "Sweat Pants Agency",
+    "url": "https://apply.workable.com/j/A9D4E53A42"
+  },
+  "description_sha256": "f198dbb6148541f74ce6bd594e3029fd51553295645bc168cc8af844be1486c1",
+  "runner": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a174eb-0258-7061-8d64-4e8f346d0b90",
+    "verified_at": "2026-10-25T21:16:03.717570+00:00"
+  }
+}

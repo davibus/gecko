@@ -1,0 +1,346 @@
+{
+  "job": {
+    "url": "https://jobs.ashbyhq.com/neuroscale/b276f4e7-16f3-4979-acb0-506ac9366328",
+    "company": "Neuroscale AI",
+    "title": "Founding Performance Marketing Lead",
+    "location": "United States",
+    "arrangement": "remote",
+    "salary": "",
+    "posted": "2026-09-28",
+    "chars": 13257
+  },
+  "match": {
+    "id": "job",
+    "sufficient": true,
+    "reason": "Complete duties and qualifications support assessment. Strong paid-media, CRO, analytics and automation evidence; SaaS ARR attribution, PLG and specialist creative experience remain unverified.",
+    "blockers": [],
+    "categories": {
+      "responsibilities": [
+        {
+          "requirement": "Launch, manage, and optimize acquisition across LinkedIn, Meta, Google, retargeting, and emerging channels.",
+          "support": 0.5,
+          "evidence": [
+            "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget"
+          ],
+          "reason": "Direct multichannel ownership; LinkedIn execution and emerging-channel launches are unverified."
+        },
+        {
+          "requirement": "Build a high-velocity testing engine across short-form video, UGC, founder-led creative, static ads, customer proof, use-case creative, case studies, and landing-page concepts.",
+          "support": 0.5,
+          "evidence": [
+            "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing"
+          ],
+          "reason": "Creative and CRO testing transfer; UGC, founder-led assets and production cadence are unverified."
+        },
+        {
+          "requirement": "Develop a repeatable process for creative briefs, production, testing, learning, and iteration.",
+          "support": 0.5,
+          "evidence": [
+            "Ad-copy drafting: Generates draft Google responsive search ad headlines and descriptions with evidence checks, character limits, and duplicate-asset validation."
+          ],
+          "reason": "Repeatable copy production is demonstrated; a full creative-production process is unverified."
+        },
+        {
+          "requirement": "Build and continuously improve the journey from ad to landing page to demo or trial to activation.",
+          "support": 0.5,
+          "evidence": [
+            "Designed and interpreted funnel testing across reach, comparison, conversion, micro-conversion, purchase, and internal customer lifetime value"
+          ],
+          "reason": "Full-funnel testing transfers; demo, trial and activation optimization are unverified."
+        },
+        {
+          "requirement": "Create and ship landing pages without waiting on a large web team, and work with Product and Design to remove friction from high-intent conversion paths.",
+          "support": 0.5,
+          "evidence": [
+            "Landing-page drafting: Converts an offer, audience, conversion goal, and supporting evidence into structured landing-page copy and an editable browser preview."
+          ],
+          "reason": "Independent page creation and CRO transfer; production demo/trial flows are unverified."
+        },
+        {
+          "requirement": "Own campaign tracking, UTMs, pixels, events, conversion APIs, CRM campaign logic, attribution models, dashboards, and funnel reporting.",
+          "support": 0.5,
+          "evidence": [
+            "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+          ],
+          "reason": "Tracking and dashboards are demonstrated; conversion APIs and CRM campaign logic are unverified."
+        },
+        {
+          "requirement": "Create a clear view of what is producing qualified pipeline, what is wasting spend, and where conversion is breaking down.",
+          "support": 0.5,
+          "evidence": [
+            "Identified search-term waste, relative CPA inefficiency, budget concentration, and geographic or device opportunities."
+          ],
+          "reason": "Spend diagnostics transfer; qualified-pipeline attribution is unverified."
+        },
+        {
+          "requirement": "Design and execute continuous A/B and multivariate tests across hooks, creative, copy, audiences, offers, landing pages, CTAs, forms, demo flows, and channel mix.",
+          "support": 0.5,
+          "evidence": [
+            "Built conversion and attribution models and designed A/B and multivariate tests across multiple levels of the marketing funnel"
+          ],
+          "reason": "Direct testing capability; demo flows and the complete listed testing scope are unverified."
+        },
+        {
+          "requirement": "Maintain an experiment backlog and use data to decide what to scale, iterate, or kill.",
+          "support": 0.5,
+          "evidence": [
+            "Converted analytical findings into executive summaries, recommended actions, and next-period watch lists."
+          ],
+          "reason": "Evidence-driven prioritization transfers; experiment-backlog management is unverified."
+        },
+        {
+          "requirement": "Identify the ICP signals, personas, use cases, pain points, messages, offers, and targeting strategies that consistently produce high-quality opportunities.",
+          "support": 0.5,
+          "evidence": [
+            "Conducted keyword, audience, and competitive research to develop targeting, messaging, campaign, and growth recommendations"
+          ],
+          "reason": "Audience and messaging research transfer; SaaS ICP and opportunity-quality validation are unverified."
+        },
+        {
+          "requirement": "Turn those findings into reusable audience and messaging playbooks for Marketing and Sales.",
+          "support": 0.5,
+          "evidence": [
+            "Developed a repeatable Google Ads account-management system that maintained consistent service quality across clients regardless of spend; the system was adopted across the agency"
+          ],
+          "reason": "Reusable operating systems transfer; joint Sales audience and messaging playbooks are unverified."
+        },
+        {
+          "requirement": "Partner with Product and Revenue on activation, self-serve conversion, trial-to-paid pathways, in-product prompts, lifecycle nudges, and other early PLG loops",
+          "support": 0.5,
+          "evidence": [
+            "Combined commercial requirements with technical implementation decisions across product discovery, cart behavior, checkout handoff, and customer support."
+          ],
+          "reason": "Self-service commerce conversion transfers partially; SaaS PLG loops are unverified."
+        },
+        {
+          "requirement": "Use AI, no-code/low-code tools, enrichment, workflow automation, and light scripting to increase testing velocity and reduce repetitive work.",
+          "support": 0.5,
+          "evidence": [
+            "Uses AI to build on foundational expertise, expand output, and accelerate content production, website and application development, analysis, and marketing workflows."
+          ],
+          "reason": "AI workflow acceleration is demonstrated; enrichment and no-code testing workflows are unverified."
+        },
+        {
+          "requirement": "You will work directly with Neuroscale's founders and partner closely with Product, Design, Sales, and Revenue Operations.",
+          "support": 1,
+          "evidence": [
+            "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+          ],
+          "reason": "Executive partnership and cross-functional strategy directly support this collaboration."
+        }
+      ],
+      "required": [
+        {
+          "requirement": "Deep hands-on experience inside ad platforms. You can build campaigns, audiences, conversion tracking, creative tests, budgets, bids, and optimization logic yourself.",
+          "support": 1,
+          "evidence": [
+            "Leads account activation, campaign builds and structures, keyword and negative-keyword strategy, ad copy, audience segmentation, bid testing, budget pacing"
+          ],
+          "reason": "Hands-on campaign operation, targeting, bidding and budget management are explicitly demonstrated."
+        },
+        {
+          "requirement": "Demonstrated ability to connect channel spend to downstream funnel performance, opportunity creation, pipeline, and ARR.",
+          "support": 0.5,
+          "evidence": [
+            "Managed approximately $400,000 in media budget that generated more than $9 million in revenue, representing approximately 35% of total company revenue"
+          ],
+          "reason": "Spend-to-revenue results are demonstrated; opportunity, pipeline and ARR linkage are unverified."
+        },
+        {
+          "requirement": "Strong command of funnel economics, including CPL, CAC, LTV, CAC payback, conversion rates, pipeline velocity, and marginal acquisition efficiency.",
+          "support": 0.5,
+          "evidence": [
+            "Analyzed maximum CPC versus smart bidding, brand CPC optimization, brand and non-brand target CPA, incremental CPA during scale-ups and scale-downs"
+          ],
+          "reason": "Marginal acquisition analysis is demonstrated; CAC payback and pipeline velocity are unverified."
+        },
+        {
+          "requirement": "Strong creative instincts and copy judgment. You can diagnose why a message or creative concept is working",
+          "support": 0.5,
+          "evidence": [
+            "Applied marketing judgment to ad-copy evidence, brand claims, conversion goals, and landing-page structure."
+          ],
+          "reason": "Copy judgment is demonstrated; creative-performance diagnosis is less explicit."
+        },
+        {
+          "requirement": "Experience testing video, UGC, creator-led, founder-led, or short-form paid creative.",
+          "support": 0.5,
+          "evidence": [
+            "Assessed click-to-call systems and used iSpot to analyze TV/OTT reach campaigns"
+          ],
+          "reason": "Video campaign analysis transfers partially; the specified paid-creative testing is unverified."
+        },
+        {
+          "requirement": "Comfort with analytics, dashboards, CRM data, experimentation, attribution, and imperfect early-stage datasets.",
+          "support": 0.5,
+          "evidence": [
+            "Added explicit handling for insufficient data, unavailable sources, conversion lag, and partial coverage."
+          ],
+          "reason": "Incomplete-data handling is demonstrated; early-stage CRM funnel analysis is unverified."
+        },
+        {
+          "requirement": "Ability to move quickly from hypothesis to launch to data to insight to the next test.",
+          "support": 0.5,
+          "evidence": [
+            "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review"
+          ],
+          "reason": "Iterative testing and improvement are demonstrated; turnaround speed is unverified."
+        },
+        {
+          "requirement": "Strong written communication and the ability to translate customer pain into clear, high-converting messaging.",
+          "support": 0.5,
+          "evidence": [
+            "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation"
+          ],
+          "reason": "Customer-pain discovery transfers; resulting messaging conversion performance is unverified."
+        },
+        {
+          "requirement": "A builder mentality: high ownership, low ego, strong judgment, and a preference for creating the playbook rather than waiting for one.",
+          "support": 1,
+          "evidence": [
+            "Builds and develops teams, documents lessons learned, resolves issues, respectfully challenges assumptions, takes ownership of setbacks"
+          ],
+          "reason": "Ownership, constructive collaboration and documented operating practices are explicitly supported."
+        },
+        {
+          "requirement": "You are resourceful and can ship with a small team while building systems that scale.",
+          "support": 1,
+          "evidence": [
+            "Built an in-house PPC structure for a company group spanning 32 businesses, including MCC consolidation, a scalable operating system, team buildout/training"
+          ],
+          "reason": "Personally built scalable campaign operations and trained the operating team."
+        }
+      ],
+      "seniority": [
+        {
+          "requirement": "4-8+ years of hands-on performance marketing, growth marketing, or demand generation experience",
+          "support": 1,
+          "evidence": [
+            "Digital marketing and marketing technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce, professional services"
+          ],
+          "reason": "Career history documents hands-on paid-media ownership from 2013 through later roles."
+        },
+        {
+          "requirement": "A track record of personally managing and scaling approximately $50K-$250K+ per month in paid media across LinkedIn, Meta, Google, or comparable channels",
+          "support": 1,
+          "evidence": [
+            "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget"
+          ],
+          "reason": "Direct platform ownership exceeds the requested monthly media-spend scope."
+        },
+        {
+          "requirement": "This is a hands-on individual contributor role for someone who wants to build the machine - not inherit one.",
+          "support": 1,
+          "evidence": [
+            "Consolidated work that had been divided among five agencies into a comprehensive, scalable in-house PPC strategy"
+          ],
+          "reason": "Personally created an in-house operating system alongside hands-on technical execution."
+        }
+      ],
+      "industry": [
+        {
+          "requirement": "ideally in B2B SaaS, AI, HR Tech, recruiting technology, or another high-growth technology category.",
+          "support": 0.5,
+          "evidence": [
+            "Conceived, designed, and built Gecko using AI-assisted development to bring job discovery, opportunity evaluation, tailored resume generation, and application tracking into one workflow."
+          ],
+          "reason": "AI recruiting-adjacent product experience; marketing high-growth SaaS is unverified."
+        }
+      ],
+      "preferred": [
+        {
+          "requirement": "Built performance marketing from near-zero at an early-stage or high-growth B2B SaaS company.",
+          "support": 0.5,
+          "evidence": [
+            "Created an MCC structure and moved PPC operations in-house"
+          ],
+          "reason": "Building marketing operations transfers; near-zero early-stage B2B SaaS growth is unverified."
+        },
+        {
+          "requirement": "Scaled one or more paid channels into a predictable source of qualified pipeline while maintaining disciplined acquisition economics.",
+          "support": 0.5,
+          "evidence": [
+            "Increased monthly marketing volume from approximately $200,000 to $800,000 while improving ROAS from 1.5 to 3.5"
+          ],
+          "reason": "Efficient paid growth is demonstrated; predictable qualified pipeline is unverified."
+        },
+        {
+          "requirement": "Experience in HR Tech, recruiting technology, AI, developer tools, enterprise SaaS, or another complex B2B category.",
+          "support": 1,
+          "evidence": [
+            "Conceived and built Gecko, an AI-assisted job-search platform integrating multi-source discovery, candidate-fit evaluation, tailored resume generation, and application tracking."
+          ],
+          "reason": "Direct AI and recruiting-adjacent technology development satisfies the alternative domain scope."
+        },
+        {
+          "requirement": "Built a UGC, creator, customer-proof, or founder-led creative program that materially improved paid performance.",
+          "support": 0,
+          "evidence": [],
+          "reason": "No documented creative program in these formats; experience remains unverified."
+        },
+        {
+          "requirement": "HubSpot or Salesforce; Webflow or Framer; GA4; Segment; Mixpanel or Amplitude; Clay; Zapier or Make; and modern attribution or ad-tracking tools.",
+          "support": 0.5,
+          "evidence": [
+            "Installed Go High Level and trained employees on how to use it correctly. Made sure that it integrated with all current system including Power BI for reporting purposes"
+          ],
+          "reason": "CRM integration transfers; several named specialist platforms lack demonstrated hands-on use."
+        },
+        {
+          "requirement": "Built lightweight automations, scripts, dashboards, or AI-assisted workflows yourself.",
+          "support": 1,
+          "evidence": [
+            "Built automated weekly reporting across 10+ channels using Python, Databricks, SQL, blended Excel data, and Funnel.io to improve accuracy and decision speed"
+          ],
+          "reason": "Personally built reporting automation across multiple marketing sources."
+        },
+        {
+          "requirement": "Worked with Product teams on PLG, free-trial, self-service, lifecycle, or activation experiments.",
+          "support": 0.5,
+          "evidence": [
+            "Designed event tracking around customer intent and shopping behavior, including search gaps, product interest, cart activity, and contact requests."
+          ],
+          "reason": "Self-service conversion instrumentation transfers; Product-led SaaS experiments are unverified."
+        },
+        {
+          "requirement": "Used AI tools systematically to accelerate research, creative production, analysis, personalization, and experimentation.",
+          "support": 0.5,
+          "evidence": [
+            "Designed constrained OpenAI workflows that prioritize verified findings and generate marketing drafts subject to schema, evidence, and claim validation."
+          ],
+          "reason": "Systematic AI analysis and drafting are demonstrated; personalization experiments are unverified."
+        }
+      ]
+    },
+    "score": 63.74,
+    "accepted": false,
+    "status": "reviewed",
+    "failed_rules": [
+      "responsibilities alignment below 70%",
+      "required alignment below 70%"
+    ],
+    "category_percentages": {
+      "responsibilities": 53.57,
+      "required": 65.0,
+      "seniority": 100.0,
+      "industry": 50.0,
+      "preferred": 56.25
+    },
+    "policy": "master-evidence-v2",
+    "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "job": {
+      "id": "job",
+      "title": "Founding Performance Marketing Lead",
+      "company": "Neuroscale AI",
+      "url": "https://jobs.ashbyhq.com/neuroscale/b276f4e7-16f3-4979-acb0-506ac9366328"
+    },
+    "description_sha256": "3375149b030b31464d924a158440ce9475323cd6882797b4c99d552eb9e16014",
+    "runner": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "verified": true,
+      "session_id": "01a17364-6c31-78d2-b84c-767fb4ddd20f",
+      "verified_at": "2026-10-25T14:09:57.451060+00:00"
+    }
+  }
+}

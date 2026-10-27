@@ -1,0 +1,6 @@
+{
+  "remove_evidence_ids": ["E053", "E084"],
+  "add_evidence_ids": ["E096", "E109"],
+  "additional_evidence_ids": ["E008", "E011", "E021", "E045", "E063", "E079", "E080", "E081", "E096", "E101", "E109", "E115"],
+  "rationale": "Agent semantic duplicate review: E053 repeats the B2B digital-modernization claim already in E061; E084 overlaps the acquisition scope already covered by the more specific eight-person leadership evidence E093. Replace them with distinct source-supported annual KPI reporting (E096) and creative/design work (E109), both relevant to Daymark's content and campaign measurement responsibilities. Keep all factual, source, headline, tools, duplicate and native pagination checks."
+}

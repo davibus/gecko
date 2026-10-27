@@ -1,0 +1,68 @@
+{
+  "spec": {
+    "headline": "B2B Marketing Leadership | Digital Growth | Analytics & Operations",
+    "headline_rationale": "Demand.com's listing text identifies DemandFactor and focuses on building broad B2B marketing. Preserve tracker employer identity while tailoring to actual responsibilities with supported B2B leadership, content, budget and measurement; no ABM pipeline results invented.",
+    "summary": "B2B and digital marketing leader experienced in building operating systems, coordinating teams and translating analysis into growth decisions. Directed marketing and e-commerce execution across sales, operations, finance, IT and product, and led an eight-person team. Built a scalable in-house PPC structure for 32 businesses, alongside automated cross-channel reporting and agency account processes. Combines content strategy, client consulting, funnel testing and financial analysis to connect hands-on execution with clear commercial priorities.",
+    "factual_review": "Read exact Demand.com Marketing Director record; posting describes DemandFactor. Keep stable tracker identity unchanged. E060/E093/E009/E081/E114/E076/E006/E063 plus Any Hour project support claims. Formal ABM, content syndication and attributed B2B SaaS pipeline achievements are not fabricated.",
+    "selected_evidence_ids": [
+      "E001",
+      "E002",
+      "E003",
+      "E005",
+      "E006",
+      "E008",
+      "E009",
+      "E010",
+      "E011",
+      "E021",
+      "E023",
+      "E030",
+      "E038",
+      "E044",
+      "E060",
+      "E063",
+      "E066",
+      "E076",
+      "E078",
+      "E081",
+      "E093",
+      "E096",
+      "E114"
+    ],
+    "additional_evidence_ids": [
+      "E004",
+      "E020",
+      "E072",
+      "E079",
+      "E080",
+      "E082",
+      "E095",
+      "E102",
+      "E105",
+      "E109",
+      "E113",
+      "E115"
+    ],
+    "tools_platforms": [
+      "Google Ads",
+      "Meta Ads",
+      "HubSpot",
+      "Salesforce",
+      "Google Analytics 4",
+      "Looker Studio",
+      "Tableau",
+      "Excel",
+      "Python",
+      "SQL",
+      "ChatGPT",
+      "Claude"
+    ],
+    "tools_rationale": "Supported campaign, CRM, analytics and AI tools relevant to hands-on B2B marketing leadership.",
+    "source_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "description_sha256": "1ef5b7cdf2b8fdc53180f83920b4e908a5d5d89007a5f383b687bed54fc67399"
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "c3b0c742457bdf85cefcd90b0a05f61ec1da0462c6efc91291b474a114db2576"
+}

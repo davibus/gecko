@@ -1,13 +1,11 @@
 {
-  "status": "synced",
-  "synced_at": "2026-10-23T12:13:26.324908+00:00",
-  "rows": 1204,
-  "cells_written": 0,
-  "jobs_added_to_sheet": 0,
-  "url": "https://docs.google.com/spreadsheets/d/1-HnqGq3Il7SZDlNdB6vChN4GAznxWh8ZHjS7Czq8t8I/edit",
-  "range_extension": {
-    "requests": 0,
-    "formulas_filled": 0
+  "status": "resume-completion-verified",
+  "id": "3030",
+  "row": 1282,
+  "fields": {
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1cl10zuBbar9QCIJsjK-RINs_Ih9tRo7q/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
   },
-  "salaries_normalized": 0
+  "verified_at": "2026-10-26T16:43:03.296999+00:00"
 }

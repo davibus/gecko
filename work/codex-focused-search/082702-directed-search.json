@@ -1,0 +1,663 @@
+{
+  "payload": {
+    "query": "\"Google Ads\" remote site:jobs.gusto.com",
+    "limit": 50,
+    "sources": [
+      "web"
+    ]
+  },
+  "results": [
+    {
+      "url": "https://jobs.gusto.com/postings/therapy-flow-google-ads-specialist-77e5e57c-f4e3-4ed3-9214-70714be588cb",
+      "title": "Google Ads Specialist at Therapy Flow - Gusto",
+      "description": "Therapy Flow is seeking a creative, analytical, and tech-savvy Google Ads and Landing Page Specialist to join our team. This role is crucial for driving our ...",
+      "position": 1
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/we-scale-ads-manager-b3869cc0-a23d-42d8-a7b7-a8ae73d2dd86",
+      "title": "Ads Manager at We Scale Local - Gusto",
+      "description": "3+ years managing Google Ads campaigns (Search, Display, Shopping, PMax, YouTube). · Hands-on experience with conversion tracking and event configuration.",
+      "position": 2
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/guardian-pr-llc-digital-marketing-specialist-31dd1349-b133-42bc-a006-c1ce0c834a9a",
+      "title": "Digital Marketing Specialist at Guardian PR LLC - Gusto",
+      "description": "Mastery of paid digital advertising (Google Ads, LinkedIn ads, Meta, social media). Hands-on experience with HubSpot for CRM, email marketing and automation ...",
+      "position": 3
+    },
+    {
+      "url": "https://jobs.gusto.com/boards/therapy-flow-c1eaa632-b169-46c0-b70e-3a2cd1e5fcb1",
+      "title": "Careers at Therapy Flow - Gusto",
+      "description": "Digital Marketing Agency Project Manager. Remote. $16,000 - $20,000 per year · Full time · Google Ads Specialist. Remote. $55,000 - $80,000 per year · Full time ...",
+      "position": 4
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/arcane-marketing-account-manager-903135c8-72e2-44c9-8b43-09777b0b0ec6",
+      "title": "Account Manager at Arcane Marketing - Gusto",
+      "description": "Location: Remote (but local to the Idaho Falls Area) ... Google Ads, Facebook/Instagram Ads, Website Development, etc. ... Flexible remote working arrangements.",
+      "position": 5
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/rubix-agency-paid-search-media-buyer-c5934a8f-d3a7-4b1d-8a61-7ae1c5dd153e",
+      "title": "Paid Search Media Buyer at Rubix Agency - Gusto",
+      "description": "In this role, you will be responsible for the day-to-day execution, pacing, optimization, and technical builds of Google Ads campaigns for a diverse portfolio ...",
+      "position": 6
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/green-line-digital-paid-search-manager-81e5e384-1e7b-4acd-8803-11b321c09216",
+      "title": "Paid Search Manager at Green Line Digital - Gusto",
+      "description": "Ability to self-manage time and project workload in a remote environment ... Experience using Google Ads Editor, Excel/Google Sheets. Agency Experience a ...",
+      "position": 7
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/attn-agency-senior-sem-strategist-5895d72e-a6cf-4e75-bd25-906e78684ea1",
+      "title": "Senior SEM Strategist at ATTN Agency - Gusto",
+      "description": "We're seeking a Google Ads expert to take ownership of a portfolio of 5–8 high-growth e-commerce clients. This is a hands-on role, focused on execution, ...",
+      "position": 8
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/allure-security-talent-marketing-manager-campaigns-74297c7f-a912-4902-985d-84df9bfd16d1",
+      "title": "Marketing Manager, Campaigns at Allure Security Talent - Gusto",
+      "description": "Run our Google Ads, Microsoft Ads, and LinkedIn campaigns end to end: account structure, keywords, bidding, audiences, ad copy, and conversion tracking.",
+      "position": 9
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/indivieu-llc-marketing-lead-b0a82471-bf68-4512-8a06-cc57bedd104c",
+      "title": "Marketing Lead at Indivieu, LLC - Gusto",
+      "description": "Experience running Google Ads and/or Meta Ads; Strong landing page optimization experience; Understanding of conversion funnels and analytics; Comfortable in ...",
+      "position": 10
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/single-grain-llc-paid-media-manager-6fef8d6a-6548-47de-90ab-a129c14ea77f",
+      "title": "Paid Media Manager at Single Grain LLC - Gusto",
+      "description": "Independently manage and optimize paid media campaigns across Google Ads, Microsoft Ads, Meta Ads, LinkedIn Ads, and TikTok Ads, ensuring campaigns are aligned ...",
+      "position": 11
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/eyeful-media-director-paid-media-2058af26-1a42-4feb-a323-ce250921a0d7",
+      "title": "Director, Paid Media at Eyeful Media - Gusto",
+      "description": "Eyeful Media Director, Paid Media Remote · Full time ... Google Ads, Google Shopping, Bing, and GDN ... Experience with other digital marketing channels like Amazon ...",
+      "position": 12
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/rubix-agency-marketing-automation-specialist-ai-workflow-systems-ffe5885e-3eb7-48b3-aaf4-f55c9d162b6c",
+      "title": "Marketing Automation Specialist (AI & Workflow Systems) at Rubix ...",
+      "description": "You can interpret data from platforms like Meta Ads and Google Ads and translate it into actionable logic. Business-Minded. You're interested in how ...",
+      "position": 13
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/sound-credit-director-of-marketing-20b3cccd-2cca-4fa0-87c0-9895fba3beb1",
+      "title": "Director of Marketing at Sound Credit - Gusto",
+      "description": "Strong analytical and hands-on experience with Google Ads, GA4, Meta Ads, and performance dashboards; Music industry experience and a genuine appreciation ...",
+      "position": 14
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/weddingbills-marketing-specialist-7417c41b-7381-4058-b8e1-9794609ee678",
+      "title": "Marketing Specialist at WeddingBills",
+      "description": "Know your way around Meta Ads Manager, Google Ads, and/or LinkedIn Ads; Can build campaigns end-to-end (copy, creative coordination, targeting, tracking) ...",
+      "position": 15
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/bauer-entertainment-marketing-ad-operations-specialist-evergreen-5bae639e-3f27-4b22-b5de-dc789763e8ce",
+      "title": "Ad Operations Specialist (Evergreen) at Bauer Entertainment ...",
+      "description": "Bauer Entertainment Marketing Ad Operations Specialist (Evergreen) Remote · Full time ... Google Ads, YouTube, and DSPs; familiarity with Spotify is a plus.",
+      "position": 16
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/inmyteam-corp-senior-growth-marketing-manager-5715ddbc-dc60-4f3e-86f9-780ecfd87c8c",
+      "title": "Senior Growth Marketing Manager at INMYTEAM CORP - Gusto",
+      "description": "Strong hands-on paid advertising experience, particularly Google Ads, including campaign setup, budget management, conversion tracking, and optimization. Strong ...",
+      "position": 17
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/the-hummingbirds-inc-performance-marketer-demand-generation-bcb0e051-7ec0-456f-9c93-03686acd2f0f",
+      "title": "Performance Marketer, Demand Generation at The Hummingbirds, Inc.",
+      "description": "Performance Marketer, Demand Generation Remote · Full time Company website ... Deep working knowledge of Meta Ads Manager, Google Ads, and LinkedIn Campaign ...",
+      "position": 18
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/means-database-technology-operations-administrator-df8351ba-65b5-43ec-99f7-7f110a7c2529",
+      "title": "Technology Operations Administrator at MEANS Database - Gusto",
+      "description": "Maintain Google Analytics, Google Ads, Search Console, and Tag Manager to keep our digital content compliant and our search engine optimization effective.",
+      "position": 19
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/30-lines-paid-media-specialist-ab0dc572-46e1-4317-96fb-0e111621454a",
+      "title": "Paid Media Specialist at 30 Lines - Gusto",
+      "description": "We are fully remote and distributed across the ... Strong analytical skills and hands-on experience with Google Ads, Meta Ads, GA4, and Google Tag Manager.",
+      "position": 20
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/arcane-marketing-client-growth-strategist-3e981e5d-3206-4270-be30-819994698bc8",
+      "title": "Client Growth Strategist at Arcane Marketing - Gusto",
+      "description": "Minimum Qualifications: This is a full-time position only. Experience in digital marketing. SEO, Google Ads, Social Media, Websites, etc.",
+      "position": 21
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/kickstart-dental-marketing-sr-ppc-analyst-344a0a2e-66dd-42d2-ad86-8829885480c7",
+      "title": "Sr. PPC Analyst at Kickstart Dental Marketing - Gusto",
+      "description": "PPC Analyst Remote · Full time Company website ... Platform Expertise: Proficient in managing campaigns across platforms such as Google Ads, Bing Ads, Facebook ...",
+      "position": 22
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/lmr-digital-martketing-llc-account-manager-acee772c-602d-4a56-899a-94b2a20dda71",
+      "title": "Account Manager at LMR Digital Martketing, LLC - Gusto",
+      "description": "Experience with Google Ads; Experience with Facebook Ads; Experience with Keyword Research & Planning; Strong understanding of social media marketing; Any and ...",
+      "position": 23
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/sapphire-strategies-digital-associate-de981d63-d75d-4bb8-84fb-74ae7f27454e",
+      "title": "Digital Associate at Sapphire Strategies - Gusto",
+      "description": "Experience with Google Ads and Facebook Business Manager is a plus ... Position can be based in our DC office or fully remote. To apply, please submit a ...",
+      "position": 24
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/therapy-flow-digital-marketing-agency-project-manager-f582e0e7-3696-4c32-996e-76c97d3c4743",
+      "title": "Digital Marketing Agency Project Manager at Therapy Flow - Gusto",
+      "description": "Strong understanding of digital marketing channels such as SEO, Google Ads, Landing Pages, and CRMs. ... Remote work environment. Compensation Details.",
+      "position": 25
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/single-grain-llc-sr-marketing-analytics-manager-ai-first-7362b152-6410-4049-80a8-98618a78aa84",
+      "title": "Sr. Marketing Analytics Manager (AI-First) at Single Grain LLC - Gusto",
+      "description": "Description · Implement and manage tracking setups across Google Analytics 4 (GA4), Google Ads, Meta Ads, LinkedIn Ads, Snapchat, Pinterest, and Microsoft Ads.",
+      "position": 26
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/growgetter-account-manager-266c033c-1700-4038-a127-4afab30e5b81",
+      "title": "Account Manager at Growgetter - Gusto",
+      "description": "Oversee paid advertising campaigns across various channels (Google Ads, social media, programmatic display) · Monitor campaign performance and provide regular ...",
+      "position": 27
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/indivieu-llc-account-executive-a9fca463-f350-4d8a-b41e-091e3c7e890d",
+      "title": "Account Executive at Indivieu, LLC - Gusto",
+      "description": "Lead support – We're actively building inbound lead gen via Google Ads, Meta Ads, and partnerships (you won't be 100% cold outreach); Flexibility – Work from ...",
+      "position": 28
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/rural-power-systems-marketing-specialist-e85a23da-25b9-457f-a053-141355af62b6",
+      "title": "Marketing Specialist at Rural Power Systems - Gusto",
+      "description": "Run email and social day-to-day, not just plan strategy for someone else to execute; Are comfortable in the tools: Google Ads, GA4, Google Tag Manager, ...",
+      "position": 29
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/isla-marketing-full-stack-marketing-developer-fe44a474-7845-4346-b041-ce2d63d36756",
+      "title": "Full-Stack Marketing Developer at Isla Marketing - Gusto",
+      "description": "Full-Stack Marketing Developer. Location: Flexible (Remote or Tampa, FL preferred) ... Tracking & Analytics. Set up & maintain Facebook CAPI, Google Ads/Analytics ...",
+      "position": 30
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/jarvis-ml-business-development-dd37d4a7-bd86-408b-a639-48c3dad80470",
+      "title": "Business Development at Jarvis ML - Gusto",
+      "description": "Our History: Founded by Rakesh Yadav, whose 14+ years at Google focused on founding and building the Machine Learning platforms powering Google Ads and Payments ...",
+      "position": 31
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/single-grain-llc-paid-media-associate-director-95a3d94f-bb97-4a42-a0bc-834d054a7ae5",
+      "title": "Paid Media Associate Director at Single Grain LLC - Gusto",
+      "description": "Independently manage and optimize paid media campaigns across Google Ads, Microsoft Ads, Meta Ads, LinkedIn Ads, and TikTok Ads, ensuring campaigns are aligned ...",
+      "position": 32
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/secured-tech-marketing-coordinator-ef322328-9392-4354-b10b-b0f5bd1b055b",
+      "title": "Marketing Coordinator at Secured Tech - Gusto",
+      "description": "This role is primarily remote with occasional ... Deploy Paid Media Initiatives: Setup day-to-day operations of social and Google Ads ... Experience with social ads ...",
+      "position": 33
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/angler-ai-inc-forward-deployed-engineer-8f92a90e-90d8-4419-a633-66d1661abbce",
+      "title": "Forward Deployed Engineer at Angler AI Inc. - Gusto",
+      "description": "Our solution is designed to optimize the performance of walled garden platforms like Meta, Google Ads, and TikTok, with Angler's Predictive CAPI and ...",
+      "position": 34
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/synaccess-networks-senior-marketing-manager-6400b7a4-078c-4944-985b-f400318fea91",
+      "title": "Senior Marketing Manager at Synaccess Networks - Gusto",
+      "description": "Oversee our current paid programs (Google Ads, content syndication) and recommend what to do with them; Plan and support a small number of trade shows ...",
+      "position": 35
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/cured-nutrition-director-of-growth-marketing-3c80f14c-4982-4bb5-899f-06fb479b3301",
+      "title": "Director of Growth Marketing at Cured Nutrition - Gusto",
+      "description": "Proficiency in relevant tools, including: Paid Media: Hyros, Meta Ads, Google Ads; Email: Klaviyo; CMS: Shopify; Analytics: Google Analytics (UA + GA4), Google ...",
+      "position": 36
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/growgetter-marketing-strategist-9e1d0d2a-9ec3-4881-bb39-7a1718f324e6",
+      "title": "Marketing Strategist at Growgetter - Gusto",
+      "description": "Oversee paid advertising campaigns across various channels (Google Ads, social media, programmatic display) · Monitor campaign performance and provide regular ...",
+      "position": 37
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/indivieu-llc-business-development-representative-52ffd944-ebff-4227-acc9-53610537bfe5",
+      "title": "Business Development Representative at Indivieu, LLC - Gusto",
+      "description": "Lead support: Inbound lead gen via Google Ads, Meta Ads, and partnerships; Flexibility: Work from anywhere, set your own schedule. What We DON'T Provide. Base ...",
+      "position": 38
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/strategy-collective-director-of-marketing-data-analytics-3de2cea3-b251-4371-b616-58494929a953",
+      "title": "Director of Marketing Data & Analytics at Strategy Collective - Gusto",
+      "description": "Ensure Closed-Loop Tracking: Build and maintain seamless data integrations back to ad platforms (specifically Google Ads ... Fully remote work environment ...",
+      "position": 39
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/dirigo-collective-paid-search-social-manager-c8099352-c0cf-477b-abfa-5ea9317ca6bc",
+      "title": "Paid Search & Social Manager at Dirigo Collective - Gusto",
+      "description": "Build, execute, manage, and optimize paid search campaigns across Google Ads and peripheral search platforms as needed; Build, execute, manage, and optimize ...",
+      "position": 40
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/cogwheel-analytics-llc-software-engineer-d5631436-6bf8-4a23-9ede-7c3c0e2f0e36",
+      "title": "Software Engineer at Cogwheel Analytics LLC - Gusto",
+      "description": "Cogwheel Analytics LLC Software Engineer Remote · Full time Company website ... Exposure to marketing or analytics data (Google Ads, GA4, Meta, OTA platforms).",
+      "position": 41
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/angler-ai-inc-director-of-analytics-0276ce2f-1c3a-4236-81fc-f0597c906662",
+      "title": "Director of Analytics at Angler AI Inc. - Gusto",
+      "description": "Director of Analytics Remote · Full time Company website ... Our solution is designed to optimize the performance of walled garden platforms like Meta, Google Ads ...",
+      "position": 42
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/rural-power-systems-growth-marketing-manager-cd972ff3-ad69-4224-ac70-7a3186429697",
+      "title": "Growth Marketing Manager at Rural Power Systems - Gusto",
+      "description": "We help folks across the country pump water sustainably, from off-grid ranches to remote homesteads. ... Strategy and execution oversight for Google Ads and paid ...",
+      "position": 43
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/sapphire-strategies-senior-digital-strategist-6d61261f-52e0-4148-ad6a-712b8629fc8e",
+      "title": "Senior Digital Strategist at Sapphire Strategies - Gusto",
+      "description": "Experience with Google Ads and Facebook Business Manager is a plus; Knowledge ... Position is fully remote with the option to work out of an office in DC.",
+      "position": 44
+    },
+    {
+      "url": "https://jobs.gusto.com/boards/angler-ai-inc-804646d0-795e-4469-8569-0736a60a0da0",
+      "title": "Careers at Angler AI Inc. - Gusto",
+      "description": "Our solution is designed to optimize the performance of walled garden platforms like Meta, Google Ads ... Remote. $160,000 - $220,000 per year · Full time ...",
+      "position": 45
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/rubix-agency-growth-marketing-manager-a920a04e-08ae-424a-94da-3fd04a2ca617",
+      "title": "Growth Marketing Manager at Rubix Agency",
+      "description": "Working knowledge of Google Ads and the ability to collaborate effectively ... Rubix is remote-first with a New York office. Most leadership is on the ...",
+      "position": 46
+    },
+    {
+      "url": "https://jobs.gusto.com/boards/jarvis-ml-1487023d-4e66-4bbc-ab3b-f6a09f05fe5d",
+      "title": "Careers at Jarvis ML - Gusto",
+      "description": "... Google Ads and Payments, the Jarvis ML story began in 2021 with the emergence of the Decade of Machine Learning. Open Positions. Business Development. Remote.",
+      "position": 47
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/sapphire-strategies-digital-strategist-fd19ed5a-1a94-4b3c-86bd-cafd363abb13",
+      "title": "Digital Strategist at Sapphire Strategies - Gusto",
+      "description": "Experience with Google Ads and Facebook Business Manager is a plus ... Position can be based in our DC office or fully remote. Salary. $50,000 - $65,000 per ...",
+      "position": 48
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/impulse-creative-marketing-strategist-e3388dff-8367-4b8f-93cc-b421d74becb5",
+      "title": "Marketing Strategist at Impulse Creative - Gusto",
+      "description": "Impulse Creative Marketing Strategist Remote · Full time ... Execute Performance Marketing (Paid Media) campaigns (Google Ads, Social) and manage budgets.",
+      "position": 49
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/expatiate-communication-inc-meta-paid-social-specialist-5657fc04-454c-444a-bd7d-63ac686fc411",
+      "title": "Meta / Paid Social Specialist at Expatiate Communication, Inc.",
+      "description": "We do not offer remote or hybrid arrangements because close, in-person ... Google Ads experience is a strong plus. Experience marketing directly to ...",
+      "position": 50
+    }
+  ],
+  "candidates": [
+    {
+      "url": "https://jobs.gusto.com/postings/therapy-flow-google-ads-specialist-77e5e57c-f4e3-4ed3-9214-70714be588cb",
+      "title": "Google Ads Specialist at Therapy Flow - Gusto",
+      "description": "Therapy Flow is seeking a creative, analytical, and tech-savvy Google Ads and Landing Page Specialist to join our team. This role is crucial for driving our ...",
+      "position": 1,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/we-scale-ads-manager-b3869cc0-a23d-42d8-a7b7-a8ae73d2dd86",
+      "title": "Ads Manager at We Scale Local - Gusto",
+      "description": "3+ years managing Google Ads campaigns (Search, Display, Shopping, PMax, YouTube). · Hands-on experience with conversion tracking and event configuration.",
+      "position": 2,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/guardian-pr-llc-digital-marketing-specialist-31dd1349-b133-42bc-a006-c1ce0c834a9a",
+      "title": "Digital Marketing Specialist at Guardian PR LLC - Gusto",
+      "description": "Mastery of paid digital advertising (Google Ads, LinkedIn ads, Meta, social media). Hands-on experience with HubSpot for CRM, email marketing and automation ...",
+      "position": 3,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/boards/therapy-flow-c1eaa632-b169-46c0-b70e-3a2cd1e5fcb1",
+      "title": "Careers at Therapy Flow - Gusto",
+      "description": "Digital Marketing Agency Project Manager. Remote. $16,000 - $20,000 per year · Full time · Google Ads Specialist. Remote. $55,000 - $80,000 per year · Full time ...",
+      "position": 4,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/arcane-marketing-account-manager-903135c8-72e2-44c9-8b43-09777b0b0ec6",
+      "title": "Account Manager at Arcane Marketing - Gusto",
+      "description": "Location: Remote (but local to the Idaho Falls Area) ... Google Ads, Facebook/Instagram Ads, Website Development, etc. ... Flexible remote working arrangements.",
+      "position": 5,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/rubix-agency-paid-search-media-buyer-c5934a8f-d3a7-4b1d-8a61-7ae1c5dd153e",
+      "title": "Paid Search Media Buyer at Rubix Agency - Gusto",
+      "description": "In this role, you will be responsible for the day-to-day execution, pacing, optimization, and technical builds of Google Ads campaigns for a diverse portfolio ...",
+      "position": 6,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/green-line-digital-paid-search-manager-81e5e384-1e7b-4acd-8803-11b321c09216",
+      "title": "Paid Search Manager at Green Line Digital - Gusto",
+      "description": "Ability to self-manage time and project workload in a remote environment ... Experience using Google Ads Editor, Excel/Google Sheets. Agency Experience a ...",
+      "position": 7,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/attn-agency-senior-sem-strategist-5895d72e-a6cf-4e75-bd25-906e78684ea1",
+      "title": "Senior SEM Strategist at ATTN Agency - Gusto",
+      "description": "We're seeking a Google Ads expert to take ownership of a portfolio of 5–8 high-growth e-commerce clients. This is a hands-on role, focused on execution, ...",
+      "position": 8,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/allure-security-talent-marketing-manager-campaigns-74297c7f-a912-4902-985d-84df9bfd16d1",
+      "title": "Marketing Manager, Campaigns at Allure Security Talent - Gusto",
+      "description": "Run our Google Ads, Microsoft Ads, and LinkedIn campaigns end to end: account structure, keywords, bidding, audiences, ad copy, and conversion tracking.",
+      "position": 9,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/indivieu-llc-marketing-lead-b0a82471-bf68-4512-8a06-cc57bedd104c",
+      "title": "Marketing Lead at Indivieu, LLC - Gusto",
+      "description": "Experience running Google Ads and/or Meta Ads; Strong landing page optimization experience; Understanding of conversion funnels and analytics; Comfortable in ...",
+      "position": 10,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/single-grain-llc-paid-media-manager-6fef8d6a-6548-47de-90ab-a129c14ea77f",
+      "title": "Paid Media Manager at Single Grain LLC - Gusto",
+      "description": "Independently manage and optimize paid media campaigns across Google Ads, Microsoft Ads, Meta Ads, LinkedIn Ads, and TikTok Ads, ensuring campaigns are aligned ...",
+      "position": 11,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/eyeful-media-director-paid-media-2058af26-1a42-4feb-a323-ce250921a0d7",
+      "title": "Director, Paid Media at Eyeful Media - Gusto",
+      "description": "Eyeful Media Director, Paid Media Remote · Full time ... Google Ads, Google Shopping, Bing, and GDN ... Experience with other digital marketing channels like Amazon ...",
+      "position": 12,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/rubix-agency-marketing-automation-specialist-ai-workflow-systems-ffe5885e-3eb7-48b3-aaf4-f55c9d162b6c",
+      "title": "Marketing Automation Specialist (AI & Workflow Systems) at Rubix ...",
+      "description": "You can interpret data from platforms like Meta Ads and Google Ads and translate it into actionable logic. Business-Minded. You're interested in how ...",
+      "position": 13,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/sound-credit-director-of-marketing-20b3cccd-2cca-4fa0-87c0-9895fba3beb1",
+      "title": "Director of Marketing at Sound Credit - Gusto",
+      "description": "Strong analytical and hands-on experience with Google Ads, GA4, Meta Ads, and performance dashboards; Music industry experience and a genuine appreciation ...",
+      "position": 14,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/weddingbills-marketing-specialist-7417c41b-7381-4058-b8e1-9794609ee678",
+      "title": "Marketing Specialist at WeddingBills",
+      "description": "Know your way around Meta Ads Manager, Google Ads, and/or LinkedIn Ads; Can build campaigns end-to-end (copy, creative coordination, targeting, tracking) ...",
+      "position": 15,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/bauer-entertainment-marketing-ad-operations-specialist-evergreen-5bae639e-3f27-4b22-b5de-dc789763e8ce",
+      "title": "Ad Operations Specialist (Evergreen) at Bauer Entertainment ...",
+      "description": "Bauer Entertainment Marketing Ad Operations Specialist (Evergreen) Remote · Full time ... Google Ads, YouTube, and DSPs; familiarity with Spotify is a plus.",
+      "position": 16,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/inmyteam-corp-senior-growth-marketing-manager-5715ddbc-dc60-4f3e-86f9-780ecfd87c8c",
+      "title": "Senior Growth Marketing Manager at INMYTEAM CORP - Gusto",
+      "description": "Strong hands-on paid advertising experience, particularly Google Ads, including campaign setup, budget management, conversion tracking, and optimization. Strong ...",
+      "position": 17,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/the-hummingbirds-inc-performance-marketer-demand-generation-bcb0e051-7ec0-456f-9c93-03686acd2f0f",
+      "title": "Performance Marketer, Demand Generation at The Hummingbirds, Inc.",
+      "description": "Performance Marketer, Demand Generation Remote · Full time Company website ... Deep working knowledge of Meta Ads Manager, Google Ads, and LinkedIn Campaign ...",
+      "position": 18,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/means-database-technology-operations-administrator-df8351ba-65b5-43ec-99f7-7f110a7c2529",
+      "title": "Technology Operations Administrator at MEANS Database - Gusto",
+      "description": "Maintain Google Analytics, Google Ads, Search Console, and Tag Manager to keep our digital content compliant and our search engine optimization effective.",
+      "position": 19,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/30-lines-paid-media-specialist-ab0dc572-46e1-4317-96fb-0e111621454a",
+      "title": "Paid Media Specialist at 30 Lines - Gusto",
+      "description": "We are fully remote and distributed across the ... Strong analytical skills and hands-on experience with Google Ads, Meta Ads, GA4, and Google Tag Manager.",
+      "position": 20,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/arcane-marketing-client-growth-strategist-3e981e5d-3206-4270-be30-819994698bc8",
+      "title": "Client Growth Strategist at Arcane Marketing - Gusto",
+      "description": "Minimum Qualifications: This is a full-time position only. Experience in digital marketing. SEO, Google Ads, Social Media, Websites, etc.",
+      "position": 21,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/kickstart-dental-marketing-sr-ppc-analyst-344a0a2e-66dd-42d2-ad86-8829885480c7",
+      "title": "Sr. PPC Analyst at Kickstart Dental Marketing - Gusto",
+      "description": "PPC Analyst Remote · Full time Company website ... Platform Expertise: Proficient in managing campaigns across platforms such as Google Ads, Bing Ads, Facebook ...",
+      "position": 22,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/lmr-digital-martketing-llc-account-manager-acee772c-602d-4a56-899a-94b2a20dda71",
+      "title": "Account Manager at LMR Digital Martketing, LLC - Gusto",
+      "description": "Experience with Google Ads; Experience with Facebook Ads; Experience with Keyword Research & Planning; Strong understanding of social media marketing; Any and ...",
+      "position": 23,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/sapphire-strategies-digital-associate-de981d63-d75d-4bb8-84fb-74ae7f27454e",
+      "title": "Digital Associate at Sapphire Strategies - Gusto",
+      "description": "Experience with Google Ads and Facebook Business Manager is a plus ... Position can be based in our DC office or fully remote. To apply, please submit a ...",
+      "position": 24,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/therapy-flow-digital-marketing-agency-project-manager-f582e0e7-3696-4c32-996e-76c97d3c4743",
+      "title": "Digital Marketing Agency Project Manager at Therapy Flow - Gusto",
+      "description": "Strong understanding of digital marketing channels such as SEO, Google Ads, Landing Pages, and CRMs. ... Remote work environment. Compensation Details.",
+      "position": 25,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/single-grain-llc-sr-marketing-analytics-manager-ai-first-7362b152-6410-4049-80a8-98618a78aa84",
+      "title": "Sr. Marketing Analytics Manager (AI-First) at Single Grain LLC - Gusto",
+      "description": "Description · Implement and manage tracking setups across Google Analytics 4 (GA4), Google Ads, Meta Ads, LinkedIn Ads, Snapchat, Pinterest, and Microsoft Ads.",
+      "position": 26,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/growgetter-account-manager-266c033c-1700-4038-a127-4afab30e5b81",
+      "title": "Account Manager at Growgetter - Gusto",
+      "description": "Oversee paid advertising campaigns across various channels (Google Ads, social media, programmatic display) · Monitor campaign performance and provide regular ...",
+      "position": 27,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/indivieu-llc-account-executive-a9fca463-f350-4d8a-b41e-091e3c7e890d",
+      "title": "Account Executive at Indivieu, LLC - Gusto",
+      "description": "Lead support – We're actively building inbound lead gen via Google Ads, Meta Ads, and partnerships (you won't be 100% cold outreach); Flexibility – Work from ...",
+      "position": 28,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/rural-power-systems-marketing-specialist-e85a23da-25b9-457f-a053-141355af62b6",
+      "title": "Marketing Specialist at Rural Power Systems - Gusto",
+      "description": "Run email and social day-to-day, not just plan strategy for someone else to execute; Are comfortable in the tools: Google Ads, GA4, Google Tag Manager, ...",
+      "position": 29,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/isla-marketing-full-stack-marketing-developer-fe44a474-7845-4346-b041-ce2d63d36756",
+      "title": "Full-Stack Marketing Developer at Isla Marketing - Gusto",
+      "description": "Full-Stack Marketing Developer. Location: Flexible (Remote or Tampa, FL preferred) ... Tracking & Analytics. Set up & maintain Facebook CAPI, Google Ads/Analytics ...",
+      "position": 30,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/jarvis-ml-business-development-dd37d4a7-bd86-408b-a639-48c3dad80470",
+      "title": "Business Development at Jarvis ML - Gusto",
+      "description": "Our History: Founded by Rakesh Yadav, whose 14+ years at Google focused on founding and building the Machine Learning platforms powering Google Ads and Payments ...",
+      "position": 31,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/single-grain-llc-paid-media-associate-director-95a3d94f-bb97-4a42-a0bc-834d054a7ae5",
+      "title": "Paid Media Associate Director at Single Grain LLC - Gusto",
+      "description": "Independently manage and optimize paid media campaigns across Google Ads, Microsoft Ads, Meta Ads, LinkedIn Ads, and TikTok Ads, ensuring campaigns are aligned ...",
+      "position": 32,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/secured-tech-marketing-coordinator-ef322328-9392-4354-b10b-b0f5bd1b055b",
+      "title": "Marketing Coordinator at Secured Tech - Gusto",
+      "description": "This role is primarily remote with occasional ... Deploy Paid Media Initiatives: Setup day-to-day operations of social and Google Ads ... Experience with social ads ...",
+      "position": 33,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/angler-ai-inc-forward-deployed-engineer-8f92a90e-90d8-4419-a633-66d1661abbce",
+      "title": "Forward Deployed Engineer at Angler AI Inc. - Gusto",
+      "description": "Our solution is designed to optimize the performance of walled garden platforms like Meta, Google Ads, and TikTok, with Angler's Predictive CAPI and ...",
+      "position": 34,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/synaccess-networks-senior-marketing-manager-6400b7a4-078c-4944-985b-f400318fea91",
+      "title": "Senior Marketing Manager at Synaccess Networks - Gusto",
+      "description": "Oversee our current paid programs (Google Ads, content syndication) and recommend what to do with them; Plan and support a small number of trade shows ...",
+      "position": 35,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/cured-nutrition-director-of-growth-marketing-3c80f14c-4982-4bb5-899f-06fb479b3301",
+      "title": "Director of Growth Marketing at Cured Nutrition - Gusto",
+      "description": "Proficiency in relevant tools, including: Paid Media: Hyros, Meta Ads, Google Ads; Email: Klaviyo; CMS: Shopify; Analytics: Google Analytics (UA + GA4), Google ...",
+      "position": 36,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/growgetter-marketing-strategist-9e1d0d2a-9ec3-4881-bb39-7a1718f324e6",
+      "title": "Marketing Strategist at Growgetter - Gusto",
+      "description": "Oversee paid advertising campaigns across various channels (Google Ads, social media, programmatic display) · Monitor campaign performance and provide regular ...",
+      "position": 37,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/indivieu-llc-business-development-representative-52ffd944-ebff-4227-acc9-53610537bfe5",
+      "title": "Business Development Representative at Indivieu, LLC - Gusto",
+      "description": "Lead support: Inbound lead gen via Google Ads, Meta Ads, and partnerships; Flexibility: Work from anywhere, set your own schedule. What We DON'T Provide. Base ...",
+      "position": 38,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/strategy-collective-director-of-marketing-data-analytics-3de2cea3-b251-4371-b616-58494929a953",
+      "title": "Director of Marketing Data & Analytics at Strategy Collective - Gusto",
+      "description": "Ensure Closed-Loop Tracking: Build and maintain seamless data integrations back to ad platforms (specifically Google Ads ... Fully remote work environment ...",
+      "position": 39,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/dirigo-collective-paid-search-social-manager-c8099352-c0cf-477b-abfa-5ea9317ca6bc",
+      "title": "Paid Search & Social Manager at Dirigo Collective - Gusto",
+      "description": "Build, execute, manage, and optimize paid search campaigns across Google Ads and peripheral search platforms as needed; Build, execute, manage, and optimize ...",
+      "position": 40,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/cogwheel-analytics-llc-software-engineer-d5631436-6bf8-4a23-9ede-7c3c0e2f0e36",
+      "title": "Software Engineer at Cogwheel Analytics LLC - Gusto",
+      "description": "Cogwheel Analytics LLC Software Engineer Remote · Full time Company website ... Exposure to marketing or analytics data (Google Ads, GA4, Meta, OTA platforms).",
+      "position": 41,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/angler-ai-inc-director-of-analytics-0276ce2f-1c3a-4236-81fc-f0597c906662",
+      "title": "Director of Analytics at Angler AI Inc. - Gusto",
+      "description": "Director of Analytics Remote · Full time Company website ... Our solution is designed to optimize the performance of walled garden platforms like Meta, Google Ads ...",
+      "position": 42,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/rural-power-systems-growth-marketing-manager-cd972ff3-ad69-4224-ac70-7a3186429697",
+      "title": "Growth Marketing Manager at Rural Power Systems - Gusto",
+      "description": "We help folks across the country pump water sustainably, from off-grid ranches to remote homesteads. ... Strategy and execution oversight for Google Ads and paid ...",
+      "position": 43,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/sapphire-strategies-senior-digital-strategist-6d61261f-52e0-4148-ad6a-712b8629fc8e",
+      "title": "Senior Digital Strategist at Sapphire Strategies - Gusto",
+      "description": "Experience with Google Ads and Facebook Business Manager is a plus; Knowledge ... Position is fully remote with the option to work out of an office in DC.",
+      "position": 44,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/boards/angler-ai-inc-804646d0-795e-4469-8569-0736a60a0da0",
+      "title": "Careers at Angler AI Inc. - Gusto",
+      "description": "Our solution is designed to optimize the performance of walled garden platforms like Meta, Google Ads ... Remote. $160,000 - $220,000 per year · Full time ...",
+      "position": 45,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/rubix-agency-growth-marketing-manager-a920a04e-08ae-424a-94da-3fd04a2ca617",
+      "title": "Growth Marketing Manager at Rubix Agency",
+      "description": "Working knowledge of Google Ads and the ability to collaborate effectively ... Rubix is remote-first with a New York office. Most leadership is on the ...",
+      "position": 46,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/boards/jarvis-ml-1487023d-4e66-4bbc-ab3b-f6a09f05fe5d",
+      "title": "Careers at Jarvis ML - Gusto",
+      "description": "... Google Ads and Payments, the Jarvis ML story began in 2021 with the emergence of the Decade of Machine Learning. Open Positions. Business Development. Remote.",
+      "position": 47,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/sapphire-strategies-digital-strategist-fd19ed5a-1a94-4b3c-86bd-cafd363abb13",
+      "title": "Digital Strategist at Sapphire Strategies - Gusto",
+      "description": "Experience with Google Ads and Facebook Business Manager is a plus ... Position can be based in our DC office or fully remote. Salary. $50,000 - $65,000 per ...",
+      "position": 48,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/impulse-creative-marketing-strategist-e3388dff-8367-4b8f-93cc-b421d74becb5",
+      "title": "Marketing Strategist at Impulse Creative - Gusto",
+      "description": "Impulse Creative Marketing Strategist Remote · Full time ... Execute Performance Marketing (Paid Media) campaigns (Google Ads, Social) and manage budgets.",
+      "position": 49,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    },
+    {
+      "url": "https://jobs.gusto.com/postings/expatiate-communication-inc-meta-paid-social-specialist-5657fc04-454c-444a-bd7d-63ac686fc411",
+      "title": "Meta / Paid Social Specialist at Expatiate Communication, Inc.",
+      "description": "We do not offer remote or hybrid arrangements because close, in-person ... Google Ads experience is a strong plus. Experience marketing directly to ...",
+      "position": 50,
+      "actual_query": "\"Google Ads\" remote site:jobs.gusto.com"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "id": 3027,
+  "company": "Lone Wolf Technologies",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1lfY3A0QVye1_kR7dQZBte4UT6KF_E8hC/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Lone-Wolf-Technologies+Marketing-Operations-Lead+00476.docx",
+  "started_at": "2026-10-26T15:43:15.301496+00:00",
+  "completed_at": "2026-10-26T15:45:01.093052+00:00",
+  "elapsed_seconds": 105.791568,
+  "generation_seconds": 24.755527100001927,
+  "delivery_seconds": 5.235128499974962,
+  "tracker_seconds": 38.52912029999425,
+  "readback": {
+    "Scout ID": 3027,
+    "Company": "Lone Wolf Technologies",
+    "Job Title": "Marketing Operations Lead",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1lfY3A0QVye1_kR7dQZBte4UT6KF_E8hC/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1279",
+  "hyperlink_target": "https://docs.google.com/document/d/1lfY3A0QVye1_kR7dQZBte4UT6KF_E8hC/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 105.7916,
+    "active_seconds": 80.2542,
+    "review_wait_seconds": 25.5374,
+    "phases_seconds": {
+      "source_loading": 0.0298,
+      "tailoring": 0.6815,
+      "document_creation": 1.2966,
+      "word_pdf_validation": 6.6101,
+      "fitting_retries": 0.309,
+      "factual_review": 0.0,
+      "review_wait": 25.5374,
+      "tracker_sync": 38.5282,
+      "drive_delivery": 5.2271
+    },
+    "counts": {
+      "source_loading": 69,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

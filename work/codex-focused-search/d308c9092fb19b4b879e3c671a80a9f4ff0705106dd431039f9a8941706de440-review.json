@@ -1,0 +1,212 @@
+{
+  "job": {
+    "url": "https://job-boards.greenhouse.io/nmi/jobs/5416365008",
+    "company": "NMI",
+    "title": "Integrated Marketing Manager - Gateway & Verticals",
+    "location": "Remote, US",
+    "arrangement": "remote",
+    "salary": "$ 100,000–120,000",
+    "posted": "2026-09-09",
+    "chars": 8620
+  },
+  "match": {
+    "id": "job",
+    "sufficient": true,
+    "reason": "Complete posting; strong marketing evidence, with payments expertise and B2B tenure unverified.",
+    "blockers": [],
+    "categories": {
+      "responsibilities": [
+        {
+          "requirement": "Own the integrated marketing strategy and plan for NMI's core payment gateway, aligned to pipeline and revenue goals.",
+          "support": 0.5,
+          "evidence": [
+            "Developed the firm’s overall marketing plan and new strategies, advising executives on key"
+          ],
+          "reason": "Demonstrates strategy ownership; gateway-specific planning and pipeline accountability are unverified."
+        },
+        {
+          "requirement": "Develop and execute multi-channel campaigns to acquire new ISO partners, drive gateway adoption and support cross-sell and upsell opportunities.",
+          "support": 0.5,
+          "evidence": [
+            "Managed all paid search campaigns, outreach, lead generation, and customer acquisition for a large E-Commerce company in the United States, Canada, and the UK"
+          ],
+          "reason": "Acquisition campaigns transfer; ISO recruitment, gateway adoption and expansion programs are unverified."
+        },
+        {
+          "requirement": "Develop verticalized marketing strategies for priority markets, using market, customer and competitive insight",
+          "support": 0.5,
+          "evidence": [
+            "Conducted keyword, audience, and competitive research to develop targeting, messaging, campaign, and growth recommendations"
+          ],
+          "reason": "Research and targeting transfer; explicit vertical positioning and go-to-market programs are unverified."
+        },
+        {
+          "requirement": "Build a strong understanding of ISO and ISV audiences, their buying journeys, challenges and decision drivers.",
+          "support": 0.5,
+          "evidence": [
+            "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation"
+          ],
+          "reason": "Client discovery transfers; ISO and ISV buying-journey knowledge is unverified."
+        },
+        {
+          "requirement": "Partner with product marketing and content teams to develop compelling messaging, thought leadership, customer stories, campaign content and sales enablement.",
+          "support": 0.5,
+          "evidence": [
+            "Worked closely with the Web Dev team and the content team to create custom landing pages and custom content for PMAX campaigns"
+          ],
+          "reason": "Content collaboration is proven; thought leadership, customer stories and sales enablement are partial."
+        },
+        {
+          "requirement": "Work closely with demand generation to define target audiences, campaign journeys, lead follow-up and conversion strategies.",
+          "support": 0.5,
+          "evidence": [
+            "Built conversion and attribution models and designed A/B and multivariate tests across multiple levels of the marketing funnel"
+          ],
+          "reason": "Funnel and conversion work transfers; demand-generation coordination and lead follow-up are unverified."
+        },
+        {
+          "requirement": "Collaborate with sales, channel and other marketing teams to ensure programs are aligned to commercial priorities and effectively executed.",
+          "support": 1,
+          "evidence": [
+            "coordinating execution and reporting across marketing, sales, operations, finance, IT, and product teams"
+          ],
+          "reason": "Demonstrates coordinated commercial execution across sales, marketing and other functions."
+        },
+        {
+          "requirement": "Manage campaigns from planning through execution, reporting and optimization, ensuring activity stays on track, on budget and on brand.",
+          "support": 1,
+          "evidence": [
+            "Leads account activation, campaign builds and structures, keyword and negative-keyword strategy, ad copy, audience segmentation, bid testing, budget pacing, daily optimization"
+          ],
+          "reason": "Demonstrates campaign delivery, messaging, budget pacing and ongoing optimization."
+        },
+        {
+          "requirement": "Track performance against agreed KPIs and use insights to continuously improve targeting, messaging, channel mix and campaign effectiveness.",
+          "support": 1,
+          "evidence": [
+            "Created annual projections and KPI reporting with senior leadership and used platform, analytics, Magento, accounting, and competitive data to guide budget and campaign decisions"
+          ],
+          "reason": "Direct evidence of KPI reporting and data-informed campaign and budget improvement."
+        }
+      ],
+      "required": [
+        {
+          "requirement": "A marketing or related business degree or equivalent.",
+          "support": 1,
+          "evidence": [
+            "Business Management Degree - Marketing Emphasis"
+          ],
+          "reason": "The documented degree directly satisfies the education requirement."
+        },
+        {
+          "requirement": "Strong understanding of B2B partner or channel-led business models.",
+          "support": 1,
+          "evidence": [
+            "Modernized the company's digital environment and launched multiple B2C channels while protecting relationships with more than 650 B2B retail partners"
+          ],
+          "reason": "Demonstrates managing growth within a substantial B2B partner-channel model."
+        },
+        {
+          "requirement": "Experience collaborating with and managing agency partners.",
+          "support": 1,
+          "evidence": [
+            "Helped facilitate the transition of four to five agency relationships in-house, evaluating agency cost structures, prioritization, automation approaches"
+          ],
+          "reason": "Direct agency relationship, prioritization and commercial evaluation experience."
+        },
+        {
+          "requirement": "including marketing automation (Salesforce, Hubspot, Pardot, ZoomInfo)",
+          "support": 0.5,
+          "evidence": [
+            "Installed Go High Level and trained employees on how to use it correctly."
+          ],
+          "reason": "Demonstrated automation implementation transfers; named-platform depth and ZoomInfo are unverified."
+        },
+        {
+          "requirement": "SEM, SEO, PPC, display, programmatic, etc, as well as analytics (GA4).",
+          "support": 0.5,
+          "evidence": [
+            "Experience spans Google Ads, Microsoft Ads, Shopping, Display, YouTube, remarketing, Amazon, SEO/SEM"
+          ],
+          "reason": "Search and display experience is established; GA4 is documented elsewhere; programmatic is unverified."
+        },
+        {
+          "requirement": "Exceptional project management, communication and stakeholder alignment skills.",
+          "support": 1,
+          "evidence": [
+            "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+          ],
+          "reason": "Demonstrates communication, priority alignment and coordinated stakeholder work."
+        },
+        {
+          "requirement": "Creativity, curiosity, initiative and a strong commercial mindset.",
+          "support": 1,
+          "evidence": [
+            "Used market research and business planning to help establish tax and finance departments that together contributed more than 25% of firm revenue"
+          ],
+          "reason": "Demonstrates initiative, creative service development and measurable commercial judgment."
+        }
+      ],
+      "seniority": [
+        {
+          "requirement": "5-7+ years of B2B marketing experience",
+          "support": 0.5,
+          "evidence": [
+            "Digital marketing and marketing technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce, professional services"
+          ],
+          "reason": "Extensive mixed marketing tenure is documented; the exact B2B duration remains unverified."
+        }
+      ],
+      "industry": [],
+      "preferred": [
+        {
+          "requirement": "ideally in payments, fintech, SaaS, or enterprise technology.",
+          "support": 0.5,
+          "evidence": [
+            "Installed Go High Level. I then connected this to Service Titan, Power BI, and all the internal system"
+          ],
+          "reason": "Enterprise-system implementation transfers partially; marketing within these sectors is unverified."
+        },
+        {
+          "requirement": "Experience marketing to ISOs, ISVs, PayFacs or other payments audiences is highly desirable.",
+          "support": 0,
+          "evidence": [],
+          "reason": "Marketing to payments intermediaries or software-vendor audiences is unverified."
+        }
+      ]
+    },
+    "score": 67.92,
+    "accepted": true,
+    "status": "reviewed",
+    "failed_rules": [],
+    "category_percentages": {
+      "responsibilities": 66.67,
+      "required": 85.71,
+      "seniority": 50.0,
+      "industry": null,
+      "preferred": 25.0
+    },
+    "policy": "master-evidence-v2",
+    "thresholds": {
+      "minimum_score": 60,
+      "minimum_responsibilities_match": 50,
+      "minimum_required_skills_match": 50
+    },
+    "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "job": {
+      "id": "job",
+      "title": "Integrated Marketing Manager - Gateway & Verticals",
+      "company": "NMI",
+      "url": "https://job-boards.greenhouse.io/nmi/jobs/5416365008"
+    },
+    "description_sha256": "0c97cb85fdb4a9006f043a456494fb7d4d46aa5ac06ebc52cee1ebcae1ea8a8f",
+    "runner": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "verified": true,
+      "session_id": "01a17468-1fd4-7313-97dd-63c04d968309",
+      "verified_at": "2026-10-25T18:53:16.759555+00:00"
+    },
+    "cached": true
+  }
+}

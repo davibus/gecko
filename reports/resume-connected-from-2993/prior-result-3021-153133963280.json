@@ -1,0 +1,34 @@
+{
+  "id": 3021,
+  "company": "Careerswift",
+  "status": "blocked",
+  "reason": "Master changed during plan creation; fresh review required",
+  "elapsed_seconds": 11.928610000002664,
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\gecko_main\\scripts\\generate_apply_queue.py\", line 949, in generate\n    return _finish_generation(item, listing, attempts, force_recreate=force_recreate)\n  File \"C:\\gecko_main\\scripts\\generate_apply_queue.py\", line 1070, in _finish_generation\n    plan = gecko_v2.create_plan(listing.resolve(), defer_summary=ai_summary)\n  File \"C:\\gecko_main\\.tools\\python-3.13.16-signed\\Lib\\unittest\\mock.py\", line 1169, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\gecko_main\\.tools\\python-3.13.16-signed\\Lib\\unittest\\mock.py\", line 1173, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\gecko_main\\.tools\\python-3.13.16-signed\\Lib\\unittest\\mock.py\", line 1240, in _execute_mock_call\n    result = effect(*args, **kwargs)\n  File \"C:\\gecko_main\\work\\connected_resumes_2985_2991.py\", line 108, in connected_plan\n    raise ValueError('Master changed during plan creation; fresh review required')\nValueError: Master changed during plan creation; fresh review required\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\gecko_main\\work\\connected_resumes_2985_2991.py\", line 132, in main\n    artifacts=queue.generate(item,DEFAULT_DB,tracker=remote)\n  File \"C:\\gecko_main\\scripts\\generate_apply_queue.py\", line 953, in generate\n    raise QueueProcessingError(str(error), item, attempts) from error\ngenerate_apply_queue.QueueProcessingError: Master changed during plan creation; fresh review required\n",
+  "timings": {
+    "wall_seconds": 11.9305,
+    "active_seconds": 11.9305,
+    "review_wait_seconds": 0.0,
+    "phases_seconds": {
+      "source_loading": 0.0089,
+      "tailoring": 0.8145,
+      "document_creation": 0.0,
+      "word_pdf_validation": 0.0,
+      "fitting_retries": 0.0,
+      "factual_review": 0.0,
+      "review_wait": 0.0,
+      "tracker_sync": 0.0
+    },
+    "counts": {
+      "source_loading": 11,
+      "tailoring": 2,
+      "document_creation": 0,
+      "word_pdf_validation": 0,
+      "fitting_retries": 0,
+      "factual_review": 0,
+      "review_wait": 0,
+      "tracker_sync": 0,
+      "master_parses": 0
+    }
+  }
+}

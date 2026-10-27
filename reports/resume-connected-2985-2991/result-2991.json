@@ -1,0 +1,54 @@
+{
+  "id": 2991,
+  "company": "Maximus Health, Inc.",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1ncYaAinkjy6JjJEkJKrrvNSJ1Jw69iEO/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Maximus-Health,-Inc+Head-of-Growth-&-Marketing-(VP)+00449.docx",
+  "started_at": "2026-10-26T14:28:13.866991+00:00",
+  "completed_at": "2026-10-26T14:34:50.818658+00:00",
+  "elapsed_seconds": 396.9516797999968,
+  "generation_seconds": 19.97510169999441,
+  "delivery_seconds": 18.43902849999722,
+  "tracker_seconds": 61.07805820001522,
+  "readback": {
+    "Scout ID": 2991,
+    "Company": "Maximus Health, Inc.",
+    "Job Title": "Head of Growth & Marketing (VP)",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1ncYaAinkjy6JjJEkJKrrvNSJ1Jw69iEO/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1244",
+  "hyperlink_target": "https://docs.google.com/document/d/1ncYaAinkjy6JjJEkJKrrvNSJ1Jw69iEO/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 396.9517,
+    "active_seconds": 111.5396,
+    "review_wait_seconds": 285.4121,
+    "phases_seconds": {
+      "source_loading": 0.0353,
+      "tailoring": 1.3814,
+      "document_creation": 2.1315,
+      "word_pdf_validation": 5.3987,
+      "fitting_retries": 0.5271,
+      "factual_review": 0.0,
+      "review_wait": 285.4121,
+      "tracker_sync": 61.0772,
+      "drive_delivery": 18.4323
+    },
+    "counts": {
+      "source_loading": 68,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

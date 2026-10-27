@@ -1,0 +1,35 @@
+{
+  "path": "C:\\gecko_main\\output\\resumes\\Dave-Call+Redis+Lead,-Growth-Marketing+00481.docx",
+  "metadata": {
+    "id": "1M6V6w_6lL95D749kTspLcdFTzRne1ZVb",
+    "title": "Dave-Call+Redis+Lead,-Growth-Marketing+00481.docx",
+    "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "size": "40583",
+    "url": "https://docs.google.com/document/d/1M6V6w_6lL95D749kTspLcdFTzRne1ZVb/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+    "file_or_folder": "file",
+    "created_time": null,
+    "modified_time": null,
+    "parent_ids": [
+      "1Noy8XUqlL5ufqA4aU9jZWdwpMYeCVmol"
+    ],
+    "drive_id": null,
+    "current_user_can_share": null,
+    "has_augmented_permissions": null,
+    "shared": false,
+    "permissions": [
+      {
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "mdavidcall@gmail.com",
+        "domain": null,
+        "displayName": "Dave Call",
+        "allowFileDiscovery": null
+      }
+    ],
+    "source_visibility_status": "permission_metadata_available"
+  },
+  "download": {
+    "sha256": "c4894aae27178f7d9afad1135e15111e69f6299e49cf295deaad2d274dc2928a",
+    "size": 40583
+  }
+}

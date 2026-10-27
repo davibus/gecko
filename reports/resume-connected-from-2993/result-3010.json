@@ -1,0 +1,53 @@
+{
+  "id": 3010,
+  "company": "CSC Generation",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1Q9KZ8j6Mtb7CwoeVEWvpcYnqVLc8dlMy/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+CSC-Generation+Vice-President,-Performance-Marketing+00462.docx",
+  "started_at": "2026-10-26T15:05:16.591251+00:00",
+  "completed_at": "2026-10-26T15:07:51.584939+00:00",
+  "elapsed_seconds": 154.993698,
+  "generation_seconds": 36.798821400007,
+  "delivery_seconds": 22.5196142999921,
+  "tracker_seconds": 48.13953039998887,
+  "readback": {
+    "Scout ID": 3010,
+    "Company": "CSC Generation",
+    "Job Title": "Vice President, Performance Marketing",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1Q9KZ8j6Mtb7CwoeVEWvpcYnqVLc8dlMy/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1262",
+  "hyperlink_target": "https://docs.google.com/document/d/1Q9KZ8j6Mtb7CwoeVEWvpcYnqVLc8dlMy/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 154.9937,
+    "active_seconds": 122.4481,
+    "review_wait_seconds": 32.5456,
+    "phases_seconds": {
+      "source_loading": 0.0456,
+      "tailoring": 1.217,
+      "document_creation": 2.5923,
+      "word_pdf_validation": 9.0914,
+      "fitting_retries": 0.4802,
+      "factual_review": 0.0,
+      "review_wait": 32.5456,
+      "tracker_sync": 48.1385,
+      "drive_delivery": 22.5065
+    },
+    "counts": {
+      "source_loading": 86,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "drive_delivery": 1
+    }
+  }
+}

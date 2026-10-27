@@ -42,3 +42,21 @@ See `docs/cursor-terminals.md` for the global persistence settings and workspace
 Execute the live write path by default for requested work. Implement the requested change and run the affected canonical workflow so the real files and configured Google Sheet results are visible. Do not substitute a dry run, preview, simulation, mock execution, or instructions for an authorized live execution, and do not stop after editing code when execution is necessary to complete the request. Explicit dry-run and other read-only commands remain available only when the user requests them or when the command is inherently diagnostic.
 
 Authorization covers the requested work and its necessary writes, including generated resumes and managed tracker cells. It does not authorize unrelated actions, job applications, messages, purchases, destructive operations, or bypassing access restrictions. Preserve eligibility rules, Cost `x` exclusion, duplicate prevention, protected/manual fields, and unrelated data. After every live tracker write, read the affected cells back and verify the expected values and resume link target. If execution is blocked, report the exact blocker and what actually changed; never claim a live write succeeded without verification. Do not ask the user to reconfirm actions already authorized by the request.
+
+## Canadian remote jobs allowed - user instruction October 26, 2026
+
+Dave explicitly instructed: If it is Canada, allow it. Treat Canadian remote
+jobs, including Canada-only postings and country codes CA/CAN, as geographically
+eligible for Gecko discovery, qualification, resume queues and tracker review.
+Do not set Qualifies to Apply? to No solely because the country is Canada or the
+ATS applicant country is Canadian. This supersedes earlier U.S./Utah-only remote
+country restrictions for Canada. Marketbridge ID 2983 is the confirmed example.
+
+Keep other safeguards: fees, permanent rejections, completed-resume protection,
+match thresholds, usable job descriptions, and genuine additional location or
+residency restrictions. Required Eastern working hours alone are not an Eastern
+residency restriction. This does not authorize inventing Canadian citizenship,
+work authorization, residency or willingness to relocate; answer application
+questions truthfully and surface any unsupported mandatory requirement. The
+exception permits remote Canada jobs; it does not make Canadian onsite/hybrid
+jobs local Utah jobs or permit every other foreign-country requisition.

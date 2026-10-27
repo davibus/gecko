@@ -1,0 +1,54 @@
+{
+  "id": 3057,
+  "company": "LMG Staffing Solutions",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1dV2FzbONnH2SamcqRcu72QZK4U0Oho3a/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+LMG-Staffing-Solutions+Digital-Marketing-B2B-HubSpot-Growth-Marketing-and-Automation-Manager-(Remote)+00497.docx",
+  "started_at": "2026-10-26T16:32:44.778514+00:00",
+  "completed_at": "2026-10-26T16:34:15.497842+00:00",
+  "elapsed_seconds": 90.719341,
+  "generation_seconds": 24.027135199983604,
+  "delivery_seconds": 4.815862599993125,
+  "tracker_seconds": 27.684574400016572,
+  "readback": {
+    "Scout ID": 3057,
+    "Company": "LMG Staffing Solutions",
+    "Job Title": "Digital Marketing B2B HubSpot Growth Marketing and Automation Manager (Remote)",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1dV2FzbONnH2SamcqRcu72QZK4U0Oho3a/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1308",
+  "hyperlink_target": "https://docs.google.com/document/d/1dV2FzbONnH2SamcqRcu72QZK4U0Oho3a/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 90.7194,
+    "active_seconds": 62.6368,
+    "review_wait_seconds": 28.0826,
+    "phases_seconds": {
+      "source_loading": 0.0417,
+      "tailoring": 0.994,
+      "document_creation": 2.7014,
+      "word_pdf_validation": 8.4187,
+      "fitting_retries": 0.1403,
+      "factual_review": 0.0,
+      "review_wait": 28.0826,
+      "tracker_sync": 27.6836,
+      "drive_delivery": 4.8071
+    },
+    "counts": {
+      "source_loading": 84,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "spec": {
+    "headline": "Integrated Campaign Strategy | Content & Creative | Marketing Analytics",
+    "headline_rationale": "GenScript needs audience understanding, omnichannel creative planning, team coordination and campaign analysis. Use supported campaign/content leadership and research without inventing life sciences education or experience.",
+    "summary": "Integrated digital marketer experienced in translating business priorities into coordinated campaigns, content and measurable execution. Led an eight-person e-commerce team and worked across product, sales, IT and operations on marketing priorities. Developed personalized content across web, email, mail and blogs, created marketing concepts with graphic design and animation, and advised clients on audience targeting and messaging. Combines campaign testing, KPI reporting and repeatable processes to guide creative decisions and improve execution across teams.",
+    "factual_review": "Read exact GenScript Integrated Campaign Manager Life Sciences Marketing US posting. E093/E060/E114/E109/E076/E078/E095/E096/E081 support claims. Life sciences/scientific education, pharmaceutical experience and large offline event ownership remain unverified and are not asserted.",
+    "selected_evidence_ids": [
+      "E001",
+      "E003",
+      "E005",
+      "E006",
+      "E008",
+      "E009",
+      "E018",
+      "E023",
+      "E044",
+      "E038",
+      "E060",
+      "E063",
+      "E066",
+      "E076",
+      "E078",
+      "E079",
+      "E081",
+      "E093",
+      "E095",
+      "E096",
+      "E109",
+      "E114"
+    ],
+    "additional_evidence_ids": [
+      "E004",
+      "E010",
+      "E011",
+      "E020",
+      "E072",
+      "E080",
+      "E082",
+      "E102",
+      "E105",
+      "E113",
+      "E115",
+      "E116"
+    ],
+    "tools_platforms": [
+      "Google Analytics 4",
+      "Looker Studio",
+      "Tableau",
+      "Excel",
+      "HubSpot",
+      "Salesforce",
+      "Google Ads",
+      "Meta Ads",
+      "ChatGPT",
+      "Claude"
+    ],
+    "tools_rationale": "Supported campaign, analytics, CRM and AI tools for coordinated execution and reporting.",
+    "source_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "description_sha256": "7511cdc61fec86fb2d562ef07c360119512dedf65817f574f548eb930873af38"
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "a689ed3f177e74f5ab8ed4425f443062a7c2a09521ffba8e9e9066b7f98e0c5a"
+}

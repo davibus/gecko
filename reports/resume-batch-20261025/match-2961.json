@@ -1,0 +1,289 @@
+{
+  "id": "job",
+  "sufficient": true,
+  "reason": "Complete posting supports assessment. Apparel-sector depth and specialist programmatic mechanics remain unverified.",
+  "blockers": [],
+  "categories": {
+    "responsibilities": [
+      {
+        "requirement": "Set the channel strategy for all these platforms including account and campaign architecture, funnel coverage, and budget allocation across each platform",
+        "support": 0.5,
+        "evidence": [
+          "Managed 150+ campaigns across Google Ads, Microsoft Ads, Amazon, search, shopping, display, video, remarketing, mobile, social, local, and email with approximately $400K in monthly spend"
+        ],
+        "reason": "Search, display and video ownership is proven; direct CTV strategy ownership is unverified."
+      },
+      {
+        "requirement": "Own budget pacing across all channels; make real-time reallocation decisions based on performance signals",
+        "support": 1,
+        "evidence": [
+          "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review"
+        ],
+        "reason": "Performance-led budget allocation and documented pacing directly support this duty."
+      },
+      {
+        "requirement": "Lead incrementality test design for search, display, and CTV channels in coordination with our measurement stack",
+        "support": 0.5,
+        "evidence": [
+          "Analyzed maximum CPC versus smart bidding, brand CPC optimization, brand and non-brand target CPA, incremental CPA during scale-ups and scale-downs"
+        ],
+        "reason": "Incrementality analysis transfers; leading display and CTV incrementality tests is unverified."
+      },
+      {
+        "requirement": "Contribute channel-level commentary to weekly cross-channel performance reporting",
+        "support": 1,
+        "evidence": [
+          "Converted analytical findings into executive summaries, recommended actions, and next-period watch lists."
+        ],
+        "reason": "Interpreted marketing reporting directly supports channel commentary."
+      },
+      {
+        "requirement": "Stay ahead of platform and product changes across all four channels — Smart Bidding updates, search evolution, DSP feature releases, and measurement developments",
+        "support": 0.5,
+        "evidence": [
+          "Assessed inefficient legacy rule-based systems built using the Google Ads API and how newer Google machine-learning capabilities had made those systems outdated"
+        ],
+        "reason": "Search-platform evolution is demonstrated; DSP release expertise is unverified."
+      },
+      {
+        "requirement": "Serve as the primary point of contact for all platform and agency relationships",
+        "support": 0.5,
+        "evidence": [
+          "Helped facilitate the transition of four to five agency relationships in-house"
+        ],
+        "reason": "Agency relationship work is established; primary ownership of all platform contacts is unverified."
+      },
+      {
+        "requirement": "Manage day-to-day communication and performance accountability with external partners on your channels",
+        "support": 1,
+        "evidence": [
+          "Consolidated work that had been divided among five agencies into a comprehensive, scalable in-house PPC strategy"
+        ],
+        "reason": "Coordinating agency work and replacing fragmented execution supports partner accountability."
+      },
+      {
+        "requirement": "Evaluate partner and vendor performance against clear outcomes; own the relationship and the decisions that come with it",
+        "support": 1,
+        "evidence": [
+          "evaluating agency cost structures, prioritization, automation approaches, and the impact of newer Google machine-learning capabilities on legacy rule-based systems"
+        ],
+        "reason": "Direct agency evaluation connects costs, approaches and effectiveness."
+      },
+      {
+        "requirement": "Consolidate institutional knowledge internally so that performance insights and channel history live with the team, not outside it",
+        "support": 1,
+        "evidence": [
+          "Built the PPC team and trained team members on the scalable system created for the organization (QoQ)"
+        ],
+        "reason": "In-house system development and training internalize operational knowledge."
+      },
+      {
+        "requirement": "Oversee and direct AI execution tools for bid management, audience optimization, pacing, and creative performance",
+        "support": 1,
+        "evidence": [
+          "Automated SERP analysis with Python and used machine-learning models and the Google Ads API to support budgets, bids, ad copy, keyword decisions, and other optimizations"
+        ],
+        "reason": "Direct machine-learning and API-assisted campaign optimization covers the underlying execution."
+      },
+      {
+        "requirement": "Interrogate automated optimization outputs: understand what the tool is doing, why it is making those decisions, and whether the logic actually serves the strategy",
+        "support": 1,
+        "evidence": [
+          "Assessed inefficient legacy rule-based systems built using the Google Ads API and how newer Google machine-learning capabilities had made those systems outdated"
+        ],
+        "reason": "Explicit evaluation of automation logic and effectiveness directly supports this duty."
+      },
+      {
+        "requirement": "Push back when AI-recommended actions do not hold up to scrutiny; override confidently and document what you learned",
+        "support": 0.5,
+        "evidence": [
+          "Uses structured OpenAI workflows to prioritize supported findings, with application checks that reject unsupported evidence."
+        ],
+        "reason": "Rejecting unsupported AI output is proven; campaign override decisions are unverified."
+      },
+      {
+        "requirement": "Set guardrails, test protocols, and performance benchmarks that hold AI tools accountable to real outcomes, not just internal optimization metrics",
+        "support": 1,
+        "evidence": [
+          "Created dedicated verification scripts for business calculations, integration behavior, tenant isolation, AI grounding, and report generation."
+        ],
+        "reason": "AI-grounding checks and verified business calculations demonstrate practical guardrail design."
+      },
+      {
+        "requirement": "Lead AI tool evaluation with an analytical eye; you define the test and interpret the results",
+        "support": 0.5,
+        "evidence": [
+          "Analyzed AI-assisted promotion performance using Namogoo alongside paid-media bidding, audience, attribution,"
+        ],
+        "reason": "AI performance evaluation is documented; ownership of AI-tool test design is unverified."
+      },
+      {
+        "requirement": "Work closely with key stakeholders on creative brief direction — bring the performance signal and channel hypothesis to inform what gets made and why",
+        "support": 1,
+        "evidence": [
+          "Worked closely with the Web Dev team and the content team to create custom landing pages and custom content for PMAX campaigns"
+        ],
+        "reason": "Cross-functional campaign-content direction supports performance-informed creative collaboration."
+      },
+      {
+        "requirement": "Contribute channel-informed hypotheses to our landing page and site testing process",
+        "support": 1,
+        "evidence": [
+          "Distinguished measured landing-page results from proposed CRO experiments."
+        ],
+        "reason": "Evidence-based CRO hypotheses directly support site experimentation."
+      },
+      {
+        "requirement": "Collaborate on landing page testing by providing performance data and hypotheses on where the post-click experience is limiting paid efficiency",
+        "support": 1,
+        "evidence": [
+          "analyzes funnels, conversion paths, landing pages, and micro-conversions; and designs A/B tests, multivariate tests, bid experiments, and click-to-call assessments"
+        ],
+        "reason": "Funnel diagnostics and landing-page experiments directly support post-click improvement."
+      },
+      {
+        "requirement": "Participate in creative QA before launch and contribute to post-launch performance interpretation",
+        "support": 1,
+        "evidence": [
+          "Generates draft Google responsive search ad headlines and descriptions with evidence checks, character limits, and duplicate-asset validation."
+        ],
+        "reason": "Creative validation combines with documented campaign testing and performance interpretation."
+      }
+    ],
+    "required": [
+      {
+        "requirement": "Deep working knowledge of Google Ads — campaign structure, Smart Bidding, Performance Max, search term management, Quality Score, product feed management and attribution settings",
+        "support": 0.5,
+        "evidence": [
+          "Analyzed max CPC versus smart bidding, brand CPC optimization, non-brand target CPA, Performance Max and Google Shopping mix"
+        ],
+        "reason": "Broad Google Ads expertise is demonstrated; explicit Quality Score work is unverified."
+      },
+      {
+        "requirement": "Strong analytical fluency: you can build a performance narrative from raw data, not just pull a report",
+        "support": 1,
+        "evidence": [
+          "Converted analytical findings into executive summaries, recommended actions, and next-period watch lists."
+        ],
+        "reason": "Direct evidence of translating analysis into decision-oriented narratives."
+      },
+      {
+        "requirement": "Experience with or working knowledge of programmatic channels — DSP mechanics, deal types (PMP, open auction), brand safety, and audience targeting",
+        "support": 0,
+        "evidence": [],
+        "reason": "Display experience does not establish DSPs, PMP deals, open auctions or brand-safety practice."
+      },
+      {
+        "requirement": "Experience managing or coordinating external agency or vendor relationships, with accountability for their performance outcomes",
+        "support": 1,
+        "evidence": [
+          "Helped transition work from four to five agencies to in-house management, evaluating agency fees"
+        ],
+        "reason": "Agency coordination and evaluation of channel effectiveness are directly documented."
+      },
+      {
+        "requirement": "you have worked with creative teams, data teams, site teams, and external partners and found ways to move forward even when priorities differ",
+        "support": 1,
+        "evidence": [
+          "Directed digital marketing and e-commerce for a large B2B distributor, coordinating execution and reporting across marketing, sales, operations, finance, IT, and product teams"
+        ],
+        "reason": "Broad cross-functional execution and reporting demonstrate stakeholder coordination."
+      },
+      {
+        "requirement": "An evaluative relationship with AI and automation tools",
+        "support": 1,
+        "evidence": [
+          "Preserved usable deterministic results when AI was unavailable or returned invalid output."
+        ],
+        "reason": "Explicit validation and fallback behavior demonstrate critical evaluation of AI output."
+      }
+    ],
+    "seniority": [
+      {
+        "requirement": "5–7 years of hands-on experience in paid search and display at scale (six-figure monthly budgets or above)",
+        "support": 1,
+        "evidence": [
+          "Managed large AdWords, Bing Ads, Gemini, and Amazon Marketing Services accounts consisting of more than 150 campaigns with a $400,000 budget"
+        ],
+        "reason": "Dated LifeSpan, agency and TravelPass roles establish over five years of scaled paid media."
+      }
+    ],
+    "industry": [
+      {
+        "requirement": "in fashion and/or apparel e-commerce industries",
+        "support": 0.5,
+        "evidence": [
+          "Director of Digital Marketing - GRIP6 - Midvale, UT"
+        ],
+        "reason": "Named retail employer offers possible relevance; apparel-specific work is not explicit."
+      }
+    ],
+    "preferred": [
+      {
+        "requirement": "CTV channel experience — MNTN or other CTV/OTT platforms",
+        "support": 0.5,
+        "evidence": [
+          "Assessed click-to-call systems and used iSpot to analyze TV/OTT reach campaigns"
+        ],
+        "reason": "OTT measurement experience is documented; direct CTV platform execution is unverified."
+      },
+      {
+        "requirement": "Experience managing or directing AI execution tools for paid channel execution",
+        "support": 1,
+        "evidence": [
+          "Automated SERP analysis with Python and used machine-learning models and the Google Ads API to support budgets, bids, ad copy, keyword decisions, and other optimizations"
+        ],
+        "reason": "Direct AI-assisted paid-channel optimization experience."
+      },
+      {
+        "requirement": "Familiarity with MMM, MTA, or incrementality testing methodologies",
+        "support": 1,
+        "evidence": [
+          "Evaluates ROI, ROAS, CPA, revenue, customer lifetime value, and channel performance using attribution analysis, statistical and regression modeling, forecasting, incremental testing"
+        ],
+        "reason": "Incremental testing explicitly satisfies an optional methodology."
+      },
+      {
+        "requirement": "In-house DTC or e-commerce experience where you owned your channels with direct business accountability",
+        "support": 1,
+        "evidence": [
+          "Managed approximately $400,000 in media budget that generated more than $9 million in revenue, representing approximately 35% of total company revenue"
+        ],
+        "reason": "In-house e-commerce channel ownership is tied directly to revenue outcomes."
+      }
+    ]
+  },
+  "score": 80.21,
+  "accepted": true,
+  "status": "reviewed",
+  "failed_rules": [],
+  "category_percentages": {
+    "responsibilities": 83.33,
+    "required": 75.0,
+    "seniority": 100.0,
+    "industry": 50.0,
+    "preferred": 87.5
+  },
+  "policy": "master-evidence-v2",
+  "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+  "job": {
+    "id": "job",
+    "title": "Growth Marketing Manager: Paid Search and Display",
+    "company": "ThirdLove",
+    "url": "https://job-boards.greenhouse.io/thirdlove/jobs/8770457002"
+  },
+  "description_sha256": "643bd213066fa5888299a14e224935d3fa837f8456f40a3bfd3107a46071b481",
+  "runner": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a17376-f4f9-7692-a947-2b44b9e94765",
+    "verified_at": "2026-10-25T14:30:46.552584+00:00"
+  },
+  "thresholds": {
+    "minimum_score": 60,
+    "minimum_responsibilities_match": 50,
+    "minimum_required_skills_match": 50
+  },
+  "cached": true
+}

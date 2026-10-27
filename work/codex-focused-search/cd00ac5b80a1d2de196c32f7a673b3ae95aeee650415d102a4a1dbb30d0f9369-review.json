@@ -1,0 +1,249 @@
+{
+  "job": {
+    "url": "https://jobs.ashbyhq.com/pearmill/7bc9b3cc-f15d-48d8-be89-29a3f8f50a59",
+    "company": "Pearmill",
+    "title": "Paid Search Manager",
+    "location": "USA",
+    "arrangement": "remote",
+    "salary": "USD 60,000–75,000 per year",
+    "posted": "2026-08-10",
+    "chars": 5890
+  },
+  "match": {
+    "id": "job",
+    "sufficient": true,
+    "reason": "Complete duties and qualifications support evaluation. Strong paid-search, analytics and AI-development evidence; Demand Gen and Claude MCP reporting remain unverified. Missing evidence does not prove lack of capability.",
+    "blockers": [],
+    "categories": {
+      "responsibilities": [
+        {
+          "requirement": "Own 4 to 6 client accounts across Google Ads (Search, PMax, Demand Gen, YouTube, Shopping) and Microsoft Ads.",
+          "support": 0.5,
+          "evidence": [
+            "Managed 75+ Google Ads accounts with more than $476,000 in combined monthly spend while advising clients on channel allocation, campaign structure, and growth priorities"
+          ],
+          "reason": "Multi-account ownership is proven; other passages cover most formats, but not Demand Gen."
+        },
+        {
+          "requirement": "Write the strategy, planning, and forecasting documents before you build.",
+          "support": 0.5,
+          "evidence": [
+            "Created annual projections and KPI reporting with senior leadership and used platform, analytics, Magento, accounting, and competitive data to guide budget and campaign decisions"
+          ],
+          "reason": "Strategy and forecasting are established; pre-build planning documentation is transferable."
+        },
+        {
+          "requirement": "Own the bidding and account structure calls, and defend them to a client who will likely push back.",
+          "support": 1,
+          "evidence": [
+            "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+          ],
+          "reason": "Client strategy and challenging assumptions complement documented bidding and account decisions."
+        },
+        {
+          "requirement": "Run budget pacing off a forecast you built, and say where the month lands before the client asks.",
+          "support": 1,
+          "evidence": [
+            "Evaluates ROI, ROAS, CPA, revenue, customer lifetime value, and channel performance using attribution analysis, statistical and regression modeling, forecasting"
+          ],
+          "reason": "Forecasting combines with documented budget pacing and client reporting capabilities."
+        },
+        {
+          "requirement": "Stay close to your accounts. The job rewards catching things early.",
+          "support": 1,
+          "evidence": [
+            "Created custom scripts for continuous, automated monitoring of client marketing efforts"
+          ],
+          "reason": "Continuous account monitoring directly supports early issue detection."
+        },
+        {
+          "requirement": "Keyword and search term work, negative keyword architecture, campaign restructures.",
+          "support": 1,
+          "evidence": [
+            "Leads account activation, campaign builds and structures, keyword and negative-keyword strategy, ad copy, audience segmentation, bid testing, budget pacing, daily optimization"
+          ],
+          "reason": "Direct evidence covers keyword strategy, account structures and ongoing optimization."
+        },
+        {
+          "requirement": "Write and audit ad copy against our rubric.",
+          "support": 1,
+          "evidence": [
+            "Ad-copy drafting: Generates draft Google responsive search ad headlines and descriptions with evidence checks, character limits, and duplicate-asset validation."
+          ],
+          "reason": "Ad-copy creation and validation transfer directly to an employer-specific rubric."
+        },
+        {
+          "requirement": "Delegate build work and review what comes back. You stay accountable for what ships.",
+          "support": 0.5,
+          "evidence": [
+            "Built the PPC team and trained team members on the scalable system created for the organization (QoQ)"
+          ],
+          "reason": "PPC team leadership supports delegation; explicit review of delegated builds is unverified."
+        },
+        {
+          "requirement": "Write the weekly client report, and the story that goes with the numbers.",
+          "support": 1,
+          "evidence": [
+            "Recurring reporting: Generates daily analyses and weekly marketing reports with source-labeled metrics, findings, recommendations, and watch lists."
+          ],
+          "reason": "Weekly reporting and narrative recommendations complement documented client presentations."
+        },
+        {
+          "requirement": "Run reporting and analysis through Claude using our skills and MCP connectors.",
+          "support": 0.5,
+          "evidence": [
+            "Uses AI to build on foundational expertise, expand output, and accelerate content production, website and application development, analysis, and marketing workflows."
+          ],
+          "reason": "AI analysis and Claude proficiency transfer; Claude reporting through MCP connectors is unverified."
+        },
+        {
+          "requirement": "Build and improve your own skills and workflows when a manual process repeats.",
+          "support": 1,
+          "evidence": [
+            "Used AI coding assistants to translate product requirements into working integrations, reusable scripts, interface improvements, and tested operational workflows."
+          ],
+          "reason": "Demonstrates building reusable automation and improving workflows with AI coding tools."
+        },
+        {
+          "requirement": "Judge AI output critically. Nothing reaches a client that you haven't checked yourself.",
+          "support": 1,
+          "evidence": [
+            "Used schemas and evidence identifiers to validate model responses and generated artifacts."
+          ],
+          "reason": "Implemented explicit checks for AI-generated outputs and unsupported claims."
+        },
+        {
+          "requirement": "Reconcile platform numbers against attribution tools and the client's own reporting, and explain a discrepancy rather than forward it.",
+          "support": 0.5,
+          "evidence": [
+            "Integrated read-only Google Ads, GA4, and Google Search Console data while preserving source-specific attribution and measurement boundaries."
+          ],
+          "reason": "Cross-source measurement expertise transfers; client-report discrepancy reconciliation is unverified."
+        },
+        {
+          "requirement": "Catch tracking problems before they show up in a report.",
+          "support": 0.5,
+          "evidence": [
+            "Added explicit handling for insufficient data, unavailable sources, conversion lag, and partial coverage."
+          ],
+          "reason": "Measurement implementation and data-quality checks transfer to proactive tracking diagnosis."
+        },
+        {
+          "requirement": "Support new business with audits for prospects.",
+          "support": 0.5,
+          "evidence": [
+            "Converted PPC account-review practices into repeatable audit rules."
+          ],
+          "reason": "PPC audit capability is direct; applying audits to prospect acquisition is transferable."
+        }
+      ],
+      "required": [
+        {
+          "requirement": "Deep on SEM fundamentals, with opinions you can defend using data.",
+          "support": 1,
+          "evidence": [
+            "Analyzed maximum CPC versus smart bidding, brand CPC optimization, brand and non-brand target CPA, incremental CPA during scale-ups and scale-downs"
+          ],
+          "reason": "Detailed bidding and acquisition analysis demonstrates substantive, data-led SEM expertise."
+        },
+        {
+          "requirement": "Familiarity with GA4, GTM, and conversion tracking setups.",
+          "support": 1,
+          "evidence": [
+            "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+          ],
+          "reason": "Hands-on GA4/GTM implementation complements explicit conversion-tracking experience."
+        },
+        {
+          "requirement": "You've built with AI, not only prompted it.",
+          "support": 1,
+          "evidence": [
+            "Conceived and built Space Force, formerly Crush, an AI marketing command center combining advertising analytics, account audits, organic-search insights, reporting"
+          ],
+          "reason": "Built a working AI marketing application, beyond conversational prompting."
+        },
+        {
+          "requirement": "Comfortable in spreadsheets: pacing models, pivot tables, audit sheets.",
+          "support": 0.5,
+          "evidence": [
+            "Used advanced Excel formulas and VS Code to create upload-ready XLSX files for Google Ads Editor"
+          ],
+          "reason": "Advanced spreadsheet work is proven; specific pivot-table and audit-sheet use is unverified."
+        },
+        {
+          "requirement": "You write and speak clearly for a specific reader, and you can hold a room with a founder or an exec.",
+          "support": 1,
+          "evidence": [
+            "Presented a winning and subsequently funded business plan to venture capitalists"
+          ],
+          "reason": "Investor presentations and documented executive/client reporting support audience-specific communication."
+        },
+        {
+          "requirement": "Proactive by default for each client. You raise things before anyone asks, and you take ownership of performance outcomes.",
+          "support": 1,
+          "evidence": [
+            "Builds and develops teams, documents lessons learned, resolves issues, respectfully challenges assumptions, takes ownership of setbacks"
+          ],
+          "reason": "Explicit ownership and issue resolution combine with proactive client-account monitoring."
+        }
+      ],
+      "seniority": [
+        {
+          "requirement": "3+ years hands-on in Google Ads.",
+          "support": 1,
+          "evidence": [
+            "Managed large AdWords, Bing Ads, Gemini, and Amazon Marketing Services accounts consisting of more than 150 campaigns"
+          ],
+          "reason": "The associated LifeSpan role spans June 2013–August 2016, establishing over three years."
+        }
+      ],
+      "industry": [],
+      "preferred": [
+        {
+          "requirement": "Microsoft Ads experience is a plus.",
+          "support": 1,
+          "evidence": [
+            "Managed PPC efforts across Google Ads and Microsoft/Bing Ads"
+          ],
+          "reason": "Explicit hands-on management of Microsoft/Bing Ads."
+        },
+        {
+          "requirement": "Bonus: Shopping feeds, YouTube, cross-channel context (Meta, TikTok), or hands-on tracking implementation.",
+          "support": 1,
+          "evidence": [
+            "Built a Google Merchant Center feed and product structured-data layer from a shared offer model"
+          ],
+          "reason": "Direct shopping-feed implementation meets this optional alternative; other passages cover the rest."
+        }
+      ]
+    },
+    "score": 86.85,
+    "accepted": true,
+    "status": "reviewed",
+    "failed_rules": [],
+    "category_percentages": {
+      "responsibilities": 76.67,
+      "required": 91.67,
+      "seniority": 100.0,
+      "industry": null,
+      "preferred": 100.0
+    },
+    "policy": "master-evidence-v2",
+    "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "job": {
+      "id": "job",
+      "title": "Paid Search Manager",
+      "company": "Pearmill",
+      "url": "https://jobs.ashbyhq.com/pearmill/7bc9b3cc-f15d-48d8-be89-29a3f8f50a59"
+    },
+    "description_sha256": "c850ad6284f61dab8a4152ba2626da075c48b6b2dad7016e528a55a54c436d6d",
+    "runner": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "verified": true,
+      "session_id": "01a17378-a162-78c1-9ecc-806c559092bc",
+      "verified_at": "2026-10-25T14:31:40.970212+00:00"
+    },
+    "cached": true
+  }
+}

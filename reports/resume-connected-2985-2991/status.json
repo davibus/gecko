@@ -1,0 +1,389 @@
+{
+  "stage": "batch finished",
+  "id": null,
+  "at": "2026-10-26T14:34:51.317855+00:00",
+  "results": [
+    {
+      "id": 2985,
+      "company": "TENEX.AI",
+      "status": "complete",
+      "elapsed_seconds": 400.887409,
+      "timings": {
+        "wall_seconds": 184.0497,
+        "active_seconds": 147.4714,
+        "review_wait_seconds": 36.5783,
+        "phases_seconds": {
+          "source_loading": 0.1073,
+          "tailoring": 32.2418,
+          "document_creation": 4.292,
+          "word_pdf_validation": 13.2791,
+          "fitting_retries": 1.7834,
+          "factual_review": 0.0,
+          "review_wait": 36.5783,
+          "tracker_sync": 10.0453,
+          "drive_delivery": 48.9529
+        },
+        "counts": {
+          "source_loading": 66,
+          "tailoring": 2,
+          "document_creation": 2,
+          "word_pdf_validation": 2,
+          "fitting_retries": 1,
+          "factual_review": 0,
+          "review_wait": 1,
+          "tracker_sync": 2,
+          "master_parses": 1,
+          "fitting_attempts": 2,
+          "native_attempts": 2,
+          "drive_delivery": 1
+        }
+      },
+      "prior_completion_attempt": {
+        "reason": "1 tracker conflicts need review. Both versions are preserved; no cells were overwritten.",
+        "seconds": 184.04423769999994
+      },
+      "link": "https://docs.google.com/document/d/1gdsgGWCa_qBi2pSw7j7VTOhzw-HOAvl7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+TENEX.AI+Senior-Paid-Media-Manager+00443.docx",
+      "started_at": "2026-10-26T13:33:29.864026+00:00",
+      "completed_at": "2026-10-26T13:40:10.751420+00:00",
+      "retry_tracker_seconds": 44.17277659999672,
+      "readback": {
+        "Scout ID": 2985,
+        "Company": "TENEX.AI",
+        "Job Title": "Senior Paid Media Manager",
+        "Resume Created": "X",
+        "Resume Created Date": "2026-10-26",
+        "Resume Link": "https://docs.google.com/document/d/1gdsgGWCa_qBi2pSw7j7VTOhzw-HOAvl7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+      }
+    },
+    {
+      "id": 2986,
+      "company": "Allure Security Talent",
+      "status": "complete",
+      "elapsed_seconds": 343.975256,
+      "timings": {
+        "wall_seconds": 231.6154,
+        "active_seconds": 166.9985,
+        "review_wait_seconds": 64.6169,
+        "phases_seconds": {
+          "source_loading": 0.2382,
+          "tailoring": 79.8797,
+          "document_creation": 7.0027,
+          "word_pdf_validation": 24.2069,
+          "fitting_retries": 2.4169,
+          "factual_review": 0.0,
+          "review_wait": 64.6169,
+          "tracker_sync": 0.0,
+          "drive_delivery": 15.2231
+        },
+        "counts": {
+          "source_loading": 102,
+          "tailoring": 2,
+          "document_creation": 4,
+          "word_pdf_validation": 4,
+          "fitting_retries": 1,
+          "factual_review": 0,
+          "review_wait": 1,
+          "tracker_sync": 0,
+          "master_parses": 1,
+          "fitting_attempts": 4,
+          "native_attempts": 4,
+          "restored_trials": 2,
+          "drive_delivery": 1
+        }
+      },
+      "prior_completion_attempt": {
+        "status": "blocked",
+        "reason": "Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)",
+        "elapsed_seconds": 231.61260610001045
+      },
+      "link": "https://docs.google.com/document/d/1odB9doLHjeYp4chsAzt3n2Zhy2YAp_l7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Allure-Security-Talent+Marketing-Manager,-Campaigns+00444.docx",
+      "started_at": "2026-10-26T13:40:41.412457+00:00",
+      "completed_at": "2026-10-26T13:46:25.387699+00:00",
+      "retry_tracker_seconds": 34.47689999997965,
+      "hyperlink_range": "'Job List'!Z1239",
+      "hyperlink_target": "https://docs.google.com/document/d/1odB9doLHjeYp4chsAzt3n2Zhy2YAp_l7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "readback": {
+        "Scout ID": 2986,
+        "Company": "Allure Security Talent",
+        "Job Title": "Marketing Manager, Campaigns",
+        "Resume Created": "X",
+        "Resume Created Date": "2026-10-26",
+        "Resume Link": "https://docs.google.com/document/d/1odB9doLHjeYp4chsAzt3n2Zhy2YAp_l7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+      }
+    },
+    {
+      "id": 2987,
+      "company": "Atlas HXM",
+      "status": "complete",
+      "elapsed_seconds": 703.620856,
+      "timings": {
+        "wall_seconds": 431.0882,
+        "active_seconds": 198.706,
+        "review_wait_seconds": 232.3822,
+        "phases_seconds": {
+          "source_loading": 0.0317,
+          "tailoring": 155.7987,
+          "document_creation": 4.0535,
+          "word_pdf_validation": 8.505,
+          "fitting_retries": 1.5937,
+          "factual_review": 0.0,
+          "review_wait": 232.3822,
+          "tracker_sync": 0.0,
+          "drive_delivery": 0.0
+        },
+        "counts": {
+          "source_loading": 76,
+          "tailoring": 2,
+          "document_creation": 3,
+          "word_pdf_validation": 3,
+          "fitting_retries": 1,
+          "factual_review": 0,
+          "review_wait": 1,
+          "tracker_sync": 0,
+          "master_parses": 0,
+          "fitting_attempts": 3,
+          "native_attempts": 3,
+          "restored_trials": 0,
+          "drive_delivery": 0
+        }
+      },
+      "prior_completion_attempt": {
+        "status": "blocked",
+        "reason": "Visual review needs attention: Visual review caught an incomplete source sentence ending advising executives on key. Replace this fragment and prioritize supported CRM/data/automation tools before upload.",
+        "elapsed_seconds": 431.08609699999215
+      },
+      "link": "https://docs.google.com/document/d/1w7uxT8iHGHK5ky0u4RjGHgo0a33AVBRe/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Atlas-HXM+Senior-Director,-Marketing-Operations+00445.docx",
+      "started_at": "2026-10-26T13:44:33.033537+00:00",
+      "completed_at": "2026-10-26T13:56:16.654383+00:00",
+      "retry_tracker_seconds": 17.9643412999867,
+      "hyperlink_range": "'Job List'!Z1240",
+      "hyperlink_target": "https://docs.google.com/document/d/1w7uxT8iHGHK5ky0u4RjGHgo0a33AVBRe/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "readback": {
+        "Scout ID": 2987,
+        "Company": "Atlas HXM",
+        "Job Title": "Senior Director, Marketing Operations",
+        "Resume Created": "X",
+        "Resume Created Date": "2026-10-26",
+        "Resume Link": "https://docs.google.com/document/d/1w7uxT8iHGHK5ky0u4RjGHgo0a33AVBRe/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+      }
+    },
+    {
+      "id": 2988,
+      "company": "Daymark Health",
+      "status": "complete",
+      "elapsed_seconds": 488.484646,
+      "timings": {
+        "wall_seconds": 289.1205,
+        "active_seconds": 101.5855,
+        "review_wait_seconds": 187.535,
+        "phases_seconds": {
+          "source_loading": 0.1066,
+          "tailoring": 61.6053,
+          "document_creation": 2.9989,
+          "word_pdf_validation": 14.7648,
+          "fitting_retries": 1.4272,
+          "factual_review": 0.0,
+          "review_wait": 187.535,
+          "tracker_sync": 0.0
+        },
+        "counts": {
+          "source_loading": 118,
+          "tailoring": 2,
+          "document_creation": 4,
+          "word_pdf_validation": 4,
+          "fitting_retries": 1,
+          "factual_review": 0,
+          "review_wait": 1,
+          "tracker_sync": 0,
+          "master_parses": 1,
+          "fitting_attempts": 4,
+          "native_attempts": 4
+        }
+      },
+      "prior_completion_attempt": {
+        "status": "blocked",
+        "reason": "Visual review needs attention: Replace overlapping digital-modernization and consumer-acquisition statements with distinct source-supported content before delivery.",
+        "elapsed_seconds": 289.1171228000021
+      },
+      "link": "https://docs.google.com/document/d/14gzV-hax1MWfaRkLrOGafdIGHpJFatf9/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Daymark-Health+Patient-Marketing-Manager+00446.docx",
+      "started_at": "2026-10-26T13:57:05.724880+00:00",
+      "completed_at": "2026-10-26T14:05:14.209516+00:00",
+      "retry_tracker_seconds": 17.87309660000028,
+      "hyperlink_range": "'Job List'!Z1241",
+      "hyperlink_target": "https://docs.google.com/document/d/14gzV-hax1MWfaRkLrOGafdIGHpJFatf9/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "readback": {
+        "Scout ID": 2988,
+        "Company": "Daymark Health",
+        "Job Title": "Patient Marketing Manager",
+        "Resume Created": "X",
+        "Resume Created Date": "2026-10-26",
+        "Resume Link": "https://docs.google.com/document/d/14gzV-hax1MWfaRkLrOGafdIGHpJFatf9/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+      }
+    },
+    {
+      "id": 2989,
+      "company": "Empower Brands",
+      "status": "complete",
+      "link": "https://docs.google.com/document/d/1SVBMC6R6szhrUF_jCVzIPWOiXUw0nV2J/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Empower-Brands+Field-Marketing-Manager+00447.docx",
+      "started_at": "2026-10-26T14:17:38.391662+00:00",
+      "completed_at": "2026-10-26T14:24:51.416414+00:00",
+      "elapsed_seconds": 433.0247693999845,
+      "generation_seconds": 51.210321899998235,
+      "delivery_seconds": 157.19798070000252,
+      "tracker_seconds": 22.702045599988196,
+      "readback": {
+        "Scout ID": 2989,
+        "Company": "Empower Brands",
+        "Job Title": "Field Marketing Manager",
+        "Resume Created": "X",
+        "Resume Created Date": "2026-10-26",
+        "Resume Link": "https://docs.google.com/document/d/1SVBMC6R6szhrUF_jCVzIPWOiXUw0nV2J/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+      },
+      "hyperlink_range": "'Job List'!Z1242",
+      "hyperlink_target": "https://docs.google.com/document/d/1SVBMC6R6szhrUF_jCVzIPWOiXUw0nV2J/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "timings": {
+        "wall_seconds": 433.0248,
+        "active_seconds": 282.2815,
+        "review_wait_seconds": 150.7433,
+        "phases_seconds": {
+          "source_loading": 0.243,
+          "tailoring": 36.8749,
+          "document_creation": 3.4092,
+          "word_pdf_validation": 22.4699,
+          "fitting_retries": 1.6371,
+          "factual_review": 0.0,
+          "review_wait": 150.7433,
+          "tracker_sync": 22.6989,
+          "drive_delivery": 157.1588
+        },
+        "counts": {
+          "source_loading": 76,
+          "tailoring": 2,
+          "document_creation": 2,
+          "word_pdf_validation": 2,
+          "fitting_retries": 1,
+          "factual_review": 0,
+          "review_wait": 1,
+          "tracker_sync": 2,
+          "master_parses": 1,
+          "fitting_attempts": 2,
+          "native_attempts": 2,
+          "drive_delivery": 1
+        }
+      }
+    },
+    {
+      "id": 2990,
+      "company": "Graphite",
+      "status": "complete",
+      "link": "https://docs.google.com/document/d/1FPebZ6QT-nsPUfQYtDJVkirl_jpFXzSE/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Graphite+SEO-AEO-Growth-Lead+00448.docx",
+      "started_at": "2026-10-26T14:24:51.422574+00:00",
+      "completed_at": "2026-10-26T14:28:13.861884+00:00",
+      "elapsed_seconds": 202.43932509998558,
+      "generation_seconds": 36.5445831999823,
+      "delivery_seconds": 14.480956100014737,
+      "tracker_seconds": 38.90631369999028,
+      "readback": {
+        "Scout ID": 2990,
+        "Company": "Graphite",
+        "Job Title": "SEO/AEO Growth Lead",
+        "Resume Created": "X",
+        "Resume Created Date": "2026-10-26",
+        "Resume Link": "https://docs.google.com/document/d/1FPebZ6QT-nsPUfQYtDJVkirl_jpFXzSE/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+      },
+      "hyperlink_range": "'Job List'!Z1243",
+      "hyperlink_target": "https://docs.google.com/document/d/1FPebZ6QT-nsPUfQYtDJVkirl_jpFXzSE/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "timings": {
+        "wall_seconds": 202.4393,
+        "active_seconds": 128.3183,
+        "review_wait_seconds": 74.121,
+        "phases_seconds": {
+          "source_loading": 0.0925,
+          "tailoring": 34.7595,
+          "document_creation": 5.1891,
+          "word_pdf_validation": 18.0939,
+          "fitting_retries": 1.8793,
+          "factual_review": 0.0,
+          "review_wait": 74.121,
+          "tracker_sync": 38.9052,
+          "drive_delivery": 14.476
+        },
+        "counts": {
+          "source_loading": 152,
+          "tailoring": 2,
+          "document_creation": 6,
+          "word_pdf_validation": 6,
+          "fitting_retries": 1,
+          "factual_review": 0,
+          "review_wait": 1,
+          "tracker_sync": 2,
+          "master_parses": 0,
+          "fitting_attempts": 6,
+          "native_attempts": 6,
+          "drive_delivery": 1,
+          "restored_trials": 3
+        }
+      }
+    },
+    {
+      "id": 2991,
+      "company": "Maximus Health, Inc.",
+      "status": "complete",
+      "link": "https://docs.google.com/document/d/1ncYaAinkjy6JjJEkJKrrvNSJ1Jw69iEO/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Maximus-Health,-Inc+Head-of-Growth-&-Marketing-(VP)+00449.docx",
+      "started_at": "2026-10-26T14:28:13.866991+00:00",
+      "completed_at": "2026-10-26T14:34:50.818658+00:00",
+      "elapsed_seconds": 396.9516797999968,
+      "generation_seconds": 19.97510169999441,
+      "delivery_seconds": 18.43902849999722,
+      "tracker_seconds": 61.07805820001522,
+      "readback": {
+        "Scout ID": 2991,
+        "Company": "Maximus Health, Inc.",
+        "Job Title": "Head of Growth & Marketing (VP)",
+        "Resume Created": "X",
+        "Resume Created Date": "2026-10-26",
+        "Resume Link": "https://docs.google.com/document/d/1ncYaAinkjy6JjJEkJKrrvNSJ1Jw69iEO/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+      },
+      "hyperlink_range": "'Job List'!Z1244",
+      "hyperlink_target": "https://docs.google.com/document/d/1ncYaAinkjy6JjJEkJKrrvNSJ1Jw69iEO/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "timings": {
+        "wall_seconds": 396.9517,
+        "active_seconds": 111.5396,
+        "review_wait_seconds": 285.4121,
+        "phases_seconds": {
+          "source_loading": 0.0353,
+          "tailoring": 1.3814,
+          "document_creation": 2.1315,
+          "word_pdf_validation": 5.3987,
+          "fitting_retries": 0.5271,
+          "factual_review": 0.0,
+          "review_wait": 285.4121,
+          "tracker_sync": 61.0772,
+          "drive_delivery": 18.4323
+        },
+        "counts": {
+          "source_loading": 68,
+          "tailoring": 2,
+          "document_creation": 2,
+          "word_pdf_validation": 2,
+          "fitting_retries": 1,
+          "factual_review": 0,
+          "review_wait": 1,
+          "tracker_sync": 2,
+          "master_parses": 0,
+          "fitting_attempts": 2,
+          "native_attempts": 2,
+          "drive_delivery": 1,
+          "restored_trials": 0
+        }
+      }
+    }
+  ]
+}

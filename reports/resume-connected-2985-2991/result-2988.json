@@ -1,0 +1,54 @@
+{
+  "id": 2988,
+  "company": "Daymark Health",
+  "status": "complete",
+  "elapsed_seconds": 488.484646,
+  "timings": {
+    "wall_seconds": 289.1205,
+    "active_seconds": 101.5855,
+    "review_wait_seconds": 187.535,
+    "phases_seconds": {
+      "source_loading": 0.1066,
+      "tailoring": 61.6053,
+      "document_creation": 2.9989,
+      "word_pdf_validation": 14.7648,
+      "fitting_retries": 1.4272,
+      "factual_review": 0.0,
+      "review_wait": 187.535,
+      "tracker_sync": 0.0
+    },
+    "counts": {
+      "source_loading": 118,
+      "tailoring": 2,
+      "document_creation": 4,
+      "word_pdf_validation": 4,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 0,
+      "master_parses": 1,
+      "fitting_attempts": 4,
+      "native_attempts": 4
+    }
+  },
+  "prior_completion_attempt": {
+    "status": "blocked",
+    "reason": "Visual review needs attention: Replace overlapping digital-modernization and consumer-acquisition statements with distinct source-supported content before delivery.",
+    "elapsed_seconds": 289.1171228000021
+  },
+  "link": "https://docs.google.com/document/d/14gzV-hax1MWfaRkLrOGafdIGHpJFatf9/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Daymark-Health+Patient-Marketing-Manager+00446.docx",
+  "started_at": "2026-10-26T13:57:05.724880+00:00",
+  "completed_at": "2026-10-26T14:05:14.209516+00:00",
+  "retry_tracker_seconds": 17.87309660000028,
+  "hyperlink_range": "'Job List'!Z1241",
+  "hyperlink_target": "https://docs.google.com/document/d/14gzV-hax1MWfaRkLrOGafdIGHpJFatf9/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "readback": {
+    "Scout ID": 2988,
+    "Company": "Daymark Health",
+    "Job Title": "Patient Marketing Manager",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/14gzV-hax1MWfaRkLrOGafdIGHpJFatf9/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  }
+}

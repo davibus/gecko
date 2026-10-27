@@ -1,0 +1,35 @@
+{
+  "path": "C:\\gecko_main\\output\\resumes\\Dave-Call+Pavago+Performance-Marketing-Specialist+00470.docx",
+  "metadata": {
+    "id": "1B2AUznQg6zhAjqQlbxzTvCzVTFbXdxf3",
+    "title": "Dave-Call+Pavago+Performance-Marketing-Specialist+00470.docx",
+    "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "size": "40410",
+    "url": "https://docs.google.com/document/d/1B2AUznQg6zhAjqQlbxzTvCzVTFbXdxf3/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+    "file_or_folder": "file",
+    "created_time": null,
+    "modified_time": null,
+    "parent_ids": [
+      "1Noy8XUqlL5ufqA4aU9jZWdwpMYeCVmol"
+    ],
+    "drive_id": null,
+    "current_user_can_share": null,
+    "has_augmented_permissions": null,
+    "shared": false,
+    "permissions": [
+      {
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "mdavidcall@gmail.com",
+        "domain": null,
+        "displayName": "Dave Call",
+        "allowFileDiscovery": null
+      }
+    ],
+    "source_visibility_status": "permission_metadata_available"
+  },
+  "download": {
+    "sha256": "f3416f4ad50970852075edc3b28fe3d34011443f0e4d7ecfdd3d676d13c3934f",
+    "size": 40410
+  }
+}

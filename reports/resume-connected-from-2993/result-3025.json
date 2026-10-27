@@ -1,0 +1,54 @@
+{
+  "id": 3025,
+  "company": "Graphite",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1lmoTi3uQ7JElpiBzGxOiMbJHqAvqriLT/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Graphite+SEO-AEO-Growth-Director+00474.docx",
+  "started_at": "2026-10-26T15:26:59.834913+00:00",
+  "completed_at": "2026-10-26T15:41:37.801530+00:00",
+  "elapsed_seconds": 877.966633,
+  "generation_seconds": 27.09528660000069,
+  "delivery_seconds": 6.016298600006849,
+  "tracker_seconds": 47.32977560002473,
+  "readback": {
+    "Scout ID": 3025,
+    "Company": "Graphite",
+    "Job Title": "SEO/AEO Growth Director",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1lmoTi3uQ7JElpiBzGxOiMbJHqAvqriLT/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1277",
+  "hyperlink_target": "https://docs.google.com/document/d/1lmoTi3uQ7JElpiBzGxOiMbJHqAvqriLT/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 181.7,
+    "active_seconds": 90.0029,
+    "review_wait_seconds": 91.6971,
+    "phases_seconds": {
+      "source_loading": 0.0417,
+      "tailoring": 0.753,
+      "document_creation": 2.5458,
+      "word_pdf_validation": 9.3549,
+      "fitting_retries": 0.3745,
+      "factual_review": 0.0,
+      "review_wait": 91.6971,
+      "tracker_sync": 47.329,
+      "drive_delivery": 6.0092
+    },
+    "counts": {
+      "source_loading": 87,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "id": "job",
+  "sufficient": true,
+  "reason": "Full duties and qualifications are available. Missing evidence indicates unverified qualifications.",
+  "blockers": [],
+  "categories": {
+    "responsibilities": [
+      {
+        "requirement": "Create consistent and compelling internal and external campaigns, demonstrate ROI, set metrics and develop global initiatives.",
+        "support": 0.5,
+        "evidence": [
+          "Created annual projections and KPI reporting with senior leadership and used platform, analytics, Magento, accounting, and competitive data to guide budget and campaign decisions"
+        ],
+        "reason": "Campaign measurement is established; internal campaigns and global initiatives are less explicit."
+      },
+      {
+        "requirement": "Build, maintain and continuously improve, the Company customer loyalty program and customer retention-driving initiatives.",
+        "support": 0,
+        "evidence": [],
+        "reason": "No demonstrated loyalty-program ownership or retention-program delivery."
+      },
+      {
+        "requirement": "Build, maintain and continuously improve, experience marketing plans for product launches, new programs and other business initiatives.",
+        "support": 0.5,
+        "evidence": [
+          "Conducted comprehensive market research, persuaded management to add new services, and oversaw their development and implementation."
+        ],
+        "reason": "New-service development transfers; product-launch experience marketing is not explicit."
+      },
+      {
+        "requirement": "Maximize Distributor and customer communication strategies with strong plans that drive business objectives and growth.",
+        "support": 0.5,
+        "evidence": [
+          "Developed and managed content strategy covering timing, content type, placement across blogs, mail, email, and the website, content focus, and personalization"
+        ],
+        "reason": "Multichannel communications transfer; distributor-specific communication plans are unverified."
+      },
+      {
+        "requirement": "Manage and prioritize the marketing digital roadmap, seeking to improve Company consumer experiences across all digital touchpoints",
+        "support": 1,
+        "evidence": [
+          "Combined commercial requirements with technical implementation decisions across product discovery, cart behavior, checkout handoff, and customer support."
+        ],
+        "reason": "Demonstrates customer-journey planning and implementation across digital touchpoints."
+      },
+      {
+        "requirement": "Manage the execution of visual brand initiatives including, but not limited to, label designs, UI design, video and social assets.",
+        "support": 0.5,
+        "evidence": [
+          "Designed and introduced new marketing concepts using graphic design and animation software"
+        ],
+        "reason": "Creative execution transfers; label design and video-asset oversight are unverified."
+      },
+      {
+        "requirement": "Set departmental goals and KPIs for marketing channels and Franklin Covey 4DX initiatives",
+        "support": 1,
+        "evidence": [
+          "Created business goals, yearly projections, and KPI's with senior management"
+        ],
+        "reason": "Goal and KPI setting directly transfers to the employer's 4DX framework."
+      },
+      {
+        "requirement": "Set and manage team budgets.",
+        "support": 1,
+        "evidence": [
+          "Managed up to $30 million per month in paid media with a four-person team, supporting high-volume account operations and disciplined budget oversight"
+        ],
+        "reason": "Direct evidence of substantial budget oversight with a marketing team."
+      },
+      {
+        "requirement": "Analyze data from consumer touchpoints to make decisions for roadmap and communications plans moving forward.",
+        "support": 1,
+        "evidence": [
+          "Designed event tracking around customer intent and shopping behavior, including search gaps, product interest, cart activity, and contact requests."
+        ],
+        "reason": "Customer-touchpoint analysis supports experience and communication priorities."
+      },
+      {
+        "requirement": "Champion brand awareness, consideration and product trial through social media and digital channels, strategies and initaitves.",
+        "support": 0.5,
+        "evidence": [
+          "Designed and interpreted funnel testing across reach, comparison, conversion, micro-conversion, purchase, and internal customer lifetime value"
+        ],
+        "reason": "Funnel marketing transfers; product-trial initiatives are not demonstrated."
+      },
+      {
+        "requirement": "Continuously improve workflows and processes to ensure team is set up for executional and cross-functional success.",
+        "support": 1,
+        "evidence": [
+          "Designed the company's information architecture and ERP-system flow and implemented systems to increase productivity, efficiency, transparency, and collaboration"
+        ],
+        "reason": "Direct evidence of systems and workflow improvements supporting collaboration."
+      },
+      {
+        "requirement": "Lead team career and skill development, holding effective team meetings to provide consistent role clarity, set expectations, and provide performance feedback.",
+        "support": 0.5,
+        "evidence": [
+          "Built the PPC team and trained team members on the scalable system created for the organization (QoQ)"
+        ],
+        "reason": "Team training is demonstrated; career planning and performance-feedback practices are unverified."
+      },
+      {
+        "requirement": "Delegate and manage tasks to ensure projects are delivered on-time and on-budget.",
+        "support": 0.5,
+        "evidence": [
+          "Directed digital marketing and e-commerce for a large B2B distributor, coordinating execution and reporting across marketing, sales, operations, finance, IT, and product teams"
+        ],
+        "reason": "Cross-functional delivery is established; schedule and budget delivery results are unspecified."
+      },
+      {
+        "requirement": "Hire and oversee external agencies or contractors as needed.",
+        "support": 0.5,
+        "evidence": [
+          "Helped facilitate the transition of four to five agency relationships in-house, evaluating agency cost structures, prioritization, automation approaches"
+        ],
+        "reason": "Agency evaluation and coordination transfer; hiring authority is not explicit."
+      }
+    ],
+    "required": [
+      {
+        "requirement": "Bachelor's degree in Marketing, Business, Communications, Journalism, Public Relations, or another related area",
+        "support": 0.5,
+        "evidence": [
+          "Business Management Degree - Marketing Emphasis"
+        ],
+        "reason": "Relevant university degree is documented; bachelor's designation is not explicit."
+      },
+      {
+        "requirement": "Excellent communication skills (verbal and written)",
+        "support": 1,
+        "evidence": [
+          "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+        ],
+        "reason": "Demonstrates communication across audiences, reinforced by documented content-strategy work."
+      },
+      {
+        "requirement": "Competent in standard operating systems and process systems (Monday.com, ProofHQ, or similar)",
+        "support": 0.5,
+        "evidence": [
+          "Exceptional understanding and several years of formal training and experience in Excel, Access, Visio, Project"
+        ],
+        "reason": "Comparable productivity and project tools are established; approval-system workflows are less clear."
+      },
+      {
+        "requirement": "Proficient in leveraging social media channels for marketing purposes and related monitoring tools.",
+        "support": 0.5,
+        "evidence": [
+          "Managed all marketing platforms: Google Ads, Bing Ads, Amazon, Facebook, Instagram, and TikTok with a 400k/month budget"
+        ],
+        "reason": "Social campaign management is demonstrated; dedicated social monitoring use is unverified."
+      },
+      {
+        "requirement": "Motivated self-starter who comes to the table understanding barriers to success and a plan for overcoming those barriers.",
+        "support": 1,
+        "evidence": [
+          "Consolidated work that had been divided among five agencies into a comprehensive, scalable in-house PPC strategy"
+        ],
+        "reason": "Demonstrates initiative and a practical plan for operational barriers."
+      },
+      {
+        "requirement": "Work requires occasional travel and willingness to work a flexible schedule.",
+        "support": 0,
+        "evidence": [],
+        "reason": "Travel availability and flexible-schedule willingness are unverified."
+      },
+      {
+        "requirement": "make both long-term strategic decisions and quick decisions under pressure.",
+        "support": 0.5,
+        "evidence": [
+          "Applied project-by-project cost-benefit analysis to prioritize growth initiatives, marketplace opportunities, product investments, and operational improvements"
+        ],
+        "reason": "Strategic prioritization is demonstrated; rapid decisions under pressure are not explicit."
+      }
+    ],
+    "seniority": [
+      {
+        "requirement": "10+ year’s experience in marketing, communications, brand management, digital, or another related area",
+        "support": 1,
+        "evidence": [
+          "Digital marketing and marketing technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce, professional services"
+        ],
+        "reason": "Explicitly documents more than ten years of relevant experience."
+      },
+      {
+        "requirement": "5+ year’s experience of managing a team",
+        "support": 0.5,
+        "evidence": [
+          "Managed an eight-person e-commerce department and led paid search, outreach, lead generation, customer acquisition, website performance, and growth"
+        ],
+        "reason": "Team management is demonstrated; five years of team-management tenure is not clearly documented."
+      },
+      {
+        "requirement": "oversee many functions of the marketing department including digital marketing, communications, customer retention, web management, and UI/UX",
+        "support": 0.5,
+        "evidence": [
+          "Led an eight-person e-commerce team responsible for paid search, customer acquisition, campaign delivery, website performance, and growth across the U.S., Canada, and U.K"
+        ],
+        "reason": "Broad marketing leadership transfers; retention and full creative-function oversight are unverified."
+      }
+    ],
+    "industry": [
+      {
+        "requirement": "MLM/Network Marketing",
+        "support": 0,
+        "evidence": [],
+        "reason": "MLM or network-marketing experience is unverified; B2B distribution does not establish it."
+      },
+      {
+        "requirement": "health and wellness industry experience",
+        "support": 1,
+        "evidence": [
+          "Director of E-Commerce/Marketing – LifeSpan Fitness - Salt Lake City, UT"
+        ],
+        "reason": "Fitness-company marketing leadership directly supports health and wellness sector experience."
+      },
+      {
+        "requirement": "Strong sense of building relevant brands in the health and wellness industry",
+        "support": 0.5,
+        "evidence": [
+          "Managed all paid search campaigns, outreach, lead generation, and customer acquisition for a large E-Commerce company in the United States, Canada, and the UK"
+        ],
+        "reason": "LifeSpan Fitness acquisition leadership transfers; explicit wellness brand-building is unverified."
+      }
+    ],
+    "preferred": []
+  },
+  "score": 60.9,
+  "accepted": true,
+  "status": "reviewed",
+  "failed_rules": [],
+  "category_percentages": {
+    "responsibilities": 64.29,
+    "required": 57.14,
+    "seniority": 66.67,
+    "industry": 50.0,
+    "preferred": null
+  },
+  "policy": "master-evidence-v2",
+  "thresholds": {
+    "minimum_score": 60,
+    "minimum_responsibilities_match": 50,
+    "minimum_required_skills_match": 50
+  },
+  "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+  "job": {
+    "id": "job",
+    "title": "VP Experience Marketing - 1070",
+    "company": "Professional Recruiters",
+    "url": "https://www.adzuna.com/land/ad/5726512962?se=9vV5v6PF8RGWsY9mTKwsRQ&v=4243FFB7FCF97E3BCEE689856D26928AFEB313CB"
+  },
+  "description_sha256": "8b8633d8a7992e8da63dcfd337cbd8266d92f1d796aabd4402f7bd3853aa576f",
+  "runner": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a17569-6267-7ad3-aeae-e5327a68acfb",
+    "verified_at": "2026-10-25T23:34:14.025169+00:00"
+  }
+}

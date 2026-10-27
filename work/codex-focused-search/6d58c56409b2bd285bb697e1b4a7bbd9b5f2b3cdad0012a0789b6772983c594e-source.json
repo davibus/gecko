@@ -1,0 +1,101 @@
+{
+  "entry": {
+    "url": "https://job-boards.greenhouse.io/brex/jobs/8786673002",
+    "title": "Senior Marketing Operations Manager | Career Opportunities - Brex",
+    "description": "Senior Marketing Operations Manager. San Francisco, California, United States ... As a perk, we also have up to four weeks per year of fully remote work!",
+    "position": 2,
+    "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+  },
+  "data": {
+    "rawHtml": "<script type=\"application/ld+json\">{\"title\": \"Senior Marketing Operations Manager\", \"hiringOrganization\": {\"name\": \"Brex\"}, \"identifier\": {\"value\": \"8786673002\"}, \"description\": \"\\u003cdiv class=\\\"content-intro\\\">\\u003cp>\\u003cstrong>Why join us\\u003c/strong>\\u003c/p>\\n\\u003cp>Brex is the intelligent finance platform that enables companies to spend smarter and move faster in more than 200 markets. By combining global corporate cards and banking with intuitive spend management, bill pay, and travel software, Brex enables founders and finance teams to accelerate operations, gain real-time visibility, and control spend effortlessly. Brex\\u2019s AI-native automation and world-class service eliminate manual expense and accounting tasks for customers so they can focus on what matters most. Tens of thousands of the world's best companies run on Brex, including DoorDash, Coinbase, Robinhood, Zoom, Plaid, Reddit, and SeatGeek.\\u003c/p>\\n\\u003cp>Working at Brex allows you to push your limits, challenge the status quo, and collaborate with some of the brightest minds in the industry. We\\u2019re committed to building a diverse team and inclusive culture and believe your potential should only be limited by how big you can dream. We make this a reality by empowering you with the tools, resources, and support you need to grow your career.\\u003c/p>\\u003c/div>\\u003cp>\\u003cstrong>Marketing at Brex\\u003c/strong>\\u003c/p>\\n\\u003cp>Marketing tells the story of Brex to the world. From acquisition to activation, we translate product value into business results. Our team spans Revenue, Product, and Brand Marketing, and works closely with nearly every function at Brex. We move fast, experiment often, and think deeply about customer behavior. If you want your creativity to drive growth and shape perception, this is the place.\\u003c/p>\\n\\u003cp>\\u003cstrong>What you\\u2019ll do\\u003c/strong>\\u003c/p>\\n\\u003cp>The Brex Marketing team is looking for an experienced Senior Marketing Operations Manager to architect and optimize our B2B sales-led and channel-driven GTM engine. This role will define and maintain the systems, processes, and operational rigor that align Marketing, SDR, Sales, and Partner teams.\\u003c/p>\\n\\u003cp>We are looking for someone who is eager to design the future-state GTM tech stack\\u2014modernizing how leads flow, how insights are generated, and how operational workloads become more efficient through automation, AI, and agentic workflows. This person will champion operational excellence by improving lead management, automating revenue processes, increasing funnel velocity, and enabling more efficient cross-functional alignment.\\u003c/p>\\n\\u003cp>\\u003cstrong>Where you\\u2019ll work\\u003c/strong>\\u003c/p>\\n\\u003cp>This role will be based in our San Francisco office. We are a hybrid environment that combines the energy and connections of being in the office with the benefits and flexibility of working from home. We currently require a minimum of three coordinated days in the office per week, Monday, Wednesday and Thursday. As a perk, we also have up to four weeks per year of fully remote work!\\u003c/p>\\n\\u003cp>\\u003cstrong>Responsibilities\\u003c/strong>\\u003c/p>\\n\\u003cul>\\n\\u003cli>Own and evolve the GTM systems architecture, ensuring Salesforce, Marketo, LeanData, ZoomInfo, Qualified, Outreach, and Clay.io work together as a best-in-class, integrated ecosystem.\\u003c/li>\\n\\u003cli>Lead the design, governance, and optimization of data orchestration workflows using LeanData, including routing, prioritization, handoffs, and conversion logic across Marketing, SDR, and Sales teams.\\u003c/li>\\n\\u003cli>Design and execute a future-state operational roadmap focused on scaling B2B demand generation, ABM, and partner-led growth through automation, improved data flows, and AI-powered insights.\\u003c/li>\\n\\u003cli>Build automated lifecycle processes for lead scoring, enrichment, qualification, and cross-functional handoffs using LeanData, Zapier, Clay, Segment, and AI agents.\\u003c/li>\\n\\u003cli>Enhance sales productivity by implementing agentic workflows (e.g., automated follow-ups, enrichment workflows, SDR assistance tools) in Outreach and Salesforce.\\u003c/li>\\n\\u003cli>Manage data governance across Salesforce, Marketo, and Segment, ensuring reliable attribution, reporting, and pipeline visibility.\\u003c/li>\\n\\u003cli>Create AI-informed dashboards and reporting on pipeline performance, lead velocity, conversion, campaign effectiveness, and partner impact.\\u003c/li>\\n\\u003cli>Partner with RevOps, Sales Systems, and Engineering to operationalize cross-functional processes that reduce manual work and improve efficiency.\\u003c/li>\\n\\u003cli>Support partner/VAR motions through automated attribution, routing rules, partner engagement workflows, and integrated co-marketing processes.\\u003c/li>\\n\\u003cli>Continuously evaluate new tools, AI capabilities, and operational improvements that elevate our GTM infrastructure.\\u003c/li>\\n\\u003c/ul>\\n\\u003cp>\\u003cstrong>Requirements\\u003c/strong>\\u003c/p>\\n\\u003cul>\\n\\u003cli>4+ years in Marketing Operations or Revenue Operations supporting B2B sales-led funnels.\\u003c/li>\\n\\u003cli>Hands-on experience administering Marketo, Salesforce, and LeanData.\\u003c/li>\\n\\u003cli>Deep expertise with lead routing, lead-to-account matching, and data orchestration workflows using LeanData or similar workflow automation tools.\\u003c/li>\\n\\u003cli>Proven ability to design automated workflows, operational processes, and scalable cross-system integrations.\\u003c/li>\\n\\u003cli>Experience using AI-driven tools or agentic workflows to automate SDR tasks, enrich lead data, or accelerate GTM execution.\\u003c/li>\\n\\u003cli>Strong analytical, system design, and documentation skills; able to translate business needs into scalable technical workflows.\\u003c/li>\\n\\u003cli>Experience collaborating with Sales, SDR, RevOps, and System/Engineering teams.\\u003c/li>\\n\\u003c/ul>\\n\\u003cp>\\u003cstrong>Bonus Points\\u003c/strong>\\u003c/p>\\n\\u003cul>\\n\\u003cli>Experience in FinTech or enterprise B2B SaaS environments.\\u003c/li>\\n\\u003cli>Familiarity with conversational marketing/ABM platforms like Qualified.\\u003c/li>\\n\\u003cli>Experience with tools like LeanData and Outreach in support of lead routing and SDR/BDR workflows.\\u003c/li>\\n\\u003cli>Experience with paid funnel operations is a plus (Google Ads, LinkedIn Ads, etc.).\\u003c/li>\\n\\u003cli>Understanding of partner/VAR operational workflows and partner attribution logic.\\u003c/li>\\n\\u003cli>Ability to design scalable integrations using tools like Segment, Zapier, or Workato-style platforms.\\u003c/li>\\n\\u003c/ul>\\n\\u003cp>\\u003cstrong>Compensation\\u003c/strong>\\u003c/p>\\n\\u003cp>\\u003cstrong>\\u003cbr>\\u003c/strong>The expected salary range for this role is $134,696 - $168,370. However, the starting base pay will depend on a number of factors including the candidate\\u2019s location, skills, experience, market demands, and internal pay parity. Depending on the position offered, equity and other forms of compensation may be provided as part of a total compensation package.\\u003c/p>\\u003cdiv class=\\\"content-conclusion\\\">\\u003cp>\\u003cem>Please be aware, job-seekers may be at risk of targeting by malicious actors looking for personal data. Brex recruiters will only reach out via LinkedIn or email with a&nbsp;\\u003ca class=\\\"c-link\\\" href=\\\"http://brex.com/\\\" target=\\\"_blank\\\" data-stringify-link=\\\"http://brex.com\\\" data-sk=\\\"tooltip_parent\\\">brex.com\\u003c/a>&nbsp;domain. Any outreach claiming to be from Brex via other sources should be ignored.\\u003c/em>\\u003c/p>\\u003c/div>\", \"datePosted\": \"2026-09-08T15:30:33-04:00\", \"employmentType\": \"\", \"jobLocation\": {\"address\": \"San Francisco, California, United States\"}, \"@type\": \"JobPosting\", \"url\": \"https://job-boards.greenhouse.io/brex/jobs/8786673002\"}</script>",
+    "metadata": {
+      "statusCode": 200,
+      "url": "https://job-boards.greenhouse.io/brex/jobs/8786673002"
+    },
+    "public_api": {
+      "url": "https://boards-api.greenhouse.io/v1/boards/brex/jobs/8786673002?content=true",
+      "data": {
+        "absolute_url": "https://www.brex.com/careers/8786673002?gh_jid=8786673002",
+        "data_compliance": [
+          {
+            "type": "gdpr",
+            "requires_consent": false,
+            "requires_processing_consent": false,
+            "requires_retention_consent": false,
+            "retention_period": null,
+            "demographic_data_consent_applies": false
+          }
+        ],
+        "internal_job_id": 6515090002,
+        "location": {
+          "name": "San Francisco, California, United States"
+        },
+        "metadata": [
+          {
+            "id": 108496618002,
+            "name": "Job Post Department",
+            "value": "Marketing",
+            "value_type": "single_select"
+          }
+        ],
+        "id": 8786673002,
+        "updated_at": "2026-10-08T19:00:59-04:00",
+        "requisition_id": "JR101509",
+        "title": "Senior Marketing Operations Manager",
+        "company_name": "Brex",
+        "first_published": "2026-09-08T15:30:33-04:00",
+        "language": "en",
+        "application_deadline": null,
+        "content": "&lt;div class=&quot;content-intro&quot;&gt;&lt;p&gt;&lt;strong&gt;Why join us&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;Brex is the intelligent finance platform that enables companies to spend smarter and move faster in more than 200 markets. By combining global corporate cards and banking with intuitive spend management, bill pay, and travel software, Brex enables founders and finance teams to accelerate operations, gain real-time visibility, and control spend effortlessly. Brex’s AI-native automation and world-class service eliminate manual expense and accounting tasks for customers so they can focus on what matters most. Tens of thousands of the world&#39;s best companies run on Brex, including DoorDash, Coinbase, Robinhood, Zoom, Plaid, Reddit, and SeatGeek.&lt;/p&gt;\n&lt;p&gt;Working at Brex allows you to push your limits, challenge the status quo, and collaborate with some of the brightest minds in the industry. We’re committed to building a diverse team and inclusive culture and believe your potential should only be limited by how big you can dream. We make this a reality by empowering you with the tools, resources, and support you need to grow your career.&lt;/p&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Marketing at Brex&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;Marketing tells the story of Brex to the world. From acquisition to activation, we translate product value into business results. Our team spans Revenue, Product, and Brand Marketing, and works closely with nearly every function at Brex. We move fast, experiment often, and think deeply about customer behavior. If you want your creativity to drive growth and shape perception, this is the place.&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;What you’ll do&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;The Brex Marketing team is looking for an experienced Senior Marketing Operations Manager to architect and optimize our B2B sales-led and channel-driven GTM engine. This role will define and maintain the systems, processes, and operational rigor that align Marketing, SDR, Sales, and Partner teams.&lt;/p&gt;\n&lt;p&gt;We are looking for someone who is eager to design the future-state GTM tech stack—modernizing how leads flow, how insights are generated, and how operational workloads become more efficient through automation, AI, and agentic workflows. This person will champion operational excellence by improving lead management, automating revenue processes, increasing funnel velocity, and enabling more efficient cross-functional alignment.&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;Where you’ll work&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;This role will be based in our San Francisco office. We are a hybrid environment that combines the energy and connections of being in the office with the benefits and flexibility of working from home. We currently require a minimum of three coordinated days in the office per week, Monday, Wednesday and Thursday. As a perk, we also have up to four weeks per year of fully remote work!&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;Responsibilities&lt;/strong&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;Own and evolve the GTM systems architecture, ensuring Salesforce, Marketo, LeanData, ZoomInfo, Qualified, Outreach, and Clay.io work together as a best-in-class, integrated ecosystem.&lt;/li&gt;\n&lt;li&gt;Lead the design, governance, and optimization of data orchestration workflows using LeanData, including routing, prioritization, handoffs, and conversion logic across Marketing, SDR, and Sales teams.&lt;/li&gt;\n&lt;li&gt;Design and execute a future-state operational roadmap focused on scaling B2B demand generation, ABM, and partner-led growth through automation, improved data flows, and AI-powered insights.&lt;/li&gt;\n&lt;li&gt;Build automated lifecycle processes for lead scoring, enrichment, qualification, and cross-functional handoffs using LeanData, Zapier, Clay, Segment, and AI agents.&lt;/li&gt;\n&lt;li&gt;Enhance sales productivity by implementing agentic workflows (e.g., automated follow-ups, enrichment workflows, SDR assistance tools) in Outreach and Salesforce.&lt;/li&gt;\n&lt;li&gt;Manage data governance across Salesforce, Marketo, and Segment, ensuring reliable attribution, reporting, and pipeline visibility.&lt;/li&gt;\n&lt;li&gt;Create AI-informed dashboards and reporting on pipeline performance, lead velocity, conversion, campaign effectiveness, and partner impact.&lt;/li&gt;\n&lt;li&gt;Partner with RevOps, Sales Systems, and Engineering to operationalize cross-functional processes that reduce manual work and improve efficiency.&lt;/li&gt;\n&lt;li&gt;Support partner/VAR motions through automated attribution, routing rules, partner engagement workflows, and integrated co-marketing processes.&lt;/li&gt;\n&lt;li&gt;Continuously evaluate new tools, AI capabilities, and operational improvements that elevate our GTM infrastructure.&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p&gt;&lt;strong&gt;Requirements&lt;/strong&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;4+ years in Marketing Operations or Revenue Operations supporting B2B sales-led funnels.&lt;/li&gt;\n&lt;li&gt;Hands-on experience administering Marketo, Salesforce, and LeanData.&lt;/li&gt;\n&lt;li&gt;Deep expertise with lead routing, lead-to-account matching, and data orchestration workflows using LeanData or similar workflow automation tools.&lt;/li&gt;\n&lt;li&gt;Proven ability to design automated workflows, operational processes, and scalable cross-system integrations.&lt;/li&gt;\n&lt;li&gt;Experience using AI-driven tools or agentic workflows to automate SDR tasks, enrich lead data, or accelerate GTM execution.&lt;/li&gt;\n&lt;li&gt;Strong analytical, system design, and documentation skills; able to translate business needs into scalable technical workflows.&lt;/li&gt;\n&lt;li&gt;Experience collaborating with Sales, SDR, RevOps, and System/Engineering teams.&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p&gt;&lt;strong&gt;Bonus Points&lt;/strong&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;Experience in FinTech or enterprise B2B SaaS environments.&lt;/li&gt;\n&lt;li&gt;Familiarity with conversational marketing/ABM platforms like Qualified.&lt;/li&gt;\n&lt;li&gt;Experience with tools like LeanData and Outreach in support of lead routing and SDR/BDR workflows.&lt;/li&gt;\n&lt;li&gt;Experience with paid funnel operations is a plus (Google Ads, LinkedIn Ads, etc.).&lt;/li&gt;\n&lt;li&gt;Understanding of partner/VAR operational workflows and partner attribution logic.&lt;/li&gt;\n&lt;li&gt;Ability to design scalable integrations using tools like Segment, Zapier, or Workato-style platforms.&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p&gt;&lt;strong&gt;Compensation&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;&lt;br&gt;&lt;/strong&gt;The expected salary range for this role is $134,696 - $168,370. However, the starting base pay will depend on a number of factors including the candidate’s location, skills, experience, market demands, and internal pay parity. Depending on the position offered, equity and other forms of compensation may be provided as part of a total compensation package.&lt;/p&gt;&lt;div class=&quot;content-conclusion&quot;&gt;&lt;p&gt;&lt;em&gt;Please be aware, job-seekers may be at risk of targeting by malicious actors looking for personal data. Brex recruiters will only reach out via LinkedIn or email with a&amp;nbsp;&lt;a class=&quot;c-link&quot; href=&quot;http://brex.com/&quot; target=&quot;_blank&quot; data-stringify-link=&quot;http://brex.com&quot; data-sk=&quot;tooltip_parent&quot;&gt;brex.com&lt;/a&gt;&amp;nbsp;domain. Any outreach claiming to be from Brex via other sources should be ignored.&lt;/em&gt;&lt;/p&gt;&lt;/div&gt;",
+        "departments": [
+          {
+            "id": 4030319002,
+            "name": "Marketing",
+            "child_ids": [],
+            "parent_id": null
+          }
+        ],
+        "offices": [
+          {
+            "id": 4045812002,
+            "name": "New York, NY",
+            "location": "New York, New York, United States",
+            "child_ids": [],
+            "parent_id": 4041334002
+          },
+          {
+            "id": 4084821002,
+            "name": "Remote",
+            "location": null,
+            "child_ids": [],
+            "parent_id": null
+          },
+          {
+            "id": 4017244002,
+            "name": "Salt Lake City, UT",
+            "location": "Salt Lake City, Utah, United States",
+            "child_ids": [],
+            "parent_id": 4041334002
+          },
+          {
+            "id": 4084807002,
+            "name": "San Francisco, CA",
+            "location": "San Francisco, California, United States",
+            "child_ids": [],
+            "parent_id": 4041334002
+          },
+          {
+            "id": 4084811002,
+            "name": "Seattle, WA",
+            "location": "Seattle, Washington, United States",
+            "child_ids": [],
+            "parent_id": 4041334002
+          }
+        ],
+        "ai_disclaimer": null,
+        "include_ai_disclaimer": null,
+        "ai_opt_out_request_url": null
+      }
+    }
+  }
+}

@@ -1,5 +1,9 @@
 # Firecrawl smart discovery
 
+October 25 update: ordinary daily discovery now follows
+[incremental discovery](incremental-discovery.md). The search-first pipeline below
+is retained for explicitly invoked broad discovery, not automatic daily searches.
+
 Updated October 22, 2026: paid usage and daily discovery are **enabled** at Dave's
 request. All callers share the existing 200-credit daily admission limit and
 durable ledger; enabling discovery does not create a clock-based schedule.

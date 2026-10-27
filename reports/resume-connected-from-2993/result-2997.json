@@ -1,0 +1,53 @@
+{
+  "id": 2997,
+  "company": "Black Girl Ventures Foundation",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/15oPf_zQwiMV3UAE-M4Md2vWuOzPO8R7P/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Black-Girl-Ventures-Foundation+Sr.-Marketing-Manager+00456.docx",
+  "started_at": "2026-10-26T14:41:52.141382+00:00",
+  "completed_at": "2026-10-26T15:31:33.956861+00:00",
+  "elapsed_seconds": 2981.815496,
+  "generation_seconds": 31.03147170000011,
+  "delivery_seconds": 6.416481499996735,
+  "tracker_seconds": 21.612748299987288,
+  "readback": {
+    "Scout ID": 2997,
+    "Company": "Black Girl Ventures Foundation",
+    "Job Title": "Sr. Marketing Manager",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/15oPf_zQwiMV3UAE-M4Md2vWuOzPO8R7P/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1249",
+  "hyperlink_target": "https://docs.google.com/document/d/15oPf_zQwiMV3UAE-M4Md2vWuOzPO8R7P/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 122.9981,
+    "active_seconds": 65.3823,
+    "review_wait_seconds": 57.6158,
+    "phases_seconds": {
+      "source_loading": 0.1122,
+      "tailoring": 0.687,
+      "document_creation": 1.6946,
+      "word_pdf_validation": 10.5094,
+      "fitting_retries": 0.0789,
+      "factual_review": 0.0,
+      "review_wait": 57.6158,
+      "tracker_sync": 21.6117,
+      "drive_delivery": 6.4095
+    },
+    "counts": {
+      "source_loading": 74,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 1,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": 3023,
+  "company": "GenScript",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1Uw1JbOCxyAZRPDSPhgKUiid9t5RL0X8y/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+GenScript+Integrated-Campaign-Manager,-Life-Sciences-Marketing+00472.docx",
+  "started_at": "2026-10-26T15:26:38.109478+00:00",
+  "completed_at": "2026-10-26T15:36:14.753775+00:00",
+  "elapsed_seconds": 576.644308,
+  "generation_seconds": 32.9830260000017,
+  "delivery_seconds": 5.6173508999927435,
+  "tracker_seconds": 32.22443089997978,
+  "readback": {
+    "Scout ID": 3023,
+    "Company": "GenScript",
+    "Job Title": "Integrated Campaign Manager, Life Sciences Marketing",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1Uw1JbOCxyAZRPDSPhgKUiid9t5RL0X8y/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1275",
+  "hyperlink_target": "https://docs.google.com/document/d/1Uw1JbOCxyAZRPDSPhgKUiid9t5RL0X8y/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 114.6853,
+    "active_seconds": 81.64,
+    "review_wait_seconds": 33.0453,
+    "phases_seconds": {
+      "source_loading": 0.0407,
+      "tailoring": 1.0775,
+      "document_creation": 2.5423,
+      "word_pdf_validation": 9.68,
+      "fitting_retries": 0.7419,
+      "factual_review": 0.0,
+      "review_wait": 33.0453,
+      "tracker_sync": 32.2237,
+      "drive_delivery": 5.6074
+    },
+    "counts": {
+      "source_loading": 90,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "drive_delivery": 1,
+      "restored_trials": 1
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": 3021,
+  "company": "Careerswift",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1mcEQU-1sWpRf8wBvY1AlwdQKc05LmeLk/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Careerswift+Marketing-Operations-Specialist+00471.docx",
+  "started_at": "2026-10-26T15:26:26.172180+00:00",
+  "completed_at": "2026-10-26T15:34:20.062139+00:00",
+  "elapsed_seconds": 473.889973,
+  "generation_seconds": 19.224080500018317,
+  "delivery_seconds": 6.824912199983373,
+  "tracker_seconds": 38.784762900002534,
+  "readback": {
+    "Scout ID": 3021,
+    "Company": "Careerswift",
+    "Job Title": "Marketing Operations Specialist",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1mcEQU-1sWpRf8wBvY1AlwdQKc05LmeLk/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1273",
+  "hyperlink_target": "https://docs.google.com/document/d/1mcEQU-1sWpRf8wBvY1AlwdQKc05LmeLk/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 166.0996,
+    "active_seconds": 70.4677,
+    "review_wait_seconds": 95.6319,
+    "phases_seconds": {
+      "source_loading": 0.0348,
+      "tailoring": 0.7861,
+      "document_creation": 1.484,
+      "word_pdf_validation": 6.2446,
+      "fitting_retries": 0.344,
+      "factual_review": 0.0,
+      "review_wait": 95.6319,
+      "tracker_sync": 38.784,
+      "drive_delivery": 6.8147
+    },
+    "counts": {
+      "source_loading": 69,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1
+    }
+  }
+}

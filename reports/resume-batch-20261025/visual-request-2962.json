@@ -1,0 +1,39 @@
+{
+  "id": 2962,
+  "company": "Advantage HQ",
+  "title": "Senior Paid Media Manager",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Advantage-HQ+Senior-Paid-Media-Manager+00420.docx",
+  "listing": "C:\\gecko_main\\input\\job-descriptions\\Advantage-HQ+('url',-'bmdigital.applytojob.com',-'applyuabVW8G20QSenior-Paid-Media-Manager',-'').md",
+  "images": [
+    "C:\\gecko_main\\scratch\\Advantage-HQ+('url',-'bmdigital.applytojob.com',-'applyuabVW8G20QSenior-Paid-Media-Manager',-'')\\final-page-1.png",
+    "C:\\gecko_main\\scratch\\Advantage-HQ+('url',-'bmdigital.applytojob.com',-'applyuabVW8G20QSenior-Paid-Media-Manager',-'')\\final-page-2.png"
+  ],
+  "sha256": "32f878882aa6c727f6449beaf5ba8c728e029b931b06769a8f58c22ec84afd95",
+  "qa": {
+    "status": "pass",
+    "word_pages": 2,
+    "pdf_pages": 2,
+    "issues": [],
+    "remaining_weaknesses": [
+      "Lead the kickoff: budgets, targets (CPA/ROAS), audiences, and reporting cadence",
+      "Audit existing ad accounts, tracking setup, and creative libraries before anything goes live",
+      "Agree what good looks like in month one, three, and six",
+      "Configure ad accounts, pixels, CAPI, and conversion tracking",
+      "Brief creative and feed requirements to the studio team",
+      "Launch, monitor, and optimise daily against KPIs",
+      "Run creative, audience, and bidding tests, then scale what works",
+      "Flag risks early. If a target is slipping, the client hears it from you first, with a plan",
+      "3+ years buying paid media, hands-on, across Meta and Google (TikTok a plus)",
+      "Comfortable running client calls solo, including the difficult ones about performance",
+      "Able to run several accounts at once, start to finish, and keep each one on plan",
+      "Agency background running multiple clients",
+      "A creative testing framework you've actually used"
+    ],
+    "native_validation": "C:\\gecko_main\\scratch\\Advantage-HQ+('url',-'bmdigital.applytojob.com',-'applyuabVW8G20QSenior-Paid-Media-Manager',-'')\\validation-status.json",
+    "word_output": "Word validation mode: Direct interactive session\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\gecko_main\\scratch\\Advantage-HQ+('url',-'bmdigital.applytojob.com',-'applyuabVW8G20QSenior-Paid-Media-Manager',-'')\\validation-status.json",
+    "page_two_bottom_gap_pt": 13.78,
+    "page_two_text_boundary_pt": 757.45,
+    "density_issue": "",
+    "content_exhaustion_reason": ""
+  }
+}

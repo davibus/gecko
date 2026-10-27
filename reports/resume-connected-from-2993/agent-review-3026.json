@@ -1,0 +1,66 @@
+{
+  "spec": {
+    "headline": "Content Strategy | SEO & Audience Research | Marketing Technology",
+    "headline_rationale": "Influ2 needs content strategy and production, editorial judgment, SEO collaboration and email. Use supported multi-format content, research, creative and technology experience without claiming ABM content portfolio or pipeline gains.",
+    "summary": "Digital marketer combining content strategy, audience research and hands-on marketing technology. Developed personalized content across blogs, mail, email and websites, created marketing concepts using graphic design and animation, and consulted on SEO and on-page optimization. Agency work spans client goals, keyword and competitive research, messaging and performance recommendations. Brings technical website experience and clear reporting to connecting useful content with the audiences, channels and business priorities it is meant to serve.",
+    "factual_review": "Read exact Influ2 Content Marketing Manager description. E114/E109/E044/E076/E078/E079/E113/E001 support summary. No invented SaaS editorial tenure, customer-story portfolio, GEO results, ABM implementation or attributable pipeline lift.",
+    "selected_evidence_ids": [
+      "E001",
+      "E003",
+      "E005",
+      "E006",
+      "E008",
+      "E009",
+      "E018",
+      "E023",
+      "E044",
+      "E043",
+      "E060",
+      "E055",
+      "E063",
+      "E066",
+      "E076",
+      "E078",
+      "E079",
+      "E093",
+      "E096",
+      "E102",
+      "E109",
+      "E114",
+      "E113"
+    ],
+    "additional_evidence_ids": [
+      "E004",
+      "E010",
+      "E011",
+      "E020",
+      "E072",
+      "E080",
+      "E081",
+      "E082",
+      "E095",
+      "E105",
+      "E115",
+      "E116"
+    ],
+    "tools_platforms": [
+      "Google Search Console",
+      "Google Analytics 4",
+      "Looker Studio",
+      "Excel",
+      "HubSpot",
+      "Salesforce",
+      "Shopify",
+      "JavaScript",
+      "ChatGPT",
+      "Claude"
+    ],
+    "tools_rationale": "Supported search, content-adjacent web, CRM and analytics tooling while preserving factual limits on specialist editorial platforms.",
+    "source_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "description_sha256": "64412d3d764a88d7a843634e4981120a4beb68b679d26e2036cb17c6872049ad"
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "82e7f59f4f9d8923eb90c58c9cf04a6b0642490eb08167a38750cfe0a6c29579"
+}

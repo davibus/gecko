@@ -1,0 +1,63 @@
+{
+  "spec": {
+    "headline": "Performance Marketing | Affiliate Economics | Attribution & Team Leadership",
+    "headline_rationale": "MyFitnessPal's creator role places weight on ROI, attribution, budget decisions, team leadership and automation. Emphasize the master's adjacent affiliate, social-channel and measurement experience honestly; do not label Dave a celebrity influencer specialist.",
+    "summary": "Performance marketer with experience in affiliate economics, consumer acquisition and team leadership. Analyzed lifetime value, affiliate commissions, discounts and promotion performance, and developed affiliate-program strategy with search and display creative. Led an eight-person e-commerce team in the fitness industry and managed paid channels including Meta, Instagram and TikTok. Brings attribution testing, automated cross-channel reporting and cost-benefit analysis to evaluating marketing investments, coordinating partners and improving how campaign performance is measured.",
+    "factual_review": "Read exact MyFitnessPal influencer job. Source E004/E102/E093/E030/E082/E009/E111; LifeSpan fitness employer verified. Celebrity/macro influencer negotiation, creator contract ownership, app subscription results and MMP expertise are unverified and not asserted. Existing saved thresholds and eligibility retained.",
+    "selected_evidence_ids": [
+      "E001",
+      "E004",
+      "E003",
+      "E006",
+      "E008",
+      "E009",
+      "E018",
+      "E023",
+      "E030",
+      "E043",
+      "E044",
+      "E060",
+      "E063",
+      "E066",
+      "E076",
+      "E078",
+      "E082",
+      "E093",
+      "E096",
+      "E102",
+      "E114",
+      "E111"
+    ],
+    "additional_evidence_ids": [
+      "E005",
+      "E010",
+      "E011",
+      "E020",
+      "E072",
+      "E079",
+      "E080",
+      "E081",
+      "E095",
+      "E109",
+      "E115",
+      "E116"
+    ],
+    "tools_platforms": [
+      "Meta Ads",
+      "Google Analytics 4",
+      "Google Tag Manager",
+      "Looker Studio",
+      "Tableau",
+      "Excel",
+      "Python",
+      "SQL",
+      "Funnel.io",
+      "ChatGPT"
+    ],
+    "tools_rationale": "Master-supported campaign measurement, reporting and automation tools; no unsupported creator platform or mobile measurement vendor."
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "e87468b6ac443f11ed9af70fd4529d18ab6de611065a57b2a1ebb3bac7d2cf27"
+}

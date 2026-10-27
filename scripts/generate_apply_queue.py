@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import argparse
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 import json
 import os
@@ -45,6 +45,7 @@ from tracker_schema import (  # noqa: E402
 from rejection_workflow import process_rejected_rows  # noqa: E402
 import gecko_v2  # noqa: E402
 import manage_job_tracker  # noqa: E402
+import resume_performance as performance
 
 REQUIRED = (
     "Scout ID", "Company", "Job Title", "Apply?", "Resume Created", "Cost",
@@ -72,6 +73,8 @@ class Artifacts:
     listing: Path
     existing: bool = False
     retrieval_attempts: tuple[RetrievalAttempt, ...] = ()
+    visual_review: Path | None = None
+    review_context: dict | None = None
 
 
 @dataclass(frozen=True)
@@ -1046,7 +1049,9 @@ def recover_existing(item: QueueRow, db: Path) -> Artifacts:
     qa = gecko_v2.native_qa(plan, final, scratch)
     if qa["status"] != "pass":
         raise RuntimeError("Existing resume failed Word-native QA; Resume Link was not updated")
-    return Artifacts(final, listing, True, attempts)
+    from resume_visual_review import review
+    receipt = review(final, scratch / 'word-export.pdf', scratch, qa)
+    return Artifacts(final, listing, True, attempts, receipt)
 
 
 def _finish_generation(
@@ -1068,8 +1073,10 @@ def _finish_generation(
         raise ValueError("Saved listing identity does not match the live Scout row")
     if ai_summary:
         from codex_runner import draft_resume, review_resume
-        draft_resume(plan)
-        review_resume(plan)
+        with performance.phase('tailoring'):
+            draft_resume(plan)
+        with performance.phase('factual_review'):
+            review_resume(plan)
     name = f"{plan['job']['safe_company']}+{plan['job']['job_number']}"
     scratch = ROOT / "scratch" / name
     scratch.mkdir(parents=True, exist_ok=True)
@@ -1107,6 +1114,7 @@ def _finish_generation(
         raise RuntimeError("V2 QA failed: " + "; ".join(qa["issues"]))
     if rebuilt:
         gecko_v2.resume_summary.assert_unique(candidate, ROOT / "output/resumes")
+    if rebuilt:
         expected.parent.mkdir(parents=True, exist_ok=True)
         destination = expected
         if destination.exists():
@@ -1116,48 +1124,72 @@ def _finish_generation(
         os.replace(candidate, destination)
         final = destination
         existing = False
-    return Artifacts(final, listing, existing, attempts)
+    return Artifacts(final, listing, existing, attempts, review_context={'scratch': scratch, 'qa': qa})
 
 
-def sync_completed_resume_to_primary_sheet(tracker: GoogleTracker) -> None:
-    """Publish each verified local completion while the parent run holds its lock."""
+@performance.timed('tracker_sync')
+def sync_completed_resume_to_primary_sheet(tracker: GoogleTracker, item: QueueRow, artifacts: Artifacts) -> bool:
+    """Write/read back this completion in the primary Sheet before caching it."""
     from sqlite_tracker import SQLiteTracker
     if not isinstance(tracker, SQLiteTracker):
-        return
+        return False
     import sheet_sync
     if sheet_sync.enabled():
         try:
-            sheet_sync.sync()
+            record = manage_job_tracker.record_from_files(artifacts.resume, artifacts.listing)
+            manage_job_tracker._assert_not_rejected(record, tracker)
+            if (record.scout_id is not None and record.scout_id != item.scout_id
+                    or _identity_text(record.company) != _identity_text(item.company)
+                    or _identity_text(record.job_title) != _identity_text(item.title)
+                    or not _same_posting_url(record.job_link, item.job_url)):
+                raise ValueError('Completed artifact/listing identity differs from the selected job.')
+            from resume_delivery import publish
+            sheet_sync.complete_resume(item.scout_id, publish(artifacts.resume),
+                local_tracker=tracker, identity={'Company': item.company, 'Job Title': item.title, 'Job URL': item.job_url})
+            return True
         except Exception as error:
             sheet_sync.record_error(error)
             raise
+    return False
+
+
+def _assert_visual_artifact_unchanged(artifacts: Artifacts) -> None:
+    if artifacts.visual_review:
+        from resume_visual_review import digest
+        proof = json.loads(artifacts.visual_review.read_text(encoding='utf-8'))
+        if proof.get('approved') is not True or proof.get('sha256') != digest(artifacts.resume):
+            raise ValueError('Completed resume changed after visual approval.')
 
 
 def record_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTracker) -> None:
     """Record the validated resume through the canonical tracker integration."""
     if not artifacts.resume.is_file() or artifacts.resume.stat().st_size <= 0:
         raise ValueError("Final DOCX is missing or empty")
+    _assert_visual_artifact_unchanged(artifacts)
     if not _still_pending(tracker, item):
         raise RuntimeError("Apply? or Resume Created changed before tracker update")
+    if sync_completed_resume_to_primary_sheet(tracker, item, artifacts):
+        return
     _retry_sheet(lambda: manage_job_tracker.record_queue_success(
         artifacts.resume, artifacts.listing, item.scout_id, item.row, tracker,
         completion_marker=COMPLETION_MARKER,
         require_approved=True,
     ))
-    sync_completed_resume_to_primary_sheet(tracker)
 
 
 def record_local_success(item: QueueRow, artifacts: Artifacts, tracker: GoogleTracker) -> None:
     """Record a validated resume using its absolute local DOCX path."""
     if not artifacts.resume.is_file() or artifacts.resume.stat().st_size <= 0:
         raise ValueError("Final local DOCX is missing or empty")
+    _assert_visual_artifact_unchanged(artifacts)
     if not _still_pending(tracker, item):
         raise RuntimeError("Apply? or Resume Created changed before tracker update")
+    if sync_completed_resume_to_primary_sheet(tracker, item, artifacts):
+        return
     _retry_sheet(lambda: manage_job_tracker.record_queue_success_local(
         artifacts.resume, artifacts.listing, item.scout_id, item.row, tracker,
         require_approved=True,
     ))
-    sync_completed_resume_to_primary_sheet(tracker)
 
 
 def _log(logger, message: str) -> None:
@@ -1165,6 +1197,7 @@ def _log(logger, message: str) -> None:
         logger(message)
 
 
+@performance.queue_batch
 def run_queue(
     tracker: GoogleTracker,
     db: Path,
@@ -1333,6 +1366,9 @@ def run_queue(
         work = prepared_work
 
     for index, item in enumerate(work, 1):
+        metrics = performance.CURRENT.get()
+        before = metrics.snapshot() if metrics else None
+        outcome = 'skipped'
         try:
             # A dry run is a single read-only snapshot. Re-reading every row adds
             # API traffic and is unnecessary because no lifecycle write follows.
@@ -1348,7 +1384,16 @@ def run_queue(
             print(f"[{index}/{len(work)}] Creating Gecko resume: {item.company}  {item.title}", flush=True)
             artifacts = (generator(item, db, tracker=tracker)
                          if generator is generate else generator(item, db))
-            recorder(item, artifacts, tracker)
+            if (recorder in (record_success, record_local_success) and artifacts.review_context
+                    and artifacts.visual_review is None):
+                from resume_visual_review import review
+                context = artifacts.review_context
+                receipt = review(artifacts.resume, context['scratch'] / 'word-export.pdf',
+                                 context['scratch'], context['qa'])
+                artifacts = replace(artifacts, visual_review=receipt)
+            with performance.phase('tracker_sync'):
+                recorder(item, artifacts, tracker)
+            outcome = 'completed'
             recovered += int(artifacts.existing)
             created += int(not artifacts.existing)
             successes.append((item, artifacts))
@@ -1363,7 +1408,13 @@ def run_queue(
             print(f"SKIP: {item.company} | {item.title} ({error})")
             _log(logger, f"SKIP permanently rejected row={item.row}: {error}")
         except Exception as error:
+            outcome = 'failed'
             capture_failure(item, error)
+        finally:
+            if metrics and before:
+                timing = {'id': item.scout_id, 'company': item.company, 'outcome': outcome, **metrics.delta(before)}
+                metrics.resumes.append(timing)
+                print('Resume timings: ' + json.dumps(timing), flush=True)
     if dry_run:
         remaining = work
     else:
@@ -1512,4 +1563,6 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    from run_gecko import run_lock
+    with run_lock():
+        raise SystemExit(main())

@@ -1,0 +1,32 @@
+{
+  "spec": {
+    "headline": "Campaign Marketing | Paid Search | Content & Analytics",
+    "headline_rationale": "Allure needs hands-on paid programs, email/content campaigns and reporting. The master supports paid search, client consultation on email and multichannel campaigns, personalized content strategy, conversion testing and reporting. This wording avoids claiming unsupported hands-on HubSpot nurture-building or cybersecurity experience.",
+    "summary": "Campaign marketer with experience connecting paid acquisition, personalized content and performance reporting. Built and managed Google Ads and Microsoft Ads programs, advised clients on email and multichannel campaigns, and developed content strategies spanning email, websites and direct mail. Combines audience and conversion-path testing with GA4 and Google Tag Manager measurement, marketing databases and automated reporting across more than ten channels. Works across technical and business teams to translate campaign performance into budget and optimization decisions.",
+    "factual_review": "Reviewed current v4 Word master directly and exact Allure posting. Summary is supported by E006, E015, E018, E038, E060, E062, E075, E076, E082, E114 and E116. No claim of building HubSpot workflows, owning B2B SaaS demand generation, or cybersecurity domain expertise is made. Tool familiarity is retained only where supported by the master catalogs.",
+    "selected_evidence_ids": [
+      "E001",
+      "E006",
+      "E004",
+      "E015",
+      "E018",
+      "E020",
+      "E038",
+      "E044",
+      "E060",
+      "E062",
+      "E076",
+      "E079",
+      "E082",
+      "E095",
+      "E096",
+      "E102",
+      "E114",
+      "E116"
+    ]
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "960fc6b699ffe04d93356b2d20598191611f169e84363e879cd57dd31e5dde71"
+}

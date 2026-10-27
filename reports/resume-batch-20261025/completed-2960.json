@@ -1,0 +1,50 @@
+{
+  "id": 2960,
+  "company": "Full Funnel Growth",
+  "title": "Senior Paid Search Specialist",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Full-Funnel-Growth+Senior-Paid-Search-Specialist+00418.docx",
+  "listing": "C:\\gecko_main\\input\\job-descriptions\\Full-Funnel-Growth+5d2ada3e-76e0-4310-8d80-d18a726fd26b.md",
+  "images": [
+    "C:\\gecko_main\\scratch\\Full-Funnel-Growth+5d2ada3e-76e0-4310-8d80-d18a726fd26b\\final-page-1.png",
+    "C:\\gecko_main\\scratch\\Full-Funnel-Growth+5d2ada3e-76e0-4310-8d80-d18a726fd26b\\final-page-2.png"
+  ],
+  "sha256": "cb8a85efda7e2f4dd37985741b898309967cd5436b6525202966c44af13cba89",
+  "qa": {
+    "status": "pass",
+    "word_pages": 2,
+    "pdf_pages": 2,
+    "issues": [],
+    "remaining_weaknesses": [
+      "[Full Funnel Growth](https://ffg.digital/)",
+      "[Back to Full Funnel Growth’s Job Listings](https://jobs.ashbyhq.com/ffg)",
+      "Weekly per-account performance write-ups in our .docx format, plus monthly client-ready summaries. Ad-hoc deep dives when a campaign breaks or an opportunity surfaces.",
+      "Direct client communication: written updates, scheduled review calls, and the occasional strategy presentation to senior stakeholders (CMOs, founder-CEOs, directors of marketing at device manufacturers).",
+      "You have used Claude Code, Cursor, or a comparable agentic tool as part of your daily workflow. Not for Q&A. For shipping work.",
+      "You can explain to a CMO, in clean English, what Smart Bidding is actually doing, when to override it, and why Performance Max gave a particular signal more weight than another.",
+      "You write with discipline. Our analytical work labels every substantive claim as extracted, inferred, or assumed. Numbers are exact. Missing data is flagged, not estimated. If \"directionally accurate\" is good enough for you, we are not a fit.",
+      "Not a coordinator role. You are the strategic lead, not a junior building someone else's plan.",
+      "Not a \"use ChatGPT to draft a report\" definition of AI-forward. That is table stakes, not the bar.",
+      "Demonstrated work across both lead gen and eCommerce. We need both, on the same person.",
+      "Remote work track record with strong written communication. Most of our client work happens in writing.",
+      "Experience working in non-USD accounts (CAD, EUR, AUD). Currency and market nuance is real.",
+      "Paid social literacy (Meta, LinkedIn) as a complement, not as a primary skill.",
+      "A short intro, one paragraph, not a cover letter. Why this role, not just any role.",
+      "Resume or LinkedIn.",
+      "One question you would ask us if hired."
+    ],
+    "native_validation": "C:\\gecko_main\\scratch\\Full-Funnel-Growth+5d2ada3e-76e0-4310-8d80-d18a726fd26b\\validation-status.json",
+    "word_output": "Word validation mode: Direct interactive session\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\gecko_main\\scratch\\Full-Funnel-Growth+5d2ada3e-76e0-4310-8d80-d18a726fd26b\\validation-status.json",
+    "page_two_bottom_gap_pt": 13.78,
+    "page_two_text_boundary_pt": 757.45,
+    "density_issue": "",
+    "content_exhaustion_reason": ""
+  },
+  "readback": {
+    "Scout ID": 2960,
+    "Company": "Full Funnel Growth",
+    "Job Title": "Senior Paid Search Specialist",
+    "Resume Created": "X",
+    "Resume Link": "file:///C:/gecko_main/output/resumes/Dave-Call%2BFull-Funnel-Growth%2BSenior-Paid-Search-Specialist%2B00418.docx",
+    "Resume Created Date": "2026-10-25"
+  }
+}

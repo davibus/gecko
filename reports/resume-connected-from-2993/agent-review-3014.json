@@ -1,0 +1,65 @@
+{
+  "spec": {
+    "headline": "Performance Marketing | AI Workflow Development | Acquisition Analytics",
+    "headline_rationale": "The agentic marketing role combines Google/Meta, technical AI automation and CRO. Current master documents AI-assisted marketing applications and reporting workflows plus paid media operations. Do not imply autonomous ad-spend agents or PostHog expertise.",
+    "summary": "Performance marketer and hands-on technical builder combining paid acquisition with AI-assisted workflow development. Managed Google and Meta campaigns, evaluated bidding and incremental CPA, and built automated reporting with Python and SQL. Developed a marketing command center connecting advertising, GA4 and Search Console evidence to dashboards, account audits, reports and supported marketing drafts. Agency consulting, conversion testing and team leadership provide practical context for automating repetitive work while keeping campaign recommendations grounded in measurable business performance.",
+    "factual_review": "Read exact Jobgether Senior Agentic Performance Marketing Manager US/Canada role. Current v4 marketing command center project supports explicit summary project facts; E002/E030/E009/E006/E075/E076/E093 support campaign/leadership claims. Do not claim automatic budget agents actively changing accounts, PostHog, Stripe or SaaS trial results.",
+    "selected_evidence_ids": [
+      "E001",
+      "E002",
+      "E003",
+      "E004",
+      "E006",
+      "E008",
+      "E009",
+      "E010",
+      "E021",
+      "E020",
+      "E023",
+      "E030",
+      "E043",
+      "E044",
+      "E060",
+      "E066",
+      "E063",
+      "E076",
+      "E079",
+      "E080",
+      "E093",
+      "E095"
+    ],
+    "additional_evidence_ids": [
+      "E005",
+      "E011",
+      "E072",
+      "E078",
+      "E081",
+      "E082",
+      "E096",
+      "E102",
+      "E105",
+      "E109",
+      "E114",
+      "E113"
+    ],
+    "tools_platforms": [
+      "Google Ads",
+      "Meta Ads",
+      "Google Analytics 4",
+      "Google Search Console",
+      "Python",
+      "SQL",
+      "Excel",
+      "Google Ads API",
+      "ChatGPT",
+      "Claude",
+      "Codex",
+      "Cursor"
+    ],
+    "tools_rationale": "Source-supported acquisition, analytical and AI-development tools; no unsupported PostHog or Stripe claims."
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "5c902c1f4628dbe375d2b8d59b5249d589616b552bc2a92f113fbb95084ff774"
+}

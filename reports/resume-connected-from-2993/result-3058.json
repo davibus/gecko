@@ -1,0 +1,54 @@
+{
+  "id": 3058,
+  "company": "Superior Executive Legal Recruiting",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1JS_J43ZQPN-8Wos2z8AUuVZzeWogGJgb/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Superior-Executive-Legal-Recruiting+Chief-Marketing-Officer-(CMO)-SVP,-Growth-Director-of-Marketing+00498.docx",
+  "started_at": "2026-10-26T16:34:15.504577+00:00",
+  "completed_at": "2026-10-26T16:35:41.116441+00:00",
+  "elapsed_seconds": 85.611874,
+  "generation_seconds": 24.74819550002576,
+  "delivery_seconds": 6.02007150001009,
+  "tracker_seconds": 22.713865500001702,
+  "readback": {
+    "Scout ID": 3058,
+    "Company": "Superior Executive Legal Recruiting",
+    "Job Title": "Chief Marketing Officer (CMO) / SVP, Growth / Director of Marketing",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1JS_J43ZQPN-8Wos2z8AUuVZzeWogGJgb/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1309",
+  "hyperlink_target": "https://docs.google.com/document/d/1JS_J43ZQPN-8Wos2z8AUuVZzeWogGJgb/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 85.6119,
+    "active_seconds": 60.0798,
+    "review_wait_seconds": 25.5321,
+    "phases_seconds": {
+      "source_loading": 0.0447,
+      "tailoring": 0.7005,
+      "document_creation": 2.3291,
+      "word_pdf_validation": 8.7924,
+      "fitting_retries": 0.3728,
+      "factual_review": 0.0,
+      "review_wait": 25.5321,
+      "tracker_sync": 22.7128,
+      "drive_delivery": 6.0114
+    },
+    "counts": {
+      "source_loading": 87,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

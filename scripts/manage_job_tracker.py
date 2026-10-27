@@ -69,6 +69,10 @@ def extract_title(text: str) -> str:
     if title:
         return title
     match = re.search(r"(?m)^#\s+(.+?)\s*$", text)
+    # Canonical queue archives use the exact tracker title as their heading.
+    # A dash can be part of that title, not a company/location separator.
+    if match and markdown_field(text, ("Scout ID",)).isdigit():
+        return match.group(1)
     return re.split(r"\s+[—–]\s+", match.group(1), maxsplit=1)[0] if match else ""
 
 
@@ -213,7 +217,7 @@ def record_queue_success_local(
     if record.scout_id is not None and record.scout_id != scout_id:
         raise RuntimeError("Archived listing Scout ID does not match the live Job Scout row")
     mark_batch_resume(
-        scout_id, scout_row, tracker, verified_resume_file_uri(path), allow_local=True,
+        scout_id, scout_row, tracker, publish_resume(record, tracker, scout_id=scout_id), allow_local=True,
         require_approved=require_approved,
     )
     return record
@@ -225,9 +229,10 @@ def publish_resume(
     *,
     scout_id: int | None = None,
 ) -> str:
-    """Return a clickable absolute file URI for a completed Gecko resume."""
+    """Return the verified private Drive URL for this completed local resume."""
     del tracker, scout_id
-    return verified_resume_file_uri(record.resume_path)
+    from resume_delivery import publish
+    return publish(record.resume_path)
 
 
 def _assert_not_rejected(record: JobRecord, tracker: GoogleTracker) -> None:

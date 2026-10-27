@@ -1,0 +1,1502 @@
+[
+  {
+    "id": "CONTACT-01",
+    "meaning": "full_name",
+    "questions": [
+      "Full name",
+      "Name"
+    ],
+    "patterns": [],
+    "answer": "Dave Call",
+    "status": "confirmed",
+    "source": {
+      "kind": "master",
+      "path": "input/master-resume/master-resume-v4.docx",
+      "quote": "Dave Call"
+    },
+    "confirmed_on": "2026-10-12",
+    "scope": {}
+  },
+  {
+    "id": "CONTACT-02-FIRST",
+    "meaning": "first_name",
+    "questions": [
+      "First name",
+      "Preferred first name",
+      "Preferred name"
+    ],
+    "patterns": [],
+    "answer": "Dave",
+    "status": "confirmed",
+    "source": {
+      "kind": "master",
+      "path": "input/master-resume/master-resume-v4.docx",
+      "quote": "Dave Call"
+    },
+    "confirmed_on": "2026-10-12",
+    "scope": {}
+  },
+  {
+    "id": "CONTACT-02-LAST",
+    "meaning": "last_name",
+    "questions": [
+      "Last name"
+    ],
+    "patterns": [],
+    "answer": "Call",
+    "status": "confirmed",
+    "source": {
+      "kind": "master",
+      "path": "input/master-resume/master-resume-v4.docx",
+      "quote": "Dave Call"
+    },
+    "confirmed_on": "2026-10-12",
+    "scope": {}
+  },
+  {
+    "id": "CONTACT-03",
+    "meaning": "email",
+    "questions": [
+      "Email",
+      "Email address",
+      "Retype email address"
+    ],
+    "patterns": [],
+    "answer": "mdavidcall@gmail.com",
+    "status": "confirmed",
+    "source": {
+      "kind": "master",
+      "path": "input/master-resume/master-resume-v4.docx",
+      "quote": "mdavidcall@gmail.com"
+    },
+    "confirmed_on": "2026-10-12",
+    "scope": {}
+  },
+  {
+    "id": "CONTACT-04",
+    "meaning": "phone",
+    "questions": [
+      "Phone",
+      "Phone number",
+      "Mobile phone"
+    ],
+    "patterns": [],
+    "answer": "(530) 507-8269",
+    "status": "confirmed",
+    "source": {
+      "kind": "master",
+      "path": "input/master-resume/master-resume-v4.docx",
+      "quote": "(530) 507-8269"
+    },
+    "confirmed_on": "2026-10-12",
+    "scope": {}
+  },
+  {
+    "id": "CONTACT-06",
+    "meaning": "linkedin",
+    "questions": [
+      "LinkedIn",
+      "LinkedIn profile",
+      "LinkedIn URL",
+      "What is your LinkedIn (URL)?",
+      "Linkedin Profile (www.linkedin.com/in/YOURINFO):"
+    ],
+    "patterns": [],
+    "answer": "http://www.linkedin.com/in/mdavidcall",
+    "status": "confirmed",
+    "source": {
+      "kind": "master",
+      "path": "input/master-resume/master-resume-v4.docx",
+      "quote": "http://www.linkedin.com/in/mdavidcall"
+    },
+    "confirmed_on": "2026-10-12",
+    "scope": {}
+  },
+  {
+    "id": "ADDRESS-city",
+    "meaning": "city",
+    "questions": [
+      "City",
+      "City of residence"
+    ],
+    "patterns": [],
+    "answer": "American Fork",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Residential / physical / mailing address (confirmed 2026-10-13): 1046 W 360 S, American Fork, UT 84003, United States.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-13",
+    "scope": {}
+  },
+  {
+    "id": "ADDRESS-location",
+    "meaning": "location",
+    "questions": [
+      "Current location",
+      "Location (city)"
+    ],
+    "patterns": [],
+    "answer": "American Fork, UT, USA",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Residential / physical / mailing address (confirmed 2026-10-13): 1046 W 360 S, American Fork, UT 84003, United States.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-13",
+    "scope": {}
+  },
+  {
+    "id": "ADDRESS-street",
+    "meaning": "street",
+    "questions": [
+      "Address",
+      "Street address"
+    ],
+    "patterns": [],
+    "answer": "1046 W 360 S",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Residential / physical / mailing address (confirmed 2026-10-13): 1046 W 360 S, American Fork, UT 84003, United States.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-13",
+    "scope": {}
+  },
+  {
+    "id": "ADDRESS-residential_address",
+    "meaning": "residential_address",
+    "questions": [
+      "Residential address"
+    ],
+    "patterns": [],
+    "answer": "1046 W 360 S, American Fork, UT 84003, United States",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Residential / physical / mailing address (confirmed 2026-10-13): 1046 W 360 S, American Fork, UT 84003, United States.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-13",
+    "scope": {}
+  },
+  {
+    "id": "ADDRESS-state",
+    "meaning": "state",
+    "questions": [
+      "State",
+      "State/province",
+      "State of residence"
+    ],
+    "patterns": [],
+    "answer": "UT",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Residential / physical / mailing address (confirmed 2026-10-13): 1046 W 360 S, American Fork, UT 84003, United States.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-13",
+    "scope": {}
+  },
+  {
+    "id": "ADDRESS-postal",
+    "meaning": "postal",
+    "questions": [
+      "Postal",
+      "Postal code",
+      "Zip",
+      "Zip code"
+    ],
+    "patterns": [],
+    "answer": "84003",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Residential / physical / mailing address (confirmed 2026-10-13): 1046 W 360 S, American Fork, UT 84003, United States.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-13",
+    "scope": {}
+  },
+  {
+    "id": "ADDRESS-country",
+    "meaning": "country",
+    "questions": [
+      "Country",
+      "Country/region",
+      "Country of residence"
+    ],
+    "patterns": [],
+    "answer": "United States",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Residential / physical / mailing address (confirmed 2026-10-13): 1046 W 360 S, American Fork, UT 84003, United States.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-13",
+    "scope": {}
+  },
+  {
+    "id": "LEGAL-legal_name",
+    "meaning": "legal_name",
+    "questions": [
+      "Legal name"
+    ],
+    "patterns": [],
+    "answer": "Mark David Call",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Legal name: Mark David Call. Legal first name: Mark; middle name: David; last name: Call.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-16",
+    "scope": {}
+  },
+  {
+    "id": "LEGAL-legal_first",
+    "meaning": "legal_first",
+    "questions": [
+      "Legal first name"
+    ],
+    "patterns": [],
+    "answer": "Mark",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Legal name: Mark David Call. Legal first name: Mark; middle name: David; last name: Call.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-16",
+    "scope": {}
+  },
+  {
+    "id": "LEGAL-legal_last",
+    "meaning": "legal_last",
+    "questions": [
+      "Legal last name"
+    ],
+    "patterns": [],
+    "answer": "Call",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Legal name: Mark David Call. Legal first name: Mark; middle name: David; last name: Call.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-16",
+    "scope": {}
+  },
+  {
+    "id": "CURRENT-COMPANY",
+    "meaning": "current_company",
+    "questions": [
+      "Current company",
+      "Current employer"
+    ],
+    "patterns": [],
+    "answer": "ILT Marketing",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Employer is ILT Marketing, not IoT Consulting.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-13",
+    "scope": {}
+  },
+  {
+    "id": "AUTH-01",
+    "meaning": "us_authorized",
+    "questions": [
+      "Legally authorized to work in the United States?",
+      "Are you legally authorized to work in the United States?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "| AUTH-01 | Legally authorized to work in the United States? | Yes | Dave, 2026-10-12 |",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-12",
+    "scope": {}
+  },
+  {
+    "id": "AUTH-02",
+    "meaning": "sponsorship",
+    "questions": [
+      "Will you now or in the future require sponsorship for employment visa status?",
+      "Do you require visa sponsorship?",
+      "Will you require sponsorship?"
+    ],
+    "patterns": [],
+    "answer": "No",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "| AUTH-02 | Need employment visa sponsorship now or in the future? | No | Dave, 2026-10-12 |",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-12",
+    "scope": {}
+  },
+  {
+    "id": "US-LOCATION",
+    "meaning": "us_location",
+    "questions": [
+      "Are you located in the United States?",
+      "Are you located within the US?",
+      "Do you reside in the United States?",
+      "Do you live in the United States?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "remains based in the U.S.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-13",
+    "scope": {}
+  },
+  {
+    "id": "SALARY",
+    "meaning": "annual_salary",
+    "questions": [
+      "Desired salary",
+      "Desired annual salary",
+      "Salary expectations",
+      "Expected salary",
+      "What are your salary expectations?",
+      "What are your salary expectations? (USD)",
+      "Salary Requirements"
+    ],
+    "patterns": [],
+    "answer": "70000",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Compensation: $70,000 as the current default for any employer",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-12",
+    "scope": {}
+  },
+  {
+    "id": "REFERRAL",
+    "meaning": "employee_referral",
+    "questions": [
+      "Were you referred by an employee?",
+      "Employee referral?"
+    ],
+    "patterns": [],
+    "answer": "No",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Standing instruction for future employer screening: previously employed by that company: No; employee referral: No.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-12",
+    "scope": {}
+  },
+  {
+    "id": "PRIOR-EMPLOYMENT",
+    "meaning": "prior_employment",
+    "questions": [
+      "Have you previously been employed by this company?",
+      "Have you previously worked for this company?"
+    ],
+    "patterns": [],
+    "answer": "No",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Standing instruction for future employer screening: previously employed by that company: No; employee referral: No.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-12",
+    "scope": {}
+  },
+  {
+    "id": "GENDER",
+    "meaning": "gender",
+    "questions": [
+      "Gender"
+    ],
+    "patterns": [],
+    "answer": "Male",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Dave explicitly selected Male for the gender identification question.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-21",
+    "scope": {}
+  },
+  {
+    "id": "RACE",
+    "meaning": "race",
+    "questions": [
+      "Race"
+    ],
+    "patterns": [],
+    "answer": "White",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Race: White. Do not infer Hispanic/Latino ethnicity",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-16",
+    "scope": {}
+  },
+  {
+    "id": "PRONOUNS",
+    "meaning": "pronouns",
+    "questions": [
+      "Pronouns",
+      "Preferred pronouns"
+    ],
+    "patterns": [],
+    "answer": "He/him",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Preferred pronouns for all future applications: he/him.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-13",
+    "scope": {}
+  },
+  {
+    "id": "VETERAN",
+    "meaning": "veteran",
+    "questions": [
+      "Veteran status"
+    ],
+    "patterns": [],
+    "answer": "Not a veteran",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Veteran status: Not a veteran.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-16",
+    "scope": {}
+  },
+  {
+    "id": "SMS-NO",
+    "meaning": "recruiting_sms",
+    "questions": [
+      "Do you consent to recruiting text messages?"
+    ],
+    "patterns": [
+      "(?:do you|may we|can we|would you).*(?:consent|permission|agree|receive|contact|send).*(?:recruiting|recruitment|hiring|application).*(?:text messages|sms|text message updates).*",
+      "(?:do you|may we|can we|would you).*(?:consent|permission|agree|receive|contact|send).*(?:text messages|sms).*(?:recruiting|recruitment|hiring|application).*"
+    ],
+    "answer": "No",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "select No whenever any company asks permission to send recruiting text/SMS messages or recruiting-message updates.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-21",
+    "scope": {}
+  },
+  {
+    "id": "BACKGROUND",
+    "meaning": "background",
+    "questions": [
+      "Are you willing to undergo a background check?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "willing to undergo background checks: Yes",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {}
+  },
+  {
+    "id": "DRUG",
+    "meaning": "drug_screen",
+    "questions": [
+      "Are you willing to take a pre-employment drug screening?",
+      "Are you willing to take a drug test?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Always select Yes for equivalent willingness-to-undergo-drug-screening questions.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-19",
+    "scope": {}
+  },
+  {
+    "id": "SALARY-ALIGNED",
+    "meaning": "salary_aligned",
+    "questions": [
+      "Are your salary expectations aligned with the posted range?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "salary expectations aligned with posted range: Yes",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {}
+  },
+  {
+    "id": "NOTICE",
+    "meaning": "notice",
+    "questions": [
+      "What is your notice period?"
+    ],
+    "patterns": [],
+    "answer": "2 weeks",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "**RECOVERED-2555-05 — What is your notice period?**\n\nAnswer: 2 weeks",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-16",
+    "scope": {}
+  },
+  {
+    "id": "ENGLISH",
+    "meaning": "english",
+    "questions": [
+      "Are you able to speak, read, and write English fluently?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "**RECOVERED-2555-04 — Are you able to speak, read, and write English fluently?**\n\nAnswer: Yes",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-16",
+    "scope": {}
+  },
+  {
+    "id": "INTERVIEW",
+    "meaning": "interview_availability",
+    "questions": [
+      "What is your interview availability?"
+    ],
+    "patterns": [],
+    "answer": "Monday through Friday, 8 AM–5 PM Mountain Time",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Monday through Friday, 8 AM–5 PM Mountain Time",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {}
+  },
+  {
+    "id": "APTIVE-50-PRIOR",
+    "meaning": "aptive_prior",
+    "questions": [
+      "Have you previously been employed by Aptive?"
+    ],
+    "patterns": [],
+    "answer": "No",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Dave explicitly confirmed October 20, 2026 for job 50.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-20",
+    "scope": {
+      "employer": "Aptive",
+      "jobs": [
+        50
+      ]
+    }
+  },
+  {
+    "id": "SILVERBACK-SEO-REPORTS",
+    "meaning": "seo_reports",
+    "questions": [
+      "In the last two years, have you personally built SEO performance reports and presented results directly to clients?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "In the last two years, have you personally built SEO performance reports and presented results directly to clients? Yes.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Silverback Strategies",
+      "jobs": [
+        2905
+      ]
+    }
+  },
+  {
+    "id": "SILVERBACK-SEO-CLIENTS",
+    "meaning": "seo_clients",
+    "questions": [
+      "Have you served as the primary strategic point of contact for a portfolio of SEO clients at a marketing agency within the last five years?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Have you served as the primary strategic point of contact for a portfolio of SEO clients at a marketing agency within the last five years? Yes.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Silverback Strategies",
+      "jobs": [
+        2905
+      ]
+    }
+  },
+  {
+    "id": "SILVERBACK-AI",
+    "meaning": "ai_search",
+    "questions": [
+      "In the last two years, have you personally identified opportunities and optimized for AI Search?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "In the last two years, have you personally identified opportunities and optimized for AI Search? Yes.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Silverback Strategies",
+      "jobs": [
+        2905
+      ]
+    }
+  },
+  {
+    "id": "SILVERBACK-YEARS",
+    "meaning": "client_years",
+    "questions": [
+      "How many years of client-facing and/or account-management experience do you have?"
+    ],
+    "patterns": [],
+    "answer": "8",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Dave confirmed 8 total years of client-facing and/or account-management experience for Silverback Strategies 2906.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Silverback Strategies",
+      "jobs": [
+        2906
+      ]
+    }
+  },
+  {
+    "id": "UNICITY",
+    "meaning": "other_positions",
+    "questions": [
+      "Would you like to be considered for other positions now or in the future?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Unicity 2925: Consider for other positions now or in future: Yes.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Unicity",
+      "jobs": [
+        2925
+      ]
+    }
+  },
+  {
+    "id": "DATAVANT-HIGH-SCHOOL",
+    "meaning": "high_school",
+    "questions": [
+      "Do you have a High School Diploma or Equivalent GED?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Datavant 2928: High School Diploma or Equivalent GED: Yes.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Datavant",
+      "jobs": [
+        2928
+      ]
+    }
+  },
+  {
+    "id": "DATAVANT-B2B",
+    "meaning": "b2b_years",
+    "questions": [
+      "How many years of experience do you have executing B2B marketing campaigns?"
+    ],
+    "patterns": [],
+    "answer": "5–7 years of relevant experience",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Datavant 2928: Executing B2B marketing campaigns: 5–7 years of relevant experience.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Datavant",
+      "jobs": [
+        2928
+      ]
+    }
+  },
+  {
+    "id": "ELEANOR",
+    "meaning": "eleanor_prior",
+    "questions": [
+      "Have you worked for Eleanor Health before, or received a job offer from them in the past?"
+    ],
+    "patterns": [],
+    "answer": "No",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Eleanor Health 2931: Have you worked for Eleanor Health before, or received a job offer from them in the past? No.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Eleanor Health",
+      "jobs": [
+        2931
+      ]
+    }
+  },
+  {
+    "id": "CYBERSHEATH",
+    "meaning": "current_certifications",
+    "questions": [
+      "What certifications do you currently hold?",
+      "Current professional certifications"
+    ],
+    "patterns": [],
+    "answer": "None",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Cybersheath 2933: Current professional certifications: None.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Cybersheath",
+      "jobs": [
+        2933
+      ]
+    }
+  },
+  {
+    "id": "829-PRIOR",
+    "meaning": "829_prior",
+    "questions": [
+      "Have you previously applied to 829 Studios?"
+    ],
+    "patterns": [],
+    "answer": "No",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Dave answered: prior applications to 829 Studios: No.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "829 Studios",
+      "jobs": [
+        2938
+      ]
+    }
+  },
+  {
+    "id": "EIGHT-SLEEP-START",
+    "meaning": "start_date",
+    "questions": [
+      "Earliest available start date"
+    ],
+    "patterns": [],
+    "answer": "2026-11-02",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Earliest available start date: November 2, 2026 (2026-11-02), confirmed by Dave for Eight Sleep.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-21",
+    "scope": {
+      "employer": "Eight Sleep",
+      "jobs": [
+        2860
+      ]
+    }
+  },
+  {
+    "id": "CURRENT-TITLE",
+    "meaning": "current_title",
+    "questions": [
+      "Current job title",
+      "Current title"
+    ],
+    "patterns": [],
+    "answer": "Director of Marketing",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Current title at ILT Marketing: Director of Marketing.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-14",
+    "scope": {}
+  },
+  {
+    "id": "RESTRICTIVE-AGREEMENTS",
+    "meaning": "restrictive_agreements",
+    "questions": [
+      "Are you bound by any confidentiality, patent, non-compete, non-solicitation, non-disclosure or similar restrictive agreement?",
+      "Are you currently subject to a non-compete or non-solicitation agreement?"
+    ],
+    "patterns": [],
+    "answer": "No",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "bound by any confidentiality, patent, non-compete, non-solicitation, non-disclosure or similar restrictive agreement: No.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {}
+  },
+  {
+    "id": "AGE-18",
+    "meaning": "age_18",
+    "questions": [
+      "Are you at least 18 years old?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Dave explicitly confirmed Yes to being at least 18 years old.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-20",
+    "scope": {}
+  },
+  {
+    "id": "PHONE-TYPE",
+    "meaning": "phone_type",
+    "questions": [
+      "Phone type"
+    ],
+    "patterns": [],
+    "answer": "Mobile",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Dave confirmed (530) 507-8269 is a Mobile phone",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-20",
+    "scope": {}
+  },
+  {
+    "id": "DATAVANT-EVENTS",
+    "meaning": "event_support",
+    "questions": [
+      "Which best describes your experience supporting events, conferences, webinars, or field marketing?",
+      "Which best describes your experience supporting events?"
+    ],
+    "patterns": [],
+    "answer": "I have occasionally supported events as part of a broader marketing role",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "I have occasionally supported events as part of a broader marketing role.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Datavant",
+      "jobs": [
+        2928
+      ]
+    }
+  },
+  {
+    "id": "INSTACART-EVENT-YEARS",
+    "meaning": "event-years",
+    "questions": [
+      "Do you have 5 to 10 years of B2B event marketing experience?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Do you have 5 to 10 years of B2B event marketing experience?",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-22",
+    "scope": {
+      "employer": "Instacart",
+      "jobs": [
+        2887
+      ]
+    }
+  },
+  {
+    "id": "INSTACART-TRADESHOWS",
+    "meaning": "tradeshows",
+    "questions": [
+      "Do you have a proven track record managing high-profile tradeshows and industry events?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Do you have a proven track record managing high-profile tradeshows and industry events?",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-22",
+    "scope": {
+      "employer": "Instacart",
+      "jobs": [
+        2887
+      ]
+    }
+  },
+  {
+    "id": "INSTACART-CANNES",
+    "meaning": "cannes",
+    "questions": [
+      "Do you have hands-on Cannes Lions experience or similar industry event experience?"
+    ],
+    "patterns": [],
+    "answer": "No",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Do you have hands-on Cannes Lions experience or similar industry event experience?",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-22",
+    "scope": {
+      "employer": "Instacart",
+      "jobs": [
+        2887
+      ]
+    }
+  },
+  {
+    "id": "LAUNCHPOTATO-AFTER-HOURS",
+    "meaning": "after_hours",
+    "questions": [
+      "Are you comfortable checking performance data and making decisions outside typical working hours when needed?",
+      "Are you comfortable checking performance data and making decisions outside of typical working hours if needed?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Are you comfortable checking performance data and making decisions outside typical working hours when needed?",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-22",
+    "scope": {
+      "employer": "Launch Potato",
+      "jobs": [
+        2898,
+        2899,
+        2900,
+        2901,
+        2902
+      ]
+    }
+  },
+  {
+    "id": "DROPBOX-LIFECYCLE-YEARS",
+    "meaning": "lifecycle-years",
+    "questions": [
+      "Do you have at least 8 years of lifecycle, email, CRM, or retention marketing experience with increasing responsibility?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "at least 8 years of lifecycle/email/CRM/retention marketing with increasing responsibility",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Dropbox",
+      "jobs": [
+        2894
+      ]
+    }
+  },
+  {
+    "id": "DROPBOX-IN-HOUSE",
+    "meaning": "in-house",
+    "questions": [
+      "Have you owned in-house lifecycle programs at SaaS, tech, or digital consumer businesses?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "owned in-house lifecycle programs at SaaS/tech/digital consumer businesses",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Dropbox",
+      "jobs": [
+        2894
+      ]
+    }
+  },
+  {
+    "id": "DROPBOX-REVENUE",
+    "meaning": "revenue",
+    "questions": [
+      "Have you driven revenue or monetization impact through lifecycle programs?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "revenue/monetization impact through lifecycle programs",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Dropbox",
+      "jobs": [
+        2894
+      ]
+    }
+  },
+  {
+    "id": "DROPBOX-JOURNEYS",
+    "meaning": "journeys",
+    "questions": [
+      "Have you built segmented, personalized, behavior-triggered email journeys in marketing automation?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "segmented personalized behavior-triggered email journeys in marketing automation",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Dropbox",
+      "jobs": [
+        2894
+      ]
+    }
+  },
+  {
+    "id": "DROPBOX-TESTING",
+    "meaning": "testing",
+    "questions": [
+      "Have you partnered with Product and analytics or data science teams on A/B tests to improve lifecycle programs?"
+    ],
+    "patterns": [],
+    "answer": "Yes",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "partnering with Product and analytics/data-science teams on A/B tests to improve lifecycle programs",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-23",
+    "scope": {
+      "employer": "Dropbox",
+      "jobs": [
+        2894
+      ]
+    }
+  },
+  {
+    "id": "CONTACT-GITHUB",
+    "meaning": "github",
+    "questions": [
+      "GitHub",
+      "GitHub profile",
+      "GitHub URL",
+      "GitHub profile URL",
+      "GitHub link",
+      "GitHub username"
+    ],
+    "patterns": [],
+    "answer": "https://github.com/davibus",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Answer: https://github.com/davibus",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-26",
+    "scope": {}
+  },
+  {
+    "id": "RECOVERED-2555-03",
+    "meaning": "pearmill_budget_scenario",
+    "questions": [
+      "One of your accounts is pacing 25% under budget with three days left in the month. Impression share lost to budget is close to zero. CPA is on target, but conversions are tracking about 20% below the monthly goal. What do you do, and what do you tell the client?"
+    ],
+    "patterns": [],
+    "answer": "I would try changing the bid strategy to top of page impression share. That's just one thing you can do. There are several other things.",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "**RECOVERED-2555-03 — One of your accounts is pacing 25% under budget with three days left in the month. Impression share lost to budget is close to zero. CPA is on target, but conversions are tracking about 20% below the monthly goal. What do you do, and what do you tell the client?**\n\nAnswer: I would try changing the bid strategy to top of page impression share. That's just one thing you can do. There are several other things.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-16",
+    "scope": {
+      "employer": "Pearmill"
+    }
+  },
+  {
+    "id": "SALARY-CURRENCY",
+    "meaning": "annual_salary_currency",
+    "questions": [
+      "What is your target annual salary? Please include the currency."
+    ],
+    "patterns": [],
+    "answer": "$70,000",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Compensation: $70,000 as the current default for any employer",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-12",
+    "scope": {}
+  },
+  {
+    "id": "APPLICATION-AGREEMENT",
+    "meaning": "application_agreement",
+    "questions": [
+      "I agree to the application terms and conditions",
+      "I agree to the privacy notice",
+      "I consent to the processing of my application",
+      "By submitting your application you agree to our HR Privacy Notice. (https://graphite-2024.webflow.io/hr-privacy-notice)"
+    ],
+    "patterns": [],
+    "answer": "Agree",
+    "status": "confirmed",
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "Answer: Agree\nConfirmed: 2026-10-27 by Dave.",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "confirmed_on": "2026-10-27",
+    "scope": {}
+  },
+  {
+    "id": "SEO-YEARS",
+    "meaning": "seo_years",
+    "questions": [
+      "How many years of hands-on SEO experience do you have?"
+    ],
+    "patterns": [],
+    "answer": "14",
+    "status": "confirmed",
+    "confirmed_on": "2026-10-27",
+    "scope": {},
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "SEO-YEARS — Answer: 14",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    }
+  },
+  {
+    "id": "PLANLEFT-PAID-YEARS",
+    "meaning": "paid_campaign_years",
+    "questions": [
+      "How many years of experience do you have managing paid advertising campaigns?"
+    ],
+    "patterns": [],
+    "answer": "14",
+    "status": "confirmed",
+    "confirmed_on": "2026-10-27",
+    "scope": {
+      "jobs": [
+        2993
+      ]
+    },
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "PLANLEFT-PAID-YEARS — Answer: 14",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    }
+  },
+  {
+    "id": "PLANLEFT-SUMMARY",
+    "meaning": "experience_summary",
+    "questions": [
+      "Experience Summary"
+    ],
+    "patterns": [],
+    "answer": "Search marketer combining multi-account paid media management with SEO consulting, competitive research and conversion testing. Managed more than 75 Google Ads accounts and advised clients on budgets, campaign structure and growth priorities. Consulted on SEO and on-page optimization, automated SERP analysis with Python, and worked with web teams on site performance. Builds clear reporting and practical recommendations from campaign, audience and funnel data, with experience standardizing agency processes and coordinating creative and landing-page work. CORE STRENGTHS * Marketing Analytics * Campaign Optimization * Digital Marketing Strategy * E-Commerce Strategy * Conversion Rate Optimization * SEO & SEM Strategy * Attribution Modeling * A/B & Multivariate Testing * Paid Media Strategy * Performance Marketing * Marketing Automation * Budget Forecasting SELECTED RESULTS * Managed up to $30 million per month in paid media with a four-person team at TravelPass Group, supporting high-volume account operations and disciplined budget oversight * Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review * Modernized the company's digital environment and launched multiple B2C channels while protecting relationships with more than 650 B2B retail partners * Managed 75+ Google Ads accounts with more than $476,000 in combined monthly spend while advising clients on channel allocation, campaign structure, and growth priorities * Managed approximately $400,000 in media budget that generated more than $9 million in revenue, representing approximately 35% of total company revenue",
+    "status": "confirmed",
+    "confirmed_on": "2026-10-27",
+    "scope": {
+      "jobs": [
+        2993
+      ]
+    },
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "PLANLEFT-PARSED-SUMMARY — Answer: Search marketer combining multi-account paid media management with SEO consulting, competitive research and conversion testing. Managed more than 75 Google Ads accounts and advised clients on budgets, campaign structure and growth priorities. Consulted on SEO and on-page optimization, automated SERP analysis with Python, and worked with web teams on site performance. Builds clear reporting and practical recommendations from campaign, audience and funnel data, with experience standardizing agency processes and coordinating creative and landing-page work. CORE STRENGTHS * Marketing Analytics * Campaign Optimization * Digital Marketing Strategy * E-Commerce Strategy * Conversion Rate Optimization * SEO & SEM Strategy * Attribution Modeling * A/B & Multivariate Testing * Paid Media Strategy * Performance Marketing * Marketing Automation * Budget Forecasting SELECTED RESULTS * Managed up to $30 million per month in paid media with a four-person team at TravelPass Group, supporting high-volume account operations and disciplined budget oversight * Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review * Modernized the company's digital environment and launched multiple B2C channels while protecting relationships with more than 650 B2B retail partners * Managed 75+ Google Ads accounts with more than $476,000 in combined monthly spend while advising clients on channel allocation, campaign structure, and growth priorities * Managed approximately $400,000 in media budget that generated more than $9 million in revenue, representing approximately 35% of total company revenue",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    }
+  },
+  {
+    "id": "PLANLEFT-PLATFORMS",
+    "meaning": "paid_platforms",
+    "questions": [
+      "Which paid advertising platforms have you managed?"
+    ],
+    "patterns": [],
+    "answer": "Google Ads; Meta Ads (Facebook/Instagram); Microsoft/Bing Ads; TikTok Ads; YouTube Ads",
+    "status": "confirmed",
+    "confirmed_on": "2026-10-27",
+    "scope": {
+      "jobs": [
+        2993
+      ]
+    },
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "PLANLEFT-PLATFORMS — Answer: Google Ads; Meta Ads (Facebook/Instagram); Microsoft/Bing Ads; TikTok Ads; YouTube Ads",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "choices": [
+      "Google Ads",
+      "Meta Ads (Facebook/Instagram)",
+      "Microsoft/Bing Ads",
+      "TikTok Ads",
+      "YouTube Ads"
+    ]
+  },
+  {
+    "id": "PLANLEFT-AGENCY",
+    "meaning": "agency_clients",
+    "questions": [
+      "Have you managed multiple client ad accounts simultaneously in an agency environment?"
+    ],
+    "patterns": [],
+    "answer": "Yes, previously",
+    "status": "confirmed",
+    "confirmed_on": "2026-10-27",
+    "scope": {
+      "jobs": [
+        2993
+      ]
+    },
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "PLANLEFT-AGENCY — Answer: Yes, previously",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    }
+  },
+  {
+    "id": "PLANLEFT-SEO",
+    "meaning": "seo_areas",
+    "questions": [
+      "Which areas of SEO do you have hands-on experience with?"
+    ],
+    "patterns": [],
+    "answer": "Technical SEO; On-page SEO; Content SEO; Keyword research & mapping; Local SEO; SEO audits; Schema / structured data",
+    "status": "confirmed",
+    "confirmed_on": "2026-10-27",
+    "scope": {
+      "jobs": [
+        2993
+      ]
+    },
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "PLANLEFT-SEO — Answer: Technical SEO; On-page SEO; Content SEO; Keyword research & mapping; Local SEO; SEO audits; Schema / structured data",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    },
+    "choices": [
+      "Technical SEO",
+      "On-page SEO",
+      "Content SEO",
+      "Keyword research & mapping",
+      "Local SEO",
+      "SEO audits",
+      "Schema / structured data"
+    ]
+  },
+  {
+    "id": "PLANLEFT-CERT",
+    "meaning": "google_ads_current_cert",
+    "questions": [
+      "Do you currently hold a Google Ads certification?"
+    ],
+    "patterns": [],
+    "answer": "No",
+    "status": "confirmed",
+    "confirmed_on": "2026-10-27",
+    "scope": {
+      "jobs": [
+        2993
+      ]
+    },
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "PLANLEFT-CERT — Answer: No",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    }
+  },
+  {
+    "id": "SALARY-PERIOD",
+    "meaning": "salary_frequency",
+    "questions": [
+      "Salary payment frequency"
+    ],
+    "patterns": [],
+    "answer": "Yearly",
+    "status": "confirmed",
+    "confirmed_on": "2026-10-27",
+    "scope": {},
+    "source": {
+      "kind": "answers",
+      "path": "openclaw/application-answers.md",
+      "quote": "SALARY-PERIOD — Answer: Yearly",
+      "sha256": "72e2d6318ab486c64e4fbf3e02a0d84aab4673c95d369652585b8fc1b074f82e"
+    }
+  }
+]

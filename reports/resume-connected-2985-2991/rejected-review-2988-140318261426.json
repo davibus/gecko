@@ -1,0 +1,25 @@
+{
+  "request_id": "98dd9f14ac7a4212b813baa4cabd8da4",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Daymark-Health+Patient-Marketing-Manager+00446.docx",
+  "pdf": "C:\\gecko_main\\scratch\\Daymark-Health+scout-2988\\word-export.pdf",
+  "sha256": "3b1e3bf5de2ecbb17afc7d2cae6a85166cfe89f4e5c2e767f3c2663cc67259d3",
+  "pdf_sha256": "afae84f508ff25d0c6278638352069a82fa85bb120907649ee75945291a8af50",
+  "images": [
+    "C:\\gecko_main\\scratch\\Daymark-Health+scout-2988\\visual-98dd9f14ac7a4212b813baa4cabd8da4-page-1.png",
+    "C:\\gecko_main\\scratch\\Daymark-Health+scout-2988\\visual-98dd9f14ac7a4212b813baa4cabd8da4-page-2.png"
+  ],
+  "decision_path": "C:\\gecko_main\\scratch\\Daymark-Health+scout-2988\\visual-review-98dd9f14ac7a4212b813baa4cabd8da4.json",
+  "required_checks": [
+    "Both pages readable; no clipping or overlap",
+    "Employment headings and dates align",
+    "Complete sections and appropriate page-two density",
+    "Established PDF layout preserved"
+  ],
+  "decision_example": {
+    "request_id": "98dd9f14ac7a4212b813baa4cabd8da4",
+    "sha256": "3b1e3bf5de2ecbb17afc7d2cae6a85166cfe89f4e5c2e767f3c2663cc67259d3",
+    "pdf_sha256": "afae84f508ff25d0c6278638352069a82fa85bb120907649ee75945291a8af50",
+    "approved": true,
+    "reason": "Describe checks performed"
+  }
+}

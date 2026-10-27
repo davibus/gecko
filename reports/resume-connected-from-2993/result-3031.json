@@ -1,0 +1,54 @@
+{
+  "id": 3031,
+  "company": "Pave",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1GLeNYUN8QPGc0uYWoh9NToPItnorx30L/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Pave+Marketing-Communications-Lead+00479.docx",
+  "started_at": "2026-10-26T15:49:33.376715+00:00",
+  "completed_at": "2026-10-26T15:52:15.528767+00:00",
+  "elapsed_seconds": 162.152062,
+  "generation_seconds": 29.85482390000834,
+  "delivery_seconds": 6.013371299981372,
+  "tracker_seconds": 33.91365999999107,
+  "readback": {
+    "Scout ID": 3031,
+    "Company": "Pave",
+    "Job Title": "Marketing Communications Lead",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1GLeNYUN8QPGc0uYWoh9NToPItnorx30L/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1283",
+  "hyperlink_target": "https://docs.google.com/document/d/1GLeNYUN8QPGc0uYWoh9NToPItnorx30L/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 162.1521,
+    "active_seconds": 82.0311,
+    "review_wait_seconds": 80.121,
+    "phases_seconds": {
+      "source_loading": 0.0489,
+      "tailoring": 1.1356,
+      "document_creation": 3.6319,
+      "word_pdf_validation": 9.4176,
+      "fitting_retries": 0.1331,
+      "factual_review": 0.0,
+      "review_wait": 80.121,
+      "tracker_sync": 33.9126,
+      "drive_delivery": 6.0079
+    },
+    "counts": {
+      "source_loading": 84,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

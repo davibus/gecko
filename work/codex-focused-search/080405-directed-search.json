@@ -1,0 +1,208 @@
+{
+  "payload": {
+    "query": "\"paid search\" remote site:jobs.jobvite.com",
+    "limit": 50,
+    "sources": [
+      "web"
+    ]
+  },
+  "results": [
+    {
+      "url": "https://jobs.jobvite.com/neilpateldigital/job/oHxkAfwS",
+      "title": "NP Digital Careers - Manager, Paid Search - Jobvite",
+      "description": "NP Digital is seeking an energetic, data-driven, and innovative Manager, Paid Search to join our remote Paid Media team. The ideal candidate has 3-5 years ...",
+      "position": 1
+    },
+    {
+      "url": "https://jobs.jobvite.com/neilpateldigital",
+      "title": "NP Digital Careers - Jobvite",
+      "description": "Featured Jobs · Campaign Manager, Paid Search. Philippines · Campaign Manager, Paid Social. Philippines · Digital Marketing Specialist. Canada · Manager, Paid Media.",
+      "position": 2
+    },
+    {
+      "url": "https://jobs.jobvite.com/neilpateldigital/job/oe7LAfwq",
+      "title": "Specialist, Paid Media - NP Digital Careers - Jobvite",
+      "description": "The ideal candidate has 1-2 years of managing paid search budgets of over $280k per month and understands what it takes to manage a large book of business. As ...",
+      "position": 3
+    },
+    {
+      "url": "https://jobs.jobvite.com/neilpateldigital/job/oYlOAfwr",
+      "title": "Manager, Paid Social - NP Digital Careers - Jobvite",
+      "description": "NP Digital is seeking an energetic, data-driven, and innovative Manager, Paid Social to join our remote Paid Media team. ... paid search, programmatic, and SEO ...",
+      "position": 4
+    },
+    {
+      "url": "https://jobs.jobvite.com/neilpateldigital/job/o91mzfwP",
+      "title": "NP Digital Careers - Digital Marketing Specialist - Jobvite",
+      "description": "... paid search; Experience creating strategic digital plans; Facebook Blueprint Certification (Media Buying) or other professional program completions ...",
+      "position": 5
+    },
+    {
+      "url": "https://jobs.jobvite.com/neilpateldigital/job/oBdNAfwV",
+      "title": "Strategist, Paid Media - NP Digital Careers - Jobvite",
+      "description": "Paid search & shopping experience; Conversion Rate Optimization (CRO) experience; Landing page platforms – Unbounce. ABOUT YOUR GROWTH. As an organization we ...",
+      "position": 6
+    },
+    {
+      "url": "https://jobs.jobvite.com/ninjaone/job/oMPMAfwH",
+      "title": "NinjaOne Careers - Senior Manager, Performance Acquisition - Jobvite",
+      "description": "You will lead a team responsible for paid search, affiliate marketing, and directory programs, driving qualified demos, pipeline, and revenue across regions and ...",
+      "position": 7
+    },
+    {
+      "url": "https://jobs.jobvite.com/neilpateldigital/job/oQCAAfwm",
+      "title": "NP Digital Careers - Senior Specialist, Performance Marketing",
+      "description": "Integrate multi-channel campaigns (paid search, social, programmatic, video) to drive cohesive performance outcomes; Present insights, reports, and strategic ...",
+      "position": 8
+    },
+    {
+      "url": "https://jobs.jobvite.com/asus/job/oeePAfwB",
+      "title": "Senior B2B Digital Marketing Specialist - ASUS USA - Jobvite",
+      "description": "Experience supporting B2B digital marketing programs including paid search, LinkedIn advertising, programmatic media, content syndication, industry trade ...",
+      "position": 9
+    },
+    {
+      "url": "https://jobs.jobvite.com/rrpartners/job/otCOAfwd",
+      "title": "Programmatic Specialist - R&R Partners Careers - Jobvite",
+      "description": "You can manage campaigns across programmatic DSPs, paid social, and paid search with confidence. You have your own perspective on what is working and why ...",
+      "position": 10
+    },
+    {
+      "url": "https://jobs.jobvite.com/goodwaygroup/job/ojMShfwY",
+      "title": "Goodway Group Careers - Associate Director - Client Experience - Jobvite",
+      "description": "You have a minimum of 7 years of working in paid digital media, either within account management or media, inclusive of Paid Search, Paid Social, and ...",
+      "position": 11
+    },
+    {
+      "url": "https://jobs.jobvite.com/rrpartners/job/oqmVAfw1",
+      "title": "Senior Media Analyst - R&R Partners Careers - Jobvite",
+      "description": "LOCATION: Remote or Hybrid in eligible states ... When you see something in the data that might affect paid search, paid social, or programmatic strategy, say so.",
+      "position": 12
+    },
+    {
+      "url": "https://jobs.jobvite.com/mmgyglobal-careers/job/ou1OAfwD",
+      "title": "MMGY Global Careers - Media Buyer - Jobvite",
+      "description": "Key Experience & Skills Needed: 2+ years of media experience, with hands-on experience in at least one channel such as programmatic, paid social, paid search or ...",
+      "position": 13
+    },
+    {
+      "url": "https://jobs.jobvite.com/biomarin/job/o1zTAfwN",
+      "title": "BioMarin Pharmaceutical Inc. Careers - Director, Media Strategy and ...",
+      "description": "Strong knowledge of digital media channels and planning principles, including paid search, paid social, programmatic, video/CTV, endemic media, non-endemic ...",
+      "position": 14
+    },
+    {
+      "url": "https://jobs.jobvite.com/mmgyglobal-careers/job/oqstAfwF",
+      "title": "MMGY Global Careers - Senior Media Strategy Analyst - Jobvite",
+      "description": "Collaborate with MMGY Account, Media, Social, Paid Search, Creative, and MarTech teams to understand available client data sources, tools, and partnerships ...",
+      "position": 15
+    }
+  ],
+  "candidates": [
+    {
+      "url": "https://jobs.jobvite.com/neilpateldigital/job/oHxkAfwS",
+      "title": "NP Digital Careers - Manager, Paid Search - Jobvite",
+      "description": "NP Digital is seeking an energetic, data-driven, and innovative Manager, Paid Search to join our remote Paid Media team. The ideal candidate has 3-5 years ...",
+      "position": 1,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    },
+    {
+      "url": "https://jobs.jobvite.com/neilpateldigital",
+      "title": "NP Digital Careers - Jobvite",
+      "description": "Featured Jobs · Campaign Manager, Paid Search. Philippines · Campaign Manager, Paid Social. Philippines · Digital Marketing Specialist. Canada · Manager, Paid Media.",
+      "position": 2,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    },
+    {
+      "url": "https://jobs.jobvite.com/neilpateldigital/job/oe7LAfwq",
+      "title": "Specialist, Paid Media - NP Digital Careers - Jobvite",
+      "description": "The ideal candidate has 1-2 years of managing paid search budgets of over $280k per month and understands what it takes to manage a large book of business. As ...",
+      "position": 3,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    },
+    {
+      "url": "https://jobs.jobvite.com/neilpateldigital/job/oYlOAfwr",
+      "title": "Manager, Paid Social - NP Digital Careers - Jobvite",
+      "description": "NP Digital is seeking an energetic, data-driven, and innovative Manager, Paid Social to join our remote Paid Media team. ... paid search, programmatic, and SEO ...",
+      "position": 4,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    },
+    {
+      "url": "https://jobs.jobvite.com/neilpateldigital/job/o91mzfwP",
+      "title": "NP Digital Careers - Digital Marketing Specialist - Jobvite",
+      "description": "... paid search; Experience creating strategic digital plans; Facebook Blueprint Certification (Media Buying) or other professional program completions ...",
+      "position": 5,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    },
+    {
+      "url": "https://jobs.jobvite.com/neilpateldigital/job/oBdNAfwV",
+      "title": "Strategist, Paid Media - NP Digital Careers - Jobvite",
+      "description": "Paid search & shopping experience; Conversion Rate Optimization (CRO) experience; Landing page platforms – Unbounce. ABOUT YOUR GROWTH. As an organization we ...",
+      "position": 6,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    },
+    {
+      "url": "https://jobs.jobvite.com/ninjaone/job/oMPMAfwH",
+      "title": "NinjaOne Careers - Senior Manager, Performance Acquisition - Jobvite",
+      "description": "You will lead a team responsible for paid search, affiliate marketing, and directory programs, driving qualified demos, pipeline, and revenue across regions and ...",
+      "position": 7,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    },
+    {
+      "url": "https://jobs.jobvite.com/neilpateldigital/job/oQCAAfwm",
+      "title": "NP Digital Careers - Senior Specialist, Performance Marketing",
+      "description": "Integrate multi-channel campaigns (paid search, social, programmatic, video) to drive cohesive performance outcomes; Present insights, reports, and strategic ...",
+      "position": 8,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    },
+    {
+      "url": "https://jobs.jobvite.com/asus/job/oeePAfwB",
+      "title": "Senior B2B Digital Marketing Specialist - ASUS USA - Jobvite",
+      "description": "Experience supporting B2B digital marketing programs including paid search, LinkedIn advertising, programmatic media, content syndication, industry trade ...",
+      "position": 9,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    },
+    {
+      "url": "https://jobs.jobvite.com/rrpartners/job/otCOAfwd",
+      "title": "Programmatic Specialist - R&R Partners Careers - Jobvite",
+      "description": "You can manage campaigns across programmatic DSPs, paid social, and paid search with confidence. You have your own perspective on what is working and why ...",
+      "position": 10,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    },
+    {
+      "url": "https://jobs.jobvite.com/goodwaygroup/job/ojMShfwY",
+      "title": "Goodway Group Careers - Associate Director - Client Experience - Jobvite",
+      "description": "You have a minimum of 7 years of working in paid digital media, either within account management or media, inclusive of Paid Search, Paid Social, and ...",
+      "position": 11,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    },
+    {
+      "url": "https://jobs.jobvite.com/rrpartners/job/oqmVAfw1",
+      "title": "Senior Media Analyst - R&R Partners Careers - Jobvite",
+      "description": "LOCATION: Remote or Hybrid in eligible states ... When you see something in the data that might affect paid search, paid social, or programmatic strategy, say so.",
+      "position": 12,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    },
+    {
+      "url": "https://jobs.jobvite.com/mmgyglobal-careers/job/ou1OAfwD",
+      "title": "MMGY Global Careers - Media Buyer - Jobvite",
+      "description": "Key Experience & Skills Needed: 2+ years of media experience, with hands-on experience in at least one channel such as programmatic, paid social, paid search or ...",
+      "position": 13,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    },
+    {
+      "url": "https://jobs.jobvite.com/biomarin/job/o1zTAfwN",
+      "title": "BioMarin Pharmaceutical Inc. Careers - Director, Media Strategy and ...",
+      "description": "Strong knowledge of digital media channels and planning principles, including paid search, paid social, programmatic, video/CTV, endemic media, non-endemic ...",
+      "position": 14,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    },
+    {
+      "url": "https://jobs.jobvite.com/mmgyglobal-careers/job/oqstAfwF",
+      "title": "MMGY Global Careers - Senior Media Strategy Analyst - Jobvite",
+      "description": "Collaborate with MMGY Account, Media, Social, Paid Search, Creative, and MarTech teams to understand available client data sources, tools, and partnerships ...",
+      "position": 15,
+      "actual_query": "\"paid search\" remote site:jobs.jobvite.com"
+    }
+  ]
+}

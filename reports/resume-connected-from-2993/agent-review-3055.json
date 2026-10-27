@@ -1,0 +1,67 @@
+{
+  "spec": {
+    "headline": "Content & Audience Strategy | Search Visibility | Digital Marketing Insights",
+    "headline_rationale": "The Jobgether content posting requires editorial planning, SEO collaboration, audience insight and performance evaluation. Use supported multi-format content, SEO consulting and data work. Similarities to Influ2's description are noted; preserve canonical record identity and duplicate safeguards rather than inventing an employer alias.",
+    "summary": "Content-oriented digital marketer who pairs audience understanding with search and performance data. Developed content strategy across websites, blogs, mail and email, with attention to timing, placement, context and personalization. Consulted on SEO and on-page optimization, conducted keyword and competitive research, and created digital marketing concepts through graphic design and animation. Agency client work, technical website development and clear reporting provide a practical foundation for aligning content priorities with customer needs and commercial goals.",
+    "factual_review": "Read exact Jobgether Content Marketing Manager posting. E114/E044/E078/E109/E076/E113/E001/E079 support all claims. Job text closely resembles Influ2 record3026, but no authoritative alias is supplied; preserve existing canonical identity and duplicate checks. No invented SaaS editorial tenure, customer-story portfolio, GEO results, nurture program ownership or pipeline lift.",
+    "selected_evidence_ids": [
+      "E001",
+      "E003",
+      "E005",
+      "E006",
+      "E008",
+      "E009",
+      "E018",
+      "E023",
+      "E044",
+      "E043",
+      "E060",
+      "E055",
+      "E063",
+      "E066",
+      "E076",
+      "E078",
+      "E079",
+      "E093",
+      "E096",
+      "E102",
+      "E109",
+      "E114",
+      "E113",
+      "E115"
+    ],
+    "additional_evidence_ids": [
+      "E004",
+      "E010",
+      "E011",
+      "E020",
+      "E072",
+      "E080",
+      "E081",
+      "E082",
+      "E095",
+      "E105",
+      "E116",
+      "E117"
+    ],
+    "tools_platforms": [
+      "Google Search Console",
+      "Google Analytics 4",
+      "Looker Studio",
+      "Excel",
+      "HubSpot",
+      "Salesforce",
+      "Shopify",
+      "JavaScript",
+      "ChatGPT",
+      "Claude"
+    ],
+    "tools_rationale": "Master-supported search, content-adjacent web, CRM and analysis tools without unverified editorial or GEO platforms.",
+    "source_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "description_sha256": "ce8278356cf1098de411b50debecd9f14a83d81e066cbbc7be83802eac13c7da"
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "8556aed5f4fdf6fe8d3719d5278898443da770311e068f349a1c2d38de95a74a"
+}

@@ -1,0 +1,130 @@
+{
+  "payload": {
+    "query": "\"paid search\" remote site:pinpointhq.com",
+    "limit": 50,
+    "sources": [
+      "web"
+    ]
+  },
+  "results": [
+    {
+      "url": "https://magic.pinpointhq.com/en/postings/9c5014bb-169b-467f-a429-636680b8e2e4",
+      "title": "Paid Search Manager - LatAm - Chile | Magic, Inc Careers",
+      "description": "We are seeking an experienced, analytical, and data-driven Paid Search Manager to own and scale our Google Ads and Microsoft (Bing) Ads programs.",
+      "position": 1
+    },
+    {
+      "url": "https://rise-collective.pinpointhq.com/en/postings/39f7d92c-f55a-4213-b8c0-1c8281f01dda",
+      "title": "Senior Digital Media Buyer - Remote - US | Rise Collective Careers",
+      "description": "Google Ads will be a major part of your day-to-day responsibilities, with a particular emphasis on paid search. You will manage and optimize Google Ads ...",
+      "position": 2
+    },
+    {
+      "url": "https://rise-collective.pinpointhq.com/cy/postings/518b3c15-d948-48cb-acca-305070df11dd",
+      "title": "Digital Media Buyer - Remote - US/Canada | Rise Collective Careers",
+      "description": "Strong understanding of paid search, including keyword research, match types, negative keywords, bidding, and search-term optimization; Experience managing ...",
+      "position": 3
+    },
+    {
+      "url": "https://portnox.pinpointhq.com/jobs/576565",
+      "title": "Manager, Digital Demand Generation - Austin, TX | Portnox Careers",
+      "description": "Fully remote. Key Responsibilities. Paid & Digital Demand Generation. Own end-to-end management of paid search campaigns (Google, Bing): keyword strategy, ad ...",
+      "position": 4
+    },
+    {
+      "url": "https://ebiquity.pinpointhq.com/en/postings/68eff417-39e0-4d0a-8fc2-d2015fa547eb",
+      "title": "Associate Director - Digital Media Insights - USA - Ebiquity Careers",
+      "description": "Join Ebiquity in Client Success - Americas, USA - Remote as a Associate Director - Digital Media Insights. ... Paid Search, CTV, Retail Media and Commerce). · The ...",
+      "position": 5
+    },
+    {
+      "url": "https://gravityglobal.pinpointhq.com/en/postings/d7a71916-05a6-474f-b703-8a6c4a05e4d7",
+      "title": "Senior Digital Media Executive - UK Remote | Gravity Global Careers",
+      "description": "UK Remote; Workplace type: Fully remote. Key Responsibilities. Manage and optimise Paid Search and Paid Social campaigns across platforms such as Google Ads ...",
+      "position": 6
+    },
+    {
+      "url": "https://hhglobalnacareers.pinpointhq.com/en/postings/8f41dca0-073f-44c9-ab76-0f0ba4ca0c1b",
+      "title": "Performance Marketing Manager, Search & Social - H&H North ...",
+      "description": "Plan and manage paid campaigns across key channels: Paid Search (Google, Bing), Paid Social (Meta, TikTok, Pinterest), Display, Programmatic, and emerging ...",
+      "position": 7
+    },
+    {
+      "url": "https://centerbase.pinpointhq.com/postings/b2bf13d5-6f4a-4fcf-9217-c977d2d1bb99",
+      "title": "Account Executive - Legalfit - Remote - USA | Centerbase Careers",
+      "description": "Paid search, including PPC and Local Services Ads (LSAs); Reputation management; AI-powered search and discovery; Artificial Intelligence Optimization (AIO) ...",
+      "position": 8
+    },
+    {
+      "url": "https://gravityglobal.pinpointhq.com/postings/0d3c96e6-b78f-49ca-bf29-2ed118573bf3",
+      "title": "Associate Media Director - Texas (Remote) | Gravity Global Careers",
+      "description": "Experience developing cross-channel media plans across programmatic, display, paid social, and paid search. Strong media planning and strategic thinking ...",
+      "position": 9
+    }
+  ],
+  "candidates": [
+    {
+      "url": "https://magic.pinpointhq.com/en/postings/9c5014bb-169b-467f-a429-636680b8e2e4",
+      "title": "Paid Search Manager - LatAm - Chile | Magic, Inc Careers",
+      "description": "We are seeking an experienced, analytical, and data-driven Paid Search Manager to own and scale our Google Ads and Microsoft (Bing) Ads programs.",
+      "position": 1,
+      "actual_query": "\"paid search\" remote site:pinpointhq.com"
+    },
+    {
+      "url": "https://rise-collective.pinpointhq.com/en/postings/39f7d92c-f55a-4213-b8c0-1c8281f01dda",
+      "title": "Senior Digital Media Buyer - Remote - US | Rise Collective Careers",
+      "description": "Google Ads will be a major part of your day-to-day responsibilities, with a particular emphasis on paid search. You will manage and optimize Google Ads ...",
+      "position": 2,
+      "actual_query": "\"paid search\" remote site:pinpointhq.com"
+    },
+    {
+      "url": "https://rise-collective.pinpointhq.com/cy/postings/518b3c15-d948-48cb-acca-305070df11dd",
+      "title": "Digital Media Buyer - Remote - US/Canada | Rise Collective Careers",
+      "description": "Strong understanding of paid search, including keyword research, match types, negative keywords, bidding, and search-term optimization; Experience managing ...",
+      "position": 3,
+      "actual_query": "\"paid search\" remote site:pinpointhq.com"
+    },
+    {
+      "url": "https://portnox.pinpointhq.com/jobs/576565",
+      "title": "Manager, Digital Demand Generation - Austin, TX | Portnox Careers",
+      "description": "Fully remote. Key Responsibilities. Paid & Digital Demand Generation. Own end-to-end management of paid search campaigns (Google, Bing): keyword strategy, ad ...",
+      "position": 4,
+      "actual_query": "\"paid search\" remote site:pinpointhq.com"
+    },
+    {
+      "url": "https://ebiquity.pinpointhq.com/en/postings/68eff417-39e0-4d0a-8fc2-d2015fa547eb",
+      "title": "Associate Director - Digital Media Insights - USA - Ebiquity Careers",
+      "description": "Join Ebiquity in Client Success - Americas, USA - Remote as a Associate Director - Digital Media Insights. ... Paid Search, CTV, Retail Media and Commerce). · The ...",
+      "position": 5,
+      "actual_query": "\"paid search\" remote site:pinpointhq.com"
+    },
+    {
+      "url": "https://gravityglobal.pinpointhq.com/en/postings/d7a71916-05a6-474f-b703-8a6c4a05e4d7",
+      "title": "Senior Digital Media Executive - UK Remote | Gravity Global Careers",
+      "description": "UK Remote; Workplace type: Fully remote. Key Responsibilities. Manage and optimise Paid Search and Paid Social campaigns across platforms such as Google Ads ...",
+      "position": 6,
+      "actual_query": "\"paid search\" remote site:pinpointhq.com"
+    },
+    {
+      "url": "https://hhglobalnacareers.pinpointhq.com/en/postings/8f41dca0-073f-44c9-ab76-0f0ba4ca0c1b",
+      "title": "Performance Marketing Manager, Search & Social - H&H North ...",
+      "description": "Plan and manage paid campaigns across key channels: Paid Search (Google, Bing), Paid Social (Meta, TikTok, Pinterest), Display, Programmatic, and emerging ...",
+      "position": 7,
+      "actual_query": "\"paid search\" remote site:pinpointhq.com"
+    },
+    {
+      "url": "https://centerbase.pinpointhq.com/postings/b2bf13d5-6f4a-4fcf-9217-c977d2d1bb99",
+      "title": "Account Executive - Legalfit - Remote - USA | Centerbase Careers",
+      "description": "Paid search, including PPC and Local Services Ads (LSAs); Reputation management; AI-powered search and discovery; Artificial Intelligence Optimization (AIO) ...",
+      "position": 8,
+      "actual_query": "\"paid search\" remote site:pinpointhq.com"
+    },
+    {
+      "url": "https://gravityglobal.pinpointhq.com/postings/0d3c96e6-b78f-49ca-bf29-2ed118573bf3",
+      "title": "Associate Media Director - Texas (Remote) | Gravity Global Careers",
+      "description": "Experience developing cross-channel media plans across programmatic, display, paid social, and paid search. Strong media planning and strategic thinking ...",
+      "position": 9,
+      "actual_query": "\"paid search\" remote site:pinpointhq.com"
+    }
+  ]
+}

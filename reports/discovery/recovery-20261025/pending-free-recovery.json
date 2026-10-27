@@ -1,0 +1,30 @@
+{
+  "attempts": [
+    {
+      "purpose": "availability of accepted cached posting",
+      "url": "https://www.indeed.com/viewjob?jk=12e37f79cd05bc9a",
+      "status": "temporary_failure",
+      "reason": "HTTP 401"
+    },
+    {
+      "purpose": "recover incomplete pending description",
+      "key": "57c4f3b09d8e838c96eed72cdfc8133bffa34082ae72c7a85bd19ed044d35738",
+      "reason": "Free paths did not yield a complete exact description"
+    },
+    {
+      "purpose": "recover incomplete pending description",
+      "key": "ff185abcb6dc567cd5e547661a18e0f1d3a874dd710c1d2c0223f3a7101728b5",
+      "reason": "Free paths did not yield a complete exact description"
+    },
+    {
+      "purpose": "recover incomplete pending description",
+      "key": "af6c972e5b6c696dd65242daeee93deac8a86fbc8a6834ea594de5afa8c2314b",
+      "reason": "Free paths did not yield a complete exact description"
+    }
+  ],
+  "host_attempts": {
+    "www.adzuna.com": 3
+  },
+  "blocked_sources": {},
+  "ready": []
+}

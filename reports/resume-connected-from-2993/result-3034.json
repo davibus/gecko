@@ -1,0 +1,54 @@
+{
+  "id": 3034,
+  "company": "Triple Whale",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1poe2WneQ_7SOqdzaKHNgzVIU0-G7fS3o/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Triple-Whale+Product-Marketing-Manager,-Launches-&-Core-Platform+00482.docx",
+  "started_at": "2026-10-26T15:56:00.406219+00:00",
+  "completed_at": "2026-10-26T15:57:43.148906+00:00",
+  "elapsed_seconds": 102.742697,
+  "generation_seconds": 19.07670629999484,
+  "delivery_seconds": 6.015241999994032,
+  "tracker_seconds": 33.44632630000706,
+  "readback": {
+    "Scout ID": 3034,
+    "Company": "Triple Whale",
+    "Job Title": "Product Marketing Manager, Launches & Core Platform",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1poe2WneQ_7SOqdzaKHNgzVIU0-G7fS3o/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1286",
+  "hyperlink_target": "https://docs.google.com/document/d/1poe2WneQ_7SOqdzaKHNgzVIU0-G7fS3o/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 102.7427,
+    "active_seconds": 70.207,
+    "review_wait_seconds": 32.5357,
+    "phases_seconds": {
+      "source_loading": 0.0215,
+      "tailoring": 0.8167,
+      "document_creation": 0.7686,
+      "word_pdf_validation": 3.0915,
+      "fitting_retries": 0.0053,
+      "factual_review": 0.0,
+      "review_wait": 32.5357,
+      "tracker_sync": 33.4455,
+      "drive_delivery": 6.0085
+    },
+    "counts": {
+      "source_loading": 48,
+      "tailoring": 2,
+      "document_creation": 1,
+      "word_pdf_validation": 1,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 1,
+      "native_attempts": 1,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

@@ -1,0 +1,158 @@
+[
+  {
+    "id": 3003,
+    "saved_employer": "Blacksmith Agency",
+    "title_evidence": [
+      "PPC Strategist @ Blacksmith Agency"
+    ],
+    "structured_evidence": [
+      "{\"@type\":\"Organization\",\"name\":\"Blacksmith Agency\",\"sameAs\":\"https://blacksmith.agency/\",\"logo\":\"https://app.ashbyhq.com/api/images/org-theme-logo/2c3000f1-2be3-4c20-80e6-e7d251a6efbc/8035c8a8-d83d-4b4c-954a-cd3190f837ca/8678ff69-a99d-4759-b0c2-291ce"
+    ],
+    "verified_employer_names": [
+      "Blacksmith Agency"
+    ],
+    "resolved_employer_name": "Blacksmith Agency",
+    "source_url": "https://jobs.ashbyhq.com/Blacksmith%20Agency/74f99c78-3c41-4d95-8a8c-504536c24148"
+  },
+  {
+    "id": 3010,
+    "saved_employer": "cscgeneration-2",
+    "title_evidence": [
+      "CSC Generation - Vice President, Performance Marketing"
+    ],
+    "structured_evidence": [
+      "{\"@type\" : \"Organization\",\"name\": \"CSC Generation\",\"logo\": \"https://lever-client-logos.s3.us-west-2.amazonaws.com/a2399369-889f-4200-a5ce-1ed0156b7f57-1757343576271.png\"},\"jobLocation\":{\"@type\" : \"Place\",\"address\" : {\"@type\" : \"PostalAddress\",\"addres"
+    ],
+    "verified_employer_names": [
+      "CSC Generation"
+    ],
+    "resolved_employer_name": "CSC Generation",
+    "source_url": "https://jobs.lever.co/cscgeneration-2/8d3064ad-5f3d-4d10-a501-e3e59a2c3f7b"
+  },
+  {
+    "id": 3012,
+    "saved_employer": "jobgether",
+    "title_evidence": [
+      "Jobgether - Manager, Marketing Analytics (Multi-Touch Attribution)"
+    ],
+    "structured_evidence": [
+      "{\"@type\" : \"Organization\",\"name\": \"Jobgether\",\"logo\": \"https://lever-client-logos.s3.us-west-2.amazonaws.com/b9babb10-6786-42c6-a3c5-9eebd25117d5-1762181104361.png\"},\"jobLocation\":{\"@type\" : \"Place\",\"address\" : {\"@type\" : \"PostalAddress\",\"addressLoca"
+    ],
+    "verified_employer_names": [
+      "Jobgether"
+    ],
+    "resolved_employer_name": "Jobgether",
+    "source_url": "https://jobs.lever.co/jobgether/3e90af43-f7f3-4710-adc9-cd3f92244d30"
+  },
+  {
+    "id": 3017,
+    "saved_employer": "monks",
+    "title_evidence": [
+      "Senior Account Manager, SEM (Remote) | Monks"
+    ],
+    "structured_evidence": [],
+    "verified_employer_names": [],
+    "resolved_employer_name": "Monks",
+    "source_url": "https://www.monks.com/careers/6188029004/job?gh_jid=6188029004"
+  },
+  {
+    "id": 3020,
+    "saved_employer": "pavago",
+    "title_evidence": [
+      "Performance Marketing Specialist - Pavago"
+    ],
+    "structured_evidence": [],
+    "verified_employer_names": [],
+    "resolved_employer_name": "Pavago",
+    "source_url": "https://apply.workable.com/j/41E6E77148"
+  },
+  {
+    "id": 3036,
+    "saved_employer": "client-accelerators",
+    "title_evidence": [
+      "Growth Marketing Manager (Remote) - Client Accelerators"
+    ],
+    "structured_evidence": [],
+    "verified_employer_names": [],
+    "resolved_employer_name": "Client Accelerators",
+    "source_url": "https://apply.workable.com/j/73DB6C32F2"
+  },
+  {
+    "id": 3037,
+    "saved_employer": "demandcom",
+    "title_evidence": [
+      "Job Application for Marketing Director (Remote) at Demand.com"
+    ],
+    "structured_evidence": [],
+    "verified_employer_names": [],
+    "resolved_employer_name": "Demand.com",
+    "source_url": "https://job-boards.greenhouse.io/demandcom/jobs/4730376005"
+  },
+  {
+    "id": 3047,
+    "saved_employer": "digital-reach-agency",
+    "title_evidence": [
+      "SEO and Content Marketing Strategist - Contract - Digital Reach Agency"
+    ],
+    "structured_evidence": [],
+    "verified_employer_names": [],
+    "resolved_employer_name": "Digital Reach Agency",
+    "source_url": "https://apply.workable.com/j/D6C7E07408"
+  },
+  {
+    "id": 3057,
+    "saved_employer": "lmg-staffing-solutions",
+    "title_evidence": [
+      "Digital Marketing B2B HubSpot Growth Marketing and Automation Manager (Remote) - LMG Staffing Solutions"
+    ],
+    "structured_evidence": [],
+    "verified_employer_names": [],
+    "resolved_employer_name": "LMG Staffing Solutions",
+    "source_url": "https://apply.workable.com/j/B5CB1ECACD"
+  },
+  {
+    "id": 3058,
+    "saved_employer": "superiorexecutiveandlegalrecruiting",
+    "title_evidence": [
+      "Superior Executive Legal Recruiting - Chief Marketing Officer (CMO) / SVP, Growth / Director of Marketing"
+    ],
+    "structured_evidence": [
+      "{\"@type\" : \"Organization\",\"name\": \"Superior Executive Legal Recruiting\",\"logo\": \"\"},\"jobLocation\":{\"@type\" : \"Place\",\"address\" : {\"@type\" : \"PostalAddress\",\"addressLocality\" : \"Burbank, CA\",\"addressRegion\" : null,\"addressCountry\" : null,\"postalCode\" "
+    ],
+    "verified_employer_names": [
+      "Superior Executive Legal Recruiting"
+    ],
+    "resolved_employer_name": "Superior Executive Legal Recruiting",
+    "source_url": "https://jobs.lever.co/superiorexecutiveandlegalrecruiting/26ee457a-45c8-4453-8a7c-5cec35b54542"
+  },
+  {
+    "id": 3059,
+    "saved_employer": "thinkahead",
+    "title_evidence": [
+      "AHEAD - Field Marketing Manager"
+    ],
+    "structured_evidence": [
+      "{\"@type\" : \"Organization\",\"name\": \"AHEAD\",\"logo\": \"https://lever-client-logos.s3.amazonaws.com/bb19aa03-5cd9-499e-a863-a40a6356c47f-1580314236897.png\"},\"jobLocation\":[{\"@type\" : \"Place\",\"address\" : {\"@type\" : \"PostalAddress\",\"addressLocality\" : \"Atla"
+    ],
+    "verified_employer_names": [
+      "AHEAD"
+    ],
+    "resolved_employer_name": "AHEAD",
+    "source_url": "https://jobs.lever.co/thinkahead/7a41ee7c-d241-46db-bc03-0b8323fdc69f"
+  },
+  {
+    "id": 3060,
+    "saved_employer": "toast",
+    "title_evidence": [
+      "Manager, Marketing Operations - Ad Tech Lead - "
+    ],
+    "structured_evidence": [
+      "{\"@type\":\"Organization\",\"name\":\"Toast\",\"logo\":\"https://d25wby5c7p9100.cloudfront.net/public/uploads/d698635c92a50a0a70d2c9f23ff0beea/companies/logos/d698635c92a50a0a70d2c9f23ff0beea/thumb/toastlogo.png?1641234910\"},\"identifier\":{\"@type\":\"PropertyValu"
+    ],
+    "verified_employer_names": [
+      "Toast"
+    ],
+    "resolved_employer_name": "Toast",
+    "source_url": "https://careers.toasttab.com/jobs?gh_jid=8261407"
+  }
+]

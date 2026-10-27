@@ -1,0 +1,440 @@
+{
+  "id": "job",
+  "sufficient": true,
+  "reason": "Complete duties and qualifications support assessment. Strong marketing, analytics and leadership evidence; advanced HubSpot operations, enrichment tools, partner marketing and events remain unverified. Missing evidence does not prove absent capabilities or credentials.",
+  "blockers": [],
+  "categories": {
+    "responsibilities": [
+      {
+        "requirement": "Plan and run integrated campaigns across awareness, consideration, and conversion stages",
+        "support": 1,
+        "evidence": [
+          "Designed and interpreted funnel testing across reach, comparison, conversion, micro-conversion, purchase, and internal customer lifetime value"
+        ],
+        "reason": "Demonstrates integrated campaign analysis and execution across funnel stages."
+      },
+      {
+        "requirement": "Build nurture programs that move prospects from first visit to sales conversation",
+        "support": 0.5,
+        "evidence": [
+          "Developed and managed content strategy covering timing, content type, placement across blogs, mail, email, and the website, content focus, and personalization"
+        ],
+        "reason": "Personalized multichannel content transfers; automated nurture programs are unverified."
+      },
+      {
+        "requirement": "Partner with the Growth team to define lead stages, scoring, and handoff to sales",
+        "support": 0.5,
+        "evidence": [
+          "Generated and tracked prospective clients and business associates using a marketing-oriented database"
+        ],
+        "reason": "Prospect tracking transfers; lead scoring and formal sales handoffs are unverified."
+      },
+      {
+        "requirement": "Own campaign calendars, budgets, and launch timelines",
+        "support": 0.5,
+        "evidence": [
+          "Leads account activation, campaign builds and structures, keyword and negative-keyword strategy, ad copy, audience segmentation, bid testing, budget pacing"
+        ],
+        "reason": "Campaign launches and budgets are established; calendar and timeline ownership are less explicit."
+      },
+      {
+        "requirement": "Write and produce campaign content for email, nurture, webinars, and events",
+        "support": 0.5,
+        "evidence": [
+          "Developed and managed content strategy covering timing, content type, placement across blogs, mail, email, and the website, content focus, and personalization"
+        ],
+        "reason": "Email and personalized content transfer; webinar and event content are unverified."
+      },
+      {
+        "requirement": "Maintain database health, segmentation, deliverability, and contact property standards",
+        "support": 0.5,
+        "evidence": [
+          "Developed and maintained multiple company databases to improve consistency across departments and support accurate financial and marketing reporting"
+        ],
+        "reason": "Database quality is demonstrated; contact standards and deliverability operations are unverified."
+      },
+      {
+        "requirement": "Keep marketing and CRM data aligned so reporting stays accurate and trusted",
+        "support": 1,
+        "evidence": [
+          "Installed Go High Level. I then connected this to Service Titan, Power BI, and all the internal system that were using working closely with the Director of Marketing"
+        ],
+        "reason": "Connected CRM, internal systems and reporting directly support data alignment."
+      },
+      {
+        "requirement": "Define and refine our ideal customer profile and buyer personas with marketing and growth leadership",
+        "support": 0.5,
+        "evidence": [
+          "Conducted keyword, audience, and competitive research to develop targeting, messaging, campaign, and growth recommendations"
+        ],
+        "reason": "Audience research transfers; explicit ICP and buyer-persona development are unverified."
+      },
+      {
+        "requirement": "Segment the database for targeted campaigns and account-based outreach",
+        "support": 0.5,
+        "evidence": [
+          "Leads account activation, campaign builds and structures, keyword and negative-keyword strategy, ad copy, audience segmentation"
+        ],
+        "reason": "Campaign audience segmentation transfers; account-based database outreach is unverified."
+      },
+      {
+        "requirement": "Track database growth, coverage, and quality over time",
+        "support": 0.5,
+        "evidence": [
+          "Developed and maintained multiple company databases to improve consistency across departments and support accurate financial and marketing reporting"
+        ],
+        "reason": "Database maintenance and quality transfer; coverage and growth monitoring are unverified."
+      },
+      {
+        "requirement": "Write and publish web pages, landing pages, and conversion paths on blastx.com",
+        "support": 1,
+        "evidence": [
+          "Landing-page drafting: Converts an offer, audience, conversion goal, and supporting evidence into structured landing-page copy and an editable browser preview."
+        ],
+        "reason": "Demonstrates conversion-focused page copy and implementation capability."
+      },
+      {
+        "requirement": "Partner with our designer on layout and creative while owning copy, structure, and conversion goals",
+        "support": 1,
+        "evidence": [
+          "Worked closely with the Web Dev team and the content team to create custom landing pages and custom content for PMAX campaigns"
+        ],
+        "reason": "Directly demonstrates collaborative landing-page and campaign-content development."
+      },
+      {
+        "requirement": "Apply SEO and AI search best practices to site content and Insights articles",
+        "support": 0.5,
+        "evidence": [
+          "Used ChatGPT within Google Sheets to rewrite Shopify product descriptions for SEO and remove duplicate content"
+        ],
+        "reason": "SEO content optimization is established; AI search visibility practices are unverified."
+      },
+      {
+        "requirement": "Test pages, forms, and calls to action to improve conversion rates",
+        "support": 1,
+        "evidence": [
+          "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing"
+        ],
+        "reason": "Landing-page optimization and conversion experimentation directly support this work."
+      },
+      {
+        "requirement": "Grow organic reach through SEO, LinkedIn, email, and content distribution",
+        "support": 0.5,
+        "evidence": [
+          "Developed and managed content strategy covering timing, content type, placement across blogs, mail, email, and the website, content focus, and personalization"
+        ],
+        "reason": "Content distribution transfers; demonstrated organic LinkedIn growth is unverified."
+      },
+      {
+        "requirement": "Direct paid media contractors across Google Ads and LinkedIn, setting strategy, budgets, and targets",
+        "support": 0.5,
+        "evidence": [
+          "Consolidated work that had been divided among five agencies into a comprehensive, scalable in-house PPC strategy"
+        ],
+        "reason": "Agency strategy transfers; directing LinkedIn campaigns is not demonstrated."
+      },
+      {
+        "requirement": "Review paid performance regularly and reallocate spend toward what converts",
+        "support": 1,
+        "evidence": [
+          "Used regression models, prior-year/prior-period data, holdouts, geo-promotional tests, scale-up/down analysis, and budget reallocation scenarios to forecast investment outcomes"
+        ],
+        "reason": "Direct evidence of performance analysis and budget reallocation decisions."
+      },
+      {
+        "requirement": "Manage retargeting and audience strategy across channels",
+        "support": 1,
+        "evidence": [
+          "Managed 150+ campaigns across Google Ads, Microsoft Ads, Amazon, search, shopping, display, video, remarketing, mobile, social, local, and email"
+        ],
+        "reason": "Demonstrates multichannel campaign and remarketing management."
+      },
+      {
+        "requirement": "Build and run co-marketing programs with Adobe to grow brand awareness and consideration",
+        "support": 0,
+        "evidence": [],
+        "reason": "Technology partner co-marketing is not demonstrated."
+      },
+      {
+        "requirement": "Use Adobe partner resources, listings, and joint campaigns to reach new audiences",
+        "support": 0,
+        "evidence": [],
+        "reason": "Adobe partner-program marketing is unverified; Adobe software use is insufficient."
+      },
+      {
+        "requirement": "Plan, promote, and run webinars, virtual events, and online roundtables from concept to follow-up",
+        "support": 0,
+        "evidence": [],
+        "reason": "Webinar, virtual-event and roundtable production are not demonstrated."
+      },
+      {
+        "requirement": "Coordinate speakers, including our Adobe Champions and consulting experts, and support event content",
+        "support": 0,
+        "evidence": [],
+        "reason": "Speaker coordination and event-content production are unverified."
+      },
+      {
+        "requirement": "Turn event attendance into pipeline through registration, nurture, and post-event follow-up in HubSpot",
+        "support": 0,
+        "evidence": [],
+        "reason": "Event-to-pipeline workflows and HubSpot event nurturing are not demonstrated."
+      },
+      {
+        "requirement": "Support presence at industry conferences and Adobe events",
+        "support": 0,
+        "evidence": [],
+        "reason": "Conference and partner-event support are unverified."
+      },
+      {
+        "requirement": "Own marketing performance reporting from traffic to qualified pipeline",
+        "support": 0.5,
+        "evidence": [
+          "Built automated weekly reporting across 10+ channels using Python, Databricks, SQL, blended Excel data, and Funnel.io to improve accuracy and decision speed"
+        ],
+        "reason": "Marketing reporting is established; qualified-pipeline reporting is unverified."
+      },
+      {
+        "requirement": "Analyze campaign results and turn findings into specific optimizations and impact",
+        "support": 1,
+        "evidence": [
+          "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review"
+        ],
+        "reason": "Demonstrates optimization with measurable commercial results."
+      },
+      {
+        "requirement": "Maintain tracking, UTM standards, and attribution across GA4, Adobe Analytics/CJA and HubSpot as well as our CRM",
+        "support": 0.5,
+        "evidence": [
+          "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+        ],
+        "reason": "GA4 tracking is demonstrated; CJA, HubSpot attribution and UTM governance are unverified."
+      },
+      {
+        "requirement": "Share results and recommendations with marketing and executive leadership",
+        "support": 1,
+        "evidence": [
+          "Created annual projections and KPI reporting with senior leadership and used platform, analytics, Magento, accounting, and competitive data to guide budget and campaign decisions"
+        ],
+        "reason": "Direct evidence of leadership reporting and decision support."
+      },
+      {
+        "requirement": "Scope, hire, and manage contractors for paid media and specialized digital needs",
+        "support": 0.5,
+        "evidence": [
+          "Helped facilitate the transition of four to five agency relationships in-house, evaluating agency cost structures, prioritization, automation approaches"
+        ],
+        "reason": "Agency evaluation and coordination transfer; contractor hiring is unverified."
+      },
+      {
+        "requirement": "Set clear deliverables, review work quality, and hold partners accountable to results",
+        "support": 0.5,
+        "evidence": [
+          "Developed a repeatable Google Ads account-management system that maintained consistent service quality across clients regardless of spend; the system was adopted across the agency"
+        ],
+        "reason": "Quality standards transfer; explicit contractor deliverables and accountability are unverified."
+      },
+      {
+        "requirement": "Evaluate and recommend MarTech tools that improve marketing performance",
+        "support": 1,
+        "evidence": [
+          "Installed Go High Level and trained employees on how to use it correctly. Made sure that it integrated with all current system including Power BI for reporting purposes"
+        ],
+        "reason": "Demonstrates MarTech selection, implementation, integration and enablement."
+      }
+    ],
+    "required": [
+      {
+        "requirement": "Proven record of building inbound programs that generate qualified pipeline",
+        "support": 0.5,
+        "evidence": [
+          "Set up and managed more than 75 Google Ads/AdWords accounts with combined monthly spend of more than $476,000, supporting lead generation and multichannel client programs"
+        ],
+        "reason": "Lead generation is demonstrated; owned inbound programs with qualified-pipeline results are unverified."
+      },
+      {
+        "requirement": "Advanced hands-on experience with HubSpot Marketing Hub (workflows, lists, forms, landing pages, and reporting) is required",
+        "support": 0,
+        "evidence": [],
+        "reason": "HubSpot is listed, but advanced Marketing Hub implementation is not demonstrated."
+      },
+      {
+        "requirement": "Experience building and managing ICP and target account databases with tools such as Apollo, ZoomInfo, or similar",
+        "support": 0.5,
+        "evidence": [
+          "Generated and tracked prospective clients and business associates using a marketing-oriented database"
+        ],
+        "reason": "Prospect database work transfers; ICP enrichment and specialist prospecting tools are unverified."
+      },
+      {
+        "requirement": "Working knowledge of paid search and paid social, including Google Ads and LinkedIn Campaign Manager",
+        "support": 0.5,
+        "evidence": [
+          "Managed all marketing platforms: Google Ads, Bing Ads, Amazon, Facebook, Instagram, and TikTok with a 400k/month budget"
+        ],
+        "reason": "Paid search and social are demonstrated; LinkedIn Campaign Manager use is unverified."
+      },
+      {
+        "requirement": "Strong SEO skills and comfort with GA4, Google Search Console, and SEMrush or similar tools",
+        "support": 1,
+        "evidence": [
+          "Configured Google Ads, GA4, and Google Search Console, and developed a Service Titan CRM program"
+        ],
+        "reason": "Direct GA4 and Search Console implementation complements demonstrated SEO work."
+      },
+      {
+        "requirement": "Excellent conversion-focused copywriting for web, landing pages, and email",
+        "support": 0.5,
+        "evidence": [
+          "Landing-page drafting: Converts an offer, audience, conversion goal, and supporting evidence into structured landing-page copy and an editable browser preview."
+        ],
+        "reason": "Conversion-focused page writing is demonstrated; equivalent email copy outcomes are less explicit."
+      },
+      {
+        "requirement": "Experience with technology partner co-marketing (Adobe preferred) and running webinars and virtual events",
+        "support": 0,
+        "evidence": [],
+        "reason": "Neither technology co-marketing nor webinar and virtual-event delivery is demonstrated."
+      },
+      {
+        "requirement": "Experience with WordPress and basic HTML",
+        "support": 0.5,
+        "evidence": [
+          "Designed and built the firm’s website using HTML5, CSS3, and JavaScript"
+        ],
+        "reason": "Hands-on HTML is demonstrated; WordPress implementation is only listed."
+      },
+      {
+        "requirement": "Comfort with dashboards, attribution, A/B testing, and funnel metrics",
+        "support": 1,
+        "evidence": [
+          "Built conversion and attribution models and designed A/B and multivariate tests across multiple levels of the marketing funnel"
+        ],
+        "reason": "Demonstrates attribution, experimentation and funnel measurement."
+      },
+      {
+        "requirement": "Bachelor’s degree in marketing, Communications, Business, or a related field",
+        "support": 0.5,
+        "evidence": [
+          "Business Management Degree - Marketing Emphasis"
+        ],
+        "reason": "Relevant degree is documented; the bachelor's level is not explicitly stated."
+      },
+      {
+        "requirement": "This is a full-time remote opportunity that requires minimal travel for conferences and networking events.",
+        "support": 0,
+        "evidence": [],
+        "reason": "Travel availability and willingness are unverified."
+      },
+      {
+        "requirement": "This role is fully remote for US-based teammates only.",
+        "support": 1,
+        "evidence": [
+          "American Fork, UT"
+        ],
+        "reason": "The supplied resume identifies a United States home location."
+      },
+      {
+        "requirement": "currently authorized to work in the United States without sponsorship",
+        "support": 1,
+        "evidence": [
+          "Authorized to work in the United States for any employer"
+        ],
+        "reason": "Directly supports current unrestricted U.S. employment authorization."
+      },
+      {
+        "requirement": "Cross-Functional Collaboration: Works effectively with designers, consultants, and the Growth team",
+        "support": 1,
+        "evidence": [
+          "Worked with all heads of department (IT, Operations, Finance, Product Dev, HR, Sales, etc)"
+        ],
+        "reason": "Demonstrates broad collaboration across business and technical functions."
+      },
+      {
+        "requirement": "Clear Communication: Turns results into plain-language insights leadership can act on",
+        "support": 1,
+        "evidence": [
+          "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+        ],
+        "reason": "Direct evidence of communicating findings and recommendations to decision-makers."
+      },
+      {
+        "requirement": "Agility & Prioritization: Thrives on a small team in a fast-paced environment with changing priorities",
+        "support": 1,
+        "evidence": [
+          "Applied project-by-project cost-benefit analysis to prioritize growth initiatives, marketplace opportunities, product investments, and operational improvements"
+        ],
+        "reason": "Demonstrates practical prioritization across changing commercial initiatives."
+      },
+      {
+        "requirement": "Ownership & Accountability: Owns results end-to-end and follows through on commitments",
+        "support": 1,
+        "evidence": [
+          "Builds and develops teams, documents lessons learned, resolves issues, respectfully challenges assumptions, takes ownership of setbacks"
+        ],
+        "reason": "Explicitly demonstrates accountability and problem ownership."
+      },
+      {
+        "requirement": "Passion for Continuous Learning: Stays ahead of digital marketing, AI search, and MarTech trends",
+        "support": 0.5,
+        "evidence": [
+          "Uses AI to build on foundational expertise, expand output, and accelerate content production, website and application development, analysis, and marketing workflows."
+        ],
+        "reason": "Applied learning in AI and MarTech is demonstrated; AI search expertise remains unverified."
+      }
+    ],
+    "seniority": [
+      {
+        "requirement": "6-8+ years in B2B digital marketing, including 3+ years in a senior role",
+        "support": 0.5,
+        "evidence": [
+          "Digital marketing and marketing technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce, professional services"
+        ],
+        "reason": "Extensive leadership is established; six to eight years specifically in B2B is not verified."
+      }
+    ],
+    "industry": [
+      {
+        "requirement": "ideally in professional services, consulting, or MarTech",
+        "support": 1,
+        "evidence": [
+          "Worked at a wealth management firm with more than 20 attorneys, financial planners, and CPAs"
+        ],
+        "reason": "Direct professional-services employment supports the desired sector background."
+      }
+    ],
+    "preferred": []
+  },
+  "score": 62.37,
+  "accepted": true,
+  "status": "reviewed",
+  "failed_rules": [],
+  "category_percentages": {
+    "responsibilities": 56.45,
+    "required": 63.89,
+    "seniority": 50.0,
+    "industry": 100.0,
+    "preferred": null
+  },
+  "policy": "master-evidence-v2",
+  "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+  "job": {
+    "id": "job",
+    "title": "Senior Digital Marketing Manager",
+    "company": "BlastX Consulting",
+    "url": "https://blastx.applytojob.com/apply/giWz0W2jDZ/Senior-Digital-Marketing-Manager"
+  },
+  "description_sha256": "0e72e889b2209e8c69ed7868d31f5843842513e0d94daa7a6baad8ee07a0bb00",
+  "runner": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a1739c-6e22-7602-8835-f75f35785938",
+    "verified_at": "2026-10-25T15:11:25.875899+00:00"
+  },
+  "thresholds": {
+    "minimum_score": 60,
+    "minimum_responsibilities_match": 50,
+    "minimum_required_skills_match": 50
+  },
+  "cached": true
+}

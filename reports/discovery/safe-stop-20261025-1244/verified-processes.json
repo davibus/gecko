@@ -1,0 +1,65 @@
+﻿[
+    {
+        "ProcessId":  26180,
+        "ParentProcessId":  30800,
+        "Name":  "python.exe",
+        "CreationDate":  "\/Date(1792953539124)\/",
+        "CommandLine":  "\"C:\\gecko_main\\.tools\\dashboard-python\\Scripts\\python.exe\" work/directed_jobs.py direct"
+    },
+    {
+        "ProcessId":  30996,
+        "ParentProcessId":  26180,
+        "Name":  "python.exe",
+        "CreationDate":  "\/Date(1792953539145)\/",
+        "CommandLine":  "\"C:\\gecko_main\\.tools\\dashboard-python\\Scripts\\python.exe\" work/directed_jobs.py direct"
+    },
+    {
+        "ProcessId":  32592,
+        "ParentProcessId":  30996,
+        "Name":  "codex.exe",
+        "CreationDate":  "\/Date(1792953867909)\/",
+        "CommandLine":  "C:\\Users\\DCALL\\AppData\\Local\\OpenAI\\Codex\\bin\\2993767bd1dfb009\\codex.exe exec --model gpt-6.1-sol -c model_reasoning_effort=\\\"medium\\\" --sandbox read-only --json -"
+    },
+    {
+        "ProcessId":  20548,
+        "ParentProcessId":  32592,
+        "Name":  "conhost.exe",
+        "CreationDate":  "\/Date(1792953867917)\/",
+        "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+    },
+    {
+        "ProcessId":  24416,
+        "ParentProcessId":  32592,
+        "Name":  "node.exe",
+        "CreationDate":  "\/Date(1792953868957)\/",
+        "CommandLine":  "\"C:\\Users\\DCALL\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\1fb7137c46617d50\\bin\\node.exe\" C:\\Users\\DCALL\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\1fb7137c46617d50\\bin\\node_modules\\@oai\\cua-repl\\bin\\cua-repl.mjs"
+    },
+    {
+        "ProcessId":  26060,
+        "ParentProcessId":  32592,
+        "Name":  "node_repl.exe",
+        "CreationDate":  "\/Date(1792953868968)\/",
+        "CommandLine":  "\"C:\\Users\\DCALL\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\1fb7137c46617d50\\bin\\node_repl.exe\""
+    },
+    {
+        "ProcessId":  32668,
+        "ParentProcessId":  24416,
+        "Name":  "conhost.exe",
+        "CreationDate":  "\/Date(1792953868970)\/",
+        "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+    },
+    {
+        "ProcessId":  32728,
+        "ParentProcessId":  26060,
+        "Name":  "conhost.exe",
+        "CreationDate":  "\/Date(1792953868986)\/",
+        "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+    },
+    {
+        "ProcessId":  28016,
+        "ParentProcessId":  24416,
+        "Name":  "node_repl.exe",
+        "CreationDate":  "\/Date(1792953869249)\/",
+        "CommandLine":  "C:\\Users\\DCALL\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\1fb7137c46617d50\\bin\\node_repl.exe"
+    }
+]

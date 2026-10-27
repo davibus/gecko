@@ -26,8 +26,9 @@ def verified_context(session_id, session_root=None):
     raise RuntimeError('Codex runtime model and reasoning could not be verified; no fallback was used.')
 
 class CodexJsonClient:
-    def __init__(self, on_process=None):
+    def __init__(self, on_process=None, timeout_seconds=240):
         self.on_process = on_process
+        self.timeout_seconds = timeout_seconds
 
     def complete(self, *, model, system, payload):
         if model != MODEL:
@@ -46,7 +47,7 @@ class CodexJsonClient:
         if self.on_process:
             self.on_process(process)
         try:
-            stdout, stderr = process.communicate(prompt,timeout=240)
+            stdout, stderr = process.communicate(prompt,timeout=self.timeout_seconds)
         except subprocess.TimeoutExpired:
             if os.name=='nt':
                 try:

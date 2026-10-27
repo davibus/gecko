@@ -1,0 +1,54 @@
+{
+  "id": 3037,
+  "company": "Demand.com",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1TAYugLfxj4W8BGxZWXEDi7EmtJx7C7WQ/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Demand.com+Marketing-Director-(Remote)+00485.docx",
+  "started_at": "2026-10-26T16:01:59.532987+00:00",
+  "completed_at": "2026-10-26T16:03:53.390373+00:00",
+  "elapsed_seconds": 113.857402,
+  "generation_seconds": 25.501547499996377,
+  "delivery_seconds": 8.820186900004046,
+  "tracker_seconds": 36.409223100024974,
+  "readback": {
+    "Scout ID": 3037,
+    "Company": "Demand.com",
+    "Job Title": "Marketing Director (Remote)",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1TAYugLfxj4W8BGxZWXEDi7EmtJx7C7WQ/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1289",
+  "hyperlink_target": "https://docs.google.com/document/d/1TAYugLfxj4W8BGxZWXEDi7EmtJx7C7WQ/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 113.8574,
+    "active_seconds": 81.8131,
+    "review_wait_seconds": 32.0443,
+    "phases_seconds": {
+      "source_loading": 0.0344,
+      "tailoring": 0.5622,
+      "document_creation": 1.838,
+      "word_pdf_validation": 6.9326,
+      "fitting_retries": 0.0518,
+      "factual_review": 0.0,
+      "review_wait": 32.0443,
+      "tracker_sync": 36.4079,
+      "drive_delivery": 8.8132
+    },
+    "counts": {
+      "source_loading": 66,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

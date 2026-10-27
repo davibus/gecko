@@ -1,0 +1,93 @@
+{
+  "candidates_discovered": 0,
+  "known_jobs_skipped_before_retrieval": 0,
+  "new_jobs_added": 0,
+  "free_retrievals": 0,
+  "paid_requests": 0,
+  "paid_requests_avoided": 0,
+  "pending": 2543,
+  "new_job_ids": [],
+  "published_job_ids": [],
+  "warnings": [
+    "'Mock' object is not iterable"
+  ],
+  "status": "failed",
+  "deferred_broad_sources": [
+    "glassdoor",
+    "indeed",
+    "linkedin",
+    "remote-careers",
+    "web-careers",
+    "ziprecruiter"
+  ],
+  "run_id": "incremental-20261026T053959-62b0e7f9",
+  "mode": "incremental",
+  "source_counts": {},
+  "source_health": {
+    "remotive": {
+      "status": "failed",
+      "found": 0,
+      "error": "'StubProvider' object has no attribute 'search'"
+    },
+    "greenhouse": {
+      "status": "failed",
+      "found": 0,
+      "error": "'StubProvider' object has no attribute 'search'"
+    },
+    "ashby": {
+      "status": "failed",
+      "found": 0,
+      "error": "'StubProvider' object has no attribute 'search'"
+    },
+    "workable": {
+      "status": "failed",
+      "found": 0,
+      "error": "'StubProvider' object has no attribute 'search'"
+    },
+    "jobicy": {
+      "status": "failed",
+      "found": 0,
+      "error": "'StubProvider' object has no attribute 'search'"
+    },
+    "lever": {
+      "status": "failed",
+      "found": 0,
+      "error": "'StubProvider' object has no attribute 'search'"
+    },
+    "remoteok": {
+      "status": "failed",
+      "found": 0,
+      "error": "'StubProvider' object has no attribute 'search'"
+    },
+    "themuse": {
+      "status": "failed",
+      "found": 0,
+      "error": "'StubProvider' object has no attribute 'search'"
+    },
+    "weworkremotely": {
+      "status": "failed",
+      "found": 0,
+      "error": "'StubProvider' object has no attribute 'search'"
+    },
+    "adzuna": {
+      "status": "failed",
+      "found": 0,
+      "error": "'StubProvider' object has no attribute 'search'"
+    },
+    "usajobs": {
+      "status": "failed",
+      "found": 0,
+      "error": "'StubProvider' object has no attribute 'search'"
+    },
+    "workingnomads": {
+      "status": "failed",
+      "found": 0,
+      "error": "'StubProvider' object has no attribute 'search'"
+    }
+  },
+  "resumes_generated": 0,
+  "applications_submitted": 0,
+  "checked_at": "2026-10-26T11:40:00.803545+00:00",
+  "activity": "Incremental discovery: 0 candidates; 0 new jobs verified",
+  "published_jobs_verified": 0
+}

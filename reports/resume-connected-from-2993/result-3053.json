@@ -1,0 +1,54 @@
+{
+  "id": 3053,
+  "company": "Jobgether",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1pSVxGhnuhxfxSw6fBUFmdmQBN8l8PQtU/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Marketing-Manager-(Entertainment-&-Commercial)+00493.docx",
+  "started_at": "2026-10-26T16:22:44.364078+00:00",
+  "completed_at": "2026-10-26T16:24:52.942005+00:00",
+  "elapsed_seconds": 128.57794,
+  "generation_seconds": 25.542961500003003,
+  "delivery_seconds": 5.215405299997656,
+  "tracker_seconds": 25.365514100005385,
+  "readback": {
+    "Scout ID": 3053,
+    "Company": "Jobgether",
+    "Job Title": "Marketing Manager (Entertainment & Commercial)",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1pSVxGhnuhxfxSw6fBUFmdmQBN8l8PQtU/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1304",
+  "hyperlink_target": "https://docs.google.com/document/d/1pSVxGhnuhxfxSw6fBUFmdmQBN8l8PQtU/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 128.578,
+    "active_seconds": 68.504,
+    "review_wait_seconds": 60.074,
+    "phases_seconds": {
+      "source_loading": 0.0269,
+      "tailoring": 1.1541,
+      "document_creation": 1.1577,
+      "word_pdf_validation": 3.3329,
+      "fitting_retries": 0.0064,
+      "factual_review": 0.0,
+      "review_wait": 60.074,
+      "tracker_sync": 25.3647,
+      "drive_delivery": 5.2072
+    },
+    "counts": {
+      "source_loading": 48,
+      "tailoring": 2,
+      "document_creation": 1,
+      "word_pdf_validation": 1,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 1,
+      "native_attempts": 1,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

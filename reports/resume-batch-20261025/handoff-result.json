@@ -1,0 +1,34 @@
+{
+  "trigger": "2975 completion and independent tracker readback confirmed",
+  "verified_owned_worker": {
+    "ProcessId": 30300,
+    "CreationDate": "/Date(1792962619592)/",
+    "ExecutablePath": "C:\\gecko_main\\.tools\\dashboard-python\\Scripts\\python.exe",
+    "CommandLine": "\"C:\\gecko_main\\.tools\\dashboard-python\\Scripts\\python.exe\" work/run_all_qualifying_resumes.py"
+  },
+  "preserved_completed_ids": [
+    2953,
+    2954,
+    2957,
+    2959,
+    2960,
+    2961,
+    2962,
+    2963,
+    2964,
+    2965,
+    2966,
+    2967,
+    2968,
+    2969,
+    2970,
+    2971,
+    2972,
+    2973,
+    2975
+  ],
+  "at": "2026-10-25T23:19:48.889345+00:00",
+  "stop_exit_code": 0,
+  "stop_output": "SUCCESS: The process with PID 29268 (child process of PID 30300) has been terminated.\nSUCCESS: The process with PID 30300 (child process of PID 24424) has been terminated.\n",
+  "replacement_pid": 31528
+}

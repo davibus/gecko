@@ -1,0 +1,53 @@
+{
+  "id": 3013,
+  "company": "Jobgether",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/19VDvwfq5QMpjvwG76pSww7AGFy6AdFP7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Manager,-Performance-Marketing+00465.docx",
+  "started_at": "2026-10-26T15:13:14.936503+00:00",
+  "completed_at": "2026-10-26T15:15:47.453856+00:00",
+  "elapsed_seconds": 152.517362,
+  "generation_seconds": 25.468722099991282,
+  "delivery_seconds": 7.669229300023289,
+  "tracker_seconds": 33.30499029997736,
+  "readback": {
+    "Scout ID": 3013,
+    "Company": "Jobgether",
+    "Job Title": "Manager, Performance Marketing",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/19VDvwfq5QMpjvwG76pSww7AGFy6AdFP7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1265",
+  "hyperlink_target": "https://docs.google.com/document/d/19VDvwfq5QMpjvwG76pSww7AGFy6AdFP7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 152.5174,
+    "active_seconds": 72.902,
+    "review_wait_seconds": 79.6154,
+    "phases_seconds": {
+      "source_loading": 0.0442,
+      "tailoring": 1.3136,
+      "document_creation": 3.0103,
+      "word_pdf_validation": 9.5827,
+      "fitting_retries": 0.5742,
+      "factual_review": 0.0,
+      "review_wait": 79.6154,
+      "tracker_sync": 33.3042,
+      "drive_delivery": 7.6631
+    },
+    "counts": {
+      "source_loading": 86,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "drive_delivery": 1
+    }
+  }
+}

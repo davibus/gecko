@@ -16,6 +16,7 @@ def search_pages(provider, request):
         prior_errors=len(getattr(provider,'errors',[]))
         try:
             for row in provider.search(replace(request,page=page)):
+                row.metadata.setdefault('_query_used_to_find', request.query)
                 rows.append(row)
         except (ProviderError,OSError,ValueError) as error:
             event.update(status='failed', parsed=len(rows), error=str(error))
@@ -67,4 +68,9 @@ def acquire(provider, requests):
     errors.extend(getattr(provider, 'errors', []))
     errors.extend({'category': r['category'], 'error': r['error']}
                   for r in getattr(provider, 'feed_results', []) if not r['success'])
+    if callable(getattr(type(provider), 'full_feed', None)):
+        for row in rows:
+            row.metadata.setdefault('_query_used_to_find', f'Full feed: {provider.name} (no search query)')
+    from query_provenance import remember
+    remember(rows)
     return rows, errors

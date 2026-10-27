@@ -1,0 +1,50 @@
+{
+  "id": 2967,
+  "company": "NRTC",
+  "title": "Digital Marketing Specialist (Remote)",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+NRTC+Digital-Marketing-Specialist-(Remote)+00425.docx",
+  "listing": "C:\\gecko_main\\input\\job-descriptions\\NRTC+('url',-'nrtc.applytojob.com',-'applyqe9z63pKkmDigital-Marketing-Specialist-Remote',-'').md",
+  "images": [
+    "C:\\gecko_main\\scratch\\NRTC+('url',-'nrtc.applytojob.com',-'applyqe9z63pKkmDigital-Marketing-Specialist-Remote',-'')\\final-page-1.png",
+    "C:\\gecko_main\\scratch\\NRTC+('url',-'nrtc.applytojob.com',-'applyqe9z63pKkmDigital-Marketing-Specialist-Remote',-'')\\final-page-2.png"
+  ],
+  "sha256": "b3b7d5536f658524dc958f13bee66f4fef421cc545d295c063b08777ce0851b8",
+  "qa": {
+    "status": "pass",
+    "word_pages": 2,
+    "pdf_pages": 2,
+    "issues": [],
+    "remaining_weaknesses": [
+      "**Qualifications**",
+      "Occasional travel may be required up to 5%",
+      "Google Ad Certification preferred",
+      "experience agency with a focus on collaborating with people who are doing meaningful work in the communities they serve.",
+      "**Responsibilities**",
+      "Develop educational resources for the Pivot team",
+      "Participate in creative brainstorming sessions and contribute to strategy development for digital marketing campaigns and client initiatives.",
+      "Other duties as assigned",
+      "**Knowledge, Skills, and Abilities**",
+      "Experience working with multiple clients simultaneously",
+      "Strong understanding of customer and market dynamics and requirements",
+      "Proven ability to build strong relationships with clients",
+      "Excellence in grammar and professional writing skills is a must",
+      "Must be able to work accurately with great attention to detail",
+      "Must be a good communicator, working with other departments that provide services",
+      "Experience with non-profits is a plus",
+      "Ability to communicate a clear message",
+      "Ability to encourage and persuade clients to try something new",
+      "Ability to “sell” your ideas",
+      "**Minimum Education and Experience**",
+      "Bachelor's degree in Marketing, Advertising, Communications, Public Relations, Business, Digital Media, or a related field; or equivalent combination of education and relevant professional experience",
+      "**Physical Demands**",
+      "Work is typically performed in a remote office setting",
+      "Must be able to provide reliable internet connection and a quiet, distraction free environment"
+    ],
+    "native_validation": "C:\\gecko_main\\scratch\\NRTC+('url',-'nrtc.applytojob.com',-'applyqe9z63pKkmDigital-Marketing-Specialist-Remote',-'')\\validation-status.json",
+    "word_output": "Word validation mode: Direct interactive session\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\gecko_main\\scratch\\NRTC+('url',-'nrtc.applytojob.com',-'applyqe9z63pKkmDigital-Marketing-Specialist-Remote',-'')\\validation-status.json",
+    "page_two_bottom_gap_pt": 30.22,
+    "page_two_text_boundary_pt": 757.45,
+    "density_issue": "",
+    "content_exhaustion_reason": ""
+  }
+}

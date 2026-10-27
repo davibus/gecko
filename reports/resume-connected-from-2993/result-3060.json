@@ -1,0 +1,54 @@
+{
+  "id": 3060,
+  "company": "Toast",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/14APqwjTEBZrTwYpSnu1jXCIZvYWb9TLN/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Toast+Manager,-Marketing-Operations-Ad-Tech-Lead+00500.docx",
+  "started_at": "2026-10-26T16:37:04.643227+00:00",
+  "completed_at": "2026-10-26T16:38:28.495551+00:00",
+  "elapsed_seconds": 83.852353,
+  "generation_seconds": 20.77463510000962,
+  "delivery_seconds": 4.415493599983165,
+  "tracker_seconds": 30.32166360001429,
+  "readback": {
+    "Scout ID": 3060,
+    "Company": "Toast",
+    "Job Title": "Manager, Marketing Operations - Ad Tech Lead",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/14APqwjTEBZrTwYpSnu1jXCIZvYWb9TLN/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1311",
+  "hyperlink_target": "https://docs.google.com/document/d/14APqwjTEBZrTwYpSnu1jXCIZvYWb9TLN/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 83.8524,
+    "active_seconds": 60.825,
+    "review_wait_seconds": 23.0274,
+    "phases_seconds": {
+      "source_loading": 0.0327,
+      "tailoring": 1.1048,
+      "document_creation": 2.0255,
+      "word_pdf_validation": 6.5789,
+      "fitting_retries": 0.0468,
+      "factual_review": 0.0,
+      "review_wait": 23.0274,
+      "tracker_sync": 30.321,
+      "drive_delivery": 4.4074
+    },
+    "counts": {
+      "source_loading": 66,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

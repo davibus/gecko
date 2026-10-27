@@ -19,6 +19,8 @@ def main(argv=None):
     search.add_argument('--preferences')
     search.add_argument('--sources-config')
     search.add_argument('--results', type=int, default=20, help='Existing internal source page size; Firecrawl uses its policy')
+    search.add_argument('--publish-as-found', action='store_true')
+    search.add_argument('--broad-discovery', action='store_true', help='Explicit paid broad market discovery')
     args = parser.parse_args(argv)
     forwarded = []
     for field in ('db', 'preferences', 'sources_config'):
@@ -26,6 +28,8 @@ def main(argv=None):
     forwarded += ['search', '--source', 'all', '--unified', '--results', str(args.results)]
     if args.dry_run: forwarded.append('--dry-run')
     if args.sync_only: forwarded.append('--sync-only')
+    if args.publish_as_found: forwarded.append('--publish-as-found')
+    if args.broad_discovery: forwarded.append('--broad-discovery')
     import scout
     return scout.main(forwarded)
 

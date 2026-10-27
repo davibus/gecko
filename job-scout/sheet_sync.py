@@ -275,3 +275,117 @@ def record_error(error):
     if isinstance(error, SyncConflict):
         result["conflicts"] = error.conflicts
     save_json(STATUS, result)
+
+
+def complete_resume(scout_id, resume_url, *, local_tracker, identity):
+    """Publish one completion, verify it, then update only its cache/baseline cells.
+
+    Caller holds the existing Gecko run lock. Unrelated three-way conflicts and
+    removals still stop the write; unrelated edits wait for ordinary reconciliation.
+    No discovery flush, salary normalization, range extension or whole-row writes.
+    """
+    from google_tracker import (GoogleTracker, Config, _col, load_environment,
+        resume_already_created, marked, resume_approval_value, is_expired_indeed,
+        INDEED_APPLICATION_HEADER, verified_resume_uri_target)
+    from zoneinfo import ZoneInfo
+    from normalize import posting_identity
+    if not str(scout_id).isdigit() or int(scout_id) <= 0:
+        raise ValueError('Completion requires a positive stable job ID.')
+    key = str(scout_id)
+    target = verified_resume_uri_target(resume_url)
+    load_environment()
+    remote = GoogleTracker(config=Config.from_environment())
+    state = json.loads(STATE.read_text(encoding='utf-8'))
+    if state['spreadsheet_id'] != remote.config.spreadsheet_id:
+        raise ValueError('The configured primary spreadsheet changed.')
+    ensure_frozen_headers(remote)
+    sheet = remote.scout()
+    formulas = remote.scout(value_render_option='FORMULA')
+    if sheet.header_values != formulas.header_values:
+        raise ValueError('Sheet columns moved while checking completion formulas.')
+    fields = ('Resume Created', 'Resume Created Date', 'Resume Link')
+    if any(field not in sheet.headers for field in fields):
+        raise ValueError('Completion requires uniquely named marker, date and link columns.')
+    remote_index = index_rows(sheet.rows)
+    formula_index = index_rows(formulas.rows)
+    if key not in remote_index or key not in state['rows']:
+        raise SyncConflict([{'id': key, 'field': 'row', 'reason': 'Missing job or verified baseline.'}])
+    if any('ARRAYFORMULA(' in text(v).upper() for _, data in formulas.rows for v in data.values()):
+        raise ValueError('An array formula requires review before completion writes.')
+    row, current = remote_index[key]
+    formula_row, protected = formula_index[key]
+    if formula_row != row:
+        raise ValueError('Job rows moved while checking formulas.')
+    for name in ('Company', 'Job Title', 'Job URL'):
+        a, b = text(current.get(name)).strip(), text(identity.get(name)).strip()
+        same = posting_identity(a) == posting_identity(b) if name == 'Job URL' else a.casefold() == b.casefold()
+        if not a or not b or not same:
+            raise ValueError(f'Job {key}: {name} identity changed; no completion written.')
+    remote._assert_scout_row_not_rejected(current)
+    if (marked(current.get('Applied')) or is_expired_indeed(current.get(INDEED_APPLICATION_HEADER))
+            or text(current.get('Apply?')).strip().casefold() != 'yes'
+            or resume_approval_value(current.get('Location'), current.get('Work Arrangement'), current.get('Cost')) != 'Yes'):
+        raise ValueError('Primary Sheet eligibility changed; no completion written.')
+    values = {'Resume Created': 'X', 'Resume Created Date': datetime.now(ZoneInfo('America/Denver')).date().isoformat(),
+              'Resume Link': target}
+    if resume_already_created(current.get('Resume Created')) or text(current.get('Resume Link')).strip():
+        raise ValueError('SKIP RESUME: primary Sheet already has a completion or resume link.')
+    con = sqlite3.connect(local_tracker.path, timeout=30)
+    try:
+        con.execute('BEGIN IMMEDIATE')
+        # Match general reconciliation: archived history still present on the
+        # primary Sheet participates in conflict checks, without unarchiving it.
+        records = con.execute("SELECT slot,values_json,archived FROM workspace_records WHERE dataset='Job List'").fetchall()
+        records = [(slot, raw) for slot, raw, archived in records
+                   if not archived or text(json.loads(raw).get('ID')) in remote_index]
+        local_index = index_rows([(slot, json.loads(raw)) for slot, raw in records])
+        local_rows = {k: data for k, (_, data) in local_index.items()}
+        # Preserve the general sync's conflict/removal protection without writing
+        # or acknowledging any unrelated job or manual field.
+        merge_rows(state['rows'], local_rows, {k: d for k, (_, d) in remote_index.items()},
+                   sync_headers(sheet.header_values, []))
+        if key not in local_index:
+            raise ValueError('Completed job missing from the working cache.')
+        slot, cached = local_index[key]
+        if resume_already_created(cached.get('Resume Created')) or text(cached.get('Resume Link')).strip():
+            raise ValueError('SKIP RESUME: working cache already has a completion or link.')
+        for field in fields:
+            if text(protected.get(field)).startswith('='):
+                raise ValueError(f'Completion field {field} is formula protected.')
+            if text(current.get(field)) != text(state['rows'][key].get(field)):
+                raise SyncConflict([{'id': key, 'field': field, 'reason': 'Completion field changed in the primary Sheet.'}])
+        fresh = remote.scout(value_render_option='FORMULA')
+        if fresh.header_values != formulas.header_values or fresh.rows != formulas.rows:
+            raise ValueError('Primary Sheet changed while preparing completion; retry after reconciliation.')
+        entries = [{'range': f"'{sheet.title}'!{_col(sheet.headers[field])}{row}", 'values': [[value]]}
+                   for field, value in values.items()]
+        remote.api.values().batchUpdate(spreadsheetId=remote.config.spreadsheet_id,
+            body={'valueInputOption': 'RAW', 'data': entries}).execute()
+        if target.startswith('https://'):
+            from resume_delivery import ensure_sheet_hyperlinks
+            ensure_sheet_hyperlinks(remote, sheet, [(row, target)])
+        verified = remote.scout()
+        hits = index_rows(verified.rows)
+        if verified.header_values != sheet.header_values or key not in hits or hits[key][0] != row:
+            raise RuntimeError('Primary Sheet completion identity/header readback failed; cache preserved.')
+        after = hits[key][1]
+        if any(text(after.get(h)) != text(v) for h, v in values.items()):
+            raise RuntimeError('Primary Sheet completion marker/date/link readback failed; cache preserved.')
+        if any(text(after.get(h)) != text(current.get(h)) for h in ('Company', 'Job Title', 'Job URL')):
+            raise RuntimeError('Primary Sheet identity changed during completion; cache preserved.')
+        if any(p.get('gridProperties', {}).get('frozenRowCount', 0) < 1 for p in remote._sheet_properties()):
+            raise RuntimeError('Frozen header readback failed; cache preserved.')
+        updated = {**cached, **values}
+        con.execute("UPDATE workspace_records SET values_json=?,revision=revision+1 WHERE dataset='Job List' AND slot=?",
+                    (json.dumps(updated), slot))
+        now = datetime.now(timezone.utc).isoformat()
+        con.execute("INSERT INTO workspace_events(at,dataset,slot,action,before_json,after_json) VALUES(?,'Job List',?,'resume-completion',?,?)",
+                    (now, slot, json.dumps(cached), json.dumps(updated)))
+        con.commit()
+        state['rows'][key].update(values)
+        save_json(STATE, state)
+        receipt = {'status': 'resume-completion-verified', 'id': key, 'row': row, 'fields': values, 'verified_at': now}
+        save_json(STATUS, receipt)
+        return receipt
+    finally:
+        con.close()

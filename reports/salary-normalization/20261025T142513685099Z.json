@@ -1,0 +1,70 @@
+{
+  "status": "verified",
+  "synced_at": "2026-10-25T14:25:31.357550+00:00",
+  "changes": [
+    {
+      "id": "2953",
+      "before": {
+        "Salary": ""
+      },
+      "changes": {
+        "Salary": "$95,000 - $115,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Job Description",
+        "evidence": "$95,000 - $115,000 annual",
+        "original_salary": "",
+        "formatted_salary": "$95,000 - $115,000"
+      }
+    },
+    {
+      "id": "2955",
+      "before": {
+        "Salary": "$ 80,000–130,000"
+      },
+      "changes": {
+        "Salary": "$80,000 - $130,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "$ 80,000–130,000",
+        "original_salary": "$ 80,000–130,000",
+        "formatted_salary": "$80,000 - $130,000"
+      }
+    },
+    {
+      "id": "2957",
+      "before": {
+        "Salary": "$ 80,000–100,000"
+      },
+      "changes": {
+        "Salary": "$80,000 - $100,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "$ 80,000–100,000",
+        "original_salary": "$ 80,000–100,000",
+        "formatted_salary": "$80,000 - $100,000"
+      }
+    },
+    {
+      "id": "2958",
+      "before": {
+        "Salary": "$ 80,000–95,000"
+      },
+      "changes": {
+        "Salary": "$80,000 - $95,000"
+      },
+      "evidence": {
+        "reason": "formatted",
+        "source": "Salary",
+        "evidence": "$ 80,000–95,000",
+        "original_salary": "$ 80,000–95,000",
+        "formatted_salary": "$80,000 - $95,000"
+      }
+    }
+  ]
+}

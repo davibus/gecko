@@ -1,0 +1,53 @@
+{
+  "id": 3011,
+  "company": "Uproot Clean",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1Li2SzTGV7dEalflqigo7Y_1O5AoBhqkM/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Uproot-Clean+Sr-Paid-Media-Buyer+00463.docx",
+  "started_at": "2026-10-26T15:07:51.590589+00:00",
+  "completed_at": "2026-10-26T15:10:25.473420+00:00",
+  "elapsed_seconds": 153.882841,
+  "generation_seconds": 27.393630100006703,
+  "delivery_seconds": 22.072849200019846,
+  "tracker_seconds": 40.46527019998757,
+  "readback": {
+    "Scout ID": 3011,
+    "Company": "Uproot Clean",
+    "Job Title": "Sr Paid Media Buyer",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1Li2SzTGV7dEalflqigo7Y_1O5AoBhqkM/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1263",
+  "hyperlink_target": "https://docs.google.com/document/d/1Li2SzTGV7dEalflqigo7Y_1O5AoBhqkM/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 153.8829,
+    "active_seconds": 100.2486,
+    "review_wait_seconds": 53.6343,
+    "phases_seconds": {
+      "source_loading": 0.034,
+      "tailoring": 0.7497,
+      "document_creation": 2.2158,
+      "word_pdf_validation": 7.147,
+      "fitting_retries": 0.0572,
+      "factual_review": 0.0,
+      "review_wait": 53.6343,
+      "tracker_sync": 40.4644,
+      "drive_delivery": 22.0656
+    },
+    "counts": {
+      "source_loading": 65,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1
+    }
+  }
+}

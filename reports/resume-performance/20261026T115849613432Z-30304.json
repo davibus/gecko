@@ -1,0 +1,114 @@
+{
+  "started_at": "2026-10-26T11:58:49.576431+00:00",
+  "totals": {
+    "wall_seconds": 0.0364,
+    "active_seconds": 0.0364,
+    "review_wait_seconds": 0.0,
+    "phases_seconds": {
+      "source_loading": 0.0,
+      "tailoring": 0.0,
+      "document_creation": 0.0,
+      "word_pdf_validation": 0.0,
+      "fitting_retries": 0.0,
+      "factual_review": 0.0,
+      "review_wait": 0.0,
+      "tracker_sync": 0.0
+    },
+    "counts": {
+      "source_loading": 0,
+      "tailoring": 0,
+      "document_creation": 0,
+      "word_pdf_validation": 0,
+      "fitting_retries": 0,
+      "factual_review": 0,
+      "review_wait": 0,
+      "tracker_sync": 0
+    }
+  },
+  "resumes": [
+    {
+      "id": 42,
+      "company": "Existing",
+      "outcome": "failed",
+      "wall_seconds": 0.0074,
+      "active_seconds": 0.0074,
+      "review_wait_seconds": 0.0,
+      "phases_seconds": {
+        "source_loading": 0.0,
+        "tailoring": 0.0,
+        "document_creation": 0.0,
+        "word_pdf_validation": 0.0,
+        "fitting_retries": 0.0,
+        "factual_review": 0.0,
+        "review_wait": 0.0,
+        "tracker_sync": 0.0
+      },
+      "counts": {
+        "source_loading": 0,
+        "tailoring": 0,
+        "document_creation": 0,
+        "word_pdf_validation": 0,
+        "fitting_retries": 0,
+        "factual_review": 0,
+        "review_wait": 0,
+        "tracker_sync": 0
+      }
+    },
+    {
+      "id": 45,
+      "company": "Another",
+      "outcome": "failed",
+      "wall_seconds": 0.0103,
+      "active_seconds": 0.0103,
+      "review_wait_seconds": 0.0,
+      "phases_seconds": {
+        "source_loading": 0.0,
+        "tailoring": 0.0,
+        "document_creation": 0.0,
+        "word_pdf_validation": 0.0,
+        "fitting_retries": 0.0,
+        "factual_review": 0.0,
+        "review_wait": 0.0,
+        "tracker_sync": 0.0
+      },
+      "counts": {
+        "source_loading": 0,
+        "tailoring": 0,
+        "document_creation": 0,
+        "word_pdf_validation": 0,
+        "fitting_retries": 0,
+        "factual_review": 0,
+        "review_wait": 0,
+        "tracker_sync": 0
+      }
+    },
+    {
+      "id": 46,
+      "company": "Retry",
+      "outcome": "failed",
+      "wall_seconds": 0.012,
+      "active_seconds": 0.012,
+      "review_wait_seconds": 0.0,
+      "phases_seconds": {
+        "source_loading": 0.0,
+        "tailoring": 0.0,
+        "document_creation": 0.0,
+        "word_pdf_validation": 0.0,
+        "fitting_retries": 0.0,
+        "factual_review": 0.0,
+        "review_wait": 0.0,
+        "tracker_sync": 0.0
+      },
+      "counts": {
+        "source_loading": 0,
+        "tailoring": 0,
+        "document_creation": 0,
+        "word_pdf_validation": 0,
+        "fitting_retries": 0,
+        "factual_review": 0,
+        "review_wait": 0,
+        "tracker_sync": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,460 @@
+{
+  "payload": {
+    "query": "\"paid search\" remote site:job-boards.greenhouse.io",
+    "limit": 50,
+    "sources": [
+      "web"
+    ]
+  },
+  "results": [
+    {
+      "url": "https://job-boards.greenhouse.io/monks/jobs/6142994004",
+      "title": "Director, Paid Search (Remote) - Monks",
+      "description": "We are looking for a strong, passionate, and energetic Paid Search professional to drive growth and strategic oversight across the paid search department with a ...",
+      "position": 1
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/code3/jobs/8144727",
+      "title": "Job Application for Senior Strategist, Paid Search B2B at Code3",
+      "description": "Provide paid search strategy & conduct routine audits on your portfolio of B2B accounts across platforms (Google and Microsoft) and tactics (Brand, Non-Brand, ...",
+      "position": 2
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/gametimeunited/jobs/5251460008",
+      "title": "Job Application for Senior Manager, Paid Search at Gametime United",
+      "description": "We are looking for a Senior Manager, Paid Search to own one of Gametime's most important acquisition channels. Paid search at Gametime is a uniquely complex ...",
+      "position": 3
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/code3/jobs/8028420",
+      "title": "Job Application for Lead, Paid Search at Code3 - Greenhouse",
+      "description": "Define and own the overarching paid search strategy on your portfolio of accounts and deliver activation excellence across search platforms (Google, Microsoft, ...",
+      "position": 4
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/missiononemedia/jobs/6185532004",
+      "title": "Job Application for Paid Search Specialist at MissionOne Media",
+      "description": "0-3+ years in a fast-paced agency, media, or marketing environment, with hands-on experience building and managing paid search campaigns. Google Ads & Bing Ads ...",
+      "position": 5
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/atticor/jobs/5249313007",
+      "title": "Job Application for Paid Search Manager at Atticor - Greenhouse",
+      "description": "This is a full-time, remote position; candidates in the Chicagoland ... 5+ years of experience in Paid Search or Performance Marketing (agency or in-house) ...",
+      "position": 6
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/zetaglobal/jobs/6185724004",
+      "title": "Job Application for Paid Search Manager at Zeta Global - Greenhouse",
+      "description": "Paid Search Manager · Translate client goals into paid search channel plans, including budgets, targeting approach, measurement plans, and testing roadmaps.",
+      "position": 7
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/realchemistry/jobs/5454003008",
+      "title": "Job Application for Manager, Paid Search at Real Chemistry",
+      "description": "# Manager, Paid Search\nRemote - USA",
+      "position": 8
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/barkleyokrp/jobs/6183248004",
+      "title": "Job Application for Senior Paid Search Specialist at BarkleyOKRP",
+      "description": "This is a full-time, remote position for a Senior Paid Search Specialist at BarkleyOKRP. In this role, you will develop strategies and manage the ...",
+      "position": 9
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/zetaglobal/jobs/6185722004",
+      "title": "Job Application for Associate Director, Paid Search at Zeta Global",
+      "description": "You'll be responsible for guiding client strategy, overseeing performance, and ensuring flawless execution of paid search campaigns from end to end. ... remote.",
+      "position": 10
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/instacart/jobs/8177972",
+      "title": "Growth Media Marketing Manager, Paid Search - Instacart Careers",
+      "description": "Apply for Growth Media Marketing Manager, Paid Search at Instacart. ... Most of our roles are open to in-office, flex, or remote work. Learn more about our ...",
+      "position": 11
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/outshine/jobs/5142338008",
+      "title": "Job Application for Paid Search Specialist at Outshine - Greenhouse",
+      "description": "This role is ideal for a specialist who views paid search as a craft and is motivated to deliver measurable results for clients. ... remote, in-office, or both.",
+      "position": 12
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/newengeninc/jobs/4239408009",
+      "title": "Job Application for Senior Manager, Paid Search at New Engen, Inc.",
+      "description": "WHAT YOU'LL DO · Lead Paid Search Performance Own performance and execution across a portfolio of high-impact Paid Search accounts, including enterprise clients.",
+      "position": 13
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/missiononemedia/jobs/6185533004",
+      "title": "Job Application for Senior Paid Search Specialist at MissionOne ...",
+      "description": "This is a full-time, remote position for a Senior Paid Search Specialist at BarkleyOKRP. In this role, you will develop strategies and manage the ...",
+      "position": 14
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/powerdigitalmarketing/jobs/4931272007",
+      "title": "Job Application for Paid Search Sr. Strategist at Power Digital",
+      "description": "Paid Search Sr. Strategist. Remote - Greece. Apply. Who We Are: We are a tech-enabled growth firm–at the intersection of marketing, consulting & data ...",
+      "position": 15
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/isccareers/jobs/4731001005",
+      "title": "Senior Channel Specialist - Paid Search - Greenhouse",
+      "description": "Execute day-to-day paid search campaign management across Google Ads and Microsoft Ads for all active ISC retail brands, including campaign builds, ad copy ...",
+      "position": 16
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/thirdlove/jobs/8770457002",
+      "title": "Growth Marketing Manager: Paid Search and Display - Greenhouse",
+      "description": "As the Growth Marketing Manager for Paid Search & Display, you will set the strategy, manage the platforms and partners, direct AI tools for execution, and ...",
+      "position": 17
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/scorpionenterprisesllc/jobs/5432878008",
+      "title": "Job Application for Paid Media Manager at Scorpion ... - Greenhouse",
+      "description": "Paid Search is the largest and most complex part of this role. You'll lead strategy and hands-on execution across Google Ads, Microsoft Advertising, and ...",
+      "position": 18
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/barkleyokrp/jobs/6198150004",
+      "title": "Senior Paid Search Specialist at BarkleyOKRP - Greenhouse",
+      "description": "Remote. Apply. BarkleyOKRP is looking for short-term contract support, with the potential to convert to a full-time hire, for our Paid Search team. Ideally ...",
+      "position": 19
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/supplyhouse/jobs/6211915004",
+      "title": "Job Application for Paid Media Analyst at SupplyHouse.com - Greenhouse",
+      "description": "Support daily management of paid media programs, including Paid Search, Shopping, Paid Social, Retargeting, Streaming TV, and Video campaigns · Execute and ...",
+      "position": 20
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/simplestaffingnow/jobs/5421473008",
+      "title": "Paid Search Manager - Debt Marketing Leads - Greenhouse",
+      "description": "They're looking for a hands-on Paid Search Manager to own and scale multi-million-dollar search programs across Google Ads, Microsoft Ads, and Performance Max ...",
+      "position": 21
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/zetaglobal/jobs/6018655004",
+      "title": "Job Application for Associate Vice President, Paid Search - Greenhouse",
+      "description": "We're looking for an Associate Vice President (AVP) of Paid Search to lead strategy, performance, and growth across a portfolio of Higher Education clients.",
+      "position": 22
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/missiononemedia/jobs/6185540004",
+      "title": "Job Application for Supervisor, Paid Search at MissionOne Media",
+      "description": "In this role, you will develop strategies and manage the performance of various paid search accounts, to drive client performance and growth. ... remote ...",
+      "position": 23
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/commonthreadcollective/jobs/5985959004",
+      "title": "Senior Paid Media Strategist - Greenhouse",
+      "description": "A Senior Paid Media Strategist at CTC is a full-funnel expert across both paid search and paid social. You operate as the lead media strategist for your ...",
+      "position": 24
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/newengeninc/jobs/4384040009",
+      "title": "Job Application for Manager, Paid Search at New Engen, Inc.",
+      "description": "4+ years of Paid Search experience, ideally within an agency environment working with high-growth and/or DTC brands. · Strong hands-on expertise in Google Ads, ...",
+      "position": 25
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/tebra/jobs/4722381005",
+      "title": "Job Application for Senior Digital Marketing Manager at Tebra",
+      "description": "We are looking for a Senior Manager, Digital Marketing to serve as a Paid Search subject matter expert and lead stakeholder across our digital marketing ...",
+      "position": 26
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/firmpilotailawfirmmarketing/jobs/5361518008",
+      "title": "Job Application for Paid Media Manager at FirmPilot - Greenhouse",
+      "description": "What You'll Do. Paid Search Strategy. Build, launch, and optimize Google Search campaigns that generate qualified leads and signed cases. Develop campaign ...",
+      "position": 27
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/typeform/jobs/8134637",
+      "title": "Job Application for Senior Paid Marketing Strategist at Typeform",
+      "description": "Build a multichannel strategy that helps Typeform reduce its reliance on paid search and find new sources of efficient growth. Manage six figure monthly ...",
+      "position": 28
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/powerdigitalmarketing/jobs/5225713007",
+      "title": "CPG Paid Search Specialist, Client Experience - Greenhouse",
+      "description": "CPG Paid Search Specialist, Client Experience. Remote - Argentina; Remote - Brazil; Remote - Chile; Remote - Colombia; Remote - Costa Rica; Remote - Ecuador ...",
+      "position": 29
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/reunionmarketing/jobs/5291383008",
+      "title": "Job Application for Sr. Paid Advertising Strategist at Reunion ...",
+      "description": "We are seeking a Senior Paid Advertising Strategist who can lead high-impact paid search and paid social strategies, influence client outcomes, and help ...",
+      "position": 30
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/missiononemedia/jobs/6185530004",
+      "title": "Job Application for Associate Director, Paid Search at MissionOne Media",
+      "description": "5+ years of Paid Search experience required, including hands-on management of Google Ads and Microsoft Ads. Experience with SEM management platforms (e.g., ...",
+      "position": 31
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/code3/jobs/8319424",
+      "title": "Job Application for Head of Paid Search at Code3 - Greenhouse",
+      "description": "This is a hands-on leadership role for someone who can connect paid search strategy to broader business outcomes, while remaining close enough to the work to ...",
+      "position": 32
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/zetaglobal/jobs/6123537004",
+      "title": "Job Application for Director of Paid Search, EDU at Zeta Global",
+      "description": "You'll be responsible for guiding client strategy, overseeing performance, and ensuring flawless execution of paid search campaigns from end to end. Client ...",
+      "position": 33
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/happymoney/jobs/4429287009",
+      "title": "Job Application for Creative Marketing Manager at Happy Money",
+      "description": "You'll be our lead designer across happymoney.com, paid social, paid search, lifecycle email, direct mail and organic social, and the on-camera face of ...",
+      "position": 34
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/dept/jobs/8286516",
+      "title": "Job Application for Account Coordinator, Paid Search at DEPT®",
+      "description": "Account Coordinator, Paid Search. US (Remote). Apply. WHY DEPT®? We are a Growth Invention company built to help the world's most ambitious brands grow faster ...",
+      "position": 35
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/mediaalpha/jobs/8721200002",
+      "title": "Job Application for Senior Director, Paid Media at MediaAlpha",
+      "description": "Senior Director, Paid Media. Remote - USA ... Hire, lead, coach, and develop a team of channel-specific analysts (paid social, paid search, native/display, etc.) ...",
+      "position": 36
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/prenuvo/jobs/4737722005",
+      "title": "Prenuvo Performance Marketing Manager - Puck",
+      "description": "Execute day-to-day campaign management + analysis across paid social (Meta, TikTok, Reddit), paid search (Google Ads, Microsoft Ads) including bid, budget, ...",
+      "position": 37
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/current/jobs/8548526002",
+      "title": "Job Application for Senior Paid Media Strategist (Freelance) at Current",
+      "description": "Support paid social, paid search, audience targeting, and testing strategies; Recommend changes to improve performance across creative, targeting, and budget ...",
+      "position": 38
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/mergeworld/jobs/8257356",
+      "title": "Job Application for Manager, Paid Search at MERGE - Greenhouse",
+      "description": "Experienced Marketer: You bring 3 to 5 years of professional paid search campaign management experience, ideally backed by a Bachelor's degree in Marketing, ...",
+      "position": 39
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/barkleyokrp/jobs/6098729004",
+      "title": "Jobs at BarkleyOKRP - Greenhouse",
+      "description": "Remote / Kansas City, MO / Chicago, IL / New York, NY / Denver, CO · FREELANCE | Senior Paid Search Specialist. Remote · Senior Paid Search Specialist. Remote ...",
+      "position": 40
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/goodwaygroup/jobs/6227418004",
+      "title": "Job Application for Global Paid Media Manager at Goodway Group",
+      "description": "... remote-first places to work including being honored as a multiyear winner ... Paid search experience, including Google Ads or Microsoft Advertising, is ...",
+      "position": 41
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/netlify/jobs/8861222002",
+      "title": "Senior Demand Generation Marketing Manager - Greenhouse",
+      "description": "Senior Demand Generation Marketing Manager. Remote. Apply. About the Team ... Hands-on experience running paid search, paid social, and retargeting ...",
+      "position": 42
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/pacvue/jobs/4834231004",
+      "title": "Job Application for Senior Manager, Strategic Engagements at Pacvue",
+      "description": "Proven ability to manage paid search and/or paid display strategies across ... This is a fully remote opportunity. Please share where you are based and ...",
+      "position": 43
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/anteriad/jobs/5080719004",
+      "title": "Job Application for Paid Media Analyst at Anteriad - Greenhouse",
+      "description": "Paid Media Analyst. Remote. Apply. Come Join Our Team At Anteriad and innovate ... You will be responsible for Paid Search & Paid Social digital marketing ...",
+      "position": 44
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/enova/jobs/8265676",
+      "title": "Senior Associate, Paid Search (Hybrid) - Greenhouse",
+      "description": "This role reports to the Head of Acquisition, SMB and sits at the center of how paid search (SEM) and affiliate marketing drive new customer acquisition and ...",
+      "position": 45
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/realchemistry/jobs/5410629008",
+      "title": "Jobs at Real Chemistry - Greenhouse",
+      "description": "Remote - USA · Group Director, Omnichannel & Media StrategyNew. Remote - USA · Manager, Client Media SolutionsNew. Remote - USA · Manager, Paid SearchNew.",
+      "position": 46
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/axon/jobs/8038203003",
+      "title": "Job Application for Paid Media Manager at Axon - Greenhouse",
+      "description": "Develop, launch, and optimize campaigns across paid search, paid social ... remote flexibility, Tues-Fri in office). Are you comfortable with this ...",
+      "position": 47
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/orchestra/jobs/8880550002",
+      "title": "Job Application for Vice President, Paid Media at Orchestra",
+      "description": "We will also consider remote candidates. (east coast hours) ... Oversee integrated media planning across channels including paid social, paid search ...",
+      "position": 48
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/interdependence/jobs/5421336008",
+      "title": "Job Application for Director of B2B Marketing at Interdependence",
+      "description": "Oversee paid media strategies across channels including paid search, paid social, display, and retargeting. Guide organic strategies across GEO, SEO ...",
+      "position": 49
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/chowbus/jobs/7978612003",
+      "title": "Bilingual Digital Marketing Manager(Mandarin, English)",
+      "description": "... paid search. You'll turn data into decisions and help restaurant owners find ... This is a remote role. What You'll Focus On. SEO & Organic Growth. Own ...",
+      "position": 50
+    }
+  ],
+  "candidates": [
+    {
+      "url": "https://job-boards.greenhouse.io/instacart/jobs/8177972",
+      "title": "Growth Media Marketing Manager, Paid Search - Instacart Careers",
+      "description": "Apply for Growth Media Marketing Manager, Paid Search at Instacart. ... Most of our roles are open to in-office, flex, or remote work. Learn more about our ...",
+      "position": 11,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/newengeninc/jobs/4239408009",
+      "title": "Job Application for Senior Manager, Paid Search at New Engen, Inc.",
+      "description": "WHAT YOU'LL DO · Lead Paid Search Performance Own performance and execution across a portfolio of high-impact Paid Search accounts, including enterprise clients.",
+      "position": 13,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/powerdigitalmarketing/jobs/4931272007",
+      "title": "Job Application for Paid Search Sr. Strategist at Power Digital",
+      "description": "Paid Search Sr. Strategist. Remote - Greece. Apply. Who We Are: We are a tech-enabled growth firm–at the intersection of marketing, consulting & data ...",
+      "position": 15,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/isccareers/jobs/4731001005",
+      "title": "Senior Channel Specialist - Paid Search - Greenhouse",
+      "description": "Execute day-to-day paid search campaign management across Google Ads and Microsoft Ads for all active ISC retail brands, including campaign builds, ad copy ...",
+      "position": 16,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/thirdlove/jobs/8770457002",
+      "title": "Growth Marketing Manager: Paid Search and Display - Greenhouse",
+      "description": "As the Growth Marketing Manager for Paid Search & Display, you will set the strategy, manage the platforms and partners, direct AI tools for execution, and ...",
+      "position": 17,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/zetaglobal/jobs/6018655004",
+      "title": "Job Application for Associate Vice President, Paid Search - Greenhouse",
+      "description": "We're looking for an Associate Vice President (AVP) of Paid Search to lead strategy, performance, and growth across a portfolio of Higher Education clients.",
+      "position": 22,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/missiononemedia/jobs/6185540004",
+      "title": "Job Application for Supervisor, Paid Search at MissionOne Media",
+      "description": "In this role, you will develop strategies and manage the performance of various paid search accounts, to drive client performance and growth. ... remote ...",
+      "position": 23,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/firmpilotailawfirmmarketing/jobs/5361518008",
+      "title": "Job Application for Paid Media Manager at FirmPilot - Greenhouse",
+      "description": "What You'll Do. Paid Search Strategy. Build, launch, and optimize Google Search campaigns that generate qualified leads and signed cases. Develop campaign ...",
+      "position": 27,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/typeform/jobs/8134637",
+      "title": "Job Application for Senior Paid Marketing Strategist at Typeform",
+      "description": "Build a multichannel strategy that helps Typeform reduce its reliance on paid search and find new sources of efficient growth. Manage six figure monthly ...",
+      "position": 28,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/reunionmarketing/jobs/5291383008",
+      "title": "Job Application for Sr. Paid Advertising Strategist at Reunion ...",
+      "description": "We are seeking a Senior Paid Advertising Strategist who can lead high-impact paid search and paid social strategies, influence client outcomes, and help ...",
+      "position": 30,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/missiononemedia/jobs/6185530004",
+      "title": "Job Application for Associate Director, Paid Search at MissionOne Media",
+      "description": "5+ years of Paid Search experience required, including hands-on management of Google Ads and Microsoft Ads. Experience with SEM management platforms (e.g., ...",
+      "position": 31,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/code3/jobs/8319424",
+      "title": "Job Application for Head of Paid Search at Code3 - Greenhouse",
+      "description": "This is a hands-on leadership role for someone who can connect paid search strategy to broader business outcomes, while remaining close enough to the work to ...",
+      "position": 32,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/happymoney/jobs/4429287009",
+      "title": "Job Application for Creative Marketing Manager at Happy Money",
+      "description": "You'll be our lead designer across happymoney.com, paid social, paid search, lifecycle email, direct mail and organic social, and the on-camera face of ...",
+      "position": 34,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/mergeworld/jobs/8257356",
+      "title": "Job Application for Manager, Paid Search at MERGE - Greenhouse",
+      "description": "Experienced Marketer: You bring 3 to 5 years of professional paid search campaign management experience, ideally backed by a Bachelor's degree in Marketing, ...",
+      "position": 39,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/barkleyokrp/jobs/6098729004",
+      "title": "Jobs at BarkleyOKRP - Greenhouse",
+      "description": "Remote / Kansas City, MO / Chicago, IL / New York, NY / Denver, CO · FREELANCE | Senior Paid Search Specialist. Remote · Senior Paid Search Specialist. Remote ...",
+      "position": 40,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/pacvue/jobs/4834231004",
+      "title": "Job Application for Senior Manager, Strategic Engagements at Pacvue",
+      "description": "Proven ability to manage paid search and/or paid display strategies across ... This is a fully remote opportunity. Please share where you are based and ...",
+      "position": 43,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/anteriad/jobs/5080719004",
+      "title": "Job Application for Paid Media Analyst at Anteriad - Greenhouse",
+      "description": "Paid Media Analyst. Remote. Apply. Come Join Our Team At Anteriad and innovate ... You will be responsible for Paid Search & Paid Social digital marketing ...",
+      "position": 44,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/enova/jobs/8265676",
+      "title": "Senior Associate, Paid Search (Hybrid) - Greenhouse",
+      "description": "This role reports to the Head of Acquisition, SMB and sits at the center of how paid search (SEM) and affiliate marketing drive new customer acquisition and ...",
+      "position": 45,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/realchemistry/jobs/5410629008",
+      "title": "Jobs at Real Chemistry - Greenhouse",
+      "description": "Remote - USA · Group Director, Omnichannel & Media StrategyNew. Remote - USA · Manager, Client Media SolutionsNew. Remote - USA · Manager, Paid SearchNew.",
+      "position": 46,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/interdependence/jobs/5421336008",
+      "title": "Job Application for Director of B2B Marketing at Interdependence",
+      "description": "Oversee paid media strategies across channels including paid search, paid social, display, and retargeting. Guide organic strategies across GEO, SEO ...",
+      "position": 49,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/chowbus/jobs/7978612003",
+      "title": "Bilingual Digital Marketing Manager(Mandarin, English)",
+      "description": "... paid search. You'll turn data into decisions and help restaurant owners find ... This is a remote role. What You'll Focus On. SEO & Organic Growth. Own ...",
+      "position": 50,
+      "actual_query": "\"paid search\" remote site:job-boards.greenhouse.io"
+    }
+  ]
+}

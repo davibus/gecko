@@ -1,0 +1,54 @@
+{
+  "id": 3017,
+  "company": "Monks",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1rNBggAf5A80rzUaKgWzv_YRhXkeuTo7P/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Monks+Senior-Account-Manager,-SEM-(Remote)+00469.docx",
+  "started_at": "2026-10-26T15:20:43.056515+00:00",
+  "completed_at": "2026-10-26T15:22:07.204350+00:00",
+  "elapsed_seconds": 84.147848,
+  "generation_seconds": 23.40674159998889,
+  "delivery_seconds": 6.425395700003719,
+  "tracker_seconds": 20.434727400017437,
+  "readback": {
+    "Scout ID": 3017,
+    "Company": "Monks",
+    "Job Title": "Senior Account Manager, SEM (Remote)",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1rNBggAf5A80rzUaKgWzv_YRhXkeuTo7P/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1269",
+  "hyperlink_target": "https://docs.google.com/document/d/1rNBggAf5A80rzUaKgWzv_YRhXkeuTo7P/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 84.1479,
+    "active_seconds": 56.6029,
+    "review_wait_seconds": 27.545,
+    "phases_seconds": {
+      "source_loading": 0.0354,
+      "tailoring": 0.6844,
+      "document_creation": 2.0127,
+      "word_pdf_validation": 6.2205,
+      "fitting_retries": 0.0436,
+      "factual_review": 0.0,
+      "review_wait": 27.545,
+      "tracker_sync": 20.4332,
+      "drive_delivery": 6.4146
+    },
+    "counts": {
+      "source_loading": 65,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

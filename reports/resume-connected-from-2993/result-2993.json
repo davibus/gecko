@@ -1,0 +1,53 @@
+{
+  "id": 2993,
+  "company": "Plan Left",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1nMcYgY-_eS18f6JLXl-tkd5OeKILd9tV/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Plan-Left+Ads-&-SEO-Manager-(TN)+00455.docx",
+  "started_at": "2026-10-26T14:36:01.967213+00:00",
+  "completed_at": "2026-10-26T14:53:14.265350+00:00",
+  "elapsed_seconds": 1032.298148,
+  "generation_seconds": 34.75309379998362,
+  "delivery_seconds": 14.03171619999921,
+  "tracker_seconds": 34.597755199996755,
+  "readback": {
+    "Scout ID": 2993,
+    "Company": "Plan Left",
+    "Job Title": "Ads & SEO Manager (TN)",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1nMcYgY-_eS18f6JLXl-tkd5OeKILd9tV/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1246",
+  "hyperlink_target": "https://docs.google.com/document/d/1nMcYgY-_eS18f6JLXl-tkd5OeKILd9tV/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 133.4547,
+    "active_seconds": 99.4027,
+    "review_wait_seconds": 34.052,
+    "phases_seconds": {
+      "source_loading": 0.0872,
+      "tailoring": 1.5727,
+      "document_creation": 0.7877,
+      "word_pdf_validation": 7.2805,
+      "fitting_retries": 0.0041,
+      "factual_review": 0.0,
+      "review_wait": 34.052,
+      "tracker_sync": 34.597,
+      "drive_delivery": 14.027
+    },
+    "counts": {
+      "source_loading": 55,
+      "tailoring": 2,
+      "document_creation": 1,
+      "word_pdf_validation": 1,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 1,
+      "fitting_attempts": 1,
+      "native_attempts": 1,
+      "drive_delivery": 1
+    }
+  }
+}

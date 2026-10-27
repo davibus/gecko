@@ -1,0 +1,54 @@
+{
+  "id": 3033,
+  "company": "Redis",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1M6V6w_6lL95D749kTspLcdFTzRne1ZVb/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Redis+Lead,-Growth-Marketing+00481.docx",
+  "started_at": "2026-10-26T15:53:51.745891+00:00",
+  "completed_at": "2026-10-26T15:56:00.400978+00:00",
+  "elapsed_seconds": 128.655098,
+  "generation_seconds": 24.679954599996563,
+  "delivery_seconds": 6.413831899990328,
+  "tracker_seconds": 34.54657239999506,
+  "readback": {
+    "Scout ID": 3033,
+    "Company": "Redis",
+    "Job Title": "Lead, Growth Marketing",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1M6V6w_6lL95D749kTspLcdFTzRne1ZVb/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1285",
+  "hyperlink_target": "https://docs.google.com/document/d/1M6V6w_6lL95D749kTspLcdFTzRne1ZVb/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 128.6551,
+    "active_seconds": 74.5652,
+    "review_wait_seconds": 54.0899,
+    "phases_seconds": {
+      "source_loading": 0.0359,
+      "tailoring": 0.8922,
+      "document_creation": 2.1998,
+      "word_pdf_validation": 7.177,
+      "fitting_retries": 0.3668,
+      "factual_review": 0.0,
+      "review_wait": 54.0899,
+      "tracker_sync": 34.5459,
+      "drive_delivery": 6.4088
+    },
+    "counts": {
+      "source_loading": 87,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

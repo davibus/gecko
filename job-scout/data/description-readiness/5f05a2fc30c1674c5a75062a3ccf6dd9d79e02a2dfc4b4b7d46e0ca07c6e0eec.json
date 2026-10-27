@@ -1,0 +1,10 @@
+{
+  "value": "Yes",
+  "reason": "Contains substantive duties and technical qualifications specific to marketing analytics engineering, including CRM data pipelines, SQL reporting, campaign attribution, and data quality. These provide enough information for honest resume tailoring.",
+  "status": "reviewed",
+  "evidence": [
+    "Design, build, and maintain data pipelines connecting Salesforce, Marketo, and the data warehouse",
+    "Strong SQL skills: comfortable writing joins, aggregations, and window functions against large relational datasets.",
+    "Working knowledge of at least one programming language used in data work\u00a0(e.g., Python) for scripting, automation, or ETL."
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Daymark-Health+Patient-Marketing-Manager+00446.docx",
+  "qa": {
+    "status": "pass",
+    "word_pages": 2,
+    "pdf_pages": 2,
+    "issues": [],
+    "remaining_weaknesses": [
+      "Mission-first. You are motivated by the opportunity to improve the healthcare system and aligned with Daymark's mission to transform cancer care for patients, families, and providers. (Bonus if you have healthcare, patient marketing, or regulated-industry experience \u2014 or a personal reason this work matters to you.)",
+      "experience for patients, providers, and health plans.",
+      "support, behavioral health care, and social resources.",
+      "experience for patients, providers, and health plans \u2013 and setting a new standard in cancer care.",
+      "strong point of view and fresh creative thinking to how we grow enrollment.",
+      "support our enrollment team, who connect with prospective patients every day, and your success will be measured in new patients enrolled.",
+      "Bring a strong point of view to Daymark's patient acquisition and engagement strategy \u2014 proactively surfacing creative ideas and new approaches to reach prospective patients, educate them on Daymark, and improve how we convert them to enrolled patients. You'll help shape the strategy and own bringing it to life.",
+      "Write patient- and provider-facing content independently \u2014 emails, brochures, landing pages, scripts, and collateral \u2014 translating Daymark's messaging and positioning into content that resonates and drives action.",
+      "Partner closely with the enrollment team, arming them with the materials, messaging, and campaigns they need to convert prospective patients through daily outreach.",
+      "Own the patient marketing calendar \u2014 scheduling, building, and deploying campaigns across platforms.",
+      "Continuously A/B test and optimize campaigns to drive incremental gains in enrollment and engagement, and monitor and analyze performance to inform what comes next.",
+      "Use data-driven insights to tailor messaging to each stage of the prospective patient journey.",
+      "Ensure all patient and enrollment communications meet healthcare compliance and consent requirements (e.g., HIPAA, TCPA), partnering with internal stakeholders as needed.",
+      "Built and launched multichannel patient marketing campaigns that measurably support new patient enrollment.",
+      "Bachelor\u2019s degree in Marketing, Communications, Business, or a related field, or equivalent experience.",
+      "A portfolio of writing samples (email, SMS, landing pages, brochures, or scripts) that shows you can write independently and on-brand.",
+      "Hands-on experience building and deploying lifecycle campaigns in a marketing automation platform (e.g., Braze, Salesforce Marketing Cloud, HubSpot), including segmentation, personalization, and A/B testing.",
+      "Working knowledge of consent and communications compliance (HIPAA, TCPA, CAN-SPAM), or the judgment to learn it quickly and partner with compliance.",
+      "A creative thinker with a POV. You don't just execute a brief \u2014 you bring ideas. You're always thinking about how to improve enrollment, you're willing to test unconventional approaches, and you have a strong point of view on strategy even as you partner with a leader who owns it.",
+      "Data-driven and execution-oriented. You A/B test relentlessly, read the numbers, and use them to improve. You have incredible attention to detail and a bias toward shipping.",
+      "A self-starter. You thrive in a dynamic, fast-paced, early-stage environment, you're resourceful and creative, and you're comfortable owning your work end to end.",
+      "A collaborative teammate. You partner well across marketing, enrollment, clinical, and operations, and you communicate openly on a small, nimble team.",
+      "Support (BLS) certification and compliance with Daymark's Employee Vaccination and Testing policy.",
+      "coordinate with their recruiter and hiring manager to",
+      "ensure they meet the requirements by their start date.",
+      "provide proof of a valid driver's license."
+    ],
+    "native_validation": "C:\\gecko_main\\scratch\\Daymark-Health+scout-2988\\validation-status.json",
+    "word_output": "Word validation mode: Interactive-user bridge\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\gecko_main\\scratch\\Daymark-Health+scout-2988\\native-attempts\\9c94e430f79a4f05b743ecb9c4bf824a\\validation-status.json",
+    "word_bridge_root": "C:\\gecko_main\\scratch\\resume-word-sessions\\3c13e26491b3490c958c64361a9a994e",
+    "page_two_bottom_gap_pt": 14.74,
+    "page_two_text_boundary_pt": 757.45,
+    "density_issue": "",
+    "content_exhaustion_reason": ""
+  },
+  "timings": {
+    "wall_seconds": 20.1122,
+    "active_seconds": 20.1122,
+    "review_wait_seconds": 0.0,
+    "phases_seconds": {
+      "source_loading": 0.063,
+      "tailoring": 0.0,
+      "document_creation": 1.0403,
+      "word_pdf_validation": 5.8496,
+      "fitting_retries": 0.0034,
+      "factual_review": 0.0,
+      "review_wait": 0.0,
+      "tracker_sync": 0.0
+    },
+    "counts": {
+      "source_loading": 26,
+      "tailoring": 0,
+      "document_creation": 1,
+      "word_pdf_validation": 1,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 0,
+      "tracker_sync": 0,
+      "master_parses": 1,
+      "fitting_attempts": 1,
+      "native_attempts": 1
+    }
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "id": "job",
+  "sufficient": true,
+  "reason": "Complete duties and qualifications support assessment. Meta tenure, Pixel and CAPI are unverified.",
+  "blockers": [],
+  "categories": {
+    "responsibilities": [
+      {
+        "requirement": "Lead the kickoff: budgets, targets (CPA/ROAS), audiences, and reporting cadence",
+        "support": 0.5,
+        "evidence": [
+          "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation"
+        ],
+        "reason": "Client strategy and budget planning transfer; kickoff and cadence ownership are unverified."
+      },
+      {
+        "requirement": "Audit existing ad accounts, tracking setup, and creative libraries before anything goes live",
+        "support": 0.5,
+        "evidence": [
+          "Evaluates nine categories: account structure, campaign performance, keywords, search-term waste, geography, devices, budget allocation, conversions, and landing-page opportunities."
+        ],
+        "reason": "Account and conversion audits are established; creative-library prelaunch audits are unverified."
+      },
+      {
+        "requirement": "Agree what good looks like in month one, three, and six",
+        "support": 1,
+        "evidence": [
+          "Created business goals, annual projections, and KPIs with senior management"
+        ],
+        "reason": "Demonstrated goal and KPI planning supports setting staged client targets."
+      },
+      {
+        "requirement": "Configure ad accounts, pixels, CAPI, and conversion tracking",
+        "support": 0.5,
+        "evidence": [
+          "Configured GA4 and custom Google Tag Manager measurement/reporting"
+        ],
+        "reason": "Measurement configuration transfers; Pixel and CAPI implementation are unverified."
+      },
+      {
+        "requirement": "Build the account structure: campaigns, ad sets, audiences, budget splits",
+        "support": 1,
+        "evidence": [
+          "Leads account activation, campaign builds and structures, keyword and negative-keyword strategy, ad copy, audience segmentation, bid testing, budget pacing"
+        ],
+        "reason": "Direct account activation, structure, audience and budget experience."
+      },
+      {
+        "requirement": "Brief creative and feed requirements to the studio team",
+        "support": 0.5,
+        "evidence": [
+          "Worked closely with the Web Dev team and the content team to create custom landing pages and custom content for PMAX campaigns"
+        ],
+        "reason": "Creative collaboration transfers; studio feed briefs are unverified."
+      },
+      {
+        "requirement": "Launch, monitor, and optimise daily against KPIs",
+        "support": 1,
+        "evidence": [
+          "bid testing, budget pacing, daily optimization, quality assurance, and performance reporting."
+        ],
+        "reason": "Direct daily optimization, QA and reporting experience."
+      },
+      {
+        "requirement": "Manage budget pacing and move spend where it performs",
+        "support": 1,
+        "evidence": [
+          "Built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+        ],
+        "reason": "Pacing monitoring and documented cross-channel allocation support spend adjustments."
+      },
+      {
+        "requirement": "Run creative, audience, and bidding tests, then scale what works",
+        "support": 1,
+        "evidence": [
+          "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review"
+        ],
+        "reason": "Direct testing and profitable scaling across bidding, audiences and campaigns."
+      },
+      {
+        "requirement": "Own the weekly and monthly client reporting and walk clients through it",
+        "support": 1,
+        "evidence": [
+          "Built reporting pipelines using Funnel.io to consolidate data sources and presented performance data through Google Data Studio/Looker Studio"
+        ],
+        "reason": "Client reporting and presentations support the employer's reporting cadence."
+      },
+      {
+        "requirement": "Flag risks early. If a target is slipping, the client hears it from you first, with a plan",
+        "support": 0.5,
+        "evidence": [
+          "Builds and develops teams, documents lessons learned, resolves issues, respectfully challenges assumptions, takes ownership of setbacks"
+        ],
+        "reason": "Issue ownership transfers; proactive client underperformance escalation is unverified."
+      }
+    ],
+    "required": [
+      {
+        "requirement": "A track record in DTC or e-commerce where you owned ROAS or CPA and can talk through specific accounts",
+        "support": 1,
+        "evidence": [
+          "Increased monthly marketing volume from approximately $200,000 to $800,000 while improving ROAS from 1.5 to 3.5"
+        ],
+        "reason": "GRIP6 provides a specific e-commerce performance result with ROAS ownership."
+      },
+      {
+        "requirement": "Comfortable running client calls solo, including the difficult ones about performance",
+        "support": 0.5,
+        "evidence": [
+          "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+        ],
+        "reason": "Client presentation experience is direct; solo difficult-call examples are unverified."
+      },
+      {
+        "requirement": "Strong on tracking and attribution: GA4, pixel, CAPI, and reading the data behind a result",
+        "support": 0.5,
+        "evidence": [
+          "Develops conversion tracking and attribution models; analyzes funnels, conversion paths, landing pages, and micro-conversions"
+        ],
+        "reason": "Tracking and attribution analysis are strong; Pixel and CAPI remain unverified."
+      },
+      {
+        "requirement": "Able to run several accounts at once, start to finish, and keep each one on plan",
+        "support": 1,
+        "evidence": [
+          "Set up and managed more than 75 Google Ads/AdWords accounts with combined monthly spend of more than $476,000"
+        ],
+        "reason": "Direct multi-account setup and management at substantial scale."
+      }
+    ],
+    "seniority": [
+      {
+        "requirement": "3+ years buying paid media, hands-on, across Meta and Google (TikTok a plus)",
+        "support": 0.5,
+        "evidence": [
+          "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget"
+        ],
+        "reason": "Hands-on platform coverage is direct; three years across both Meta and Google are unverified."
+      }
+    ],
+    "industry": [],
+    "preferred": [
+      {
+        "requirement": "Agency background running multiple clients",
+        "support": 1,
+        "evidence": [
+          "Developed a repeatable Google Ads account-management system that maintained consistent service quality across clients regardless of spend; the system was adopted across the agency"
+        ],
+        "reason": "Direct agency experience managing consistent service across clients."
+      },
+      {
+        "requirement": "Feed management and Google Shopping experience",
+        "support": 1,
+        "evidence": [
+          "Built a Google Merchant Center feed and product structured-data layer from a shared offer model"
+        ],
+        "reason": "Direct feed development complements documented Shopping campaign experience."
+      },
+      {
+        "requirement": "A creative testing framework you've actually used",
+        "support": 0.5,
+        "evidence": [
+          "Built conversion and attribution models and designed A/B and multivariate tests across multiple levels of the marketing funnel"
+        ],
+        "reason": "Applied testing design transfers; a specific creative-testing framework is unverified."
+      }
+    ]
+  },
+  "score": 72.31,
+  "accepted": true,
+  "status": "reviewed",
+  "failed_rules": [],
+  "category_percentages": {
+    "responsibilities": 77.27,
+    "required": 75.0,
+    "seniority": 50.0,
+    "industry": null,
+    "preferred": 83.33
+  },
+  "policy": "master-evidence-v2",
+  "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+  "job": {
+    "id": "job",
+    "title": "Senior Paid Media Manager",
+    "company": "Advantage HQ",
+    "url": "https://bmdigital.applytojob.com/apply/uabVW8G20Q/Senior-Paid-Media-Manager"
+  },
+  "description_sha256": "a81035af69aceaa9adef2a85d34f1ef3735d3fbbf73c26a6b9dfbb3cb1f16957",
+  "runner": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a1737b-0e12-7a53-8286-2b4563c4c26f",
+    "verified_at": "2026-10-25T14:34:43.416211+00:00"
+  },
+  "thresholds": {
+    "minimum_score": 60,
+    "minimum_responsibilities_match": 50,
+    "minimum_required_skills_match": 50
+  },
+  "cached": true
+}

@@ -1,5 +1,37 @@
 # Gecko Main — essential instructions
 
+## Current application browser rule — October 26, 2026
+
+Use ONE dedicated Chrome window with ONE tab TOTAL. Reuse the same Gecko-owned
+tab for successive jobs. Before leaving any job, save its exact URL, outcome,
+missing questions, attachment evidence and available recovery information;
+publish the outcome to the primary Google Sheet and verify readback. Then reuse
+the tab for blocked, CAPTCHA, skipped, failed and completed jobs alike.
+Saving a blocked application means saving information. Unsaved form entries and
+uploads are not guaranteed to persist; never claim a server-saved draft without
+evidence. Do not retain application tabs as a recovery mechanism.
+
+Adopt an employer popup only when its opener is positively Gecko-owned; save
+handoff information and immediately close the old owned tab. Verify both owned
+tab count and the dedicated window's TOTAL tab count before every job and after
+every outcome. Archive and verify outcomes before reconciling extra owned tabs.
+Never close unrelated tabs or windows; isolate Gecko in its own window when
+necessary. Unknown ownership or failed recovery/publication pauses the workflow.
+
+An attempted submission without employer confirmation is a JOB-LEVEL blocker.
+Save its exact evidence, publish and verify the unconfirmed outcome, preserve
+the durable no-retry ledger, then reuse the same tab for the next eligible job.
+Never mark it Applied or automatically retry it. Individual blocked, CAPTCHA,
+or uncertain applications must not stop unrelated jobs. Pause only for shared
+failures such as lost browser control or unverified tracker updates. Constructor
+2972 remains CAPTCHA=X and unconfirmed, is never automatically retried, and is
+NOT a prerequisite for other applications. This supersedes ALL historical
+leave-tabs-open instructions below, in application guides and in the answer bank.
+The October 23 automatic-submission policy remains current; OpenClaw stays stopped.
+Keep live Ready to Apply=X gating, existing Capture/CAPTCHA=X tracking, actual
+elapsed timers and immediate per-job Sheet readback. Historical answer-bank
+procedures do not override this lifecycle rule or automatic-submission policy.
+
 ## Columns follow names, not positions
 
 Users may move whole columns freely without asking for code or instruction updates.
@@ -127,3 +159,112 @@ After employer confirmation, record Applied and the actual America/Denver Applie
 ## Direct Playwright attachment verification — October 23, 2026
 Dave explicitly instructed: "Don't require a preview or content check before submission anymore."
 For direct Playwright applications, a preview/download/content comparison is no longer a submission prerequisite. Verify the exact matching local file, its selected browser filename/size and successful upload. Retain factual-answer checks, exact job identity, duplicate prevention and employer-confirmation requirements. This supersedes older preview/content-check gates for this workflow. OpenClaw remains stopped.
+
+
+## Discovery query provenance - October 24, 2026
+Populate the existing **Query Used to Find** column for discovered jobs from the actual recorded discovery query. Preserve nonblank values and formulas. Never infer a query from the job title or the target-role list. For a genuine full-feed source, identify the feed and say no search query was used. Keep this behavior for future Gecko searches.
+
+
+## Match threshold experiment - October 25, 2026
+Dave requested all three resume-match thresholds: overall at least 60/100, responsibilities at least 50%, and required skills at least 50%. All three must pass. The thresholds are controlled by job-scout/preferences/resume-match.json. Reuse cached evidence but recalculate acceptance against the current thresholds. Keep scoring weights and the evidence, mandatory-blocker, location, salary, fee, rejection and duplicate safeguards unchanged. This overrides earlier references to an overall 80-point minimum or 70% category floors.
+
+## Job-specific resume headline - user instruction October 26, 2026
+
+For EVERY resume, customize the specialization/main title directly below Dave's
+name to the exact job's responsibilities, priorities, and required skills. Read
+`Variations of Specialization/Main Titles` in the current
+`input/master-resume/master-resume-v4.docx`. These are examples, not a closed list:
+select, combine, or create the best concise, natural headline supported by Dave's
+actual master-resume experience. Lead with the most relevant specialization; omit
+unrelated areas and unsupported expertise, seniority, credentials, or claims.
+Never automatically reuse `Marketing Technology/AI | Paid Media | E-Commerce |
+Analytics | Digital Marketing` across jobs. It is acceptable only when its full
+emphasis is genuinely the best fit after reviewing that specific posting.
+
+Review the headline together with the summary and supporting accomplishments,
+then inspect its rendered fit in the established header and two-page layout.
+The generator ranks master examples as an initial suggestion; the agent must
+review suitability and may create better wording. For a custom headline, call
+`scripts/gecko_v2.py`'s `set_reviewed_headline(plan, headline, rationale)` before
+generation, recording why its claims are supported and relevant. Never bypass
+headline validation or copy the master default into every plan. This headline is
+professional positioning; preserve verified employment titles and filename/job
+identity rules. Existing completed resumes are not regenerated without a request.
+
+## Usable Google Sheets resume links - October 26, 2026
+
+Dave explicitly selected PRIVATE GOOGLE DRIVE LINKS, usable across devices.
+Every new resume's Resume Link must be a clickable HTTPS link to the exact
+completed DOCX in his private Drive. Keep the validated local DOCX for job
+applications. A raw local path or `file:///` URI is not usable in Google Sheets;
+HYPERLINK cannot fix that unsupported protocol. This instruction supersedes all
+earlier no-upload and raw-file-URI requirements for resume delivery only. Never
+make resumes public, convert the validated DOCX, or share them with others.
+
+After native Word and visual QA, upload the exact final DOCX with the connected
+Google Drive `upload_file` tool, preserving its filename and DOCX MIME type. Use
+the private folder configured in `job-scout/preferences/resume-delivery.json`:
+`https://drive.google.com/drive/folders/1Noy8XUqlL5ufqA4aU9jZWdwpMYeCVmol`.
+Reuse a verified unchanged upload instead of creating duplicates. Read back the
+Drive metadata (ID, observed URL, filename, MIME type, size, parents and private
+owner-only permissions), download its raw bytes and compare SHA-256 with the
+local DOCX. Save a receipt JSON containing `path`, `metadata` from that readback,
+and `download: {"sha256": "<actual downloaded SHA-256>"}`. Register it using
+`scripts/register_resume_drive_link.py --receipt <receipt.json>`.
+
+The canonical publisher resolves that verified receipt to its observed HTTPS
+URL. Write Resume Link as a clickable Google Sheets hyperlink, verify the cell's
+actual hyperlink target, and preserve completion dates, job identity, formulas,
+formatting and unrelated fields. Resume Created still requires all existing QA
+and completion safeguards. If the connector is unavailable, retain the finished
+local file and report Private Drive publication pending; do not silently fall
+back to file:/// or claim a working tracker link. Unattended queue runs without
+a registered delivery receipt stop at this publication gate and need a connected
+agent to perform the upload. Dashboard and applications resolve registered Drive
+URLs back to the unchanged local file through `job-scout/resume_delivery.py`.
+
+## Canadian remote jobs allowed - user instruction October 26, 2026
+
+Dave explicitly instructed: If it is Canada, allow it. Treat Canadian remote
+jobs, including Canada-only postings and country codes CA/CAN, as geographically
+eligible for Gecko discovery, qualification, resume queues and tracker review.
+Do not set Qualifies to Apply? to No solely because the country is Canada or the
+ATS applicant country is Canadian. This supersedes earlier U.S./Utah-only remote
+country restrictions for Canada. Marketbridge ID 2983 is the confirmed example.
+
+Keep other safeguards: fees, permanent rejections, completed-resume protection,
+match thresholds, usable job descriptions, and genuine additional location or
+residency restrictions. Required Eastern working hours alone are not an Eastern
+residency restriction. This does not authorize inventing Canadian citizenship,
+work authorization, residency or willingness to relocate; answer application
+questions truthfully and surface any unsupported mandatory requirement. The
+exception permits remote Canada jobs; it does not make Canadian onsite/hybrid
+jobs local Utah jobs or permit every other foreign-country requisition.
+
+
+## Confirmed GitHub profile - October 26, 2026
+
+Dave confirmed his GitHub profile is https://github.com/davibus
+(user-supplied address: www.github.com/davibus). Use this URL for GitHub profile
+fields in Gecko applications and relevant profile/contact information. A general
+profile URL does not establish a particular project repository, ownership, or
+access to an older account. Preserve project-specific answers and their scope.
+
+## Application agreements - standing authorization October 27, 2026
+
+Dave instructed: "Yes. Always agree to any application. Put that in the Gecko instructions."
+For jobs Dave authorizes Gecko to apply for, automatically select Agree, I agree,
+Accept, or the equivalent for application terms and conditions, privacy notices,
+and consent to process the application. This includes Graphite's HR Privacy Notice.
+Do not ask Dave for agreement approval again. This supersedes older instructions
+to pause merely because an application agreement needs acceptance.
+
+Read the agreement label and context, select the actual control (including a
+visible label for a styled radio/checkbox), and verify the selection persists.
+Check displayed validation messages before treating the form as complete. This
+permission does not establish career facts or answers to eligibility questions.
+Dave's separate No preference for optional recruiting SMS/messages still applies.
+Keep one tab, Ready to Apply=X eligibility, CAPTCHA skipping, duplicate prevention,
+and employer-confirmed submission with immediate verified tracker updates.
+An agreement answer does not by itself clear an uncertain submission or authorize
+repeating a prior Submit click.

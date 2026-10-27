@@ -1,0 +1,55 @@
+{
+  "candidates_discovered": 4202,
+  "known_jobs_skipped_before_retrieval": 49,
+  "new_jobs_added": 0,
+  "free_retrievals": 3,
+  "paid_requests": 0,
+  "paid_requests_avoided": 1573,
+  "pending": 375,
+  "new_job_ids": [],
+  "published_job_ids": [],
+  "warnings": [],
+  "status": "complete",
+  "firecrawl": {
+    "provider_confirmed_credits": 0,
+    "estimated_or_reserved_credits": 0,
+    "total_credits_accounted": 0,
+    "usage_scope": "ledger delta during controlled run; account-wide usage is not attributed",
+    "ledger_usage_after": {
+      "search_credits": 318,
+      "extraction_credits": 500,
+      "provider_confirmed_credits": 740,
+      "estimated_or_reserved_credits": 78,
+      "total_credits_accounted": 818,
+      "estimated_account_balance": 1567,
+      "balance_observed_at": "2026-10-26T00:30:42.696811+00:00",
+      "billing_complete": false,
+      "hard_ceiling_exact": false
+    },
+    "new_qualified": 0,
+    "day": "2026-10-25"
+  },
+  "fetched": 4202,
+  "newly_discovered": 0,
+  "existing_job_ids": [],
+  "changed_job_ids": [],
+  "sources_searched": 1,
+  "source_health": {
+    "adzuna": {
+      "status": "success",
+      "found": 4202,
+      "errors": []
+    }
+  },
+  "source_errors": {},
+  "run_id": "incremental-20261025T183050-fa220aa6",
+  "mode": "incremental",
+  "source_counts": {
+    "adzuna": 4202
+  },
+  "resumes_generated": 0,
+  "applications_submitted": 0,
+  "checked_at": "2026-10-26T00:35:07.990226+00:00",
+  "activity": "Incremental discovery: 4202 candidates; 0 new jobs verified",
+  "published_jobs_verified": 0
+}

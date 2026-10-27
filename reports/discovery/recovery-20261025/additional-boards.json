@@ -1,0 +1,2345 @@
+[
+  {
+    "company": "Dakota",
+    "platform": "ashby",
+    "identifier": "dakota",
+    "evidence": [
+      "site:jobs.ashbyhq.com marketing"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 4
+  },
+  {
+    "company": "Cracken",
+    "platform": "ashby",
+    "identifier": "crackenagi",
+    "evidence": [
+      "site:jobs.ashbyhq.com CRO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 10
+  },
+  {
+    "company": "Careerswift",
+    "platform": "ashby",
+    "identifier": "careerswift.ai",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"digital marketing\"",
+      "site:jobs.ashbyhq.com \"marketing analytics\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 16
+  },
+  {
+    "company": "EdSights",
+    "platform": "ashby",
+    "identifier": "edsights",
+    "evidence": [
+      "site:jobs.ashbyhq.com marketing"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 3
+  },
+  {
+    "company": "Factory",
+    "platform": "ashby",
+    "identifier": "factory",
+    "evidence": [
+      "site:jobs.ashbyhq.com marketing",
+      "site:jobs.ashbyhq.com \"marketing operations\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 64
+  },
+  {
+    "company": "Feathery",
+    "platform": "ashby",
+    "identifier": "feathery",
+    "evidence": [
+      "site:jobs.ashbyhq.com SEO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 16
+  },
+  {
+    "company": "Elliptic",
+    "platform": "ashby",
+    "identifier": "elliptic",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"digital marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 30
+  },
+  {
+    "company": "Flagright",
+    "platform": "ashby",
+    "identifier": "flagright.com",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"performance marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 9
+  },
+  {
+    "company": "Freehand",
+    "platform": "ashby",
+    "identifier": "freehand",
+    "evidence": [
+      "site:jobs.ashbyhq.com SEM"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 10
+  },
+  {
+    "company": "Graphite",
+    "platform": "ashby",
+    "identifier": "Graphitehq",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"paid search\"",
+      "site:jobs.ashbyhq.com SEO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 4
+  },
+  {
+    "company": "ImagineArt",
+    "platform": "ashby",
+    "identifier": "imagineart",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"performance marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 31
+  },
+  {
+    "company": "Instructure, Inc.",
+    "platform": "ashby",
+    "identifier": "instructure",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"marketing operations\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 61
+  },
+  {
+    "company": "Hire Hangar",
+    "platform": "ashby",
+    "identifier": "hirehangar",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"paid media\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 112
+  },
+  {
+    "company": "Juniper Square",
+    "platform": "ashby",
+    "identifier": "junipersquare",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"digital marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 46
+  },
+  {
+    "company": "LemFi",
+    "platform": "ashby",
+    "identifier": "lemfi",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"performance marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 20
+  },
+  {
+    "company": "Lunar Solar Group",
+    "platform": "ashby",
+    "identifier": "lunar-solar-group",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"paid search\"",
+      "site:jobs.ashbyhq.com \"lifecycle marketing\"",
+      "site:jobs.ashbyhq.com SEM",
+      "site:jobs.ashbyhq.com CRO",
+      "site:jobs.ashbyhq.com \"media buying\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 10
+  },
+  {
+    "company": "NEW ERA Digital Marketing",
+    "platform": "ashby",
+    "identifier": "new-era-digital-marketing",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"digital marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 3
+  },
+  {
+    "company": "Kraken",
+    "platform": "ashby",
+    "identifier": "kraken.com",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"paid search\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 88
+  },
+  {
+    "company": "Optro",
+    "platform": "ashby",
+    "identifier": "optro",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"marketing operations\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 27
+  },
+  {
+    "company": "OnHires",
+    "platform": "ashby",
+    "identifier": "onhires",
+    "evidence": [
+      "site:jobs.ashbyhq.com SEO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 42
+  },
+  {
+    "company": "Origin",
+    "platform": "ashby",
+    "identifier": "originhq",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"demand generation\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 10
+  },
+  {
+    "company": "Redis",
+    "platform": "ashby",
+    "identifier": "Redis",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"digital strategy\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 30
+  },
+  {
+    "company": "Rho",
+    "platform": "ashby",
+    "identifier": "rho",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"marketing operations\"",
+      "site:jobs.ashbyhq.com \"lifecycle marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 43
+  },
+  {
+    "company": "Source Multiplier",
+    "platform": "ashby",
+    "identifier": "source-multiplier",
+    "evidence": [
+      "site:jobs.ashbyhq.com CRO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 9
+  },
+  {
+    "company": "Scribe",
+    "platform": "ashby",
+    "identifier": "scribe",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"marketing automation\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 31
+  },
+  {
+    "company": "Taekus",
+    "platform": "ashby",
+    "identifier": "taekus",
+    "evidence": [
+      "site:jobs.ashbyhq.com marketing"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 12
+  },
+  {
+    "company": "Truelogic",
+    "platform": "ashby",
+    "identifier": "truelogic",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"marketing analytics\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 133
+  },
+  {
+    "company": "Uproot Clean",
+    "platform": "ashby",
+    "identifier": "uprootclean",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"paid media\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 9
+  },
+  {
+    "company": "Valid",
+    "platform": "ashby",
+    "identifier": "Valid",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"performance marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 9
+  },
+  {
+    "company": "Weave",
+    "platform": "ashby",
+    "identifier": "weave",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"paid media\"",
+      "site:jobs.ashbyhq.com \"lifecycle marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 28
+  },
+  {
+    "company": "Renuity",
+    "platform": "ashby",
+    "identifier": "renuity",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"paid media\"",
+      "site:jobs.ashbyhq.com \"performance marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 387
+  },
+  {
+    "company": "Wonderly",
+    "platform": "ashby",
+    "identifier": "wonderly",
+    "evidence": [
+      "site:jobs.ashbyhq.com SEO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 7
+  },
+  {
+    "company": "Talkiatry",
+    "platform": "ashby",
+    "identifier": "talkiatry",
+    "evidence": [
+      "site:jobs.ashbyhq.com \"growth marketing\"",
+      "site:jobs.ashbyhq.com \"lifecycle marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 188
+  },
+  {
+    "company": "Acquia",
+    "platform": "greenhouse",
+    "identifier": "acquia",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"digital strategy\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 5
+  },
+  {
+    "company": "Amwell",
+    "platform": "greenhouse",
+    "identifier": "amwell",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"digital marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 8
+  },
+  {
+    "company": "2K",
+    "platform": "greenhouse",
+    "identifier": "2k",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"paid media\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 102
+  },
+  {
+    "company": "Alnylam Pharmaceuticals",
+    "platform": "greenhouse",
+    "identifier": "alnylampharmaceuticals",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"digital strategy\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 112
+  },
+  {
+    "company": "Apollo.io",
+    "platform": "greenhouse",
+    "identifier": "apolloio",
+    "evidence": [
+      "site:boards.greenhouse.io \"marketing operations\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 53
+  },
+  {
+    "company": "Appodeal",
+    "platform": "greenhouse",
+    "identifier": "appodeal",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"media buying\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 11
+  },
+  {
+    "company": "Banyan Software",
+    "platform": "greenhouse",
+    "identifier": "banyansoftware",
+    "evidence": [
+      "site:job-boards.greenhouse.io CRO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 48
+  },
+  {
+    "company": "Bloomerang",
+    "platform": "greenhouse",
+    "identifier": "bloomerang",
+    "evidence": [
+      "site:boards.greenhouse.io marketing"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 9
+  },
+  {
+    "company": "Careers",
+    "platform": "greenhouse",
+    "identifier": "fieldwire",
+    "evidence": [
+      "site:boards.greenhouse.io CRO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 22
+  },
+  {
+    "company": "Careers \u2014 Squarespace",
+    "platform": "greenhouse",
+    "identifier": "squarespace",
+    "evidence": [
+      "site:boards.greenhouse.io marketing"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 28
+  },
+  {
+    "company": "Coast",
+    "platform": "greenhouse",
+    "identifier": "coast",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"lifecycle marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 18
+  },
+  {
+    "company": "Appian Corporation",
+    "platform": "greenhouse",
+    "identifier": "appian",
+    "evidence": [
+      "site:boards.greenhouse.io \"digital marketing\"",
+      "site:job-boards.greenhouse.io SEO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 164
+  },
+  {
+    "company": "CoLab Software",
+    "platform": "greenhouse",
+    "identifier": "colabsoftware",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"demand generation\"",
+      "site:job-boards.greenhouse.io SEM"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 24
+  },
+  {
+    "company": "Convera",
+    "platform": "greenhouse",
+    "identifier": "convera",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"marketing operations\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 42
+  },
+  {
+    "company": "Crexi",
+    "platform": "greenhouse",
+    "identifier": "crexi",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"lifecycle marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 16
+  },
+  {
+    "company": "DataCamp",
+    "platform": "greenhouse",
+    "identifier": "datacamp",
+    "evidence": [
+      "site:boards.greenhouse.io \"marketing operations\"",
+      "site:job-boards.greenhouse.io SEO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 38
+  },
+  {
+    "company": "Dr. Squatch",
+    "platform": "greenhouse",
+    "identifier": "drsquatch",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"ecommerce marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 21
+  },
+  {
+    "company": "Careers",
+    "platform": "greenhouse",
+    "identifier": "bursonglobalcareers",
+    "evidence": [
+      "site:boards.greenhouse.io \"paid media\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 192
+  },
+  {
+    "company": "Fanatics Betting & Gaming",
+    "platform": "greenhouse",
+    "identifier": "fanaticsfbg",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"media buying\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 73
+  },
+  {
+    "company": "Formic",
+    "platform": "greenhouse",
+    "identifier": "formic",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"growth marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 37
+  },
+  {
+    "company": "Fresh Prints",
+    "platform": "greenhouse",
+    "identifier": "freshprints",
+    "evidence": [
+      "site:boards.greenhouse.io marketing",
+      "site:boards.greenhouse.io \"digital marketing\"",
+      "site:job-boards.greenhouse.io SEO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 39
+  },
+  {
+    "company": "Fundraise Up",
+    "platform": "greenhouse",
+    "identifier": "fundraiseup",
+    "evidence": [
+      "site:boards.greenhouse.io marketing",
+      "site:boards.greenhouse.io CRO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "failed",
+    "error": "Request failed for https://boards-api.greenhouse.io/v1/boards/fundraiseup/jobs: HTTP Error 404: Not Found | {\"status\": 404, \"error\": \"Job not found\"}"
+  },
+  {
+    "company": "FSAStore.com",
+    "platform": "greenhouse",
+    "identifier": "fsastorecom",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"growth marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 11
+  },
+  {
+    "company": "Garner Health",
+    "platform": "greenhouse",
+    "identifier": "garnerhealth",
+    "evidence": [
+      "site:boards.greenhouse.io \"marketing operations\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 77
+  },
+  {
+    "company": "Fanatics Commerce",
+    "platform": "greenhouse",
+    "identifier": "fanaticscommerce",
+    "evidence": [
+      "site:job-boards.greenhouse.io SEM"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 205
+  },
+  {
+    "company": "GenScript",
+    "platform": "greenhouse",
+    "identifier": "genscript",
+    "evidence": [
+      "site:job-boards.greenhouse.io CRO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 74
+  },
+  {
+    "company": "GWI",
+    "platform": "greenhouse",
+    "identifier": "globalwebindex",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"marketing automation\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 22
+  },
+  {
+    "company": "Hearst",
+    "platform": "greenhouse",
+    "identifier": "hearst",
+    "evidence": [
+      "site:job-boards.greenhouse.io SEO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 10
+  },
+  {
+    "company": "Gymshark",
+    "platform": "greenhouse",
+    "identifier": "gymshark",
+    "evidence": [
+      "site:boards.greenhouse.io \"paid search\"",
+      "site:boards.greenhouse.io CRO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 17
+  },
+  {
+    "company": "Gusto, Inc.",
+    "platform": "greenhouse",
+    "identifier": "gusto",
+    "evidence": [
+      "site:boards.greenhouse.io \"paid search\"",
+      "site:boards.greenhouse.io \"performance marketing\"",
+      "site:boards.greenhouse.io \"marketing operations\"",
+      "site:job-boards.greenhouse.io \"performance marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 101
+  },
+  {
+    "company": "Hightouch",
+    "platform": "greenhouse",
+    "identifier": "hightouch",
+    "evidence": [
+      "existing configuration",
+      "site:job-boards.greenhouse.io \"growth marketing\"",
+      "site:job-boards.greenhouse.io \"marketing automation\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "failed",
+    "error": "Request failed for https://boards-api.greenhouse.io/v1/boards/hightouch/jobs: HTTP Error 404: Not Found | {\"status\": 404, \"error\": \"Job not found\"}"
+  },
+  {
+    "company": "IANS",
+    "platform": "greenhouse",
+    "identifier": "ians",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"performance marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 10
+  },
+  {
+    "company": "Illumia, LLC",
+    "platform": "greenhouse",
+    "identifier": "illumiallc",
+    "evidence": [
+      "site:job-boards.greenhouse.io SEM"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 20
+  },
+  {
+    "company": "Incode Technologies",
+    "platform": "greenhouse",
+    "identifier": "incode",
+    "evidence": [
+      "site:boards.greenhouse.io \"digital marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 12
+  },
+  {
+    "company": "Junior Achievement USA",
+    "platform": "greenhouse",
+    "identifier": "juniorachievementusa",
+    "evidence": [
+      "site:job-boards.greenhouse.io marketing"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "no results",
+    "jobs": 0
+  },
+  {
+    "company": "League Inc.",
+    "platform": "greenhouse",
+    "identifier": "leagueinc",
+    "evidence": [
+      "site:boards.greenhouse.io \"lifecycle marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 5
+  },
+  {
+    "company": "LendingTree",
+    "platform": "greenhouse",
+    "identifier": "lendingtree",
+    "evidence": [
+      "site:boards.greenhouse.io \"paid search\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 23
+  },
+  {
+    "company": "LettrLabs",
+    "platform": "greenhouse",
+    "identifier": "lettrlabs",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"lifecycle marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 13
+  },
+  {
+    "company": "LTK USA",
+    "platform": "greenhouse",
+    "identifier": "shopltk",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"paid media\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 9
+  },
+  {
+    "company": "Mews",
+    "platform": "greenhouse",
+    "identifier": "mewssystems",
+    "evidence": [
+      "site:boards.greenhouse.io marketing"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 27
+  },
+  {
+    "company": "League & Team Marketing Coordinator - FanDuel",
+    "platform": "greenhouse",
+    "identifier": "fanduel",
+    "evidence": [
+      "site:boards.greenhouse.io marketing"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 87
+  },
+  {
+    "company": "Oldcastle BuildingEnvelope",
+    "platform": "greenhouse",
+    "identifier": "oldcastlebuildingenvelope",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"digital marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 176
+  },
+  {
+    "company": "Pave",
+    "platform": "greenhouse",
+    "identifier": "paveakatroveinformationtechnologies",
+    "evidence": [
+      "site:boards.greenhouse.io \"demand generation\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 18
+  },
+  {
+    "company": "PerfectServe",
+    "platform": "greenhouse",
+    "identifier": "perfectserve",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"growth marketing\"",
+      "site:job-boards.greenhouse.io CRO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 10
+  },
+  {
+    "company": "Natera",
+    "platform": "greenhouse",
+    "identifier": "natera",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"marketing analytics\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 223
+  },
+  {
+    "company": "Perry Ellis International",
+    "platform": "greenhouse",
+    "identifier": "perryellisinternational",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"ecommerce marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 35
+  },
+  {
+    "company": "Prenuvo Performance Marketing Manager",
+    "platform": "greenhouse",
+    "identifier": "prenuvo",
+    "evidence": [
+      "site:boards.greenhouse.io marketing",
+      "site:boards.greenhouse.io \"performance marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 69
+  },
+  {
+    "company": "Rithum",
+    "platform": "greenhouse",
+    "identifier": "rithumliboard",
+    "evidence": [
+      "public ATS result 2026-09-27",
+      "site:job-boards.greenhouse.io \"ecommerce marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 9
+  },
+  {
+    "company": "Shopmonkey",
+    "platform": "greenhouse",
+    "identifier": "shopmonkey",
+    "evidence": [
+      "site:job-boards.greenhouse.io SEO",
+      "site:job-boards.greenhouse.io \"marketing automation\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 6
+  },
+  {
+    "company": "SmartBear",
+    "platform": "greenhouse",
+    "identifier": "smartbear",
+    "evidence": [
+      "site:boards.greenhouse.io \"ecommerce marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 21
+  },
+  {
+    "company": "SALT XC",
+    "platform": "greenhouse",
+    "identifier": "saltxc",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"media buying\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 37
+  },
+  {
+    "company": "Smartling",
+    "platform": "greenhouse",
+    "identifier": "smartling",
+    "evidence": [
+      "site:boards.greenhouse.io \"digital marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 9
+  },
+  {
+    "company": "StackAdapt",
+    "platform": "greenhouse",
+    "identifier": "stackadapt",
+    "evidence": [
+      "site:job-boards.greenhouse.io CRO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 76
+  },
+  {
+    "company": "StubHub",
+    "platform": "greenhouse",
+    "identifier": "stubhubinc",
+    "evidence": [
+      "site:job-boards.greenhouse.io SEM"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 34
+  },
+  {
+    "company": "Taskrabbit",
+    "platform": "greenhouse",
+    "identifier": "taskrabbit",
+    "evidence": [
+      "site:job-boards.greenhouse.io SEM"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 20
+  },
+  {
+    "company": "Tenable, Inc.",
+    "platform": "greenhouse",
+    "identifier": "tenableinc",
+    "evidence": [
+      "site:boards.greenhouse.io SEO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 35
+  },
+  {
+    "company": "Tatari",
+    "platform": "greenhouse",
+    "identifier": "tatari",
+    "evidence": [
+      "site:boards.greenhouse.io \"media buying\"",
+      "site:job-boards.greenhouse.io \"media buying\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 40
+  },
+  {
+    "company": "Triple Whale",
+    "platform": "greenhouse",
+    "identifier": "triplewhale",
+    "evidence": [
+      "site:job-boards.greenhouse.io \"ecommerce marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 12
+  },
+  {
+    "company": "Tripadvisor",
+    "platform": "greenhouse",
+    "identifier": "tripadvisor",
+    "evidence": [
+      "public ATS result 2026-09-27"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 86
+  },
+  {
+    "company": "Vay",
+    "platform": "greenhouse",
+    "identifier": "vay",
+    "evidence": [
+      "site:boards.greenhouse.io \"performance marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 16
+  },
+  {
+    "company": "Regional Revenue Marketing Manager",
+    "platform": "greenhouse",
+    "identifier": "mongodb",
+    "evidence": [
+      "site:boards.greenhouse.io marketing"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 381
+  },
+  {
+    "company": "Via",
+    "platform": "greenhouse",
+    "identifier": "via",
+    "evidence": [
+      "site:boards.greenhouse.io \"paid media\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 183
+  },
+  {
+    "company": "VaynerMedia LLC",
+    "platform": "greenhouse",
+    "identifier": "vaynermedia",
+    "evidence": [
+      "site:boards.greenhouse.io \"paid media\"",
+      "site:boards.greenhouse.io \"media buying\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 100
+  },
+  {
+    "company": "Viral Nation Inc.",
+    "platform": "greenhouse",
+    "identifier": "viralnation",
+    "evidence": [
+      "site:boards.greenhouse.io \"media buying\"",
+      "site:job-boards.greenhouse.io \"demand generation\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 72
+  },
+  {
+    "company": "Vonage",
+    "platform": "greenhouse",
+    "identifier": "vonage",
+    "evidence": [
+      "site:boards.greenhouse.io \"demand generation\"",
+      "site:boards.greenhouse.io \"marketing operations\"",
+      "site:boards.greenhouse.io SEM"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 23
+  },
+  {
+    "company": "Wayvia",
+    "platform": "greenhouse",
+    "identifier": "wayvia",
+    "evidence": [
+      "site:job-boards.greenhouse.io SEM"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 6
+  },
+  {
+    "company": "Whalar",
+    "platform": "greenhouse",
+    "identifier": "whalarinc",
+    "evidence": [
+      "site:boards.greenhouse.io \"paid media\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 12
+  },
+  {
+    "company": "Xendit",
+    "platform": "greenhouse",
+    "identifier": "xendit",
+    "evidence": [
+      "site:boards.greenhouse.io \"marketing analytics\"",
+      "site:boards.greenhouse.io SEO",
+      "site:boards.greenhouse.io SEM"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 26
+  },
+  {
+    "company": "VML Enterprise Solutions",
+    "platform": "greenhouse",
+    "identifier": "vmlenterprisesolutions",
+    "evidence": [
+      "site:job-boards.greenhouse.io CRO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 176
+  },
+  {
+    "company": "YipitData",
+    "platform": "greenhouse",
+    "identifier": "yipitdata",
+    "evidence": [
+      "site:boards.greenhouse.io \"demand generation\"",
+      "site:boards.greenhouse.io \"marketing automation\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 54
+  },
+  {
+    "company": "Azul",
+    "platform": "lever",
+    "identifier": "azul",
+    "evidence": [
+      "site:jobs.lever.co \"marketing automation\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 17
+  },
+  {
+    "company": "WPP",
+    "platform": "greenhouse",
+    "identifier": "wpp",
+    "evidence": [
+      "site:boards.greenhouse.io \"paid media\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 210
+  },
+  {
+    "company": "Brillio",
+    "platform": "lever",
+    "identifier": "brillio-2",
+    "evidence": [
+      "site:jobs.lever.co CRO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 215
+  },
+  {
+    "company": "Zscaler",
+    "platform": "greenhouse",
+    "identifier": "zscaler",
+    "evidence": [
+      "site:boards.greenhouse.io marketing",
+      "site:boards.greenhouse.io \"paid media\"",
+      "site:boards.greenhouse.io \"growth marketing\"",
+      "site:boards.greenhouse.io \"digital marketing\"",
+      "site:boards.greenhouse.io \"marketing analytics\"",
+      "site:boards.greenhouse.io \"marketing automation\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 352
+  },
+  {
+    "company": "e.l.f. Beauty",
+    "platform": "lever",
+    "identifier": "elfbeauty",
+    "evidence": [
+      "site:jobs.lever.co \"media buying\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 81
+  },
+  {
+    "company": "Hevo Data",
+    "platform": "lever",
+    "identifier": "hevodata",
+    "evidence": [
+      "site:jobs.lever.co marketing"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 53
+  },
+  {
+    "company": "Influ2",
+    "platform": "lever",
+    "identifier": "influ2",
+    "evidence": [
+      "site:jobs.lever.co SEO"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 5
+  },
+  {
+    "company": "KPA",
+    "platform": "lever",
+    "identifier": "kpaonline",
+    "evidence": [
+      "site:jobs.lever.co \"demand generation\"",
+      "site:jobs.lever.co SEM"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 8
+  },
+  {
+    "company": "MissionWired",
+    "platform": "lever",
+    "identifier": "MissionWired",
+    "evidence": [
+      "site:jobs.lever.co \"digital strategy\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 9
+  },
+  {
+    "company": "Lone Wolf Technologies",
+    "platform": "lever",
+    "identifier": "lwolf",
+    "evidence": [
+      "site:jobs.lever.co \"marketing analytics\"",
+      "site:jobs.lever.co \"marketing operations\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 24
+  },
+  {
+    "company": "Quest Analytics",
+    "platform": "lever",
+    "identifier": "questanalytics",
+    "evidence": [
+      "site:jobs.lever.co \"marketing automation\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 8
+  },
+  {
+    "company": "CloudShare",
+    "platform": "workable",
+    "identifier": "cloudshare",
+    "evidence": [
+      "site:apply.workable.com \"demand generation\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 2
+  },
+  {
+    "company": "Qvest US",
+    "platform": "lever",
+    "identifier": "qvest.us",
+    "evidence": [
+      "site:jobs.lever.co marketing"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 33
+  },
+  {
+    "company": "Dartcor",
+    "platform": "workable",
+    "identifier": "dartcor",
+    "evidence": [
+      "site:apply.workable.com marketing"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 10
+  },
+  {
+    "company": "Exoticca",
+    "platform": "workable",
+    "identifier": "exoticca",
+    "evidence": [
+      "site:apply.workable.com \"paid search\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 38
+  },
+  {
+    "company": "D2B",
+    "platform": "workable",
+    "identifier": "d2b-1",
+    "evidence": [
+      "site:apply.workable.com \"paid media\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 388
+  },
+  {
+    "company": "FlowX.AI",
+    "platform": "workable",
+    "identifier": "flowxai",
+    "evidence": [
+      "site:apply.workable.com \"demand generation\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 24
+  },
+  {
+    "company": "King Kong",
+    "platform": "workable",
+    "identifier": "kingkong",
+    "evidence": [
+      "site:apply.workable.com \"paid search\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 9
+  },
+  {
+    "company": "Marina Distributing",
+    "platform": "workable",
+    "identifier": "marina-distributing",
+    "evidence": [
+      "site:apply.workable.com \"digital marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "no results",
+    "jobs": 0
+  },
+  {
+    "company": "PointClickCare",
+    "platform": "lever",
+    "identifier": "pointclickcare",
+    "evidence": [
+      "site:jobs.lever.co \"marketing automation\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 79
+  },
+  {
+    "company": "Prophix",
+    "platform": "workable",
+    "identifier": "prophix",
+    "evidence": [
+      "site:apply.workable.com \"marketing operations\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 37
+  },
+  {
+    "company": "REEDS Jewelers",
+    "platform": "workable",
+    "identifier": "reeds",
+    "evidence": [
+      "site:apply.workable.com \"acquisition marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 123
+  },
+  {
+    "company": "Rokt",
+    "platform": "workable",
+    "identifier": "rokt",
+    "evidence": [
+      "site:apply.workable.com \"performance marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 13
+  },
+  {
+    "company": "Situation Group",
+    "platform": "workable",
+    "identifier": "situationgroup",
+    "evidence": [
+      "site:apply.workable.com \"paid search\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 6
+  },
+  {
+    "company": "Starling",
+    "platform": "workable",
+    "identifier": "starling-bank",
+    "evidence": [
+      "site:apply.workable.com \"performance marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 90
+  },
+  {
+    "company": "Scalesource",
+    "platform": "workable",
+    "identifier": "scalesource-1",
+    "evidence": [
+      "site:apply.workable.com \"digital marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 121
+  },
+  {
+    "company": "Rentokil Initial",
+    "platform": "workable",
+    "identifier": "rentokil-initial",
+    "evidence": [
+      "site:apply.workable.com \"ecommerce marketing\"",
+      "site:apply.workable.com SEM"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 645
+  },
+  {
+    "company": "Zealthy",
+    "platform": "workable",
+    "identifier": "zealthy",
+    "evidence": [
+      "site:apply.workable.com marketing",
+      "site:apply.workable.com \"performance marketing\""
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 10
+  },
+  {
+    "company": "USA Clinics Group",
+    "platform": "workable",
+    "identifier": "usa-vein-clinics",
+    "evidence": [
+      "site:apply.workable.com SEM"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 136
+  },
+  {
+    "company": "petlab-co",
+    "platform": "workable",
+    "identifier": "petlab-co",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Paid media\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 10
+  },
+  {
+    "company": "spine-media",
+    "platform": "lever",
+    "identifier": "spine-media",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Paid media\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 2
+  },
+  {
+    "company": "Talent Trader Group",
+    "platform": "workable",
+    "identifier": "talent-trader-group",
+    "evidence": [
+      "site:apply.workable.com marketing"
+    ],
+    "origin": "existing employer discovery evidence",
+    "status": "success",
+    "jobs": 861
+  },
+  {
+    "company": "expressable",
+    "platform": "ashby",
+    "identifier": "expressable",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Paid media\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 22
+  },
+  {
+    "company": "navtechnologies",
+    "platform": "greenhouse",
+    "identifier": "navtechnologies",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Paid media\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "no results",
+    "jobs": 0
+  },
+  {
+    "company": "remote-talent-latam",
+    "platform": "workable",
+    "identifier": "remote-talent-latam",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Paid media\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 89
+  },
+  {
+    "company": "mars-men",
+    "platform": "lever",
+    "identifier": "mars-men",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Paid search\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 4
+  },
+  {
+    "company": "monks",
+    "platform": "greenhouse",
+    "identifier": "monks",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Paid search\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 355
+  },
+  {
+    "company": "exverus-media",
+    "platform": "workable",
+    "identifier": "exverus-media",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Paid search\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "no results",
+    "jobs": 0
+  },
+  {
+    "company": "digital-reach-agency",
+    "platform": "workable",
+    "identifier": "digital-reach-agency",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Paid search\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 4
+  },
+  {
+    "company": "wispr-flow",
+    "platform": "ashby",
+    "identifier": "wispr-flow",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Paid search\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 31
+  },
+  {
+    "company": "finitestate",
+    "platform": "greenhouse",
+    "identifier": "finitestate",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"PPC\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 10
+  },
+  {
+    "company": "cscgeneration-2",
+    "platform": "lever",
+    "identifier": "cscgeneration-2",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Paid search\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 523
+  },
+  {
+    "company": "lmg-staffing-solutions",
+    "platform": "workable",
+    "identifier": "lmg-staffing-solutions",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"PPC\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 39
+  },
+  {
+    "company": "huzzle",
+    "platform": "workable",
+    "identifier": "huzzle",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"PPC\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 2481
+  },
+  {
+    "company": "catchcreationllc",
+    "platform": "greenhouse",
+    "identifier": "catchcreationllc",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"PPC\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 20
+  },
+  {
+    "company": "multiplymii",
+    "platform": "ashby",
+    "identifier": "multiplymii",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"PPC\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 56
+  },
+  {
+    "company": "aledade",
+    "platform": "lever",
+    "identifier": "aledade",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"PPC\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 45
+  },
+  {
+    "company": "Blacksmith Agency",
+    "platform": "ashby",
+    "identifier": "Blacksmith Agency",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"PPC\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 12
+  },
+  {
+    "company": "superiorexecutiveandlegalrecruiting",
+    "platform": "lever",
+    "identifier": "superiorexecutiveandlegalrecruiting",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"PPC\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 18
+  },
+  {
+    "company": "angi",
+    "platform": "greenhouse",
+    "identifier": "angi",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "failed",
+    "error": "Request failed for https://boards-api.greenhouse.io/v1/boards/angi/jobs: HTTP Error 404: Not Found | {\"status\": 404, \"error\": \"Job not found\"}"
+  },
+  {
+    "company": "mediatech",
+    "platform": "ashby",
+    "identifier": "mediatech",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"PPC\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 6
+  },
+  {
+    "company": "semafor",
+    "platform": "greenhouse",
+    "identifier": "semafor",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 21
+  },
+  {
+    "company": "leadtech",
+    "platform": "workable",
+    "identifier": "leadtech",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "no results",
+    "jobs": 0
+  },
+  {
+    "company": "remotecom",
+    "platform": "greenhouse",
+    "identifier": "remotecom",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "failed",
+    "error": "Request failed for https://boards-api.greenhouse.io/v1/boards/remotecom/jobs: HTTP Error 404: Not Found | {\"status\": 404, \"error\": \"Job not found\"}"
+  },
+  {
+    "company": "teecom",
+    "platform": "lever",
+    "identifier": "teecom",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 11
+  },
+  {
+    "company": "homevision",
+    "platform": "ashby",
+    "identifier": "homevision",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 5
+  },
+  {
+    "company": "reddit",
+    "platform": "greenhouse",
+    "identifier": "reddit",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 160
+  },
+  {
+    "company": "cohere",
+    "platform": "ashby",
+    "identifier": "cohere",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 116
+  },
+  {
+    "company": "smiledigitalhealth",
+    "platform": "lever",
+    "identifier": "smiledigitalhealth",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 16
+  },
+  {
+    "company": "remote",
+    "platform": "greenhouse",
+    "identifier": "remote",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 2
+  },
+  {
+    "company": "rackner",
+    "platform": "greenhouse",
+    "identifier": "rackner",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 17
+  },
+  {
+    "company": "chainlink-labs",
+    "platform": "ashby",
+    "identifier": "chainlink-labs",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "failed",
+    "error": "Request failed for https://api.ashbyhq.com/posting-api/job-board/chainlink-labs: HTTP Error 404: Not Found"
+  },
+  {
+    "company": "zoox",
+    "platform": "lever",
+    "identifier": "zoox",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 236
+  },
+  {
+    "company": "remotasks",
+    "platform": "greenhouse",
+    "identifier": "remotasks",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 4
+  },
+  {
+    "company": "thinkahead",
+    "platform": "lever",
+    "identifier": "thinkahead",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 150
+  },
+  {
+    "company": "intersect",
+    "platform": "lever",
+    "identifier": "intersect",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 27
+  },
+  {
+    "company": "toast",
+    "platform": "greenhouse",
+    "identifier": "toast",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"SEM\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 321
+  },
+  {
+    "company": "thetrevorproject",
+    "platform": "lever",
+    "identifier": "thetrevorproject",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Digital marketing\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 7
+  },
+  {
+    "company": "praxisprecisionmedicines",
+    "platform": "greenhouse",
+    "identifier": "praxisprecisionmedicines",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Digital marketing\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 143
+  },
+  {
+    "company": "empower finance",
+    "platform": "ashby",
+    "identifier": "empower finance",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Performance marketing\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "failed",
+    "error": "Request failed for https://api.ashbyhq.com/posting-api/job-board/empower%20finance: HTTP Error 404: Not Found"
+  },
+  {
+    "company": "onemodel",
+    "platform": "greenhouse",
+    "identifier": "onemodel",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Performance marketing\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "no results",
+    "jobs": 0
+  },
+  {
+    "company": "pendo",
+    "platform": "greenhouse",
+    "identifier": "pendo",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Growth marketing\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 26
+  },
+  {
+    "company": "client-accelerators",
+    "platform": "workable",
+    "identifier": "client-accelerators",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Growth marketing\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 36
+  },
+  {
+    "company": "m-files",
+    "platform": "workable",
+    "identifier": "m-files",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Growth marketing\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 20
+  },
+  {
+    "company": "grantstreet",
+    "platform": "lever",
+    "identifier": "grantstreet",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Growth marketing\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 4
+  },
+  {
+    "company": "jiga",
+    "platform": "ashby",
+    "identifier": "jiga",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Growth marketing\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 9
+  },
+  {
+    "company": "codepath",
+    "platform": "greenhouse",
+    "identifier": "codepath",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Growth marketing\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 12
+  },
+  {
+    "company": "rallyuxr",
+    "platform": "ashby",
+    "identifier": "rallyuxr",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Growth marketing\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 1
+  },
+  {
+    "company": "bpcs",
+    "platform": "greenhouse",
+    "identifier": "bpcs",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Marketing analytics\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 25
+  },
+  {
+    "company": "Agent",
+    "platform": "ashby",
+    "identifier": "Agent",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Marketing analytics\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 19
+  },
+  {
+    "company": "Complex",
+    "platform": "lever",
+    "identifier": "Complex",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Marketing analytics\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 32
+  },
+  {
+    "company": "The zebra",
+    "platform": "ashby",
+    "identifier": "The zebra",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Marketing analytics\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 6
+  },
+  {
+    "company": "itd",
+    "platform": "greenhouse",
+    "identifier": "itd",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Marketing analytics\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 19
+  },
+  {
+    "company": "demandcom",
+    "platform": "greenhouse",
+    "identifier": "demandcom",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Marketing analytics\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 60
+  },
+  {
+    "company": "xapo61",
+    "platform": "greenhouse",
+    "identifier": "xapo61",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Marketing analytics\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 3
+  },
+  {
+    "company": "pavago",
+    "platform": "workable",
+    "identifier": "pavago",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Digital marketing\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 2581
+  },
+  {
+    "company": "relay-commerce",
+    "platform": "lever",
+    "identifier": "relay-commerce",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"E-commerce marketing\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 1
+  },
+  {
+    "company": "vacationinc",
+    "platform": "greenhouse",
+    "identifier": "vacationinc",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"E-commerce marketing\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 2
+  },
+  {
+    "company": "dronedeploy",
+    "platform": "lever",
+    "identifier": "dronedeploy",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Demand generation\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "no results",
+    "jobs": 0
+  },
+  {
+    "company": "vibesllc",
+    "platform": "greenhouse",
+    "identifier": "vibesllc",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Demand generation\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 4
+  },
+  {
+    "company": "align",
+    "platform": "greenhouse",
+    "identifier": "align",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Demand generation\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 12
+  },
+  {
+    "company": "aptitude8",
+    "platform": "greenhouse",
+    "identifier": "aptitude8",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Demand generation\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 1
+  },
+  {
+    "company": "teramind",
+    "platform": "lever",
+    "identifier": "teramind",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Demand generation\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 1
+  },
+  {
+    "company": "mabl",
+    "platform": "greenhouse",
+    "identifier": "mabl",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Demand generation\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 3
+  },
+  {
+    "company": "braze",
+    "platform": "greenhouse",
+    "identifier": "braze",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Marketing analytics\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 337
+  },
+  {
+    "company": "caretalkhealth",
+    "platform": "greenhouse",
+    "identifier": "caretalkhealth",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Marketing operations\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 8
+  },
+  {
+    "company": "supermetricsoy",
+    "platform": "greenhouse",
+    "identifier": "supermetricsoy",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Marketing technology\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 10
+  },
+  {
+    "company": "step",
+    "platform": "greenhouse",
+    "identifier": "step",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Marketing technology\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 18
+  },
+  {
+    "company": "cloudfactory",
+    "platform": "workable",
+    "identifier": "cloudfactory",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Marketing operations\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 60
+  },
+  {
+    "company": "toptal",
+    "platform": "lever",
+    "identifier": "toptal",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Marketing technology\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 30
+  },
+  {
+    "company": "nory-co",
+    "platform": "ashby",
+    "identifier": "nory-co",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Google Ads\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 20
+  },
+  {
+    "company": "airbnb",
+    "platform": "greenhouse",
+    "identifier": "airbnb",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Marketing technology\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 190
+  },
+  {
+    "company": "mrss",
+    "platform": "lever",
+    "identifier": "mrss",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Google Ads\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 3
+  },
+  {
+    "company": "advoy-inc",
+    "platform": "workable",
+    "identifier": "advoy-inc",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Google Ads\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "no results",
+    "jobs": 0
+  },
+  {
+    "company": "TalentDisruptors",
+    "platform": "ashby",
+    "identifier": "TalentDisruptors",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Google Ads\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "failed",
+    "error": "Request failed for https://api.ashbyhq.com/posting-api/job-board/TalentDisruptors: HTTP Error 404: Not Found"
+  },
+  {
+    "company": "jobgether",
+    "platform": "lever",
+    "identifier": "jobgether",
+    "evidence": [
+      "(site:job-boards.greenhouse.io OR site:jobs.lever.co OR site:jobs.ashbyhq.com OR site:apply.workable.com) \"Paid media\" remote United States"
+    ],
+    "origin": "fresh authorized index",
+    "status": "success",
+    "jobs": 3846
+  }
+]

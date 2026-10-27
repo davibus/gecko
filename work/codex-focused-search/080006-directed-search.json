@@ -1,0 +1,52 @@
+{
+  "payload": {
+    "query": "\"paid media\" \"Utah\" site:jobs.smartrecruiters.com",
+    "limit": 50,
+    "sources": [
+      "web"
+    ]
+  },
+  "results": [
+    {
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000153234789-motion-designer-bravo",
+      "title": "NBCUniversal Motion Designer, Bravo | SmartRecruiters",
+      "description": "Design and animate graphics for large-scale campaigns, on-air, social, digital, paid media and promo spots. ... Creative Services Producer, Telemundo Utah.",
+      "position": 1
+    },
+    {
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000156644670-coordinator-creative-partnerships-development-sports",
+      "title": "NBCUniversal Coordinator, Creative Partnerships Development - Sports",
+      "description": "Paid Media Manager. Miami, Florida. Assoc Manager, Email Marketing. Stamford, Connecticut. Creative Services Producer, Telemundo Utah. Salt Lake City, Utah.",
+      "position": 2
+    },
+    {
+      "url": "https://jobs.smartrecruiters.com/JobsForHumanity/744000083974917-marketing-campaign-strategy-manager-new-business-acquisition",
+      "title": "Marketing Campaign Strategy Manager, New Business Acquisition",
+      "description": "Coordinate with digital marketing teams on paid media and Communications team on organic channel strategies. ... Sales Representative (Southern Utah Territory).",
+      "position": 3
+    }
+  ],
+  "candidates": [
+    {
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000153234789-motion-designer-bravo",
+      "title": "NBCUniversal Motion Designer, Bravo | SmartRecruiters",
+      "description": "Design and animate graphics for large-scale campaigns, on-air, social, digital, paid media and promo spots. ... Creative Services Producer, Telemundo Utah.",
+      "position": 1,
+      "actual_query": "\"paid media\" \"Utah\" site:jobs.smartrecruiters.com"
+    },
+    {
+      "url": "https://jobs.smartrecruiters.com/NBCUniversal3/744000156644670-coordinator-creative-partnerships-development-sports",
+      "title": "NBCUniversal Coordinator, Creative Partnerships Development - Sports",
+      "description": "Paid Media Manager. Miami, Florida. Assoc Manager, Email Marketing. Stamford, Connecticut. Creative Services Producer, Telemundo Utah. Salt Lake City, Utah.",
+      "position": 2,
+      "actual_query": "\"paid media\" \"Utah\" site:jobs.smartrecruiters.com"
+    },
+    {
+      "url": "https://jobs.smartrecruiters.com/JobsForHumanity/744000083974917-marketing-campaign-strategy-manager-new-business-acquisition",
+      "title": "Marketing Campaign Strategy Manager, New Business Acquisition",
+      "description": "Coordinate with digital marketing teams on paid media and Communications team on organic channel strategies. ... Sales Representative (Southern Utah Territory).",
+      "position": 3,
+      "actual_query": "\"paid media\" \"Utah\" site:jobs.smartrecruiters.com"
+    }
+  ]
+}

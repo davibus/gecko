@@ -1,0 +1,502 @@
+{
+  "payload": {
+    "query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io",
+    "limit": 50,
+    "sources": [
+      "web"
+    ]
+  },
+  "results": [
+    {
+      "url": "https://job-boards.greenhouse.io/stripe/jobs/8250483",
+      "title": "Marketing Operations Manager, AMER Events - Stripe Careers",
+      "description": "Marketing Operations is a team of marketing execution experts and systems ... Remote in United States. Employment type. Full time. Apply for this role.",
+      "position": 1
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/brex/jobs/8786673002",
+      "title": "Senior Marketing Operations Manager | Career Opportunities - Brex",
+      "description": "Senior Marketing Operations Manager. San Francisco, California, United States ... As a perk, we also have up to four weeks per year of fully remote work!",
+      "position": 2
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/toast/jobs/8261407",
+      "title": "Manager, Marketing Operations - Ad Tech Lead - - Toast",
+      "description": "2 days ago · Manager, Marketing Operations - Ad Tech Lead · Zone A. $124,000—$198,000 USD · Zone B $108,000—$173,000 USD · Zone C $97,000—$155,000 USD.",
+      "position": 3
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/engine/jobs/7861153003",
+      "title": "Job Application for Sr. Marketing Automation Specialist at Engine",
+      "description": "Required Qualifications. 3–5 years of experience in marketing operations, revenue operations, or a related field. Bachelor's degree in marketing, business, ...",
+      "position": 4
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/onboardmeetings/jobs/6163542004",
+      "title": "Job Application for Senior Manager, Marketing Operations at OnBoard",
+      "description": "# Senior Manager, Marketing Operations\nUnited States",
+      "position": 5
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/mavenclinic/jobs/8760173002",
+      "title": "Job Application for Director, Marketing Operations at Maven Clinic",
+      "description": "# Director, Marketing Operations\nNew York, NY; Remote, US (Hub cities)",
+      "position": 6
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/edmentum/jobs/6098102004",
+      "title": "Job Application for Director, Marketing Operations at Edmentum",
+      "description": "# Director, Marketing Operations\nUnited States",
+      "position": 7
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/oneimaging/jobs/4424329009",
+      "title": "Job Application for Marketing Operations Manager at OneImaging",
+      "description": "# Marketing Operations Manager\nRemote\n\n##### **Fraud and Security Notice:**\n_Our team uses the [oneimaging.com](https://job-boards.greenhouse.io/oneimaging/jobs/oneimaging.com) email domain exclusively._",
+      "position": 8
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/cordance/jobs/5392784008",
+      "title": "Job Application for Marketing Operations Manager at Cordance",
+      "description": "# Current openings at Cordance\n## 11 jobs\n| Job |\n|-|\n| [Marketing Campaign Manager<br><br>Leeds, England, United Kingdom; United States - Remote](https://job-boards.greenhouse.io/cordance/jobs/5431905008) |",
+      "position": 9
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/pfm/jobs/6134100004",
+      "title": "Job Application for Senior Manager, Marketing Operations ... - Greenhouse",
+      "description": "Remote, United States ... The position also serves as a people leader, responsible for managing, developing, and mentoring members of the Marketing Operations ...",
+      "position": 10
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/reallygreatreading/jobs/4425662009",
+      "title": "Marketing Operations Manager - Greenhouse",
+      "description": "Marketing Operations Manager. Remote US or Canada. Apply. Are you ready to make a lasting impact on literacy? At Really Great Reading, we are building a bright ...",
+      "position": 11
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/celigo/jobs/8209892",
+      "title": "Job Application for Marketing Operations Manager at Celigo",
+      "description": "3–5 years in marketing operations, demand generation operations, or campaign operations. · Experience in B2B SaaS or enterprise technology environments preferred ...",
+      "position": 12
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/gomotive/jobs/8733611002",
+      "title": "Job Application for Senior Marketing Operations Specialist at Motive",
+      "description": "Senior Marketing Operations Specialist. United States - Remote. Apply. Who we are: Motive empowers the people who run physical operations with tools to make ...",
+      "position": 13
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/algolia/jobs/6210792004",
+      "title": "Job Application for Senior Marketing Operations Manager at Algolia",
+      "description": "The Marketing Operations Manager will work with members of our global marketing team to build and execute digital and field marketing campaigns. This role will ...",
+      "position": 14
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/stripe/jobs/8175661",
+      "title": "Stripe Careers | Partner Marketing Manager, Online & Regional Events",
+      "description": "Partner with Marketing Operations to use existing infrastructure and ... Remote in United States. Employment type. Full time. Apply for this role · Apply ...",
+      "position": 15
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/harrowhealth/jobs/4693963006",
+      "title": "Job Application for Marketing Operations Manager at Harrow, Inc.",
+      "description": "Marketing Operations Manager. United States. Apply. Before reading the job post ... Position Type. Remote. Travel. Up to 10%. Create a Job Alert. Interested in ...",
+      "position": 16
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/vercel/jobs/6144467004",
+      "title": "Job Application for Marketing Operations Manager at Vercel",
+      "description": "You will report to the Senior Manager, Marketing Operations and can be located remote (US-based in the Pacific, Mountain, or Central time zone) or hybrid out of ...",
+      "position": 17
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/roku/jobs/8081709",
+      "title": "Email & Lifecycle Marketing Manager - Stamford, Connecticut, United States",
+      "description": "Proactively monitor campaign performance and marketing operations by identifying data quality or workflow issues, validating audience segmentation and ...",
+      "position": 18
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/talkdesk2/jobs/8186832",
+      "title": "Job Application for Marketing Operations Specialist at Talkdesk",
+      "description": "# Marketing Operations Specialist\nRemote",
+      "position": 19
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/rithum/jobs/7773364",
+      "title": "Jobs at Rithum - Greenhouse",
+      "description": "Marketing (4000). Job. Demand Generation Manager. United Kingdom - Remote · Digital Marketing Operations Specialist. United States - Remote · Executive & ...",
+      "position": 20
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/swordhealth/jobs/4455380009",
+      "title": "Job Application for Senior Marketing Operations Specialist at Sword",
+      "description": "# Senior Marketing Operations Specialist\nRemote - US",
+      "position": 21
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/brex/jobs/8882037002",
+      "title": "Director, Marketing Operations | Career Opportunities - Brex",
+      "description": "Director, Marketing Operations. San Francisco, California, United States. Why ... As a perk, we also have up to four weeks per year of fully remote work!",
+      "position": 22
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/connectwise/jobs/4744466005",
+      "title": "Job Application for Director, Marketing Operations at ‎ConnectWise",
+      "description": "Director, Marketing Operations. US - Remote. Apply. ConnectWise is an industry and Global leading software company with over 3,000 colleagues in North America ...",
+      "position": 23
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/onboardmeetings/jobs/6180959004",
+      "title": "Job Application for Marketing Operations Specialist at OnBoard",
+      "description": "# Marketing Operations Specialist\nUnited States\n\n**Location:** Remote - United States",
+      "position": 24
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/tanium/jobs/8250444",
+      "title": "Field Marketing Manager (Remote - Pacific/Mountain Time Zone)",
+      "description": "# Field Marketing Manager (Remote - Pacific/Mountain Time Zone)\nRemote, US",
+      "position": 25
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/atlasxhm/jobs/8870400002",
+      "title": "Job Application for Senior Director, Marketing Operations at Atlas HXM",
+      "description": "# Senior Director, Marketing Operations\nCanada; United States of America",
+      "position": 26
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/tailorcare2023/jobs/4720748006",
+      "title": "Job Application for Senior Manager, Marketing Operations at TailorCare",
+      "description": "# Senior Manager, Marketing Operations\nUnited States",
+      "position": 27
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/dashlane/jobs/7979616",
+      "title": "Marketing Technology & Operations Lead - Greenhouse",
+      "description": "Requirements: 5+ years of experience in Campaign Operations, Marketing Operations, or MarTech. Proven track record of executing a full teardown and ...",
+      "position": 28
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/daymarkhealth/jobs/5435556008",
+      "title": "Job Application for Patient Marketing Manager at Daymark Health",
+      "description": "# Patient Marketing Manager\nRemote, United States",
+      "position": 29
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/codeandtheory/jobs/8845240002",
+      "title": "Senior Director, Content Operations Lead (US) | Careers",
+      "description": "10-15 years across content operations, creative production, marketing operations, consulting, or transformation delivery with meaningful time spent both ...",
+      "position": 30
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/gomotive/jobs/8654290002",
+      "title": "Campaign Operations Manager (Individual Contributor) - Greenhouse",
+      "description": "5+ years of experience executing campaigns within a marketing operations function. Deep hands-on expertise with Marketo, Salesforce, and marketing database ...",
+      "position": 31
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/storyblok/jobs/4908520101",
+      "title": "Salesforce Lead - USA | | Storyblok Careers",
+      "description": "Monthly remote work stipend (home internet costs, electricity). Home office ... Marketing Operations, Data, Finance, Legal, vendors, and external partners.",
+      "position": 32
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/smartsheet/jobs/8142799",
+      "title": "Job Application for Marketing Platform Operations Manager at Smartsheet",
+      "description": "# Marketing Platform Operations Manager\n-REMOTE, USA-",
+      "position": 33
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/smartasset/jobs/8659747002",
+      "title": "Advisor Marketing Senior Manager - at SmartAsset - Greenhouse",
+      "description": "# **Advisor Marketing Senior Manager**\nRemote, Contiguous United States",
+      "position": 34
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/serhant/jobs/4418475009",
+      "title": "Job Application for Senior Marketing Operations Coordinator at Serhant",
+      "description": "Senior Marketing Operations Coordinator · 2–5 years of experience in marketing operations, creative operations, project management, production coordination, or a ...",
+      "position": 35
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/muckrack/jobs/8887161002",
+      "title": "Job Application for Growth Marketing Specialist at Muck Rack - Greenhouse",
+      "description": "Growth Marketing Specialist. Remote (Canada, United States). Apply. Muck ... marketing operations; Hands-on experience building pages in a modern CMS or ...",
+      "position": 36
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/pingidentity/jobs/8646391002",
+      "title": "Marketing Automation and Lifecycle Manager - Greenhouse",
+      "description": "Marketing Automation and Lifecycle Manager. USA - Remote ... We are looking for a Marketing Automation and Lifecycle Manager to join our Marketing Operations team ...",
+      "position": 37
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/doordashusa/jobs/8237299",
+      "title": "Senior Associate, Creative Automation, Marketing Technology Operations",
+      "description": "3+ years of experience in marketing technology, product operations, marketing operations, program management, or a similar operational role at a tech company ...",
+      "position": 38
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/twilio/jobs/8170555",
+      "title": "Job Application for Partner Marketing Specialist at Twilio - Greenhouse",
+      "description": "# Partner Marketing Specialist\nRemote - US",
+      "position": 39
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/wayvia/jobs/8821505002",
+      "title": "Job Application for Head of Marketing at Wayvia - Greenhouse",
+      "description": "# Head of Marketing\nRemote, USA",
+      "position": 40
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/later/jobs/8534752002",
+      "title": "Job Application for VP, Revenue Operations at Later - Greenhouse",
+      "description": "... marketing operations; Experience in revenue enablement: building or ... If you were referred by someone at Later, please let us know! Are you currently legally ...",
+      "position": 41
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/interdependence/jobs/5145919008",
+      "title": "Job Application for Marketing Coordinator at Interdependence",
+      "description": "The coordinator will manage projects, coordinate with external partners, and deploy AI-enabled systems that accelerate marketing operations. Working ...",
+      "position": 42
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/edo/jobs/5148018007",
+      "title": "Job Application for Digital Marketing Manager at EDO - Greenhouse",
+      "description": "Paid Media & ABM: · Email Marketing: · Social Distribution: · Website: · Marketing Operations & Activation: · Contractor & Agency Management: · Reporting & ...",
+      "position": 43
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/augury/jobs/8631129002",
+      "title": "Director, Demand Generation | Augury",
+      "description": "United States (Remote) ... Operational Excellence: Promote a high-performance culture by mentoring the Marketing Operations team in the development of world-class ...",
+      "position": 44
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/prenuvo/jobs/4737722005",
+      "title": "Prenuvo Performance Marketing Manager - Puck",
+      "description": "Applicants must be legally authorized to work in the United States at ... Koryn, Director of Marketing Operations. 1.2k plays. Meet Koryn. 00:37. Why did ...",
+      "position": 45
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/chime/jobs/8694723002",
+      "title": "Director, Lifecycle Marketing Operations - Greenhouse",
+      "description": "# Director, Lifecycle Marketing Operations\nSan Francisco, CA, USA",
+      "position": 46
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/highwire/jobs/4435585009",
+      "title": "Job Application for Channel Marketing Manager (Contract) at Highwire",
+      "description": "# Channel Marketing Manager (Contract)\n**Location:** Remote, US-based (or NY/SF office)",
+      "position": 47
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/givedirectly/jobs/4746653005",
+      "title": "Senior Manager, Marketing Strategy & Operations - Greenhouse",
+      "description": "# Senior Manager, Marketing Strategy & Operations\nRemote",
+      "position": 48
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/gympass/jobs/8783679002",
+      "title": "Job Application for Website Experience Sr. Director at Wellhub",
+      "description": "We are hiring a Website Experience Sr. Director in our Marketing Operations area in Brazil or the US (Remote accepted)! Reporting to the VP of Marketing ...",
+      "position": 49
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/6sense/jobs/8238333",
+      "title": "Job Application for Sr. Manager, GTM Engineering at 6sense - Greenhouse",
+      "description": "Manager, GTM Engineering. United States, Remote. Apply. Our Mission ... 6sense's Marketing Operations team builds the technical backbone behind our ...",
+      "position": 50
+    }
+  ],
+  "candidates": [
+    {
+      "url": "https://job-boards.greenhouse.io/brex/jobs/8786673002",
+      "title": "Senior Marketing Operations Manager | Career Opportunities - Brex",
+      "description": "Senior Marketing Operations Manager. San Francisco, California, United States ... As a perk, we also have up to four weeks per year of fully remote work!",
+      "position": 2,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/toast/jobs/8261407",
+      "title": "Manager, Marketing Operations - Ad Tech Lead - - Toast",
+      "description": "2 days ago · Manager, Marketing Operations - Ad Tech Lead · Zone A. $124,000—$198,000 USD · Zone B $108,000—$173,000 USD · Zone C $97,000—$155,000 USD.",
+      "position": 3,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/onboardmeetings/jobs/6163542004",
+      "title": "Job Application for Senior Manager, Marketing Operations at OnBoard",
+      "description": "# Senior Manager, Marketing Operations\nUnited States",
+      "position": 5,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/cordance/jobs/5392784008",
+      "title": "Job Application for Marketing Operations Manager at Cordance",
+      "description": "# Current openings at Cordance\n## 11 jobs\n| Job |\n|-|\n| [Marketing Campaign Manager<br><br>Leeds, England, United Kingdom; United States - Remote](https://job-boards.greenhouse.io/cordance/jobs/5431905008) |",
+      "position": 9,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/pfm/jobs/6134100004",
+      "title": "Job Application for Senior Manager, Marketing Operations ... - Greenhouse",
+      "description": "Remote, United States ... The position also serves as a people leader, responsible for managing, developing, and mentoring members of the Marketing Operations ...",
+      "position": 10,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/celigo/jobs/8209892",
+      "title": "Job Application for Marketing Operations Manager at Celigo",
+      "description": "3–5 years in marketing operations, demand generation operations, or campaign operations. · Experience in B2B SaaS or enterprise technology environments preferred ...",
+      "position": 12,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/gomotive/jobs/8733611002",
+      "title": "Job Application for Senior Marketing Operations Specialist at Motive",
+      "description": "Senior Marketing Operations Specialist. United States - Remote. Apply. Who we are: Motive empowers the people who run physical operations with tools to make ...",
+      "position": 13,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/vercel/jobs/6144467004",
+      "title": "Job Application for Marketing Operations Manager at Vercel",
+      "description": "You will report to the Senior Manager, Marketing Operations and can be located remote (US-based in the Pacific, Mountain, or Central time zone) or hybrid out of ...",
+      "position": 17,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/swordhealth/jobs/4455380009",
+      "title": "Job Application for Senior Marketing Operations Specialist at Sword",
+      "description": "# Senior Marketing Operations Specialist\nRemote - US",
+      "position": 21,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/brex/jobs/8882037002",
+      "title": "Director, Marketing Operations | Career Opportunities - Brex",
+      "description": "Director, Marketing Operations. San Francisco, California, United States. Why ... As a perk, we also have up to four weeks per year of fully remote work!",
+      "position": 22,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/connectwise/jobs/4744466005",
+      "title": "Job Application for Director, Marketing Operations at ‎ConnectWise",
+      "description": "Director, Marketing Operations. US - Remote. Apply. ConnectWise is an industry and Global leading software company with over 3,000 colleagues in North America ...",
+      "position": 23,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/onboardmeetings/jobs/6180959004",
+      "title": "Job Application for Marketing Operations Specialist at OnBoard",
+      "description": "# Marketing Operations Specialist\nUnited States\n\n**Location:** Remote - United States",
+      "position": 24,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/atlasxhm/jobs/8870400002",
+      "title": "Job Application for Senior Director, Marketing Operations at Atlas HXM",
+      "description": "# Senior Director, Marketing Operations\nCanada; United States of America",
+      "position": 26,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/tailorcare2023/jobs/4720748006",
+      "title": "Job Application for Senior Manager, Marketing Operations at TailorCare",
+      "description": "# Senior Manager, Marketing Operations\nUnited States",
+      "position": 27,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/dashlane/jobs/7979616",
+      "title": "Marketing Technology & Operations Lead - Greenhouse",
+      "description": "Requirements: 5+ years of experience in Campaign Operations, Marketing Operations, or MarTech. Proven track record of executing a full teardown and ...",
+      "position": 28,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/daymarkhealth/jobs/5435556008",
+      "title": "Job Application for Patient Marketing Manager at Daymark Health",
+      "description": "# Patient Marketing Manager\nRemote, United States",
+      "position": 29,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/gomotive/jobs/8654290002",
+      "title": "Campaign Operations Manager (Individual Contributor) - Greenhouse",
+      "description": "5+ years of experience executing campaigns within a marketing operations function. Deep hands-on expertise with Marketo, Salesforce, and marketing database ...",
+      "position": 31,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/smartasset/jobs/8659747002",
+      "title": "Advisor Marketing Senior Manager - at SmartAsset - Greenhouse",
+      "description": "# **Advisor Marketing Senior Manager**\nRemote, Contiguous United States",
+      "position": 34,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/serhant/jobs/4418475009",
+      "title": "Job Application for Senior Marketing Operations Coordinator at Serhant",
+      "description": "Senior Marketing Operations Coordinator · 2–5 years of experience in marketing operations, creative operations, project management, production coordination, or a ...",
+      "position": 35,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/pingidentity/jobs/8646391002",
+      "title": "Marketing Automation and Lifecycle Manager - Greenhouse",
+      "description": "Marketing Automation and Lifecycle Manager. USA - Remote ... We are looking for a Marketing Automation and Lifecycle Manager to join our Marketing Operations team ...",
+      "position": 37,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/doordashusa/jobs/8237299",
+      "title": "Senior Associate, Creative Automation, Marketing Technology Operations",
+      "description": "3+ years of experience in marketing technology, product operations, marketing operations, program management, or a similar operational role at a tech company ...",
+      "position": 38,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/twilio/jobs/8170555",
+      "title": "Job Application for Partner Marketing Specialist at Twilio - Greenhouse",
+      "description": "# Partner Marketing Specialist\nRemote - US",
+      "position": 39,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/wayvia/jobs/8821505002",
+      "title": "Job Application for Head of Marketing at Wayvia - Greenhouse",
+      "description": "# Head of Marketing\nRemote, USA",
+      "position": 40,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/later/jobs/8534752002",
+      "title": "Job Application for VP, Revenue Operations at Later - Greenhouse",
+      "description": "... marketing operations; Experience in revenue enablement: building or ... If you were referred by someone at Later, please let us know! Are you currently legally ...",
+      "position": 41,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/interdependence/jobs/5145919008",
+      "title": "Job Application for Marketing Coordinator at Interdependence",
+      "description": "The coordinator will manage projects, coordinate with external partners, and deploy AI-enabled systems that accelerate marketing operations. Working ...",
+      "position": 42,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/highwire/jobs/4435585009",
+      "title": "Job Application for Channel Marketing Manager (Contract) at Highwire",
+      "description": "# Channel Marketing Manager (Contract)\n**Location:** Remote, US-based (or NY/SF office)",
+      "position": 47,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/6sense/jobs/8238333",
+      "title": "Job Application for Sr. Manager, GTM Engineering at 6sense - Greenhouse",
+      "description": "Manager, GTM Engineering. United States, Remote. Apply. Our Mission ... 6sense's Marketing Operations team builds the technical backbone behind our ...",
+      "position": 50,
+      "actual_query": "\"marketing operations\" remote United States site:job-boards.greenhouse.io"
+    }
+  ]
+}

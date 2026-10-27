@@ -11,9 +11,12 @@ if __name__ == '__main__':
         'tests.test_resume_match', 'tests.test_salary_ceiling',
         'tests.test_publication_identity', 'tests.test_unified_search',
         'tests.test_firecrawl_discovery',
+        'tests.test_focused_discovery',
+        'tests.test_incremental_discovery', 'tests.test_sheet_sync',
     ])
     # Match-policy tests explicitly enable/mock their evidence boundaries. Older
     # salary/discovery fixtures remain about those independent concerns.
-    with patch('resume_match.settings', return_value={'enabled': False, 'minimum_score': 80}):
+    with patch('resume_match.settings', return_value={'enabled': False, 'minimum_score': 60,
+            'minimum_responsibilities_match': 50, 'minimum_required_skills_match': 50}):
         result = unittest.TextTestRunner(verbosity=1).run(suite)
     raise SystemExit(not result.wasSuccessful())

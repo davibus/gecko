@@ -144,7 +144,9 @@ def normalize(raw: RawListing, discovered: str | None = None) -> JobListing:
         category=clean_text(raw.category),
         tags=[clean_text(tag) for tag in raw.tags if clean_text(tag)],
         last_seen=discovered_date,
-        source_links=[{"source": clean_text(raw.source), "source_job_id": clean_text(raw.source_job_id), "url": raw.url.strip()}],
+        source_links=[{"source": clean_text(raw.source), "source_job_id": clean_text(raw.source_job_id), "url": raw.url.strip(),
+            **({'source_requisition_id': 'greenhouse:'+str(raw.metadata['ats_company']).casefold()+':'+str(raw.metadata['internal_job_id'])}
+               if raw.source.casefold()=='greenhouse' and raw.metadata.get('ats_company') and raw.metadata.get('internal_job_id') else {})}],
         indeed_application_method=str(raw.metadata.get("_indeed_application_method") or "")
         if raw.source.casefold() == "indeed" else "",
         indeed_application_verified_on=discovered_date

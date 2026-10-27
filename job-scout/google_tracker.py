@@ -158,6 +158,9 @@ def verified_resume_file_uri(path: str | Path) -> str:
 def verified_resume_uri_target(value: str) -> str:
     """Canonicalize and verify a file URI before it is written to Google Sheets."""
     parsed = urlsplit(value)
+    if parsed.scheme.casefold() == 'https':
+        from resume_delivery import verified_target
+        return verified_target(value)
     if parsed.scheme.casefold() != "file" or parsed.netloc not in ("", "localhost"):
         raise ValueError("Resume Link must be a local file URI")
     local = unquote(parsed.path)
@@ -693,6 +696,9 @@ class GoogleTracker:
                     body={"valueInputOption": "RAW", "data": entries}).execute()
         except Exception as error:
             raise RuntimeError(f"Cannot update Google Sheets {tab.title!r} row {row}: {error}") from error
+        if (row, 'Resume Link') in expected and str(expected[(row, 'Resume Link')]).startswith('https://'):
+            from resume_delivery import ensure_sheet_hyperlinks
+            ensure_sheet_hyperlinks(self, tab, [(row, expected[(row, 'Resume Link')])])
         verified = self.tab(tab.title)
         raw = (verified.raw_rows or {}).get(row, ())
         for (_, field), value in expected.items():
@@ -717,6 +723,7 @@ class GoogleTracker:
         from description_columns import DESCRIPTION_COLUMNS
         allowed.update(DESCRIPTION_COLUMNS)
         if tab.title == self.config.scout_tab:
+            allowed.add('Query Used to Find')
             from resume_match import SCORE_COLUMNS
             allowed.update(['Match Score', *SCORE_COLUMNS.values()])
         unexpected = {field for _, field in proposed} - allowed
@@ -1129,6 +1136,12 @@ class GoogleTracker:
                         and not application_fee_required(existing.get("Cost")):
                     values.pop("Apply?", None)
             managed_fields = set(SCOUT_FIELDS) | {"Apply?"}
+            if 'Query Used to Find' in tab.headers and not str(existing.get('Query Used to Find') or '').strip():
+                from query_provenance import query_for_job
+                query = query_for_job(job)
+                if query:
+                    values['Query Used to Find'] = query
+                    managed_fields.add('Query Used to Find')
             if row not in original_rows and str(job.id) in readiness:
                 values['Enough Data'] = readiness[str(job.id)]['value']
                 managed_fields.add('Enough Data')
@@ -1176,6 +1189,7 @@ class GoogleTracker:
                 enrichable = {'Location', 'Work Arrangement', 'Employment Type', 'Salary',
                               'Job Description', 'Company Website', 'Company', 'Job Title', 'Date Posted', 'Cost', 'Notes'}
                 enrichable.update(DESCRIPTION_COLUMNS)
+                enrichable.add('Query Used to Find')
                 values = {key: value for key, value in values.items()
                           if key in enrichable and not str(existing.get(key) or '').strip()}
             row_jobs[row]={'job_id':job.id,'source':job.source,'source_job_id':job.source_job_id,

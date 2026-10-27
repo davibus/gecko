@@ -1,0 +1,54 @@
+{
+  "id": 3015,
+  "company": "Jobgether",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1cDYk2lvuDyTOwlWpyhtykmd-ElTyTjtJ/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Senior-Performance-Marketing-Manager+00467.docx",
+  "started_at": "2026-10-26T15:17:24.480731+00:00",
+  "completed_at": "2026-10-26T15:19:08.305096+00:00",
+  "elapsed_seconds": 103.824383,
+  "generation_seconds": 32.70485420001205,
+  "delivery_seconds": 6.823045900004217,
+  "tracker_seconds": 21.084794900001725,
+  "readback": {
+    "Scout ID": 3015,
+    "Company": "Jobgether",
+    "Job Title": "Senior Performance-Marketing Manager",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1cDYk2lvuDyTOwlWpyhtykmd-ElTyTjtJ/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1267",
+  "hyperlink_target": "https://docs.google.com/document/d/1cDYk2lvuDyTOwlWpyhtykmd-ElTyTjtJ/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 103.8244,
+    "active_seconds": 66.2834,
+    "review_wait_seconds": 37.541,
+    "phases_seconds": {
+      "source_loading": 0.0732,
+      "tailoring": 0.7145,
+      "document_creation": 4.6589,
+      "word_pdf_validation": 14.7675,
+      "fitting_retries": 1.7136,
+      "factual_review": 0.0,
+      "review_wait": 37.541,
+      "tracker_sync": 21.0838,
+      "drive_delivery": 6.8161
+    },
+    "counts": {
+      "source_loading": 131,
+      "tailoring": 2,
+      "document_creation": 5,
+      "word_pdf_validation": 5,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 5,
+      "native_attempts": 5,
+      "drive_delivery": 1,
+      "restored_trials": 3
+    }
+  }
+}

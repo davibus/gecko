@@ -1,0 +1,29 @@
+{
+  "run_id": "codex-directed-2026-10-25",
+  "status": "RUNNING - directed search",
+  "verified_job_ids": [
+    2953,
+    2954,
+    2955,
+    2957,
+    2959,
+    2960,
+    2961,
+    2962,
+    2963,
+    2964,
+    2965,
+    2966,
+    2967,
+    2968,
+    2969,
+    2970,
+    2971
+  ],
+  "published_jobs_verified": 17,
+  "target_jobs": 30,
+  "activity": "Scoring complete postings: NMI, Digitalzone, Inc.",
+  "last_progress_display": "10-25-2026 | 12:42 PM MDT",
+  "checked_at": "2026-10-25T18:44:27.377944+00:00",
+  "usage_unlimited_date": "2026-10-25"
+}

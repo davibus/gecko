@@ -1,0 +1,35 @@
+{
+  "path": "C:\\gecko_main\\output\\resumes\\Dave-Call+Pave+Marketing-Communications-Lead+00479.docx",
+  "metadata": {
+    "id": "1GLeNYUN8QPGc0uYWoh9NToPItnorx30L",
+    "title": "Dave-Call+Pave+Marketing-Communications-Lead+00479.docx",
+    "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "size": "40502",
+    "url": "https://docs.google.com/document/d/1GLeNYUN8QPGc0uYWoh9NToPItnorx30L/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+    "file_or_folder": "file",
+    "created_time": null,
+    "modified_time": null,
+    "parent_ids": [
+      "1Noy8XUqlL5ufqA4aU9jZWdwpMYeCVmol"
+    ],
+    "drive_id": null,
+    "current_user_can_share": null,
+    "has_augmented_permissions": null,
+    "shared": false,
+    "permissions": [
+      {
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "mdavidcall@gmail.com",
+        "domain": null,
+        "displayName": "Dave Call",
+        "allowFileDiscovery": null
+      }
+    ],
+    "source_visibility_status": "permission_metadata_available"
+  },
+  "download": {
+    "sha256": "468d20f5821417170c2acb1926676bfb04d912ddc0642d2236107cec869043fc",
+    "size": 40502
+  }
+}

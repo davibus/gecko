@@ -1,0 +1,198 @@
+{
+  "job": {
+    "url": "https://job-boards.greenhouse.io/isccareers/jobs/4731001005",
+    "company": "Integrated Specialty Coverages, LLC",
+    "title": "Senior Channel Specialist - Paid Search",
+    "location": "Remote United States",
+    "arrangement": "remote",
+    "salary": "$ 80,000–90,000",
+    "posted": "2026-09-10",
+    "chars": 6836
+  },
+  "match": {
+    "id": "job",
+    "sufficient": true,
+    "reason": "Complete duties and qualifications support review. Paid search is well documented; SA360 and vendor billing reconciliation remain unverified.",
+    "blockers": [],
+    "categories": {
+      "responsibilities": [
+        {
+          "requirement": "Execute day-to-day paid search campaign management across Google Ads and Microsoft Ads for all active ISC retail brands",
+          "support": 1,
+          "evidence": [
+            "Managed PPC efforts across Google Ads and Microsoft/Bing Ads"
+          ],
+          "reason": "Direct campaign management on both platforms supports routine campaign edits and maintenance."
+        },
+        {
+          "requirement": "Monitor paid search campaign performance daily; flag anomalies in conversion rates, impression/ click share trends, CPL, and partner attribution",
+          "support": 1,
+          "evidence": [
+            "Created custom scripts for continuous, automated monitoring of client marketing efforts"
+          ],
+          "reason": "Continuous campaign monitoring supports detecting and flagging performance anomalies."
+        },
+        {
+          "requirement": "Coordinate ad copy and landing page testing, reporting on findings and insights to enable performance improvements.",
+          "support": 1,
+          "evidence": [
+            "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing"
+          ],
+          "reason": "Direct creative, landing-page and experimental optimization experience supports testing coordination."
+        },
+        {
+          "requirement": "Own monthly affiliate vendor billing reconciliation across all active partners",
+          "support": 0.5,
+          "evidence": [
+            "Conducted customer lifetime value (LTV) analysis, affiliate commission analysis and discount negotiation, and AI-assisted promotion performance analysis using Namogoo"
+          ],
+          "reason": "Affiliate commission analysis transfers partially; invoice reconciliation is unverified."
+        },
+        {
+          "requirement": "maintain accurate budget tracking records and surface material pacing variances to the Channel Manager and Finance.",
+          "support": 1,
+          "evidence": [
+            "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+          ],
+          "reason": "Campaign pacing dashboards directly support budget monitoring and variance reporting."
+        },
+        {
+          "requirement": "Ensure UTM parameter governance, pixel tagging accuracy, and affiliate tracking integrity across all active placements",
+          "support": 0.5,
+          "evidence": [
+            "Configured GA4 and custom Google Tag Manager measurement/reporting"
+          ],
+          "reason": "Measurement configuration transfers; UTM governance and affiliate tracking integrity are unverified."
+        },
+        {
+          "requirement": "actively flag and help resolve attribution discrepancies.",
+          "support": 1,
+          "evidence": [
+            "Integrated read-only Google Ads, GA4, and Google Search Console data while preserving source-specific attribution and measurement boundaries."
+          ],
+          "reason": "Handling attribution differences across integrated sources supports discrepancy investigation."
+        },
+        {
+          "requirement": "Support the Channel Manager in preparing weekly performance summaries, monthly channel reports, and competitive intelligence research",
+          "support": 1,
+          "evidence": [
+            "Generates daily analyses and weekly marketing reports with source-labeled metrics, findings, recommendations, and watch lists."
+          ],
+          "reason": "Recurring analytical reporting directly transfers to weekly and monthly channel summaries."
+        },
+        {
+          "requirement": "competitive intelligence research across paid search and affiliate for the ISC retail brand portfolio.",
+          "support": 0.5,
+          "evidence": [
+            "Conducted keyword, audience, and competitive research to develop targeting, messaging, campaign, and growth recommendations"
+          ],
+          "reason": "Direct paid-search competitive research; affiliate-specific competitor research is unverified."
+        }
+      ],
+      "required": [
+        {
+          "requirement": "Strong attention to detail and organizational skills; able to manage high task volume across multiple brands without sacrificing execution accuracy or SLA adherence.",
+          "support": 1,
+          "evidence": [
+            "Developed a repeatable Google Ads account-management system that maintained consistent service quality across clients regardless of spend; the system was adopted across the agency"
+          ],
+          "reason": "A scalable service-quality system demonstrates accurate execution across many accounts."
+        },
+        {
+          "requirement": "Proficient in Google Ads UI, SA360 Microsoft Ads UI, and Google Analytics 4 or comparable analytics tools",
+          "support": 0.5,
+          "evidence": [
+            "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+          ],
+          "reason": "GA4 and related measurement are demonstrated; SA360 proficiency is unverified."
+        },
+        {
+          "requirement": "Solid understanding of UTM parameters, conversion tracking concepts, and pixel-based attribution; comfortable identifying and escalating tracking discrepancies.",
+          "support": 0.5,
+          "evidence": [
+            "Develops conversion tracking and attribution models"
+          ],
+          "reason": "Tracking and attribution are established; explicit UTM and pixel expertise remains unverified."
+        },
+        {
+          "requirement": "Collaborative team player who communicates proactively, takes direction well, and brings initiative in surfacing performance issues before they compound.",
+          "support": 1,
+          "evidence": [
+            "Builds and develops teams, documents lessons learned, resolves issues, respectfully challenges assumptions, takes ownership of setbacks, and turns recommendations into coordinated execution."
+          ],
+          "reason": "Demonstrated teamwork, issue resolution and ownership support collaborative execution."
+        },
+        {
+          "requirement": "Must be legally authorized to work in the United States.",
+          "support": 1,
+          "evidence": [
+            "Authorized to work in the United States for any employer"
+          ],
+          "reason": "Explicit authorization directly satisfies the requirement."
+        }
+      ],
+      "seniority": [
+        {
+          "requirement": "2–4 years of hands-on performance marketing experience, with direct execution experience in paid search (Google Ads + Bing required).",
+          "support": 1,
+          "evidence": [
+            "Managed 150+ campaigns across Google Ads, Microsoft Ads, Amazon, search, shopping, display, video, remarketing, mobile, social, local, and email with approximately $400K in monthly spend"
+          ],
+          "reason": "LifeSpan's dated 2013–2016 role establishes over three years managing both required platforms."
+        }
+      ],
+      "industry": [],
+      "preferred": [
+        {
+          "requirement": "familiarity with value-based bidding strategies (target ROAS, target CPA) preferred.",
+          "support": 1,
+          "evidence": [
+            "Analyzed maximum CPC versus smart bidding, brand CPC optimization, brand and non-brand target CPA, incremental CPA during scale-ups and scale-downs"
+          ],
+          "reason": "Explicit target CPA and smart-bidding analysis directly supports bidding familiarity."
+        },
+        {
+          "requirement": "experience working with Looker or similar BI dashboards preferred.",
+          "support": 1,
+          "evidence": [
+            "Built complex Tableau dashboards for paid search and helped convert existing Power BI reporting to Tableau"
+          ],
+          "reason": "Direct Tableau and Power BI dashboard work meets the comparable BI preference."
+        }
+      ]
+    },
+    "score": 85.93,
+    "accepted": true,
+    "status": "reviewed",
+    "failed_rules": [],
+    "category_percentages": {
+      "responsibilities": 83.33,
+      "required": 80.0,
+      "seniority": 100.0,
+      "industry": null,
+      "preferred": 100.0
+    },
+    "policy": "master-evidence-v2",
+    "thresholds": {
+      "minimum_score": 60,
+      "minimum_responsibilities_match": 50,
+      "minimum_required_skills_match": 50
+    },
+    "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "job": {
+      "id": "job",
+      "title": "Senior Channel Specialist - Paid Search",
+      "company": "Integrated Specialty Coverages, LLC",
+      "url": "https://job-boards.greenhouse.io/isccareers/jobs/4731001005"
+    },
+    "description_sha256": "8cde58fe602235e0e745ae74371718982dec8bcccc98929358c8624028071fdc",
+    "runner": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "verified": true,
+      "session_id": "01a17468-6dd9-7ad3-bfc5-b8d2c37f5c5b",
+      "verified_at": "2026-10-25T18:53:18.493757+00:00"
+    },
+    "cached": true
+  }
+}

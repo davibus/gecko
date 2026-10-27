@@ -1,0 +1,35 @@
+{
+  "path": "C:\\gecko_main\\output\\resumes\\Dave-Call+Influ2+Content-Marketing-Manager+00475.docx",
+  "metadata": {
+    "id": "1XPZQLrIZJvD-EGLLeN1fQBO3Kt7uT-ba",
+    "title": "Dave-Call+Influ2+Content-Marketing-Manager+00475.docx",
+    "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "size": "40515",
+    "url": "https://docs.google.com/document/d/1XPZQLrIZJvD-EGLLeN1fQBO3Kt7uT-ba/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+    "file_or_folder": "file",
+    "created_time": null,
+    "modified_time": null,
+    "parent_ids": [
+      "1Noy8XUqlL5ufqA4aU9jZWdwpMYeCVmol"
+    ],
+    "drive_id": null,
+    "current_user_can_share": null,
+    "has_augmented_permissions": null,
+    "shared": false,
+    "permissions": [
+      {
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "mdavidcall@gmail.com",
+        "domain": null,
+        "displayName": "Dave Call",
+        "allowFileDiscovery": null
+      }
+    ],
+    "source_visibility_status": "permission_metadata_available"
+  },
+  "download": {
+    "sha256": "3622c0b6b5ad2bf30fc1527878c8968bb3d87b11d62d74f538dde54f20d232b6",
+    "size": 40515
+  }
+}

@@ -14,6 +14,7 @@ from service import discover_listings
 from google_tracker import Config, GoogleTracker
 from tests.test_google_tracker import FakeSheets
 
+LOAD_SETTINGS = match.settings
 
 class ResumeMatchTests(unittest.TestCase):
     def test_spreadsheet_scores_are_numeric_and_unstated_stay_blank(self):
@@ -54,18 +55,107 @@ class ResumeMatchTests(unittest.TestCase):
         return {'id': '1', 'title': 'Paid Search Manager', 'company': 'Test', 'url': 'https://example.test/new',
                 'description': 'responsibilities required seniority industry preferred'}
 
-    def test_threshold_and_core_floor(self):
-        # 40 + 30 + 0 + 10 + 0 = exactly 80; accepted.
-        good = match.validate(self.review((1,1,0,1,0)), self.item(), 'Managed paid search')
-        self.assertEqual(good['score'], 80)
-        self.assertTrue(good['accepted'])
-        below = match.validate(self.review((1,1,0,.5,0)), self.item(), 'Managed paid search')
-        self.assertEqual(below['score'], 75)
-        self.assertFalse(below['accepted'])
-        # 85 overall cannot conceal only 50% required-skills alignment.
-        weak = match.validate(self.review((1,.5,1,1,1)), self.item(), 'Managed paid search')
-        self.assertEqual(weak['score'], 85)
-        self.assertFalse(weak['accepted'])
+    def policy(self):
+        return {'enabled': True, 'minimum_score': 60,
+                'minimum_responsibilities_match': 50, 'minimum_required_skills_match': 50}
+
+    def boundary_cases(self):
+        exact = self.review((.5,.5,1,1,0))  # 20 + 15 + 15 + 10 = 60.
+        cases = [('exact', exact, self.item(), True)]
+        for name, supports in [('industry', [1]*19+[.5]),
+                               ('responsibilities', [.5]*99+[0]),
+                               ('required', [.5]*99+[0])]:
+            review = copy.deepcopy(exact) if name == 'industry' else self.review((1,1,1,1,1))
+            item = self.item()
+            review['categories'][name] = [
+                {'requirement': f'{name} requirement {i:03}', 'support': support,
+                 'evidence': ['Managed paid search'] if support else [], 'reason': 'Compared evidence'}
+                for i, support in enumerate(supports)]
+            item['description'] += '\n' + '\n'.join(e['requirement'] for e in review['categories'][name])
+            cases.append((name, review, item, False))
+        return cases
+
+    def test_all_three_inclusive_thresholds_and_independent_failures(self):
+        with patch('resume_match.settings', return_value=self.policy()):
+            for name, review, item, accepted in self.boundary_cases():
+                with self.subTest(name=name):
+                    result = match.validate(review, item, 'Managed paid search')
+                    self.assertEqual(result['accepted'], accepted)
+                    if name == 'exact':
+                        self.assertEqual(result['score'], 60)
+                        self.assertEqual(result['category_percentages']['responsibilities'], 50)
+                        self.assertEqual(result['category_percentages']['required'], 50)
+                    elif name == 'industry':
+                        self.assertEqual(result['score'], 59.75)
+                        self.assertEqual(result['failed_rules'], ['Score below 60'])
+                    else:
+                        self.assertGreater(result['score'], 60)
+                        self.assertEqual(result['category_percentages'][name], 49.5)
+                        self.assertEqual(result['failed_rules'], [name+' alignment below 50%'])
+                    explanation = match.explanation(result)
+                    self.assertIn('overall >= 60/100', explanation)
+                    self.assertIn('responsibilities >= 50%', explanation)
+                    self.assertIn('required skills >= 50%', explanation)
+
+    def test_threshold_configuration_rejects_invalid_values(self):
+        with TemporaryDirectory() as folder:
+            config = Path(folder)/'policy.json'
+            with patch.object(match, 'CONFIG', config), patch.object(match, 'settings', LOAD_SETTINGS):
+                config.write_text(json.dumps(self.policy()), encoding='utf-8')
+                self.assertEqual(match.settings(), self.policy())
+                for key in match.THRESHOLD_DEFAULTS:
+                    for invalid in (True, -1, 101, '50', float('nan')):
+                        with self.subTest(key=key, value=invalid):
+                            config.write_text(json.dumps({**self.policy(), key:invalid}), encoding='utf-8')
+                            with self.assertRaises(ValueError): match.settings()
+
+    def test_cached_evidence_recalculates_acceptance_without_inference(self):
+        with TemporaryDirectory() as folder:
+            source = Path(folder)/'master.docx'
+            with ZipFile(source, 'w') as package:
+                package.writestr('word/document.xml', '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body><w:p><w:r><w:t>Managed paid search</w:t></w:r></w:p></w:body></w:document>')
+            client = Mock(); client.last_receipt = {}
+            client.complete.return_value = {'reviews':[self.review((.5,.5,1,1,0))]}
+            options = {'client': client, 'cache_dir': Path(folder)/'cache', 'master_path': source}
+            old_policy = {'enabled':True, 'minimum_score':80,
+                          'minimum_responsibilities_match':70, 'minimum_required_skills_match':70}
+            with patch('resume_match.settings', return_value=old_policy):
+                old = match.assess([self.item()], **options)['1']
+                self.assertFalse(old['accepted'])
+            cache_file = next(options['cache_dir'].glob('*.json'))
+            before = cache_file.read_bytes()
+            client.complete.side_effect = AssertionError('Cached evidence must not launch inference')
+            with patch('resume_match.settings', return_value=self.policy()):
+                new = match.assess([self.item()], **options)['1']
+            self.assertTrue(new['accepted']); self.assertTrue(new['cached'])
+            self.assertEqual(new['score'], 60)
+            self.assertEqual(new['failed_rules'], [])
+            self.assertEqual(new['categories'], old['categories'])
+            self.assertEqual(cache_file.read_bytes(), before)
+            self.assertEqual(client.complete.call_count, 1)
+            with patch('resume_match.settings', return_value=old_policy):
+                self.assertFalse(match.assess([self.item()], **options)['1']['accepted'])
+
+    def test_screening_and_publication_share_all_three_thresholds(self):
+        for name, review, item, accepted in self.boundary_cases():
+            with self.subTest(name=name), TemporaryDirectory() as folder:
+                raw = RawListing('test','new','https://example.test/new','Paid Search Manager','Test',
+                                 location='Remote',description=item['description'])
+                def assess(records):
+                    return {str(r['id']):match.validate(review,r,'Managed paid search') for r in records}
+                with patch('resume_match.settings', return_value=self.policy()), patch('resume_match.assess',side_effect=assess):
+                    with JobStore(Path(folder)/'jobs.db') as store, patch('service._capture_full_description'):
+                        result = discover_listings([raw],store,require_content=True)
+                        self.assertEqual(result.added, int(accepted))
+                        self.assertEqual(len(store.all()), int(accepted))
+                    sheets = FakeSheets()
+                    before = copy.deepcopy(sheets.data)
+                    remote = GoogleTracker(Config('test',Path('unused'),'Job Tracker','Job Scout'),service=sheets)
+                    job = normalize(raw); job.id = 99
+                    result = remote.upsert_scout([job])
+                    self.assertEqual(result['added'], int(accepted))
+                    self.assertEqual(sheets.data['Job Scout'][1], before['Job Scout'][1])
+                    self.assertEqual(sheets.data['Job Tracker'], before['Job Tracker'])
 
     def test_fabricated_evidence_and_duplicate_requirements_rejected(self):
         bad = self.review()
@@ -104,7 +194,7 @@ class ResumeMatchTests(unittest.TestCase):
         with TemporaryDirectory() as folder, JobStore(Path(folder)/'test.db') as store:
             raw = RawListing('test','new','https://example.test/new','Paid Search Manager','Test',
                              location='Remote',description='Manage paid search campaigns. '*30)
-            failure = {'accepted':False,'score':79,'status':'reviewed','reason':'Below cutoff'}
+            failure = {'accepted':False,'score':59,'status':'reviewed','reason':'Below cutoff'}
             with patch('resume_match.check',return_value=failure):
                 summary = discover_listings([raw], store)
             self.assertEqual(summary.match_excluded,1)
@@ -114,7 +204,7 @@ class ResumeMatchTests(unittest.TestCase):
         remote = GoogleTracker(Config('test', Path('unused'), 'Job Tracker', 'Job Scout'),service=FakeSheets())
         new = normalize(RawListing('test','new','https://example.test/new','Paid Search Manager','Test',location='Remote'))
         new.id = 99
-        fail = {'accepted':False,'score':79,'status':'reviewed','reason':'Below cutoff'}
+        fail = {'accepted':False,'score':59,'status':'reviewed','reason':'Below cutoff'}
         with patch('resume_match.settings', return_value={'enabled':True}), patch('resume_match.assess',return_value={'0':fail}):
             result = remote.upsert_scout([new])
         self.assertEqual(result['added'],0)

@@ -14,12 +14,16 @@ param(
 
     [string]$RequestId,
 
-    [switch]$InteractiveWorker
+    [switch]$InteractiveWorker,
+    [string]$BridgeScratchRoot,
+    [object]$WordApplication,
+    [string]$WordInstanceId
 )
 
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $scratchRoot = Join-Path $projectRoot 'scratch'
+if ($BridgeScratchRoot) { $scratchRoot = [System.IO.Path]::GetFullPath($BridgeScratchRoot) }
 $bridgeHeartbeat = Join-Path $scratchRoot 'word-validation-bridge-heartbeat.json'
 $bridgeHealthScript = Join-Path $PSScriptRoot 'Test-Gecko-Word-Bridge.ps1'
 $bridgeRestartCommand = Join-Path $PSScriptRoot 'Restart-Gecko-Word-Bridge.cmd'
@@ -61,9 +65,15 @@ function Test-BridgeHeartbeat {
     # Five minutes tolerates desktop scheduling delays and normal Word startup.
     # Process liveness is intentionally not required here because a sandboxed
     # token may be unable to inspect the interactive user's process metadata.
-    return Test-GeckoBridgeHeartbeatHealthy `
-        -Path $bridgeHeartbeat `
-        -MaximumAgeSeconds $script:GeckoWordBridgeHealthySeconds
+    # Windows replacement can briefly make the heartbeat unreadable. Retry the
+    # read, never COM creation, before declaring a healthy worker unavailable.
+    for ($attempt = 0; $attempt -lt 3; $attempt++) {
+        if (Test-GeckoBridgeHeartbeatHealthy -Path $bridgeHeartbeat -MaximumAgeSeconds $script:GeckoWordBridgeHealthySeconds) {
+            return $true
+        }
+        Start-Sleep -Milliseconds 100
+    }
+    return $false
 }
 
 function Get-BridgeHealthDiagnostics {
@@ -125,7 +135,7 @@ function Invoke-WordPagination {
     $word = $null
     $document = $null
     try {
-        $word = New-Object -ComObject Word.Application
+        $word = if ($null -ne $WordApplication) { $WordApplication } else { New-Object -ComObject Word.Application }
         $word.Visible = $false
         $word.DisplayAlerts = 0
         $document = $word.Documents.Open($DocumentPath, $false, $true)
@@ -133,14 +143,26 @@ function Invoke-WordPagination {
         $wordPages = [int]$document.ComputeStatistics(2)
         $document.ExportAsFixedFormat($PdfFile, 17)
         $document.Close($false)
+        [void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($document)
         $document = $null
+        $exportDeadline = (Get-Date).AddSeconds(2)
+        while (-not (Test-Path -LiteralPath $PdfFile) -and (Get-Date) -lt $exportDeadline) {
+            Start-Sleep -Milliseconds 100
+        }
+        if (-not (Test-Path -LiteralPath $PdfFile)) {
+            throw "Word did not produce the requested PDF: $PdfFile"
+        }
         return $wordPages
     } finally {
         if ($null -ne $document) {
-            $document.Close($false)
+            try { $document.Close($false) } finally {
+                [void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($document)
+            }
         }
-        if ($null -ne $word) {
-            $word.Quit()
+        if ($null -ne $word -and $null -eq $WordApplication) {
+            try { $word.Quit() } finally {
+                [void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($word)
+            }
         }
     }
 }
@@ -154,14 +176,17 @@ function Invoke-InteractiveHandoff {
 
     if (-not (Test-BridgeHeartbeat)) {
         $diagnostics = Get-BridgeHealthDiagnostics
-        throw "The permanent interactive-user Word bridge is unhealthy; sandboxed Gecko will not retry Word COM or control the Scheduled Task. Bridge diagnostics: $diagnostics. User-side recovery command: $bridgeRestartCommand"
+        throw "The interactive-user Word bridge is unhealthy ($bridgeHeartbeat); sandboxed Gecko will not retry Word COM or control the Scheduled Task. Bridge diagnostics: $diagnostics. User-side recovery command: $bridgeRestartCommand"
     }
 
-    $requestDirectory = Split-Path -Parent $ResultFile
+    $handoffId = if ($RequestId) { $RequestId } else { [Guid]::NewGuid().ToString('N') }
+    $requestDirectory = if ($BridgeScratchRoot) { Join-Path $BridgeScratchRoot $handoffId } else { Split-Path -Parent $ResultFile }
+    if (-not (Test-Path -LiteralPath $requestDirectory)) {
+        New-Item -ItemType Directory -Path $requestDirectory -Force | Out-Null
+    }
     $requestPath = Join-Path $requestDirectory 'interactive-word-validation-request.json'
     $responsePath = Join-Path $requestDirectory 'interactive-word-validation-response.json'
     $processingPath = Join-Path $requestDirectory 'interactive-word-validation-processing.json'
-    $handoffId = [Guid]::NewGuid().ToString('N')
 
     $queueDeadline = (Get-Date).AddSeconds(15)
     while ((Test-Path -LiteralPath $requestPath) -or (Test-Path -LiteralPath $processingPath)) {
@@ -245,7 +270,7 @@ if ([string]::IsNullOrWhiteSpace($ResultPath)) {
 }
 
 $status = $null
-$directInteractiveSession = Test-DirectInteractiveWordSession
+$directInteractiveSession = (Test-DirectInteractiveWordSession) -and -not $BridgeScratchRoot
 if ($directInteractiveSession) {
     Write-Output 'Word validation mode: Direct interactive session'
     try {
@@ -261,6 +286,8 @@ if ($directInteractiveSession) {
             validated_at = (Get-Date).ToString('o')
             validated_as = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
             validation_session_id = [System.Diagnostics.Process]::GetCurrentProcess().SessionId
+            word_instance_id = $WordInstanceId
+            word_version = if ($null -ne $WordApplication) { [string]$WordApplication.Version } else { $null }
         }
         Write-JsonAtomic -Value $status -Path $result
     } catch {

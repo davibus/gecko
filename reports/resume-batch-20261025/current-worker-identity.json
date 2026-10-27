@@ -1,0 +1,6 @@
+﻿{
+    "ProcessId":  30300,
+    "CreationDate":  "\/Date(1792962619592)\/",
+    "ExecutablePath":  "C:\\gecko_main\\.tools\\dashboard-python\\Scripts\\python.exe",
+    "CommandLine":  "\"C:\\gecko_main\\.tools\\dashboard-python\\Scripts\\python.exe\" work/run_all_qualifying_resumes.py"
+}

@@ -110,9 +110,9 @@ def deterministic_filter(job, preferences: dict) -> tuple[bool, str]:
 
     location = _text(job.location)
     if arrangement == 'remote':
-        us_or_worldwide = re.search(r'\b(?:united states|usa|us|worldwide|anywhere|global)\b', location)
+        us_or_worldwide = re.search(r'\b(?:united states|usa|us|canada|can|worldwide|anywhere|global)\b', location)
         foreign_only = re.search(
-            r'\b(?:canada|united kingdom|uk|denmark|new zealand|australia|european union|emea|philippines|germany|india|pakistan)\b|^(?:au|nz)\b',
+            r'\b(?:united kingdom|uk|denmark|new zealand|australia|european union|emea|philippines|germany|india|pakistan)\b|^(?:au|nz)\b',
             location + ' ' + _text(job.title),
         )
         if foreign_only and not us_or_worldwide:

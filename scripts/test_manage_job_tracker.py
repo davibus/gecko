@@ -28,12 +28,12 @@ class TrackerMetadataTests(unittest.TestCase):
             scout=lambda **_kwargs: SimpleNamespace(headers={"Resume Created": 7}, rows=[row]),
         )
         with (patch("manage_job_tracker.record_from_files", return_value=record),
-              patch("manage_job_tracker.publish_resume", return_value="file:///verified.docx"),
+              patch("manage_job_tracker.publish_resume", return_value="https://drive.google.com/file/d/verified/view"),
               patch("manage_job_tracker.mark_batch_resume") as mark):
             result = record_completed_resume(record.resume_path, None, tracker)
         self.assertEqual(result[:2], (2, False))
-        mark.assert_called_once_with(42, 2, tracker, "file:///verified.docx",
-                                     allow_local=True, require_approved=False)
+        mark.assert_called_once_with(42, 2, tracker, "https://drive.google.com/file/d/verified/view",
+                                     allow_local=True, require_approved=True)
 
     def test_current_workbook_stops_when_no_unique_scout_row_exists(self):
         record = JobRecord("Example", "Role", "", "abc123",

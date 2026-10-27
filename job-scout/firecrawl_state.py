@@ -55,11 +55,30 @@ def config():
     for value in (settings["pricing"]["search_per_10_results"], settings["pricing"]["basic_scrape"]):
         if type(value) is not int or value <= 0:
             raise ValueError("Firecrawl pricing must use positive integer credits")
+    # Explicit, per-run authorization. The environment value is a Denver date,
+    # so it cannot silently enable unlimited usage on later days.
+    if os.environ.get('GECKO_UNLIMITED_USAGE') == utcnow().astimezone(ZoneInfo('America/Denver')).date().isoformat():
+        settings['usage_unlimited'] = True
+        for key in ('allocation_credits', 'daily_soft_credits', 'daily_hard_credits',
+                    'max_queries_per_day', 'max_scrapes_per_day',
+                    'max_unknown_date_verifications_per_day'):
+            settings[key] = 2**31 - 1
     return settings
 
 
 def request_key(endpoint, payload):
     return hashlib.sha256(json.dumps([endpoint, payload], sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+
+
+def confirmed_cost(response, endpoint):
+    if not isinstance(response, dict):
+        return None
+    cost = response.get('creditsUsed')
+    if cost is None and endpoint == 'scrape':
+        data = response.get('data')
+        if isinstance(data, dict):
+            cost = (data.get('metadata') or {}).get('creditsUsed')
+    return cost if type(cost) is int and cost >= 0 else None
 
 
 def estimated_cost(endpoint, payload, settings):
@@ -106,6 +125,9 @@ class History:
                   provider_id TEXT, response_json TEXT, cache_until TEXT, error TEXT,
                   pricing_json TEXT NOT NULL);
                 CREATE INDEX IF NOT EXISTS requests_key ON requests(request_key, started_at);
+                CREATE TABLE IF NOT EXISTS request_targets (
+                  request_id TEXT PRIMARY KEY, url TEXT NOT NULL, payload_json TEXT NOT NULL);
+                CREATE INDEX IF NOT EXISTS request_targets_url ON request_targets(url);
                 CREATE TABLE IF NOT EXISTS balances (
                   id INTEGER PRIMARY KEY, at TEXT NOT NULL, remaining INTEGER NOT NULL,
                   settled_before INTEGER NOT NULL, raw_json TEXT NOT NULL);
@@ -221,19 +243,20 @@ class History:
             ident = uuid4().hex
             con.execute("INSERT INTO requests(id,request_key,endpoint,day,started_at,status,estimate,reserved,pricing_json) VALUES(?,?,?,?,?,'reserved',?,?,?)",
                         (ident, key, endpoint, day, now.isoformat(), estimate, reserved, json.dumps(self.settings["pricing"])))
+            from normalize import canonicalize_url
+            con.execute('INSERT INTO request_targets VALUES(?,?,?)',
+                        (ident, canonicalize_url(payload.get('url', '')), json.dumps(payload)))
             return ident
 
     def settle(self, ident, response=None, error=None, *, now=None):
         now = now or utcnow()
         # Only an explicit total is provider-confirmed. Provider-routing subtotals
         # and account-wide balance differences cannot establish a request's bill.
-        cost = response.get("creditsUsed") if isinstance(response, dict) else None
-        if type(cost) is not int or cost < 0:
-            cost = None
         with self.connect() as con:
             row = con.execute("SELECT * FROM requests WHERE id=?", (ident,)).fetchone()
             if row is None or row["status"] != "reserved":
                 raise ValueError("Firecrawl reservation cannot be settled twice")
+            cost = confirmed_cost(response, row['endpoint'])
             successful = isinstance(response, dict) and response.get("success") is True and error is None
             metadata = ((response or {}).get('data') or {}).get('metadata', {}) if isinstance((response or {}).get('data'), dict) else {}
             routed_cost = (metadata.get('provider') or {}).get('creditsCost')

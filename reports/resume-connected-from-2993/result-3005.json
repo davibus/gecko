@@ -1,0 +1,53 @@
+{
+  "id": 3005,
+  "company": "LTK USA",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1EIorr3RTiaprC50kru-i4ClqjU-7AQyF/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+LTK-USA+Paid-Media-Specialist-(Contractor)+00459.docx",
+  "started_at": "2026-10-26T14:57:20.647223+00:00",
+  "completed_at": "2026-10-26T14:59:29.868150+00:00",
+  "elapsed_seconds": 129.220936,
+  "generation_seconds": 15.214809099998092,
+  "delivery_seconds": 41.683765399997355,
+  "tracker_seconds": 31.07213220000267,
+  "readback": {
+    "Scout ID": 3005,
+    "Company": "LTK USA",
+    "Job Title": "Paid Media Specialist (Contractor)",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1EIorr3RTiaprC50kru-i4ClqjU-7AQyF/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1257",
+  "hyperlink_target": "https://docs.google.com/document/d/1EIorr3RTiaprC50kru-i4ClqjU-7AQyF/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 129.221,
+    "active_seconds": 94.1563,
+    "review_wait_seconds": 35.0647,
+    "phases_seconds": {
+      "source_loading": 0.0231,
+      "tailoring": 0.7538,
+      "document_creation": 0.7203,
+      "word_pdf_validation": 3.6752,
+      "fitting_retries": 0.0039,
+      "factual_review": 0.0,
+      "review_wait": 35.0647,
+      "tracker_sync": 31.0714,
+      "drive_delivery": 41.6772
+    },
+    "counts": {
+      "source_loading": 47,
+      "tailoring": 2,
+      "document_creation": 1,
+      "word_pdf_validation": 1,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 1,
+      "native_attempts": 1,
+      "drive_delivery": 1
+    }
+  }
+}

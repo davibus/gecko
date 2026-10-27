@@ -1,0 +1,57 @@
+{
+  "id": 2987,
+  "company": "Atlas HXM",
+  "status": "complete",
+  "elapsed_seconds": 703.620856,
+  "timings": {
+    "wall_seconds": 431.0882,
+    "active_seconds": 198.706,
+    "review_wait_seconds": 232.3822,
+    "phases_seconds": {
+      "source_loading": 0.0317,
+      "tailoring": 155.7987,
+      "document_creation": 4.0535,
+      "word_pdf_validation": 8.505,
+      "fitting_retries": 1.5937,
+      "factual_review": 0.0,
+      "review_wait": 232.3822,
+      "tracker_sync": 0.0,
+      "drive_delivery": 0.0
+    },
+    "counts": {
+      "source_loading": 76,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 0,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "restored_trials": 0,
+      "drive_delivery": 0
+    }
+  },
+  "prior_completion_attempt": {
+    "status": "blocked",
+    "reason": "Visual review needs attention: Visual review caught an incomplete source sentence ending advising executives on key. Replace this fragment and prioritize supported CRM/data/automation tools before upload.",
+    "elapsed_seconds": 431.08609699999215
+  },
+  "link": "https://docs.google.com/document/d/1w7uxT8iHGHK5ky0u4RjGHgo0a33AVBRe/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Atlas-HXM+Senior-Director,-Marketing-Operations+00445.docx",
+  "started_at": "2026-10-26T13:44:33.033537+00:00",
+  "completed_at": "2026-10-26T13:56:16.654383+00:00",
+  "retry_tracker_seconds": 17.9643412999867,
+  "hyperlink_range": "'Job List'!Z1240",
+  "hyperlink_target": "https://docs.google.com/document/d/1w7uxT8iHGHK5ky0u4RjGHgo0a33AVBRe/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "readback": {
+    "Scout ID": 2987,
+    "Company": "Atlas HXM",
+    "Job Title": "Senior Director, Marketing Operations",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1w7uxT8iHGHK5ky0u4RjGHgo0a33AVBRe/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  }
+}

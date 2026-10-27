@@ -1,0 +1,67 @@
+{
+  "spec": {
+    "headline": "Marketing Execution | Content & Creative Development | Cross-Functional Campaigns",
+    "headline_rationale": "Entertainment/commercial role needs practical content/design, coordinated execution, sales collaboration and reporting. Use supported digital creative, content and agency consulting without inventing Canva skill, live-event logistics or specific sales-deck portfolio.",
+    "summary": "Hands-on marketer combining content development, digital creative and cross-functional campaign execution. Created marketing concepts with graphic design and animation, developed personalized content across blogs, mail, email and websites, and consulted with clients on business goals, audiences and messaging. Worked with sales, product, operations and IT on marketing priorities and led an eight-person e-commerce team. Reporting, conversion tests and practical website experience support clear coordination and decisions about which marketing work creates useful business results.",
+    "factual_review": "Read exact Jobgether Marketing Manager Entertainment Commercial description. E109/E114/E076/E078/E060/E093/E079/E095/E113 support facts. No Canva, event logistics, entertainment portfolio, specific pitch-deck/customer-story achievements or SFMC expertise invented.",
+    "selected_evidence_ids": [
+      "E001",
+      "E003",
+      "E005",
+      "E006",
+      "E008",
+      "E009",
+      "E018",
+      "E023",
+      "E044",
+      "E038",
+      "E060",
+      "E055",
+      "E063",
+      "E066",
+      "E076",
+      "E078",
+      "E079",
+      "E093",
+      "E095",
+      "E096",
+      "E109",
+      "E114",
+      "E113",
+      "E115"
+    ],
+    "additional_evidence_ids": [
+      "E004",
+      "E010",
+      "E011",
+      "E020",
+      "E072",
+      "E080",
+      "E081",
+      "E082",
+      "E102",
+      "E105",
+      "E116",
+      "E117"
+    ],
+    "tools_platforms": [
+      "Google Analytics 4",
+      "Looker Studio",
+      "Excel",
+      "HubSpot",
+      "Salesforce",
+      "Google Ads",
+      "Meta Ads",
+      "JavaScript",
+      "ChatGPT",
+      "Claude"
+    ],
+    "tools_rationale": "Use supported campaign, content-adjacent web, CRM and analysis tooling; avoid unverified Canva or SFMC proficiency.",
+    "source_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "description_sha256": "d072e2941e62c94744ccb646d9694def41adfaaa3b0f2fa3d67be3c441a61339"
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "4c621d2d738b7831e312dfd78e7484df9e78eaff70fea4308012cc7c38200929"
+}

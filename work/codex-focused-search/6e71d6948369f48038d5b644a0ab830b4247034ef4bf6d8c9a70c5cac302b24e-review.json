@@ -1,0 +1,275 @@
+{
+  "job": {
+    "url": "https://nrtc.applytojob.com/apply/qe9z63pKkm/Digital-Marketing-Specialist-Remote",
+    "company": "NRTC",
+    "title": "Digital Marketing Specialist (Remote)",
+    "location": "",
+    "arrangement": "remote",
+    "salary": "",
+    "posted": "2026-10-20",
+    "chars": 6624
+  },
+  "match": {
+    "id": "job",
+    "sufficient": true,
+    "reason": "Complete duties and qualifications support assessment. Strong paid-media, analytics and client evidence; several platform, organic-social and logistical requirements remain unverified.",
+    "blockers": [],
+    "categories": {
+      "responsibilities": [
+        {
+          "requirement": "Research, develop, execute, optimize, and analyze paid social and search engine marketing campaigns",
+          "support": 1,
+          "evidence": [
+            "Managed all marketing platforms: Google Ads, Bing Ads, Amazon, Facebook, Instagram, and TikTok with a 400k/month budget"
+          ],
+          "reason": "Demonstrates hands-on management across paid search and social campaigns."
+        },
+        {
+          "requirement": "including Google Ads, Meta Ads, Nextdoor Ads, MNTN Ads, LinkedIn Campaign Manager",
+          "support": 0.5,
+          "evidence": [
+            "Managed all marketing platforms: Google Ads, Bing Ads, Amazon, Facebook, Instagram, and TikTok with a 400k/month budget"
+          ],
+          "reason": "Google and Meta are demonstrated; Nextdoor, MNTN and LinkedIn campaign work are unverified."
+        },
+        {
+          "requirement": "Set up, monitor, and analyze conversion tracking for paid advertising campaigns",
+          "support": 1,
+          "evidence": [
+            "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+          ],
+          "reason": "Direct implementation of the specified measurement tools and campaign reporting."
+        },
+        {
+          "requirement": "Identify, develop, and evaluate social media and search engine marketing strategies",
+          "support": 1,
+          "evidence": [
+            "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation across website development, SEO, email campaigns, paid search"
+          ],
+          "reason": "Demonstrates strategy tied to client objectives, channel choices and costs."
+        },
+        {
+          "requirement": "Build and maintain Pivot’s and our client’s social media presence through strategy, content creation, and publication of organic social efforts",
+          "support": 0.5,
+          "evidence": [
+            "Developed and managed content strategy covering timing, content type, placement across blogs, mail, email, and the website, content focus, and personalization"
+          ],
+          "reason": "Content strategy transfers; organic social publishing and account upkeep are unverified."
+        },
+        {
+          "requirement": "Conduct social media and/or search engine marketing audits and provide strategic recommendations on clients’ social strategy and presence",
+          "support": 1,
+          "evidence": [
+            "Account auditing: Evaluates nine categories: account structure, campaign performance, keywords, search-term waste, geography, devices, budget allocation, conversions"
+          ],
+          "reason": "Demonstrates substantive search-marketing auditing applicable to the stated alternative."
+        },
+        {
+          "requirement": "Maintain an understanding of the emerging digital trends as they relate to social media and/or search engine marketing effectiveness",
+          "support": 1,
+          "evidence": [
+            "Assessed inefficient legacy rule-based systems built using the Google Ads API and how newer Google machine-learning capabilities had made those systems outdated"
+          ],
+          "reason": "Evaluates emerging search technology and its impact on campaign effectiveness."
+        },
+        {
+          "requirement": "Develop expertise in generative search optimization (GSO) and AI-powered marketing tools",
+          "support": 0.5,
+          "evidence": [
+            "Used ChatGPT within Google Sheets to rewrite Shopify product descriptions for SEO and remove duplicate content"
+          ],
+          "reason": "AI-assisted SEO transfers; generative-search behavior and optimization are unverified."
+        },
+        {
+          "requirement": "Develop educational resources for the Pivot team",
+          "support": 1,
+          "evidence": [
+            "Created reusable prompts and project instructions to make AI-assisted work consistent."
+          ],
+          "reason": "Demonstrates reusable instructional resources for consistent team workflows."
+        },
+        {
+          "requirement": "Participate in creative brainstorming sessions and contribute to strategy development for digital marketing campaigns and client initiatives.",
+          "support": 1,
+          "evidence": [
+            "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+          ],
+          "reason": "Direct evidence of collaborative client strategy and idea development."
+        }
+      ],
+      "required": [
+        {
+          "requirement": "Excellent understanding of social media platforms, including their respective strengths and demographics (Facebook, Twitter, Instagram, Pinterest, Snapchat, TikTok, Nextdoor, YouTube).",
+          "support": 0.5,
+          "evidence": [
+            "Managed all marketing platforms: Google Ads, Bing Ads, Amazon, Facebook, Instagram, and TikTok with a 400k/month budget"
+          ],
+          "reason": "Several platforms are demonstrated; full demographic knowledge and Nextdoor are unverified."
+        },
+        {
+          "requirement": "Ability to navigate both the creative and analytical sides of social media content development and publication",
+          "support": 0.5,
+          "evidence": [
+            "Developed affiliate-program strategy and created search/display ad copy using Adobe design software"
+          ],
+          "reason": "Creative advertising work transfers; organic-social publication analysis is unverified."
+        },
+        {
+          "requirement": "Experience working with multiple clients simultaneously",
+          "support": 1,
+          "evidence": [
+            "Set up and managed more than 75 Google Ads/AdWords accounts with combined monthly spend of more than $476,000, supporting lead generation and multichannel client programs"
+          ],
+          "reason": "Demonstrates simultaneous multi-client account management."
+        },
+        {
+          "requirement": "Strong understanding of customer and market dynamics and requirements",
+          "support": 1,
+          "evidence": [
+            "Conducted keyword, audience, and competitive research to develop targeting, messaging, campaign, and growth recommendations"
+          ],
+          "reason": "Connects customer and competitive research to practical marketing decisions."
+        },
+        {
+          "requirement": "Proven ability to build strong relationships with clients",
+          "support": 1,
+          "evidence": [
+            "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+          ],
+          "reason": "Demonstrates consultative client partnership and shared business planning."
+        },
+        {
+          "requirement": "Excellence in grammar and professional writing skills is a must",
+          "support": 0.5,
+          "evidence": [
+            "Developed and managed content strategy covering timing, content type, placement across blogs, mail, email, and the website, content focus, and personalization"
+          ],
+          "reason": "Professional content experience supports writing; grammar excellence is unverified."
+        },
+        {
+          "requirement": "Must be able to work accurately with great attention to detail",
+          "support": 1,
+          "evidence": [
+            "Used independent readback to confirm tracker changes, exports, and document associations."
+          ],
+          "reason": "Demonstrates deliberate accuracy checks and verification."
+        },
+        {
+          "requirement": "Must be a good communicator, working with other departments that provide services",
+          "support": 1,
+          "evidence": [
+            "Directed digital marketing and e-commerce for a large B2B distributor, coordinating execution and reporting across marketing, sales, operations, finance, IT, and product teams"
+          ],
+          "reason": "Direct cross-department coordination and reporting evidence."
+        },
+        {
+          "requirement": "Ability to communicate a clear message",
+          "support": 1,
+          "evidence": [
+            "Converted analytical findings into executive summaries, recommended actions, and next-period watch lists."
+          ],
+          "reason": "Translates complex findings into clear, actionable communication."
+        },
+        {
+          "requirement": "Ability to encourage and persuade clients to try something new",
+          "support": 0.5,
+          "evidence": [
+            "Conducted comprehensive market research, persuaded management to add new services, and oversaw their development and implementation."
+          ],
+          "reason": "Demonstrated persuasion transfers to clients; external-client adoption is unverified."
+        },
+        {
+          "requirement": "Ability to “sell” your ideas",
+          "support": 1,
+          "evidence": [
+            "Presented a winning and subsequently funded business plan to venture capitalists"
+          ],
+          "reason": "Demonstrates persuasive presentation resulting in funding."
+        },
+        {
+          "requirement": "Bachelor's degree in Marketing, Advertising, Communications, Public Relations, Business, Digital Media, or a related field; or equivalent combination of education and relevant professional experience",
+          "support": 1,
+          "evidence": [
+            "Business Management Degree - Marketing Emphasis"
+          ],
+          "reason": "Relevant business and marketing education supports the permitted education/experience pathway."
+        },
+        {
+          "requirement": "Occasional travel may be required up to 5%",
+          "support": 0,
+          "evidence": [],
+          "reason": "Travel availability is unverified; absent evidence does not establish unwillingness."
+        },
+        {
+          "requirement": "Must be able to provide reliable internet connection and a quiet, distraction free environment",
+          "support": 0,
+          "evidence": [],
+          "reason": "Home-office conditions and internet reliability are unverified."
+        }
+      ],
+      "seniority": [
+        {
+          "requirement": "Minimum 2 years of professional paid social media and/or Google Ads experience required",
+          "support": 1,
+          "evidence": [
+            "Years of experience with Google Ads, Facebook (Meta) Ads, Instagram, LinkedIn, TikTok, Pinterest, SnapChat, etc"
+          ],
+          "reason": "Explicit years of Google Ads and paid-social experience support the two-year minimum."
+        }
+      ],
+      "industry": [],
+      "preferred": [
+        {
+          "requirement": "Knowledge and a foundational understanding of SEO audits, optimization, and reporting are preferred",
+          "support": 1,
+          "evidence": [
+            "Improved technical SEO through canonical URLs, pagination validation, redirects, XML sitemaps, product schema, and index controls."
+          ],
+          "reason": "Implemented SEO improvements demonstrate capability beyond foundational optimization."
+        },
+        {
+          "requirement": "Experience with non-profits is a plus",
+          "support": 0,
+          "evidence": [],
+          "reason": "Nonprofit experience is unverified."
+        },
+        {
+          "requirement": "Google Ad Certification preferred",
+          "support": 1,
+          "evidence": [
+            "Certifications\n• Google Ads"
+          ],
+          "reason": "The master explicitly lists Google Ads certification."
+        }
+      ]
+    },
+    "score": 81.96,
+    "accepted": true,
+    "status": "reviewed",
+    "failed_rules": [],
+    "category_percentages": {
+      "responsibilities": 85.0,
+      "required": 71.43,
+      "seniority": 100.0,
+      "industry": null,
+      "preferred": 66.67
+    },
+    "policy": "master-evidence-v2",
+    "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "job": {
+      "id": "job",
+      "title": "Digital Marketing Specialist (Remote)",
+      "company": "NRTC",
+      "url": "https://nrtc.applytojob.com/apply/qe9z63pKkm/Digital-Marketing-Specialist-Remote"
+    },
+    "description_sha256": "1c8efe58733da739faf3e40b7b706af9138bb0a09be2308e36ee2578906bf614",
+    "runner": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "verified": true,
+      "session_id": "01a17393-1774-7661-a40e-f1f98e175a86",
+      "verified_at": "2026-10-25T15:00:40.021187+00:00"
+    },
+    "cached": true
+  }
+}

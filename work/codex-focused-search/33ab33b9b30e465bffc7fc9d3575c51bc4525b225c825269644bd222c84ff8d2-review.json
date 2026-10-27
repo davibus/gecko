@@ -1,0 +1,308 @@
+{
+  "job": {
+    "url": "https://job-boards.greenhouse.io/happymoney/jobs/4429287009",
+    "company": "Happy Money",
+    "title": "Creative Marketing Manager",
+    "location": "Remote, USA",
+    "arrangement": "remote",
+    "salary": "$ 110,000–130,000",
+    "posted": "2026-10-01",
+    "chars": 7926
+  },
+  "match": {
+    "id": "job",
+    "sufficient": true,
+    "reason": "Complete duties and qualifications permit review. Strong marketing and analytics evidence; video, specialist creative tools and print production remain unverified, not proven absent.",
+    "blockers": [],
+    "categories": {
+      "responsibilities": [
+        {
+          "requirement": "with a documented content strategy, content calendar and roadmap tied to acquisition and brand goals",
+          "support": 0.5,
+          "evidence": [
+            "Developed and managed content strategy covering timing, content type, placement across blogs, mail, email, and the website, content focus, and personalization"
+          ],
+          "reason": "Content planning is demonstrated; a formal calendar and creative roadmap are unverified."
+        },
+        {
+          "requirement": "define success metrics and a testing plan before each launch, decide what to scale, cut or iterate on",
+          "support": 1,
+          "evidence": [
+            "designs A/B tests, multivariate tests, bid experiments, and click-to-call assessments to identify opportunities and improve acquisition efficiency."
+          ],
+          "reason": "Demonstrates conversion testing and evidence-led performance improvement."
+        },
+        {
+          "requirement": "Design creative for every channel as Happy Money's primary in-house designer, including paid ads, direct mail pieces, email hero images and templates, landing pages and organic social",
+          "support": 0.5,
+          "evidence": [
+            "Developed affiliate-program strategy and created search/display ad copy using Adobe design software"
+          ],
+          "reason": "Ad creative is demonstrated; full design ownership across all listed formats is unverified."
+        },
+        {
+          "requirement": "Set Happy Money's creative standard as our new visual identity rolls out, working within brand guidelines",
+          "support": 0.5,
+          "evidence": [
+            "Applied marketing judgment to ad-copy evidence, brand claims, conversion goals, and landing-page structure."
+          ],
+          "reason": "Brand-aware creative judgment transfers; visual identity rollout ownership is unverified."
+        },
+        {
+          "requirement": "Create content and creative for happymoney.com, including landing pages, articles, guides and product pages, and partner with SEO/AEO",
+          "support": 0.5,
+          "evidence": [
+            "Used ChatGPT within Google Sheets to rewrite Shopify product descriptions for SEO and remove duplicate content"
+          ],
+          "reason": "SEO product content is demonstrated; guides, articles and AI-answer optimization are unverified."
+        },
+        {
+          "requirement": "Lead Happy Money's organic social presence on Instagram, Facebook, TikTok and YouTube, and engage with followers in partnership with Customer Support",
+          "support": 0.5,
+          "evidence": [
+            "Managed display, mobile, re-marketing, search, video, email, shopping, and social, local, and"
+          ],
+          "reason": "Social campaign management transfers partly; organic community leadership is unverified."
+        },
+        {
+          "requirement": "Appear on camera as the face of Happy Money's social channels",
+          "support": 0,
+          "evidence": [],
+          "reason": "No on-camera presenting evidence."
+        },
+        {
+          "requirement": "Plan, script, shoot and edit short-form video for Reels, TikTok and YouTube Shorts, and adapt paid creative so it feels native to organic and web",
+          "support": 0,
+          "evidence": [],
+          "reason": "Video advertising experience does not establish scripting, filming or editing."
+        },
+        {
+          "requirement": "Tell customer impact stories through photo and video, interviews and user-generated content, and help share employee stories on our social channels",
+          "support": 0,
+          "evidence": [],
+          "reason": "No demonstrated customer interviews, UGC production or employee storytelling."
+        },
+        {
+          "requirement": "Build and manage a creator and influencer program, from finding and contracting partners to writing briefs and scripts and tracking results",
+          "support": 0.5,
+          "evidence": [
+            "Developed affiliate-program strategy and created search/display ad copy using Adobe design software"
+          ],
+          "reason": "Affiliate strategy is adjacent; creator recruitment, contracts and scripts are unverified."
+        },
+        {
+          "requirement": "Build and maintain a library of photos, video, graphics and licensed stock imagery, organized so the team can quickly find approved assets for campaigns",
+          "support": 0,
+          "evidence": [],
+          "reason": "No creative asset library or stock licensing workflow is documented."
+        },
+        {
+          "requirement": "Evaluate and set up the tools, partners and AI-assisted workflows the creative function needs, including video editing and UGC platforms",
+          "support": 0.5,
+          "evidence": [
+            "Uses AI to build on foundational expertise, expand output, and accelerate content production, website and application development, analysis, and marketing workflows."
+          ],
+          "reason": "AI content workflows transfer; specialist video and UGC platform implementation is unverified."
+        },
+        {
+          "requirement": "Write clear briefs and run feedback loops with agencies, freelancers and creators",
+          "support": 0.5,
+          "evidence": [
+            "Helped facilitate the transition of four to five agency relationships in-house"
+          ],
+          "reason": "Agency coordination transfers; creative briefs and freelancer feedback workflows are unverified."
+        },
+        {
+          "requirement": "Coordinate with Communications on email, long-form copy and scripts so messaging stays consistent across channels",
+          "support": 0.5,
+          "evidence": [
+            "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+          ],
+          "reason": "Cross-functional coordination transfers; Communications-led copy consistency is unverified."
+        },
+        {
+          "requirement": "Bring compliance in early, move work through legal, compliance and bank partner review, and set up a faster path for time-sensitive organic posts",
+          "support": 0,
+          "evidence": [],
+          "reason": "Financial-services employment does not establish creative compliance or bank review workflows."
+        },
+        {
+          "requirement": "Balance creative priorities across acquisition, lifecycle, brand and product when requests compete",
+          "support": 0.5,
+          "evidence": [
+            "Applied project-by-project cost-benefit analysis to prioritize growth initiatives, marketplace opportunities, product investments, and operational improvements"
+          ],
+          "reason": "Business prioritization transfers; competing creative requests across these functions are unverified."
+        },
+        {
+          "requirement": "Track performance through dashboards and a weekly review covering impressions, engagement, site traffic and applications",
+          "support": 1,
+          "evidence": [
+            "Built automated weekly reporting across 10+ channels using Python, Databricks, SQL, blended Excel data, and Funnel.io to improve accuracy and decision speed"
+          ],
+          "reason": "Weekly cross-channel reporting directly supports the employer's reporting cadence."
+        },
+        {
+          "requirement": "share results and what customers are saying with marketing leadership, product and lifecycle teams",
+          "support": 1,
+          "evidence": [
+            "improving transparency for inventory planning, engineering decisions based on reviews, management decisions, website development, email performance, and cross-platform budget management"
+          ],
+          "reason": "Demonstrates sharing reporting and customer-review insights across business functions."
+        }
+      ],
+      "required": [
+        {
+          "requirement": "A portfolio with a mix of short-form and long-form work, including paid ads, email, direct mail or print, web content and video you shot, edited or appeared in",
+          "support": 0.5,
+          "evidence": [
+            "Portfolio/sample work available when relevant"
+          ],
+          "reason": "Sample work is available; the required format mix and personal video work are unverified."
+        },
+        {
+          "requirement": "A strong graphic design foundation, through formal training or hands-on experience, including layout, typography, color and accessibility standards",
+          "support": 0.5,
+          "evidence": [
+            "Designed and introduced new marketing concepts using graphic design and animation software"
+          ],
+          "reason": "Hands-on design is demonstrated; typography, color and design accessibility depth are unverified."
+        },
+        {
+          "requirement": "Expert in Figma and Adobe Creative Suite, including Photoshop and Premiere Pro, plus a mobile editing tool like CapCut",
+          "support": 0.5,
+          "evidence": [
+            "Exceptional understanding and several years of formal training and experience in Excel, Access, Visio, Project, Photoshop, InDesign, Illustrator"
+          ],
+          "reason": "Adobe design experience is documented; Figma, Premiere Pro and mobile video editing are unverified."
+        },
+        {
+          "requirement": "Able to turn complex financial topics like APRs, credit scores and debt payoff into clear content",
+          "support": 0.5,
+          "evidence": [
+            "Developed and managed content strategy covering timing, content type, placement across blogs, mail, email, and the website, content focus, and personalization"
+          ],
+          "reason": "Wealth-management content experience transfers; consumer-credit explanations are unverified."
+        },
+        {
+          "requirement": "Experience building content strategies and calendars and creating content for websites, with a working understanding of SEO and conversion",
+          "support": 1,
+          "evidence": [
+            "Converts an offer, audience, conversion goal, and supporting evidence into structured landing-page copy and an editable browser preview."
+          ],
+          "reason": "Demonstrates conversion-focused web content; strategy and scheduling assessed above."
+        },
+        {
+          "requirement": "Experience using performance data to guide creative decisions and changing course when the numbers call for it",
+          "support": 1,
+          "evidence": [
+            "used machine-learning models and the Google Ads API to support budgets, bids, ad copy, keyword decisions, and other optimizations"
+          ],
+          "reason": "Demonstrates analytical decisions about ad copy and campaign optimization."
+        },
+        {
+          "requirement": "Experience preparing print-ready files and working with print and mail vendors",
+          "support": 0,
+          "evidence": [],
+          "reason": "Design tools and mail content strategy do not establish print production or vendor experience."
+        },
+        {
+          "requirement": "A track record of growing organic social channels, with deep knowledge of social-first storytelling and platform trends on Instagram and TikTok",
+          "support": 0,
+          "evidence": [],
+          "reason": "Paid platform management does not establish organic audience growth or social storytelling."
+        },
+        {
+          "requirement": "Highly organized and self-directed, comfortable running a test-and-learn channel without direction",
+          "support": 1,
+          "evidence": [
+            "Conceived, designed, and built Space Force, a personal marketing technology and portfolio project combining hands-on digital marketing expertise with AI-assisted application development."
+          ],
+          "reason": "Independent product creation and documented experimentation demonstrate self-directed execution."
+        }
+      ],
+      "seniority": [
+        {
+          "requirement": "5+ years in graphic design, creative or content marketing, in-house or at an agency, with experience owning both strategy and execution",
+          "support": 0.5,
+          "evidence": [
+            "Marketing Strategy & Development – Bowen Law Professional Group - Salt Lake City, UT"
+          ],
+          "reason": "Strategy and creative execution are documented; five years of qualifying creative ownership is unverified."
+        }
+      ],
+      "industry": [],
+      "preferred": [
+        {
+          "requirement": "Experience in lending, banking or another regulated industry; Fair Lending awareness",
+          "support": 0.5,
+          "evidence": [
+            "Worked at a wealth management firm with more than 20 attorneys, financial planners, and CPAs"
+          ],
+          "reason": "Regulated financial-services context is demonstrated; lending and Fair Lending awareness are unverified."
+        },
+        {
+          "requirement": "Copywriting and storytelling experience, including email, long-form web copy and video scripts",
+          "support": 0.5,
+          "evidence": [
+            "Generates draft Google responsive search ad headlines and descriptions with evidence checks, character limits, and duplicate-asset validation."
+          ],
+          "reason": "Ad copywriting is demonstrated; long-form storytelling and video scripts are unverified."
+        },
+        {
+          "requirement": "Email template development experience",
+          "support": 0,
+          "evidence": [],
+          "reason": "Email marketing and programming knowledge do not establish email template development."
+        },
+        {
+          "requirement": "Motion design skills",
+          "support": 0.5,
+          "evidence": [
+            "Designed and introduced new marketing concepts using graphic design and animation software"
+          ],
+          "reason": "Animation software use suggests partial capability; motion design deliverables are unverified."
+        },
+        {
+          "requirement": "Familiarity with HubSpot, including HubSpot CMS",
+          "support": 0.5,
+          "evidence": [
+            "Google Trends, Triple Whale, Zapier, HubSpot, SalesForce Shopify, Magento, WordPress, Tableau, Adobe Analytics, Google Ads API, Moz, Alexa, SEMrush, DataBricks"
+          ],
+          "reason": "HubSpot familiarity is listed; CMS experience is unverified."
+        }
+      ]
+    },
+    "score": 48.83,
+    "accepted": false,
+    "status": "reviewed",
+    "failed_rules": [
+      "Score below 60",
+      "responsibilities alignment below 70%",
+      "required alignment below 70%"
+    ],
+    "category_percentages": {
+      "responsibilities": 44.44,
+      "required": 55.56,
+      "seniority": 50.0,
+      "industry": null,
+      "preferred": 40.0
+    },
+    "policy": "master-evidence-v2",
+    "master_sha256": "65eaa4541ae39b10bb87eac1480524265d2f54a7b353523baa6d92ced55dad01",
+    "job": {
+      "id": "job",
+      "title": "Creative Marketing Manager",
+      "company": "Happy Money",
+      "url": "https://job-boards.greenhouse.io/happymoney/jobs/4429287009"
+    },
+    "description_sha256": "8fc4ba366a7b526a9f9128be36070f8cb256d2140f419a2647b4823a7b73d629",
+    "runner": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "verified": true,
+      "session_id": "01a17359-cf2c-7271-9c3b-cda7b262a080",
+      "verified_at": "2026-10-25T13:58:41.894155+00:00"
+    }
+  }
+}

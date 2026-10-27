@@ -1,0 +1,54 @@
+{
+  "id": 3045,
+  "company": "Jobgether",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1eJOh4BOy_-k3PzFqNrkPBrf6DdK-xib7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Senior-Growth-Marketing-Manager+00486.docx",
+  "started_at": "2026-10-26T16:03:53.398401+00:00",
+  "completed_at": "2026-10-26T16:06:18.910928+00:00",
+  "elapsed_seconds": 145.512538,
+  "generation_seconds": 28.761214400001336,
+  "delivery_seconds": 5.218939400016097,
+  "tracker_seconds": 40.685350199986715,
+  "readback": {
+    "Scout ID": 3045,
+    "Company": "Jobgether",
+    "Job Title": "Senior Growth Marketing Manager",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1eJOh4BOy_-k3PzFqNrkPBrf6DdK-xib7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1297",
+  "hyperlink_target": "https://docs.google.com/document/d/1eJOh4BOy_-k3PzFqNrkPBrf6DdK-xib7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 145.5126,
+    "active_seconds": 94.4356,
+    "review_wait_seconds": 51.077,
+    "phases_seconds": {
+      "source_loading": 0.038,
+      "tailoring": 1.3913,
+      "document_creation": 1.9645,
+      "word_pdf_validation": 6.8401,
+      "fitting_retries": 0.0734,
+      "factual_review": 0.0,
+      "review_wait": 51.077,
+      "tracker_sync": 40.6842,
+      "drive_delivery": 5.2096
+    },
+    "counts": {
+      "source_loading": 66,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

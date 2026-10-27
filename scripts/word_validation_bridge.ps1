@@ -24,6 +24,12 @@ $validator = if ([string]::IsNullOrWhiteSpace($ValidatorPath)) {
 }
 . (Join-Path $PSScriptRoot 'word_bridge_common.ps1')
 
+$realValidator = [System.IO.Path]::GetFullPath($validator) -eq (Join-Path $PSScriptRoot 'validate_word_native.ps1')
+if ($realValidator -and (([System.Security.Principal.WindowsIdentity]::GetCurrent().Name -match '(?i)codexsandbox') -or
+        [System.Diagnostics.Process]::GetCurrentProcess().SessionId -eq 0)) {
+    throw 'A sandbox or service token must use the permanent interactive-user Word bridge.'
+}
+
 $processStartedAt = ([DateTimeOffset](Get-Process -Id $PID).StartTime).ToString('o')
 $instanceId = [Guid]::NewGuid().ToString('N')
 $wordComAvailable = if ($SkipWordComProbe) { $true } else { Test-GeckoWordCom }
@@ -137,9 +143,22 @@ Recover-OrphanedRequests
 Remove-StaleHandoffFiles
 $lastCleanup = Get-Date
 $processedRequests = 0
+$geckoOwnedWord = $null
+$geckoWordInstanceId = $null
+
+function Close-OwnedWord {
+    if ($null -ne $script:geckoOwnedWord) {
+        try { $script:geckoOwnedWord.Quit(0) } catch { }
+        try { [void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($script:geckoOwnedWord) } catch { }
+        $script:geckoOwnedWord = $null
+        $script:geckoWordInstanceId = $null
+        [GC]::Collect()
+        [GC]::WaitForPendingFinalizers()
+    }
+}
 
 try {
-    while ($true) {
+    while (-not (Test-Path -LiteralPath (Join-Path $scratchRoot 'stop-word-bridge'))) {
         try {
             $bridgeStatus = 'running'
             $activeRequestId = $null
@@ -169,15 +188,34 @@ try {
                     $activeRequestId = [string]$request.request_id
                     $null = Write-Heartbeat
                     Write-BridgeLog "Starting validation request $activeRequestId."
+                    $sessionArguments = @{}
+                    if ($realValidator) {
+                        if ($null -eq $geckoOwnedWord) {
+                            # CoCreate a dedicated instance; never attach to open Word.
+                            $geckoOwnedWord = New-Object -ComObject Word.Application
+                            $geckoWordInstanceId = [Guid]::NewGuid().ToString('N')
+                            $geckoOwnedWord.Visible = $false
+                            $geckoOwnedWord.DisplayAlerts = 0
+                            $geckoOwnedWord.AutomationSecurity = 3
+                        }
+                        $sessionArguments.WordApplication = $geckoOwnedWord
+                        $sessionArguments.WordInstanceId = $geckoWordInstanceId
+                    }
                     & $validator `
                         -DocxPath ([string]$request.docx) `
                         -PdfPath ([string]$request.pdf) `
                         -ResultPath ([string]$request.result) `
                         -RequestId $activeRequestId `
-                        -InteractiveWorker
+                        -InteractiveWorker @sessionArguments
                     Write-RequestResponse -Request $request -FallbackDirectory $requestFile.DirectoryName -Status 'complete' -ErrorMessage $null
                     Write-BridgeLog "Completed validation request $activeRequestId."
                 } catch {
+                    $normalOverflow = $false
+                    try {
+                        $nativeResult = Get-Content -LiteralPath ([string]$request.result) -Raw | ConvertFrom-Json
+                        $normalOverflow = $nativeResult.request_id -eq $activeRequestId -and $nativeResult.status -eq 'native-invalid'
+                    } catch { }
+                    if (-not $normalOverflow) { Close-OwnedWord }
                     Write-BridgeLog "Validation request failed: $($_.Exception.Message)"
                     try {
                         Write-RequestResponse -Request $request -FallbackDirectory $requestFile.DirectoryName -Status 'error' -ErrorMessage $_.Exception.Message
@@ -201,6 +239,7 @@ try {
         Start-Sleep -Seconds ([Math]::Max(1, $PollSeconds))
     }
 } finally {
+    Close-OwnedWord
     try {
         Write-GeckoJsonAtomic -Value ([ordered]@{
             status = 'stopped'

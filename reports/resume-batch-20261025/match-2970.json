@@ -1,0 +1,223 @@
+{
+  "id": "job",
+  "sufficient": true,
+  "reason": "Complete duties and qualifications support review. Agency-specific tenure, crisis retention expertise and EST availability remain unverified; missing evidence does not establish absence.",
+  "blockers": [],
+  "categories": {
+    "responsibilities": [
+      {
+        "requirement": "You’ll directly own team building/hiring, client success and client performance.",
+        "support": 0.5,
+        "evidence": [
+          "Built the PPC team and trained team members on the scalable system created for the organization (QoQ)"
+        ],
+        "reason": "Team building is demonstrated; hiring and ownership of agency retention are less explicit."
+      },
+      {
+        "requirement": "Conduct individual meetings with each performance marketer to drive development.",
+        "support": 0.5,
+        "evidence": [
+          "Builds and develops teams, documents lessons learned, resolves issues, respectfully challenges assumptions"
+        ],
+        "reason": "Team development transfers to individual coaching; recurring individual meetings are unverified."
+      },
+      {
+        "requirement": "Review team capacity, workloads, and bottlenecks to ensure the team is resourced correctly.",
+        "support": 0.5,
+        "evidence": [
+          "Managed the E-Commerce department comprised of 8 best-in-class employees"
+        ],
+        "reason": "Department management transfers; explicit capacity planning and workload allocation are unverified."
+      },
+      {
+        "requirement": "Hold the team to elite standards across client communication, service, and results.",
+        "support": 1,
+        "evidence": [
+          "Developed a repeatable Google Ads account-management system that maintained consistent service quality across clients regardless of spend"
+        ],
+        "reason": "Established consistent client-service standards across agency accounts."
+      },
+      {
+        "requirement": "Review the client roster weekly and maintain accurate dashboards regarding client statuses.",
+        "support": 0.5,
+        "evidence": [
+          "Provides authenticated client workspaces and a portfolio overview showing account health, source availability, and report freshness."
+        ],
+        "reason": "Client portfolio visibility is demonstrated; relationship-status tracking is less explicit."
+      },
+      {
+        "requirement": "Maintain daily Slack communication with the team and step in to help handle difficult conversations when relevant.",
+        "support": 0.5,
+        "evidence": [
+          "Builds and develops teams, documents lessons learned, resolves issues, respectfully challenges assumptions"
+        ],
+        "reason": "Team communication and issue resolution transfer; daily Slack mediation is unverified."
+      },
+      {
+        "requirement": "Train and hold the team accountable to the highest standards for client success.",
+        "support": 1,
+        "evidence": [
+          "Built the PPC team and trained team members on the scalable system created for the organization (QoQ)"
+        ],
+        "reason": "Demonstrates team training around a standardized PPC delivery system."
+      },
+      {
+        "requirement": "Join onboarding calls to build rapport and talk to top-tier clients regularly to ensure satisfaction.",
+        "support": 0.5,
+        "evidence": [
+          "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings"
+        ],
+        "reason": "Consultative client engagement transfers to onboarding and satisfaction conversations."
+      },
+      {
+        "requirement": "Act as the senior escalation point for deep issues. You will lead retention calls to save unhappy or underperforming clients.",
+        "support": 0.5,
+        "evidence": [
+          "resolves issues, respectfully challenges assumptions, takes ownership of setbacks, and turns recommendations into coordinated execution."
+        ],
+        "reason": "Issue ownership transfers; saving dissatisfied agency clients is unverified."
+      },
+      {
+        "requirement": "organize and lead a \"task force\" with the team to rectify the problem and drive the situation to full resolution.",
+        "support": 1,
+        "evidence": [
+          "resolves issues, respectfully challenges assumptions, takes ownership of setbacks, and turns recommendations into coordinated execution."
+        ],
+        "reason": "Demonstrates issue resolution and coordinated execution across teams."
+      },
+      {
+        "requirement": "Look for early warning signs of churn, such as silent clients or performance dips, and build proactive retention plans.",
+        "support": 0.5,
+        "evidence": [
+          "Created custom scripts for continuous, automated monitoring of client marketing efforts"
+        ],
+        "reason": "Performance monitoring supports early warnings; client-churn planning is unverified."
+      },
+      {
+        "requirement": "Lead and mentor the team around consistent standards in media buying, creative strategy and growth consulting.",
+        "support": 0.5,
+        "evidence": [
+          "Built the PPC team and trained team members on the scalable system created for the organization (QoQ)"
+        ],
+        "reason": "Paid-media coaching is demonstrated; creative-strategy team mentoring is less explicit."
+      },
+      {
+        "requirement": "Track client performance across the agency to ensure they meet agency benchmarks.",
+        "support": 1,
+        "evidence": [
+          "Used industry-leading analytical tools to evaluate account performance and make data-driven recommendations"
+        ],
+        "reason": "Agency account evaluation directly supports benchmark-based performance monitoring."
+      },
+      {
+        "requirement": "Create and enforce playbooks and SOPs that improve the client experience and service quality over time.",
+        "support": 1,
+        "evidence": [
+          "Developed a repeatable Google Ads account-management system that maintained consistent service quality across clients regardless of spend"
+        ],
+        "reason": "Created an agency-adopted operating system supporting consistent client service."
+      }
+    ],
+    "required": [
+      {
+        "requirement": "Elite at de-escalating high-stress situations and inspiring client confidence.",
+        "support": 0.5,
+        "evidence": [
+          "resolves issues, respectfully challenges assumptions, takes ownership of setbacks, and turns recommendations into coordinated execution."
+        ],
+        "reason": "Constructive issue resolution is demonstrated; elite crisis de-escalation is unverified."
+      },
+      {
+        "requirement": "World-class skillset in performance marketing in the DTC/eCommerce space.",
+        "support": 1,
+        "evidence": [
+          "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review"
+        ],
+        "reason": "Substantial e-commerce growth and efficiency results demonstrate advanced performance capability."
+      },
+      {
+        "requirement": "A \"get things done\" attitude with the ability to navigate crises without losing focus.",
+        "support": 0.5,
+        "evidence": [
+          "Iteratively diagnosed and repaired integration, document-layout, data-consistency, and Windows execution issues."
+        ],
+        "reason": "Persistent problem resolution is demonstrated; crisis performance is less explicit."
+      },
+      {
+        "requirement": "must be comfortable working EST hours!",
+        "support": 0,
+        "evidence": [],
+        "reason": "EST schedule availability is not documented."
+      },
+      {
+        "requirement": "talking with US clients regularly.",
+        "support": 1,
+        "evidence": [
+          "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation"
+        ],
+        "reason": "Direct client consulting at the documented Dallas agency supports routine US client engagement."
+      }
+    ],
+    "seniority": [
+      {
+        "requirement": "7+ years in performance marketing within creative or paid media agencies, specifically in the DTC/eCommerce space.",
+        "support": 0.5,
+        "evidence": [
+          "Digital marketing and marketing technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce"
+        ],
+        "reason": "Extensive relevant experience exists; seven years specifically in DTC agencies is unverified."
+      },
+      {
+        "requirement": "a senior leader who will oversee the service delivery department including performance marketers (media buyers), creative strategists, editors, designers, and more.",
+        "support": 0.5,
+        "evidence": [
+          "Led an eight-person e-commerce team responsible for paid search, customer acquisition, campaign delivery, website performance, and growth across the U.S., Canada, and U.K"
+        ],
+        "reason": "Department leadership transfers; oversight of the full creative delivery organization is unverified."
+      },
+      {
+        "requirement": "Proven track record of managing and leading performance marketing teams.",
+        "support": 1,
+        "evidence": [
+          "Managed up to $30 million per month in paid media with a four-person team at TravelPass Group"
+        ],
+        "reason": "Direct evidence of performance-marketing team leadership at substantial scale."
+      }
+    ],
+    "industry": [],
+    "preferred": []
+  },
+  "score": 64.87,
+  "accepted": true,
+  "status": "reviewed",
+  "failed_rules": [],
+  "category_percentages": {
+    "responsibilities": 67.86,
+    "required": 60.0,
+    "seniority": 66.67,
+    "industry": null,
+    "preferred": null
+  },
+  "policy": "master-evidence-v2",
+  "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+  "job": {
+    "id": "job",
+    "title": "Head of Paid Media",
+    "company": "Linear Agency",
+    "url": "https://linear-agency.breezy.hr/p/6ef6bc1c2419-head-of-paid-media"
+  },
+  "description_sha256": "c0b8aba5557aafdd9cf450de70c4dfd06969180e7f85d6461d9d047fb4057875",
+  "runner": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a17389-917e-7832-ba34-10a8fa56a6b6",
+    "verified_at": "2026-10-25T14:50:44.570653+00:00"
+  },
+  "thresholds": {
+    "minimum_score": 60,
+    "minimum_responsibilities_match": 50,
+    "minimum_required_skills_match": 50
+  },
+  "cached": true
+}

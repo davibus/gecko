@@ -1,0 +1,14 @@
+{
+  "status": "provider balance observed",
+  "ledger": {
+    "search_credits": 318,
+    "extraction_credits": 500,
+    "provider_confirmed_credits": 740,
+    "estimated_or_reserved_credits": 78,
+    "total_credits_accounted": 818,
+    "estimated_account_balance": 1567,
+    "balance_observed_at": "2026-10-26T00:30:42.696811+00:00",
+    "billing_complete": false,
+    "hard_ceiling_exact": false
+  }
+}

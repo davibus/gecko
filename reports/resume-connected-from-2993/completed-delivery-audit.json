@@ -1,0 +1,435 @@
+{
+  "checked_at": "2026-10-26T16:43:46.805828+00:00",
+  "count": 61,
+  "live_hyperlinks_verified": true,
+  "frozen_header_verified": true,
+  "resumes": [
+    {
+      "id": 2985,
+      "company": "TENEX.AI",
+      "sha256": "aa3157a34d4b9f380ed8f41e9878df0af11032982df6b23ad51708761912a6c7",
+      "link": "https://docs.google.com/document/d/1gdsgGWCa_qBi2pSw7j7VTOhzw-HOAvl7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1238"
+    },
+    {
+      "id": 2986,
+      "company": "Allure Security Talent",
+      "sha256": "9f54c736ad58489b4224d3ebd3ad6b9702f35e86a8b9c33de634c63422f1d913",
+      "link": "https://docs.google.com/document/d/1odB9doLHjeYp4chsAzt3n2Zhy2YAp_l7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1239"
+    },
+    {
+      "id": 2987,
+      "company": "Atlas HXM",
+      "sha256": "0db25bb019aede6b10df9998f2969e0849a4d3bcdc7fc8140fddf1f1f26132f5",
+      "link": "https://docs.google.com/document/d/1w7uxT8iHGHK5ky0u4RjGHgo0a33AVBRe/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1240"
+    },
+    {
+      "id": 2988,
+      "company": "Daymark Health",
+      "sha256": "59b7386b4c2aae8c21cfe6b81b94316c824652de0907a9acdf792c611f6395f9",
+      "link": "https://docs.google.com/document/d/14gzV-hax1MWfaRkLrOGafdIGHpJFatf9/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1241"
+    },
+    {
+      "id": 2989,
+      "company": "Empower Brands",
+      "sha256": "267dc34cfb9f0d3866578be62bca661b161962b3729867d3b499c43a61df36fa",
+      "link": "https://docs.google.com/document/d/1SVBMC6R6szhrUF_jCVzIPWOiXUw0nV2J/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1242"
+    },
+    {
+      "id": 2990,
+      "company": "Graphite",
+      "sha256": "c399de3b19f629d7244a7f1dc3a01d5ffdb2ad478a1cbf087eb710da0cde57ee",
+      "link": "https://docs.google.com/document/d/1FPebZ6QT-nsPUfQYtDJVkirl_jpFXzSE/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1243"
+    },
+    {
+      "id": 2991,
+      "company": "Maximus Health, Inc.",
+      "sha256": "6523ed90172a8c42fae535e5daf64fce9d88792ff8664db223373b20f879899b",
+      "link": "https://docs.google.com/document/d/1ncYaAinkjy6JjJEkJKrrvNSJ1Jw69iEO/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1244"
+    },
+    {
+      "id": 2993,
+      "company": "Plan Left",
+      "sha256": "d7e25fa7a0deba7baa2d78ea7f842919c53ba27fcbd0263ff85fe2313fd5f92f",
+      "link": "https://docs.google.com/document/d/1nMcYgY-_eS18f6JLXl-tkd5OeKILd9tV/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1246"
+    },
+    {
+      "id": 2994,
+      "company": "Precision AQ",
+      "sha256": "910867da4b305421c8020cbe3c6ebd6480a421e29cae9ce155e496079f3dc308",
+      "link": "https://docs.google.com/document/d/1Vrl6PckkGc919Vr2aL9QWnWutqHYK50B/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1247"
+    },
+    {
+      "id": 2996,
+      "company": "AssetWatch",
+      "sha256": "823efa02f13706088558211aa1df3cc05602fad6fe04de9c027f495b7fe283f7",
+      "link": "https://docs.google.com/document/d/1m55O9zrqM17ElHsO0nzNnFBwD54cAdWH/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1248"
+    },
+    {
+      "id": 2997,
+      "company": "Black Girl Ventures Foundation",
+      "sha256": "dc7b9b620074e6921e9a6d980e3ff319f156ff5efa3d9750d6919075b2da1326",
+      "link": "https://docs.google.com/document/d/15oPf_zQwiMV3UAE-M4Md2vWuOzPO8R7P/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1249"
+    },
+    {
+      "id": 2999,
+      "company": "MaintainX",
+      "sha256": "38ca44cce6379b19109351c7d41e1d5fc06654e4b598f926c36cf54e6aa5ff27",
+      "link": "https://docs.google.com/document/d/1xL4ZLo6cL_MqtfojbprKRODkswSq2RQi/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1251"
+    },
+    {
+      "id": 3000,
+      "company": "Articulate",
+      "sha256": "490db106ace7029e1bda9dc3671dd9356f3080d9dd43da2b8b61c4adba0aa922",
+      "link": "https://docs.google.com/document/d/1tW2FbcjXUwE6YmzpM2fo_r9ux93vFS2u/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1252"
+    },
+    {
+      "id": 3001,
+      "company": "MyFitnessPal",
+      "sha256": "67bf119a25ef0a29da1f6acdada94534150654233f383fce3d75e75981310b26",
+      "link": "https://docs.google.com/document/d/1GZPYKu4nxgT_So-ldmO86erYuSB0Z-u2/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1253"
+    },
+    {
+      "id": 3003,
+      "company": "Blacksmith Agency",
+      "sha256": "880ba1268fa6f33322b4bf5861a06613b820a08aa1ce56b254851bf93637b118",
+      "link": "https://docs.google.com/document/d/19BPR-yIBfrveD1oDDu3Obw8Lo90hV7fk/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1255"
+    },
+    {
+      "id": 3004,
+      "company": "Careerswift",
+      "sha256": "351e3bfd57e26125e4fe525c6d1ea5484b1cf2e0009beca367f77545328a609f",
+      "link": "https://docs.google.com/document/d/1JAS-Xpftc5U5xcx8IQ0a8sowjAi6fB3g/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1256"
+    },
+    {
+      "id": 3005,
+      "company": "LTK USA",
+      "sha256": "8d440360950ae36388214ce655219e3b42a3dec06cfe03194539f8bcf278aefb",
+      "link": "https://docs.google.com/document/d/1EIorr3RTiaprC50kru-i4ClqjU-7AQyF/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1257"
+    },
+    {
+      "id": 3007,
+      "company": "Lunar Solar Group",
+      "sha256": "d8524fc027951412643e752dc9dae85c7742b1b4a81663aeb8474cd55ce84b9c",
+      "link": "https://docs.google.com/document/d/1E-NcTm19_8awSxgL5NejAGkXt42r-d70/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1259"
+    },
+    {
+      "id": 3008,
+      "company": "PointClickCare",
+      "sha256": "a9848b4f5a11ba33962bef0d8fd0c9c56351cf62f71e408826d8f558336607cf",
+      "link": "https://docs.google.com/document/d/1hIO5Kyby9aTo5HkSbe_0puH2EzmmReTY/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1260"
+    },
+    {
+      "id": 3010,
+      "company": "CSC Generation",
+      "sha256": "98bcf603a3b40875c69efab9352f86652a9992027ec3f65f8c0ed50f8fe9afd8",
+      "link": "https://docs.google.com/document/d/1Q9KZ8j6Mtb7CwoeVEWvpcYnqVLc8dlMy/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1262"
+    },
+    {
+      "id": 3011,
+      "company": "Uproot Clean",
+      "sha256": "dac6c6d5c3136d58843d64b20c73fb357e416ae39258c9cc2aab7dd913b09e29",
+      "link": "https://docs.google.com/document/d/1Li2SzTGV7dEalflqigo7Y_1O5AoBhqkM/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1263"
+    },
+    {
+      "id": 3012,
+      "company": "Jobgether",
+      "sha256": "cf3d5b9a8a2359004d8e003d815c47f4c8e8847c25d5aa28ecad4263a2d78853",
+      "link": "https://docs.google.com/document/d/1-jl1jeMca1yXEkYLQBCY2P4mx5bQqqjZ/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1264"
+    },
+    {
+      "id": 3013,
+      "company": "Jobgether",
+      "sha256": "fbacacf56ff6f75499b3227c0731e43017e5c317bd7ba7b6ac29c12f906e1cc9",
+      "link": "https://docs.google.com/document/d/19VDvwfq5QMpjvwG76pSww7AGFy6AdFP7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1265"
+    },
+    {
+      "id": 3014,
+      "company": "Jobgether",
+      "sha256": "167786bed942a1e990ac7d5e77462d5e5b5cc3c7e4e57798e2b3af43125fa6f3",
+      "link": "https://docs.google.com/document/d/18rJ3Pp79aPkItDUpjYnnCguLo-iJ_059/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1266"
+    },
+    {
+      "id": 3015,
+      "company": "Jobgether",
+      "sha256": "46d834db19f95539b009ed7b9d9e1a097fa62727c96e011100c4d54103907f0d",
+      "link": "https://docs.google.com/document/d/1cDYk2lvuDyTOwlWpyhtykmd-ElTyTjtJ/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1267"
+    },
+    {
+      "id": 3016,
+      "company": "Jobgether",
+      "sha256": "78c4c5d4f021d2d22cb42d999c32a42d33b891a87d1524a5ac78a6a8c8c88f2c",
+      "link": "https://docs.google.com/document/d/1A_wCMXt7aA3Jy02OF1HAk7kpseaX5wAB/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1268"
+    },
+    {
+      "id": 3017,
+      "company": "Monks",
+      "sha256": "3ae94c533dc34f6b726ae11d58617fc087ed41e84c28055bb2bcc282def49252",
+      "link": "https://docs.google.com/document/d/1rNBggAf5A80rzUaKgWzv_YRhXkeuTo7P/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1269"
+    },
+    {
+      "id": 3020,
+      "company": "Pavago",
+      "sha256": "f3416f4ad50970852075edc3b28fe3d34011443f0e4d7ecfdd3d676d13c3934f",
+      "link": "https://docs.google.com/document/d/1B2AUznQg6zhAjqQlbxzTvCzVTFbXdxf3/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1272"
+    },
+    {
+      "id": 3021,
+      "company": "Careerswift",
+      "sha256": "2465268146740b497d13040d8a1030590de8a48100d25a08cce274898a6c556f",
+      "link": "https://docs.google.com/document/d/1mcEQU-1sWpRf8wBvY1AlwdQKc05LmeLk/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1273"
+    },
+    {
+      "id": 3023,
+      "company": "GenScript",
+      "sha256": "8132953f918104d061877176cf9d1c4e6cd818aa5b093e3535248567dc283be0",
+      "link": "https://docs.google.com/document/d/1Uw1JbOCxyAZRPDSPhgKUiid9t5RL0X8y/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1275"
+    },
+    {
+      "id": 3024,
+      "company": "GenScript",
+      "sha256": "6eaf3d6b87613378761b5c20486ca1eb57af023739d725902f39817c02f5dbce",
+      "link": "https://docs.google.com/document/d/1hXIjxZlWsAF84So51UDIXtqRAaHkkL_4/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1276"
+    },
+    {
+      "id": 3025,
+      "company": "Graphite",
+      "sha256": "4d2a2906e0a71a01b8b67b173e3b21dc360dbf394f80e50b3cef581ba2f881a3",
+      "link": "https://docs.google.com/document/d/1lmoTi3uQ7JElpiBzGxOiMbJHqAvqriLT/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1277"
+    },
+    {
+      "id": 3026,
+      "company": "Influ2",
+      "sha256": "3622c0b6b5ad2bf30fc1527878c8968bb3d87b11d62d74f538dde54f20d232b6",
+      "link": "https://docs.google.com/document/d/1XPZQLrIZJvD-EGLLeN1fQBO3Kt7uT-ba/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1278"
+    },
+    {
+      "id": 3027,
+      "company": "Lone Wolf Technologies",
+      "sha256": "24d0316202d52f9f31d1c2aed9504c43c015d9123b92802466749bc0ca85778a",
+      "link": "https://docs.google.com/document/d/1lfY3A0QVye1_kR7dQZBte4UT6KF_E8hC/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1279"
+    },
+    {
+      "id": 3028,
+      "company": "KPA",
+      "sha256": "db977e94024bb300f2ac2ab5e6073ef13f4c6e6b5849f4e422bffc884940448b",
+      "link": "https://docs.google.com/document/d/17LiFt8vGePMvyUj9too9-IskonsTBYum/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1280"
+    },
+    {
+      "id": 3029,
+      "company": "Lone Wolf Technologies",
+      "sha256": "3cc8754dd31946597f496a5c8ed243f5a2ca7086cd70a7397bb16edeac66eeb6",
+      "link": "https://docs.google.com/document/d/1Ahf5arLt7zA297LdBMjl3_MnHnFq4T6m/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1281"
+    },
+    {
+      "id": 3030,
+      "company": "NEW ERA Digital Marketing",
+      "sha256": "959057369ad4c3961cb8311a58e2d0d457415b4a24c690d0e16d20ef58d31075",
+      "link": "https://docs.google.com/document/d/1cl10zuBbar9QCIJsjK-RINs_Ih9tRo7q/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1282"
+    },
+    {
+      "id": 3031,
+      "company": "Pave",
+      "sha256": "468d20f5821417170c2acb1926676bfb04d912ddc0642d2236107cec869043fc",
+      "link": "https://docs.google.com/document/d/1GLeNYUN8QPGc0uYWoh9NToPItnorx30L/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1283"
+    },
+    {
+      "id": 3032,
+      "company": "Origin",
+      "sha256": "d107a0023fe771df4215d01499ee9d6368ef7c735a20a9514353586d398d2f95",
+      "link": "https://docs.google.com/document/d/1ksCnpl-o9EWQB4CUE0qlyyqZyZgV9JU_/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1284"
+    },
+    {
+      "id": 3033,
+      "company": "Redis",
+      "sha256": "c4894aae27178f7d9afad1135e15111e69f6299e49cf295deaad2d274dc2928a",
+      "link": "https://docs.google.com/document/d/1M6V6w_6lL95D749kTspLcdFTzRne1ZVb/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1285"
+    },
+    {
+      "id": 3034,
+      "company": "Triple Whale",
+      "sha256": "13a603f42786d624ad7fa141a121bf54e1843f4e64ae11b20cebba7dc731945b",
+      "link": "https://docs.google.com/document/d/1poe2WneQ_7SOqdzaKHNgzVIU0-G7fS3o/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1286"
+    },
+    {
+      "id": 3035,
+      "company": "Wayvia",
+      "sha256": "1b60950bc3fc2751f1ba3dd531d271bcbc97ffbdb795f409c9a2012d9e76389c",
+      "link": "https://docs.google.com/document/d/1zBkL4i1eKhIIEGvd2X56jl-DQzLULeLb/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1287"
+    },
+    {
+      "id": 3036,
+      "company": "Client Accelerators",
+      "sha256": "34fbe64b0cf4526e9ee2021da6f36625a70fb9a03c5ea7b952133d7d2ffe21d5",
+      "link": "https://docs.google.com/document/d/1y_WSFo_yGjX_WC8jz3cwayhD5fs0d9mN/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1288"
+    },
+    {
+      "id": 3037,
+      "company": "Demand.com",
+      "sha256": "34243f364f32d383fb6c2344e8f69f331c5462c3940a4596e2982aea42d61539",
+      "link": "https://docs.google.com/document/d/1TAYugLfxj4W8BGxZWXEDi7EmtJx7C7WQ/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1289"
+    },
+    {
+      "id": 3045,
+      "company": "Jobgether",
+      "sha256": "905a9d1971c3c65b24b8357369541e596df1467e08bed60d12c06d956d01eb5b",
+      "link": "https://docs.google.com/document/d/1eJOh4BOy_-k3PzFqNrkPBrf6DdK-xib7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1297"
+    },
+    {
+      "id": 3046,
+      "company": "Jobgether",
+      "sha256": "c11f7e254c292640d887599d6da2bd6ad25f07ebf83a6ed7cb11ee95a346d16d",
+      "link": "https://docs.google.com/document/d/11HqvFMYgIpW5_LvquWNh7HNiJBpxLE0u/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1312"
+    },
+    {
+      "id": 3047,
+      "company": "Digital Reach Agency",
+      "sha256": "ca191b904ec48b9b1d09db152a5f93cfc9837d529701a3b82426846de9034f0f",
+      "link": "https://docs.google.com/document/d/1_NoRk4FdZd8PIax7uzAIqED8Zq_88wDl/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1298"
+    },
+    {
+      "id": 3048,
+      "company": "Jobgether",
+      "sha256": "b147d2d286a349534866120984053c7ffe73467e22fda6b9ec9be1c54d879bc9",
+      "link": "https://docs.google.com/document/d/1dLVh-BsMbSgk1Y5lzWwSiiOBVV9jUi4F/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1299"
+    },
+    {
+      "id": 3049,
+      "company": "Jobgether",
+      "sha256": "03c8baea48debd98fede2d8994aa93e39ef5dfebac4a985492f516e96f93470d",
+      "link": "https://docs.google.com/document/d/1RdPbjRq9SZOjFvr74Kd2AEUq-D11zKaV/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1300"
+    },
+    {
+      "id": 3050,
+      "company": "Jobgether",
+      "sha256": "04bab29b88694f7e80394e5c4db65626c3d8138f922a703c0661bdf0c300c212",
+      "link": "https://docs.google.com/document/d/1wOoq03DPuNanS-3wBa1MLrz_QRYuDa32/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1301"
+    },
+    {
+      "id": 3051,
+      "company": "Jobgether",
+      "sha256": "9be8cc159b6897f4bdf44cfcdece62a7d4e73287beeb63825627e00ecd4e97c5",
+      "link": "https://docs.google.com/document/d/1eElOA3OHj9tciwhNCGjicPi5b2V282SE/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1302"
+    },
+    {
+      "id": 3052,
+      "company": "Jobgether",
+      "sha256": "2a969d4f7bde01f2dae36c7e5ffed61eefa35c668b74f89730fd34604995b450",
+      "link": "https://docs.google.com/document/d/1Up9ju3hi9SIlN7u6-FucToiGl5gV6T3A/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1303"
+    },
+    {
+      "id": 3053,
+      "company": "Jobgether",
+      "sha256": "f5720f74a277c8c4259886ea8e789ee132774838bbec27541ce6b35cc2b2b783",
+      "link": "https://docs.google.com/document/d/1pSVxGhnuhxfxSw6fBUFmdmQBN8l8PQtU/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1304"
+    },
+    {
+      "id": 3054,
+      "company": "Jobgether",
+      "sha256": "9573a643b96810415f5fae815daac156ad17fb30331e8070312e0d297d094666",
+      "link": "https://docs.google.com/document/d/1gES-0VsK2KePnUMOqccaRHm0iHxLvGFu/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1305"
+    },
+    {
+      "id": 3055,
+      "company": "Jobgether",
+      "sha256": "390115b4ccffd4d30f2d35548c57e1078bb495c3ed4e2f2d5e374730bacae0fa",
+      "link": "https://docs.google.com/document/d/1gnqYQP2RjVoLfSan109CSjUHKjEKHsn2/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1306"
+    },
+    {
+      "id": 3056,
+      "company": "Jobgether",
+      "sha256": "bdc96ad1587516a971704583960ddf2201b4b022b37487afbcb3963d0573876a",
+      "link": "https://docs.google.com/document/d/1fWgfLw8LdGklJxCBKsW7lYFGIbucbHfO/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1307"
+    },
+    {
+      "id": 3057,
+      "company": "LMG Staffing Solutions",
+      "sha256": "a0618969ff796107db10056d2dab087c6c0dcd6b4520820dedf3fefae6850484",
+      "link": "https://docs.google.com/document/d/1dV2FzbONnH2SamcqRcu72QZK4U0Oho3a/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1308"
+    },
+    {
+      "id": 3058,
+      "company": "Superior Executive Legal Recruiting",
+      "sha256": "8c9478fc34de281ff77530ae39758987fc05824dbad0c8b9f5c51f239aab20e1",
+      "link": "https://docs.google.com/document/d/1JS_J43ZQPN-8Wos2z8AUuVZzeWogGJgb/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1309"
+    },
+    {
+      "id": 3059,
+      "company": "AHEAD",
+      "sha256": "3ac73a05862a3547db719347137ceddf90b17be2ea8d65ef98461d3ba2e9df91",
+      "link": "https://docs.google.com/document/d/1WVPomZGNEjaLhUtUwO9YCocDeh1e2Z2C/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1310"
+    },
+    {
+      "id": 3060,
+      "company": "Toast",
+      "sha256": "441fbfa19e71333f535767f0e0197692eee2eec8e8346f84279cdfd0172e0ca0",
+      "link": "https://docs.google.com/document/d/14APqwjTEBZrTwYpSnu1jXCIZvYWb9TLN/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1311"
+    },
+    {
+      "id": 3061,
+      "company": "mars-men",
+      "sha256": "16ab44ae59c53815469a85891c78e847a88e41fc0d553cdb39fab3229c15f4bb",
+      "link": "https://docs.google.com/document/d/1IK_DNI6b-r_pkEL4N0xAcWj2rNRBeNdi/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "range": "'Job List'!Z1313"
+    }
+  ]
+}

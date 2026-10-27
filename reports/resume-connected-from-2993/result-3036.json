@@ -1,0 +1,54 @@
+{
+  "id": 3036,
+  "company": "Client Accelerators",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1y_WSFo_yGjX_WC8jz3cwayhD5fs0d9mN/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Client-Accelerators+Growth-Marketing-Manager-(Remote)+00484.docx",
+  "started_at": "2026-10-26T15:59:42.097632+00:00",
+  "completed_at": "2026-10-26T16:01:59.523392+00:00",
+  "elapsed_seconds": 137.425771,
+  "generation_seconds": 36.89822910001385,
+  "delivery_seconds": 7.617481900000712,
+  "tracker_seconds": 37.587521999987075,
+  "readback": {
+    "Scout ID": 3036,
+    "Company": "Client Accelerators",
+    "Job Title": "Growth Marketing Manager (Remote)",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1y_WSFo_yGjX_WC8jz3cwayhD5fs0d9mN/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1288",
+  "hyperlink_target": "https://docs.google.com/document/d/1y_WSFo_yGjX_WC8jz3cwayhD5fs0d9mN/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 137.4258,
+    "active_seconds": 95.3731,
+    "review_wait_seconds": 42.0527,
+    "phases_seconds": {
+      "source_loading": 0.0509,
+      "tailoring": 0.8803,
+      "document_creation": 3.4843,
+      "word_pdf_validation": 12.5744,
+      "fitting_retries": 1.0067,
+      "factual_review": 0.0,
+      "review_wait": 42.0527,
+      "tracker_sync": 37.5869,
+      "drive_delivery": 7.6112
+    },
+    "counts": {
+      "source_loading": 87,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

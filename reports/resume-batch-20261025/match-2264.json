@@ -1,0 +1,291 @@
+{
+  "id": "job",
+  "sufficient": true,
+  "reason": "Complete posting. RAO, event software and B2B SaaS tenure are unverified, not proven absent.",
+  "blockers": [],
+  "categories": {
+    "responsibilities": [
+      {
+        "requirement": "Educate audiences, internal teams, and buyers on the shift toward agentic sales in a highly agile manner.",
+        "support": 0.5,
+        "evidence": [
+          "Built the PPC team and trained team members on the scalable system created for the organization (QoQ)"
+        ],
+        "reason": "Technical training transfers; agentic-sales and buyer education are unverified."
+      },
+      {
+        "requirement": "Direct the full lifecycle of strategic growth initiatives while aligning Sales, Product, and Finance departments.",
+        "support": 1,
+        "evidence": [
+          "coordinating execution and reporting across marketing, sales, operations, finance, IT, and product teams"
+        ],
+        "reason": "Led business growth and coordinated the named commercial functions."
+      },
+      {
+        "requirement": "Architect AI-driven systems and frameworks that solve business bottlenecks and increase the team's velocity.",
+        "support": 1,
+        "evidence": [
+          "Used AI coding assistants to translate product requirements into working integrations, reusable scripts, interface improvements, and tested operational workflows."
+        ],
+        "reason": "Built AI-assisted systems that automate work and resolve operational bottlenecks."
+      },
+      {
+        "requirement": "Take complete accountability for product marketing deliverables to drive results, even amidst cross-functional ambiguity.",
+        "support": 0.5,
+        "evidence": [
+          "Managed all aspects of e-commerce and marketing for a large B2B distributor"
+        ],
+        "reason": "Broad marketing accountability transfers; software product-marketing ownership is unverified."
+      },
+      {
+        "requirement": "Conduct market research to inform long-term strategy, strategic product themes, and agile roadmaps.",
+        "support": 0.5,
+        "evidence": [
+          "Conducted comprehensive market research, persuaded management to add new services, and oversaw their development and implementation."
+        ],
+        "reason": "Research shaped new offerings; agile product-roadmap experience is unverified."
+      },
+      {
+        "requirement": "Build business cases and financial models for product innovation.",
+        "support": 1,
+        "evidence": [
+          "Applied project-by-project cost-benefit analysis to prioritize growth initiatives, marketplace opportunities, product investments, and operational improvements"
+        ],
+        "reason": "Product investment analysis and documented predictive modeling support this capability."
+      },
+      {
+        "requirement": "Execute the go-to-market strategy for the sales product line, heavily focusing on the Salesforce/CRMs, data strategies, and integrations in the RAO space.",
+        "support": 0.5,
+        "evidence": [
+          "Installed Go High Level and trained employees on how to use it correctly."
+        ],
+        "reason": "CRM deployment and adoption transfer; RAO and Salesforce product launches are unverified."
+      },
+      {
+        "requirement": "Partner with product owners to align solutions with business goals and customer needs.",
+        "support": 0.5,
+        "evidence": [
+          "Combined commercial requirements with technical implementation decisions across product discovery, cart behavior, checkout handoff, and customer support."
+        ],
+        "reason": "Aligned technical solutions with business needs; product-owner partnership is unverified."
+      },
+      {
+        "requirement": "Develop compelling value propositions, pricing, and messaging that translate complex RAO concepts into clear revenue ROI.",
+        "support": 0.5,
+        "evidence": [
+          "Applied marketing judgment to ad-copy evidence, brand claims, conversion goals, and landing-page structure."
+        ],
+        "reason": "Messaging and ROI analysis transfer; RAO positioning and product pricing are unverified."
+      },
+      {
+        "requirement": "Equip sales and account managers with effective enablement tools and marketing assets.",
+        "support": 0.5,
+        "evidence": [
+          "Designed and introduced new marketing concepts using graphic design and animation software"
+        ],
+        "reason": "Marketing asset creation transfers; sales enablement programs are unverified."
+      },
+      {
+        "requirement": "Manage the release process to ensure marketing, sales, service, and support are fully prepared for new features.",
+        "support": 0,
+        "evidence": [],
+        "reason": "Cross-functional software release readiness is unverified."
+      },
+      {
+        "requirement": "Engage directly with Fortune 500 companies to understand their challenges and fuel product innovation.",
+        "support": 0.5,
+        "evidence": [
+          "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation"
+        ],
+        "reason": "Client discovery transfers; Fortune 500 engagement for product innovation is unverified."
+      },
+      {
+        "requirement": "You happily manage detailed logistics to ensure product success.",
+        "support": 1,
+        "evidence": [
+          "Oversaw project management in an ever-changing environment"
+        ],
+        "reason": "Project oversight and documented operational controls support detailed delivery coordination."
+      }
+    ],
+    "required": [
+      {
+        "requirement": "Deep expertise in CRM ecosystems (especially Salesforce) and the Revenue Action Orchestration (RAO) category.",
+        "support": 0.5,
+        "evidence": [
+          "Installed Go High Level. I then connected this to Service Titan, Power BI, and all the internal system that were using working closely with the Director of Marketing"
+        ],
+        "reason": "Demonstrates CRM integration; deep Salesforce and RAO expertise are unverified."
+      },
+      {
+        "requirement": "Ability to position AI-driven insights and shift messaging from static dashboards to real-time guided revenue execution.",
+        "support": 0.5,
+        "evidence": [
+          "Converted analytical findings into executive summaries, recommended actions, and next-period watch lists."
+        ],
+        "reason": "Action-oriented analytics transfer; real-time revenue execution positioning is unverified."
+      },
+      {
+        "requirement": "Background marketing to CROs, RevOps, and Sales Operations leaders.",
+        "support": 0,
+        "evidence": [],
+        "reason": "Marketing specifically to these buyer groups is unverified."
+      },
+      {
+        "requirement": "Track record of successfully launching innovative products that deliver measurable business results.",
+        "support": 0.5,
+        "evidence": [
+          "Designed the operating workflow to reduce routine manual order handling, with approximately 10 minutes of weekly oversight once running."
+        ],
+        "reason": "Delivered measurable product efficiency; a repeated commercial launch record is unverified."
+      },
+      {
+        "requirement": "Experience working in agile SaaS environments with continuous delivery models.",
+        "support": 0.5,
+        "evidence": [
+          "Used iterative development and verification to turn marketing-domain knowledge into a working software product."
+        ],
+        "reason": "Iterative software delivery transfers; agile SaaS and continuous delivery are unverified."
+      },
+      {
+        "requirement": "Strong grasp of enterprise service models alongside sales and marketing dynamics.",
+        "support": 0.5,
+        "evidence": [
+          "Managed all aspects of e-commerce and marketing for a large B2B distributor"
+        ],
+        "reason": "Enterprise commercial operations transfer; software service models are unverified."
+      },
+      {
+        "requirement": "Proven ability to proactively identify and solve undefined business gaps.",
+        "support": 1,
+        "evidence": [
+          "Translated a personal job-search need into a working application with reusable scripts, integrated data sources, a local database, an interactive dashboard"
+        ],
+        "reason": "Identified an unmet need and independently developed an integrated solution."
+      },
+      {
+        "requirement": "Strong mentorship skills to turn individual expertise into a shared asset for the team.",
+        "support": 1,
+        "evidence": [
+          "Built the PPC team and trained team members on the scalable system created for the organization (QoQ)"
+        ],
+        "reason": "Converted individual expertise into shared systems and team capability."
+      },
+      {
+        "requirement": "MBA or compelling comparable experience required",
+        "support": 1,
+        "evidence": [
+          "Used market research and business planning to help establish tax and finance departments that together contributed more than 25% of firm revenue"
+        ],
+        "reason": "Demonstrates substantial comparable business strategy experience; no MBA is inferred."
+      },
+      {
+        "requirement": "You get excited about a combining event with digital intent signals into holistic CDPs to drive account expansion",
+        "support": 0,
+        "evidence": [],
+        "reason": "Event-intent integration, CDP implementation and associated account expansion are unverified."
+      },
+      {
+        "requirement": "You are an entrepreneurial leader who takes calculated risks and holds strong opinions loosely.",
+        "support": 0.5,
+        "evidence": [
+          "Successfully marketed a unique company founded while in college"
+        ],
+        "reason": "Entrepreneurship is established; risk judgment and openness are partially evidenced."
+      },
+      {
+        "requirement": "You communicate with well-constructed arguments and a sense of humor.",
+        "support": 0.5,
+        "evidence": [
+          "Presented a winning and subsequently funded business plan to venture capitalists"
+        ],
+        "reason": "Persuasive communication is demonstrated; humor is unverified."
+      },
+      {
+        "requirement": "You are willing to abandon outdated habits to help the business scale and evolve our team methodologies.",
+        "support": 1,
+        "evidence": [
+          "Consolidated work that had been divided among five agencies into a comprehensive, scalable in-house PPC strategy"
+        ],
+        "reason": "Replaced an existing operating approach with a scalable internal methodology."
+      },
+      {
+        "requirement": "You enjoy working alongside highly technical, driven peers and constantly push yourself to learn.",
+        "support": 0.5,
+        "evidence": [
+          "Worked closely with the Web Dev team and the content team to create custom landing pages and custom content for PMAX campaigns"
+        ],
+        "reason": "Technical collaboration is demonstrated; continual learning motivation is partially evidenced."
+      },
+      {
+        "requirement": "You rely on qualitative and quantitative data gathered through active listening.",
+        "support": 0.5,
+        "evidence": [
+          "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+        ],
+        "reason": "Stakeholder discovery and quantitative analysis transfer; active listening is less explicit."
+      }
+    ],
+    "seniority": [
+      {
+        "requirement": "5 to 10+ years of successful B2B software product marketing or product management experience.",
+        "support": 0.5,
+        "evidence": [
+          "Digital marketing and marketing technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce"
+        ],
+        "reason": "Related tenure is established; five years in B2B software product roles is unverified."
+      },
+      {
+        "requirement": "Ability to independently manage large-scale, cross-departmental initiatives and remove blockers without supervision.",
+        "support": 1,
+        "evidence": [
+          "Built an in-house PPC structure for a company group spanning 32 businesses"
+        ],
+        "reason": "Owned a large transformation spanning systems, team development and business integration."
+      }
+    ],
+    "industry": [
+      {
+        "requirement": "Familiarity with the event management software market and the unique challenges of large-scale user conferences.",
+        "support": 0,
+        "evidence": [],
+        "reason": "Event software market knowledge and large-scale conference experience are unverified."
+      }
+    ],
+    "preferred": []
+  },
+  "score": 55.65,
+  "accepted": false,
+  "status": "reviewed",
+  "failed_rules": [
+    "Score below 60"
+  ],
+  "category_percentages": {
+    "responsibilities": 61.54,
+    "required": 56.67,
+    "seniority": 75.0,
+    "industry": 0.0,
+    "preferred": null
+  },
+  "policy": "master-evidence-v2",
+  "thresholds": {
+    "minimum_score": 60,
+    "minimum_responsibilities_match": 50,
+    "minimum_required_skills_match": 50
+  },
+  "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+  "job": {
+    "id": "job",
+    "title": "Sr. Product Marketing Manager - Audience Engagement (Remote)",
+    "company": "RainFocus",
+    "url": "https://www.adzuna.com/details/5806998742?utm_medium=api&utm_source=b4f3e3f8"
+  },
+  "description_sha256": "c1d53764174af0b74f1db1b731062f12c6e95d2c73bd453c7f04c0acc6fb3234",
+  "runner": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a17567-ee29-7643-9570-fc1d63a94cd8",
+    "verified_at": "2026-10-25T23:32:28.789255+00:00"
+  }
+}

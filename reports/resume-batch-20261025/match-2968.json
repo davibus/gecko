@@ -1,0 +1,373 @@
+{
+  "id": "job",
+  "sufficient": true,
+  "reason": "Complete posting. Missing specialist evidence is unverified, not proof of absent capability.",
+  "blockers": [],
+  "categories": {
+    "responsibilities": [
+      {
+        "requirement": "Own digital marketing performance across paid, organic, website, and conversion channels",
+        "support": 1,
+        "evidence": [
+          "Managed all aspects of e-commerce and marketing for a large B2B distributor"
+        ],
+        "reason": "Broad marketing ownership plus documented SEO, website and acquisition execution supports this scope."
+      },
+      {
+        "requirement": "Use performance data, AI-powered analysis, audience insights, and experimentation to determine where we invest, what we optimize, and what we test next.",
+        "support": 1,
+        "evidence": [
+          "Analyzed AI-assisted promotion performance using Namogoo alongside paid-media bidding, audience, attribution,"
+        ],
+        "reason": "Applied AI analysis, audience evaluation and investment forecasting support these decisions."
+      },
+      {
+        "requirement": "Monitor the digital funnel and turn insights into action, identifying opportunities and solving performance problems rather than simply reporting on them.",
+        "support": 1,
+        "evidence": [
+          "Designed and interpreted funnel testing across reach, comparison, conversion, micro-conversion, purchase, and internal customer lifetime value"
+        ],
+        "reason": "Funnel testing and documented conversion improvements demonstrate actionable performance diagnosis."
+      },
+      {
+        "requirement": "Own paid search, paid social, retargeting, audience strategy, budget allocation, testing, and overall paid media performance.",
+        "support": 1,
+        "evidence": [
+          "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget"
+        ],
+        "reason": "Multichannel ownership, remarketing, testing and quantified ROAS gains establish this capability."
+      },
+      {
+        "requirement": "Manage our paid media agency while remaining hands-on in the platforms.",
+        "support": 1,
+        "evidence": [
+          "Consolidated work that had been divided among five agencies into a comprehensive, scalable in-house PPC strategy"
+        ],
+        "reason": "Agency consolidation and hands-on campaign builds support agency partnership and internal ownership."
+      },
+      {
+        "requirement": "You should be comfortable making campaign, targeting, budget, copy, and optimization changes yourself when needed.",
+        "support": 1,
+        "evidence": [
+          "Leads account activation, campaign builds and structures, keyword and negative-keyword strategy, ad copy, audience segmentation, bid testing, budget pacing"
+        ],
+        "reason": "Documented campaign execution directly supports routine platform edits."
+      },
+      {
+        "requirement": "Continuously test audiences, creative, messaging, offers, and campaign approaches, using AI and performance data to accelerate learning and improve results.",
+        "support": 1,
+        "evidence": [
+          "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing"
+        ],
+        "reason": "Campaign experimentation and AI-assisted promotion analysis support the combined testing scope."
+      },
+      {
+        "requirement": "Own our organic discovery strategy across traditional search and emerging AI-powered experiences, including SEO, AEO, GEO, and AIO.",
+        "support": 0.5,
+        "evidence": [
+          "Improved technical SEO through canonical URLs, pagination validation, redirects, XML sitemaps, product schema, and index controls."
+        ],
+        "reason": "Traditional SEO is demonstrated; AI-search visibility strategy remains unverified."
+      },
+      {
+        "requirement": "Partner with Content and Product Marketing on keyword, topic, competitor, search intent, and AI visibility opportunities",
+        "support": 0.5,
+        "evidence": [
+          "Conducted keyword, audience, and competitive research to develop targeting, messaging, campaign, and growth recommendations"
+        ],
+        "reason": "Search research and content collaboration transfer; AI visibility research is unverified."
+      },
+      {
+        "requirement": "actively experiment with ways to improve NowSecure’s visibility across them.",
+        "support": 0.5,
+        "evidence": [
+          "Uses AI to build on foundational expertise, expand output, and accelerate content production, website and application development, analysis, and marketing workflows."
+        ],
+        "reason": "Active AI experimentation transfers; visibility experiments on AI discovery platforms are unverified."
+      },
+      {
+        "requirement": "Treat the NowSecure website as a performance channel and continuously improve landing pages, conversion paths, messaging, UX, and the overall digital customer journey.",
+        "support": 1,
+        "evidence": [
+          "Conducted advanced keyword research, channel analysis, trend monitoring, acquisition analysis, conversion-path and funnel analysis, landing-page optimization"
+        ],
+        "reason": "Hands-on landing-page, funnel and commerce improvements support website performance ownership."
+      },
+      {
+        "requirement": "Use analytics, behavioral insights, AI, and structured experimentation to identify friction and improve conversion rates.",
+        "support": 1,
+        "evidence": [
+          "Built landing-page and competitor analysis tools supporting CRO review, messaging evaluation, and evidence-backed differentiation hypotheses."
+        ],
+        "reason": "AI-supported CRO tools complement demonstrated behavioral analysis and conversion testing."
+      },
+      {
+        "requirement": "Own the digital roadmap and work cross-functionally to launch new pages, campaign experiences, tests, and website improvements",
+        "support": 1,
+        "evidence": [
+          "Worked closely with the Web Dev team and the content team to create custom landing pages and custom content for PMAX campaigns"
+        ],
+        "reason": "Cross-functional page delivery and self-directed product scope establish transferable roadmap ownership."
+      },
+      {
+        "requirement": "Own the digital content experience across the buyer journey",
+        "support": 1,
+        "evidence": [
+          "Developed and managed content strategy covering timing, content type, placement across blogs, mail, email, and the website, content focus, and personalization"
+        ],
+        "reason": "Direct content strategy ownership covers discovery, relevance, timing and personalized engagement."
+      },
+      {
+        "requirement": "Own and optimize PathFactory, including content organization, journeys, recommendations, and conversion paths",
+        "support": 0,
+        "evidence": [],
+        "reason": "PathFactory is a distinct specialist platform with no documented use."
+      },
+      {
+        "requirement": "use engagement data, AI, and experimentation to improve content consumption, conversion, and progression through the funnel.",
+        "support": 0.5,
+        "evidence": [
+          "Designed event tracking around customer intent and shopping behavior, including search gaps, product interest, cart activity, and contact requests."
+        ],
+        "reason": "Engagement measurement and testing transfer; B2B content-consumption optimization is unverified."
+      },
+      {
+        "requirement": "Own NowSecure’s LinkedIn strategy, with a focus on increasing engagement, growing our audience, and strengthening our presence",
+        "support": 0.5,
+        "evidence": [
+          "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation across website development, SEO, email campaigns,"
+        ],
+        "reason": "Multichannel strategy transfers; LinkedIn organic engagement and audience-growth ownership are unverified."
+      },
+      {
+        "requirement": "turn campaigns, company news, thought leadership, and industry conversations into compelling social content.",
+        "support": 0.5,
+        "evidence": [
+          "Developed and managed content strategy covering timing, content type, placement across blogs, mail, email, and the website, content focus, and personalization"
+        ],
+        "reason": "Editorial strategy transfers; demonstrated social thought-leadership production is unverified."
+      },
+      {
+        "requirement": "Use performance data, social listening, and AI to identify trends, test new approaches, and continuously improve what we publish and how we engage.",
+        "support": 0.5,
+        "evidence": [
+          "Analyzed Google Ads audience performance to identify audiences and strategies to test and apply across other platforms"
+        ],
+        "reason": "Audience analysis and experimentation transfer; social-listening execution is unverified."
+      }
+    ],
+    "required": [
+      {
+        "requirement": "Strong understanding of SEO fundamentals, including technical SEO, content optimization, keyword research, search intent, and site architecture",
+        "support": 1,
+        "evidence": [
+          "Used Cursor and Claude to create SEO-friendly websites across an eight-company group."
+        ],
+        "reason": "Website delivery, documented technical SEO, content optimization and search research support fundamentals."
+      },
+      {
+        "requirement": "Genuine curiosity about AEO, GEO, AI search, and the rapidly evolving ways buyers discover and evaluate information",
+        "support": 0.5,
+        "evidence": [
+          "Uses Brave Search and Firecrawl-assisted public-page retrieval to discover postings and obtain usable job descriptions."
+        ],
+        "reason": "AI-assisted discovery work transfers; explicit AEO/GEO investigation is unverified."
+      },
+      {
+        "requirement": "Strong analytical skills with the ability to turn data into decisions and action",
+        "support": 1,
+        "evidence": [
+          "Used regression models based on prior-year and prior-period data to forecast outcomes and support investment recommendations"
+        ],
+        "reason": "Forecasting directly informed substantial media investment decisions."
+      },
+      {
+        "requirement": "Experience with web analytics, advertising platforms, attribution, conversion tracking, and digital marketing reporting",
+        "support": 1,
+        "evidence": [
+          "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+        ],
+        "reason": "Implemented measurement and reporting, alongside documented attribution models and ad operations."
+      },
+      {
+        "requirement": "Experience working with modern content management systems",
+        "support": 1,
+        "evidence": [
+          "Displays Shopify-managed content and business policies, with a script for publishing policy documents to Shopify"
+        ],
+        "reason": "Demonstrates practical CMS integration and content publishing."
+      },
+      {
+        "requirement": "Familiarity with tools such as Google Ads, Google Analytics, Google Tag Manager, LinkedIn Campaign Manager, Search Console, SEMrush, Ahrefs, or similar platforms",
+        "support": 1,
+        "evidence": [
+          "Integrated read-only Google Ads, GA4, and Google Search Console data while preserving source-specific attribution and measurement boundaries."
+        ],
+        "reason": "Demonstrated use of multiple listed platforms meets this illustrative tool requirement."
+      },
+      {
+        "requirement": "Strong copywriting and messaging instincts, particularly for digital ads and landing pages",
+        "support": 1,
+        "evidence": [
+          "Developed responsive search ad drafting, landing-page copy previews, and guarded negative-keyword recommendations."
+        ],
+        "reason": "Ad-copy work and evidence-grounded landing-page drafting demonstrate relevant messaging capability."
+      },
+      {
+        "requirement": "An AI-forward mindset and demonstrated use of AI to improve the speed, quality, or effectiveness of your work",
+        "support": 1,
+        "evidence": [
+          "Used ChatGPT within Google Sheets to rewrite Shopify product descriptions for SEO and remove duplicate content"
+        ],
+        "reason": "Concrete AI-assisted content automation demonstrates practical quality and productivity improvements."
+      },
+      {
+        "requirement": "A willingness to experiment with new AI tools, workflows, and approaches as the technology evolves",
+        "support": 1,
+        "evidence": [
+          "Used AI coding assistants to translate product requirements into working integrations, reusable scripts, interface improvements, and tested operational workflows."
+        ],
+        "reason": "Multiple implemented projects demonstrate experimentation across AI tools and workflows."
+      },
+      {
+        "requirement": "Ability to manage multiple priorities and move quickly without sacrificing quality",
+        "support": 1,
+        "evidence": [
+          "Developed a repeatable Google Ads account-management system that maintained consistent service quality across clients regardless of spend"
+        ],
+        "reason": "A quality-preserving operating system across 75+ accounts supports concurrent priorities."
+      },
+      {
+        "requirement": "Strong project management and organizational skills",
+        "support": 1,
+        "evidence": [
+          "Oversaw project management in an ever-changing environment"
+        ],
+        "reason": "Explicit project oversight is reinforced by coordinated cross-department commerce initiatives."
+      },
+      {
+        "requirement": "A high degree of ownership and accountability",
+        "support": 1,
+        "evidence": [
+          "resolves issues, respectfully challenges assumptions, takes ownership of setbacks, and turns recommendations into coordinated execution."
+        ],
+        "reason": "Explicit accountability and issue resolution support end-to-end ownership."
+      },
+      {
+        "requirement": "A willingness to get into the details and execute the work yourself",
+        "support": 1,
+        "evidence": [
+          "Used advanced Excel formulas and VS Code to create upload-ready XLSX files for Google Ads Editor"
+        ],
+        "reason": "Direct technical campaign preparation demonstrates detailed hands-on execution."
+      },
+      {
+        "requirement": "Curiosity and a desire to continuously learn",
+        "support": 1,
+        "evidence": [
+          "Used iterative development and verification to turn marketing-domain knowledge into a working software product."
+        ],
+        "reason": "Iterative development across new technical capabilities demonstrates applied learning."
+      },
+      {
+        "requirement": "Comfort operating in an environment where experimentation is encouraged and not every answer is known in advance",
+        "support": 1,
+        "evidence": [
+          "Created custom attribution models, advanced bid strategies, bid tests/experiments, A/B tests, and multivariate testing frameworks"
+        ],
+        "reason": "Repeated experimental design demonstrates work with hypotheses and uncertain outcomes."
+      },
+      {
+        "requirement": "Strong communication and collaboration skills",
+        "support": 1,
+        "evidence": [
+          "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings"
+        ],
+        "reason": "Direct client and executive presentations support communication and collaborative planning."
+      },
+      {
+        "requirement": "A team-first mindset and willingness to share ideas, learnings, and expertise with others",
+        "support": 1,
+        "evidence": [
+          "Built the PPC team and trained team members on the scalable system created for the organization (QoQ)"
+        ],
+        "reason": "Team development and direct training demonstrate knowledge sharing."
+      }
+    ],
+    "seniority": [
+      {
+        "requirement": "4+ years of hands-on digital marketing experience",
+        "support": 1,
+        "evidence": [
+          "Digital marketing and marketing technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce, professional services,"
+        ],
+        "reason": "Explicit experience duration and dated hands-on marketing roles exceed four years."
+      }
+    ],
+    "industry": [
+      {
+        "requirement": "ideally within B2B SaaS, cybersecurity, technology, or another complex B2B environment",
+        "support": 1,
+        "evidence": [
+          "Directed digital marketing and e-commerce for a large B2B distributor, coordinating execution and reporting across marketing, sales, operations, finance, IT, and product teams"
+        ],
+        "reason": "Cross-functional B2B distributor leadership directly supports an accepted sector alternative."
+      }
+    ],
+    "preferred": [
+      {
+        "requirement": "Have experience in cybersecurity, developer tools, DevSecOps, enterprise software, or marketing to technical audiences.",
+        "support": 0,
+        "evidence": [],
+        "reason": "These specialist sectors and technical-audience marketing are unverified by the supplied master."
+      },
+      {
+        "requirement": "Have developed an AEO or GEO strategy and can speak thoughtfully about how AI is changing search, discovery, and buyer behavior.",
+        "support": 0,
+        "evidence": [],
+        "reason": "SEO and AI development do not establish a developed AEO or GEO strategy."
+      },
+      {
+        "requirement": "Have built AI agents, automations, or workflows that meaningfully improved your own productivity or the performance of a marketing team.",
+        "support": 1,
+        "evidence": [
+          "Conceived and built Gecko, an AI-assisted job-search platform integrating multi-source discovery, candidate-fit evaluation, tailored resume generation, and application tracking."
+        ],
+        "reason": "A working personal AI platform automates discovery, evaluation and document workflows."
+      }
+    ]
+  },
+  "score": 86.31,
+  "accepted": true,
+  "status": "reviewed",
+  "failed_rules": [],
+  "category_percentages": {
+    "responsibilities": 76.32,
+    "required": 97.06,
+    "seniority": 100.0,
+    "industry": 100.0,
+    "preferred": 33.33
+  },
+  "policy": "master-evidence-v2",
+  "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+  "job": {
+    "id": "job",
+    "title": "Digital Marketing Manager",
+    "company": "NowSecure",
+    "url": "https://nowsecure.applytojob.com/apply/bXQSAa2oK3/Digital-Marketing-Manager"
+  },
+  "description_sha256": "3a92d5f5dfa81aab578a839f255c710df60ac6b185951585439914a3e817bc9e",
+  "runner": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a17395-1e44-72e2-8a55-36268d767019",
+    "verified_at": "2026-10-25T15:08:57.892000+00:00"
+  },
+  "thresholds": {
+    "minimum_score": 60,
+    "minimum_responsibilities_match": 50,
+    "minimum_required_skills_match": 50
+  },
+  "cached": true
+}

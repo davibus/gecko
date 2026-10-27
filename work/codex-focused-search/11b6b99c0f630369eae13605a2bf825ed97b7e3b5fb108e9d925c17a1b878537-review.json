@@ -1,0 +1,97 @@
+{
+  "job": {
+    "url": "https://jobs.lever.co/rynoss/cbaba718-fcb1-4fbf-823a-5b8ee9e23637",
+    "company": "EverService Holdings, LLC",
+    "title": "Digital Marketing Expression of Interest, iLawyer Marketing",
+    "location": "Remote",
+    "arrangement": "remote",
+    "salary": "",
+    "posted": "2026-09-10",
+    "chars": 4735
+  },
+  "match": {
+    "id": "job",
+    "sufficient": false,
+    "reason": "Expression of interest explicitly states it is not a job posting; specific duties and role qualifications are incomplete.",
+    "blockers": [],
+    "categories": {
+      "responsibilities": [],
+      "required": [
+        {
+          "requirement": "Please do not apply if you do not have prior digital marketing experience.",
+          "support": 1,
+          "evidence": [
+            "Managed PPC efforts across Google Ads and Microsoft/Bing Ads"
+          ],
+          "reason": "Direct paid-media management establishes prior digital marketing experience."
+        },
+        {
+          "requirement": "Applicants must reside",
+          "support": 1,
+          "evidence": [
+            "American Fork, UT | (530) 507-8269"
+          ],
+          "reason": "Candidate contact information identifies a United States location."
+        },
+        {
+          "requirement": "be legally authorized to work in the domestic United States.",
+          "support": 1,
+          "evidence": [
+            "Authorized to work in the United States for any employer"
+          ],
+          "reason": "Explicitly establishes United States work authorization."
+        }
+      ],
+      "seniority": [
+        {
+          "requirement": "Most positions require a minimum of two years of relevant experience.",
+          "support": 1,
+          "evidence": [
+            "Digital marketing and marketing technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce, professional services"
+          ],
+          "reason": "Explicit relevant experience exceeds the stated general minimum."
+        }
+      ],
+      "industry": [],
+      "preferred": [
+        {
+          "requirement": "Experience in Home Services or Legal verticals preferred.",
+          "support": 1,
+          "evidence": [
+            "Worked at a wealth management firm with more than 20 attorneys, financial planners, and CPAs"
+          ],
+          "reason": "Marketing work within an attorney-containing professional firm supports legal-sector experience."
+        }
+      ]
+    },
+    "score": 100.0,
+    "accepted": false,
+    "status": "reviewed",
+    "failed_rules": [
+      "Description does not establish both duties and requirements"
+    ],
+    "category_percentages": {
+      "responsibilities": null,
+      "required": 100.0,
+      "seniority": 100.0,
+      "industry": null,
+      "preferred": 100.0
+    },
+    "policy": "master-evidence-v2",
+    "master_sha256": "65eaa4541ae39b10bb87eac1480524265d2f54a7b353523baa6d92ced55dad01",
+    "job": {
+      "id": "job",
+      "title": "Digital Marketing Expression of Interest, iLawyer Marketing",
+      "company": "EverService Holdings, LLC",
+      "url": "https://jobs.lever.co/rynoss/cbaba718-fcb1-4fbf-823a-5b8ee9e23637"
+    },
+    "description_sha256": "982d1b672155ccb981d563832a4f66fd21778aaddba3c6c025a91c6c83f7924f",
+    "runner": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "verified": true,
+      "session_id": "01a1735d-99cc-7843-88e7-a377ca17336b",
+      "verified_at": "2026-10-25T14:01:53.352047+00:00"
+    }
+  }
+}

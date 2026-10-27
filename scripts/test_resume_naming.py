@@ -78,7 +78,8 @@ class NamingTests(unittest.TestCase):
             return {'status':'pass'}
         with patch.object(queue,'ROOT',root),patch.object(queue,'description_is_sufficient',return_value=True), \
              patch.object(queue.gecko_v2,'create_plan',return_value=plan), \
-             patch.object(queue.gecko_v2,'generate_two_page_resume',side_effect=generate):
+             patch.object(queue.gecko_v2,'generate_two_page_resume',side_effect=generate), \
+             patch('resume_visual_review.review',return_value=None):
             result=queue._finish_generation(item,listing,())
         self.assertEqual(result.resume.name,'Dave-Call+Acme+Product-Manager+00001.docx')
         self.assertEqual(naming.job_number(result.resume),number)

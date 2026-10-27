@@ -1,0 +1,53 @@
+{
+  "id": 3008,
+  "company": "PointClickCare",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1hIO5Kyby9aTo5HkSbe_0puH2EzmmReTY/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+PointClickCare+Marketing-Data-Analytics-Engineer-(US)+00461.docx",
+  "started_at": "2026-10-26T15:02:04.188098+00:00",
+  "completed_at": "2026-10-26T15:05:16.585892+00:00",
+  "elapsed_seconds": 192.397806,
+  "generation_seconds": 30.66640709998319,
+  "delivery_seconds": 45.28022539999802,
+  "tracker_seconds": 52.039806100015994,
+  "readback": {
+    "Scout ID": 3008,
+    "Company": "PointClickCare",
+    "Job Title": "Marketing Data Analytics Engineer (US)",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1hIO5Kyby9aTo5HkSbe_0puH2EzmmReTY/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1260",
+  "hyperlink_target": "https://docs.google.com/document/d/1hIO5Kyby9aTo5HkSbe_0puH2EzmmReTY/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 192.3978,
+    "active_seconds": 147.349,
+    "review_wait_seconds": 45.0488,
+    "phases_seconds": {
+      "source_loading": 0.0264,
+      "tailoring": 1.116,
+      "document_creation": 1.0802,
+      "word_pdf_validation": 3.3566,
+      "fitting_retries": 0.0037,
+      "factual_review": 0.0,
+      "review_wait": 45.0488,
+      "tracker_sync": 52.0384,
+      "drive_delivery": 45.2703
+    },
+    "counts": {
+      "source_loading": 47,
+      "tailoring": 2,
+      "document_creation": 1,
+      "word_pdf_validation": 1,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 1,
+      "native_attempts": 1,
+      "drive_delivery": 1
+    }
+  }
+}

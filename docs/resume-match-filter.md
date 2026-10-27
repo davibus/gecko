@@ -4,7 +4,10 @@ New discovery candidates must pass an evidence-backed fit review before storage,
 and new tracker rows are checked again by the shared Google/SQLite writer. Existing
 tracker rows, manual decisions, resumes and application history are preserved.
 
-`job-scout/preferences/resume-match.json` controls admission. The minimum is 80/100.
+`job-scout/preferences/resume-match.json` controls admission. All three thresholds
+must pass: overall at least 60/100 (`minimum_score`), responsibilities at least 50%
+(`minimum_responsibilities_match`), and required skills at least 50%
+(`minimum_required_skills_match`).
 The factual source is the current `input/master-resume/master-resume-v4.docx`, read
 directly with paragraphs and tables. The saved candidate summary is not a factual
 substitute. The existing signed-in Codex JSON runner performs semantic comparison;
@@ -16,8 +19,9 @@ industry 10, explicitly preferred qualifications 5. Every extracted requirement
 gets 1 for direct support, 0.5 for transferable/partial support, or 0 for no evidence.
 Requirements are averaged within each category. Categories the posting does not
 state are omitted and remaining weights normalized to 100. Both responsibilities
-and required qualifications must be present and each score at least 70%. The
-unrounded total must be at least 80. Display scores have two decimals.
+and required qualifications must be present and each score at least 50%. The
+unrounded total must be at least 60. Comparisons use unrounded values; a displayed
+rounded score cannot admit a job below a threshold. Display scores have two decimals.
 
 Missing/unusable descriptions, unverified mandatory credentials, clearly different
 occupations, invalid evidence, inference errors and unavailable master files do
@@ -25,6 +29,9 @@ not admit new jobs. Missing evidence is not a claim the candidate lacks a skill.
 Pending reviews are retryable and are not cached as final decisions. An unchanged
 successful review is reused; master bytes, job title/company/URL/description, model,
 reasoning setting and scoring-policy version all participate in its cache identity.
+Threshold changes reuse the same cached requirement/evidence assessment, then
+recalculate acceptance and failed-rule explanations using the current three
+thresholds. They do not require new inference or alter saved tracker rows.
 
 Salary, location, role, fee, rejection, duplicate and availability guards remain
 independent requirements. A high fit score does not override them and is not an
@@ -43,6 +50,15 @@ Offline focused regression checks: `python scripts/test_resume_match_filter.py`.
 The harness isolates synthetic legacy discovery fixtures from live inference;
 match-specific tests explicitly exercise enabled gates, evidence validation,
 cache invalidation, publication retries and threshold boundaries.
+
+Focused new-job rounds use `focused_discovery.run_round`: stable identities and
+known postings are excluded before retrieval or reviews. Each independent worker
+handles one complete employer posting and uses the canonical description and
+evidence caches. At most three reviews run concurrently, further limited to the
+remaining target slots. Tracker writes and independent readbacks run serially on
+the calling thread. Only confirmed additions advance the target; pending work is
+checkpointed, and a cooperative stop preserves completed evidence. Existing-job
+maintenance is a separate, explicitly requested operation.
 # Spreadsheet scores
 
 The Job List has six named numeric columns: Match Score, Responsibilities Match,

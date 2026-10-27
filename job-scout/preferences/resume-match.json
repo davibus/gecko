@@ -1,4 +1,6 @@
 {
   "enabled": true,
-  "minimum_score": 80
+  "minimum_score": 60,
+  "minimum_responsibilities_match": 50,
+  "minimum_required_skills_match": 50
 }

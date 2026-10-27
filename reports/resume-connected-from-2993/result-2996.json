@@ -1,0 +1,56 @@
+{
+  "id": 2996,
+  "company": "AssetWatch",
+  "status": "complete",
+  "elapsed_seconds": 360.880739,
+  "timings": {
+    "wall_seconds": 141.8504,
+    "active_seconds": 119.3251,
+    "review_wait_seconds": 22.5253,
+    "phases_seconds": {
+      "source_loading": 0.0349,
+      "tailoring": 0.7286,
+      "document_creation": 1.9563,
+      "word_pdf_validation": 7.6401,
+      "fitting_retries": 0.323,
+      "factual_review": 0.0,
+      "review_wait": 22.5253,
+      "tracker_sync": 3.1842,
+      "drive_delivery": 66.9112
+    },
+    "counts": {
+      "source_loading": 86,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "drive_delivery": 1
+    }
+  },
+  "prior_completion_attempt": {
+    "status": "blocked",
+    "reason": "Completed artifact/listing identity differs from the selected job.",
+    "elapsed_seconds": 141.84844569998677
+  },
+  "link": "https://docs.google.com/document/d/1m55O9zrqM17ElHsO0nzNnFBwD54cAdWH/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+AssetWatch+B2B-Growth-Marketing-Manager-\u2013-Industrial-SaaS+00451.docx",
+  "started_at": "2026-10-26T14:39:30.285171+00:00",
+  "completed_at": "2026-10-26T14:45:31.165894+00:00",
+  "retry_tracker_seconds": 40.0830019999994,
+  "hyperlink_range": "'Job List'!Z1248",
+  "hyperlink_target": "https://docs.google.com/document/d/1m55O9zrqM17ElHsO0nzNnFBwD54cAdWH/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "readback": {
+    "Scout ID": 2996,
+    "Company": "AssetWatch",
+    "Job Title": "B2B Growth Marketing Manager \u2013 Industrial/SaaS",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1m55O9zrqM17ElHsO0nzNnFBwD54cAdWH/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  }
+}

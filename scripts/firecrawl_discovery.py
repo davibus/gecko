@@ -19,7 +19,10 @@ def main(argv=None):
     mode.add_argument('--dry-run', action='store_true', help='Local plan only: no API, database writes or spreadsheet writes')
     mode.add_argument('--apply', action='store_true', help='Explicit run; both paid and daily feature flags must already be enabled')
     mode.add_argument('--sync-only', action='store_true', help='Publish pending jobs/reports without Firecrawl requests')
+    parser.add_argument('--broad-discovery', action='store_true', help='Explicitly authorize this broad Firecrawl search mode')
     args = parser.parse_args(argv)
+    if args.apply and not args.broad_discovery:
+        parser.error('--apply requires --broad-discovery; use Gecko job search for incremental discovery')
     load_environment()
     settings = config()
     if not args.apply and not args.sync_only:

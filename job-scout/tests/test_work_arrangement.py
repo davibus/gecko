@@ -57,7 +57,7 @@ class WorkArrangementTests(unittest.TestCase):
 
     def test_remote_country_restrictions_are_not_worldwide_permission(self):
         raw=self.listing(remote_type='remote')
-        for location,allowed in [('Remote - Canada',False),('United Kingdom - London',False),
+        for location,allowed in [('Remote - Canada',True),('United Kingdom - London',False),
                                  ('Remote - European Union',False),('AU: Melbourne',False),
                                  ('United States / Canada',True),('Worldwide',True)]:
             raw.location=location

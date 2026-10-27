@@ -1,0 +1,288 @@
+{
+  "job": {
+    "url": "https://marketbridge.applytojob.com/apply/B8FgyaIoi0/Senior-Manager-SEM",
+    "company": "Marketbridge",
+    "title": "Senior Manager, SEM",
+    "location": "Washington, DC",
+    "arrangement": "remote",
+    "salary": "$ 80,000–100,000",
+    "posted": "2026-09-28",
+    "chars": 13348
+  },
+  "match": {
+    "id": "job",
+    "sufficient": true,
+    "reason": "Complete duties and qualifications support assessment. Strong SEM evidence; five years of B2B SEM, downstream pipeline expertise, and EST availability remain unverified.",
+    "blockers": [],
+    "categories": {
+      "responsibilities": [
+        {
+          "requirement": "Lead SEM strategy and execution across multiple client accounts, primarily across Google Ads and Microsoft Ads",
+          "support": 1,
+          "evidence": [
+            "Managed PPC efforts across Google Ads and Microsoft/Bing Ads"
+          ],
+          "reason": "Direct platform management, with extensive multi-account execution documented."
+        },
+        {
+          "requirement": "Translate client business, demand generation, and revenue goals into paid search strategies, campaign plans, testing roadmaps, and measurable KPIs",
+          "support": 1,
+          "evidence": [
+            "Created business goals, annual projections, and KPIs with senior management"
+          ],
+          "reason": "Campaign leadership and testing experience connect business goals to measurable search plans."
+        },
+        {
+          "requirement": "Oversee campaign architecture, account structure, keyword strategy, audience targeting, bidding, creative testing, and ongoing optimization",
+          "support": 1,
+          "evidence": [
+            "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing"
+          ],
+          "reason": "Direct execution across the stated campaign planning and optimization functions."
+        },
+        {
+          "requirement": "Manage and forecast SEM budgets across accounts",
+          "support": 1,
+          "evidence": [
+            "budget pacing, daily optimization, quality assurance, and performance reporting."
+          ],
+          "reason": "Documented pacing, forecasting, allocation, and large budgets; pipeline measurement is less established."
+        },
+        {
+          "requirement": "Lead optimization and testing strategies across automated bidding, keyword expansion, audience segmentation, ad copy, landing pages, campaign structure",
+          "support": 1,
+          "evidence": [
+            "Created custom attribution models, advanced bid strategies, bid tests/experiments, A/B tests, and multivariate testing frameworks"
+          ],
+          "reason": "Structured testing and hands-on campaign optimization directly support this work."
+        },
+        {
+          "requirement": "Apply automation, AI-powered platform capabilities, and advanced bidding strategies to improve campaign efficiency and scalability",
+          "support": 1,
+          "evidence": [
+            "Automated SERP analysis with Python and used Machine Learning Models for budgets, bids, ad copy, keywords, etc with Google API"
+          ],
+          "reason": "Direct campaign automation and machine-learning optimization evidence."
+        },
+        {
+          "requirement": "Analyze performance trends and translate complex campaign data into clear insights, recommendations, and optimization plans for clients and internal stakeholders",
+          "support": 1,
+          "evidence": [
+            "Used industry-leading analytical tools to evaluate account performance and make data-driven recommendations"
+          ],
+          "reason": "Direct performance analysis and actionable recommendation experience."
+        },
+        {
+          "requirement": "Partner with analytics teams to strengthen conversion tracking, attribution, reporting",
+          "support": 1,
+          "evidence": [
+            "Built conversion and attribution models and designed A/B and multivariate tests across multiple levels of the marketing funnel"
+          ],
+          "reason": "Direct measurement work supports collaboration on tracking, attribution, and reporting."
+        },
+        {
+          "requirement": "the connection between paid search activity and downstream pipeline or revenue outcomes",
+          "support": 0.5,
+          "evidence": [
+            "Managed approximately $400,000 in media budget that generated more than $9 million in revenue"
+          ],
+          "reason": "Revenue linkage is established; CRM-linked pipeline and lead-stage measurement are unverified."
+        },
+        {
+          "requirement": "Collaborate with strategy, creative, CRM, marketing automation, and other media teams",
+          "support": 1,
+          "evidence": [
+            "Installed Go High Level. I then connected this to Service Titan, Power BI, and all the internal system that were using working closely with the Director of Marketing"
+          ],
+          "reason": "CRM integration and broader cross-functional marketing coordination are demonstrated."
+        },
+        {
+          "requirement": "Identify opportunities to expand SEM programs through new campaign types, audiences, platforms, testing strategies, and complementary media channels",
+          "support": 1,
+          "evidence": [
+            "Analyzed Google Ads audience performance to identify audiences and strategies to test and apply across other platforms"
+          ],
+          "reason": "Direct audience expansion and cross-platform testing recommendations."
+        },
+        {
+          "requirement": "Serve as a senior day-to-day SEM contact for clients, leading performance discussions, presenting recommendations, and advising on investment and optimization decisions",
+          "support": 1,
+          "evidence": [
+            "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+          ],
+          "reason": "Direct client advisory, presentation, and growth-planning experience."
+        },
+        {
+          "requirement": "Ensure campaign setup, tracking, tagging, reporting, and optimization processes meet quality standards across assigned accounts",
+          "support": 1,
+          "evidence": [
+            "Developed a repeatable Google Ads account-management system that maintained consistent service quality across clients regardless of spend"
+          ],
+          "reason": "Standardized account quality plus documented GTM and reporting implementation support this duty."
+        },
+        {
+          "requirement": "Lead and support SEM team members through workload management, campaign reviews, coaching, feedback, and ongoing skill development",
+          "support": 1,
+          "evidence": [
+            "Built the PPC team and trained team members on the scalable system created for the organization (QoQ)"
+          ],
+          "reason": "Direct PPC team building, training, and operational leadership."
+        },
+        {
+          "requirement": "Improve workflows, documentation, quality assurance, and processes that enable consistent and scalable SEM execution",
+          "support": 1,
+          "evidence": [
+            "Consolidated work that had been divided among five agencies into a comprehensive, scalable in-house PPC strategy"
+          ],
+          "reason": "Direct scalable process design, supplemented by documented team training and documentation."
+        },
+        {
+          "requirement": "Contribute SEM strategy, audits, forecasts, and recommendations to new business pitches, renewals, and account growth opportunities",
+          "support": 0.5,
+          "evidence": [
+            "Managed 75+ Google Ads accounts with more than $476,000 in combined monthly spend while advising clients on channel allocation, campaign structure, and growth priorities"
+          ],
+          "reason": "Client growth strategy is established; pitch and renewal participation are unverified."
+        },
+        {
+          "requirement": "Identify opportunities to expand existing client engagements based on performance trends, business needs, and emerging search capabilities",
+          "support": 1,
+          "evidence": [
+            "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+          ],
+          "reason": "Direct consultative growth planning supported by campaign analysis and platform expertise."
+        }
+      ],
+      "required": [
+        {
+          "requirement": "Advanced hands-on expertise in Google Ads and Microsoft Ads",
+          "support": 1,
+          "evidence": [
+            "Managed PPC efforts across Google Ads and Microsoft/Bing Ads"
+          ],
+          "reason": "Extensive campaign management, bidding, automation, and account scale establish advanced capability."
+        },
+        {
+          "requirement": "including experience with GA4 and Google Tag Manager",
+          "support": 1,
+          "evidence": [
+            "Configured GA4 and custom Google Tag Manager measurement/reporting"
+          ],
+          "reason": "Direct implementation establishes practical measurement and tagging experience."
+        },
+        {
+          "requirement": "Familiarity with CRM platforms, marketing automation systems, and downstream lead, pipeline, or revenue measurement",
+          "support": 0.5,
+          "evidence": [
+            "Installed Go High Level. I then connected this to Service Titan, Power BI, and all the internal system that were using working closely with the Director of Marketing"
+          ],
+          "reason": "CRM and automation integration are direct; downstream lead and pipeline measurement is unverified."
+        },
+        {
+          "requirement": "Experience with landing page optimization and conversion rate optimization principles",
+          "support": 1,
+          "evidence": [
+            "Conducted advanced keyword research, channel analysis, trend monitoring, acquisition analysis, conversion-path and funnel analysis, landing-page optimization, and conversion-rate optimization"
+          ],
+          "reason": "Direct landing-page, funnel, and conversion optimization work."
+        },
+        {
+          "requirement": "required to work in EST hours.",
+          "support": 0,
+          "evidence": [],
+          "reason": "The master does not establish availability for the required working hours."
+        },
+        {
+          "requirement": "eligible to work in the United States or Canada without visa sponsorship",
+          "support": 1,
+          "evidence": [
+            "Authorized to work in the United States for any employer"
+          ],
+          "reason": "Unrestricted U.S. employer authorization supports the stated eligibility requirement."
+        }
+      ],
+      "seniority": [
+        {
+          "requirement": "5+ years of SEM / paid search experience, including experience managing complex campaigns and multiple client accounts",
+          "support": 1,
+          "evidence": [
+            "Managed large AdWords, Bing Ads, Gemini, and Amazon Marketing Services accounts consisting of more than 150 campaigns"
+          ],
+          "reason": "Dated paid-search roles from 2013 onward establish over five years and complex account scope."
+        },
+        {
+          "requirement": "Do you have 5 years of professional experience managing SEM / paid search campaigns for B2B clients or organizations?",
+          "support": 0.5,
+          "evidence": [
+            "Managed all aspects of e-commerce and marketing at a very large distributor (B2B)"
+          ],
+          "reason": "B2B marketing and extensive SEM are documented; five years specifically in B2B SEM are unverified."
+        },
+        {
+          "requirement": "Experience working in an agency or client-service environment and managing multiple priorities across accounts",
+          "support": 1,
+          "evidence": [
+            "Set up and managed more than 75 Google Ads/AdWords accounts with combined monthly spend of more than $476,000"
+          ],
+          "reason": "The Infinite Agency role directly establishes agency work and substantial multi-account scope."
+        }
+      ],
+      "industry": [
+        {
+          "requirement": "Demonstrated B2B SEM experience, with a strong understanding of longer sales cycles, lead quality, pipeline contribution, and optimizing toward downstream revenue outcomes",
+          "support": 0.5,
+          "evidence": [
+            "Directed digital marketing and e-commerce for a large B2B distributor"
+          ],
+          "reason": "B2B marketing transfers; explicit long-cycle SEM, lead quality, and pipeline optimization are unverified."
+        }
+      ],
+      "preferred": [
+        {
+          "requirement": "Google Ads certification preferred",
+          "support": 1,
+          "evidence": [
+            "Certifications\n• Google Ads"
+          ],
+          "reason": "Google Ads certification is explicitly listed."
+        },
+        {
+          "requirement": "Experience contributing to new business pitches, account growth strategies, or client planning preferred",
+          "support": 1,
+          "evidence": [
+            "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation"
+          ],
+          "reason": "Direct client planning satisfies the stated alternative; pitches remain unverified."
+        }
+      ]
+    },
+    "score": 82.65,
+    "accepted": true,
+    "status": "reviewed",
+    "failed_rules": [],
+    "category_percentages": {
+      "responsibilities": 94.12,
+      "required": 75.0,
+      "seniority": 83.33,
+      "industry": 50.0,
+      "preferred": 100.0
+    },
+    "policy": "master-evidence-v2",
+    "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "job": {
+      "id": "job",
+      "title": "Senior Manager, SEM",
+      "company": "Marketbridge",
+      "url": "https://marketbridge.applytojob.com/apply/B8FgyaIoi0/Senior-Manager-SEM"
+    },
+    "description_sha256": "a1c8893545d94400defff67ea3f83cdc3fb5938ea82d6949d6d3b435edf2d77a",
+    "runner": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "verified": true,
+      "session_id": "01a1736e-597d-7483-a389-f96c862827aa",
+      "verified_at": "2026-10-25T14:20:24.640352+00:00"
+    },
+    "cached": true
+  }
+}

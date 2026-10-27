@@ -1,0 +1,56 @@
+[
+    {
+        "ProcessId":  31136,
+        "ParentProcessId":  26704,
+        "Name":  "python.exe",
+        "CommandLine":  "\"C:\\gecko_main\\.tools\\dashboard-python\\Scripts\\python.exe\" work/recover_gecko_pending.py recover"
+    },
+    {
+        "ProcessId":  24104,
+        "ParentProcessId":  31136,
+        "Name":  "python.exe",
+        "CommandLine":  "\"C:\\gecko_main\\.tools\\dashboard-python\\Scripts\\python.exe\" work/recover_gecko_pending.py recover"
+    },
+    {
+        "ProcessId":  24932,
+        "ParentProcessId":  24104,
+        "Name":  "codex.exe",
+        "CommandLine":  "C:\\Users\\DCALL\\AppData\\Local\\OpenAI\\Codex\\bin\\2993767bd1dfb009\\codex.exe exec --model gpt-6.1-sol -c model_reasoning_effort=\\\"medium\\\" --sandbox read-only --json -"
+    },
+    {
+        "ProcessId":  30444,
+        "ParentProcessId":  24932,
+        "Name":  "conhost.exe",
+        "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+    },
+    {
+        "ProcessId":  29120,
+        "ParentProcessId":  24932,
+        "Name":  "node.exe",
+        "CommandLine":  "\"C:\\Users\\DCALL\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\1fb7137c46617d50\\bin\\node.exe\" C:\\Users\\DCALL\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\1fb7137c46617d50\\bin\\node_modules\\@oai\\cua-repl\\bin\\cua-repl.mjs"
+    },
+    {
+        "ProcessId":  8164,
+        "ParentProcessId":  29120,
+        "Name":  "conhost.exe",
+        "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+    },
+    {
+        "ProcessId":  30536,
+        "ParentProcessId":  24932,
+        "Name":  "node_repl.exe",
+        "CommandLine":  "\"C:\\Users\\DCALL\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\1fb7137c46617d50\\bin\\node_repl.exe\""
+    },
+    {
+        "ProcessId":  5600,
+        "ParentProcessId":  30536,
+        "Name":  "conhost.exe",
+        "CommandLine":  "\\??\\C:\\WINDOWS\\system32\\conhost.exe 0x4"
+    },
+    {
+        "ProcessId":  22444,
+        "ParentProcessId":  29120,
+        "Name":  "node_repl.exe",
+        "CommandLine":  "C:\\Users\\DCALL\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\1fb7137c46617d50\\bin\\node_repl.exe"
+    }
+]

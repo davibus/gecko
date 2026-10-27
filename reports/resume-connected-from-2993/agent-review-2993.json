@@ -1,0 +1,62 @@
+{
+  "spec": {
+    "headline": "Paid Search & SEO | Agency Account Strategy | Conversion Testing",
+    "headline_rationale": "Plan Left needs independent multiclient paid and organic search management, research, testing and actionable reporting. These are supported by agency accounts, SEO consulting, SERP automation and conversion testing in the v4 master. No unsupported technical SEO specialty is claimed.",
+    "summary": "Search marketer combining multi-account paid media management with SEO consulting, competitive research and conversion testing. Managed more than 75 Google Ads accounts and advised clients on budgets, campaign structure and growth priorities. Consulted on SEO and on-page optimization, automated SERP analysis with Python, and worked with web teams on site performance. Builds clear reporting and practical recommendations from campaign, audience and funnel data, with experience standardizing agency processes and coordinating creative and landing-page work.",
+    "factual_review": "Read exact Plan Left Ads & SEO Manager posting, including remote any location. Source-supported claims: E075/E076/E078/E079/E081/E082/E021/E023/E044/E106 and current master consulting details. Do not claim schema, link-building results, Core Web Vitals expertise or campaign unit-test experience merely because requested.",
+    "selected_evidence_ids": [
+      "E001",
+      "E002",
+      "E003",
+      "E006",
+      "E008",
+      "E021",
+      "E023",
+      "E044",
+      "E043",
+      "E060",
+      "E066",
+      "E063",
+      "E076",
+      "E078",
+      "E079",
+      "E081",
+      "E093",
+      "E095",
+      "E106",
+      "E112",
+      "E114"
+    ],
+    "additional_evidence_ids": [
+      "E004",
+      "E005",
+      "E009",
+      "E011",
+      "E020",
+      "E072",
+      "E080",
+      "E082",
+      "E096",
+      "E109",
+      "E115",
+      "E116"
+    ],
+    "tools_platforms": [
+      "Google Ads",
+      "Meta Ads",
+      "Microsoft Ads",
+      "Google Analytics 4",
+      "Google Tag Manager",
+      "Google Search Console",
+      "Looker Studio",
+      "Excel",
+      "Python",
+      "Shopify"
+    ],
+    "tools_rationale": "Use actual master-supported ad, SEO, measurement and reporting tools that match Plan Left's delivery requirements."
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "d1a38d65476e0193ef37bc8ef4b5fda7a9a427ebeae9f5ff6c3e47baa67206d3"
+}

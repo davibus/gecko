@@ -1,0 +1,60 @@
+{
+  "stage": "batch finished",
+  "id": null,
+  "at": "2026-10-26T16:43:10.390147+00:00",
+  "results": [
+    {
+      "id": 3030,
+      "company": "NEW ERA Digital Marketing",
+      "status": "complete",
+      "link": "https://docs.google.com/document/d/1cl10zuBbar9QCIJsjK-RINs_Ih9tRo7q/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+NEW-ERA-Digital-Marketing+Media-Buyer-—-Meta-Lead-Gen-&-Creative-Strategy+00503.docx",
+      "started_at": "2026-10-26T15:49:08.331158+00:00",
+      "completed_at": "2026-10-26T16:43:09.311073+00:00",
+      "elapsed_seconds": 3240.979926,
+      "generation_seconds": 34.83548029998201,
+      "delivery_seconds": 6.823938799992902,
+      "tracker_seconds": 37.68551959999604,
+      "readback": {
+        "Scout ID": 3030,
+        "Company": "NEW ERA Digital Marketing",
+        "Job Title": "Media Buyer — Meta Lead Gen & Creative Strategy",
+        "Resume Created": "X",
+        "Resume Created Date": "2026-10-26",
+        "Resume Link": "https://docs.google.com/document/d/1cl10zuBbar9QCIJsjK-RINs_Ih9tRo7q/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+      },
+      "hyperlink_range": "'Job List'!Z1282",
+      "hyperlink_target": "https://docs.google.com/document/d/1cl10zuBbar9QCIJsjK-RINs_Ih9tRo7q/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+      "timings": {
+        "wall_seconds": 103.5435,
+        "active_seconds": 85.0192,
+        "review_wait_seconds": 18.5243,
+        "phases_seconds": {
+          "source_loading": 0.1112,
+          "tailoring": 0.9371,
+          "document_creation": 2.1364,
+          "word_pdf_validation": 11.2276,
+          "fitting_retries": 0.0994,
+          "factual_review": 0.0,
+          "review_wait": 18.5243,
+          "tracker_sync": 37.6844,
+          "drive_delivery": 6.8176
+        },
+        "counts": {
+          "source_loading": 74,
+          "tailoring": 2,
+          "document_creation": 2,
+          "word_pdf_validation": 2,
+          "fitting_retries": 1,
+          "factual_review": 0,
+          "review_wait": 1,
+          "tracker_sync": 2,
+          "master_parses": 1,
+          "fitting_attempts": 2,
+          "native_attempts": 2,
+          "drive_delivery": 1
+        }
+      }
+    }
+  ]
+}

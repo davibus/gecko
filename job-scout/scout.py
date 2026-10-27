@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import asdict
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import os
 import sys
@@ -233,7 +233,12 @@ def sheet_only_active_jobs(tracker_path, known_ids: set[int]):
 
 
 def search(args, store, preferences):
-    if getattr(args, 'unified', False):
+    if not getattr(args, 'broad_discovery', False) and not getattr(args, 'dry_run', False):
+        from incremental_discovery import run
+        return run(args, store, preferences)
+    if getattr(args, 'broad_discovery', False):
+        args.unified = True
+    if getattr(args, 'unified', False) and not getattr(args, '_broad_internal', False):
         from unified_search import run
         return run(args, store, preferences)
     daily_mode = bool(getattr(args, "daily_mode", False))
@@ -351,7 +356,24 @@ def search(args, store, preferences):
     with ThreadPoolExecutor(max_workers=workers, thread_name_prefix="job-source") as executor:
         futures = {name: executor.submit(acquire, (name, provider))
                    for name, provider in configured.items()}
-        for name in selected:
+        if getattr(args, 'publish_as_found', False):
+            names = {future: name for name, future in futures.items()}
+            def completed_sources():
+                # Aggregator summaries need separate full-description retrieval.
+                # Let completed employer feeds produce visible matches first.
+                deferred = []
+                for future in as_completed(names):
+                    name = names[future]
+                    if name == 'adzuna':
+                        deferred.append(name)
+                    else:
+                        yield name
+                yield from deferred
+                yield from (name for name in selected if name not in futures)
+            processing_order = completed_sources()
+        else:
+            processing_order = selected
+        for name in processing_order:
             provider = available[name]
             if name == "web-careers" and callable(getattr(provider, "diagnostics", None)):
                 web_diagnostics = provider.diagnostics()
@@ -413,6 +435,7 @@ def search(args, store, preferences):
                         preserve_existing=daily_mode, preexisting_ids=preexisting_ids,
                         link_validator=link_validator, preferences=preferences,
                         rejected_jobs=rejected_jobs,
+                        on_saved=getattr(args, 'on_discovery_job', None),
                     )
                     summary.raw_retrieved = raw_count
                 else:
@@ -883,7 +906,8 @@ def _print_daily_summary(run_result, queue_result, tracker_summary, *, dry_run=F
     if run_result.get('firecrawl'):
         from firecrawl_state import History
         report = run_result['firecrawl']
-        report.update(History().usage(report['day']))
+        if 'usage_scope' not in report:
+            report.update(History().usage(report['day']))
         report['credits_per_new_qualified_job'] = (report['total_credits_accounted'] / report['new_qualified']
                                                   if report['new_qualified'] else None)
         print('Firecrawl efficiency: ' + json.dumps(report), flush=True)
@@ -893,6 +917,9 @@ def _print_daily_summary(run_result, queue_result, tracker_summary, *, dry_run=F
     print(f"Jooble jobs excluded: {run_result.get('jooble_excluded', 0)}")
     print(f"Duplicates skipped: {run_result.get('duplicates', 0)}")
     print(f"New jobs added: {tracker_summary.get('added', 0)}")
+    for name in ('known_jobs_skipped_before_retrieval', 'free_retrievals', 'paid_requests_avoided', 'paid_requests', 'pending'):
+        if name in run_result:
+            print(f"{name.replace('_', ' ').capitalize()}: {run_result[name]}")
     print(f"Manual Indeed rows processed: {manual_indeed.processed}")
     print(f"Manual Indeed duplicates flagged: {manual_indeed.duplicates}")
     print(f"Manual Indeed retrieval failures: {manual_indeed.failures}")
@@ -962,7 +989,7 @@ def daily(args, store, preferences):
                 dry_args._temporary_store = True
                 return daily(dry_args, temporary_store, preferences)
     validator = DailyLinkValidator()
-    if isinstance(store, JobStore):
+    if isinstance(store, JobStore) and getattr(args, 'maintenance_existing', False):
         existing = [job for job in store.all() if job.status not in {"ignored", "rejected"}]
         if args.dry_run:
             protected = {
@@ -998,7 +1025,7 @@ def daily(args, store, preferences):
     from firecrawl_state import config as firecrawl_config
     firecrawl_settings = firecrawl_config()
     firecrawl_result = None
-    if not args.dry_run and firecrawl_settings['enabled'] and firecrawl_settings['daily_enabled']:
+    if getattr(args, 'broad_discovery', False) and not args.dry_run and firecrawl_settings['enabled'] and firecrawl_settings['daily_enabled']:
         from firecrawl_discovery import run_discovery
         from google_tracker import Config
         try:
@@ -1017,7 +1044,7 @@ def daily(args, store, preferences):
         run_result['newly_discovered'] = len(run_result.get('new_job_ids', []))
         search_args.run_result = run_result
     manual_indeed = ManualIndeedSummary()
-    if not args.dry_run:
+    if not args.dry_run and getattr(args, 'maintenance_existing', False):
         manual_indeed = process_manual_indeed_rows(
             GoogleTracker(), store, cleanup_declined=False)
         print("Manual Indeed intake:")
@@ -1154,7 +1181,11 @@ def build_parser():
     find.add_argument('--dry-run', action='store_true',
                       help='Discover using a temporary database copy; no tracker writes or resumes')
     find.add_argument('--unified', action='store_true', help='All-source search plus explicitly enabled Firecrawl; no resumes')
+    find.add_argument('--broad-discovery', action='store_true', help='Explicit broad market search, including budgeted Firecrawl searches; reports usage')
+    find.add_argument('--max-new-candidates', type=int, default=0, help='Controlled run admission cap; 0 means no extra cap; deferred work is retained')
+    find.add_argument('--retry-candidate', action='append', default=[], metavar='KEY', help='Explicit free/content/review retry; never clears unresolved paid dispatch')
     find.add_argument('--sync-only', action='store_true', help='With --unified, retry pending publication without discovery')
+    find.add_argument('--publish-as-found', action='store_true', help='Publish each verified new job immediately')
     find.add_argument('--audit-dir',type=Path,help='Save discovery and canonical tracker readback evidence locally')
     find.add_argument(
         "--limit", type=int, default=100,
@@ -1227,6 +1258,7 @@ def build_parser():
         "daily", help="Search, sync, approve Utah/remote jobs, and create Gecko resumes"
     )
     daily_parser.add_argument("--results", type=int, default=20)
+    daily_parser.add_argument('--maintenance-existing', action='store_true', help='Explicit existing-job availability checks and manual Indeed intake')
     daily_parser.add_argument("--limit", type=int, default=20)
     daily_parser.add_argument(
         "--dry-run", action="store_true",
@@ -1269,6 +1301,9 @@ def main(argv=None):
         load_local_environment()
         load_local_environment(PROJECT_ROOT / ".env.google-sheets.local")
         preferences = load_preferences(args.preferences)
+        if args.function is search and args.dry_run and not getattr(args, 'broad_discovery', False):
+            from unified_search import plan
+            return plan(args, preferences)
         if getattr(args, 'unified', False) and args.dry_run:
             from unified_search import plan
             return plan(args, preferences)

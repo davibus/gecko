@@ -1,0 +1,68 @@
+{
+  "spec": {
+    "headline": "B2B Demand & Digital Marketing | Campaign Strategy | Funnel Analytics",
+    "headline_rationale": "The cybersecurity compliance demand role needs integrated campaigns, technical/business translation, sales alignment and measurement. Use supported B2B coordination, content, client research and analytics; do not claim regulatory expertise or citizenship from work authorization alone.",
+    "summary": "B2B digital marketer experienced in translating business priorities into coordinated campaigns and practical performance recommendations. Directed marketing and e-commerce with sales, product, IT and operations partners, and advised agency clients on goals, targeting and channel allocation. Combines personalized content strategy, keyword and audience research, funnel testing and attribution models with automated reporting. Technical website and systems integration work supports clear collaboration across commercial and technical teams and a disciplined approach to evaluating campaign investment.",
+    "factual_review": "Read exact Jobgether Demand Generation Manager cybersecurity/compliance posting, including continental-US citizenship requirement. Resume does not assert citizenship based on work authorization. E060/E076/E078/E114/E006/E082/E009/E001/E066 support content. No CMMC/NIST/DFARS/FedRAMP expertise, webinar programs, ABM pipeline or regulated campaign outcomes invented. Canonical eligibility/match safeguards remain unchanged.",
+    "selected_evidence_ids": [
+      "E001",
+      "E002",
+      "E003",
+      "E005",
+      "E006",
+      "E008",
+      "E009",
+      "E010",
+      "E021",
+      "E023",
+      "E030",
+      "E038",
+      "E044",
+      "E060",
+      "E063",
+      "E066",
+      "E076",
+      "E078",
+      "E079",
+      "E081",
+      "E082",
+      "E093",
+      "E095",
+      "E114"
+    ],
+    "additional_evidence_ids": [
+      "E004",
+      "E011",
+      "E020",
+      "E072",
+      "E080",
+      "E096",
+      "E102",
+      "E105",
+      "E109",
+      "E113",
+      "E115",
+      "E116"
+    ],
+    "tools_platforms": [
+      "HubSpot",
+      "Salesforce",
+      "Google Ads",
+      "Microsoft Ads",
+      "Meta Ads",
+      "Google Analytics 4",
+      "Looker Studio",
+      "Tableau",
+      "Excel",
+      "Python",
+      "SQL"
+    ],
+    "tools_rationale": "Source-supported marketing automation/CRM, campaign and analytical tools; no invented compliance or specialist platform skill.",
+    "source_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "description_sha256": "5f9f041de642bd8aa893c95574706dbf105b959abbe05c0f154be40f5b5a6f07"
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "f7544992f176e131610d31946f6ea5c7f80b30f411a174161b3d228a55533a28"
+}

@@ -1,0 +1,241 @@
+{
+  "job": {
+    "url": "https://jobs.ashbyhq.com/ffg/5d2ada3e-76e0-4310-8d80-d18a726fd26b",
+    "company": "Full Funnel Growth",
+    "title": "Senior Paid Search Specialist",
+    "location": "United States",
+    "arrangement": "remote",
+    "salary": "",
+    "posted": "2026-10-19",
+    "chars": 6058
+  },
+  "match": {
+    "id": "job",
+    "sufficient": true,
+    "reason": "Detailed duties and qualifications permit assessment. Five agency years, remote history and some platform specifics are unverified.",
+    "blockers": [],
+    "categories": {
+      "responsibilities": [
+        {
+          "requirement": "Three to five accounts at any given time, ranging from $1K/mo to $40K/mo in spend, across Google Ads and Microsoft Ads.",
+          "support": 1,
+          "evidence": [
+            "Managed PPC efforts across Google Ads and Microsoft/Bing Ads"
+          ],
+          "reason": "Multi-account search management is established at greater aggregate scale."
+        },
+        {
+          "requirement": "Weekly per-account performance write-ups in our .docx format, plus monthly client-ready summaries.",
+          "support": 1,
+          "evidence": [
+            "Generates daily analyses and weekly marketing reports with source-labeled metrics, findings, recommendations, and watch lists."
+          ],
+          "reason": "Recurring analytical reporting transfers to the employer's document format and cadence."
+        },
+        {
+          "requirement": "Ad-hoc deep dives when a campaign breaks or an opportunity surfaces.",
+          "support": 1,
+          "evidence": [
+            "Identify supported campaign-performance issues and opportunities."
+          ],
+          "reason": "Campaign diagnostics and opportunity analysis are directly demonstrated."
+        },
+        {
+          "requirement": "Direct client communication: written updates, scheduled review calls, and the occasional strategy presentation to senior stakeholders",
+          "support": 1,
+          "evidence": [
+            "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+          ],
+          "reason": "Direct client and executive strategy communication is documented."
+        },
+        {
+          "requirement": "account structure, Smart Bidding strategy and target calibration, Performance Max asset groups and signal feeding",
+          "support": 0.5,
+          "evidence": [
+            "Analyzed maximum CPC versus smart bidding, brand CPC optimization, brand and non-brand target CPA"
+          ],
+          "reason": "Bidding and target analysis are proven; PMax asset-group and signal execution is unverified."
+        },
+        {
+          "requirement": "search term mining, negative list management, ad copy, feed audits, and landing page feedback.",
+          "support": 1,
+          "evidence": [
+            "Evaluates nine categories: account structure, campaign performance, keywords, search-term waste, geography, devices, budget allocation, conversions, and landing-page opportunities."
+          ],
+          "reason": "Auditing combines with documented negative-keyword, copy and product-feed validation work."
+        },
+        {
+          "requirement": "when Triple Whale and GA4 disagree on the same campaign, you can decompose the gap and defend a working figure in the report.",
+          "support": 0.5,
+          "evidence": [
+            "Preserved Google Ads, GA4, and Search Console measurement boundaries."
+          ],
+          "reason": "Cross-source measurement judgment transfers; Triple Whale reconciliation work is unverified."
+        },
+        {
+          "requirement": "Proactive opportunity surfacing across the portfolio: branded budget unlocks, PMax channel shifts, Demand Gen tests, geo or bidding migrations.",
+          "support": 0.5,
+          "evidence": [
+            "Analyzed maximum CPC versus smart bidding, brand CPC optimization, brand and non-brand target CPA, incremental CPA during scale-ups and scale-downs"
+          ],
+          "reason": "Budget and bidding opportunities are proven; Demand Gen execution is unverified."
+        }
+      ],
+      "required": [
+        {
+          "requirement": "You can read or write Python that hits the Google Ads API, parse JSON, run GAQL queries, and work in a terminal without it being a project.",
+          "support": 1,
+          "evidence": [
+            "Developed Python and PowerShell workflows connecting job APIs, employer career sites, SQLite, Google services, and Microsoft Word."
+          ],
+          "reason": "Delivered automations satisfy the stated alternative; Ads API and JSON work are also documented."
+        },
+        {
+          "requirement": "You have used Claude Code, Cursor, or a comparable agentic tool as part of your daily workflow. Not for Q&A. For shipping work.",
+          "support": 1,
+          "evidence": [
+            "Used AI coding assistants to translate product requirements into working integrations, reusable scripts, interface improvements, and tested operational workflows."
+          ],
+          "reason": "Demonstrated delivery using coding agents meets the practical capability requirement."
+        },
+        {
+          "requirement": "what Smart Bidding is actually doing, when to override it, and why Performance Max gave a particular signal more weight than another.",
+          "support": 0.5,
+          "evidence": [
+            "Analyzed max CPC versus smart bidding, brand CPC optimization, non-brand target CPA, Performance Max and Google Shopping mix"
+          ],
+          "reason": "Bidding and PMax analysis are proven; specific signal-weight explanations are unverified."
+        },
+        {
+          "requirement": "You stay current on platform-level AI changes (Smart Bidding, PMax, AI-generated assets, Demand Gen)",
+          "support": 0.5,
+          "evidence": [
+            "Assessed inefficient legacy rule-based systems built using the Google Ads API and how newer Google machine-learning capabilities had made those systems outdated"
+          ],
+          "reason": "Platform evolution analysis is documented; Demand Gen and generated-asset currency are unverified."
+        },
+        {
+          "requirement": "Our analytical work labels every substantive claim as extracted, inferred, or assumed. Numbers are exact. Missing data is flagged, not estimated.",
+          "support": 1,
+          "evidence": [
+            "Kept metric calculations, scoring, thresholds, and audit evidence deterministic."
+          ],
+          "reason": "Deterministic evidence and explicit missing-data handling transfer to the employer's labeling protocol."
+        },
+        {
+          "requirement": "Strong command of Google Ads (Search, Shopping, Performance Max, Demand Gen) and Microsoft Ads. Smart Bidding fluency is non-negotiable.",
+          "support": 0.5,
+          "evidence": [
+            "Analyzed max CPC versus smart bidding, brand CPC optimization, non-brand target CPA, Performance Max and Google Shopping mix"
+          ],
+          "reason": "Broad search and bidding expertise is proven; Demand Gen mastery is unverified."
+        },
+        {
+          "requirement": "Demonstrated work across both lead gen and eCommerce. We need both, on the same person.",
+          "support": 1,
+          "evidence": [
+            "Managed all paid search campaigns, outreach, lead generation, and customer acquisition for a large E-Commerce company in the United States, Canada, and the UK"
+          ],
+          "reason": "One documented role directly combines lead generation and e-commerce."
+        },
+        {
+          "requirement": "Comfort with attribution complexity: GA4, platform-reported conversions, cross-source reconciliation, and passing familiarity with post-click pixel tools",
+          "support": 0.5,
+          "evidence": [
+            "Adds website sessions, users, key events, traffic sources, and landing-page context while preserving differences between advertising and website attribution."
+          ],
+          "reason": "Attribution differences are demonstrated; post-click pixel-tool practice is unverified."
+        },
+        {
+          "requirement": "Remote work track record with strong written communication.",
+          "support": 0.5,
+          "evidence": [
+            "Created setup documentation, architecture guides, a product case study, portfolio copy, and a demonstration script."
+          ],
+          "reason": "Substantial written communication is demonstrated; remote employment history is unverified."
+        }
+      ],
+      "seniority": [
+        {
+          "requirement": "5+ years managing paid search at an agency, with at least one role where you owned client relationships independently.",
+          "support": 0.5,
+          "evidence": [
+            "SEM Manager/Project Manager - The Infinite Agency - Dallas, TX                                Sep 2016 - Feb 2018"
+          ],
+          "reason": "Agency client ownership is documented, but five agency years are not established."
+        }
+      ],
+      "industry": [],
+      "preferred": [
+        {
+          "requirement": "Vertical depth in medical aesthetics, DTC eCommerce on Shopify, regulated retail (cannabis, alcohol), or B2B SaaS.",
+          "support": 1,
+          "evidence": [
+            "Developed and customized a headless UTV e-commerce storefront using React, Next.js, TypeScript, and Shopify GraphQL APIs"
+          ],
+          "reason": "Substantial Shopify direct-to-consumer retail work satisfies one optional vertical."
+        },
+        {
+          "requirement": "Looker Studio comfort, or willingness to inherit dashboards built in it.",
+          "support": 1,
+          "evidence": [
+            "Built Looker Studio KPI reporting for multiple departments"
+          ],
+          "reason": "Direct dashboard development experience."
+        },
+        {
+          "requirement": "Experience working in non-USD accounts (CAD, EUR, AUD). Currency and market nuance is real.",
+          "support": 0.5,
+          "evidence": [
+            "Led an eight-person e-commerce team responsible for paid search, customer acquisition, campaign delivery, website performance, and growth across the U.S., Canada, and U.K"
+          ],
+          "reason": "International market experience transfers; non-USD account currencies are unverified."
+        },
+        {
+          "requirement": "Paid social literacy (Meta, LinkedIn) as a complement, not as a primary skill.",
+          "support": 1,
+          "evidence": [
+            "Managed all marketing platforms: Google Ads, Bing Ads, Amazon, Facebook, Instagram, and TikTok with a 400k/month budget"
+          ],
+          "reason": "Hands-on Facebook and other paid-social management demonstrates complementary literacy."
+        },
+        {
+          "requirement": "Google Ads certification.",
+          "support": 1,
+          "evidence": [
+            "Certifications\n• Google Ads"
+          ],
+          "reason": "Google Ads certification is explicitly documented."
+        }
+      ]
+    },
+    "score": 73.52,
+    "accepted": true,
+    "status": "reviewed",
+    "failed_rules": [],
+    "category_percentages": {
+      "responsibilities": 81.25,
+      "required": 72.22,
+      "seniority": 50.0,
+      "industry": null,
+      "preferred": 90.0
+    },
+    "policy": "master-evidence-v2",
+    "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "job": {
+      "id": "job",
+      "title": "Senior Paid Search Specialist",
+      "company": "Full Funnel Growth",
+      "url": "https://jobs.ashbyhq.com/ffg/5d2ada3e-76e0-4310-8d80-d18a726fd26b"
+    },
+    "description_sha256": "93f5c8ac06fff98fb30de721cf7bab6e472c59aa9ce0a9b36a99f8805112d289",
+    "runner": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "verified": true,
+      "session_id": "01a17376-f4f9-7692-a947-2b44b9e94765",
+      "verified_at": "2026-10-25T14:30:46.552584+00:00"
+    },
+    "cached": true
+  }
+}

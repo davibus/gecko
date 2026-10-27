@@ -1,0 +1,35 @@
+{
+  "path": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Senior-Growth-Marketing-Manager+00486.docx",
+  "metadata": {
+    "id": "1eJOh4BOy_-k3PzFqNrkPBrf6DdK-xib7",
+    "title": "Dave-Call+Jobgether+Senior-Growth-Marketing-Manager+00486.docx",
+    "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "size": "40548",
+    "url": "https://docs.google.com/document/d/1eJOh4BOy_-k3PzFqNrkPBrf6DdK-xib7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+    "file_or_folder": "file",
+    "created_time": null,
+    "modified_time": null,
+    "parent_ids": [
+      "1Noy8XUqlL5ufqA4aU9jZWdwpMYeCVmol"
+    ],
+    "drive_id": null,
+    "current_user_can_share": null,
+    "has_augmented_permissions": null,
+    "shared": false,
+    "permissions": [
+      {
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "mdavidcall@gmail.com",
+        "domain": null,
+        "displayName": "Dave Call",
+        "allowFileDiscovery": null
+      }
+    ],
+    "source_visibility_status": "permission_metadata_available"
+  },
+  "download": {
+    "sha256": "905a9d1971c3c65b24b8357369541e596df1467e08bed60d12c06d956d01eb5b",
+    "size": 40548
+  }
+}

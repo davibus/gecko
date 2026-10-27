@@ -1,0 +1,39 @@
+{
+  "id": 3030,
+  "company": "NEW ERA Digital Marketing",
+  "status": "blocked",
+  "reason": "Saved listing identity does not match the live Scout row",
+  "elapsed_seconds": 25.03435490000993,
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\gecko_main\\scripts\\generate_apply_queue.py\", line 949, in generate\n    return _finish_generation(item, listing, attempts, force_recreate=force_recreate)\n  File \"C:\\gecko_main\\scripts\\generate_apply_queue.py\", line 1073, in _finish_generation\n    raise ValueError(\"Saved listing identity does not match the live Scout row\")\nValueError: Saved listing identity does not match the live Scout row\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\gecko_main\\work\\connected_resumes_2985_2991.py\", line 136, in main\n    artifacts=queue.generate(item,DEFAULT_DB,tracker=remote)\n  File \"C:\\gecko_main\\scripts\\generate_apply_queue.py\", line 953, in generate\n    raise QueueProcessingError(str(error), item, attempts) from error\ngenerate_apply_queue.QueueProcessingError: Saved listing identity does not match the live Scout row\n",
+  "timings": {
+    "wall_seconds": 25.0376,
+    "active_seconds": 25.0376,
+    "review_wait_seconds": 0.0,
+    "phases_seconds": {
+      "source_loading": 0.0207,
+      "tailoring": 1.4007,
+      "document_creation": 0.0,
+      "word_pdf_validation": 0.0,
+      "fitting_retries": 0.0,
+      "factual_review": 0.0,
+      "review_wait": 0.0,
+      "tracker_sync": 0.0,
+      "drive_delivery": 0.0
+    },
+    "counts": {
+      "source_loading": 30,
+      "tailoring": 2,
+      "document_creation": 0,
+      "word_pdf_validation": 0,
+      "fitting_retries": 0,
+      "factual_review": 0,
+      "review_wait": 0,
+      "tracker_sync": 0,
+      "master_parses": 0,
+      "fitting_attempts": 0,
+      "native_attempts": 0,
+      "drive_delivery": 0,
+      "restored_trials": 0
+    }
+  }
+}

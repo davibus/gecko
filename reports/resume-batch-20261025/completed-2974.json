@@ -1,0 +1,59 @@
+{
+  "id": 2974,
+  "company": "Digitalzone, Inc.",
+  "title": "Digital Marketing Manager",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Digitalzone,-Inc+Digital-Marketing-Manager+00432.docx",
+  "listing": "C:\\gecko_main\\input\\job-descriptions\\Digitalzone,-Inc+('url',-'digitalzoneinc.applytojob.com',-'applyJW6b5mJ7a9Digital-Marketing-Manager',-'').md",
+  "images": [
+    "C:\\gecko_main\\scratch\\Digitalzone,-Inc+('url',-'digitalzoneinc.applytojob.com',-'applyJW6b5mJ7a9Digital-Marketing-Manager',-'')\\final-page-1.png",
+    "C:\\gecko_main\\scratch\\Digitalzone,-Inc+('url',-'digitalzoneinc.applytojob.com',-'applyJW6b5mJ7a9Digital-Marketing-Manager',-'')\\final-page-2.png"
+  ],
+  "sha256": "4c2d1b6e34f6022a8c048bb53c52888f1407b91dc49edf81ac6c33d7a7a184ab",
+  "qa": {
+    "status": "pass",
+    "word_pages": 2,
+    "pdf_pages": 2,
+    "issues": [],
+    "remaining_weaknesses": [
+      "**Required Skills &",
+      "Ability to clearly communicate ideas and defend decisions",
+      "Exceptional written/email communication and public speaking skills",
+      "Detail-oriented, well organized, and able to juggle many tasks under pressure",
+      "Able to prioritize tasks quickly and solve problems",
+      "Knowledge of Microsoft Word, Excel & PowerPoint (required)",
+      "Degree in Marketing or Communication, or equivalent experience",
+      "_Compensation offered will be determined by factors such as location, level, job-related knowledge, skills, and",
+      "Certain roles may be eligible for variable compensation, equity, and benefits._",
+      "_This position is contingent upon the successful completion of a background check._",
+      "**_Equal Employment Opportunity (EEO) Statement_**",
+      "_Digitalzone is an equal opportunity employer and is committed to fostering an inclusive and diverse workplace.",
+      "We celebrate diversity and do not discriminate based on race, color, religion, sex, sexual orientation, gender identity, national origin, age, disability, veteran status, genetic information, or any other protected status under applicable laws.",
+      "All qualified applicants will receive consideration for employment without regard to these factors._",
+      "[Share](https://digitalzoneinc.applytojob.com/app/share/JW6b5mJ7a9)",
+      "**About Digitalzone**",
+      "drive real pipeline impact.",
+      "manage planning and executing the digital marketing strategy for Digitalzone.",
+      "**Key Responsibilities**",
+      "Assess the performance of all digital channels and identify opportunities to optimize based on performance insights.",
+      "Work collaboratively with copy and design to provide best practice and data-informed insights to ensure we’re developing the best assets to promote across digital channels.",
+      "Manage web development teams and collaborate with internal teams to optimize user experience.",
+      "Provide your LinkedIn profile link, or equivelant.",
+      "drive real pipeline impact.",
+      "manage planning and executing the digital marketing strategy for Digitalzone."
+    ],
+    "native_validation": "C:\\gecko_main\\scratch\\Digitalzone,-Inc+('url',-'digitalzoneinc.applytojob.com',-'applyJW6b5mJ7a9Digital-Marketing-Manager',-'')\\validation-status.json",
+    "word_output": "Word validation mode: Direct interactive session\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\gecko_main\\scratch\\Digitalzone,-Inc+('url',-'digitalzoneinc.applytojob.com',-'applyJW6b5mJ7a9Digital-Marketing-Manager',-'')\\validation-status.json",
+    "page_two_bottom_gap_pt": 14.5,
+    "page_two_text_boundary_pt": 757.45,
+    "density_issue": "",
+    "content_exhaustion_reason": ""
+  },
+  "readback": {
+    "Scout ID": 2974,
+    "Company": "Digitalzone, Inc.",
+    "Job Title": "Digital Marketing Manager",
+    "Resume Created": "X",
+    "Resume Link": "file:///C:/gecko_main/output/resumes/Dave-Call%2BDigitalzone%2C-Inc%2BDigital-Marketing-Manager%2B00432.docx",
+    "Resume Created Date": "2026-10-25"
+  }
+}

@@ -13,6 +13,10 @@ CONFIG = Path(__file__).parent / 'preferences/resume-match.json'
 CACHE = Path(__file__).parent / 'data/resume-match'
 POLICY = 'master-evidence-v2'
 WEIGHTS = {'responsibilities': 40, 'required': 30, 'seniority': 15, 'industry': 10, 'preferred': 5}
+THRESHOLD_DEFAULTS = {'minimum_score': 60, 'minimum_responsibilities_match': 50,
+                      'minimum_required_skills_match': 50}
+CORE_THRESHOLDS = {'responsibilities': 'minimum_responsibilities_match',
+                   'required': 'minimum_required_skills_match'}
 SCORE_COLUMNS = {'responsibilities': 'Responsibilities Match', 'required': 'Required Skills Match',
                  'seniority': 'Seniority Match', 'industry': 'Industry Match',
                  'preferred': 'Preferred Skills Match'}
@@ -66,9 +70,19 @@ Do not output a total score: software calculates it from the evidence.'''
 
 def settings():
     value = json.loads(CONFIG.read_text(encoding='utf-8'))
-    if type(value.get('enabled')) is not bool or value.get('minimum_score') != 80:
-        raise ValueError('Resume match policy must specify enabled and minimum_score 80')
+    if type(value.get('enabled')) is not bool or 'minimum_score' not in value:
+        raise ValueError('Resume match policy requires enabled and minimum_score')
+    for key, default in THRESHOLD_DEFAULTS.items():
+        minimum = value.get(key, default)
+        if type(minimum) not in (int, float) or not 0 <= minimum <= 100:
+            raise ValueError(f'Resume match policy requires {key} from 0 to 100')
+        value[key] = minimum
     return value
+
+
+def thresholds():
+    policy = settings()
+    return {key: policy.get(key, default) for key, default in THRESHOLD_DEFAULTS.items()}
 
 
 def _contains(quote, text):
@@ -112,22 +126,24 @@ def validate(review, item, master):
     denominator = sum(WEIGHTS[k] for k, v in percentages.items() if v is not None)
     raw_score = sum(WEIGHTS[k] * v for k, v in percentages.items() if v is not None) / denominator * 100 if denominator else 0
     score = round(raw_score, 2)
-    accepted = bool(sufficient and not blockers and raw_score >= 80 and
-                    all(percentages[k] >= .7 for k in ('responsibilities', 'required')))
+    policy = thresholds()
+    minimum = policy['minimum_score']
+    accepted = bool(sufficient and not blockers and raw_score >= minimum and
+                    all(percentages[k] >= policy[key] / 100 for k, key in CORE_THRESHOLDS.items()))
     failed_rules = []
     if not sufficient:
         failed_rules.append('Description does not establish both duties and requirements')
     if blockers:
         failed_rules.append('Mandatory requirement or occupation needs review')
-    if raw_score < 80:
-        failed_rules.append('Score below 80')
-    for category in ('responsibilities', 'required'):
-        if percentages[category] is not None and percentages[category] < .7:
-            failed_rules.append(category + ' alignment below 70%')
+    if raw_score < minimum:
+        failed_rules.append(f'Score below {minimum}')
+    for category, key in CORE_THRESHOLDS.items():
+        if percentages[category] is not None and percentages[category] < policy[key] / 100:
+            failed_rules.append(f'{category} alignment below {policy[key]:g}%')
     return {**review, 'score': score, 'accepted': accepted, 'status': 'reviewed',
             'failed_rules': failed_rules,
             'category_percentages': {k: round(v * 100, 2) if v is not None else None for k, v in percentages.items()},
-            'policy': POLICY}
+            'policy': POLICY, 'thresholds': policy}
 
 
 def assess(records, *, client=None, cache_dir=None, master_path=None):
@@ -221,4 +237,10 @@ def check(job):
 def explanation(result):
     score = result.get('score')
     detail = '; '.join(result.get('failed_rules', []))
-    return f"Resume match: {score if score is not None else 'pending'}/100; minimum 80. " + result['reason'] + (' ' + detail if detail else '')
+    policy = thresholds()
+    return (f"Resume match: {score if score is not None else 'pending'}/100; "
+            f"minimum {policy['minimum_score']:g}. "
+            f"All three required: overall >= {policy['minimum_score']:g}/100, "
+            f"responsibilities >= {policy['minimum_responsibilities_match']:g}%, "
+            f"required skills >= {policy['minimum_required_skills_match']:g}%. "
+            + result['reason'] + (' ' + detail if detail else ''))

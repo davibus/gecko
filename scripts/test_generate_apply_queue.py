@@ -179,6 +179,51 @@ class QueueTests(unittest.TestCase):
         self.assertEqual(rows[45]["Apply?"], "yes")
         self.assertEqual(rows[46]["Resume Created"], "X")
 
+    def test_each_completion_is_read_back_before_next_resume_starts(self):
+        completed=[]
+        def generate(item, _db):
+            rows={str(d['Scout ID']):d for _,d in self.tracker.scout().rows}
+            for ident in completed:
+                self.assertEqual(rows[str(ident)]['Resume Created'],'X')
+                self.assertEqual(rows[str(ident)]['Resume Link'],f'https://drive.google.test/{ident}')
+            return queue.Artifacts(Path('mock.docx'),Path('listing.md'))
+        def record(item, artifacts, tracker):
+            queue.manage_job_tracker.mark_batch_resume(item.scout_id,item.row,tracker,
+                f'https://drive.google.test/{item.scout_id}')
+            completed.append(item.scout_id)
+        with redirect_stdout(io.StringIO()):
+            result=queue.run_queue(self.tracker,Path('unused.sqlite3'),generator=generate,recorder=record,print_summary=False)
+        self.assertEqual(result.created,3)
+        self.assertEqual(completed,[42,45,46])
+
+    def test_default_recorder_waits_for_visual_review_before_completion(self):
+        events=[]
+        def generate(item,db):
+            events.append('generate')
+            return queue.Artifacts(Path('mock.docx'),Path('listing.md'),
+                review_context={'scratch':Path('scratch'),'qa':{'status':'pass'}})
+        def review(*args):events.append('review');return None
+        def record(item,artifacts,tracker):
+            events.append('completion')
+            queue.manage_job_tracker.mark_batch_resume(item.scout_id,item.row,tracker,'https://drive.google.test/42')
+        with patch('resume_visual_review.review',side_effect=review) as gate, \
+             patch.object(queue,'record_success',side_effect=record),redirect_stdout(io.StringIO()):
+            result=queue.run_queue(self.tracker,Path('unused.sqlite3'),eligible_scout_ids={42},generator=generate,print_summary=False)
+        self.assertEqual(result.created,1)
+        self.assertEqual(events,['generate','review','completion'])
+        gate.assert_called_once()
+
+    def test_custom_visual_recorder_has_no_duplicate_review_wait(self):
+        def generate(item,db):
+            return queue.Artifacts(Path('mock.docx'),Path('listing.md'),
+                review_context={'scratch':Path('scratch'),'qa':{'status':'pass'}})
+        def custom(item,artifacts,tracker):
+            queue.manage_job_tracker.mark_batch_resume(item.scout_id,item.row,tracker,'https://drive.google.test/42')
+        with patch('resume_visual_review.review') as gate,redirect_stdout(io.StringIO()):
+            result=queue.run_queue(self.tracker,Path('unused.sqlite3'),eligible_scout_ids={42},generator=generate,recorder=custom,print_summary=False)
+        self.assertEqual(result.created,1)
+        gate.assert_not_called()
+
     def test_expired_indeed_is_never_queued_or_auto_approved(self):
         row = self.add_scout_row(scout_id=1042, apply="Yes", location="Utah")
         self.fake.data["Job Scout"][row - 1][SCOUT.index("Apply or on Company Website (If Indeed)")] = " eXpIrEd "
@@ -1020,6 +1065,7 @@ class QueueTests(unittest.TestCase):
                  patch.object(queue.manage_job_tracker, "RESUME_DIR", resume_dir), \
                  patch("google_tracker.RESUME_DIR", resume_dir.resolve()), \
                  patch.object(queue.gecko_v2, "create_plan", return_value=plan), \
+                 patch('resume_visual_review.review', return_value=None), \
                  patch.object(queue.gecko_v2, "native_qa", return_value={"status": "pass"}), \
                  patch.object(queue.gecko_v2, "make_resume") as make_resume:
                 run = queue.run_queue(

@@ -1,0 +1,68 @@
+{
+  "spec": {
+    "headline": "Growth Strategy | Customer Value & Incrementality | Funnel Experimentation",
+    "headline_rationale": "The veterinary marketplace growth role prioritizes full-journey outcomes, incentives, geographic allocation and experiments. Emphasize supported LTV, promotion economics, holdouts, geographic testing and cross-functional acquisition without claiming veterinary/staffing marketplace expertise.",
+    "summary": "Growth marketer focused on customer value, experimentation and disciplined investment decisions. Analyzed lifetime value, affiliate economics and promotion performance, and used regression models, holdouts and geographic offers to guide budget recommendations. Designed tests across the conversion funnel and led an eight-person e-commerce team serving multiple markets. Cross-channel reporting, B2B coordination and client strategy experience support identifying friction, evaluating incentives and connecting acquisition activity with meaningful commercial outcomes rather than lead volume alone.",
+    "factual_review": "Read exact Jobgether Senior Growth Marketing Manager veterinary staffing marketplace posting including US/SLC salarytier. E004/E010/E002/E006/E093/E009/E060/E076 support summary. No hospital activation/first-fill, staffing marketplace supply-demand, reactivation or AEO results invented.",
+    "selected_evidence_ids": [
+      "E001",
+      "E002",
+      "E003",
+      "E004",
+      "E005",
+      "E006",
+      "E008",
+      "E009",
+      "E010",
+      "E021",
+      "E023",
+      "E030",
+      "E043",
+      "E044",
+      "E060",
+      "E063",
+      "E066",
+      "E076",
+      "E078",
+      "E082",
+      "E093",
+      "E095",
+      "E096",
+      "E114"
+    ],
+    "additional_evidence_ids": [
+      "E011",
+      "E020",
+      "E072",
+      "E079",
+      "E080",
+      "E081",
+      "E102",
+      "E105",
+      "E109",
+      "E113",
+      "E115",
+      "E116"
+    ],
+    "tools_platforms": [
+      "Google Ads",
+      "Meta Ads",
+      "Google Analytics 4",
+      "Google Tag Manager",
+      "Looker Studio",
+      "Tableau",
+      "Excel",
+      "Python",
+      "SQL",
+      "HubSpot",
+      "Salesforce"
+    ],
+    "tools_rationale": "Supported acquisition, CRM and measurement tooling relevant to customer economics and experimentation.",
+    "source_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "description_sha256": "73aabe83ac83fb60ea629218620c6481bdb1f4ce3aa622272f95fb6040fe6e62"
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "16609055e691bcedbab61e6a65456853367995cf3b2efd7ebadf1a33e78f2390"
+}

@@ -1,0 +1,415 @@
+[
+  {
+    "id": 2264,
+    "readiness": {
+      "value": "Yes",
+      "reason": "The description provides substantive, role-specific product marketing responsibilities, target buyers, technical domains, and experience requirements sufficient to guide honest resume tailoring.",
+      "status": "reviewed",
+      "evidence": [
+        "Execute the go-to-market strategy for the sales product line, heavily focusing on the Salesforce/CRMs, data strategies, and integrations in the RAO space.",
+        "Develop compelling value propositions, pricing, and messaging that translate complex RAO concepts into clear revenue ROI.",
+        "Background marketing to CROs, RevOps, and Sales Operations leaders."
+      ],
+      "cached": true
+    },
+    "match": {
+      "accepted": false,
+      "score": null,
+      "status": "pending",
+      "reason": "Match review pending: Evidence is not in current master resume"
+    }
+  },
+  {
+    "id": 2265,
+    "deferred": "Availability temporary_failure: HTTP 403"
+  },
+  {
+    "id": 2728,
+    "deferred": "Availability temporary_failure: HTTP 403"
+  },
+  {
+    "id": 2732,
+    "deferred": "Availability temporary_failure: HTTP 403"
+  },
+  {
+    "id": 2733,
+    "deferred": "Availability temporary_failure: HTTP 403"
+  },
+  {
+    "id": 2735,
+    "deferred": "Availability temporary_failure: HTTP 403"
+  },
+  {
+    "id": 2736,
+    "deferred": "Availability temporary_failure: HTTP 403"
+  },
+  {
+    "id": 2737,
+    "deferred": "Availability temporary_failure: HTTP 403"
+  },
+  {
+    "id": 2738,
+    "deferred": "Availability temporary_failure: HTTP 403"
+  },
+  {
+    "id": 2739,
+    "deferred": "Availability temporary_failure: HTTP 403"
+  },
+  {
+    "id": 2740,
+    "deferred": "Availability temporary_failure: HTTP 403"
+  },
+  {
+    "id": 2773,
+    "deferred": "Availability temporary_failure: HTTP 401"
+  },
+  {
+    "id": 2779,
+    "deferred": "Availability temporary_failure: HTTP 403"
+  },
+  {
+    "id": 2809,
+    "deferred": "No verified full archive; leave retrieval to main queue"
+  },
+  {
+    "id": 2811,
+    "readiness": {
+      "value": "Yes",
+      "reason": "The description provides substantive product marketing responsibilities, deliverables, experience requirements, and six-month outcomes specific to the role, sufficient to guide honest resume tailoring.",
+      "status": "reviewed",
+      "evidence": [
+        "Develop and deliver go-to-market plans for product launches, feature enhancements, positioning updates, and other initiatives",
+        "Create and refresh sales enablement and competitive tools",
+        "5+ years of progressive product marketing experience, demonstrated by increasing scope and ownership, in healthcare or employee benefits."
+      ]
+    },
+    "match": {
+      "accepted": false,
+      "score": null,
+      "status": "pending",
+      "reason": "Match review pending: Evidence is not in current master resume"
+    }
+  },
+  {
+    "id": 2842,
+    "deferred": "Availability temporary_failure: HTTP 401"
+  },
+  {
+    "id": 2843,
+    "deferred": "Availability temporary_failure: HTTP 401"
+  },
+  {
+    "id": 2844,
+    "deferred": "Availability temporary_failure: HTTP 401"
+  },
+  {
+    "id": 2845,
+    "deferred": "Availability temporary_failure: HTTP 401"
+  },
+  {
+    "id": 2846,
+    "deferred": "Availability temporary_failure: HTTP 401"
+  },
+  {
+    "id": 2850,
+    "readiness": {
+      "value": "Yes",
+      "reason": "The description provides specific field marketing responsibilities, pipeline outcomes, event operations, sales collaboration, and relevant experience requirements sufficient to guide honest resume tailoring.",
+      "status": "reviewed",
+      "evidence": [
+        "Own the events budget and decide where the money goes",
+        "Work with sales before each event to agree on target accounts and book meetings on site",
+        "Run our webinar program, from topic and speakers through promotion and follow-up",
+        "3-4+ years in field marketing, events, or marketing programs at a B2B SaaS company"
+      ]
+    },
+    "match": {
+      "id": "job",
+      "sufficient": true,
+      "reason": "Complete posting. Missing event, SaaS and travel evidence is unverified, not proof of absence.",
+      "blockers": [],
+      "categories": {
+        "responsibilities": [
+          {
+            "requirement": "Decide which conferences we go to and how big we go at each one, from a small table to a custom booth",
+            "support": 0.5,
+            "evidence": [
+              "Managed budget decisions through project-by-project cost/benefit analysis"
+            ],
+            "reason": "Investment evaluation transfers; conference selection and booth sizing are unverified."
+          },
+          {
+            "requirement": "Own the events budget and decide where the money goes",
+            "support": 0.5,
+            "evidence": [
+              "Managed budget decisions through project-by-project cost/benefit analysis"
+            ],
+            "reason": "Budget ownership transfers; event-specific budgeting is unverified."
+          },
+          {
+            "requirement": "Manage booth vendors, shipping, swag, staffing, and on-site logistics for events like KubeCon, RSAC, AWS re:Invent, and more",
+            "support": 0,
+            "evidence": [],
+            "reason": "Booth vendors, event staffing and concurrent event logistics are unverified."
+          },
+          {
+            "requirement": "Plan side events around conferences, such as happy hours, dinners, and meetups",
+            "support": 0,
+            "evidence": [],
+            "reason": "Conference side-event planning is unverified."
+          },
+          {
+            "requirement": "Cultivate strategic relationships with key event organizers to secure prime booth locations and high-visibility speaking opportunities",
+            "support": 0,
+            "evidence": [],
+            "reason": "Event-organizer relationships and booth or speaking placement negotiations are unverified."
+          },
+          {
+            "requirement": "Plan and run executive dinners, roundtables, and regional events with our account executives",
+            "support": 0,
+            "evidence": [],
+            "reason": "Executive dinners, roundtables and regional event execution are unverified."
+          },
+          {
+            "requirement": "Work with sales before each event to agree on target accounts and book meetings on site",
+            "support": 0.5,
+            "evidence": [
+              "Generated and tracked prospective clients and business associates using a marketing-oriented database"
+            ],
+            "reason": "Prospect management transfers; event targeting and on-site meeting booking are unverified."
+          },
+          {
+            "requirement": "Run pre-event outreach so the right people know where to find us",
+            "support": 0.5,
+            "evidence": [
+              "led paid search, outreach, lead generation, customer acquisition, website performance, and growth across the United States"
+            ],
+            "reason": "Outreach and acquisition experience transfers to event promotion."
+          },
+          {
+            "requirement": "Build post-event follow-up with sales and growth marketing, including sales sequences and email nurture",
+            "support": 0.5,
+            "evidence": [
+              "Developed and managed content strategy covering timing, content type, placement across blogs, mail, email, and the website, content focus, and personalization"
+            ],
+            "reason": "Timed, personalized email strategy transfers; sales sequences and event nurture are unverified."
+          },
+          {
+            "requirement": "Run our webinar program, from topic and speakers through promotion and follow-up",
+            "support": 0.5,
+            "evidence": [
+              "Developed and managed content strategy covering timing, content type, placement across blogs, mail, email, and the website, content focus, and personalization"
+            ],
+            "reason": "Content and promotion planning transfer; webinar production and speaker management are unverified."
+          },
+          {
+            "requirement": "Source and run co-marketing webinars with partners and other developer tools in our space",
+            "support": 0,
+            "evidence": [],
+            "reason": "Partner webinar sourcing and joint webinar delivery are unverified."
+          },
+          {
+            "requirement": "Support our community meetups alongside our startup and ecosystem team",
+            "support": 0,
+            "evidence": [],
+            "reason": "Community meetup support is unverified."
+          },
+          {
+            "requirement": "Work with our growth marketer on digital promotion for events",
+            "support": 0.5,
+            "evidence": [
+              "Coordinated search and broader channel strategy with website, SEO, operations, and creative"
+            ],
+            "reason": "Collaborative digital campaign experience transfers to event promotion."
+          },
+          {
+            "requirement": "Work with our content marketing manager on event materials and booth content",
+            "support": 0.5,
+            "evidence": [
+              "Created Marketing materials for promotions"
+            ],
+            "reason": "Promotional material creation transfers; event and booth materials are unverified."
+          },
+          {
+            "requirement": "Look into new tools that could make events and follow-up run better, and help us set them up",
+            "support": 0.5,
+            "evidence": [
+              "Installed Go High Level and trained employees on how to use it correctly."
+            ],
+            "reason": "CRM implementation transfers to follow-up tools; specialist event tools are unverified."
+          }
+        ],
+        "required": [
+          {
+            "requirement": "Events you've run that created pipeline, and numbers you can share from them",
+            "support": 0,
+            "evidence": [],
+            "reason": "Quantified campaign results do not establish event-generated pipeline."
+          },
+          {
+            "requirement": "You like working closely with sales and keeping both teams on the same plan",
+            "support": 1,
+            "evidence": [
+              "coordinating execution and reporting across marketing, sales, operations, finance, IT, and product teams"
+            ],
+            "reason": "Direct evidence of coordinated marketing and sales execution."
+          },
+          {
+            "requirement": "You keep track of vendor deadlines, shipping dates, and registration cutoffs without anyone reminding you",
+            "support": 0.5,
+            "evidence": [
+              "Oversaw project management in an ever-changing environment"
+            ],
+            "reason": "Project oversight transfers partially; event deadlines and registration management are unverified."
+          },
+          {
+            "requirement": "If we ask you to look into a new tool or help on a campaign outside events, you'll jump into it",
+            "support": 1,
+            "evidence": [
+              "Uses AI to build on foundational expertise, expand output, and accelerate content production, website and application development, analysis, and marketing workflows."
+            ],
+            "reason": "Demonstrates adoption of new tools across marketing and technical work."
+          },
+          {
+            "requirement": "Clear, friendly communication with sales, partners, and vendors",
+            "support": 0.5,
+            "evidence": [
+              "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+            ],
+            "reason": "Stakeholder communication is demonstrated; partner and vendor communication is less explicit."
+          },
+          {
+            "requirement": "Based in the US and able to travel regularly for key events",
+            "support": 0.5,
+            "evidence": [
+              "American Fork, UT"
+            ],
+            "reason": "US location is documented; regular travel availability is unverified."
+          }
+        ],
+        "seniority": [
+          {
+            "requirement": "3-4+ years in field marketing, events, or marketing programs at a B2B SaaS company",
+            "support": 0.5,
+            "evidence": [
+              "Digital marketing and marketing technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce, professional services"
+            ],
+            "reason": "Marketing tenure and leadership transfer; qualifying B2B SaaS program tenure is unverified."
+          }
+        ],
+        "industry": [],
+        "preferred": [
+          {
+            "requirement": "Experience marketing to developers, DevOps, platform engineering, or security teams",
+            "support": 0,
+            "evidence": [],
+            "reason": "Software development does not establish marketing experience with these specialist audiences."
+          },
+          {
+            "requirement": "Existing relationships with organizers of developer and security conferences",
+            "support": 0,
+            "evidence": [],
+            "reason": "Relevant conference-organizer relationships are unverified."
+          },
+          {
+            "requirement": "Experience planning custom booths at large conferences",
+            "support": 0,
+            "evidence": [],
+            "reason": "Custom booth planning at large conferences is unverified."
+          },
+          {
+            "requirement": "Familiarity with open-source communities or developer meetups",
+            "support": 0,
+            "evidence": [],
+            "reason": "Development projects do not establish open-source community or developer meetup familiarity."
+          },
+          {
+            "requirement": "Hands-on experience with webinar platforms",
+            "support": 0,
+            "evidence": [],
+            "reason": "Hands-on use of webinar platforms is unverified."
+          }
+        ]
+      },
+      "score": 41.11,
+      "accepted": false,
+      "status": "reviewed",
+      "failed_rules": [
+        "Score below 60",
+        "responsibilities alignment below 50%"
+      ],
+      "category_percentages": {
+        "responsibilities": 30.0,
+        "required": 58.33,
+        "seniority": 50.0,
+        "industry": null,
+        "preferred": 0.0
+      },
+      "policy": "master-evidence-v2",
+      "thresholds": {
+        "minimum_score": 60,
+        "minimum_responsibilities_match": 50,
+        "minimum_required_skills_match": 50
+      },
+      "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+      "job": {
+        "id": "job",
+        "title": "Field Marketing Manager",
+        "company": "infisical",
+        "url": "https://jobicy.com/jobs/155570-field-marketing-manager"
+      },
+      "description_sha256": "b346a924c87f703f48eccb298917686976d59daa6e89ed80d08ed4d25c892e5a",
+      "runner": {
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "verified": true,
+        "session_id": "01a174f6-4d6a-7d41-9f00-cfca7f3135d1",
+        "verified_at": "2026-10-25T21:28:14.615129+00:00"
+      }
+    }
+  },
+  {
+    "id": 2851,
+    "deferred": "Availability temporary_failure: HTTP 401"
+  },
+  {
+    "id": 2856,
+    "deferred": "Eligibility exclusion: starting annual base salary above $120,000"
+  },
+  {
+    "id": 2857,
+    "deferred": "Eligibility exclusion: starting annual base salary above $120,000"
+  },
+  {
+    "id": 2876,
+    "deferred": "Eligibility exclusion: starting annual base salary above $120,000"
+  },
+  {
+    "id": 2877,
+    "deferred": "Eligibility exclusion: starting annual base salary above $120,000"
+  },
+  {
+    "id": 2878,
+    "deferred": "Eligibility exclusion: starting annual base salary above $120,000"
+  },
+  {
+    "id": 2879,
+    "deferred": "Eligibility exclusion: starting annual base salary above $120,000"
+  },
+  {
+    "id": 2880,
+    "deferred": "Eligibility exclusion: starting annual base salary above $120,000"
+  },
+  {
+    "id": 2881,
+    "deferred": "Eligibility exclusion: starting annual base salary above $120,000"
+  },
+  {
+    "id": 2882,
+    "deferred": "Eligibility exclusion: starting annual base salary above $120,000"
+  },
+  {
+    "id": 2883,
+    "deferred": "No verified full archive; leave retrieval to main queue"
+  }
+]

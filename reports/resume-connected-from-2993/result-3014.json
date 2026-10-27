@@ -1,0 +1,53 @@
+{
+  "id": 3014,
+  "company": "Jobgether",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/18rJ3Pp79aPkItDUpjYnnCguLo-iJ_059/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Senior-Agentic-Performance-Marketing-Manager+00466.docx",
+  "started_at": "2026-10-26T15:15:47.461299+00:00",
+  "completed_at": "2026-10-26T15:17:24.473423+00:00",
+  "elapsed_seconds": 97.012141,
+  "generation_seconds": 20.74138269998366,
+  "delivery_seconds": 6.818039699981455,
+  "tracker_seconds": 23.446475700009614,
+  "readback": {
+    "Scout ID": 3014,
+    "Company": "Jobgether",
+    "Job Title": "Senior Agentic Performance Marketing Manager",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/18rJ3Pp79aPkItDUpjYnnCguLo-iJ_059/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1266",
+  "hyperlink_target": "https://docs.google.com/document/d/18rJ3Pp79aPkItDUpjYnnCguLo-iJ_059/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 97.0122,
+    "active_seconds": 55.9635,
+    "review_wait_seconds": 41.0487,
+    "phases_seconds": {
+      "source_loading": 0.0323,
+      "tailoring": 1.0797,
+      "document_creation": 1.7281,
+      "word_pdf_validation": 5.7243,
+      "fitting_retries": 0.0527,
+      "factual_review": 0.0,
+      "review_wait": 41.0487,
+      "tracker_sync": 23.4457,
+      "drive_delivery": 6.8099
+    },
+    "counts": {
+      "source_loading": 65,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1
+    }
+  }
+}

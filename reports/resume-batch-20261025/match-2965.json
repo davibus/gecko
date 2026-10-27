@@ -1,0 +1,344 @@
+{
+  "id": "job",
+  "sufficient": true,
+  "reason": "Complete duties and qualifications support review. Programmatic, TikTok Shop, Chewy, MMM, influencer work and travel availability have gaps; missing evidence means unverified, not absent.",
+  "blockers": [],
+  "categories": {
+    "responsibilities": [
+      {
+        "requirement": "Develop and own the bottom-funnel performance marketing strategy that balances immediate conversions/CAC with LTV.",
+        "support": 1,
+        "evidence": [
+          "Evaluates ROI, ROAS, CPA, revenue, customer lifetime value, and channel performance using attribution analysis"
+        ],
+        "reason": "Acquisition economics and lifetime-value analysis directly support this strategy."
+      },
+      {
+        "requirement": "Paid Search (Google, Bing), Paid Social (Meta, TikTok, Pinterest), Display, Programmatic, and emerging performance channels",
+        "support": 0.5,
+        "evidence": [
+          "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget"
+        ],
+        "reason": "Core search and social execution is direct; programmatic and Pinterest execution are unverified."
+      },
+      {
+        "requirement": "with a focus on driving bottom-funnel conversion across DTC, TikTok Shop, and offsite channels.",
+        "support": 0.5,
+        "evidence": [
+          "Worked extensively with Amazon Vendor and Seller Central using both FBA and FBM"
+        ],
+        "reason": "DTC and marketplace capabilities transfer; TikTok Shop execution is unverified."
+      },
+      {
+        "requirement": "lead our brand awareness initiatives in close partnership with the broader Marketing and Channel teams",
+        "support": 0.5,
+        "evidence": [
+          "Assessed click-to-call systems and used iSpot to analyze TV/OTT reach campaigns"
+        ],
+        "reason": "Reach-campaign analysis supports awareness work; ownership of awareness programs is less explicit."
+      },
+      {
+        "requirement": "drive growth across the entire ecosystem including DTC, TikTok, Chewy, Amazon, and Retail.",
+        "support": 0.5,
+        "evidence": [
+          "Modernized the company's digital environment and launched multiple B2C channels while protecting relationships with more than 650 B2B retail partners"
+        ],
+        "reason": "Cross-channel commerce and retail coordination transfer; Chewy experience is unverified."
+      },
+      {
+        "requirement": "Own day-to-day campaign management and hands-on execution across all performance channels, ensuring continuous optimization and efficiency.",
+        "support": 0.5,
+        "evidence": [
+          "Leads account activation, campaign builds and structures, keyword and negative-keyword strategy, ad copy, audience segmentation, bid testing, budget pacing"
+        ],
+        "reason": "Hands-on execution is established; coverage of every requested channel remains partial."
+      },
+      {
+        "requirement": "Partner with the Creative team to brief, test, and optimize ad assets that drive conversion and engagement.",
+        "support": 1,
+        "evidence": [
+          "Worked closely with the Web Dev team and the content team to create custom landing pages and custom content for PMAX campaigns"
+        ],
+        "reason": "Direct collaboration on campaign creative and landing-page assets supports this work."
+      },
+      {
+        "requirement": "Collaborate with Brand, Digital, and Ecommerce teams to align campaigns with product launches, promotions, and seasonal initiatives.",
+        "support": 0.5,
+        "evidence": [
+          "Implemented human-assisted campaign automation with JavaScript based on promotions and \nbusiness goals"
+        ],
+        "reason": "Promotion-aligned execution transfers; seasonal launch coordination is less explicit."
+      },
+      {
+        "requirement": "Establish and monitor performance KPIs (CAC, ROAS, CPA, LTV, MER, etc.) to evaluate success and guide spend decisions.",
+        "support": 1,
+        "evidence": [
+          "Evaluates ROI, ROAS, CPA, revenue, customer lifetime value, and channel performance using attribution analysis"
+        ],
+        "reason": "Demonstrates equivalent acquisition and revenue economics for investment decisions."
+      },
+      {
+        "requirement": "Run continuous A/B tests on targeting, landing pages, and creative to improve conversion efficiency and customer quality.",
+        "support": 1,
+        "evidence": [
+          "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing"
+        ],
+        "reason": "Direct evidence of testing across audiences, ads, landing pages and conversion optimization."
+      },
+      {
+        "requirement": "Build dashboards and reporting frameworks in partnership with the Analytics team for real-time visibility into performance and how digital spend influences both online and offline sales.",
+        "support": 0.5,
+        "evidence": [
+          "Built automated reporting across 10+ marketing channels using Python, Databricks, SQL, Excel, and Funnel.io"
+        ],
+        "reason": "Reporting infrastructure is direct; real-time offline sales attribution is unverified."
+      },
+      {
+        "requirement": "Identify insights and trends in consumer behavior to inform targeting and creative strategies.",
+        "support": 1,
+        "evidence": [
+          "Conducted keyword, audience, and competitive research to develop targeting, messaging, campaign, and growth recommendations"
+        ],
+        "reason": "Direct research-to-targeting and messaging experience."
+      },
+      {
+        "requirement": "Collaborate with CRM and Lifecycle Marketing to ensure alignment between paid acquisition and retention campaigns.",
+        "support": 0.5,
+        "evidence": [
+          "Built Looker Studio KPI reporting for multiple departments, improving transparency for inventory planning"
+        ],
+        "reason": "Cross-department reporting transfers; explicit acquisition-to-lifecycle coordination is unverified."
+      },
+      {
+        "requirement": "Manage day-to-day relationships with performance agency partners and platform representatives to ensure alignment on priorities, pacing, and optimization.",
+        "support": 0.5,
+        "evidence": [
+          "Helped facilitate the transition of four to five agency relationships in-house, evaluating agency cost structures, prioritization, automation approaches"
+        ],
+        "reason": "Agency coordination is demonstrated; ongoing platform-representative management is unverified."
+      },
+      {
+        "requirement": "Growth in new customer acquisition.",
+        "support": 1,
+        "evidence": [
+          "Managed all paid search campaigns, outreach, lead generation, and customer acquisition for a large E-Commerce company in the United States, Canada, and the UK"
+        ],
+        "reason": "Direct responsibility for acquisition and growth across international e-commerce markets."
+      },
+      {
+        "requirement": "Efficiency improvements in CAC and ROAS.",
+        "support": 1,
+        "evidence": [
+          "Increased monthly marketing volume from approximately $200,000 to $800,000 while improving ROAS from 1.5 to 3.5"
+        ],
+        "reason": "Demonstrates substantial acquisition efficiency improvement alongside growth."
+      },
+      {
+        "requirement": "Increases in LTV and retention rates.",
+        "support": 0.5,
+        "evidence": [
+          "Conducted customer lifetime value (LTV) analysis, affiliate commission analysis and discount negotiation, and AI-assisted promotion performance analysis using Namogoo"
+        ],
+        "reason": "LTV analysis is direct; achieved LTV and retention increases are unverified."
+      },
+      {
+        "requirement": "Successful testing and rollout of new paid media channels.",
+        "support": 0.5,
+        "evidence": [
+          "Managed 150+ campaigns across Google Ads, Microsoft Ads, Amazon, search, shopping, display, video, remarketing, mobile, social, local, and email"
+        ],
+        "reason": "Broad channel execution transfers; specific new-channel launch outcomes are unverified."
+      },
+      {
+        "requirement": "Contribution to overall revenue and margin goals.",
+        "support": 1,
+        "evidence": [
+          "Managed approximately $400,000 in media budget that generated more than $9 million in revenue, representing approximately 35% of total company revenue"
+        ],
+        "reason": "Revenue contribution and cost-benefit experience support commercial performance goals."
+      }
+    ],
+    "required": [
+      {
+        "requirement": "Strong analytical skills and proficiency with tools like Google Ads, Meta Ads Manager, Google Analytics, and Looker/Tableau.",
+        "support": 0.5,
+        "evidence": [
+          "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+        ],
+        "reason": "Analytics reporting is direct; one excerpt does not establish the full requested platform breadth."
+      },
+      {
+        "requirement": "Experience with data-driven decision making and advanced Excel or Google Sheets skills.",
+        "support": 1,
+        "evidence": [
+          "Used advanced Excel formulas and VS Code to create upload-ready XLSX files for Google Ads Editor"
+        ],
+        "reason": "Advanced spreadsheet formulas and operational application are directly demonstrated."
+      },
+      {
+        "requirement": "Ability to collaborate cross-functionally and communicate complex data clearly.",
+        "support": 1,
+        "evidence": [
+          "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings"
+        ],
+        "reason": "Direct evidence of cross-functional consultation and communicating analytical recommendations."
+      },
+      {
+        "requirement": "Familiarity with attribution modeling, marketing mix modeling (MMM), and incrementality testing.",
+        "support": 0.5,
+        "evidence": [
+          "Used regression models, prior-year/prior-period data, holdouts, geo-promotional tests, scale-up/down analysis, and budget reallocation scenarios"
+        ],
+        "reason": "Regression and incrementality work are relevant; formal MMM implementation is unverified."
+      },
+      {
+        "requirement": "Knowledge of SEO, email, affiliate, and influencer marketing as part of an integrated growth strategy.",
+        "support": 0.5,
+        "evidence": [
+          "budget allocation across website development, SEO, email campaigns, paid search, display, mobile, remarketing, YouTube, and social media platforms"
+        ],
+        "reason": "Integrated SEO and email strategy is direct; influencer work is unverified."
+      },
+      {
+        "requirement": "Comfort with A/B testing and conversion rate optimization (CRO) tools.",
+        "support": 1,
+        "evidence": [
+          "Created custom attribution models, advanced bid strategies, bid tests/experiments, A/B tests, and multivariate testing frameworks"
+        ],
+        "reason": "Demonstrated experimentation and CRO implementation establish the underlying capability."
+      },
+      {
+        "requirement": "Strategic thinker with a test-and-learn mindset.",
+        "support": 1,
+        "evidence": [
+          "Analyzed Google Ads audience performance to identify audiences and strategies to test and apply across other platforms"
+        ],
+        "reason": "Explicitly uses analysis to generate and transfer testable marketing strategies."
+      },
+      {
+        "requirement": "Highly analytical and results-oriented.",
+        "support": 1,
+        "evidence": [
+          "Increased monthly marketing volume from approximately $200,000 to $800,000 while improving ROAS from 1.5 to 3.5"
+        ],
+        "reason": "Measured growth and efficiency improvements demonstrate results orientation."
+      },
+      {
+        "requirement": "Excellent project management and communication skills.",
+        "support": 1,
+        "evidence": [
+          "Directed digital marketing and e-commerce for a large B2B distributor, coordinating execution and reporting across marketing, sales, operations, finance, IT, and product teams"
+        ],
+        "reason": "Demonstrates coordinated execution and reporting across multiple functions."
+      },
+      {
+        "requirement": "Ability to thrive in a fast-paced, entrepreneurial environment.",
+        "support": 1,
+        "evidence": [
+          "Conceived, designed, and built Gecko using AI-assisted development to bring job discovery, opportunity evaluation, tailored resume generation, and application tracking into one workflow."
+        ],
+        "reason": "Self-directed product creation and iterative delivery demonstrate entrepreneurial execution."
+      },
+      {
+        "requirement": "Passion for consumer brands and understanding of shopper behavior.",
+        "support": 0.5,
+        "evidence": [
+          "Designed event tracking around customer intent and shopping behavior, including search gaps, product interest, cart activity, and contact requests."
+        ],
+        "reason": "Shopper behavior understanding is direct; personal passion is not established."
+      },
+      {
+        "requirement": "Deep understanding of media, digital, programmatic, performance marketing or similar",
+        "support": 1,
+        "evidence": [
+          "Managed 150+ campaigns across Google Ads, Microsoft Ads, Amazon, search, shopping, display, video, remarketing, mobile, social, local, and email"
+        ],
+        "reason": "Extensive digital performance work meets the stated alternative domains."
+      },
+      {
+        "requirement": "Strong project management skills with the ability to work across multiple projects",
+        "support": 1,
+        "evidence": [
+          "Set up and managed more than 75 Google Ads/AdWords accounts with combined monthly spend of more than $476,000"
+        ],
+        "reason": "Managing a large concurrent client portfolio demonstrates multi-project execution."
+      },
+      {
+        "requirement": "Clearly Demonstrates positive can-do attitude + results outperformance.",
+        "support": 1,
+        "evidence": [
+          "Successfully achieved goals which were to get 4 times the volume (800k/month) at a 3.5 ROAS (return on ad spend)."
+        ],
+        "reason": "Documented ambitious growth outcomes demonstrate proactive, results-focused execution."
+      },
+      {
+        "requirement": "Local team members are required to work from our Orlando office 3 days/ week. Non-local team members will be required to travel ~15%",
+        "support": 0,
+        "evidence": [],
+        "reason": "Orlando attendance or willingness to travel approximately 15% is not documented."
+      }
+    ],
+    "seniority": [
+      {
+        "requirement": "4–7 years of experience in performance marketing or growth marketing",
+        "support": 1,
+        "evidence": [
+          "Director of E-Commerce/Marketing – LifeSpan Fitness - Salt Lake City, UT \t\tJune 2013 -Aug 2016"
+        ],
+        "reason": "Dated marketing roles from 2013 onward establish experience beyond the requested minimum."
+      },
+      {
+        "requirement": "Proven track record managing paid search and paid social campaigns at scale ($500k+ monthly budgets).",
+        "support": 0.5,
+        "evidence": [
+          "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget"
+        ],
+        "reason": "Search and social at $400K are direct; $500K+ combined search/social scope is unverified."
+      }
+    ],
+    "industry": [],
+    "preferred": [
+      {
+        "requirement": "ideally within a CPG, eCommerce, or DTC brand.",
+        "support": 1,
+        "evidence": [
+          "Managed all aspects of e-commerce and marketing for a large B2B distributor"
+        ],
+        "reason": "Direct e-commerce leadership meets one of the explicitly preferred sector alternatives."
+      }
+    ]
+  },
+  "score": 76.3,
+  "accepted": true,
+  "status": "reviewed",
+  "failed_rules": [],
+  "category_percentages": {
+    "responsibilities": 71.05,
+    "required": 80.0,
+    "seniority": 75.0,
+    "industry": null,
+    "preferred": 100.0
+  },
+  "policy": "master-evidence-v2",
+  "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+  "job": {
+    "id": "job",
+    "title": "Performance Marketing Manager, Search & Social",
+    "company": "H&H Group",
+    "url": "https://hhglobalnacareers.pinpointhq.com/en/postings/8f41dca0-073f-44c9-ab76-0f0ba4ca0c1b"
+  },
+  "description_sha256": "58dee8ae50bbc35201c358f453bd87a1179b79150fe1c175242d028d8bd09aa9",
+  "runner": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a17389-917e-7832-ba34-10a8fa56a6b6",
+    "verified_at": "2026-10-25T14:50:44.570653+00:00"
+  },
+  "thresholds": {
+    "minimum_score": 60,
+    "minimum_responsibilities_match": 50,
+    "minimum_required_skills_match": 50
+  },
+  "cached": true
+}

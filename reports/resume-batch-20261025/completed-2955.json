@@ -1,0 +1,58 @@
+{
+  "id": 2955,
+  "company": "Chowbus",
+  "title": "Bilingual Digital Marketing Manager(Mandarin, English)",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Chowbus+Bilingual-Digital-Marketing-Manager(Mandarin,-English)+00435.docx",
+  "listing": "C:\\gecko_main\\input\\job-descriptions\\Chowbus+7978612003.md",
+  "images": [
+    "C:\\gecko_main\\scratch\\Chowbus+7978612003\\final-page-1.png",
+    "C:\\gecko_main\\scratch\\Chowbus+7978612003\\final-page-2.png"
+  ],
+  "sha256": "bafd17d58c2c1f7bace568f0fd4ae9825e3bcf830d0f9cdcac83d52453908d79",
+  "qa": {
+    "status": "pass",
+    "word_pages": 2,
+    "pdf_pages": 2,
+    "issues": [],
+    "remaining_weaknesses": [
+      "Preferred Qualifications",
+      "support thousands of restaurants of every size across the U.S.",
+      "SEO & Organic Growth",
+      "Own Chowbus's SEO roadmap, including keyword strategy, technical SEO audits, site structure, and page speed/Core Web Vitals improvements.",
+      "Partner with the content team to brief, optimize, and publish SEO-driven blog posts, landing pages, and city- or cuisine-specific pages.",
+      "Launch and maintain landing pages for campaigns, product launches, and events, working with design and demand generation partners.",
+      "Run A/B tests on key pages (homepage, demo request forms, pricing) to improve conversion rates.",
+      "Maintain site performance, uptime, and technical hygiene, partnering with engineering as needed.",
+      "Define and track the digital marketing funnel from first touch to booked demo, in partnership with Sales and RevOps.",
+      "Write and test ad copy, landing pages, and offers to improve click-through and conversion rates.",
+      "Excellent written and verbal communication skills in English.",
+      "Professional or fluent proficiency in Mandarin Chinese. Most of our team and many of our restaurant partners communicate in Mandarin, so this skill helps you collaborate effectively and understand our customers.",
+      "Bachelor's degree in Marketing, Communications, or a related field, or equivalent work experience.",
+      "Experience at a high-growth startup or scale-up.",
+      "Familiarity with HubSpot, Salesforce, or a similar CRM/marketing automation platform.",
+      "Basic HTML/CSS knowledge for CMS edits.",
+      "Competitive compensation package",
+      "Medical, dental, and vision insurance",
+      "100% employer-paid Short-Term Disability (STD)",
+      "100% employer-paid Life Insurance",
+      "100% employer-paid AD&D Insurance",
+      "Paid Parental Leave",
+      "Flexible Paid Time Off (PTO)",
+      "Employee Assistance Program (EAP)"
+    ],
+    "native_validation": "C:\\gecko_main\\scratch\\Chowbus+7978612003\\validation-status.json",
+    "word_output": "Word validation mode: Direct interactive session\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\gecko_main\\scratch\\Chowbus+7978612003\\validation-status.json",
+    "page_two_bottom_gap_pt": 13.78,
+    "page_two_text_boundary_pt": 757.45,
+    "density_issue": "",
+    "content_exhaustion_reason": ""
+  },
+  "readback": {
+    "Scout ID": 2955,
+    "Company": "Chowbus",
+    "Job Title": "Bilingual Digital Marketing Manager(Mandarin, English)",
+    "Resume Created": "X",
+    "Resume Link": "file:///C:/gecko_main/output/resumes/Dave-Call%2BChowbus%2BBilingual-Digital-Marketing-Manager%28Mandarin%2C-English%29%2B00435.docx",
+    "Resume Created Date": "2026-10-25"
+  }
+}

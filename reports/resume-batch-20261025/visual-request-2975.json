@@ -1,0 +1,52 @@
+{
+  "id": 2975,
+  "company": "Integrated Specialty Coverages, LLC",
+  "title": "Senior Channel Specialist - Paid Search",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Integrated-Specialty-Coverages,-LLC+Senior-Channel-Specialist-Paid-Search+00433.docx",
+  "listing": "C:\\gecko_main\\input\\job-descriptions\\Integrated-Specialty-Coverages,-LLC+4731001005.md",
+  "images": [
+    "C:\\gecko_main\\scratch\\Integrated-Specialty-Coverages,-LLC+4731001005\\final-page-1.png",
+    "C:\\gecko_main\\scratch\\Integrated-Specialty-Coverages,-LLC+4731001005\\final-page-2.png"
+  ],
+  "sha256": "2102b283b68477fdfa0b77cbd5e6babe7613e9e6830080375bb8535230a5672a",
+  "qa": {
+    "status": "pass",
+    "word_pages": 2,
+    "pdf_pages": 2,
+    "issues": [],
+    "remaining_weaknesses": [
+      "Minimum Qualifications",
+      "create an Insurtech powerhouse.",
+      "experience, data, and AI/ML to",
+      "optimize the way we engage with our customers and partners.",
+      "Strong attention to detail and organizational skills; able to manage high task volume across multiple brands without sacrificing execution accuracy or SLA adherence.",
+      "Collaborative team player who communicates proactively, takes direction well, and brings initiative in surfacing performance issues before they compound.",
+      "minimum and maximum target for new hire salaries for the position across all US locations and could be higher or lower based on a multitude of factors, including job-related skills,",
+      "experience, and relevant education or training.",
+      "Employee Ownership Program - every eligible employee shares in the financial rewards that grow when the company grows",
+      "Professional development opportunities",
+      "Owner Referral Program",
+      "Work from home reimbursement for remote/hybrid roles",
+      "Canary emergency financial assistance program",
+      "Comprehensive medical, dental, vision",
+      "Life/AD&D Insurance",
+      "Confidential, Employee Assistance Program",
+      "Health Savings Account, includes company contribution",
+      "Short-term disability",
+      "Voluntary benefits - supplemental accident, critical illness, hospital insurance",
+      "Employee discounts",
+      "401(k) Plan with company match contribution",
+      "Addition Wealth Financial Wellness Program",
+      "Various Time Off Programs",
+      "11 company paid holidays",
+      "**Must be legally authorized to work in the United States.**",
+      "**ISC participates in the Federal E-Verify program**"
+    ],
+    "native_validation": "C:\\gecko_main\\scratch\\Integrated-Specialty-Coverages,-LLC+4731001005\\validation-status.json",
+    "word_output": "Word validation mode: Direct interactive session\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\gecko_main\\scratch\\Integrated-Specialty-Coverages,-LLC+4731001005\\validation-status.json",
+    "page_two_bottom_gap_pt": 14.5,
+    "page_two_text_boundary_pt": 757.45,
+    "density_issue": "",
+    "content_exhaustion_reason": ""
+  }
+}

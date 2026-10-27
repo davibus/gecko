@@ -1,0 +1,231 @@
+{
+  "job": {
+    "url": "https://jobs.ashbyhq.com/onhires/43e68865-90e9-43b8-82e7-89fba30aa866",
+    "company": "OnHires",
+    "title": "Partner Success Manager — Growth & Performance Marketing",
+    "location": "Texas, USA",
+    "arrangement": "remote",
+    "salary": "",
+    "posted": "2026-08-21",
+    "chars": 5633
+  },
+  "match": {
+    "id": "job",
+    "sufficient": true,
+    "reason": "Complete duties and qualifications support assessment. Strong marketing, analytics and client strategy evidence; dedicated SaaS post-sale ownership, retention outcomes and travel availability remain unverified.",
+    "blockers": [],
+    "categories": {
+      "responsibilities": [
+        {
+          "requirement": "Own the post-sale partner journey for approximately 2–6 high-touch accounts.",
+          "support": 0.5,
+          "evidence": [
+            "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation"
+          ],
+          "reason": "Client advisory work transfers; full post-sale journey ownership is unverified."
+        },
+        {
+          "requirement": "Become a trusted strategic partner to Marketing and Growth Leads, founders, and other senior stakeholders.",
+          "support": 1,
+          "evidence": [
+            "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+          ],
+          "reason": "Demonstrates strategic partnership with clients and executives."
+        },
+        {
+          "requirement": "Listen carefully to partners, understand their business model and challenges, and turn their needs into clear goals, priorities, and action plans.",
+          "support": 1,
+          "evidence": [
+            "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation"
+          ],
+          "reason": "Direct client consultation connects business needs with actionable marketing priorities."
+        },
+        {
+          "requirement": "Establish success goals, milestones, and ways to measure progress for each partnership.",
+          "support": 0.5,
+          "evidence": [
+            "Created business goals, yearly projections, and KPI's with senior management"
+          ],
+          "reason": "Goal and KPI design transfers; partnership-specific milestones are unverified."
+        },
+        {
+          "requirement": "Lead strategic and performance conversations using marketing, customer, and business data.",
+          "support": 1,
+          "evidence": [
+            "Translates findings into recommendations for channel allocation, investment, account growth, and operational improvement."
+          ],
+          "reason": "Demonstrates converting performance analysis into strategic business recommendations."
+        },
+        {
+          "requirement": "Identify problems, risks, and blockers early and take ownership of driving them toward resolution.",
+          "support": 0.5,
+          "evidence": [
+            "Builds and develops teams, documents lessons learned, resolves issues, respectfully challenges assumptions, takes ownership of setbacks"
+          ],
+          "reason": "Shows issue ownership; proactive identification of partner risks is less explicit."
+        },
+        {
+          "requirement": "Translate partner priorities into clear direction for paid media, creative, CRM/email, analytics, campaign management, and production teams.",
+          "support": 0.5,
+          "evidence": [
+            "Consulted on SEO best practices and on-page optimization and coordinated marketing priorities with web, operations, creative, and other stakeholders"
+          ],
+          "reason": "Cross-functional marketing direction transfers; all listed delivery teams are not established."
+        },
+        {
+          "requirement": "Coordinate cross-functional delivery without relying on formal authority.",
+          "support": 0.5,
+          "evidence": [
+            "Worked with all heads of department (IT, Operations, Finance, Product Dev, HR, Sales, etc)"
+          ],
+          "reason": "Cross-functional coordination is established; influence without authority is unverified."
+        },
+        {
+          "requirement": "Keep partners and internal teams aligned through clear communication, follow-up, and accountability.",
+          "support": 0.5,
+          "evidence": [
+            "turns recommendations into coordinated execution."
+          ],
+          "reason": "Coordinated execution transfers; partner follow-up and accountability practices are unverified."
+        },
+        {
+          "requirement": "Help partners use a proprietary growth intelligence platform that connects marketing performance with financial goals.",
+          "support": 0.5,
+          "evidence": [
+            "Installed Go High Level and trained employees on how to use it correctly."
+          ],
+          "reason": "Platform training transfers to employer onboarding; external partner enablement is unverified."
+        },
+        {
+          "requirement": "Identify opportunities to improve adoption, partner outcomes, retention, and long-term value.",
+          "support": 0.5,
+          "evidence": [
+            "Managed 75+ Google Ads accounts with more than $476,000 in combined monthly spend while advising clients on channel allocation, campaign structure, and growth priorities"
+          ],
+          "reason": "Client growth advice supports outcomes; adoption and partner retention results are unverified."
+        },
+        {
+          "requirement": "Work effectively in a fast-moving environment where priorities may change and not every problem has an established playbook.",
+          "support": 1,
+          "evidence": [
+            "Oversaw project management in an ever-changing environment"
+          ],
+          "reason": "Demonstrates delivery amid changing priorities and conditions."
+        }
+      ],
+      "required": [
+        {
+          "requirement": "Strong experience in Customer Success, Client Success, Account Management, Partner Success, or strategic client services.",
+          "support": 1,
+          "evidence": [
+            "Set up and managed more than 75 Google Ads/AdWords accounts with combined monthly spend of more than $476,000, supporting lead generation and multichannel client programs"
+          ],
+          "reason": "Substantial agency account management demonstrates strategic client services."
+        },
+        {
+          "requirement": "Experience working in a MarTech, AdTech, marketing analytics, marketing automation, attribution, CRM, lifecycle marketing, paid media technology, or related SaaS company.",
+          "support": 0.5,
+          "evidence": [
+            "Created a customized reporting system using Python, Databricks, SQL, blended Excel data, and Funnel.io"
+          ],
+          "reason": "Relevant marketing analytics work is established; employment at such a vendor is unverified."
+        },
+        {
+          "requirement": "A strong working understanding of digital and performance marketing, including acquisition channels, funnels, paid media, CRM/email, and analytics.",
+          "support": 0.5,
+          "evidence": [
+            "Managed display, mobile, re-marketing, search, video, email, shopping, and social, local, and \nCRE campaigns"
+          ],
+          "reason": "Broad channel expertise is direct; integrated CRM and funnel breadth is partially evidenced."
+        },
+        {
+          "requirement": "Ability to discuss CAC, ROAS, LTV, conversion, retention, attribution, and marketing efficiency and connect these metrics to business goals.",
+          "support": 0.5,
+          "evidence": [
+            "Evaluates ROI, ROAS, CPA, revenue, customer lifetime value, and channel performance using attribution analysis"
+          ],
+          "reason": "Strong financial marketing analysis; retention and CAC discussion are less explicit."
+        },
+        {
+          "requirement": "Strong communication, listening, analytical, organizational, and stakeholder-management skills.",
+          "support": 1,
+          "evidence": [
+            "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+          ],
+          "reason": "Client consultation and coordinated analytical strategy demonstrate these capabilities."
+        },
+        {
+          "requirement": "Travel: Approximately 5–10%",
+          "support": 0,
+          "evidence": [],
+          "reason": "Travel availability is unverified."
+        },
+        {
+          "requirement": "Location: Remote — United States or Canada",
+          "support": 1,
+          "evidence": [
+            "American Fork, UT"
+          ],
+          "reason": "Listed location is within the United States."
+        }
+      ],
+      "seniority": [
+        {
+          "requirement": "Approximately 5–8 years of relevant professional experience.",
+          "support": 1,
+          "evidence": [
+            "Digital marketing and marketing technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce, professional services"
+          ],
+          "reason": "Documented relevant experience exceeds the approximate range."
+        },
+        {
+          "requirement": "Exposure to marketing budgets of $100,000+ per month.",
+          "support": 1,
+          "evidence": [
+            "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget"
+          ],
+          "reason": "Documented monthly budget exceeds the stated threshold."
+        }
+      ],
+      "industry": [],
+      "preferred": [
+        {
+          "requirement": "Preferred time zones: Eastern or Central",
+          "support": 0,
+          "evidence": [],
+          "reason": "Listed Utah location is outside the preferred time zones."
+        }
+      ]
+    },
+    "score": 67.72,
+    "accepted": false,
+    "status": "reviewed",
+    "failed_rules": [
+      "responsibilities alignment below 70%",
+      "required alignment below 70%"
+    ],
+    "category_percentages": {
+      "responsibilities": 66.67,
+      "required": 64.29,
+      "seniority": 100.0,
+      "industry": null,
+      "preferred": 0.0
+    },
+    "policy": "master-evidence-v2",
+    "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "job": {
+      "id": "job",
+      "title": "Partner Success Manager — Growth & Performance Marketing",
+      "company": "OnHires",
+      "url": "https://jobs.ashbyhq.com/onhires/43e68865-90e9-43b8-82e7-89fba30aa866"
+    },
+    "description_sha256": "4aa0f0db08fc8206ce5594659d6a41e74dde57034fc59025e461d2aa0c8818b4",
+    "runner": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "verified": true,
+      "session_id": "01a17363-6ccb-7b20-93f0-3d9e470c3331",
+      "verified_at": "2026-10-25T14:08:29.031376+00:00"
+    }
+  }
+}

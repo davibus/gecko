@@ -127,6 +127,7 @@ def _discover_listings(
     link_validator: DailyLinkValidator | None = None,
     preferences: dict | None = None,
     rejected_jobs: RejectedJobsIndex | None = None,
+    on_saved=None,
 ) -> SearchSummary:
     """Normalize, role-filter, deduplicate, and save listings."""
     summary = SearchSummary()
@@ -240,6 +241,22 @@ def _discover_listings(
             record(raw,'previously known' if was_existing else 'duplicate within run',
                    matched_id=duplicate.id,cross_source=raw.source.casefold() not in duplicate_sources)
             continue
+        # Adzuna's search response is a summary, not the full job description.
+        # Retrieve the exact posting before spending a match review on it.
+        if raw.source.casefold() == 'adzuna' and require_content:
+            outcome = retrieve_full_description(job, prefer_fuller=True)
+            if (outcome.status != 'succeeded' or not description_is_sufficient(outcome.description)
+                    or len(outcome.description) <= len(job.description)):
+                summary.missing_content_excluded += 1
+                record(raw, 'Full employer description unavailable; aggregator summary not scored')
+                continue
+            job.original_description = job.description
+            job.original_url = job.url
+            job.enriched_description = outcome.description
+            job.enriched_source_url = outcome.source_url
+            job.enrichment_status = 'succeeded'
+            job.enriched_at = datetime.now(timezone.utc).isoformat(timespec='seconds')
+            job.description = outcome.description
         from resume_match import check as check_resume_match, explanation as match_explanation
         match = check_resume_match(job)
         if not match['accepted']:
@@ -249,6 +266,8 @@ def _discover_listings(
             continue
         job_id = store.save(job)
         job.id = job_id
+        if job.enrichment_status == 'succeeded':
+            store.save_enrichment(job)
         known.append(job)
         summary.added += 1
         summary.new_job_ids.append(job_id)
@@ -264,6 +283,8 @@ def _discover_listings(
             job = resolve_and_store(job, store)
         if not getattr(link_validator,'require_verified',False) and (job.source.lower() == "adzuna" or not description_is_sufficient(job.description)):
             _capture_full_description(job, store)
+        if on_saved is not None:
+            on_saved(job_id)
     return summary
 
 
@@ -315,12 +336,14 @@ def discover_listings(
     link_validator: DailyLinkValidator | None = None,
     preferences: dict | None = None,
     rejected_jobs: RejectedJobsIndex | None = None,
+    on_saved=None,
 ) -> SearchSummary:
     """Normalize and persist already-acquired listings on the datastore thread."""
     return _discover_listings(
         listings, store, require_content=require_content,
         preserve_existing=preserve_existing, preexisting_ids=preexisting_ids,
         link_validator=link_validator, preferences=preferences, rejected_jobs=rejected_jobs,
+        on_saved=on_saved,
     )
 
 

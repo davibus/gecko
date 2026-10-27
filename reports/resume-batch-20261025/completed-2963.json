@@ -1,0 +1,63 @@
+{
+  "id": 2963,
+  "company": "HostPapa, Inc.",
+  "title": "Senior Paid Media Manager",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+HostPapa,-Inc+Senior-Paid-Media-Manager+00421.docx",
+  "listing": "C:\\gecko_main\\input\\job-descriptions\\HostPapa,-Inc+('url',-'hostpapa.applytojob.com',-'applyRPSLQTP5tzSenior-Paid-Media-Manager',-'').md",
+  "images": [
+    "C:\\gecko_main\\scratch\\HostPapa,-Inc+('url',-'hostpapa.applytojob.com',-'applyRPSLQTP5tzSenior-Paid-Media-Manager',-'')\\final-page-1.png",
+    "C:\\gecko_main\\scratch\\HostPapa,-Inc+('url',-'hostpapa.applytojob.com',-'applyRPSLQTP5tzSenior-Paid-Media-Manager',-'')\\final-page-2.png"
+  ],
+  "sha256": "f1900a74c92a98531075905c4a8170cb4104b66d2b6697a4c408d0eea4719698",
+  "qa": {
+    "status": "pass",
+    "word_pages": 2,
+    "pdf_pages": 2,
+    "issues": [],
+    "remaining_weaknesses": [
+      "own market, and together we're helping businesses",
+      "build, operate, and grow in the AI era.",
+      "own paid media strategy and hands-on execution across the managed.com portfolio of brands.",
+      "Plan, allocate, and optimize annual six-figure advertising budgets across paid channels to meet business goals and improve return",
+      "Develop and refine audience targeting using first-party and third-party data",
+      "Create and refine ad copy and creative, and run A/B tests across advertisements, landing pages, and campaign concepts",
+      "Develop and maintain controls that reduce click-fraud risk",
+      "Manage external agencies and vendors and share paid media best practices with the broader team",
+      "Support other tasks or projects as assigned to meet team and business needs",
+      "5+ years of experience managing paid media campaigns, including at least 2 years in a senior role",
+      "Demonstrated hands-on experience managing paid media platforms and personally managing annual advertising budgets of six figures or more; strategy-only or agency-oversight experience is not sufficient",
+      "Ability to design and interpret A/B tests involving ad copy, creative, and landing pages",
+      "Strong skill in writing and refining effective ad copy and creative that aligns with brand messaging",
+      "A record of working independently, following through from idea to results, identifying performance or tracking issues proactively, and keeping remote partners aligned",
+      "Availability to work with US Eastern Time or similar hours and provide sufficient overlap for collaboration with colleagues in North America and Europe when needed",
+      "Experience with web hosting, SaaS, or similar B2B technology products is a plus.",
+      "Communication skills and fluency in written and spoken English, with other languages considered an asset",
+      "Remote-first work, with team members across many countries",
+      "Competitive pay, benchmarked against the markets we hire in",
+      "Room to grow, with real ownership of your work and support for professional development",
+      "Flexibility in how and when you work, within the core hours your team needs",
+      "Access to the AI tools you need to do your work, and the room to experiment with them",
+      "own products and customer",
+      "create more connected experiences and help businesses",
+      "build, operate, and grow in the AI era.",
+      "work with you to meet your needs.",
+      "experience managing and optimizing campaigns _\\*_",
+      "analyze paid media performance, automate workflows, or",
+      "optimize campaigns?"
+    ],
+    "native_validation": "C:\\gecko_main\\scratch\\HostPapa,-Inc+('url',-'hostpapa.applytojob.com',-'applyRPSLQTP5tzSenior-Paid-Media-Manager',-'')\\validation-status.json",
+    "word_output": "Word validation mode: Direct interactive session\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\gecko_main\\scratch\\HostPapa,-Inc+('url',-'hostpapa.applytojob.com',-'applyRPSLQTP5tzSenior-Paid-Media-Manager',-'')\\validation-status.json",
+    "page_two_bottom_gap_pt": 14.5,
+    "page_two_text_boundary_pt": 757.45,
+    "density_issue": "",
+    "content_exhaustion_reason": ""
+  },
+  "readback": {
+    "Scout ID": 2963,
+    "Company": "HostPapa, Inc.",
+    "Job Title": "Senior Paid Media Manager",
+    "Resume Created": "X",
+    "Resume Link": "file:///C:/gecko_main/output/resumes/Dave-Call%2BHostPapa%2C-Inc%2BSenior-Paid-Media-Manager%2B00421.docx",
+    "Resume Created Date": "2026-10-25"
+  }
+}

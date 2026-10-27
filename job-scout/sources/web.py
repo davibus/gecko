@@ -300,6 +300,7 @@ class WebCareerProvider(JobSource):
                     identifier = item.get("identifier") or {}
                     job_id = _text(identifier) or _text(item.get("url")) or url
                     metadata = dict(item)
+                    metadata['_query_used_to_find'] = query
                     metadata["_web_search_backends"] = sorted(discovery_backends)
                     listing = RawListing(
                         source=self.name,

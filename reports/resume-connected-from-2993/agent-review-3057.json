@@ -1,0 +1,66 @@
+{
+  "spec": {
+    "headline": "B2B Growth & Marketing Operations | CRM Workflows | Client Strategy",
+    "headline_rationale": "Logical Media Group role combines client strategy, CRM integration, customer journeys and multichannel reporting. Emphasize verified integrations, client recommendations and operations; HubSpot proficiency does not imply specific advanced implementations.",
+    "summary": "B2B marketer and systems practitioner connecting client goals with CRM workflows, campaign execution and actionable reporting. Installed Go High Level, integrated it with ServiceTitan, Power BI and internal systems, and trained employees. Advised agency clients on channel allocation, targeting and growth priorities, while building reporting pipelines and a repeatable account-management system. Cross-functional work with sales, product, IT and operations supports clear requirements, practical coordination and better alignment between marketing processes and commercial outcomes.",
+    "factual_review": "Read exact LMG Staffing Solutions/Logical Media Group B2B HubSpot Growth Automation Manager job. Any Hour integration/training plus E076/E078/E079/E081/E060/E066 support facts. No unsupported Marketo/Pardot implementation, lead scoring architecture or ROI-positive lifecycle program outcomes; retain exact tracker identity.",
+    "selected_evidence_ids": [
+      "E001",
+      "E002",
+      "E003",
+      "E005",
+      "E006",
+      "E008",
+      "E009",
+      "E011",
+      "E021",
+      "E023",
+      "E038",
+      "E044",
+      "E060",
+      "E066",
+      "E072",
+      "E063",
+      "E076",
+      "E078",
+      "E079",
+      "E080",
+      "E081",
+      "E093",
+      "E096",
+      "E114",
+      "E116"
+    ],
+    "additional_evidence_ids": [
+      "E004",
+      "E010",
+      "E020",
+      "E082",
+      "E095",
+      "E105",
+      "E109",
+      "E113",
+      "E115",
+      "E117"
+    ],
+    "tools_platforms": [
+      "HubSpot",
+      "Salesforce",
+      "Power BI",
+      "Tableau",
+      "Looker Studio",
+      "Excel",
+      "Python",
+      "SQL",
+      "Funnel.io",
+      "Google Analytics 4"
+    ],
+    "tools_rationale": "Supported CRM, data integration, reporting and measurement tools appropriate to client growth operations.",
+    "source_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "description_sha256": "c1c29a0bd68b81a9baefef90ea4d19e0fab48cba5278bc1ee0e914eb9e31a84f"
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "99fe7983d7723b47bf2aa1080448acc205e6813957567471fe494808eab25f55"
+}

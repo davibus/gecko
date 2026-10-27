@@ -1,0 +1,65 @@
+{
+  "spec": {
+    "headline": "Marketing Data & Analytics | SQL/Python Automation | Systems Integration",
+    "headline_rationale": "PointClickCare's analytics engineer role centers on marketing data pipelines, SQL, reporting automation, integration quality and AI-assisted analysis. Use supported technical reporting and API projects without inventing Marketo administration or a technical degree.",
+    "summary": "Marketing analytics and automation practitioner who builds practical data workflows for campaign decisions. Created automated reporting across more than ten marketing channels using Python, Databricks, SQL, Excel and Funnel.io, and built Tableau dashboards for paid search. Developed reporting pipelines, designed business information architecture and ERP flows, and connected marketing systems through APIs. Combines first-hand attribution and funnel knowledge with hands-on technical troubleshooting and AI-assisted development to make reporting clearer and recurring work more efficient.",
+    "factual_review": "Read exact PointClickCare Marketing Data Analytics Engineer US posting. Supported E009/E008/E079/E066/E021 and Any Hour integrations. Actual degree remains Business Management Marketing; do not invent CS degree, Marketo expertise, BigQuery production work, dbt/Airflow or Salesforce admin projects.",
+    "selected_evidence_ids": [
+      "E001",
+      "E002",
+      "E006",
+      "E008",
+      "E009",
+      "E005",
+      "E021",
+      "E020",
+      "E023",
+      "E043",
+      "E044",
+      "E060",
+      "E066",
+      "E072",
+      "E063",
+      "E079",
+      "E080",
+      "E081",
+      "E082",
+      "E093",
+      "E096",
+      "E117"
+    ],
+    "additional_evidence_ids": [
+      "E003",
+      "E004",
+      "E010",
+      "E011",
+      "E076",
+      "E078",
+      "E095",
+      "E105",
+      "E109",
+      "E113",
+      "E114",
+      "E116"
+    ],
+    "tools_platforms": [
+      "SQL",
+      "Python",
+      "Salesforce",
+      "Power BI",
+      "Tableau",
+      "Looker Studio",
+      "Excel",
+      "Funnel.io",
+      "Google Analytics 4",
+      "Google Ads API",
+      "Claude",
+      "Codex"
+    ],
+    "tools_rationale": "Supported data, CRM, reporting and AI tools. Marketo and cloud warehouses absent from demonstrated source are excluded."
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "dca016ddac5613b2d2c4cf0b89379c6b8c0cfc5a04def5b5e4553919ad677b29"
+}

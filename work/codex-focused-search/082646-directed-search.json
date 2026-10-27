@@ -1,0 +1,52 @@
+{
+  "payload": {
+    "query": "\"paid media\" remote USA site:recruitee.com",
+    "limit": 50,
+    "sources": [
+      "web"
+    ]
+  },
+  "results": [
+    {
+      "url": "https://iliabeauty.recruitee.com/",
+      "title": "ILIA Beauty Careers",
+      "description": "Remote & Hybrid Work. Find your flow, working from home or at the office ... Paid Media Associate. Remote. Los Angeles, California, United States. View job.",
+      "position": 1
+    },
+    {
+      "url": "https://clanx.recruitee.com/",
+      "title": "Open Roles at ClanX | Apply Now",
+      "description": "Growth Lead - Paid Media (Meta Ads) - Remote ; Sales Account Executive (SaaS) - Remote · ₹1,500,000 - ₹2,500,000 per year ; Sales Development Representative ( ...",
+      "position": 2
+    },
+    {
+      "url": "https://natuvion.recruitee.com/o/senior-campaign-manager-dach-mwd?lang=en",
+      "title": "Senior Campaign Manager DACH (m/w/d) - Natuvion GmbH",
+      "description": "Eigenständige Steuerung von Paid-Media-Kampagnen (insb. LinkedIn & Google ... FlexWork: Bis zu 3 Monate pro Jahr remote aus dem europäischen Ausland arbeiten.",
+      "position": 3
+    }
+  ],
+  "candidates": [
+    {
+      "url": "https://iliabeauty.recruitee.com/",
+      "title": "ILIA Beauty Careers",
+      "description": "Remote & Hybrid Work. Find your flow, working from home or at the office ... Paid Media Associate. Remote. Los Angeles, California, United States. View job.",
+      "position": 1,
+      "actual_query": "\"paid media\" remote USA site:recruitee.com"
+    },
+    {
+      "url": "https://clanx.recruitee.com/",
+      "title": "Open Roles at ClanX | Apply Now",
+      "description": "Growth Lead - Paid Media (Meta Ads) - Remote ; Sales Account Executive (SaaS) - Remote · ₹1,500,000 - ₹2,500,000 per year ; Sales Development Representative ( ...",
+      "position": 2,
+      "actual_query": "\"paid media\" remote USA site:recruitee.com"
+    },
+    {
+      "url": "https://natuvion.recruitee.com/o/senior-campaign-manager-dach-mwd?lang=en",
+      "title": "Senior Campaign Manager DACH (m/w/d) - Natuvion GmbH",
+      "description": "Eigenständige Steuerung von Paid-Media-Kampagnen (insb. LinkedIn & Google ... FlexWork: Bis zu 3 Monate pro Jahr remote aus dem europäischen Ausland arbeiten.",
+      "position": 3,
+      "actual_query": "\"paid media\" remote USA site:recruitee.com"
+    }
+  ]
+}

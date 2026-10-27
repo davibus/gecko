@@ -1,0 +1,53 @@
+{
+  "id": 2985,
+  "company": "TENEX.AI",
+  "status": "complete",
+  "elapsed_seconds": 400.887409,
+  "timings": {
+    "wall_seconds": 184.0497,
+    "active_seconds": 147.4714,
+    "review_wait_seconds": 36.5783,
+    "phases_seconds": {
+      "source_loading": 0.1073,
+      "tailoring": 32.2418,
+      "document_creation": 4.292,
+      "word_pdf_validation": 13.2791,
+      "fitting_retries": 1.7834,
+      "factual_review": 0.0,
+      "review_wait": 36.5783,
+      "tracker_sync": 10.0453,
+      "drive_delivery": 48.9529
+    },
+    "counts": {
+      "source_loading": 66,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 1,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1
+    }
+  },
+  "prior_completion_attempt": {
+    "reason": "1 tracker conflicts need review. Both versions are preserved; no cells were overwritten.",
+    "seconds": 184.04423769999994
+  },
+  "link": "https://docs.google.com/document/d/1gdsgGWCa_qBi2pSw7j7VTOhzw-HOAvl7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+TENEX.AI+Senior-Paid-Media-Manager+00443.docx",
+  "started_at": "2026-10-26T13:33:29.864026+00:00",
+  "completed_at": "2026-10-26T13:40:10.751420+00:00",
+  "retry_tracker_seconds": 44.17277659999672,
+  "readback": {
+    "Scout ID": 2985,
+    "Company": "TENEX.AI",
+    "Job Title": "Senior Paid Media Manager",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1gdsgGWCa_qBi2pSw7j7VTOhzw-HOAvl7/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  }
+}

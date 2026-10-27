@@ -131,3 +131,53 @@ Only after the exact DOCX exists under `output/resumes` and passes validation ma
 ## Persistent Google Sheets formatting
 
 Preserve user colors, filters, checkbox values, frozen rows, column widths, conditional formatting, formulas, hyperlinks, and manual fields on the live `Job List` tab. Routine operations update only Gecko-managed cell values in place. Never recreate tabs, rewrite entire ranges, change physical row order, or reset formatting or filter criteria. Outside the Gmail response checker, preserve `Response` as a user-owned field.
+
+## Usable Google Sheets resume links - October 26, 2026
+
+Dave explicitly selected PRIVATE GOOGLE DRIVE LINKS, usable across devices.
+Every new resume's Resume Link must be a clickable HTTPS link to the exact
+completed DOCX in his private Drive. Keep the validated local DOCX for job
+applications. A raw local path or `file:///` URI is not usable in Google Sheets;
+HYPERLINK cannot fix that unsupported protocol. This instruction supersedes all
+earlier no-upload and raw-file-URI requirements for resume delivery only. Never
+make resumes public, convert the validated DOCX, or share them with others.
+
+After native Word and visual QA, upload the exact final DOCX with the connected
+Google Drive `upload_file` tool, preserving its filename and DOCX MIME type. Use
+the private folder configured in `job-scout/preferences/resume-delivery.json`:
+`https://drive.google.com/drive/folders/1Noy8XUqlL5ufqA4aU9jZWdwpMYeCVmol`.
+Reuse a verified unchanged upload instead of creating duplicates. Read back the
+Drive metadata (ID, observed URL, filename, MIME type, size, parents and private
+owner-only permissions), download its raw bytes and compare SHA-256 with the
+local DOCX. Save a receipt JSON containing `path`, `metadata` from that readback,
+and `download: {"sha256": "<actual downloaded SHA-256>"}`. Register it using
+`scripts/register_resume_drive_link.py --receipt <receipt.json>`.
+
+The canonical publisher resolves that verified receipt to its observed HTTPS
+URL. Write Resume Link as a clickable Google Sheets hyperlink, verify the cell's
+actual hyperlink target, and preserve completion dates, job identity, formulas,
+formatting and unrelated fields. Resume Created still requires all existing QA
+and completion safeguards. If the connector is unavailable, retain the finished
+local file and report Private Drive publication pending; do not silently fall
+back to file:/// or claim a working tracker link. Unattended queue runs without
+a registered delivery receipt stop at this publication gate and need a connected
+agent to perform the upload. Dashboard and applications resolve registered Drive
+URLs back to the unchanged local file through `job-scout/resume_delivery.py`.
+
+## Canadian remote jobs allowed - user instruction October 26, 2026
+
+Dave explicitly instructed: If it is Canada, allow it. Treat Canadian remote
+jobs, including Canada-only postings and country codes CA/CAN, as geographically
+eligible for Gecko discovery, qualification, resume queues and tracker review.
+Do not set Qualifies to Apply? to No solely because the country is Canada or the
+ATS applicant country is Canadian. This supersedes earlier U.S./Utah-only remote
+country restrictions for Canada. Marketbridge ID 2983 is the confirmed example.
+
+Keep other safeguards: fees, permanent rejections, completed-resume protection,
+match thresholds, usable job descriptions, and genuine additional location or
+residency restrictions. Required Eastern working hours alone are not an Eastern
+residency restriction. This does not authorize inventing Canadian citizenship,
+work authorization, residency or willingness to relocate; answer application
+questions truthfully and surface any unsupported mandatory requirement. The
+exception permits remote Canada jobs; it does not make Canadian onsite/hybrid
+jobs local Utah jobs or permit every other foreign-country requisition.

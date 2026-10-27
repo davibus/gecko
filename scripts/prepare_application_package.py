@@ -85,6 +85,12 @@ def resolve_resume(raw: str, root: Path = ROOT) -> Path:
         raise PackageBlocked("missing_or_formula_resume_link")
     try:
         parts = urlsplit(raw.strip())
+        if parts.scheme.casefold() == 'https' and root.resolve() == ROOT.resolve():
+            from resume_delivery import local_path
+            path = local_path(raw.strip())
+            if path is None:
+                raise ValueError
+            return path
         if parts.scheme.casefold() != "file" or parts.netloc not in ("", "localhost") or parts.query or parts.fragment:
             raise ValueError
         local = unquote(parts.path)

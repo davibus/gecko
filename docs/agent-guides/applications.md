@@ -1,4 +1,44 @@
-# OpenClaw applications and saved answers
+# Applications and saved answers
+
+## Current direct Playwright path - October 26, 2026
+
+**Current browser lifecycle:** Follow AGENTS.md's October 26 browser rule.
+A dedicated Chrome window contains one tab TOTAL, including between jobs and
+after a batch. Save recovery information and verify the per-job Sheet outcome,
+then reuse the same owned tab. Blocked/CAPTCHA applications do not keep a tab open;
+unsaved entries/uploads may be lost. Required popups replace the owned tab after
+an observed-opener handoff. Uncertain submissions are recorded and verified as
+job-level blockers with permanent automatic-retry protection; then reuse the tab
+for unrelated jobs. Constructor 2972 is not a continuation prerequisite. Pause
+only for shared browser/control or tracker-verification failures. Never close
+unrelated tabs. All historical review-first, OpenClaw and
+leave-draft-open instructions below or in the answer bank are superseded for this
+path. The bank remains a factual source for confirmed answers, not tab lifecycle.
+
+Use `scripts/playwright_direct.py --ids ... --evidence-dir ...` for a selected
+batch. It prepares exact existing resumes and scoped confirmed answers before
+opening applications. Default mode only prepares packets. For explicitly requested
+applications, `--apply` retains the October 23 automatic-submission authorization;
+`--draft-only` fills without submission. Workflow development does not authorize
+new applications. OpenClaw application work remains stopped.
+
+The existing Google Sheet is primary, as the root instructions and
+`job-scout/preferences/tracker-backend.json` state. Older SQLite-only and
+review-before-submit text below is superseded. Use the current direct upload
+rule: exact local artifact, browser filename/size and successful upload; no preview
+or content comparison is required. Never regenerate a completed resume or modify
+an account-wide profile.
+
+Read `docs/playwright-applications.md` for commands, checkpoint recovery,
+measurements and fallback operations. The answer bank is
+`openclaw/application-answers.md`; `scripts/application_answer_index.json` is its
+reviewed semantic index, with source quotes, dates and employer/job scope. A batch
+checks actual source bytes before each job and parses each unchanged source once.
+When saving a new confirmed answer, update both the bank and its reviewed index;
+retain proposed wording as proposed. Review changed source content before updating
+the index's source SHA-256. Never promote an answer because automation filled it
+or an employer confirmed submission. Unknown or unindexed questions stay pending
+with exact labels while the batch continues other authorized IDs.
 
 ## Columns follow names, not positions
 
@@ -80,3 +120,31 @@ After employer confirmation, record Applied and the actual America/Denver Applie
 ## Direct Playwright attachment verification — October 23, 2026
 Dave explicitly instructed: "Don't require a preview or content check before submission anymore."
 For direct Playwright applications, a preview/download/content comparison is no longer a submission prerequisite. Verify the exact matching local file, its selected browser filename/size and successful upload. Retain factual-answer checks, exact job identity, duplicate prevention and employer-confirmation requirements. This supersedes older preview/content-check gates for this workflow. OpenClaw remains stopped.
+
+
+## Confirmed GitHub profile - October 26, 2026
+
+Dave confirmed his GitHub profile is https://github.com/davibus
+(user-supplied address: www.github.com/davibus). Use this URL for GitHub profile
+fields in Gecko applications and relevant profile/contact information. A general
+profile URL does not establish a particular project repository, ownership, or
+access to an older account. Preserve project-specific answers and their scope.
+
+## Application agreements - standing authorization October 27, 2026
+
+Dave instructed: "Yes. Always agree to any application. Put that in the Gecko instructions."
+For jobs Dave authorizes Gecko to apply for, automatically select Agree, I agree,
+Accept, or the equivalent for application terms and conditions, privacy notices,
+and consent to process the application. This includes Graphite's HR Privacy Notice.
+Do not ask Dave for agreement approval again. This supersedes older instructions
+to pause merely because an application agreement needs acceptance.
+
+Read the agreement label and context, select the actual control (including a
+visible label for a styled radio/checkbox), and verify the selection persists.
+Check displayed validation messages before treating the form as complete. This
+permission does not establish career facts or answers to eligibility questions.
+Dave's separate No preference for optional recruiting SMS/messages still applies.
+Keep one tab, Ready to Apply=X eligibility, CAPTCHA skipping, duplicate prevention,
+and employer-confirmed submission with immediate verified tracker updates.
+An agreement answer does not by itself clear an uncertain submission or authorize
+repeating a prior Submit click.

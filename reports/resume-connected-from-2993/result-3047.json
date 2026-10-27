@@ -1,0 +1,54 @@
+{
+  "id": 3047,
+  "company": "Digital Reach Agency",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1_NoRk4FdZd8PIax7uzAIqED8Zq_88wDl/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Digital-Reach-Agency+SEO-and-Content-Marketing-Strategist-Contract+00487.docx",
+  "started_at": "2026-10-26T16:06:18.918341+00:00",
+  "completed_at": "2026-10-26T16:09:46.561606+00:00",
+  "elapsed_seconds": 207.643277,
+  "generation_seconds": 27.503627300000517,
+  "delivery_seconds": 6.016392299992731,
+  "tracker_seconds": 38.44335260000662,
+  "readback": {
+    "Scout ID": 3047,
+    "Company": "Digital Reach Agency",
+    "Job Title": "SEO and Content Marketing Strategist - Contract",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1_NoRk4FdZd8PIax7uzAIqED8Zq_88wDl/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1298",
+  "hyperlink_target": "https://docs.google.com/document/d/1_NoRk4FdZd8PIax7uzAIqED8Zq_88wDl/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 207.6433,
+    "active_seconds": 85.9161,
+    "review_wait_seconds": 121.7272,
+    "phases_seconds": {
+      "source_loading": 0.0267,
+      "tailoring": 1.2246,
+      "document_creation": 0.9143,
+      "word_pdf_validation": 3.9497,
+      "fitting_retries": 0.0046,
+      "factual_review": 0.0,
+      "review_wait": 121.7272,
+      "tracker_sync": 38.4354,
+      "drive_delivery": 6.008
+    },
+    "counts": {
+      "source_loading": 48,
+      "tailoring": 2,
+      "document_creation": 1,
+      "word_pdf_validation": 1,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 1,
+      "native_attempts": 1,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

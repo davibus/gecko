@@ -1,0 +1,66 @@
+{
+  "spec": {
+    "headline": "B2B Marketing Strategy | Audience Personalization | Commercial Analytics",
+    "headline_rationale": "Lone Wolf's ABM role stresses target-account decisions, sales collaboration, personalized content and commercial measurement. Emphasize adjacent supported B2B client/audience strategy and data work; do not claim established ABM program ownership.",
+    "summary": "B2B digital marketer experienced in aligning audience strategy, content and performance analysis with business priorities. Directed marketing and e-commerce execution alongside sales, product and operations, and advised agency clients on goals, targeting, messaging and budget allocation. Developed personalized content across email, mail, blogs and websites, supported by keyword, audience and competitive research. Brings funnel testing, financial analysis and clear reporting to evaluating growth opportunities and making practical recommendations for coordinated marketing investment.",
+    "factual_review": "Read exact Lone Wolf Account Based Marketing Manager posting. E060/E076/E078/E114/E063/E006/E079/E082 support claims. No invented ABM platform work, named-account pipeline success, field events, propensity scoring or PropTech expertise. Distinct from3027operations resume.",
+    "selected_evidence_ids": [
+      "E001",
+      "E003",
+      "E004",
+      "E005",
+      "E006",
+      "E008",
+      "E009",
+      "E018",
+      "E023",
+      "E044",
+      "E038",
+      "E060",
+      "E055",
+      "E063",
+      "E066",
+      "E076",
+      "E078",
+      "E079",
+      "E082",
+      "E093",
+      "E096",
+      "E114",
+      "E116"
+    ],
+    "additional_evidence_ids": [
+      "E002",
+      "E010",
+      "E011",
+      "E020",
+      "E072",
+      "E080",
+      "E081",
+      "E095",
+      "E102",
+      "E105",
+      "E109",
+      "E115"
+    ],
+    "tools_platforms": [
+      "HubSpot",
+      "Salesforce",
+      "Google Analytics 4",
+      "Looker Studio",
+      "Tableau",
+      "Excel",
+      "Google Ads",
+      "Python",
+      "SQL",
+      "ChatGPT"
+    ],
+    "tools_rationale": "Source-backed CRM, campaign and analysis tools for audience research and commercial recommendations; no unsupported ABM intent vendor.",
+    "source_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "description_sha256": "e826e6736a7cdda52e0cfc3311625f7d2ba05a38b46846638562f0a0caf80e3d"
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "a5317ce996e684df358eac84a4b303fa6fb129bce5e63d86dd0b15acd38677ae"
+}

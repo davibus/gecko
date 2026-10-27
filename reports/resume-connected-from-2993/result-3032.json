@@ -1,0 +1,54 @@
+{
+  "id": 3032,
+  "company": "Origin",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1ksCnpl-o9EWQB4CUE0qlyyqZyZgV9JU_/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Origin+Demand-Generation-Lead+00480.docx",
+  "started_at": "2026-10-26T15:52:15.535205+00:00",
+  "completed_at": "2026-10-26T15:53:51.738544+00:00",
+  "elapsed_seconds": 96.20335,
+  "generation_seconds": 26.239941399981035,
+  "delivery_seconds": 7.215544000006048,
+  "tracker_seconds": 33.287349199992605,
+  "readback": {
+    "Scout ID": 3032,
+    "Company": "Origin",
+    "Job Title": "Demand Generation Lead",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1ksCnpl-o9EWQB4CUE0qlyyqZyZgV9JU_/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1284",
+  "hyperlink_target": "https://docs.google.com/document/d/1ksCnpl-o9EWQB4CUE0qlyyqZyZgV9JU_/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 96.2034,
+    "active_seconds": 77.6838,
+    "review_wait_seconds": 18.5196,
+    "phases_seconds": {
+      "source_loading": 0.0386,
+      "tailoring": 0.678,
+      "document_creation": 2.2924,
+      "word_pdf_validation": 8.8606,
+      "fitting_retries": 0.0823,
+      "factual_review": 0.0,
+      "review_wait": 18.5196,
+      "tracker_sync": 33.2867,
+      "drive_delivery": 7.2105
+    },
+    "counts": {
+      "source_loading": 84,
+      "tailoring": 2,
+      "document_creation": 3,
+      "word_pdf_validation": 3,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 3,
+      "native_attempts": 3,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": 3061,
+  "company": "mars-men",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1IK_DNI6b-r_pkEL4N0xAcWj2rNRBeNdi/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+mars-men+Paid-Search-&-Youtube-Manager+00502.docx",
+  "started_at": "2026-10-26T16:39:47.714790+00:00",
+  "completed_at": "2026-10-26T16:41:09.802835+00:00",
+  "elapsed_seconds": 82.088063,
+  "generation_seconds": 20.267178199981572,
+  "delivery_seconds": 4.443269599985797,
+  "tracker_seconds": 20.670255000004545,
+  "readback": {
+    "Scout ID": 3061,
+    "Company": "mars-men",
+    "Job Title": "Paid Search & Youtube Manager",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1IK_DNI6b-r_pkEL4N0xAcWj2rNRBeNdi/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1313",
+  "hyperlink_target": "https://docs.google.com/document/d/1IK_DNI6b-r_pkEL4N0xAcWj2rNRBeNdi/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 82.0881,
+    "active_seconds": 50.0486,
+    "review_wait_seconds": 32.0395,
+    "phases_seconds": {
+      "source_loading": 0.0298,
+      "tailoring": 0.7692,
+      "document_creation": 1.6793,
+      "word_pdf_validation": 6.1758,
+      "fitting_retries": 0.0502,
+      "factual_review": 0.0,
+      "review_wait": 32.0395,
+      "tracker_sync": 20.6694,
+      "drive_delivery": 4.436
+    },
+    "counts": {
+      "source_loading": 66,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

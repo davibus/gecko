@@ -1,0 +1,214 @@
+{
+  "job": {
+    "url": "https://digitalzoneinc.applytojob.com/apply/JW6b5mJ7a9/Digital-Marketing-Manager",
+    "company": "Digitalzone, Inc.",
+    "title": "Digital Marketing Manager",
+    "location": "",
+    "arrangement": "remote",
+    "salary": "USD 70,000–80,000 per year",
+    "posted": "2026-09-24",
+    "chars": 6121
+  },
+  "match": {
+    "id": "job",
+    "sufficient": true,
+    "reason": "Complete duties and qualifications support assessment. Pardot and LinkedIn advertising proficiency remain unverified; missing evidence does not establish lack of capability.",
+    "blockers": [],
+    "categories": {
+      "responsibilities": [
+        {
+          "requirement": "Plan and execute all digital marketing, including ads (search, display, and social), social media, and email.",
+          "support": 1,
+          "evidence": [
+            "Managed display, mobile, re-marketing, search, video, email, shopping, and social, local, and"
+          ],
+          "reason": "Demonstrates management across the requested digital channels."
+        },
+        {
+          "requirement": "Assess the performance of all digital channels and identify opportunities to optimize based on performance insights.",
+          "support": 1,
+          "evidence": [
+            "Used industry-leading analytical tools to evaluate account performance and make data-driven recommendations"
+          ],
+          "reason": "Direct evidence of performance assessment and optimization recommendations."
+        },
+        {
+          "requirement": "Develop regular reporting cadence of all digital marketing efforts to present to department leadership.",
+          "support": 1,
+          "evidence": [
+            "Built automated weekly reporting across 10+ channels using Python, Databricks, SQL, blended Excel data, and Funnel.io to improve accuracy and decision speed"
+          ],
+          "reason": "Weekly multichannel reporting directly supports recurring leadership reporting."
+        },
+        {
+          "requirement": "Work collaboratively with copy and design to provide best practice and data-informed insights to ensure we’re developing the best assets to promote across digital channels.",
+          "support": 1,
+          "evidence": [
+            "Worked closely with the Web Dev team and the content team to create custom landing pages and custom content for PMAX campaigns"
+          ],
+          "reason": "Demonstrates collaborative development of campaign content and landing-page assets."
+        },
+        {
+          "requirement": "Manage web development teams and collaborate with internal teams to optimize user experience.",
+          "support": 0.5,
+          "evidence": [
+            "Led an eight-person e-commerce team responsible for paid search, customer acquisition, campaign delivery, website performance, and growth across the U.S., Canada, and U.K"
+          ],
+          "reason": "Team and website leadership transfer; direct web-development team management is unverified."
+        },
+        {
+          "requirement": "Manage the paid media budget.",
+          "support": 1,
+          "evidence": [
+            "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget"
+          ],
+          "reason": "Direct evidence of substantial cross-platform paid-media budget management."
+        }
+      ],
+      "required": [
+        {
+          "requirement": "Proficiency in email marketing (Pardot)",
+          "support": 0.5,
+          "evidence": [
+            "Developed and managed content strategy covering timing, content type, placement across blogs, mail, email, and the website, content focus, and personalization"
+          ],
+          "reason": "Email strategy is demonstrated; applied Pardot proficiency is unverified."
+        },
+        {
+          "requirement": "search and display advertising (Google Ads)",
+          "support": 1,
+          "evidence": [
+            "Set up and managed more than 75 Google Ads/AdWords accounts with combined monthly spend of more than $476,000, supporting lead generation and multichannel client programs"
+          ],
+          "reason": "Extensive Google Ads account management establishes platform proficiency."
+        },
+        {
+          "requirement": "social media advertising (LinkedIn)",
+          "support": 0.5,
+          "evidence": [
+            "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget"
+          ],
+          "reason": "Paid social management transfers; LinkedIn campaign execution is unverified."
+        },
+        {
+          "requirement": "site analytics (Google Analytics)",
+          "support": 1,
+          "evidence": [
+            "Configured GA4 and custom Google Tag Manager measurement/reporting"
+          ],
+          "reason": "Direct implementation of Google Analytics measurement and reporting."
+        },
+        {
+          "requirement": "Proficiency in digital analytics reporting, data visualization, and data storytelling",
+          "support": 1,
+          "evidence": [
+            "Built reporting pipelines using Funnel.io to consolidate data sources and presented performance data through Google Data Studio/Looker Studio"
+          ],
+          "reason": "Demonstrates integrated analytics reporting, visualization, and presentation."
+        },
+        {
+          "requirement": "Ability to clearly communicate ideas and defend decisions",
+          "support": 1,
+          "evidence": [
+            "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+          ],
+          "reason": "Consultative strategy and executive presentations demonstrate reasoned communication."
+        },
+        {
+          "requirement": "Exceptional written/email communication and public speaking skills",
+          "support": 0.5,
+          "evidence": [
+            "Presented a winning and subsequently funded business plan to venture capitalists"
+          ],
+          "reason": "Public speaking is demonstrated; exceptional written/email communication is only partly evidenced."
+        },
+        {
+          "requirement": "Detail-oriented, well organized, and able to juggle many tasks under pressure",
+          "support": 0.5,
+          "evidence": [
+            "Managed 12 accounts, 32 campaigns, approximately 110,000 ad groups, and 1.6 million keywords with approximately $3.6 million in monthly spend for a single brand"
+          ],
+          "reason": "Complex account operations support organization; performance under pressure is not explicit."
+        },
+        {
+          "requirement": "Able to prioritize tasks quickly and solve problems",
+          "support": 1,
+          "evidence": [
+            "Iteratively diagnosed and repaired integration, document-layout, data-consistency, and Windows execution issues."
+          ],
+          "reason": "Iterative operational troubleshooting demonstrates practical prioritization and problem-solving."
+        },
+        {
+          "requirement": "Knowledge of Microsoft Word, Excel & PowerPoint (required)",
+          "support": 0.5,
+          "evidence": [
+            "Used advanced Excel formulas and VS Code to create upload-ready XLSX files for Google Ads Editor"
+          ],
+          "reason": "Advanced Excel is demonstrated; Word automation is documented, but PowerPoint is only listed."
+        },
+        {
+          "requirement": "Degree in Marketing or Communication, or equivalent experience",
+          "support": 1,
+          "evidence": [
+            "Business Management Degree - Marketing Emphasis"
+          ],
+          "reason": "Marketing-focused business degree and demonstrated marketing experience meet the requirement."
+        }
+      ],
+      "seniority": [
+        {
+          "requirement": "At least 3 years of work experience in digital marketing",
+          "support": 1,
+          "evidence": [
+            "Digital marketing and marketing technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce, professional services, and high-volume performance marketing environments."
+          ],
+          "reason": "Explicitly documented digital marketing experience exceeds three years."
+        }
+      ],
+      "industry": [],
+      "preferred": [
+        {
+          "requirement": "preferred experience in the B2B space",
+          "support": 1,
+          "evidence": [
+            "Managed all aspects of e-commerce and marketing at a very large distributor (B2B)"
+          ],
+          "reason": "Direct evidence of marketing leadership in a B2B business."
+        }
+      ]
+    },
+    "score": 88.72,
+    "accepted": true,
+    "status": "reviewed",
+    "failed_rules": [],
+    "category_percentages": {
+      "responsibilities": 91.67,
+      "required": 77.27,
+      "seniority": 100.0,
+      "industry": null,
+      "preferred": 100.0
+    },
+    "policy": "master-evidence-v2",
+    "thresholds": {
+      "minimum_score": 60,
+      "minimum_responsibilities_match": 50,
+      "minimum_required_skills_match": 50
+    },
+    "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "job": {
+      "id": "job",
+      "title": "Digital Marketing Manager",
+      "company": "Digitalzone, Inc.",
+      "url": "https://digitalzoneinc.applytojob.com/apply/JW6b5mJ7a9/Digital-Marketing-Manager"
+    },
+    "description_sha256": "fa85c20ae9642044962840ca20da9445687799958ebee7a01025c0fba4f6d691",
+    "runner": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "verified": true,
+      "session_id": "01a17468-2217-7233-bdf1-6c488c99c341",
+      "verified_at": "2026-10-25T18:53:17.266371+00:00"
+    },
+    "cached": true
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": 2994,
+  "company": "Precision AQ",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1Vrl6PckkGc919Vr2aL9QWnWutqHYK50B/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Precision-AQ+Director,-Integrated-Marketing+00450.docx",
+  "started_at": "2026-10-26T14:36:35.278435+00:00",
+  "completed_at": "2026-10-26T14:39:30.279046+00:00",
+  "elapsed_seconds": 175.00062800000887,
+  "generation_seconds": 35.25363490000018,
+  "delivery_seconds": 20.442026100005023,
+  "tracker_seconds": 57.5644935000164,
+  "readback": {
+    "Scout ID": 2994,
+    "Company": "Precision AQ",
+    "Job Title": "Director, Integrated Marketing",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1Vrl6PckkGc919Vr2aL9QWnWutqHYK50B/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1247",
+  "hyperlink_target": "https://docs.google.com/document/d/1Vrl6PckkGc919Vr2aL9QWnWutqHYK50B/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 175.0006,
+    "active_seconds": 129.4436,
+    "review_wait_seconds": 45.557,
+    "phases_seconds": {
+      "source_loading": 0.0265,
+      "tailoring": 0.7626,
+      "document_creation": 1.5239,
+      "word_pdf_validation": 9.4851,
+      "fitting_retries": 0.0624,
+      "factual_review": 0.0,
+      "review_wait": 45.557,
+      "tracker_sync": 57.5637,
+      "drive_delivery": 20.4366
+    },
+    "counts": {
+      "source_loading": 65,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1
+    }
+  }
+}

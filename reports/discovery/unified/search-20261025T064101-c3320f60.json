@@ -1,0 +1,18 @@
+{
+  "run_id": "search:20261025T064101-c3320f60",
+  "day": "2026-10-25",
+  "warnings": [],
+  "resumes_generated": 0,
+  "applications_submitted": 0,
+  "status": "stopped_by_user",
+  "new_job_ids": [
+    2953,
+    2954
+  ],
+  "new_unique_jobs": 2,
+  "published_job_ids": [
+    2953,
+    2954
+  ],
+  "stop_reason": "User requested stopping this run and moving job search to a Codex task."
+}

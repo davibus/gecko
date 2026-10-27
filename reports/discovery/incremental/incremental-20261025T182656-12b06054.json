@@ -1,0 +1,22 @@
+{
+  "candidates_discovered": 0,
+  "known_jobs_skipped_before_retrieval": 0,
+  "new_jobs_added": 0,
+  "free_retrievals": 0,
+  "paid_requests": 0,
+  "paid_requests_avoided": 0,
+  "pending": 0,
+  "new_job_ids": [],
+  "published_job_ids": [],
+  "warnings": [],
+  "status": "running",
+  "run_id": "incremental-20261025T182656-12b06054",
+  "mode": "incremental",
+  "source_counts": {},
+  "source_health": {},
+  "resumes_generated": 0,
+  "applications_submitted": 0,
+  "checked_at": "2026-10-26T00:26:56.859884+00:00",
+  "activity": "Incremental discovery: 0 candidates; 0 new jobs verified",
+  "published_jobs_verified": 0
+}

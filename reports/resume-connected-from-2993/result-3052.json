@@ -1,0 +1,54 @@
+{
+  "id": 3052,
+  "company": "Jobgether",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1Up9ju3hi9SIlN7u6-FucToiGl5gV6T3A/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Head-of-Marketing-&-Growth+00492.docx",
+  "started_at": "2026-10-26T16:20:20.308785+00:00",
+  "completed_at": "2026-10-26T16:22:44.356082+00:00",
+  "elapsed_seconds": 144.047307,
+  "generation_seconds": 29.739741700002924,
+  "delivery_seconds": 5.616082900000038,
+  "tracker_seconds": 39.80732459999854,
+  "readback": {
+    "Scout ID": 3052,
+    "Company": "Jobgether",
+    "Job Title": "Head of Marketing & Growth",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1Up9ju3hi9SIlN7u6-FucToiGl5gV6T3A/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1303",
+  "hyperlink_target": "https://docs.google.com/document/d/1Up9ju3hi9SIlN7u6-FucToiGl5gV6T3A/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 144.0473,
+    "active_seconds": 84.9411,
+    "review_wait_seconds": 59.1062,
+    "phases_seconds": {
+      "source_loading": 0.0399,
+      "tailoring": 1.0328,
+      "document_creation": 1.6356,
+      "word_pdf_validation": 6.2333,
+      "fitting_retries": 0.0575,
+      "factual_review": 0.0,
+      "review_wait": 59.1062,
+      "tracker_sync": 39.8063,
+      "drive_delivery": 5.6076
+    },
+    "counts": {
+      "source_loading": 66,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

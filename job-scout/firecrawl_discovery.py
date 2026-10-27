@@ -277,7 +277,7 @@ def _query_order(history, queries):
     return sorted(queries, key=lambda q: (previous.get(q["key"], ("", 0))[0], -previous.get(q["key"], ("", 0))[1], q["key"]))
 
 
-def run_discovery(store, preferences, *, history=None, client=None, now=None, tracker=None, publish=True):
+def run_discovery(store, preferences, *, history=None, client=None, now=None, tracker=None, publish=True, on_saved=None):
     settings = history.settings if history else config()
     if not settings["enabled"] or not settings["daily_enabled"]:
         return {"status": "disabled", "new_job_ids": []}
@@ -480,6 +480,12 @@ def run_discovery(store, preferences, *, history=None, client=None, now=None, tr
                     if freshness != "recent":
                         _update(history, key, verification_status="old" if freshness == "old" else "review")
                         report["excluded_age" if freshness == "old" else "unknown_dates"] += 1; continue
+                    with history.connect() as con:
+                        query_row = con.execute('SELECT query FROM queries WHERE query_key=? ORDER BY day LIMIT 1', (row['query_key'],)).fetchone()
+                    if query_row:
+                        raw.metadata['_query_used_to_find'] = query_row['query']
+                        from query_provenance import remember as remember_query
+                        remember_query([raw])
                     job = normalize(raw, discovered=now.astimezone(ZONE).date().isoformat())
                     job.found_using = "Firecrawl"
                     if document:
@@ -519,6 +525,8 @@ def run_discovery(store, preferences, *, history=None, client=None, now=None, tr
                         store.save_job_document(job.id, document)
                     if not fee_required and job.id not in report["new_job_ids"]:
                         report["new_job_ids"].append(job.id); report["new_qualified"] += 1
+                        if on_saved is not None:
+                            on_saved(job.id)
                     source = raw.source
                     report["sources"][source] = report["sources"].get(source, 0) + 1
                     _checkpoint(history, day, report)

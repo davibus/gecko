@@ -1,0 +1,53 @@
+{
+  "id": 3003,
+  "company": "Blacksmith Agency",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/19BPR-yIBfrveD1oDDu3Obw8Lo90hV7fk/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Blacksmith-Agency+PPC-Strategist+00457.docx",
+  "started_at": "2026-10-26T14:53:38.347045+00:00",
+  "completed_at": "2026-10-26T14:55:58.838528+00:00",
+  "elapsed_seconds": 140.491498,
+  "generation_seconds": 20.250413900008425,
+  "delivery_seconds": 31.681119999993825,
+  "tracker_seconds": 21.443964099977165,
+  "readback": {
+    "Scout ID": 3003,
+    "Company": "Blacksmith Agency",
+    "Job Title": "PPC Strategist",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/19BPR-yIBfrveD1oDDu3Obw8Lo90hV7fk/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1255",
+  "hyperlink_target": "https://docs.google.com/document/d/19BPR-yIBfrveD1oDDu3Obw8Lo90hV7fk/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 140.4915,
+    "active_seconds": 79.4199,
+    "review_wait_seconds": 61.0716,
+    "phases_seconds": {
+      "source_loading": 0.0265,
+      "tailoring": 0.703,
+      "document_creation": 1.4253,
+      "word_pdf_validation": 6.5775,
+      "fitting_retries": 0.0391,
+      "factual_review": 0.0,
+      "review_wait": 61.0716,
+      "tracker_sync": 21.443,
+      "drive_delivery": 31.6738
+    },
+    "counts": {
+      "source_loading": 65,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1
+    }
+  }
+}

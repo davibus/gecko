@@ -1,0 +1,53 @@
+{
+  "id": 2989,
+  "company": "Empower Brands",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1SVBMC6R6szhrUF_jCVzIPWOiXUw0nV2J/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Empower-Brands+Field-Marketing-Manager+00447.docx",
+  "started_at": "2026-10-26T14:17:38.391662+00:00",
+  "completed_at": "2026-10-26T14:24:51.416414+00:00",
+  "elapsed_seconds": 433.0247693999845,
+  "generation_seconds": 51.210321899998235,
+  "delivery_seconds": 157.19798070000252,
+  "tracker_seconds": 22.702045599988196,
+  "readback": {
+    "Scout ID": 2989,
+    "Company": "Empower Brands",
+    "Job Title": "Field Marketing Manager",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1SVBMC6R6szhrUF_jCVzIPWOiXUw0nV2J/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1242",
+  "hyperlink_target": "https://docs.google.com/document/d/1SVBMC6R6szhrUF_jCVzIPWOiXUw0nV2J/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 433.0248,
+    "active_seconds": 282.2815,
+    "review_wait_seconds": 150.7433,
+    "phases_seconds": {
+      "source_loading": 0.243,
+      "tailoring": 36.8749,
+      "document_creation": 3.4092,
+      "word_pdf_validation": 22.4699,
+      "fitting_retries": 1.6371,
+      "factual_review": 0.0,
+      "review_wait": 150.7433,
+      "tracker_sync": 22.6989,
+      "drive_delivery": 157.1588
+    },
+    "counts": {
+      "source_loading": 76,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 1,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1
+    }
+  }
+}

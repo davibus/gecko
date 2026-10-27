@@ -80,7 +80,9 @@ class SearchDiscoveryProvider(JobSource):
                 destination = self.exclusions if re.search(r"HTTP(?: Error)? (404|410)\b", str(error)) else self.errors
                 destination.append({"url": target, "error": str(error)})
                 continue
-            yield from self.extract(document, target)
+            for listing in self.extract(document, target):
+                listing.metadata['_query_used_to_find'] = query
+                yield listing
 
     def document(self, target):
         if target not in self._documents:

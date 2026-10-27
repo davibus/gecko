@@ -1,0 +1,35 @@
+{
+  "path": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Business-Marketing-Lead+00491.docx",
+  "metadata": {
+    "id": "1eElOA3OHj9tciwhNCGjicPi5b2V282SE",
+    "title": "Dave-Call+Jobgether+Business-Marketing-Lead+00491.docx",
+    "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "size": "40589",
+    "url": "https://docs.google.com/document/d/1eElOA3OHj9tciwhNCGjicPi5b2V282SE/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+    "file_or_folder": "file",
+    "created_time": null,
+    "modified_time": null,
+    "parent_ids": [
+      "1Noy8XUqlL5ufqA4aU9jZWdwpMYeCVmol"
+    ],
+    "drive_id": null,
+    "current_user_can_share": null,
+    "has_augmented_permissions": null,
+    "shared": false,
+    "permissions": [
+      {
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "mdavidcall@gmail.com",
+        "domain": null,
+        "displayName": "Dave Call",
+        "allowFileDiscovery": null
+      }
+    ],
+    "source_visibility_status": "permission_metadata_available"
+  },
+  "download": {
+    "sha256": "9be8cc159b6897f4bdf44cfcdece62a7d4e73287beeb63825627e00ecd4e97c5",
+    "size": 40589
+  }
+}

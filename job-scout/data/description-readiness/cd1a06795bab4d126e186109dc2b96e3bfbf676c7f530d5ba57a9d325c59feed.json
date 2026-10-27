@@ -1,0 +1,10 @@
+{
+  "value": "Yes",
+  "reason": "The description provides substantive, role-specific duties and qualifications covering Salesforce Marketing Cloud, email deliverability, audience segmentation, technical requirements, and cross-functional campaign execution, sufficient to guide honest resume tailoring.",
+  "status": "reviewed",
+  "evidence": [
+    "Provide technical guidance on Salesforce Marketing Cloud (SFMC) configuration, setup, and operational best practices.",
+    "Advise on sender reputation, email authentication, suppression strategies, list hygiene, and inbox placement.",
+    "Define and document audience creation requirements, including eligibility criteria, exclusions, segmentation logic, and holdout groups."
+  ]
+}

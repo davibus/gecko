@@ -1,0 +1,42 @@
+{
+  "id": 2954,
+  "company": "Sweat Pants Agency",
+  "title": "Senior Google Ads Buyer, DTC eCommerce (Remote)",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Sweat-Pants-Agency+Senior-Google-Ads-Buyer,-DTC-eCommerce-(Remote)+00415.docx",
+  "listing": "C:\\gecko_main\\input\\job-descriptions\\Sweat-Pants-Agency+A9D4E53A42.md",
+  "images": [
+    "C:\\gecko_main\\scratch\\Sweat-Pants-Agency+A9D4E53A42\\final-page-1.png",
+    "C:\\gecko_main\\scratch\\Sweat-Pants-Agency+A9D4E53A42\\final-page-2.png"
+  ],
+  "sha256": "41b1b8af53519df14f678ea64999477a7513edd55cf2a2e0a6dc382456932404",
+  "qa": {
+    "status": "pass",
+    "word_pages": 2,
+    "pdf_pages": 2,
+    "issues": [],
+    "remaining_weaknesses": [
+      "report a number that makes a client feel great and tells you nothing about whether you grew the business.",
+      "work with around 50 DTC and eCommerce brands, 20 to 25 of them on paid media.",
+      "own a set of our Google accounts end to end.",
+      "own the whole funnel, not the campaign.",
+      "optimize to NC-CPA and NC-ROAS, not blended and not last click.",
+      "own the whole picture and be judged on whether the number moved, keep reading.",
+      "Own a set of DTC accounts as the strategist, the buyer, and the client's direct point of contact.",
+      "Own the client relationship.",
+      "present the results, the plan, and the reasoning, and you are the one who answers when something is not working.",
+      "Report them separately or you are reporting nothing.",
+      "lead gen accounts.",
+      "Build the things the account needs.",
+      "build, not just prompt.",
+      "build and ship a landing page with it.",
+      "communicate your ideas in English at a native or near native level.",
+      "build frameworks that scale."
+    ],
+    "native_validation": "C:\\gecko_main\\scratch\\Sweat-Pants-Agency+A9D4E53A42\\validation-status.json",
+    "word_output": "Word validation mode: Direct interactive session\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\gecko_main\\scratch\\Sweat-Pants-Agency+A9D4E53A42\\validation-status.json",
+    "page_two_bottom_gap_pt": 13.54,
+    "page_two_text_boundary_pt": 757.45,
+    "density_issue": "",
+    "content_exhaustion_reason": ""
+  }
+}

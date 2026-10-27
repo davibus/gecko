@@ -1,0 +1,54 @@
+{
+  "id": 3048,
+  "company": "Jobgether",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1dLVh-BsMbSgk1Y5lzWwSiiOBVV9jUi4F/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Sr.-Manager,-Marketing-Healthcare+00488.docx",
+  "started_at": "2026-10-26T16:09:46.567656+00:00",
+  "completed_at": "2026-10-26T16:12:06.772822+00:00",
+  "elapsed_seconds": 140.205176,
+  "generation_seconds": 29.34330969999428,
+  "delivery_seconds": 5.686670700000832,
+  "tracker_seconds": 36.43404439999722,
+  "readback": {
+    "Scout ID": 3048,
+    "Company": "Jobgether",
+    "Job Title": "Sr. Manager, Marketing - Healthcare",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1dLVh-BsMbSgk1Y5lzWwSiiOBVV9jUi4F/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1299",
+  "hyperlink_target": "https://docs.google.com/document/d/1dLVh-BsMbSgk1Y5lzWwSiiOBVV9jUi4F/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 140.2052,
+    "active_seconds": 82.1358,
+    "review_wait_seconds": 58.0694,
+    "phases_seconds": {
+      "source_loading": 0.0487,
+      "tailoring": 1.1885,
+      "document_creation": 2.3263,
+      "word_pdf_validation": 8.2452,
+      "fitting_retries": 0.0791,
+      "factual_review": 0.0,
+      "review_wait": 58.0694,
+      "tracker_sync": 36.4332,
+      "drive_delivery": 5.6792
+    },
+    "counts": {
+      "source_loading": 66,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1,
+      "restored_trials": 0
+    }
+  }
+}

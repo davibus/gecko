@@ -41,6 +41,7 @@ class GeckoBulletPolicyTests(unittest.TestCase):
                    for gap in (180, 90)] + [
                    {'status': 'pass', 'word_pages': 2, 'pdf_pages': 2, 'page_two_bottom_gap_pt': 20}]
         with patch.object(v2, 'make_resume'), patch.object(v2, 'native_qa', side_effect=reports), \
+             patch.object(v2, 'normalize_resume_format'), \
              patch.object(v2, '_third_bullet_fallbacks', return_value=[]), \
              patch.object(v2, '_additional_evidence', side_effect=candidates):
             result = v2.generate_two_page_resume(plan, Path('test.docx'), Path('.'))
@@ -53,6 +54,7 @@ class GeckoBulletPolicyTests(unittest.TestCase):
                    {'status': 'fail', 'word_pages': 3, 'pdf_pages': 3},
                    {'status': 'fail', 'word_pages': 2, 'pdf_pages': 2, 'page_two_bottom_gap_pt': 80}]
         with patch.object(v2, 'make_resume'), patch.object(v2, 'native_qa', side_effect=reports), \
+             patch.object(v2, 'normalize_resume_format'), \
              patch.object(v2, '_third_bullet_fallbacks', return_value=[]), \
              patch.object(v2, '_additional_evidence', return_value=['d']):
             result = v2.generate_two_page_resume(plan, Path('test.docx'), Path('.'))

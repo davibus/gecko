@@ -1,0 +1,35 @@
+{
+  "path": "C:\\gecko_main\\output\\resumes\\Dave-Call+mars-men+Paid-Search-&-Youtube-Manager+00502.docx",
+  "metadata": {
+    "id": "1IK_DNI6b-r_pkEL4N0xAcWj2rNRBeNdi",
+    "title": "Dave-Call+mars-men+Paid-Search-&-Youtube-Manager+00502.docx",
+    "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "size": "40536",
+    "url": "https://docs.google.com/document/d/1IK_DNI6b-r_pkEL4N0xAcWj2rNRBeNdi/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+    "file_or_folder": "file",
+    "created_time": null,
+    "modified_time": null,
+    "parent_ids": [
+      "1Noy8XUqlL5ufqA4aU9jZWdwpMYeCVmol"
+    ],
+    "drive_id": null,
+    "current_user_can_share": null,
+    "has_augmented_permissions": null,
+    "shared": false,
+    "permissions": [
+      {
+        "type": "user",
+        "role": "owner",
+        "emailAddress": "mdavidcall@gmail.com",
+        "domain": null,
+        "displayName": "Dave Call",
+        "allowFileDiscovery": null
+      }
+    ],
+    "source_visibility_status": "permission_metadata_available"
+  },
+  "download": {
+    "sha256": "16ab44ae59c53815469a85891c78e847a88e41fc0d553cdb39fab3229c15f4bb",
+    "size": 40536
+  }
+}

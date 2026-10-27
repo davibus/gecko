@@ -1,0 +1,284 @@
+{
+  "id": "job",
+  "sufficient": true,
+  "reason": "Complete posting. Click-fraud controls, some platform execution and schedule availability are unverified.",
+  "blockers": [],
+  "categories": {
+    "responsibilities": [
+      {
+        "requirement": "Build and execute paid media strategies across Google Ads, Microsoft Advertising, Meta Ads Manager, LinkedIn Campaign Manager, X Ads, and other relevant channels",
+        "support": 0.5,
+        "evidence": [
+          "Managed Google Ads, Microsoft Ads, Amazon, Meta, Instagram, and TikTok across an approximately $400K monthly advertising budget"
+        ],
+        "reason": "Direct Google, Microsoft and Meta management; LinkedIn and X execution are unverified."
+      },
+      {
+        "requirement": "Plan, allocate, and optimize annual six-figure advertising budgets across paid channels to meet business goals and improve return",
+        "support": 1,
+        "evidence": [
+          "Managed approximately $400,000 in media budget that generated more than $9 million in revenue, representing approximately 35% of total company revenue"
+        ],
+        "reason": "Documented monthly budgets exceed annual scale; demonstrated revenue and allocation ownership."
+      },
+      {
+        "requirement": "Set campaign KPIs, monitor pacing and performance, and report results and optimization recommendations to leadership",
+        "support": 1,
+        "evidence": [
+          "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+        ],
+        "reason": "Direct KPI reporting, pacing and leadership decision support."
+      },
+      {
+        "requirement": "Manage keyword research, competitive analysis, bid strategies, and campaign structures across audiences, regions, and devices",
+        "support": 1,
+        "evidence": [
+          "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing"
+        ],
+        "reason": "Direct campaign optimization plus documented geographic, device and competitive analysis."
+      },
+      {
+        "requirement": "Develop and refine audience targeting using first-party and third-party data",
+        "support": 0.5,
+        "evidence": [
+          "Analyzed Google Ads audience performance to identify audiences and strategies to test and apply across other platforms"
+        ],
+        "reason": "Audience analysis and targeting transfer; explicit first/third-party data activation is unverified."
+      },
+      {
+        "requirement": "Create and refine ad copy and creative, and run A/B tests across advertisements, landing pages, and campaign concepts",
+        "support": 1,
+        "evidence": [
+          "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing"
+        ],
+        "reason": "Direct ad-copy, landing-page and experimental campaign optimization."
+      },
+      {
+        "requirement": "Analyze customer journeys, conversion paths, and campaign attribution to identify and implement performance improvements",
+        "support": 1,
+        "evidence": [
+          "Develops conversion tracking and attribution models; analyzes funnels, conversion paths, landing pages, and micro-conversions"
+        ],
+        "reason": "Direct conversion-path and attribution analysis supports performance improvements."
+      },
+      {
+        "requirement": "Use the company’s internal AI-connected paid media system and other practical AI workflows to review performance, streamline work, and support optimization decisions",
+        "support": 1,
+        "evidence": [
+          "Uses structured OpenAI workflows to prioritize supported findings, with application checks that reject unsupported evidence."
+        ],
+        "reason": "Built equivalent AI-supported marketing analysis; internal-system onboarding is transferable."
+      },
+      {
+        "requirement": "Partner with web development to improve conversion tracking and landing-page performance, including work involving GA4 and Google Tag Manager",
+        "support": 1,
+        "evidence": [
+          "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+        ],
+        "reason": "Direct GA4/GTM implementation complements documented web-team and landing-page collaboration."
+      },
+      {
+        "requirement": "Coordinate paid and organic search strategies with content and SEO partners",
+        "support": 1,
+        "evidence": [
+          "Consulted on SEO best practices and on-page optimization and coordinated marketing priorities with web, operations, creative, and other stakeholders"
+        ],
+        "reason": "Direct paid-media leadership and SEO coordination."
+      },
+      {
+        "requirement": "Develop and maintain controls that reduce click-fraud risk",
+        "support": 0,
+        "evidence": [],
+        "reason": "Search-term waste analysis does not establish click-fraud prevention controls."
+      },
+      {
+        "requirement": "Manage external agencies and vendors and share paid media best practices with the broader team",
+        "support": 1,
+        "evidence": [
+          "Consolidated work that had been divided among five agencies into a comprehensive, scalable in-house PPC strategy"
+        ],
+        "reason": "Agency coordination and documented team training support vendor management and practice sharing."
+      }
+    ],
+    "required": [
+      {
+        "requirement": "Demonstrated hands-on experience managing paid media platforms and personally managing annual advertising budgets of six figures or more; strategy-only or agency-oversight experience is not sufficient",
+        "support": 1,
+        "evidence": [
+          "Managed 12 accounts, 32 campaigns, approximately 110,000 ad groups, 1.6 million keywords, and approximately $3.6 million in monthly spend for one brand"
+        ],
+        "reason": "Direct platform execution and monthly budget ownership exceed the annual requirement."
+      },
+      {
+        "requirement": "Expert knowledge of paid search, paid social, display, and remarketing, with the ability to translate business goals into effective campaigns",
+        "support": 1,
+        "evidence": [
+          "Managed 150+ campaigns across Google Ads, Microsoft Ads, Amazon, search, shopping, display, video, remarketing, mobile, social, local, and email with approximately $400K in monthly spend"
+        ],
+        "reason": "Direct cross-channel campaign leadership and demonstrated commercial results."
+      },
+      {
+        "requirement": "Advanced analytical and attribution skills, including the ability to use customer-journey and campaign data to improve conversion paths and performance",
+        "support": 1,
+        "evidence": [
+          "Designed and interpreted funnel testing across reach, comparison, conversion, micro-conversion, purchase, and internal customer lifetime value to identify scalable search and budget opportunities"
+        ],
+        "reason": "Advanced funnel testing directly connects journey evidence to performance opportunities."
+      },
+      {
+        "requirement": "Ability to design and interpret A/B tests involving ad copy, creative, and landing pages",
+        "support": 1,
+        "evidence": [
+          "Built conversion and attribution models and designed A/B and multivariate tests across multiple levels of the marketing funnel"
+        ],
+        "reason": "Direct testing design plus documented ad-copy and landing-page optimization."
+      },
+      {
+        "requirement": "Strong skill in writing and refining effective ad copy and creative that aligns with brand messaging",
+        "support": 1,
+        "evidence": [
+          "Developed affiliate-program strategy and created search/display ad copy using Adobe design software"
+        ],
+        "reason": "Direct search/display creative production, reinforced by evidence-checked brand copy workflows."
+      },
+      {
+        "requirement": "Experience with marketing automation and CRM systems; experience with comparable platforms is acceptable",
+        "support": 1,
+        "evidence": [
+          "Installed Go High Level and trained employees on how to use it correctly."
+        ],
+        "reason": "Direct CRM deployment and training, with documented Service Titan and ERP integrations."
+      },
+      {
+        "requirement": "Experience with, or a demonstrated interest in, using AI to streamline workflows, review performance, and support campaign optimization",
+        "support": 1,
+        "evidence": [
+          "Automated SERP analysis with Python and used machine-learning models and the Google Ads API to support budgets, bids, ad copy, keyword decisions, and other optimizations"
+        ],
+        "reason": "Direct AI/ML-assisted campaign analysis and optimization."
+      },
+      {
+        "requirement": "Careful project management, clear recommendations, and effective presentation of performance data to leadership",
+        "support": 1,
+        "evidence": [
+          "Created annual projections and KPI reporting with senior leadership and used platform, analytics, Magento, accounting, and competitive data to guide budget and campaign decisions"
+        ],
+        "reason": "Direct leadership reporting and coordinated decision support across complex programs."
+      },
+      {
+        "requirement": "A record of working independently, following through from idea to results, identifying performance or tracking issues proactively, and keeping remote partners aligned",
+        "support": 0.5,
+        "evidence": [
+          "Conceived, designed, and built Space Force, a personal marketing technology and portfolio project combining hands-on digital marketing expertise with AI-assisted application development."
+        ],
+        "reason": "Independent delivery and auditing are demonstrated; remote partner alignment is unverified."
+      },
+      {
+        "requirement": "Availability to work with US Eastern Time or similar hours and provide sufficient overlap for collaboration with colleagues in North America and Europe when needed",
+        "support": 0,
+        "evidence": [],
+        "reason": "Working-hour availability and international collaboration overlap are unverified."
+      },
+      {
+        "requirement": "Communication skills and fluency in written and spoken English, with other languages considered an asset",
+        "support": 0.5,
+        "evidence": [
+          "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+        ],
+        "reason": "Professional communication is demonstrated; explicit written/spoken English fluency is unverified."
+      }
+    ],
+    "seniority": [
+      {
+        "requirement": "5+ years of experience managing paid media campaigns, including at least 2 years in a senior role",
+        "support": 1,
+        "evidence": [
+          "Led an eight-person e-commerce team responsible for paid search, customer acquisition, campaign delivery, website performance, and growth across the U.S., Canada, and U.K"
+        ],
+        "reason": "Dated paid-media roles exceed five years; LifeSpan director tenure spans over three years."
+      }
+    ],
+    "industry": [],
+    "preferred": [
+      {
+        "requirement": "Experience with web hosting, SaaS, or similar B2B technology products is a plus.",
+        "support": 0.5,
+        "evidence": [
+          "Extended the original product into an authenticated multi-client architecture."
+        ],
+        "reason": "B2B-style software development transfers; hosting/SaaS product marketing is unverified."
+      },
+      {
+        "requirement": "Google Ads or Meta Blueprint certification",
+        "support": 1,
+        "evidence": [
+          "Certifications\n• Google Ads\n• Google Analytics\n• Microsoft Ads / Bing Ads\n• Meta/Facebook Blueprint"
+        ],
+        "reason": "Both relevant certifications are explicitly listed."
+      },
+      {
+        "requirement": "experience with GA4 and Google Tag Manager",
+        "support": 1,
+        "evidence": [
+          "Configured GA4 and custom Google Tag Manager measurement/reporting"
+        ],
+        "reason": "Direct implementation experience with both tools."
+      },
+      {
+        "requirement": "familiarity with WordPress or a comparable CMS",
+        "support": 1,
+        "evidence": [
+          "Displays Shopify-managed content and business policies, with a script for publishing policy documents to Shopify so storefront and checkout content can stay aligned."
+        ],
+        "reason": "Demonstrated Shopify content management meets the comparable-CMS allowance."
+      },
+      {
+        "requirement": "experience working remotely",
+        "support": 0,
+        "evidence": [],
+        "reason": "Remote work history is not explicitly documented."
+      },
+      {
+        "requirement": "other languages considered an asset",
+        "support": 1,
+        "evidence": [
+          "Spanish – Fluent"
+        ],
+        "reason": "Fluent Spanish is explicitly documented."
+      }
+    ]
+  },
+  "score": 85.14,
+  "accepted": true,
+  "status": "reviewed",
+  "failed_rules": [],
+  "category_percentages": {
+    "responsibilities": 83.33,
+    "required": 81.82,
+    "seniority": 100.0,
+    "industry": null,
+    "preferred": 75.0
+  },
+  "policy": "master-evidence-v2",
+  "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+  "job": {
+    "id": "job",
+    "title": "Senior Paid Media Manager",
+    "company": "HostPapa, Inc.",
+    "url": "https://hostpapa.applytojob.com/apply/RPSLQTP5tz/Senior-Paid-Media-Manager"
+  },
+  "description_sha256": "15a29b42fd259051a0ae25fad286f11c88d202d56c5fdebf9d6c36bc3000119f",
+  "runner": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a1737b-0e12-7a53-8286-2b4563c4c26f",
+    "verified_at": "2026-10-25T14:34:43.416211+00:00"
+  },
+  "thresholds": {
+    "minimum_score": 60,
+    "minimum_responsibilities_match": 50,
+    "minimum_required_skills_match": 50
+  },
+  "cached": true
+}

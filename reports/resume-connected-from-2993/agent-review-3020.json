@@ -1,0 +1,63 @@
+{
+  "spec": {
+    "headline": "Performance Marketing | Full-Funnel Testing | Paid Media Analytics",
+    "headline_rationale": "Pavago needs campaign strategy and execution, ROAS/CPA optimization, creative feedback and reporting. Use supported multi-platform acquisition, tests and measurable scale. Listed international locations are preferred, not an exclusive residency rule.",
+    "summary": "Performance marketer experienced in combining campaign execution, creative collaboration and full-funnel analysis. Scaled monthly marketing volume fourfold while improving ROAS from 1.5 to 3.5, and managed acquisition across Google, Microsoft, Meta, Instagram and TikTok. Designs audience and conversion tests, evaluates bidding and budget decisions, and builds GA4/GTM measurement and reporting. Agency portfolio experience adds practical client strategy, account discipline and actionable recommendations across multiple campaigns and business priorities.",
+    "factual_review": "Read exact Pavago Performance Marketing Specialist posting; remote locations listed as preferred. Supported E037/E030/E006/E002/E043/E075/E076/E078/E079/E081. No fabricated CPL lift, exclusive regional eligibility or SaaS lifecycle ownership.",
+    "selected_evidence_ids": [
+      "E001",
+      "E002",
+      "E003",
+      "E006",
+      "E008",
+      "E009",
+      "E021",
+      "E023",
+      "E030",
+      "E043",
+      "E044",
+      "E060",
+      "E063",
+      "E066",
+      "E076",
+      "E078",
+      "E079",
+      "E082",
+      "E093",
+      "E095",
+      "E096",
+      "E114"
+    ],
+    "additional_evidence_ids": [
+      "E004",
+      "E005",
+      "E010",
+      "E011",
+      "E020",
+      "E072",
+      "E080",
+      "E081",
+      "E102",
+      "E105",
+      "E109",
+      "E115"
+    ],
+    "tools_platforms": [
+      "Google Ads",
+      "Meta Ads",
+      "Microsoft Ads",
+      "Google Analytics 4",
+      "Google Tag Manager",
+      "Looker Studio",
+      "Excel",
+      "Python",
+      "HubSpot",
+      "Salesforce"
+    ],
+    "tools_rationale": "Supported campaign, measurement and CRM tools matching the posting's operational requirements."
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "331b70b52b92deb1f98bb979c7bd6ee30a26cb3ddbac9bc94863013928966550"
+}

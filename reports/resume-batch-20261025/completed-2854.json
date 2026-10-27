@@ -1,0 +1,54 @@
+{
+  "id": 2854,
+  "company": "Wpromote",
+  "title": "Paid Search Manager",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Wpromote+Paid-Search-Manager+00434.docx",
+  "listing": "C:\\gecko_main\\scratch\\Wpromote+0ff8aaeb-a07a-40d6-b0b4-e5ff5025a592\\Wpromote+0ff8aaeb-a07a-40d6-b0b4-e5ff5025a592.md",
+  "images": [
+    "C:\\gecko_main\\scratch\\Wpromote+0ff8aaeb-a07a-40d6-b0b4-e5ff5025a592\\final-page-1.png",
+    "C:\\gecko_main\\scratch\\Wpromote+0ff8aaeb-a07a-40d6-b0b4-e5ff5025a592\\final-page-2.png"
+  ],
+  "sha256": "4a2862ed7f14d205765d3f71cd7fc3743c6f5cb332b5a2c9469ad8ef9c9b37c3",
+  "qa": {
+    "status": "pass",
+    "word_pages": 2,
+    "pdf_pages": 2,
+    "issues": [],
+    "remaining_weaknesses": [
+      "Dave's 14+ years and prior director roles substantially exceed the advertised 1.5–3 years, creating an overqualification and salary-fit concern.",
+      "Excellent verbal, written, analytical, organizational, and expectation-management skills.",
+      "Strong Excel skills, including pivot tables, VLOOKUP, and chart building.",
+      "Ability to balance multiple clients, timelines, fire drills, and competing priorities.",
+      "Understanding of customer lifetime value and profit optimization based on client margins.",
+      "Experience presenting to senior client contacts.",
+      "Google Workspace experience.",
+      "Agency experience managing multiple clients with monthly budgets of $50,000–$500,000 per client preferred.",
+      "Wpromote Lever posting: https://jobs.lever.co/wpromote/0ff8aaeb-a07a-40d6-b0b4-e5ff5025a592",
+      "Remote U.S. location aligns with the posting.",
+      "No explicit Criteo experience is documented.",
+      "App-install campaign ownership is not clearly supported by the source resume.",
+      "Work with client teams to understand business needs, campaign objectives, and opportunities to expand relationships and investment.",
+      "Manage Search, Shopping, Display, Remarketing, App Install, and Video advertising.",
+      "Use direct-response strategies to drive revenue or qualified leads.",
+      "Design and implement A/B experiments to identify better campaign settings.",
+      "Analyze campaign performance and adjust strategy and budgets accordingly.",
+      "Communicate regularly with clients about goals and results.",
+      "Develop cross-channel strategies that improve CPA, ROAS, and overall efficiency.",
+      "experience, education, certifications, geography, market conditions, and role scope."
+    ],
+    "native_validation": "C:\\gecko_main\\scratch\\Wpromote+0ff8aaeb-a07a-40d6-b0b4-e5ff5025a592\\validation-status.json",
+    "word_output": "Word validation mode: Direct interactive session\nNative Word validation passed: Word=2 pages, exported PDF=2 pages.\nValidation record: C:\\gecko_main\\scratch\\Wpromote+0ff8aaeb-a07a-40d6-b0b4-e5ff5025a592\\validation-status.json",
+    "page_two_bottom_gap_pt": 13.54,
+    "page_two_text_boundary_pt": 757.45,
+    "density_issue": "",
+    "content_exhaustion_reason": ""
+  },
+  "readback": {
+    "Scout ID": 2854,
+    "Company": "Wpromote",
+    "Job Title": "Paid Search Manager",
+    "Resume Created": "X",
+    "Resume Link": "file:///C:/gecko_main/output/resumes/Dave-Call%2BWpromote%2BPaid-Search-Manager%2B00434.docx",
+    "Resume Created Date": "2026-10-25"
+  }
+}

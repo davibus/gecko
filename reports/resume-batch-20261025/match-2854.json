@@ -1,0 +1,234 @@
+{
+  "id": "job",
+  "sufficient": true,
+  "reason": "Complete duties and qualifications support assessment. Criteo, app-install campaigns, specific Excel features, and preferred per-client agency budgets remain unverified.",
+  "blockers": [],
+  "categories": {
+    "responsibilities": [
+      {
+        "requirement": "Plan, develop, and implement paid-search strategies focused on direct response and new-user acquisition.",
+        "support": 1,
+        "evidence": [
+          "Managed all paid search campaigns, outreach, lead generation, and customer acquisition for a large E-Commerce company in the United States, Canada, and the UK"
+        ],
+        "reason": "Direct ownership of paid search, lead generation, and customer acquisition."
+      },
+      {
+        "requirement": "Work with client teams to understand business needs, campaign objectives, and opportunities to expand relationships and investment.",
+        "support": 1,
+        "evidence": [
+          "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+        ],
+        "reason": "Demonstrates consultative client strategy and growth planning."
+      },
+      {
+        "requirement": "Create and manage accounts and campaigns across Google Ads, Microsoft Ads, Criteo, and other platforms.",
+        "support": 0.5,
+        "evidence": [
+          "Managed PPC efforts across Google Ads and Microsoft/Bing Ads"
+        ],
+        "reason": "Direct Google and Microsoft campaign management; Criteo experience is unverified."
+      },
+      {
+        "requirement": "Manage Search, Shopping, Display, Remarketing, App Install, and Video advertising.",
+        "support": 0.5,
+        "evidence": [
+          "Managed display, mobile, re-marketing, search, video, email, shopping, and social, local, and"
+        ],
+        "reason": "Most listed formats are documented; mobile does not establish app-install campaign experience."
+      },
+      {
+        "requirement": "Use direct-response strategies to drive revenue or qualified leads.",
+        "support": 1,
+        "evidence": [
+          "Managed approximately $400,000 in media budget that generated more than $9 million in revenue, representing approximately 35% of total company revenue"
+        ],
+        "reason": "Documents substantial revenue outcomes from managed advertising."
+      },
+      {
+        "requirement": "Conduct keyword research, write ad copy, and establish bidding strategies tied to client KPIs.",
+        "support": 1,
+        "evidence": [
+          "Leads account activation, campaign builds and structures, keyword and negative-keyword strategy, ad copy, audience segmentation, bid testing, budget pacing"
+        ],
+        "reason": "Demonstrates keyword, copy, bidding, and budget execution toward performance goals."
+      },
+      {
+        "requirement": "Design and implement A/B experiments to identify better campaign settings.",
+        "support": 1,
+        "evidence": [
+          "Created custom attribution models, advanced bid strategies, bid tests/experiments, A/B tests, and multivariate testing frameworks"
+        ],
+        "reason": "Direct evidence of campaign experimentation and testing frameworks."
+      },
+      {
+        "requirement": "Use Google Analytics to develop insights and actions that improve paid-search results.",
+        "support": 1,
+        "evidence": [
+          "Created business goals, annual projections, and KPIs with senior management and reported data from Magento, Google Analytics, ACCTivate, QuickBooks, and advertising platforms"
+        ],
+        "reason": "Uses Google Analytics and advertising data for campaign goals and performance decisions."
+      },
+      {
+        "requirement": "Analyze campaign performance and adjust strategy and budgets accordingly.",
+        "support": 1,
+        "evidence": [
+          "Increased monthly volume fourfold while improving ROAS from 1.5 to 3.5 through bidding strategy, audience analysis, campaign testing, budget allocation, and conversion review"
+        ],
+        "reason": "Demonstrates analysis-led strategy and budget optimization with measured results."
+      },
+      {
+        "requirement": "Communicate regularly with clients about goals and results.",
+        "support": 1,
+        "evidence": [
+          "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+        ],
+        "reason": "Direct client communication about priorities, findings, and growth."
+      },
+      {
+        "requirement": "Develop cross-channel strategies that improve CPA, ROAS, and overall efficiency.",
+        "support": 1,
+        "evidence": [
+          "Scaled monthly marketing volume from approximately $200,000 to $800,000 while improving ROAS from 1.5 to 3.5 through bidding, audience, budget, campaign, and conversion optimization"
+        ],
+        "reason": "Demonstrates performance strategy and efficiency improvements across marketing investment."
+      }
+    ],
+    "required": [
+      {
+        "requirement": "Excellent verbal, written, analytical, organizational, and expectation-management skills.",
+        "support": 1,
+        "evidence": [
+          "Builds and develops teams, documents lessons learned, resolves issues, respectfully challenges assumptions, takes ownership of setbacks, and turns recommendations into coordinated execution."
+        ],
+        "reason": "Demonstrates communication, documentation, issue management, and coordinated execution."
+      },
+      {
+        "requirement": "Deep SEM and paid-search advertising knowledge.",
+        "support": 1,
+        "evidence": [
+          "Managed 12 accounts, 32 campaigns, approximately 110,000 ad groups, and 1.6 million keywords with approximately $3.6 million in monthly spend for a single brand"
+        ],
+        "reason": "Large-scale hands-on paid-search management establishes substantial SEM expertise."
+      },
+      {
+        "requirement": "Experience with keyword-research and web-analytics tools, including Google Analytics.",
+        "support": 1,
+        "evidence": [
+          "Created business goals, annual projections, and KPIs with senior management and reported data from Magento, Google Analytics, ACCTivate, QuickBooks, and advertising platforms"
+        ],
+        "reason": "Demonstrates applied analytics-tool use alongside documented advanced keyword research."
+      },
+      {
+        "requirement": "General knowledge of SEO, social advertising, and web usability.",
+        "support": 1,
+        "evidence": [
+          "Applied marketing knowledge to technical SEO, feed readiness, conversion measurement, product presentation, and business transparency."
+        ],
+        "reason": "Website and SEO delivery plus documented social campaign management cover these general capabilities."
+      },
+      {
+        "requirement": "Strong Excel skills, including pivot tables, VLOOKUP, and chart building.",
+        "support": 0.5,
+        "evidence": [
+          "Used advanced Excel formulas and VS Code to create upload-ready XLSX files for Google Ads Editor"
+        ],
+        "reason": "Advanced formula use is established; specific pivot, lookup, and chart capabilities are unverified."
+      },
+      {
+        "requirement": "Ability to balance multiple clients, timelines, fire drills, and competing priorities.",
+        "support": 1,
+        "evidence": [
+          "Developed a repeatable Google Ads account-management system that maintained consistent service quality across clients regardless of spend; the system was adopted across the agency"
+        ],
+        "reason": "Demonstrates scalable multi-client execution and consistent service under competing demands."
+      },
+      {
+        "requirement": "Understanding of customer lifetime value and profit optimization based on client margins.",
+        "support": 1,
+        "evidence": [
+          "Conducted customer lifetime value (LTV) analysis, affiliate commission analysis and discount negotiation, and AI-assisted promotion performance analysis using Namogoo"
+        ],
+        "reason": "Demonstrates customer-value analysis and commercial optimization of commissions and discounts."
+      },
+      {
+        "requirement": "Experience presenting to senior client contacts.",
+        "support": 0.5,
+        "evidence": [
+          "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+        ],
+        "reason": "Client and executive presentations are supported; senior external client audiences are unverified."
+      },
+      {
+        "requirement": "Google Workspace experience.",
+        "support": 1,
+        "evidence": [
+          "Used ChatGPT within Google Sheets to rewrite Shopify product descriptions for SEO and remove duplicate content"
+        ],
+        "reason": "Demonstrates practical work in a Google Workspace application."
+      }
+    ],
+    "seniority": [
+      {
+        "requirement": "Approximately 1.5–3 years managing paid-search campaigns for multiple client portfolios within an advertising agency.",
+        "support": 1,
+        "evidence": [
+          "SEM Manager/Project Manager - The Infinite Agency - Dallas, TX                                Sep 2016 - Feb 2018"
+        ],
+        "reason": "Dated agency SEM role spans approximately 1.5 years; accompanying duties document 75+ accounts."
+      }
+    ],
+    "industry": [],
+    "preferred": [
+      {
+        "requirement": "Agency experience managing multiple clients with monthly budgets of $50,000–$500,000 per client preferred.",
+        "support": 0.5,
+        "evidence": [
+          "Set up and managed more than 75 Google Ads/AdWords accounts with combined monthly spend of more than $476,000, supporting lead generation and multichannel client programs"
+        ],
+        "reason": "Multi-client agency budgets are documented; the specified per-client budget range is unverified."
+      },
+      {
+        "requirement": "Hands-on use of AI and automation tools inside and outside paid-search platforms to improve results.",
+        "support": 1,
+        "evidence": [
+          "Automated SERP analysis with Python and used machine-learning models and the Google Ads API to support budgets, bids, ad copy, keyword decisions, and other optimizations"
+        ],
+        "reason": "Demonstrates applied machine learning, external automation, and advertising API optimization."
+      }
+    ]
+  },
+  "score": 90.87,
+  "accepted": true,
+  "status": "reviewed",
+  "failed_rules": [],
+  "category_percentages": {
+    "responsibilities": 90.91,
+    "required": 88.89,
+    "seniority": 100.0,
+    "industry": null,
+    "preferred": 75.0
+  },
+  "policy": "master-evidence-v2",
+  "thresholds": {
+    "minimum_score": 60,
+    "minimum_responsibilities_match": 50,
+    "minimum_required_skills_match": 50
+  },
+  "master_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+  "job": {
+    "id": "job",
+    "title": "Paid Search Manager",
+    "company": "Wpromote",
+    "url": "https://jobs.lever.co/wpromote/0ff8aaeb-a07a-40d6-b0b4-e5ff5025a592"
+  },
+  "description_sha256": "9016376d6b2148ad162e3afb003ef9d1d58dbefbbb2c90c0db4f56653bcf044d",
+  "runner": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "verified": true,
+    "session_id": "01a174ea-49ed-7a00-8c4d-9f9fcb861a3b",
+    "verified_at": "2026-10-25T21:15:19.963703+00:00"
+  },
+  "cached": true
+}

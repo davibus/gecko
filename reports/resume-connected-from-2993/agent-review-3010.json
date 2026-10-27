@@ -1,0 +1,65 @@
+{
+  "spec": {
+    "headline": "Performance Marketing Leadership | Portfolio Strategy | Growth Economics",
+    "headline_rationale": "CSC prioritizes cross-brand paid strategy, incremental economics, budgets, team building and commercial recommendations. Master supports large budgets, multi-company PPC transformation, teams and investment analysis; do not invent 13-brand P&L ownership or leadership-of-managers tenure.",
+    "summary": "Performance marketing leader combining portfolio operating systems, investment analysis and hands-on e-commerce execution. Built an in-house PPC structure for a group spanning 32 businesses, consolidating agency work and developing the team and reporting system. Analyzed incremental CPA, lifetime value and channel trade-offs, and used regression modeling to guide a proposed additional $10 million investment. Led an eight-person e-commerce team, coordinated cross-functional priorities and scaled monthly marketing volume fourfold while improving ROAS from 1.5 to 3.5.",
+    "factual_review": "Read exact CSC Generation VP Performance Marketing posting, US remote eligibility and SLC interview hub. Current master supports Any Hour32business scope, E002/E004/E010/E093/E037/E060/E038. No claimed 13brandportfolio, executive P&L ownership or unverified managerial tenure.",
+    "selected_evidence_ids": [
+      "E001",
+      "E002",
+      "E004",
+      "E005",
+      "E006",
+      "E010",
+      "E009",
+      "E011",
+      "E021",
+      "E023",
+      "E030",
+      "E038",
+      "E044",
+      "E060",
+      "E063",
+      "E066",
+      "E076",
+      "E078",
+      "E081",
+      "E093",
+      "E095",
+      "E096"
+    ],
+    "additional_evidence_ids": [
+      "E003",
+      "E008",
+      "E020",
+      "E072",
+      "E079",
+      "E080",
+      "E082",
+      "E102",
+      "E105",
+      "E109",
+      "E114",
+      "E115"
+    ],
+    "tools_platforms": [
+      "Google Ads",
+      "Meta Ads",
+      "Microsoft Ads",
+      "Google Analytics 4",
+      "Looker Studio",
+      "Tableau",
+      "Excel",
+      "Python",
+      "SQL",
+      "Shopify",
+      "ChatGPT",
+      "Claude"
+    ],
+    "tools_rationale": "Supported channel, analytics, commerce and AI tools relevant to portfolio-level planning and hands-on judgment."
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "bff6eb80e8e364aac8f46c9ee8c5514895376b749b10aa9b803f7623f85f8af9"
+}

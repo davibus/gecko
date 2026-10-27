@@ -1,0 +1,198 @@
+{
+  "job": {
+    "url": "https://jobs.ashbyhq.com/Valid/165d053b-a047-4bc5-9dca-7f189c8c5bca",
+    "company": "Valid",
+    "title": "Product, Performance Marketing",
+    "location": "United States",
+    "arrangement": "remote",
+    "salary": "$ 500,000 per month",
+    "posted": "2026-06-10",
+    "chars": 3187
+  },
+  "match": {
+    "id": "job",
+    "sufficient": true,
+    "reason": "Posting provides substantive duties and qualifications. Strong marketing and product evidence; platform-specific spend, hiring, and mobile-app advertising remain partly or wholly unverified.",
+    "blockers": [],
+    "categories": {
+      "responsibilities": [
+        {
+          "requirement": "Interface directly with clients",
+          "support": 1,
+          "evidence": [
+            "Consulted directly with clients on business goals, pain points, campaign structure, and budget allocation"
+          ],
+          "reason": "Direct client consultation establishes client-facing delivery."
+        },
+        {
+          "requirement": "Define what the ideal campaign structure is for Valid clients",
+          "support": 1,
+          "evidence": [
+            "Developed a repeatable Google Ads account-management system that maintained consistent service quality across clients regardless of spend"
+          ],
+          "reason": "Designed scalable account practices across agency clients."
+        },
+        {
+          "requirement": "Manage and hire a team of marketers to use tooling you help design to deliver a best-in-class ads experience",
+          "support": 0.5,
+          "evidence": [
+            "Built the PPC team and trained team members on the scalable system created for the organization (QoQ)"
+          ],
+          "reason": "Team building, training and tooling are demonstrated; hiring decisions are not explicit."
+        },
+        {
+          "requirement": "Interface directly with engineering translating marketing processes into real products",
+          "support": 1,
+          "evidence": [
+            "Used AI coding assistants to translate product requirements into working integrations, reusable scripts, interface improvements, and tested operational workflows."
+          ],
+          "reason": "Built working marketing-related products; demonstrated capability transfers to engineering collaboration."
+        }
+      ],
+      "required": [
+        {
+          "requirement": "A tech and startup obsessed marketing operator",
+          "support": 0.5,
+          "evidence": [
+            "Conceived, designed, and built Space Force, a personal marketing technology and portfolio project"
+          ],
+          "reason": "Hands-on marketing technology ownership is clear; startup preference is unverified."
+        },
+        {
+          "requirement": "First in line to try the newest AI marketing tool",
+          "support": 1,
+          "evidence": [
+            "Uses AI to build on foundational expertise, expand output, and accelerate content production, website and application development, analysis, and marketing workflows."
+          ],
+          "reason": "Demonstrated applied AI adoption across marketing and development."
+        },
+        {
+          "requirement": "Passionate about ad networks and performance marketing",
+          "support": 1,
+          "evidence": [
+            "Managed all marketing platforms: Google Ads, Bing Ads, Amazon, Facebook, Instagram, and TikTok with a 400k/month budget"
+          ],
+          "reason": "Substantial hands-on work across advertising networks demonstrates relevant engagement."
+        },
+        {
+          "requirement": "Obsessed with discovering and tracking social media trends",
+          "support": 0.5,
+          "evidence": [
+            "Conducted advanced keyword research, channel analysis, trend monitoring, acquisition analysis, conversion-path and funnel analysis"
+          ],
+          "reason": "Trend analysis transfers, but social-specific trend discovery is not established."
+        },
+        {
+          "requirement": "Comfortable analyzing data and deploying statistical methods to “read the tea leaves” of an ad account.",
+          "support": 1,
+          "evidence": [
+            "Used regression models, prior-year/prior-period data, holdouts, geo-promotional tests, scale-up/down analysis, and budget reallocation scenarios"
+          ],
+          "reason": "Direct statistical analysis and experimentation inform advertising investment decisions."
+        },
+        {
+          "requirement": "Organized: Build with purpose, work efficiently, communicate clearly, especially in writing.",
+          "support": 1,
+          "evidence": [
+            "Created setup documentation, architecture guides, a product case study, portfolio copy, and a demonstration script."
+          ],
+          "reason": "Delivered structured product documentation and communication artifacts."
+        },
+        {
+          "requirement": "Chaos: We think the best place to learn is in market and will do what it takes to ship as quickly as possible.",
+          "support": 0.5,
+          "evidence": [
+            "Used iterative development and verification to turn marketing-domain knowledge into a working software product."
+          ],
+          "reason": "Iterative shipping is demonstrated; delivery speed and in-market learning are less explicit."
+        },
+        {
+          "requirement": "You don’t enjoy wearing multiple hats",
+          "support": 1,
+          "evidence": [
+            "Combines marketing strategy and cross-functional leadership with hands-on expertise in paid media, analytics, e-commerce operations, website development, and business systems."
+          ],
+          "reason": "Evidence supports the desired versatility across marketing and technical functions."
+        },
+        {
+          "requirement": "Dislike navigating ambiguity",
+          "support": 0.5,
+          "evidence": [
+            "Oversaw project management in an ever-changing environment"
+          ],
+          "reason": "Changing project conditions support adaptability; comfort with ambiguity is indirect."
+        }
+      ],
+      "seniority": [
+        {
+          "requirement": "7+ years of performance marketing experience within an agency or head of growth role",
+          "support": 0.5,
+          "evidence": [
+            "Digital marketing and marketing technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce, professional services"
+          ],
+          "reason": "Extensive relevant tenure; seven years specifically in qualifying roles is not established by this quote."
+        },
+        {
+          "requirement": "Manage +$500,000/month of ad spend across the following platforms:",
+          "support": 0.5,
+          "evidence": [
+            "Managed up to $30 million per month in paid media with a four-person team at TravelPass Group"
+          ],
+          "reason": "Spend scale is proven; distribution across Meta, TikTok, Google and other channels is unverified."
+        },
+        {
+          "requirement": "Served in client facing roles as senior POC",
+          "support": 0.5,
+          "evidence": [
+            "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+          ],
+          "reason": "Senior consultative engagement is supported; designated primary-contact responsibility is not explicit."
+        },
+        {
+          "requirement": "Your goal is to maximize ownership",
+          "support": 1,
+          "evidence": [
+            "Defined the command center’s purpose, target users, feature scope, and operating boundaries."
+          ],
+          "reason": "Demonstrates ownership of product direction and scope."
+        }
+      ],
+      "industry": [],
+      "preferred": [
+        {
+          "requirement": "Advertising for mobile apps, mobile app attribution (SKAN), and Apple ads",
+          "support": 0,
+          "evidence": [],
+          "reason": "Mobile-app acquisition, SKAN and Apple Ads are unverified; general mobile ads do not establish them."
+        }
+      ]
+    },
+    "score": 75.23,
+    "accepted": true,
+    "status": "reviewed",
+    "failed_rules": [],
+    "category_percentages": {
+      "responsibilities": 87.5,
+      "required": 77.78,
+      "seniority": 62.5,
+      "industry": null,
+      "preferred": 0.0
+    },
+    "policy": "master-evidence-v2",
+    "master_sha256": "65eaa4541ae39b10bb87eac1480524265d2f54a7b353523baa6d92ced55dad01",
+    "job": {
+      "id": "job",
+      "title": "Product, Performance Marketing",
+      "company": "Valid",
+      "url": "https://jobs.ashbyhq.com/Valid/165d053b-a047-4bc5-9dca-7f189c8c5bca"
+    },
+    "description_sha256": "3bf4aead04a4a575a29fe1df7f484ed462e54c5d22ed21514e1fee96ecdfe0c9",
+    "runner": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "verified": true,
+      "session_id": "01a1735e-5d11-75f1-bd5d-982c4cf46639",
+      "verified_at": "2026-10-25T14:02:47.615751+00:00"
+    }
+  }
+}

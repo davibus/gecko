@@ -1,0 +1,53 @@
+{
+  "id": 3004,
+  "company": "Careerswift",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1JAS-Xpftc5U5xcx8IQ0a8sowjAi6fB3g/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Careerswift+Performance-Marketing-Specialist+00458.docx",
+  "started_at": "2026-10-26T14:55:58.844408+00:00",
+  "completed_at": "2026-10-26T14:57:20.641991+00:00",
+  "elapsed_seconds": 81.797593,
+  "generation_seconds": 14.725937499984866,
+  "delivery_seconds": 15.6073382999748,
+  "tracker_seconds": 20.515302399988286,
+  "readback": {
+    "Scout ID": 3004,
+    "Company": "Careerswift",
+    "Job Title": "Performance Marketing Specialist",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1JAS-Xpftc5U5xcx8IQ0a8sowjAi6fB3g/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1256",
+  "hyperlink_target": "https://docs.google.com/document/d/1JAS-Xpftc5U5xcx8IQ0a8sowjAi6fB3g/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 81.7976,
+    "active_seconds": 56.7658,
+    "review_wait_seconds": 25.0318,
+    "phases_seconds": {
+      "source_loading": 0.0188,
+      "tailoring": 0.6948,
+      "document_creation": 0.6115,
+      "word_pdf_validation": 3.5336,
+      "fitting_retries": 0.0038,
+      "factual_review": 0.0,
+      "review_wait": 25.0318,
+      "tracker_sync": 20.5144,
+      "drive_delivery": 15.577
+    },
+    "counts": {
+      "source_loading": 47,
+      "tailoring": 2,
+      "document_creation": 1,
+      "word_pdf_validation": 1,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 1,
+      "native_attempts": 1,
+      "drive_delivery": 1
+    }
+  }
+}

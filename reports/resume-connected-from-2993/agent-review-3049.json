@@ -1,0 +1,66 @@
+{
+  "spec": {
+    "headline": "Marketing Technology | CRM Integration | Data & Workflow Operations",
+    "headline_rationale": "The email technology/CRM role prioritizes technical planning, data infrastructure and cross-functional execution. Highlight supported CRM integrations, databases, audience/funnel analysis and process improvement; Salesforce alone does not establish Marketing Cloud or deliverability expertise.",
+    "summary": "Marketing technology practitioner experienced in connecting business needs with data, integrations and repeatable workflows. Installed and integrated Go High Level with ServiceTitan, Power BI and internal systems, trained employees, and designed information architecture and ERP flows. Built recurring multichannel reporting with Python, SQL and Funnel.io, alongside marketing databases and client-facing insights. Experience coordinating marketing, sales, IT and operations supports practical technical requirements, clear communication and more reliable campaign information and execution.",
+    "factual_review": "Read exact Jobgether Senior Email Marketing Technology CRM Manager contract posting. Any Hour integration/training and E066/E009/E072/E079/E060/E116 support facts. Do not equate Salesforce tool support with SFMC configuration or email deliverability expertise; no sender reputation/authentication, suppression or inbox placement results claimed.",
+    "selected_evidence_ids": [
+      "E001",
+      "E002",
+      "E003",
+      "E005",
+      "E006",
+      "E008",
+      "E009",
+      "E011",
+      "E021",
+      "E020",
+      "E023",
+      "E038",
+      "E044",
+      "E060",
+      "E066",
+      "E072",
+      "E063",
+      "E076",
+      "E079",
+      "E080",
+      "E081",
+      "E093",
+      "E096",
+      "E114",
+      "E116"
+    ],
+    "additional_evidence_ids": [
+      "E004",
+      "E010",
+      "E078",
+      "E082",
+      "E095",
+      "E105",
+      "E109",
+      "E113",
+      "E115",
+      "E117"
+    ],
+    "tools_platforms": [
+      "Salesforce",
+      "HubSpot",
+      "Power BI",
+      "Tableau",
+      "Looker Studio",
+      "Excel",
+      "Python",
+      "SQL",
+      "Funnel.io",
+      "Google Analytics 4"
+    ],
+    "tools_rationale": "Actual source-supported CRM/data/reporting tooling only; SFMC, Marketo and specialist deliverability tools omitted.",
+    "source_sha256": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e",
+    "description_sha256": "f1dcf60985aafef16082070f39582b292afdc0c9294aaef956a2b58126e90e23"
+  },
+  "source_sha256": {
+    "input\\master-resume\\master-resume-v4.docx": "1e7b994f0ce04395358ddeb23697b00e6de5dae31211b00cb8eb1bfc8e84e29e"
+  },
+  "listing_sha256": "86ebfcb43246a82dbce864c0cce991c194fc64ceaba0726b22b0f4d65269d761"
+}

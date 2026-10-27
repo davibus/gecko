@@ -17,6 +17,7 @@ from unittest.mock import patch, Mock
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import firecrawl_discovery as discovery
 import firecrawl_state as state
+import query_provenance
 from firecrawl_state import History, estimated_cost, request_key
 from sources import firecrawl as api
 from sources.base import ProviderError
@@ -55,7 +56,11 @@ class SmartDiscoveryTests(unittest.TestCase):
         self.store = JobStore(self.root / 'jobs.sqlite'); self.addCleanup(self.store.close)
         self.preferences = {'target_roles': ['Paid Search Manager', 'PPC Manager'], 'preferred_locations': ['Utah', 'remote']}
         build = discovery.build_queries
+        remember_queries = query_provenance.remember
+        lookup_query = query_provenance.query_for_job
         self.patches = [patch.object(discovery, 'build_queries', side_effect=lambda p: build(p)[:self.settings['max_queries_per_day']]),
+                        patch.object(query_provenance, 'remember', side_effect=lambda rows: remember_queries(rows, path=self.root/'queries.sqlite')),
+                        patch.object(query_provenance, 'query_for_job', side_effect=lambda job: lookup_query(job, path=self.root/'queries.sqlite')),
                         patch.object(discovery, 'public_listing', return_value=None),
                         patch.dict(os.environ, FIRECRAWL_API_KEY='test-only'),
                         patch.object(state, 'utcnow', return_value=NOW),
@@ -364,7 +369,7 @@ class SmartDiscoveryTests(unittest.TestCase):
         self.assertEqual(actual['Firecrawl provider confirmed credits'], 4)
         self.assertEqual(actual['Firecrawl estimated or reserved credits'], 3)
 
-    def test_daily_hook_precedes_ordinary_search_and_retains_resume_workflow(self):
+    def test_daily_does_not_run_broad_paid_search_and_retains_resume_workflow(self):
         import scout
         from manual_indeed import ManualIndeedSummary
         events = []
@@ -385,7 +390,7 @@ class SmartDiscoveryTests(unittest.TestCase):
                 patch.object(scout, '_daily_gmail_response_runner', return_value=(None, '')), \
                 patch.object(scout, '_print_daily_summary'):
             self.assertEqual(scout.daily(args, fake_store, self.preferences), 0)
-        self.assertEqual(events, ['smart', 'ordinary'])
+        self.assertEqual(events, ['ordinary'])
         resumes.assert_called_once()
 
     def test_distinct_ats_requisitions_are_not_merged_by_shared_title(self):

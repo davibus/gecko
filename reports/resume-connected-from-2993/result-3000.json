@@ -1,0 +1,53 @@
+{
+  "id": 3000,
+  "company": "Articulate",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1tW2FbcjXUwE6YmzpM2fo_r9ux93vFS2u/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Articulate+Senior-Core-Product-Marketing-Manager+00453.docx",
+  "started_at": "2026-10-26T14:43:55.930734+00:00",
+  "completed_at": "2026-10-26T14:46:55.480153+00:00",
+  "elapsed_seconds": 179.5494333000097,
+  "generation_seconds": 23.23034270000062,
+  "delivery_seconds": 57.29675259999931,
+  "tracker_seconds": 50.15596840000944,
+  "readback": {
+    "Scout ID": 3000,
+    "Company": "Articulate",
+    "Job Title": "Senior Core Product Marketing Manager",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1tW2FbcjXUwE6YmzpM2fo_r9ux93vFS2u/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1252",
+  "hyperlink_target": "https://docs.google.com/document/d/1tW2FbcjXUwE6YmzpM2fo_r9ux93vFS2u/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 179.5494,
+    "active_seconds": 139.9844,
+    "review_wait_seconds": 39.565,
+    "phases_seconds": {
+      "source_loading": 0.0279,
+      "tailoring": 0.8017,
+      "document_creation": 1.5166,
+      "word_pdf_validation": 5.9586,
+      "fitting_retries": 0.0486,
+      "factual_review": 0.0,
+      "review_wait": 39.565,
+      "tracker_sync": 50.1553,
+      "drive_delivery": 57.2899
+    },
+    "counts": {
+      "source_loading": 65,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1
+    }
+  }
+}

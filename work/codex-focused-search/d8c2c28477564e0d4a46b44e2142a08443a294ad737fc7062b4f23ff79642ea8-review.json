@@ -1,0 +1,276 @@
+{
+  "job": {
+    "url": "https://job-boards.greenhouse.io/chowbus/jobs/7978612003",
+    "company": "Chowbus",
+    "title": "Bilingual Digital Marketing Manager(Mandarin, English)",
+    "location": "United States",
+    "arrangement": "remote",
+    "salary": "$ 80,000–130,000",
+    "posted": "2026-08-26",
+    "chars": 4740
+  },
+  "match": {
+    "id": "job",
+    "sufficient": true,
+    "reason": "Complete duties and qualifications support assessment. Mandarin proficiency is unverified; missing evidence does not establish that the candidate lacks it.",
+    "blockers": [],
+    "categories": {
+      "responsibilities": [
+        {
+          "requirement": "Own Chowbus's SEO roadmap, including keyword strategy, technical SEO audits, site structure, and page speed/Core Web Vitals improvements.",
+          "support": 0.5,
+          "evidence": [
+            "Improved technical SEO through canonical URLs, pagination validation, redirects, XML sitemaps, product schema, and index controls."
+          ],
+          "reason": "Technical SEO is demonstrated; page speed and Core Web Vitals improvements are unverified."
+        },
+        {
+          "requirement": "Run competitive SEO analysis against Toast, Square, Clover, and Menusifu to find content and ranking opportunities.",
+          "support": 0.5,
+          "evidence": [
+            "Compares completed reporting periods to identify visibility gains, declines, and opportunities using historical Search Console evidence."
+          ],
+          "reason": "Organic opportunity analysis transfers; competitor ranking-gap analysis is not fully demonstrated."
+        },
+        {
+          "requirement": "Partner with the content team to brief, optimize, and publish SEO-driven blog posts, landing pages, and city- or cuisine-specific pages.",
+          "support": 0.5,
+          "evidence": [
+            "Worked closely with the Web Dev team and the content team to create custom landing pages and custom content for PMAX campaigns"
+          ],
+          "reason": "Content collaboration and landing pages transfer; SEO editorial publishing is less established."
+        },
+        {
+          "requirement": "Monitor rankings, organic traffic, and backlink profile using tools like Google Search Console, SEMrush, or Ahrefs, and report on progress monthly.",
+          "support": 0.5,
+          "evidence": [
+            "Analyzes organic queries, pages, countries, and devices using clicks, impressions, CTR, and average position."
+          ],
+          "reason": "Search Console monitoring is demonstrated; backlink-profile monitoring is unverified."
+        },
+        {
+          "requirement": "Own day-to-day management of Chowbus's website CMS, including page builds, edits, navigation, and content governance.",
+          "support": 1,
+          "evidence": [
+            "Displays Shopify-managed content and business policies, with a script for publishing policy documents to Shopify so storefront and checkout content can stay aligned."
+          ],
+          "reason": "CMS publishing and governance complement demonstrated storefront and navigation development."
+        },
+        {
+          "requirement": "Launch and maintain landing pages for campaigns, product launches, and events, working with design and demand generation partners.",
+          "support": 1,
+          "evidence": [
+            "Worked closely with the Web Dev team and the content team to create custom landing pages and custom content for PMAX campaigns"
+          ],
+          "reason": "Demonstrates collaborative campaign landing-page delivery; new campaign contexts transfer."
+        },
+        {
+          "requirement": "Run A/B tests on key pages (homepage, demo request forms, pricing) to improve conversion rates.",
+          "support": 1,
+          "evidence": [
+            "Built conversion and attribution models and designed A/B and multivariate tests across multiple levels of the marketing funnel"
+          ],
+          "reason": "Demonstrated funnel experimentation and landing-page optimization transfer to these page types."
+        },
+        {
+          "requirement": "Maintain site performance, uptime, and technical hygiene, partnering with engineering as needed.",
+          "support": 0.5,
+          "evidence": [
+            "Configured a Docker-based deployment workflow for Railway and added scheduled product-feed cache warming, health checks, and feed-count monitoring."
+          ],
+          "reason": "Deployment and monitoring support technical upkeep; sustained uptime ownership is unverified."
+        },
+        {
+          "requirement": "Build and maintain dashboards in GA4, Tableau, or similar tools to track website traffic, campaign performance, and lead-to-demo conversion.",
+          "support": 1,
+          "evidence": [
+            "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+          ],
+          "reason": "Demonstrated measurement and dashboard development transfer to lead-to-demo reporting."
+        },
+        {
+          "requirement": "Define and track the digital marketing funnel from first touch to booked demo, in partnership with Sales and RevOps.",
+          "support": 0.5,
+          "evidence": [
+            "Designed and interpreted funnel testing across reach, comparison, conversion, micro-conversion, purchase, and internal customer lifetime value"
+          ],
+          "reason": "Full-funnel analysis transfers; Sales/RevOps demo-funnel ownership is not explicit."
+        },
+        {
+          "requirement": "Deliver monthly and quarterly performance reports with clear takeaways and recommendations for marketing leadership.",
+          "support": 1,
+          "evidence": [
+            "Converted analytical findings into executive summaries, recommended actions, and next-period watch lists."
+          ],
+          "reason": "Executive reporting and recommendations are demonstrated; reporting cadence transfers."
+        },
+        {
+          "requirement": "Work with RevOps and Sales to keep lead data clean and consistent across the website, CRM, and marketing automation platform.",
+          "support": 0.5,
+          "evidence": [
+            "Developed and maintained multiple company databases to improve consistency across departments and support accurate financial and marketing reporting"
+          ],
+          "reason": "Cross-system data consistency transfers; explicit lead-data governance is unverified."
+        },
+        {
+          "requirement": "Plan, launch, and manage Google Ads campaigns (Search, Display, Performance Max) to drive qualified demo requests.",
+          "support": 1,
+          "evidence": [
+            "Leads account activation, campaign builds and structures, keyword and negative-keyword strategy, ad copy, audience segmentation, bid testing, budget pacing"
+          ],
+          "reason": "Campaign delivery, PMax work, and lead generation support the underlying capability."
+        },
+        {
+          "requirement": "Own the paid search budget, bidding strategy, and keyword lists. Optimize continuously for cost per lead and ROAS.",
+          "support": 1,
+          "evidence": [
+            "Scaled monthly marketing volume from approximately $200K to $800K while improving ROAS from 1.5 to 3.5 through budget, bidding, audience, and conversion optimization"
+          ],
+          "reason": "Demonstrates budget, bidding, and acquisition-efficiency optimization at scale."
+        },
+        {
+          "requirement": "Write and test ad copy, landing pages, and offers to improve click-through and conversion rates.",
+          "support": 1,
+          "evidence": [
+            "Directed keyword strategy, bid experiments, landing-page optimization, ad copy, audience analysis, CRO, attribution, and A/B and multivariate testing"
+          ],
+          "reason": "Directly demonstrates creative, landing-page, and conversion experimentation."
+        },
+        {
+          "requirement": "Partner with the Marketing Campaigns Manager so paid search complements paid social and ABM efforts.",
+          "support": 0.5,
+          "evidence": [
+            "Coordinated search and broader channel strategy with website, SEO, operations, and creative"
+          ],
+          "reason": "Cross-channel coordination transfers; explicit ABM integration is unverified."
+        }
+      ],
+      "required": [
+        {
+          "requirement": "Proven experience improving organic search rankings and traffic using tools like Google Search Console, SEMrush, or Ahrefs.",
+          "support": 0.5,
+          "evidence": [
+            "Improved technical SEO through canonical URLs, pagination validation, redirects, XML sitemaps, product schema, and index controls."
+          ],
+          "reason": "SEO implementation is demonstrated; achieved ranking and organic-traffic gains are unverified."
+        },
+        {
+          "requirement": "Hands-on experience managing a CMS (WordPress, Webflow, or similar), including landing page builds and site edits.",
+          "support": 1,
+          "evidence": [
+            "Built a headless e-commerce third-party retail website using React and Next.js"
+          ],
+          "reason": "Shopify content management and custom page development establish equivalent hands-on capability."
+        },
+        {
+          "requirement": "Strong experience with Google Analytics (GA4) and building reporting dashboards (Looker or similar).",
+          "support": 1,
+          "evidence": [
+            "Configured GA4 and Google Tag Manager measurement and built Looker Studio KPI dashboards for campaign pacing, website performance, inventory planning, and leadership decisions"
+          ],
+          "reason": "Direct evidence of GA4 measurement and Looker Studio dashboards."
+        },
+        {
+          "requirement": "Experience managing a paid search budget and reporting on ROAS and cost per lead.",
+          "support": 1,
+          "evidence": [
+            "Evaluates ROI, ROAS, CPA, revenue, customer lifetime value, and channel performance using attribution analysis"
+          ],
+          "reason": "Documented budget ownership, lead generation, and acquisition reporting support this capability."
+        },
+        {
+          "requirement": "Excellent written and verbal communication skills in English.",
+          "support": 0.5,
+          "evidence": [
+            "Works with clients, executives, and cross-functional teams to clarify business priorities, develop consultative strategies, present findings, and identify growth opportunities."
+          ],
+          "reason": "Client presentations and written deliverables support communication; English proficiency is not explicit."
+        },
+        {
+          "requirement": "Professional or fluent proficiency in Mandarin Chinese.",
+          "support": 0,
+          "evidence": [],
+          "reason": "Mandarin proficiency is unverified; the documented Spanish fluency does not establish Mandarin."
+        },
+        {
+          "requirement": "Bachelor's degree in Marketing, Communications, or a related field, or equivalent work experience.",
+          "support": 1,
+          "evidence": [
+            "Business Management Degree - Marketing Emphasis"
+          ],
+          "reason": "Relevant degree and extensive marketing work satisfy the education-or-experience requirement."
+        }
+      ],
+      "seniority": [
+        {
+          "requirement": "6+ years of experience in digital marketing, with hands-on ownership of SEO, website/CMS, analytics, and paid search (Google Ads).",
+          "support": 1,
+          "evidence": [
+            "Digital marketing and marketing technology leader with 14+ years of experience across agency, in-house, B2B, B2C, e-commerce, professional services"
+          ],
+          "reason": "Dated roles and detailed projects establish tenure and hands-on ownership across these functions."
+        }
+      ],
+      "industry": [],
+      "preferred": [
+        {
+          "requirement": "Experience in restaurant technology, POS, payments, fintech, or another B2B SaaS company.",
+          "support": 0,
+          "evidence": [],
+          "reason": "Restaurant technology, POS, payments, fintech, and B2B SaaS company experience are unverified."
+        },
+        {
+          "requirement": "Experience at a high-growth startup or scale-up.",
+          "support": 0.5,
+          "evidence": [
+            "Increased monthly marketing volume from approximately $200,000 to $800,000 while improving ROAS from 1.5 to 3.5"
+          ],
+          "reason": "Rapid growth delivery transfers; startup or scale-up company context is unverified."
+        },
+        {
+          "requirement": "Familiarity with HubSpot, Salesforce, or a similar CRM/marketing automation platform.",
+          "support": 1,
+          "evidence": [
+            "Installed Go High Level and trained employees on how to use it correctly."
+          ],
+          "reason": "Demonstrates hands-on implementation and training on an equivalent CRM/automation platform."
+        },
+        {
+          "requirement": "Basic HTML/CSS knowledge for CMS edits.",
+          "support": 1,
+          "evidence": [
+            "Designed and built the firm’s website using HTML5, CSS3, and JavaScript"
+          ],
+          "reason": "Direct website development exceeds basic HTML/CSS editing requirements."
+        }
+      ]
+    },
+    "score": 77.28,
+    "accepted": true,
+    "status": "reviewed",
+    "failed_rules": [],
+    "category_percentages": {
+      "responsibilities": 75.0,
+      "required": 71.43,
+      "seniority": 100.0,
+      "industry": null,
+      "preferred": 62.5
+    },
+    "policy": "master-evidence-v2",
+    "master_sha256": "65eaa4541ae39b10bb87eac1480524265d2f54a7b353523baa6d92ced55dad01",
+    "job": {
+      "id": "job",
+      "title": "Bilingual Digital Marketing Manager(Mandarin, English)",
+      "company": "Chowbus",
+      "url": "https://job-boards.greenhouse.io/chowbus/jobs/7978612003"
+    },
+    "description_sha256": "67d31a8774e6a68836cbab5fba3c5da50362ce9264d2abac94c30196797e59ee",
+    "runner": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "verified": true,
+      "session_id": "01a1735b-5078-7351-a5b1-dae355b3f06f",
+      "verified_at": "2026-10-25T13:59:49.059338+00:00"
+    }
+  }
+}

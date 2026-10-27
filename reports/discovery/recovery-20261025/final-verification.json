@@ -1,0 +1,3602 @@
+{
+  "pending_recovered": 26,
+  "additional_new": 41,
+  "tracker_verified_job_ids": [
+    2976,
+    2977,
+    2978,
+    2979,
+    2980,
+    2981,
+    2985,
+    2986,
+    2987,
+    2988,
+    2989,
+    2990,
+    2991,
+    2993,
+    2994,
+    2996,
+    2997,
+    3000,
+    3001,
+    3003,
+    3004,
+    3005,
+    3007,
+    2999,
+    3008,
+    3010,
+    3011,
+    3012,
+    3013,
+    3014,
+    3015,
+    3016,
+    3017,
+    3020,
+    3021,
+    3023,
+    3024,
+    3025,
+    3026,
+    3027,
+    3028,
+    3029,
+    3030,
+    3031,
+    3032,
+    3033,
+    3034,
+    3035,
+    3036,
+    3037,
+    3045,
+    3047,
+    3048,
+    3049,
+    3050,
+    3051,
+    3052,
+    3053,
+    3054,
+    3055,
+    3056,
+    3057,
+    3058,
+    3059,
+    3060,
+    3046,
+    3061
+  ],
+  "held_ineligible_ids": [
+    2992,
+    2982,
+    2984,
+    2998,
+    3002,
+    3006,
+    3009,
+    3022,
+    2983
+  ],
+  "duplicate_tracker_rows_retained": [
+    3018,
+    3019,
+    3043,
+    3039,
+    3038,
+    3041,
+    3042,
+    3040,
+    3044
+  ],
+  "new_firecrawl_requests": [],
+  "new_provider_confirmed_requests": 0,
+  "new_unresolved_requests": 0,
+  "existing_rows_changed": [],
+  "headers_preserved": true,
+  "shared_target_roles_unchanged": true,
+  "frozen_rows_by_tab": {
+    "Daily Tasks": 1,
+    "Daily Run": 1,
+    "Job List": 1,
+    "Scratch": 1,
+    "Rejected Jobs": 1,
+    "Gecko export 2026-10-16 115511 3d6dd6": 1,
+    "Gecko export 2026-10-16 115737 32fa40": 1,
+    "Gecko export 2026-10-16 132604 7d2c16": 1,
+    "Gecko export 2026-10-16 135652 7a16bb": 1,
+    "Gecko export 2026-10-16 203018 fd0c0c": 1,
+    "Gecko export 2026-10-17 042452 aa4c02": 1
+  },
+  "firecrawl_balance": {
+    "success": true,
+    "data": {
+      "remainingCredits": 1690,
+      "planCredits": 5000,
+      "billingPeriodStart": "2026-10-21T11:33:47.000Z",
+      "billingPeriodEnd": "2026-11-21T11:33:47.000Z"
+    }
+  },
+  "candidate_states": {
+    "accepted": 850,
+    "duplicate": 1897,
+    "pending": 2579,
+    "rejected": 32681,
+    "seen": 5
+  },
+  "pending_reasons": {
+    "Accepted cached review retained, but current source availability requires recovery; no repeated access-blocked retrieval or paid retry": 1,
+    "Country-specific requisition: Colombia; Utah eligibility unverified": 1,
+    "Country-specific requisition: Mexico; Utah eligibility unverified": 1,
+    "Country-specific requisition: Spain; Utah eligibility unverified": 1,
+    "Explicit foreign-only applicant country: Austria (AT)": 1,
+    "Explicit foreign-only applicant country: Belgium (BE)": 2,
+    "Explicit foreign-only applicant country: Bulgaria (BG)": 1,
+    "Explicit foreign-only applicant country: Canada (CA)": 1,
+    "Explicit foreign-only applicant country: Chile (CL)": 2,
+    "Explicit foreign-only applicant country: China (CN)": 1,
+    "Explicit foreign-only applicant country: Colombia (CO)": 1,
+    "Explicit foreign-only applicant country: Ecuador (EC)": 1,
+    "Explicit foreign-only applicant country: Europe (150)": 1,
+    "Explicit foreign-only applicant country: France (FR)": 7,
+    "Explicit foreign-only applicant country: Greece (GR)": 1,
+    "Explicit foreign-only applicant country: Ireland (IE)": 7,
+    "Explicit foreign-only applicant country: Israel (IL)": 3,
+    "Explicit foreign-only applicant country: Italy (IT)": 3,
+    "Explicit foreign-only applicant country: Kenya (KE)": 1,
+    "Explicit foreign-only applicant country: Luxembourg (LU)": 1,
+    "Explicit foreign-only applicant country: Mexico (MX)": 7,
+    "Explicit foreign-only applicant country: Netherlands (NL)": 6,
+    "Explicit foreign-only applicant country: Nigeria (NG)": 1,
+    "Explicit foreign-only applicant country: Panama (PA)": 1,
+    "Explicit foreign-only applicant country: Portugal (PT)": 3,
+    "Explicit foreign-only applicant country: Saudi Arabia (SA)": 3,
+    "Explicit foreign-only applicant country: Singapore (SG)": 1,
+    "Explicit foreign-only applicant country: Spain (ES)": 8,
+    "Explicit foreign-only applicant country: Sweden (SE)": 2,
+    "Explicit foreign-only applicant country: Switzerland (CH)": 8,
+    "Explicit foreign-only applicant country: Ukraine (UA)": 1,
+    "Explicit foreign-only applicant country: United Arab Emirates (AE)": 3,
+    "Explicit foreign-only location; U.S./Utah eligibility not established": 1758,
+    "Foreign-only job location/restriction: Europe; U.S./Utah eligibility unverified": 1,
+    "Foreign-only job location/restriction: France; U.S./Utah eligibility unverified": 1,
+    "Foreign-only job location/restriction: Spain; U.S./Utah eligibility unverified": 1,
+    "Free recovery pending: Free source produced no complete description in three probes; retained for employer API evidence": 1,
+    "Incomplete source description; free recovery required": 374,
+    "Index-only lead: exact employer, complete posting, availability and eligibility required; shared authorized index exhausted": 48,
+    "Location/remote eligibility unverified": 243,
+    "Match review pending: Evidence is not in current master resume": 5,
+    "Match review pending: Pinned Codex inference did not complete (runner exit 1). Review Codex connection and account access; no other model was used.": 3,
+    "Non-posting/talent pool/old URL needs source review": 10,
+    "Structured employer workplace is hybrid outside verified Utah location; generic remote flag does not establish eligibility: London": 1,
+    "Structured employer workplace is hybrid outside verified Utah location; generic remote flag does not establish eligibility: New York, United States": 1,
+    "Structured employer workplace is hybrid outside verified Utah location; generic remote flag does not establish eligibility: Remote or SF": 1,
+    "Structured employer workplace is hybrid outside verified Utah location; generic remote flag does not establish eligibility: Toronto": 1,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: Argentina": 3,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: Brazil": 2,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: CA": 4,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: Canada, Colombia": 1,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: Chile": 1,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: Colombia": 5,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: Dominican Republic": 1,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: EG": 1,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: Honduras": 1,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: MX": 1,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: Mexico": 1,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: Pakistan": 4,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: Philippines": 8,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: Serbia": 1,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: South Africa": 6,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: TR": 3,
+    "Structured employer/ATS country excludes verified U.S./Utah eligibility: UA": 1,
+    "Utah abbreviation resolved; complete cached description retained. Current availability still unverified; Indeed public retrieval is access-blocked and the authorized index is exhausted. No paid retry requested.": 3,
+    "Utah/Mountain time excluded by explicit hiring-zone restriction: **Location:** Remote. We are only hiring in the Eastern and Central time zones.": 1
+  },
+  "coverage": {
+    "jooble": {
+      "status": "disabled by standing source policy",
+      "configured": false
+    },
+    "web-careers": {
+      "status": "authorized index checked through targeted ATS queries",
+      "queries": 13,
+      "results": 256,
+      "paid_requests": 0,
+      "reason": "Used index-only discovery; legacy paid-first document helper was not invoked"
+    },
+    "remote-careers": {
+      "status": "free index checked",
+      "candidate_ids": 49,
+      "known_skipped": 0,
+      "paid_requests": 0,
+      "reason": "Detail requests require candidate-level admission; paid full_feed adapter was not invoked",
+      "free_detail_recovery": [
+        {
+          "id": "fe8481e4-3401-4050-8730-7174c49cf203",
+          "title": "Senior Marketing Manager, Lifecycle Marketing - Messaging Channels",
+          "status": "excluded before detail retrieval",
+          "reason": "EMEA-only source location"
+        },
+        {
+          "id": "bb05278b-9554-43eb-a67f-1840a05649de",
+          "title": "Senior Marketing Manager",
+          "status": "free employer API detail recovered",
+          "keys": [
+            "job"
+          ]
+        },
+        {
+          "id": "380be4ef-7a24-4fc9-b06d-acdec58d51bb",
+          "title": "Principal, Marketing Analytics",
+          "status": "excluded before detail retrieval",
+          "reason": "EMEA-only source location"
+        }
+      ]
+    },
+    "indeed": {
+      "status": "partial failure",
+      "new_candidate_encounters": 52,
+      "known_skipped": 1,
+      "errors": [
+        {
+          "query": "site:indeed.com/viewjob \"SEM\" remote United States",
+          "error": "Request failed for https://api.search.brave.com/res/v1/web/search: HTTP Error 402: Payment Required | {\"type\": \"ErrorResponse\", \"error\": {\"id\": \"52ce5f05-7a81-42be-aa4d-369492c3aeec\", \"status\": 402, \"detail\": \"Prepaid credit balance is insufficient for this request. Top up to continue.\", \"meta\": {\"plan\": \"Search\", \"current_balance_units\": 5000, \"min_request_cost_units\": 10000, \"component\": \"rate_limiter\"}, \"code\": \"CREDIT_EXHAUSTED\"}, \"time\": 1792980574}"
+        }
+      ],
+      "paid_requests": 0
+    },
+    "linkedin": {
+      "status": "blocked shared index",
+      "reason": "Request failed for https://api.search.brave.com/res/v1/web/search: HTTP Error 402: Payment Required | {\"type\": \"ErrorResponse\", \"error\": {\"id\": \"52ce5f05-7a81-42be-aa4d-369492c3aeec\", \"status\": 402, \"detail\": \"Prepaid credit balance is insufficient for this request. Top up to continue.\", \"meta\": {\"plan\": \"Search\", \"current_balance_units\": 5000, \"min_request_cost_units\": 10000, \"component\": \"rate_limiter\"}, \"code\": \"CREDIT_EXHAUSTED\"}, \"time\": 1792980574}"
+    },
+    "glassdoor": {
+      "status": "blocked shared index",
+      "reason": "Request failed for https://api.search.brave.com/res/v1/web/search: HTTP Error 402: Payment Required | {\"type\": \"ErrorResponse\", \"error\": {\"id\": \"52ce5f05-7a81-42be-aa4d-369492c3aeec\", \"status\": 402, \"detail\": \"Prepaid credit balance is insufficient for this request. Top up to continue.\", \"meta\": {\"plan\": \"Search\", \"current_balance_units\": 5000, \"min_request_cost_units\": 10000, \"component\": \"rate_limiter\"}, \"code\": \"CREDIT_EXHAUSTED\"}, \"time\": 1792980574}"
+    },
+    "ziprecruiter": {
+      "status": "blocked shared index",
+      "reason": "Request failed for https://api.search.brave.com/res/v1/web/search: HTTP Error 402: Payment Required | {\"type\": \"ErrorResponse\", \"error\": {\"id\": \"52ce5f05-7a81-42be-aa4d-369492c3aeec\", \"status\": 402, \"detail\": \"Prepaid credit balance is insufficient for this request. Top up to continue.\", \"meta\": {\"plan\": \"Search\", \"current_balance_units\": 5000, \"min_request_cost_units\": 10000, \"component\": \"rate_limiter\"}, \"code\": \"CREDIT_EXHAUSTED\"}, \"time\": 1792980574}"
+    },
+    "adzuna": {
+      "status": "success",
+      "candidates": 4194,
+      "errors": [],
+      "boards": 0,
+      "queries_pages": [
+        {
+          "query": "Paid media",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Paid media",
+          "location": "remote",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 10
+        },
+        {
+          "query": "Paid media",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Paid media",
+          "location": "utah",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Paid media",
+          "location": "utah",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Paid media",
+          "location": "utah",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Paid media",
+          "location": "utah",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 8
+        },
+        {
+          "query": "Paid media",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Paid media",
+          "location": "salt lake city",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 16
+        },
+        {
+          "query": "Paid media",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 16
+        },
+        {
+          "query": "Paid media",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Paid media",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Paid media",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 16
+        },
+        {
+          "query": "Paid media",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "Paid search",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 18
+        },
+        {
+          "query": "Paid search",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Paid search",
+          "location": "utah",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 6
+        },
+        {
+          "query": "Paid search",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 9
+        },
+        {
+          "query": "Paid search",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 5
+        },
+        {
+          "query": "Paid search",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Paid search",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Paid search",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "Paid search",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "PPC",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 6
+        },
+        {
+          "query": "PPC",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 17
+        },
+        {
+          "query": "PPC",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 5
+        },
+        {
+          "query": "PPC",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "PPC",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "PPC",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "PPC",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "PPC",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "SEM",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 16
+        },
+        {
+          "query": "SEM",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "SEM",
+          "location": "utah",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 8
+        },
+        {
+          "query": "SEM",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 11
+        },
+        {
+          "query": "SEM",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 7
+        },
+        {
+          "query": "SEM",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "SEM",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "SEM",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 8
+        },
+        {
+          "query": "SEM",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "Digital marketing",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "remote",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "remote",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "remote",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "remote",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "remote",
+          "page": 6,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 18
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 6,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 7,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 8,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 9,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 10,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 11,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 12,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 13,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 14,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 16
+        },
+        {
+          "query": "Digital marketing",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "salt lake city",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "salt lake city",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "salt lake city",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "salt lake city",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "salt lake city",
+          "page": 6,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "salt lake city",
+          "page": 7,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "salt lake city",
+          "page": 8,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 15
+        },
+        {
+          "query": "Digital marketing",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "lehi",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 6
+        },
+        {
+          "query": "Digital marketing",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Digital marketing",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Digital marketing",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Digital marketing",
+          "location": "orem",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 16
+        },
+        {
+          "query": "Digital marketing",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 12
+        },
+        {
+          "query": "Performance marketing",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "remote",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 5
+        },
+        {
+          "query": "Performance marketing",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "utah",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "utah",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "utah",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "utah",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "utah",
+          "page": 6,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "utah",
+          "page": 7,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "utah",
+          "page": 8,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "utah",
+          "page": 9,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "utah",
+          "page": 10,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "utah",
+          "page": 11,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "utah",
+          "page": 12,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "utah",
+          "page": 13,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 17
+        },
+        {
+          "query": "Performance marketing",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "salt lake city",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "salt lake city",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "salt lake city",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "salt lake city",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "salt lake city",
+          "page": 6,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 9
+        },
+        {
+          "query": "Performance marketing",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "lehi",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 7
+        },
+        {
+          "query": "Performance marketing",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "Performance marketing",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Performance marketing",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Performance marketing",
+          "location": "orem",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 18
+        },
+        {
+          "query": "Performance marketing",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 5
+        },
+        {
+          "query": "Growth marketing",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "remote",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "remote",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "remote",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "remote",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "remote",
+          "page": 6,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "remote",
+          "page": 7,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 9
+        },
+        {
+          "query": "Growth marketing",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "utah",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "utah",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "utah",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "utah",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "utah",
+          "page": 6,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "utah",
+          "page": 7,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "utah",
+          "page": 8,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "utah",
+          "page": 9,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "utah",
+          "page": 10,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 16
+        },
+        {
+          "query": "Growth marketing",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "salt lake city",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "salt lake city",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "salt lake city",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "salt lake city",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 8
+        },
+        {
+          "query": "Growth marketing",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "lehi",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 5
+        },
+        {
+          "query": "Growth marketing",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Growth marketing",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "Growth marketing",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Growth marketing",
+          "location": "orem",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 9
+        },
+        {
+          "query": "Growth marketing",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "remote",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "remote",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "remote",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 5
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "utah",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "utah",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "utah",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "utah",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "utah",
+          "page": 6,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "utah",
+          "page": 7,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "utah",
+          "page": 8,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "salt lake city",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "salt lake city",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "salt lake city",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "salt lake city",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 4
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 8
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 9
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 19
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 6
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 2
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Demand generation",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Demand generation",
+          "location": "remote",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Demand generation",
+          "location": "remote",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Demand generation",
+          "location": "remote",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 13
+        },
+        {
+          "query": "Demand generation",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Demand generation",
+          "location": "utah",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Demand generation",
+          "location": "utah",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Demand generation",
+          "location": "utah",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Demand generation",
+          "location": "utah",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Demand generation",
+          "location": "utah",
+          "page": 6,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Demand generation",
+          "location": "utah",
+          "page": 7,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 4
+        },
+        {
+          "query": "Demand generation",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Demand generation",
+          "location": "salt lake city",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Demand generation",
+          "location": "salt lake city",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Demand generation",
+          "location": "salt lake city",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Demand generation",
+          "location": "salt lake city",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "Demand generation",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 13
+        },
+        {
+          "query": "Demand generation",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Demand generation",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Demand generation",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 5
+        },
+        {
+          "query": "Demand generation",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing operations",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "remote",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "remote",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "remote",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "remote",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "remote",
+          "page": 6,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "remote",
+          "page": 7,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "remote",
+          "page": 8,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "remote",
+          "page": 9,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 16
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 6,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 7,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 8,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 9,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 10,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 11,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 12,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 13,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 14,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 15,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 16,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 17,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 18,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 19,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 20,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 21,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 22,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 23,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 24,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 25,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 7
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 6,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 7,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 8,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 9,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 10,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 11,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 12,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 13,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 14,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "Marketing operations",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "lehi",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "lehi",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "Marketing operations",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "Marketing operations",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing operations",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "orem",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing operations",
+          "location": "orem",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 19
+        },
+        {
+          "query": "Marketing operations",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 12
+        },
+        {
+          "query": "Marketing technology",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "remote",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "remote",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "remote",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "remote",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 13
+        },
+        {
+          "query": "Marketing technology",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "utah",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "utah",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "utah",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "utah",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "utah",
+          "page": 6,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "utah",
+          "page": 7,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "utah",
+          "page": 8,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "utah",
+          "page": 9,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "utah",
+          "page": 10,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "utah",
+          "page": 11,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "utah",
+          "page": 12,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "utah",
+          "page": 13,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "Marketing technology",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "salt lake city",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "salt lake city",
+          "page": 3,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "salt lake city",
+          "page": 4,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "salt lake city",
+          "page": 5,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "salt lake city",
+          "page": 6,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "salt lake city",
+          "page": 7,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 17
+        },
+        {
+          "query": "Marketing technology",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 15
+        },
+        {
+          "query": "Marketing technology",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing technology",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing technology",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Marketing technology",
+          "location": "orem",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 11
+        },
+        {
+          "query": "Marketing technology",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 13
+        },
+        {
+          "query": "Google Ads",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 12
+        },
+        {
+          "query": "Google Ads",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Google Ads",
+          "location": "utah",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 18
+        },
+        {
+          "query": "Google Ads",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 14
+        },
+        {
+          "query": "Google Ads",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 7
+        },
+        {
+          "query": "Google Ads",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Google Ads",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Google Ads",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 9
+        },
+        {
+          "query": "Google Ads",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        }
+      ],
+      "reused_saved_source_response": true
+    },
+    "remotive": {
+      "status": "success",
+      "candidates": 1,
+      "errors": [],
+      "boards": 0,
+      "queries_pages": [
+        {
+          "kind": "full feed",
+          "status": "completed",
+          "parsed": 1
+        }
+      ],
+      "reused_saved_source_response": true
+    },
+    "jobicy": {
+      "status": "success",
+      "candidates": 188,
+      "errors": [],
+      "boards": 0,
+      "queries_pages": [
+        {
+          "kind": "full feed",
+          "status": "completed",
+          "parsed": 188
+        }
+      ],
+      "reused_saved_source_response": true
+    },
+    "remoteok": {
+      "status": "success",
+      "candidates": 99,
+      "errors": [],
+      "boards": 0,
+      "queries_pages": [
+        {
+          "kind": "full feed",
+          "status": "completed",
+          "parsed": 99
+        }
+      ],
+      "reused_saved_source_response": true
+    },
+    "usajobs": {
+      "status": "success",
+      "candidates": 174,
+      "errors": [],
+      "boards": 0,
+      "queries_pages": [
+        {
+          "query": "Paid media",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "Paid media",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 4
+        },
+        {
+          "query": "Paid media",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "Paid media",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "Paid media",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "Paid media",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "Paid media",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "Paid media",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "Paid search",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 2
+        },
+        {
+          "query": "Paid search",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Paid search",
+          "location": "utah",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 17
+        },
+        {
+          "query": "Paid search",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Paid search",
+          "location": "salt lake city",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 10
+        },
+        {
+          "query": "Paid search",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "Paid search",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Paid search",
+          "location": "draper",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 10
+        },
+        {
+          "query": "Paid search",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 2
+        },
+        {
+          "query": "Paid search",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "Paid search",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 20
+        },
+        {
+          "query": "Paid search",
+          "location": "midvale",
+          "page": 2,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 10
+        },
+        {
+          "query": "PPC",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "PPC",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "PPC",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "PPC",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "PPC",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "PPC",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "PPC",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "PPC",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "SEM",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "SEM",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "SEM",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "SEM",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "SEM",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "SEM",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "SEM",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "SEM",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "Digital marketing",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Digital marketing",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Digital marketing",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Digital marketing",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Digital marketing",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Digital marketing",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Digital marketing",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Digital marketing",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Performance marketing",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Performance marketing",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "Performance marketing",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "Performance marketing",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Performance marketing",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "Performance marketing",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Performance marketing",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Performance marketing",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 3
+        },
+        {
+          "query": "Growth marketing",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Growth marketing",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Growth marketing",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Growth marketing",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Growth marketing",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Growth marketing",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Growth marketing",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Growth marketing",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing analytics",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "E-commerce marketing",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Demand generation",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Demand generation",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "Demand generation",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Demand generation",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Demand generation",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Demand generation",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Demand generation",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Demand generation",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing operations",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing operations",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 2
+        },
+        {
+          "query": "Marketing operations",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing operations",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing operations",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing operations",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing operations",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing operations",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing technology",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing technology",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 1
+        },
+        {
+          "query": "Marketing technology",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing technology",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing technology",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing technology",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing technology",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Marketing technology",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Google Ads",
+          "location": "remote",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Google Ads",
+          "location": "utah",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Google Ads",
+          "location": "salt lake city",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Google Ads",
+          "location": "lehi",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Google Ads",
+          "location": "draper",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Google Ads",
+          "location": "provo",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Google Ads",
+          "location": "orem",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        },
+        {
+          "query": "Google Ads",
+          "location": "midvale",
+          "page": 1,
+          "page_size": 20,
+          "status": "completed",
+          "parsed": 0
+        }
+      ],
+      "reused_saved_source_response": true
+    },
+    "greenhouse": {
+      "status": "partial failure",
+      "candidates": 7086,
+      "errors": [
+        {
+          "company": "Ashley Digital",
+          "error": "Request failed for https://boards-api.greenhouse.io/v1/boards/residenthome/jobs: HTTP Error 404: Not Found | {\"status\": 404, \"error\": \"Job not found\"}"
+        }
+      ],
+      "boards": 122,
+      "queries_pages": [
+        {
+          "kind": "full feed",
+          "status": "completed",
+          "parsed": 7086
+        }
+      ],
+      "reused_saved_source_response": true
+    },
+    "lever": {
+      "status": "success",
+      "candidates": 4702,
+      "errors": [],
+      "boards": 85,
+      "queries_pages": [
+        {
+          "kind": "full feed",
+          "status": "completed",
+          "parsed": 4702
+        }
+      ],
+      "reused_saved_source_response": true
+    },
+    "ashby": {
+      "status": "success",
+      "candidates": 3154,
+      "errors": [],
+      "boards": 82,
+      "queries_pages": [
+        {
+          "kind": "full feed",
+          "status": "completed",
+          "parsed": 3154
+        }
+      ],
+      "reused_saved_source_response": true
+    },
+    "workable": {
+      "status": "success",
+      "candidates": 5437,
+      "errors": [],
+      "boards": 80,
+      "queries_pages": [
+        {
+          "kind": "full feed",
+          "status": "completed",
+          "parsed": 5437
+        }
+      ],
+      "reused_saved_source_response": true
+    },
+    "weworkremotely": {
+      "status": "success",
+      "candidates": 124,
+      "errors": [],
+      "boards": 0,
+      "queries_pages": [
+        {
+          "kind": "full feed",
+          "status": "completed",
+          "parsed": 124
+        }
+      ],
+      "reused_saved_source_response": true
+    },
+    "workingnomads": {
+      "status": "success",
+      "candidates": 39,
+      "errors": [],
+      "boards": 0,
+      "queries_pages": [
+        {
+          "kind": "full feed",
+          "status": "completed",
+          "parsed": 39
+        }
+      ],
+      "reused_saved_source_response": true
+    },
+    "themuse": {
+      "status": "success",
+      "candidates": 1,
+      "targeted_category": "Marketing",
+      "reused_saved_source_response": true
+    },
+    "brave-employer-discovery": {
+      "status": "success",
+      "results": 256,
+      "errors": []
+    },
+    "additional-ats-boards": {
+      "status": "complete",
+      "boards": 209,
+      "successful": 194,
+      "candidates": 21221
+    }
+  },
+  "new_candidate_states_this_run": {
+    "accepted": 804,
+    "duplicate": 1897,
+    "pending": 2205,
+    "rejected": 31153,
+    "seen": 5
+  },
+  "known_postings_skipped_before_retrieval": 779,
+  "additional_board_results": {
+    "success": 194,
+    "failed": 7,
+    "no results": 8
+  },
+  "index_only_pending_leads": 51,
+  "checked_at": "2026-10-26T03:58:38.797429+00:00",
+  "controlled_repeat": {
+    "candidates_discovered": 1,
+    "known_jobs_skipped_before_retrieval": 1,
+    "new_jobs_added": 0,
+    "free_retrievals": 0,
+    "paid_requests": 0,
+    "paid_requests_avoided": 1,
+    "pending": 0,
+    "new_job_ids": [],
+    "published_job_ids": [],
+    "warnings": [],
+    "status": "running"
+  },
+  "offline_focused_tests_passed": 53,
+  "legacy_test_limitations": {
+    "tracker": {
+      "tests": 51,
+      "failures": 6,
+      "errors": 8
+    },
+    "unified": {
+      "tests": 15,
+      "failures": 6
+    }
+  },
+  "cache_classification_corrections": [
+    {
+      "id": 3008,
+      "employer": "PointClickCare",
+      "prior_kind": "additional new",
+      "corrected_kind": "pending recovered",
+      "reason": "Exact posting URL/ID was present in the starting discovery or successful retrieval cache"
+    },
+    {
+      "id": 3060,
+      "employer": "toast",
+      "prior_kind": "additional new",
+      "corrected_kind": "pending recovered",
+      "reason": "Exact posting URL/ID was present in the starting discovery or successful retrieval cache"
+    }
+  ],
+  "ledger_after": {
+    "search_credits": 318,
+    "extraction_credits": 500,
+    "provider_confirmed_credits": 740,
+    "estimated_or_reserved_credits": 78,
+    "total_credits_accounted": 818,
+    "estimated_account_balance": 1567,
+    "balance_observed_at": "2026-10-26T04:01:56.421740+00:00",
+    "billing_complete": false,
+    "hard_ceiling_exact": false
+  },
+  "balance_verified_at": "2026-10-26T04:01:56.440085+00:00"
+}

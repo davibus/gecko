@@ -1,0 +1,21 @@
+{
+  "verified_matches": 16,
+  "blocked_ids": [
+    2992,
+    2982,
+    2984
+  ],
+  "reconciled": {
+    "id": 2994,
+    "kind": "pending recovered",
+    "employer": "Precision AQ",
+    "title": "Director, Integrated Marketing",
+    "url": "https://job-boards.greenhouse.io/precisionaq/jobs/6223414004",
+    "score": 69.94,
+    "responsibilities": 54.55,
+    "required_skills": 68.75,
+    "query": "\"digital marketing\" remote \"United States\" site:job-boards.greenhouse.io",
+    "verified_at": "2026-10-26T01:20:08.401032+00:00",
+    "reconciled_interrupted_write": true
+  }
+}

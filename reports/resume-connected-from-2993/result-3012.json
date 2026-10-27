@@ -1,0 +1,53 @@
+{
+  "id": 3012,
+  "company": "Jobgether",
+  "status": "complete",
+  "link": "https://docs.google.com/document/d/1-jl1jeMca1yXEkYLQBCY2P4mx5bQqqjZ/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "resume": "C:\\gecko_main\\output\\resumes\\Dave-Call+Jobgether+Manager,-Marketing-Analytics-(Multi-Touch-Attribution)+00464.docx",
+  "started_at": "2026-10-26T15:10:25.479144+00:00",
+  "completed_at": "2026-10-26T15:13:14.929699+00:00",
+  "elapsed_seconds": 169.450567,
+  "generation_seconds": 29.507272099988768,
+  "delivery_seconds": 17.640238300024066,
+  "tracker_seconds": 38.151717800006736,
+  "readback": {
+    "Scout ID": 3012,
+    "Company": "Jobgether",
+    "Job Title": "Manager, Marketing Analytics (Multi-Touch Attribution)",
+    "Resume Created": "X",
+    "Resume Created Date": "2026-10-26",
+    "Resume Link": "https://docs.google.com/document/d/1-jl1jeMca1yXEkYLQBCY2P4mx5bQqqjZ/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true"
+  },
+  "hyperlink_range": "'Job List'!Z1264",
+  "hyperlink_target": "https://docs.google.com/document/d/1-jl1jeMca1yXEkYLQBCY2P4mx5bQqqjZ/edit?usp=drivesdk&ouid=105921722798880207807&rtpof=true&sd=true",
+  "timings": {
+    "wall_seconds": 169.4506,
+    "active_seconds": 98.8255,
+    "review_wait_seconds": 70.6251,
+    "phases_seconds": {
+      "source_loading": 0.0544,
+      "tailoring": 1.41,
+      "document_creation": 2.9686,
+      "word_pdf_validation": 7.3976,
+      "fitting_retries": 0.0536,
+      "factual_review": 0.0,
+      "review_wait": 70.6251,
+      "tracker_sync": 38.1508,
+      "drive_delivery": 17.6316
+    },
+    "counts": {
+      "source_loading": 65,
+      "tailoring": 2,
+      "document_creation": 2,
+      "word_pdf_validation": 2,
+      "fitting_retries": 1,
+      "factual_review": 0,
+      "review_wait": 1,
+      "tracker_sync": 2,
+      "master_parses": 0,
+      "fitting_attempts": 2,
+      "native_attempts": 2,
+      "drive_delivery": 1
+    }
+  }
+}
