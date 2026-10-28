@@ -8,6 +8,7 @@ on:
       - 'job-scout/google_tracker.py'
       - 'job-scout/firecrawl_discovery.py'
       - 'job-scout/tests/test_salary_ingestion.py'
+      - 'job-scout/tests/test_salary_ceiling.py'
       - '.github/workflows/salary-ingestion-tests.yml'
   pull_request:
     paths:
