@@ -26,4 +26,6 @@ jobs:
       - name: Test salary parsing and discovery
         env:
           PYTHONPATH: job-scout
-        run: python -m unittest discover -s job-scout/tests -p test_salary_ingestion.py -v
+        run: |
+          python -m unittest discover -s job-scout/tests -p test_salary_format.py -v
+          python -m unittest discover -s job-scout/tests -p test_salary_ingestion.py -v
