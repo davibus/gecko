@@ -5,6 +5,7 @@ on:
       - 'job-scout/salary_format.py'
       - 'job-scout/normalize/**'
       - 'job-scout/sources/ats.py'
+      - 'job-scout/google_tracker.py'
       - 'job-scout/firecrawl_discovery.py'
       - 'job-scout/tests/test_salary_ingestion.py'
       - '.github/workflows/salary-ingestion-tests.yml'
@@ -29,3 +30,4 @@ jobs:
         run: |
           python -m unittest discover -s job-scout/tests -p test_salary_format.py -v
           python -m unittest discover -s job-scout/tests -p test_salary_ingestion.py -v
+          python -m unittest discover -s job-scout/tests -p test_salary_ceiling.py -v
