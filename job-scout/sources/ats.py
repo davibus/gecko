@@ -138,6 +138,11 @@ class LeverProvider(ConfiguredAtsProvider):
                 title=str(item.get("text") or ""), company=str(company.get("name") or site),
                 location=location, description=description,
                 employment_type=_text(categories.get("commitment")),
+                salary=_salary((item.get("salaryRange") or {}).get("min"),
+                               (item.get("salaryRange") or {}).get("max"),
+                               (item.get("salaryRange") or {}).get("currency"),
+                               (item.get("salaryRange") or {}).get("interval"))
+                       if isinstance(item.get("salaryRange"), dict) else "",
                 remote_type=str(item.get("workplaceType") or ""),
                 category=_text(categories.get("team") or categories.get("department")),
                 metadata={**item, "ats_company": site},
