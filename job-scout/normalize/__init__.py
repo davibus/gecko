@@ -122,15 +122,13 @@ def normalize(raw: RawListing, discovered: str | None = None) -> JobListing:
     employment_type = {'fulltime': 'full-time', 'parttime': 'part-time'}.get(
         employment_type, employment_type)
     discovered_date = discovered or JobListing.today()
-    from salary_format import extract_salary
-    salary = extract_salary(raw.salary, raw.description, raw.metadata)
     return JobListing(
         company=clean_text(raw.company) or "Unknown company",
         title=clean_text(raw.title),
         location=clean_text(raw.location),
         work_arrangement=infer_work_arrangement(raw),
         employment_type=employment_type,
-        salary=salary,
+        salary=clean_text(raw.salary),
         source=clean_text(raw.source),
         found_using=("Firecrawl" if str(raw.metadata.get("_discovered_via", "")).casefold()
                      in {"firecrawl", "firecrawl-search", "indeed-results-page"}
