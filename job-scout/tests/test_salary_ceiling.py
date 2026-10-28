@@ -1,5 +1,6 @@
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 from tempfile import TemporaryDirectory
 
 from models import RawListing
@@ -75,13 +76,16 @@ class SalaryCeilingTests(unittest.TestCase):
         tracker=GoogleTracker(Config('test',Path('unused'),'Job Tracker','Job Scout'),fake)
         original=[list(r) for r in fake.data['Job Scout']]
         job=normalize(self.raw('$125,000'));job.id=100
-        summary=tracker.upsert_scout([job])
+        with patch('resume_match.settings', return_value={'enabled': False}):
+            summary=tracker.upsert_scout([job])
         self.assertEqual(summary['added'],0)
         self.assertEqual(summary['salary_excluded'],1)
         self.assertEqual(fake.data['Job Scout'],original)
         job=normalize(self.raw('$120,000-$180,000'));job.id=101
-        self.assertEqual(tracker.upsert_scout([job])['added'],1)
+        with patch('resume_match.settings', return_value={'enabled': False}):
+            self.assertEqual(tracker.upsert_scout([job])['added'],1)
         # Existing jobs are not removed or silently disqualified by the cutoff.
         job.id=42;job.url=job.canonical_url='https://example.test/job';job.salary='$150,000'
-        tracker.upsert_scout([job])
+        with patch('resume_match.settings', return_value={'enabled': False}):
+            tracker.upsert_scout([job])
         self.assertEqual(len(fake.data['Job Scout']),3)
