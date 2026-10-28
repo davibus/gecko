@@ -1,0 +1,29 @@
+name: Salary ingestion regression tests
+on:
+  push:
+    paths:
+      - 'job-scout/salary_format.py'
+      - 'job-scout/normalize/**'
+      - 'job-scout/sources/ats.py'
+      - 'job-scout/firecrawl_discovery.py'
+      - 'job-scout/tests/test_salary_ingestion.py'
+      - '.github/workflows/salary-ingestion-tests.yml'
+  pull_request:
+    paths:
+      - 'job-scout/**'
+      - '.github/workflows/salary-ingestion-tests.yml'
+
+jobs:
+  salary-regressions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Compile affected Python modules
+        run: python -m compileall -q job-scout
+      - name: Test salary parsing and discovery
+        env:
+          PYTHONPATH: job-scout
+        run: python -m unittest discover -s job-scout/tests -p test_salary_ingestion.py -v
