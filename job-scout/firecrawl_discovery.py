@@ -462,9 +462,7 @@ def run_discovery(store, preferences, *, history=None, client=None, now=None, tr
                         raw.metadata['_extraction'] = document
                         raw.description = document['full_description_markdown']
                         raw.employment_type = '; '.join(document['fields']['employment_types'])
-                        from salary_format import extract_salary
-                        raw.salary = extract_salary(
-                            salary_display(document['fields']['salary']), raw.description, raw.metadata)
+                        raw.salary = salary_display(document['fields']['salary'])
                         raw.remote_type = document['fields']['work_arrangement'] or ''
                         _update(history, key, raw_json=json.dumps(asdict(raw)), date_evidence=evidence,
                                 employer=raw.company, employer_job_id=raw.source_job_id, ats=raw.source,
