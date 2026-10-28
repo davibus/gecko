@@ -57,6 +57,18 @@ class SalaryIngestionTests(unittest.TestCase):
     def test_no_guessed_salary(self):
         self.assertEqual(self.pay('Competitive salary, based on experience.'), '')
 
+    def test_hourly_display_keeps_conversion_note(self):
+        amount, note = extract_salary('$40 - $50/hour', 'Salary: $40 - $50/hour',
+                                      with_notes=True)
+        self.assertEqual(amount, '$83,200 - $104,000')
+        self.assertIn('40 hours/week', note)
+
+    def test_estimated_salary_keeps_source_qualifier(self):
+        amount, note = extract_salary('Estimated $93,299', 'Competitive salary',
+                                      with_notes=True)
+        self.assertEqual(amount, '$93,299')
+        self.assertIn('Provider estimate', note)
+
     def test_provider_estimate_qualified(self):
         changes, evidence = normalize_salary_row({
             'Salary':'Estimated $93,299', 'Job Description':'Competitive salary.'})
