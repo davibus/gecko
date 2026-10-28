@@ -198,7 +198,7 @@ def normalize_salary_row(row):
                      'evidence':item.evidence,'original_salary':row.get('Salary',''),'formatted_salary':display}
 
 
-def extract_salary(raw_salary, description, metadata=None):
+def extract_salary(raw_salary, description, metadata=None, *, with_notes=False):
     """Extract evidence-backed annual pay during discovery, even if source salary is absent.
 
     Structured compensation is authoritative. Original descriptions are fallback;
@@ -212,6 +212,7 @@ def extract_salary(raw_salary, description, metadata=None):
             structured = {'currency': ranges.get('currency') or 'USD',
                           'value': {'minValue': ranges['min'], 'maxValue': ranges.get('max'),
                                     'unitText': ranges.get('interval') or 'YEAR'}}
+    omitted_note = ''
     for original in (structured, raw_salary):
         if not original:
             continue
@@ -220,8 +221,11 @@ def extract_salary(raw_salary, description, metadata=None):
                                           'Job Description': '' if structured and original == str(structured)
                                           else (description or '')})
         if changes.get('Salary'):
-            return changes['Salary']
+            return (changes['Salary'], changes.get('Notes', '')) if with_notes else changes['Salary']
         if not changes and STANDARD.fullmatch(original.strip()):
-            return original.strip()
+            return (original.strip(), '') if with_notes else original.strip()
+        omitted_note = changes.get('Notes', '') or omitted_note
     changes, _ = normalize_salary_row({'Salary': '', 'Job Description': description or ''})
-    return changes.get('Salary', '')
+    amount = changes.get('Salary', '')
+    note = changes.get('Notes', '') or (omitted_note if not amount else '')
+    return (amount, note) if with_notes else amount
