@@ -1095,13 +1095,15 @@ class GoogleTracker:
                 added += 1
             else:
                 updated += 1
+            from salary_format import extract_salary
             values = {
                 "Scout ID": job.id, "Source": job.source, "Company": job.company,
                 "Job Title": job.title,
                 "Apply?": ("Yes" if resume_approval_value(
                     job.location, job.work_arrangement, existing.get("Cost")) == "Yes" else ""),
                 "Location": job.location, "Work Arrangement": job.work_arrangement,
-                "Employment Type": job.employment_type, "Salary": job.salary,
+                "Employment Type": job.employment_type, "Salary": extract_salary(
+                    job.salary, max((job.description or "", job.enriched_description or ""), key=len)),
                 "Date Posted": job.date_posted, "Date Found": job.date_discovered,
                 "Last Seen": job.last_seen or job.date_discovered, "Job URL": url,
             }
