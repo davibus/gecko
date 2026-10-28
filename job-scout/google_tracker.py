@@ -1096,14 +1096,16 @@ class GoogleTracker:
             else:
                 updated += 1
             from salary_format import extract_salary
+            salary_value, salary_note = extract_salary(
+                job.salary, max((job.description or "", job.enriched_description or ""), key=len),
+                with_notes=True)
             values = {
                 "Scout ID": job.id, "Source": job.source, "Company": job.company,
                 "Job Title": job.title,
                 "Apply?": ("Yes" if resume_approval_value(
                     job.location, job.work_arrangement, existing.get("Cost")) == "Yes" else ""),
                 "Location": job.location, "Work Arrangement": job.work_arrangement,
-                "Employment Type": job.employment_type, "Salary": extract_salary(
-                    job.salary, max((job.description or "", job.enriched_description or ""), key=len)),
+                "Employment Type": job.employment_type, "Salary": salary_value,
                 "Date Posted": job.date_posted, "Date Found": job.date_discovered,
                 "Last Seen": job.last_seen or job.date_discovered, "Job URL": url,
             }
@@ -1185,6 +1187,11 @@ class GoogleTracker:
                           if name in tab.headers}
                 values.update(scores)
                 managed_fields.update(scores)
+            if salary_note and 'Notes' in tab.headers:
+                previous_note = str(values.get('Notes') or existing.get('Notes') or '')
+                if salary_note not in previous_note:
+                    values['Notes'] = previous_note.rstrip() + ('\n\n' if previous_note.strip() else '') + salary_note
+                    managed_fields.add('Notes')
             if fill_blanks_only and existing:
                 for field, value in (('Company', job.company), ('Job Title', job.title), ('Date Posted', job.date_posted)):
                     values[field] = value
