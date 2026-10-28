@@ -5,16 +5,17 @@ import ast
 import html
 import re
 
-NUMBER = r'\d+(?:,\d{3})*(?:\.\d+)?\s*[kK]?'
+NUMBER = r'\d+(?:[, \u00a0]\d{3})*(?:\.\d+)?[ \t]*[kK]?'
 CURRENCY = r'(?:USD|CAD|AUD|EUR|GBP|US\$|CA\$|A\$|\$|€|£)'
 MONEY = re.compile(
-    rf'(?<![\w.])(?P<currency>{CURRENCY})?\s*(?P<low>{NUMBER})'
-    rf'(?:\s*(?:-|–|—|to)\s*(?P<currency2>{CURRENCY})?\s*(?P<high>{NUMBER}))?'
+    rf'(?<![\w.])(?P<currency>{CURRENCY})?[ \t]*(?P<low>{NUMBER})'
+    rf'(?:[ \t]*(?P<currency_mid>USD|CAD|AUD|EUR|GBP))?'
+    rf'(?:[ \t]*(?:-|–|—|to)[ \t]*(?P<currency2>{CURRENCY})?[ \t]*(?P<high>{NUMBER}))?'
     rf'(?:\s*(?P<currency3>USD|CAD|AUD|EUR|GBP))?'
     r'(?:\s*(?:per|/|an?|each)\s*(?P<period>yearly|annually|annual|year|hourly|hour|hr|monthly|month|weekly|week|daily|day|task)\b'
     r'|\s*(?P<period2>annually|annual|yearly|hourly|monthly|weekly|daily)\b)?', re.I)
 STANDARD = re.compile(r'^\$\d{1,3}(?:,\d{3})*(?:\.\d{2})?(?: - \$\d{1,3}(?:,\d{3})*(?:\.\d{2})?)?(?: (?:CAD|AUD|EUR|GBP))?$')
-PAY_LABEL = re.compile(r'\b(?:salary|base pay|base compensation|pay range|rate of pay|compensation range|annual compensation)\b', re.I)
+PAY_LABEL = re.compile(r'\b(?:salary|base pay|base compensation|pay range|rate of pay|pay transparency|compensation(?: range)?|annual compensation|estimated pay ranges?|annual base pay|total earnings|on.target earnings)\b', re.I)
 BASE_LABEL = re.compile(r'\bbase\s+(?:salary|pay|compensation)\b', re.I)
 
 
@@ -40,7 +41,13 @@ class Salary:
 
 
 def _candidates(text, source):
-    text = html.unescape(re.sub(r'<[^>]+>', ' ', str(text or ''))).replace('\\-', '-')
+    text = str(text or '')
+    # ATS salary blocks often have a pay-range wrapper after a regional heading.
+    text = re.sub(r'<[^>]*class=["\'][^"\']*pay-range[^"\']*["\'][^>]*>', ' Salary range: ', text, flags=re.I)
+    text = html.unescape(re.sub(r'<[^>]+>', ' ', text)).replace('\\-', '-')
+    text = re.sub(r'(?<=\d)[\u00a0 ](?=\d{3}\b)', '', text)
+    text = re.sub(r'(?<=\d)\s+and\s+(?=(?:USD|CAD|AUD|EUR|GBP|\$|€|£)?\s*\d)', ' - ', text, flags=re.I)
+    text = re.sub(r'\[\s*(USD|CAD|AUD|EUR|GBP)\s*\]', r'\1', text, flags=re.I)
     # Public ATS schemas can arrive as a QuantitativeValue dictionary string.
     if source == 'Salary' and text.strip().startswith('{'):
         try:
@@ -57,19 +64,22 @@ def _candidates(text, source):
         except (ValueError, SyntaxError, TypeError, AttributeError):
             pass
     for match in MONEY.finditer(text):
-        before = text[max(0, match.start()-130):match.start()]
+        before = text[max(0, match.start()-250):match.start()]
         after = text[match.end():match.end()+55]
         clause = re.split(r'[\n.!?;]|\|', before)[-1]
         label = PAY_LABEL.search(clause)
+        # Region labels can separate the payment from the salary heading.
+        if not label and re.search(r'\b(?:zone [a-z]|(?:us )?remote range|san francisco|new york|california|colorado|utah|canada)\b', clause, re.I):
+            label = PAY_LABEL.search(before)
         if re.search(r'(?:PHP|INR|PLN|BRL|MXN|SGD|HKD|NZD|CHF|ZAR|₱|₹)\s*$', before, re.I):
             continue  # preserve unsupported currency rather than invent USD
-        marked = bool(match['currency'] or match['currency3'])
+        marked = bool(match['currency'] or match['currency_mid'] or match['currency3'])
         immediate_label = re.search(r'\b(?:salary|pay|compensation)(?: range)?\s*(?:is|:|of|from|between)?\s*$',clause,re.I)
         if not marked and not immediate_label and text.strip() != match[0].strip():
             continue  # e.g. 401K is a benefit, never a $401,000 salary
         if source != 'Salary' and not label:
             continue
-        if source == 'Salary' and not (match['currency'] or match['currency3'] or label
+        if source == 'Salary' and not (match['currency'] or match['currency_mid'] or match['currency3'] or label
                 or text.strip() == match[0].strip()):
             continue
         if re.search(r'\b(?:fee|stipend|allowance|budget|revenue|401k|reimbursement|bonus|sign.on|equity grant)\b[^.!?;\n]*$', clause, re.I) and not label:
@@ -78,7 +88,7 @@ def _candidates(text, source):
         # A shared k suffix in "120-150k" applies to both range endpoints.
         if high is not None and 'k' in match['high'].casefold() and 'k' not in match['low'].casefold() and low < 1000:
             low *= 1000
-        currency = (match['currency3'] or match['currency2'] or match['currency'] or 'USD').upper()
+        currency = (match['currency3'] or match['currency2'] or match['currency_mid'] or match['currency'] or 'USD').upper()
         currency = {'$':'USD','US$':'USD','CA$':'CAD','A$':'AUD','€':'EUR','£':'GBP'}.get(currency,currency)
         if re.match(r'\s*/\s*(?:USD|CAD|AUD|EUR|GBP)', after, re.I):
             continue  # mixed-currency range is ambiguous
@@ -182,3 +192,30 @@ def normalize_salary_row(row):
                 return {}, {'reason':'notes are too long to preserve conversion evidence safely'}
     return changes, {'reason':'annualized' if assumption else 'formatted', 'source':item.source,
                      'evidence':item.evidence,'original_salary':row.get('Salary',''),'formatted_salary':display}
+
+
+def extract_salary(raw_salary, description, metadata=None):
+    """Extract evidence-backed annual pay during discovery, even if source salary is absent.
+
+    Structured compensation is authoritative. Original descriptions are fallback;
+    never invent market estimates or confuse advertising budgets with pay.
+    """
+    metadata = metadata if isinstance(metadata, dict) else {}
+    structured = metadata.get('baseSalary')
+    if not structured:
+        ranges = metadata.get('salaryRange')
+        if isinstance(ranges, dict) and ranges.get('min') is not None:
+            structured = {'currency': ranges.get('currency') or 'USD',
+                          'value': {'minValue': ranges['min'], 'maxValue': ranges.get('max'),
+                                    'unitText': ranges.get('interval') or 'YEAR'}}
+    for original in (structured, raw_salary):
+        if not original:
+            continue
+        original = str(original)
+        changes, _ = normalize_salary_row({'Salary': original, 'Job Description': description or ''})
+        if changes.get('Salary'):
+            return changes['Salary']
+        if not changes and STANDARD.fullmatch(original.strip()):
+            return original.strip()
+    changes, _ = normalize_salary_row({'Salary': '', 'Job Description': description or ''})
+    return changes.get('Salary', '')
